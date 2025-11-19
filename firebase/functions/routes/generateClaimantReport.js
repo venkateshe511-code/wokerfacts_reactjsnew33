@@ -5350,13 +5350,13 @@ async function addReferralQuestionsContent(children, body) {
               ],
               [
                 "Light",
-                "Up to 20 lbs of force",
+                "11–25 lbs of force",
                 "Up to 10 lbs of force",
                 "Negligible weight",
               ],
               [
                 "Medium",
-                "20–50 lbs of force",
+                "26–50 lbs of force",
                 "10–25 lbs of force",
                 "Up to 10 lbs of force",
               ],
@@ -5364,13 +5364,13 @@ async function addReferralQuestionsContent(children, body) {
                 "Heavy",
                 "50–100 lbs of force",
                 "25–50 lbs of force",
-                "10–20 lbs of force",
+                "11–25 lbs of force",
               ],
               [
                 "Very Heavy",
                 "Over 100 lbs of force",
                 "Over 50 lbs of force",
-                "Over 20 lbs of force",
+                "Over 25 lbs of force",
               ],
             ].map(
               ([demandLevel, occasional, frequent, constant]) =>
