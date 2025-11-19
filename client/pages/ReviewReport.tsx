@@ -6910,7 +6910,7 @@ export default function ReviewReport() {
                           Light
                         </td>
                         <td className="border border-gray-400 border-r-gray-400 p-2">
-                          11 - 20 lbs.
+                          11 - 25 lbs.
                         </td>
                         <td className="border border-gray-400 border-r-gray-400 p-2">
                           1 - 10 lbs.
@@ -6924,7 +6924,7 @@ export default function ReviewReport() {
                           Medium
                         </td>
                         <td className="border border-gray-400 border-r-gray-400 p-2">
-                          21 - 50 lbs.
+                          26 - 50 lbs.
                         </td>
                         <td className="border border-gray-400 border-r-gray-400 p-2">
                           11 - 25 lbs.
@@ -6944,7 +6944,7 @@ export default function ReviewReport() {
                           26 - 50 lbs.
                         </td>
                         <td className="border border-gray-400 border-r-gray-400 p-2">
-                          11 - 20 lbs.
+                          11 - 25 lbs.
                         </td>
                       </tr>
                       <tr>
@@ -6958,7 +6958,7 @@ export default function ReviewReport() {
                           Over 50 lbs.
                         </td>
                         <td className="border border-gray-400 border-r-gray-400 p-2">
-                          Over 20 lbs.
+                          Over 25 lbs.
                         </td>
                       </tr>
                     </tbody>
