@@ -733,7 +733,7 @@ export default function ReviewReport() {
                   <p>Test Data:</p>
                   <div className="ml-2 space-y-1">
                     <p>• Activity Overview</p>
-                    <p>• Extremity Strength</p>
+                    <p>�� Extremity Strength</p>
                     <p>• Occupational Tasks</p>
                     <p>• Range of Motion (Spine)</p>
                   </div>
@@ -1702,7 +1702,7 @@ export default function ReviewReport() {
                           "Very Heavy": {
                             title: "(VH) Very Heavy",
                             description:
-                              "Exerting over 100 lbs of force occasionally, and over 50 lbs of force frequently, and over 25 lbs of force constantly to move objects. For civilian workers, 0.7 percent required a very heavy strength level, which indicates requirements beyond the conditions set for heavy work. Examples of occupational groups with heavy strength level requirements include: Laborers in construction and extraction occupations may lift items that weigh 50 pounds or more, like bags of cement or sheets of plywood, for more than 1/3 of the workday.",
+                              "Exerting over 100 lbs of force occasionally, and over 50 lbs of force frequently, and over 25 lbs of force constantly to move objects. For civilian workers, 0.7 percent required a very heavy strength level, which indicates requirements beyond the conditions set for heavy work. Examples of occupational groups with heavy strength level requirements include: Laborers in construction and extraction occupations may lift items that weigh 50 pounds or more, like bags of cement or sheets of plywood, for more than 1/3 of the workday. *'Occasionally' indicates that an activity or condition exists up to one third of the time; 'frequently' indicates that an activity or condition exists from one third to two thirds of the time; 'constantly' indicates that an activity or condition exists two thirds or more of the time. *Duration levels are used to calculate the amount of time spent lifting or carrying. There are four duration levels in relation to a job's workday schedule: seldom (up to 2 percent), occasional (2 percent to 1/3), frequent (1/3 to 2/3), and constant (2/3 or more).",
                           },
                         };
                         const qa =
