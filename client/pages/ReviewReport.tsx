@@ -281,7 +281,7 @@ export default function ReviewReport() {
               website: d.website || "",
               profilePhoto: d.profilePhoto || null,
               clinicLogo: d.clinicLogo || null,
-              fax:d.fax || "",
+              fax: d.fax || "",
             };
           }
         } catch (e) {
@@ -705,7 +705,8 @@ export default function ReviewReport() {
                     </div>
                     <p>{reportData.evaluatorData.address}</p>
                     <p>
-                      Phone: {reportData.evaluatorData.phone} |  Fax: {reportData.evaluatorData.phone}
+                      Phone: {reportData.evaluatorData.phone} | Fax:{" "}
+                      {reportData.evaluatorData.phone}
                     </p>
                   </div>
                 </div>
@@ -761,7 +762,8 @@ export default function ReviewReport() {
                       {reportData.evaluatorData.address}
                     </p>
                     <p className="text-sm text-gray-600">
-                      Phone: {reportData.evaluatorData.phone} | Fax: {reportData.evaluatorData.phone}
+                      Phone: {reportData.evaluatorData.phone} | Fax:{" "}
+                      {reportData.evaluatorData.phone}
                     </p>
                   </div>
                   <div className="text-right text-sm">
@@ -1687,7 +1689,7 @@ export default function ReviewReport() {
                           Light: {
                             title: "(L) Light Work",
                             description:
-                              'Exerting 11 to 25 lb of force occasionally, and/or up to 10 lb of force frequently, and/or a negligible amount of force constantly to move objects. Physical demand requirements are in excess of those for sedentary work. Even though the weight lifted may be only negligible, a job should be rated Light Work: (1) when it requires walking or standing to a significant degree; or (2) when it requires sitting most of the time but entails pushing and/or pulling of arm or leg controls; and/or (3) when the job requires working at a production rate pace entailing the constant pushing and/or pulling of materials even though the weight of those materials is negligible. The constant stress and strain of maintaining a production rate pace, especially in an industrial setting, can be and is physically exhausting. If the work level of an occupation does not meet the conditions for the other strength levels, including sedentary, a light strength level is required. For civilian workers, 33.3 percent of workers were required to work at a light strength level.',
+                              "Exerting 11 to 25 lb of force occasionally, and/or up to 10 lb of force frequently, and/or a negligible amount of force constantly to move objects. Physical demand requirements are in excess of those for sedentary work. Even though the weight lifted may be only negligible, a job should be rated Light Work: (1) when it requires walking or standing to a significant degree; or (2) when it requires sitting most of the time but entails pushing and/or pulling of arm or leg controls; and/or (3) when the job requires working at a production rate pace entailing the constant pushing and/or pulling of materials even though the weight of those materials is negligible. The constant stress and strain of maintaining a production rate pace, especially in an industrial setting, can be and is physically exhausting. If the work level of an occupation does not meet the conditions for the other strength levels, including sedentary, a light strength level is required. For civilian workers, 33.3 percent of workers were required to work at a light strength level.",
                           },
                           Medium: {
                             title: "(M) Medium Work",
@@ -7066,10 +7068,11 @@ export default function ReviewReport() {
                           are met and standing is required less than or equal to
                           1/3 of the work schedule or workday. For civilian
                           workers, 30.6 percent of workers were required to work
-                          at a sedentary strength level. Occupations with critical
-                          tasks where workers typically spend the day sitting and
-                          occasionally lift items of little weight, like a pen or
-                          a few pieces of paper, require sedentary strength.
+                          at a sedentary strength level. Occupations with
+                          critical tasks where workers typically spend the day
+                          sitting and occasionally lift items of little weight,
+                          like a pen or a few pieces of paper, require sedentary
+                          strength.
                         </p>
                       </div>
 
@@ -7083,22 +7086,22 @@ export default function ReviewReport() {
                           amount of force constantly to move objects. Physical
                           demand requirements are in excess of those for
                           sedentary work. Even though the weight lifted may be
-                          only negligible, a job should be rated Light Work:
-                          (1) when it requires walking or standing to a
-                          significant degree; or (2) when it requires sitting
-                          most of the time but entails pushing and/or pulling of
-                          arm or leg controls; and/or (3) when the job requires
-                          working at a production rate pace entailing the
-                          constant pushing and/or pulling of materials even
-                          though the weight of those materials is negligible.
-                          The constant stress and strain of maintaining a
-                          production rate pace, especially in an industrial
-                          setting, can be and is physically exhausting. If the
-                          work level of an occupation does not meet the conditions
-                          for the other strength levels, including sedentary, a
-                          light strength level is required. For civilian workers,
-                          33.3 percent of workers were required to work at a light
-                          strength level.
+                          only negligible, a job should be rated Light Work: (1)
+                          when it requires walking or standing to a significant
+                          degree; or (2) when it requires sitting most of the
+                          time but entails pushing and/or pulling of arm or leg
+                          controls; and/or (3) when the job requires working at
+                          a production rate pace entailing the constant pushing
+                          and/or pulling of materials even though the weight of
+                          those materials is negligible. The constant stress and
+                          strain of maintaining a production rate pace,
+                          especially in an industrial setting, can be and is
+                          physically exhausting. If the work level of an
+                          occupation does not meet the conditions for the other
+                          strength levels, including sedentary, a light strength
+                          level is required. For civilian workers, 33.3 percent
+                          of workers were required to work at a light strength
+                          level.
                         </p>
                       </div>
 
@@ -7111,9 +7114,9 @@ export default function ReviewReport() {
                           to 25 lbs of force frequently, and/or greater than
                           negligible up to 10 lbs of force constantly to move
                           objects. Physical demand requirements are in excess of
-                          those for light work. For civilian workers, 29.0 percent
-                          of workers were required to work at a medium strength
-                          level.
+                          those for light work. For civilian workers, 29.0
+                          percent of workers were required to work at a medium
+                          strength level.
                         </p>
                       </div>
 
@@ -7152,21 +7155,22 @@ export default function ReviewReport() {
                       <div>
                         <p className="italic text-gray-600 text-justify leading-relaxed">
                           *'Occasionally' indicates that an activity or
-                          condition exists up to one third of the time; 'frequently'
-                          indicates that an activity or condition exists from one
-                          third to two thirds of the time; 'constantly' indicates
-                          that an activity or condition exists two thirds or more
-                          of the time.
+                          condition exists up to one third of the time;
+                          'frequently' indicates that an activity or condition
+                          exists from one third to two thirds of the time;
+                          'constantly' indicates that an activity or condition
+                          exists two thirds or more of the time.
                         </p>
                       </div>
 
                       <div>
                         <p className="italic text-gray-600 text-justify leading-relaxed">
                           *Duration levels are used to calculate the amount of
-                          time spent lifting or carrying. There are four duration
-                          levels in relation to a job's workday schedule: seldom
-                          (up to 2 percent), occasional (2 percent to 1/3),
-                          frequent (1/3 to 2/3), and constant (2/3 or more).
+                          time spent lifting or carrying. There are four
+                          duration levels in relation to a job's workday
+                          schedule: seldom (up to 2 percent), occasional (2
+                          percent to 1/3), frequent (1/3 to 2/3), and constant
+                          (2/3 or more).
                         </p>
                       </div>
                     </div>

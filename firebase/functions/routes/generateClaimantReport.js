@@ -163,7 +163,7 @@ const getImageBuffer = async (src) => {
       try {
         const tmpPath = path.join(os.tmpdir(), `docx_img_${Date.now()}.bin`);
         fs.writeFileSync(tmpPath, buffer);
-      } catch { }
+      } catch {}
     }
 
     return buffer;
@@ -557,7 +557,7 @@ const calculateAverage = (measurements) => {
 //   ],
 // };
 
- const testReferences = {
+const testReferences = {
   // Static Lift Strength
   "static-lift": [
     {
@@ -848,138 +848,137 @@ const calculateAverage = (measurements) => {
     },
   ],
 };
-  // Map test IDs to reference categories
- const testToCategory= {
-    // Static Lift Tests
-    "static-lift-low": "static-lift",
-    "static-lift-mid": "static-lift",
-    "static-lift-high": "static-lift",
+// Map test IDs to reference categories
+const testToCategory = {
+  // Static Lift Tests
+  "static-lift-low": "static-lift",
+  "static-lift-mid": "static-lift",
+  "static-lift-high": "static-lift",
 
-    // Dynamic Lift Tests
-    "dynamic-lift-low": "dynamic-lift",
-    "dynamic-lift-mid": "dynamic-lift",
-    "dynamic-lift-high": "dynamic-lift",
-    "dynamic-lift-overhead": "dynamic-lift",
-    "dynamic-lift-frequent": "dynamic-lift",
-    "dynamic-infrequent-lift-low": "dynamic-lift",
-    "dynamic-infrequent-lift-mid": "dynamic-lift",
-    "dynamic-infrequent-lift-high": "dynamic-lift",
-    "dynamic-infrequent-lift-overhead": "dynamic-lift",
+  // Dynamic Lift Tests
+  "dynamic-lift-low": "dynamic-lift",
+  "dynamic-lift-mid": "dynamic-lift",
+  "dynamic-lift-high": "dynamic-lift",
+  "dynamic-lift-overhead": "dynamic-lift",
+  "dynamic-lift-frequent": "dynamic-lift",
+  "dynamic-infrequent-lift-low": "dynamic-lift",
+  "dynamic-infrequent-lift-mid": "dynamic-lift",
+  "dynamic-infrequent-lift-high": "dynamic-lift",
+  "dynamic-infrequent-lift-overhead": "dynamic-lift",
 
-    // Hand Strength Tests
-    "hand-strength-standard": "hand-strength",
-    "hand-strength-rapid-exchange": "hand-strength",
-    "hand-strength-mve": "hand-strength",
-    "hand-strength-mmve": "hand-strength",
-    "grip-strength": "hand-strength",
+  // Hand Strength Tests
+  "hand-strength-standard": "hand-strength",
+  "hand-strength-rapid-exchange": "hand-strength",
+  "hand-strength-mve": "hand-strength",
+  "hand-strength-mmve": "hand-strength",
+  "grip-strength": "hand-strength",
 
-    // Pinch Strength Tests
-    "pinch-strength-key": "pinch-strength",
-    "pinch-strength-tip": "pinch-strength",
-    "pinch-strength-palmar": "pinch-strength",
-    "pinch-strength-grasp": "pinch-strength",
-    "key-pinch": "pinch-strength",
-    "tip-pinch": "pinch-strength",
-    "palmar-pinch": "pinch-strength",
+  // Pinch Strength Tests
+  "pinch-strength-key": "pinch-strength",
+  "pinch-strength-tip": "pinch-strength",
+  "pinch-strength-palmar": "pinch-strength",
+  "pinch-strength-grasp": "pinch-strength",
+  "key-pinch": "pinch-strength",
+  "tip-pinch": "pinch-strength",
+  "palmar-pinch": "pinch-strength",
 
-    // Range of Motion Tests (Cervical, Lumbar, etc.)
-    "cervical-flexion-extension": "range-of-motion",
-    "cervical-lateral-flexion": "range-of-motion",
-    "cervical-30-rotation": "range-of-motion",
-    "cervical-60-rotation": "range-of-motion",
-    "cervical-spine-flexion-extension": "range-of-motion",
-    "cervical-spine-lateral-flexion": "range-of-motion",
-    "cervical-spine-rotation": "range-of-motion",
-    "lumbar-spine-flexion-extension": "range-of-motion",
-    "lumbar-spine-lateral-flexion": "range-of-motion",
-    "lumbar-spine-straight-leg-raise": "range-of-motion",
-    "thoracic-spine-flexion": "range-of-motion",
-    "thoracic-spine-rotation": "range-of-motion",
-    "shoulder-rom-flexion-extension": "range-of-motion",
-    "shoulder-rom-internal-external-rotation": "range-of-motion",
-    "shoulder-rom-abduction-adduction": "range-of-motion",
-    "hip-rom-flexion-extension": "range-of-motion",
-    "hip-rom-internal-external-rotation": "range-of-motion",
-    "hip-rom-abduction-adduction": "range-of-motion",
-    "knee-rom-flexion-extension": "range-of-motion",
-    "ankle-rom-dorsi-plantar-flexion": "range-of-motion",
-    "ankle-rom-inversion-eversion": "range-of-motion",
-    "elbow-rom-flexion-extension": "range-of-motion",
-    "elbow-rom-supination-pronation": "range-of-motion",
-    "wrist-rom-flexion-extension": "range-of-motion",
-    "wrist-rom-radial-ulnar-deviation": "range-of-motion",
+  // Range of Motion Tests (Cervical, Lumbar, etc.)
+  "cervical-flexion-extension": "range-of-motion",
+  "cervical-lateral-flexion": "range-of-motion",
+  "cervical-30-rotation": "range-of-motion",
+  "cervical-60-rotation": "range-of-motion",
+  "cervical-spine-flexion-extension": "range-of-motion",
+  "cervical-spine-lateral-flexion": "range-of-motion",
+  "cervical-spine-rotation": "range-of-motion",
+  "lumbar-spine-flexion-extension": "range-of-motion",
+  "lumbar-spine-lateral-flexion": "range-of-motion",
+  "lumbar-spine-straight-leg-raise": "range-of-motion",
+  "thoracic-spine-flexion": "range-of-motion",
+  "thoracic-spine-rotation": "range-of-motion",
+  "shoulder-rom-flexion-extension": "range-of-motion",
+  "shoulder-rom-internal-external-rotation": "range-of-motion",
+  "shoulder-rom-abduction-adduction": "range-of-motion",
+  "hip-rom-flexion-extension": "range-of-motion",
+  "hip-rom-internal-external-rotation": "range-of-motion",
+  "hip-rom-abduction-adduction": "range-of-motion",
+  "knee-rom-flexion-extension": "range-of-motion",
+  "ankle-rom-dorsi-plantar-flexion": "range-of-motion",
+  "ankle-rom-inversion-eversion": "range-of-motion",
+  "elbow-rom-flexion-extension": "range-of-motion",
+  "elbow-rom-supination-pronation": "range-of-motion",
+  "wrist-rom-flexion-extension": "range-of-motion",
+  "wrist-rom-radial-ulnar-deviation": "range-of-motion",
 
-    // Hand/Foot ROM (uses goniometers)
-    "thumb-ip-flexion-extension": "goniometers",
-    "thumb-mp-flexion-extension": "goniometers",
-    "thumb-abduction": "goniometers",
-    "index-dip-flexion-extension": "goniometers",
-    "index-pip-flexion-extension": "goniometers",
-    "index-mp-flexion-extension": "goniometers",
-    "middle-dip-flexion-extension": "goniometers",
-    "middle-pip-flexion-extension": "goniometers",
-    "middle-mp-flexion-extension": "goniometers",
-    "ring-dip-flexion-extension": "goniometers",
-    "ring-pip-flexion-extension": "goniometers",
-    "ring-mp-flexion-extension": "goniometers",
-    "little-dip-flexion-extension": "goniometers",
-    "little-pip-flexion-extension": "goniometers",
-    "little-mp-flexion-extension": "goniometers",
-    "great-toe-ip-flexion": "goniometers",
-    "great-toe-mp-dorsi-plantar-flexion": "goniometers",
-    "2nd-toe-mp-dorsi-plantar-flexion": "goniometers",
-    "3rd-toe-mp-dorsi-plantar-flexion": "goniometers",
-    "4th-toe-mp-dorsi-plantar-flexion": "goniometers",
-    "5th-toe-mp-dorsi-plantar-flexion": "goniometers",
+  // Hand/Foot ROM (uses goniometers)
+  "thumb-ip-flexion-extension": "goniometers",
+  "thumb-mp-flexion-extension": "goniometers",
+  "thumb-abduction": "goniometers",
+  "index-dip-flexion-extension": "goniometers",
+  "index-pip-flexion-extension": "goniometers",
+  "index-mp-flexion-extension": "goniometers",
+  "middle-dip-flexion-extension": "goniometers",
+  "middle-pip-flexion-extension": "goniometers",
+  "middle-mp-flexion-extension": "goniometers",
+  "ring-dip-flexion-extension": "goniometers",
+  "ring-pip-flexion-extension": "goniometers",
+  "ring-mp-flexion-extension": "goniometers",
+  "little-dip-flexion-extension": "goniometers",
+  "little-pip-flexion-extension": "goniometers",
+  "little-mp-flexion-extension": "goniometers",
+  "great-toe-ip-flexion": "goniometers",
+  "great-toe-mp-dorsi-plantar-flexion": "goniometers",
+  "2nd-toe-mp-dorsi-plantar-flexion": "goniometers",
+  "3rd-toe-mp-dorsi-plantar-flexion": "goniometers",
+  "4th-toe-mp-dorsi-plantar-flexion": "goniometers",
+  "5th-toe-mp-dorsi-plantar-flexion": "goniometers",
 
-    // Muscle Tests
-    "hip-muscle-flexion": "muscle-test",
-    "hip-muscle-extension": "muscle-test",
-    "hip-muscle-abduction": "muscle-test",
-    "hip-muscle-adduction": "muscle-test",
-    "hip-muscle-external-rotation": "muscle-test",
-    "hip-muscle-internal-rotation": "muscle-test",
-    "shoulder-muscle-flexion": "muscle-test",
-    "shoulder-muscle-extension": "muscle-test",
-    "shoulder-muscle-abduction": "muscle-test",
-    "shoulder-muscle-adduction": "muscle-test",
-    "shoulder-muscle-internal-rotation": "muscle-test",
-    "shoulder-muscle-external-rotation": "muscle-test",
-    "wrist-muscle-flexion": "muscle-test",
-    "wrist-muscle-extension": "muscle-test",
-    "wrist-muscle-radial-deviation": "muscle-test",
-    "wrist-muscle-ulnar-deviation": "muscle-test",
-    "ankle-muscle-dorsiflexion": "muscle-test",
-    "ankle-muscle-plantar-flexion": "muscle-test",
-    "ankle-muscle-eversion": "muscle-test",
-    "ankle-muscle-inversion": "muscle-test",
-    "knee-muscle-flexion": "muscle-test",
-    "knee-muscle-extension": "muscle-test",
-    "elbow-muscle-flexion": "muscle-test",
-    "elbow-muscle-extension": "muscle-test",
+  // Muscle Tests
+  "hip-muscle-flexion": "muscle-test",
+  "hip-muscle-extension": "muscle-test",
+  "hip-muscle-abduction": "muscle-test",
+  "hip-muscle-adduction": "muscle-test",
+  "hip-muscle-external-rotation": "muscle-test",
+  "hip-muscle-internal-rotation": "muscle-test",
+  "shoulder-muscle-flexion": "muscle-test",
+  "shoulder-muscle-extension": "muscle-test",
+  "shoulder-muscle-abduction": "muscle-test",
+  "shoulder-muscle-adduction": "muscle-test",
+  "shoulder-muscle-internal-rotation": "muscle-test",
+  "shoulder-muscle-external-rotation": "muscle-test",
+  "wrist-muscle-flexion": "muscle-test",
+  "wrist-muscle-extension": "muscle-test",
+  "wrist-muscle-radial-deviation": "muscle-test",
+  "wrist-muscle-ulnar-deviation": "muscle-test",
+  "ankle-muscle-dorsiflexion": "muscle-test",
+  "ankle-muscle-plantar-flexion": "muscle-test",
+  "ankle-muscle-eversion": "muscle-test",
+  "ankle-muscle-inversion": "muscle-test",
+  "knee-muscle-flexion": "muscle-test",
+  "knee-muscle-extension": "muscle-test",
+  "elbow-muscle-flexion": "muscle-test",
+  "elbow-muscle-extension": "muscle-test",
 
-    // MTM/Occupational Tests
-    fingering: "mtm",
-    "bi-manual-fingering": "mtm",
-    handling: "mtm",
-    "bi-manual-handling": "mtm",
-    "reach-immediate": "mtm",
-    "reach-overhead": "mtm",
-    "reach-with-weight": "mtm",
+  // MTM/Occupational Tests
+  fingering: "mtm",
+  "bi-manual-fingering": "mtm",
+  handling: "mtm",
+  "bi-manual-handling": "mtm",
+  "reach-immediate": "mtm",
+  "reach-overhead": "mtm",
+  "reach-with-weight": "mtm",
 
-    // Cardio Tests
-    "bruce-treadmill": "bruce-treadmill",
-    "treadmill-test": "bruce-treadmill",
-    "bruce-test": "bruce-treadmill",
-    mcaft: "mcaft",
-    "mcaft-test": "mcaft",
-    "step-test": "mcaft",
-    kasch: "kasch",
-    "kasch-test": "kasch",
-    "kasch-step": "kasch",
-  };
+  // Cardio Tests
+  "bruce-treadmill": "bruce-treadmill",
+  "treadmill-test": "bruce-treadmill",
+  "bruce-test": "bruce-treadmill",
+  mcaft: "mcaft",
+  "mcaft-test": "mcaft",
+  "step-test": "mcaft",
+  kasch: "kasch",
+  "kasch-test": "kasch",
+  "kasch-step": "kasch",
+};
 const getReferencesForTest = (testId) => {
-
   const category = testToCategory[testId];
   return category && testReferences[category] ? testReferences[category] : [];
 };
@@ -1036,17 +1035,17 @@ function buildReferenceParagraphs(test, opts = {}) {
   if (refs.length === 0) {
     output.push(
       createPara(
-        "Grip and Pinch Strength: Normative Data for Adults, V. Mathiowetz et al., Arch Pys Med Rehab, Vol. 66, pp. 69 (Feb 1985)."
+        "Grip and Pinch Strength: Normative Data for Adults, V. Mathiowetz et al., Arch Pys Med Rehab, Vol. 66, pp. 69 (Feb 1985).",
       ),
       createPara(
-        "The Seriously Uninjured Hand-Weakness of Grip, H. Stokes, Journal of Occupational Medicine, pp. 683-684 (Sep 1983)."
+        "The Seriously Uninjured Hand-Weakness of Grip, H. Stokes, Journal of Occupational Medicine, pp. 683-684 (Sep 1983).",
       ),
       createPara(
-        "Grip Strength in a Disabled Sample: Reliability and Normative Standards, L. Matheson, et al., Industrial Rehabilitation Quarterly, Vol. 1, no. 3, Fall 1988."
+        "Grip Strength in a Disabled Sample: Reliability and Normative Standards, L. Matheson, et al., Industrial Rehabilitation Quarterly, Vol. 1, no. 3, Fall 1988.",
       ),
       createPara(
-        "Detection of Submaximal effort by use of the rapid exchange grip, Hildreth et al., Journal of Hand Surgery, pp. 742 (Jul 1989)."
-      )
+        "Detection of Submaximal effort by use of the rapid exchange grip, Hildreth et al., Journal of Hand Surgery, pp. 742 (Jul 1989).",
+      ),
     );
   } else {
     refs.forEach((ref) => output.push(createPara(formatReference(ref))));
@@ -1123,13 +1122,13 @@ async function appendImageGrid(children, images, opts) {
             alignment: AlignmentType.START,
             children: data
               ? [
-                new ImageRun({
-                  data,
-                  transformation: { width: imageWidth, height: imageHeight },
-                }),
-                new TextRun({ text: "\n" }),
-                new TextRun({ text: name, size: 16, color: "6B7280" }),
-              ]
+                  new ImageRun({
+                    data,
+                    transformation: { width: imageWidth, height: imageHeight },
+                  }),
+                  new TextRun({ text: "\n" }),
+                  new TextRun({ text: name, size: 16, color: "6B7280" }),
+                ]
               : [new TextRun({ text: name })],
           }),
         ],
@@ -1151,12 +1150,12 @@ async function appendImageGrid(children, images, opts) {
       rows: rows.length
         ? rows
         : [
-          new TableRow({
-            children: [
-              new TableCell({ children: [new Paragraph("No images")] }),
-            ],
-          }),
-        ],
+            new TableRow({
+              children: [
+                new TableCell({ children: [new Paragraph("No images")] }),
+              ],
+            }),
+          ],
     }),
   );
 }
@@ -1219,13 +1218,13 @@ async function appendSampleIllustrationsForTest(children, test) {
 function appendHeartRateLine(children, test) {
   const pre = Number(
     test.leftMeasurements?.preHeartRate ||
-    test.rightMeasurements?.preHeartRate ||
-    0,
+      test.rightMeasurements?.preHeartRate ||
+      0,
   );
   const post = Number(
     test.leftMeasurements?.postHeartRate ||
-    test.rightMeasurements?.postHeartRate ||
-    0,
+      test.rightMeasurements?.postHeartRate ||
+      0,
   );
   if (!pre && !post) return;
 
@@ -1942,23 +1941,23 @@ function addKaschDocxContent(children, test) {
                 children: r.map((c, idx) =>
                   idx === 0
                     ? new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [
-                            new TextRun({ text: c, bold: true, size: 16 }),
-                          ],
-                        }),
-                      ],
-                    })
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [
+                              new TextRun({ text: c, bold: true, size: 16 }),
+                            ],
+                          }),
+                        ],
+                      })
                     : new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [new TextRun({ text: c, size: 16 })],
-                        }),
-                      ],
-                    }),
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: c, size: 16 })],
+                          }),
+                        ],
+                      }),
                 ),
               }),
           ),
@@ -2085,9 +2084,9 @@ async function addCardioDocxContent(children, test) {
                 children: [
                   imageBuffer
                     ? new ImageRun({
-                      data: imageBuffer,
-                      transformation: { width: 120, height: 120 },
-                    })
+                        data: imageBuffer,
+                        transformation: { width: 120, height: 120 },
+                      })
                     : new TextRun({ text: "[Image Missing]", size: 16 }),
                 ],
                 alignment: AlignmentType.LEFT,
@@ -2484,9 +2483,7 @@ const readTrials = (src) => {
   if (typeof src === "object") {
     const out = [];
     for (let i = 1; i <= 30; i++) {
-      const key = [`trial${i}`, `t${i}`, String(i)].find(
-        (k) => src[k] != null,
-      );
+      const key = [`trial${i}`, `t${i}`, String(i)].find((k) => src[k] != null);
       if (key) out.push(toNumber(src[key]));
     }
     return out;
@@ -2677,9 +2674,9 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
                   children: [
                     imageBuffer
                       ? new ImageRun({
-                        data: imageBuffer,
-                        transformation: { width: 120, height: 120 },
-                      })
+                          data: imageBuffer,
+                          transformation: { width: 120, height: 120 },
+                        })
                       : new TextRun({ text: "[Image Missing]", size: 16 }),
                   ],
                   alignment: AlignmentType.LEFT,
@@ -2950,20 +2947,20 @@ function computeCrosschecksFromUnifiedTests(
   // Hand grip MVE
   const gripMVEValid = gripTests.length
     ? gripTests.every((test) => {
-      const leftAvg = _calcAverage(test.leftMeasurements);
-      const rightAvg = _calcAverage(test.rightMeasurements);
-      const bilateralDiff = _bilateralDeficiency(leftAvg, rightAvg);
-      return bilateralDiff <= 20;
-    })
+        const leftAvg = _calcAverage(test.leftMeasurements);
+        const rightAvg = _calcAverage(test.rightMeasurements);
+        const bilateralDiff = _bilateralDeficiency(leftAvg, rightAvg);
+        return bilateralDiff <= 20;
+      })
     : null;
 
   // Pinch grip CV
   const pinchValid = pinchTests.length
     ? pinchTests.every((test) => {
-      const leftCV = _calcCV(test.leftMeasurements);
-      const rightCV = _calcCV(test.rightMeasurements);
-      return leftCV <= 15 && rightCV <= 15;
-    })
+        const leftCV = _calcCV(test.leftMeasurements);
+        const rightCV = _calcCV(test.rightMeasurements);
+        return leftCV <= 15 && rightCV <= 15;
+      })
     : null;
 
   // Dynamic lift HR fluctuation
@@ -2981,52 +2978,52 @@ function computeCrosschecksFromUnifiedTests(
 
   const hrConsistent = dynamicLifts.length
     ? dynamicLifts.some((test) => {
-      const preHR =
-        (test.leftMeasurements &&
-          Number(test.leftMeasurements.preHeartRate)) ||
-        (test.rightMeasurements &&
-          Number(test.rightMeasurements.preHeartRate)) ||
-        0;
-      const postHR =
-        (test.leftMeasurements &&
-          Number(test.leftMeasurements.postHeartRate)) ||
-        (test.rightMeasurements &&
-          Number(test.rightMeasurements.postHeartRate)) ||
-        0;
-      return postHR > preHR;
-    })
+        const preHR =
+          (test.leftMeasurements &&
+            Number(test.leftMeasurements.preHeartRate)) ||
+          (test.rightMeasurements &&
+            Number(test.rightMeasurements.preHeartRate)) ||
+          0;
+        const postHR =
+          (test.leftMeasurements &&
+            Number(test.leftMeasurements.postHeartRate)) ||
+          (test.rightMeasurements &&
+            Number(test.rightMeasurements.postHeartRate)) ||
+          0;
+        return postHR > preHR;
+      })
     : null;
 
   // ROM consistency
   const romValid = romTests.length
     ? romTests.every((test) => {
-      const leftTrials = _getTrialValues(test.leftMeasurements);
-      const rightTrials = _getTrialValues(test.rightMeasurements);
-      const all = [...leftTrials, ...rightTrials].filter((v) =>
-        Number.isFinite(v),
-      );
-      if (all.length < 6) return false;
+        const leftTrials = _getTrialValues(test.leftMeasurements);
+        const rightTrials = _getTrialValues(test.rightMeasurements);
+        const all = [...leftTrials, ...rightTrials].filter((v) =>
+          Number.isFinite(v),
+        );
+        if (all.length < 6) return false;
 
-      for (let i = 0; i <= all.length - 3; i++) {
-        const t1 = all[i],
-          t2 = all[i + 1],
-          t3 = all[i + 2];
-        const maxDiff = Math.max(
-          Math.abs(t1 - t2),
-          Math.abs(t2 - t3),
-          Math.abs(t1 - t3),
-        );
-        const avg = (t1 + t2 + t3) / 3;
-        const denom = avg === 0 ? 1 : avg;
-        const maxPerc = Math.max(
-          (Math.abs(t1 - avg) / denom) * 100,
-          (Math.abs(t2 - avg) / denom) * 100,
-          (Math.abs(t3 - avg) / denom) * 100,
-        );
-        if (maxDiff <= 5 && maxPerc <= 10) return true;
-      }
-      return false;
-    })
+        for (let i = 0; i <= all.length - 3; i++) {
+          const t1 = all[i],
+            t2 = all[i + 1],
+            t3 = all[i + 2];
+          const maxDiff = Math.max(
+            Math.abs(t1 - t2),
+            Math.abs(t2 - t3),
+            Math.abs(t1 - t3),
+          );
+          const avg = (t1 + t2 + t3) / 3;
+          const denom = avg === 0 ? 1 : avg;
+          const maxPerc = Math.max(
+            (Math.abs(t1 - avg) / denom) * 100,
+            (Math.abs(t2 - avg) / denom) * 100,
+            (Math.abs(t3 - avg) / denom) * 100,
+          );
+          if (maxDiff <= 5 && maxPerc <= 10) return true;
+        }
+        return false;
+      })
     : null;
 
   // Test/retest trial consistency
@@ -3061,12 +3058,12 @@ function computeCrosschecksFromUnifiedTests(
   // Dominant side monitoring
   const dominantSideValid = allTests.length
     ? allTests.every((test) => {
-      const l = _calcAverage(test.leftMeasurements);
-      const r = _calcAverage(test.rightMeasurements);
-      if (Math.min(l, r) === 0) return true; // avoid divide-by-zero
-      const ratio = Math.max(l, r) / Math.min(l, r);
-      return ratio <= 1.1; // ~10%
-    })
+        const l = _calcAverage(test.leftMeasurements);
+        const r = _calcAverage(test.rightMeasurements);
+        if (Math.min(l, r) === 0) return true; // avoid divide-by-zero
+        const ratio = Math.max(l, r) / Math.min(l, r);
+        return ratio <= 1.1; // ~10%
+      })
     : null;
 
   // Distraction test (6b) and diagnosis consistency (6c)
@@ -3164,25 +3161,25 @@ function computeCrosschecksFromUnifiedTests(
     ...(distractionPass === null
       ? []
       : [
-        {
-          name: "Distraction test consistency",
-          description:
-            "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
-          pass: distractionPass,
-          applicable: true,
-        },
-      ]),
+          {
+            name: "Distraction test consistency",
+            description:
+              "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
+            pass: distractionPass,
+            applicable: true,
+          },
+        ]),
     ...(diagnosisPass === null
       ? []
       : [
-        {
-          name: "Consistency with diagnosis",
-          description:
-            "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
-          pass: diagnosisPass,
-          applicable: true,
-        },
-      ]),
+          {
+            name: "Consistency with diagnosis",
+            description:
+              "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
+            pass: diagnosisPass,
+            applicable: true,
+          },
+        ]),
     {
       name: "Coefficient of Variation (CV)",
       description:
@@ -3438,8 +3435,9 @@ async function addCoverPage(children, body) {
   children.push(coverRow("Date of Evaluation(s)", displayEvalDate));
 
   // Return footer content so caller can place at page bottom
-  const phoneFax = `Phone: ${clinicPhone || ""}${clinicPhone && clinicFax ? "    " : ""
-    }${clinicPhone ? `Fax: ${clinicPhone}` : ""}`.trim();
+  const phoneFax = `Phone: ${clinicPhone || ""}${
+    clinicPhone && clinicFax ? "    " : ""
+  }${clinicPhone ? `Fax: ${clinicPhone}` : ""}`.trim();
 
   const footerChildren = [];
   footerChildren.push(
@@ -3612,7 +3610,8 @@ async function addContentsOfReport(children) {
 async function addClientInformation(children, body) {
   // children.push(new Paragraph({ children: [new PageBreak()] }));
 
-  const clinicName = body?.evaluatorData?.clinicName || body?.clinicName || "MedSource";
+  const clinicName =
+    body?.evaluatorData?.clinicName || body?.clinicName || "MedSource";
   const clinicAddress =
     body?.evaluatorData?.clinicAddress ||
     body?.clinicAddress ||
@@ -3620,7 +3619,8 @@ async function addClientInformation(children, body) {
   // const phoneFax =
   //   body?.evaluatorData?.clinicPhone || body?.clinicPhone ||
   //   "Phone: 757-220-5051 Fax: 757-273-6198";
-  const phoneFax = `Phone: ${body?.clinicPhone || ""} Fax: ${body?.clinicPhone || ""}`.trim();
+  const phoneFax =
+    `Phone: ${body?.clinicPhone || ""} Fax: ${body?.clinicPhone || ""}`.trim();
 
   // --- 🔹 Dynamic Header Lines ---
   const headerLines = [
@@ -3634,14 +3634,14 @@ async function addClientInformation(children, body) {
   const dob = cd.dateOfBirth || "";
   const age = dob
     ? (() => {
-      try {
-        const d = new Date(dob);
-        const diff = Date.now() - d.getTime();
-        return Math.max(0, Math.floor(diff / (365.25 * 24 * 3600 * 1000)));
-      } catch {
-        return "";
-      }
-    })()
+        try {
+          const d = new Date(dob);
+          const diff = Date.now() - d.getTime();
+          return Math.max(0, Math.floor(diff / (365.25 * 24 * 3600 * 1000)));
+        } catch {
+          return "";
+        }
+      })()
     : "";
   const heightDisp = `${cd.height || ""} ${cd.heightUnit || ""}`.trim();
   const weightDisp = `${cd.weight || ""} ${cd.weightUnit || ""}`.trim();
@@ -3967,42 +3967,42 @@ async function addClientInformation(children, body) {
                 }),
                 sampleImageBuffer
                   ? new Paragraph({
-                    children: [
-                      new ImageRun({
-                        data: sampleImageBuffer,
-                        transformation: { width: 120, height: 120 },
-                      }),
-                    ],
-                    alignment: AlignmentType.CENTER,
-                    spacing: { after: 10 },
-                  })
+                      children: [
+                        new ImageRun({
+                          data: sampleImageBuffer,
+                          transformation: { width: 120, height: 120 },
+                        }),
+                      ],
+                      alignment: AlignmentType.CENTER,
+                      spacing: { after: 10 },
+                    })
                   : new Paragraph({
-                    text: "[Photo Placeholder]",
-                    alignment: AlignmentType.START,
-                    spacing: { after: 10 },
-                    border: {
-                      top: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
+                      text: "[Photo Placeholder]",
+                      alignment: AlignmentType.START,
+                      spacing: { after: 10 },
+                      border: {
+                        top: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
+                        bottom: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
+                        left: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
+                        right: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
                       },
-                      bottom: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
-                      },
-                      left: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
-                      },
-                      right: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
-                      },
-                    },
-                  }),
+                    }),
 
                 new Paragraph({
                   children: [
@@ -4205,11 +4205,11 @@ async function addClientInformation(children, body) {
             spacing: { before: 0, after: 0 },
             children: buf
               ? [
-                new ImageRun({
-                  data: buf,
-                  transformation: { width: 130, height: 200 },
-                }),
-              ]
+                  new ImageRun({
+                    data: buf,
+                    transformation: { width: 130, height: 200 },
+                  }),
+                ]
               : [new TextRun(`Image ${idx + 1} not available`)],
           }),
         ],
@@ -4228,7 +4228,7 @@ async function addClientInformation(children, body) {
       tableHeader: false,
       children: diagramCells.length ? diagramCells.slice(0, 4) : [],
       height: { value: 1800, rule: HeightRule.ATLEAST }, // ensures vertical space for centering
-    })
+    }),
   );
 
   // If reference images exist, add them below
@@ -4241,8 +4241,7 @@ async function addClientInformation(children, body) {
     body.painIllustrationData.savedImageData.forEach((ref) => {
       const imgCellChildren = [];
 
-      const title =
-        typeof ref === "object" ? ref.title || ref.name || "" : "";
+      const title = typeof ref === "object" ? ref.title || ref.name || "" : "";
       if (title) {
         imgCellChildren.push(
           new Paragraph({
@@ -4256,7 +4255,7 @@ async function addClientInformation(children, body) {
                 size: 16,
               }),
             ],
-          })
+          }),
         );
       }
 
@@ -4274,7 +4273,7 @@ async function addClientInformation(children, body) {
                 transformation: { width: 50, height: 50 },
               }),
             ],
-          })
+          }),
         );
       }
 
@@ -4283,7 +4282,7 @@ async function addClientInformation(children, body) {
           children: imgCellChildren,
           borders: noBorders,
           verticalAlign: VerticalAlign.CENTER,
-        })
+        }),
       );
     });
 
@@ -4291,7 +4290,7 @@ async function addClientInformation(children, body) {
     leftTableRows.push(
       new TableRow({
         children: referenceImageCells,
-      })
+      }),
     );
   }
 
@@ -4329,7 +4328,7 @@ async function addClientInformation(children, body) {
           ],
         }),
       ],
-    })
+    }),
   );
 }
 
@@ -5028,9 +5027,9 @@ async function addDigitalLibraryContent(children, body) {
                 children: [
                   imageBuffer
                     ? new ImageRun({
-                      data: imageBuffer,
-                      transformation: { width: 120, height: 120 },
-                    })
+                        data: imageBuffer,
+                        transformation: { width: 120, height: 120 },
+                      })
                     : new TextRun({ text: "[Image Missing]", size: 16 }),
                 ],
                 alignment: AlignmentType.CENTER,
@@ -7747,12 +7746,12 @@ async function addTestDataContent(children, body) {
 
             const titleNode = title
               ? new Paragraph({
-                alignment: AlignmentType.CENTER,
-                spacing: { after: 80 },
-                children: [
-                  new TextRun({ text: title, bold: true, size: 16 }),
-                ],
-              })
+                  alignment: AlignmentType.CENTER,
+                  spacing: { after: 80 },
+                  children: [
+                    new TextRun({ text: title, bold: true, size: 16 }),
+                  ],
+                })
               : null;
 
             return new TableCell({
@@ -7796,10 +7795,11 @@ async function addTestDataContent(children, body) {
                   spacing: { before: 80 },
                   children: [
                     new TextRun({
-                      text: `${averageLabel}: ${Number.isFinite(averageValue)
-                        ? averageValue.toFixed(1)
-                        : "n/a"
-                        }${unitLabel ? ` ${unitLabel}` : ""}`,
+                      text: `${averageLabel}: ${
+                        Number.isFinite(averageValue)
+                          ? averageValue.toFixed(1)
+                          : "n/a"
+                      }${unitLabel ? ` ${unitLabel}` : ""}`,
                       color: "444444",
                       size: 16,
                     }),
@@ -7876,7 +7876,7 @@ async function addTestDataContent(children, body) {
                   ChartJS.defaults.font.family = "Arial";
                   ChartJS.defaults.font.size = 12;
                   ChartJS.defaults.color = "#333";
-                } catch { }
+                } catch {}
               },
             });
             const labels = dataSeries.map((_, i) => `T${i + 1}`);
@@ -7975,11 +7975,11 @@ async function addTestDataContent(children, body) {
           if (!hasLeftSeries && !hasRightSeries) {
             singleSeries = extractTrialSeries(
               test.measurements ||
-              test.trials ||
-              test.series ||
-              test.results ||
-              test.data ||
-              [],
+                test.trials ||
+                test.series ||
+                test.results ||
+                test.data ||
+                [],
             );
           }
           // What do we actually have?
