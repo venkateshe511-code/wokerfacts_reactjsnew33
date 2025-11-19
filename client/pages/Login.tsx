@@ -113,7 +113,8 @@ export default function Login() {
       await withLoading(setLoadingEmail, async () => {
         await signInWithEmail(email, password);
         // Grant sample access based solely on demo email (no password check)
-        if (email.toLowerCase() === "workerfacts@gmail.com") {
+        const lowerEmail = email.toLowerCase();
+        if (lowerEmail === "workerfacts@gmail.com" || lowerEmail === "rgagne@usph.com") {
           localStorage.setItem("sampleAccess", "1");
         } else {
           localStorage.removeItem("sampleAccess");
