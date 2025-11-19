@@ -2307,13 +2307,13 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                         },
                         {
                           name: "Light",
-                          occasional: "11 - 20 lbs.",
+                          occasional: "11 - 25 lbs.",
                           frequent: "1 - 10 lbs.",
                           constant: "Negligible",
                         },
                         {
                           name: "Medium",
-                          occasional: "21 - 50 lbs.",
+                          occasional: "26 - 50 lbs.",
                           frequent: "11 - 25 lbs.",
                           constant: "1 - 10 lbs.",
                         },
@@ -2321,13 +2321,13 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                           name: "Heavy",
                           occasional: "51 - 100 lbs.",
                           frequent: "26 - 50 lbs.",
-                          constant: "11 - 20 lbs.",
+                          constant: "11 - 25 lbs.",
                         },
                         {
                           name: "Very Heavy",
                           occasional: "Over 100 lbs.",
                           frequent: "Over 50 lbs.",
-                          constant: "Over 20 lbs.",
+                          constant: "Over 25 lbs.",
                         },
                       ];
 
