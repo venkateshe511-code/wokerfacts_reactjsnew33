@@ -4675,8 +4675,8 @@ async function addReferenceChartsContent(children) {
       new TableRow({
         children: [
           paddedCell("Heavy"),
-          paddedCell("50–100 lbs of force"),
-          paddedCell("25–50 lbs of force"),
+          paddedCell("51–100 lbs of force"),
+          paddedCell("26–50 lbs of force"),
           paddedCell("11–25 lbs of force"),
         ],
       }),
@@ -5361,8 +5361,8 @@ async function addReferralQuestionsContent(children, body) {
               ],
               [
                 "Heavy",
-                "50–100 lbs of force",
-                "25–50 lbs of force",
+                "51–100 lbs of force",
+                "26–50 lbs of force",
                 "11–25 lbs of force",
               ],
               [
