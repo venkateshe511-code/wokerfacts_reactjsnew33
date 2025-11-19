@@ -4660,7 +4660,7 @@ async function addReferenceChartsContent(children) {
       new TableRow({
         children: [
           paddedCell("Light"),
-          paddedCell("Up to 20 lbs of force"),
+          paddedCell("11–25 lbs of force"),
           paddedCell("Up to 10 lbs of force"),
           paddedCell("Negligible weight"),
         ],
@@ -4668,7 +4668,7 @@ async function addReferenceChartsContent(children) {
       new TableRow({
         children: [
           paddedCell("Medium"),
-          paddedCell("20–50 lbs of force"),
+          paddedCell("26–50 lbs of force"),
           paddedCell("10–25 lbs of force"),
           paddedCell("Up to 10 lbs of force"),
         ],
@@ -4678,7 +4678,7 @@ async function addReferenceChartsContent(children) {
           paddedCell("Heavy"),
           paddedCell("50–100 lbs of force"),
           paddedCell("25–50 lbs of force"),
-          paddedCell("10–20 lbs of force"),
+          paddedCell("11–25 lbs of force"),
         ],
       }),
       new TableRow({
@@ -4686,7 +4686,7 @@ async function addReferenceChartsContent(children) {
           paddedCell("Very Heavy"),
           paddedCell("Over 100 lbs of force"),
           paddedCell("Over 50 lbs of force"),
-          paddedCell("Over 20 lbs of force"),
+          paddedCell("Over 25 lbs of force"),
         ],
       }),
     ],
@@ -5895,7 +5895,7 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
         };
       if (testNameLower.includes("abduction"))
         return {
-          requirement: "Shoulder abduction ≥150°",
+          requirement: "Shoulder abduction ��150°",
           norm: 150,
           functionalMin: 120,
           unit: "degrees",
