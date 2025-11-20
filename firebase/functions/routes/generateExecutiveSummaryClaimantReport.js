@@ -8330,20 +8330,20 @@ router.post("/", async (req, res) => {
           footers: coverFooter ? { default: coverFooter } : undefined,
           children: coverChildren,
         },
-        {
-          properties: {
-            page: {
-              margin: { top: 1440, right: 720, bottom: 720, left: 720 },
-            },
-          },
-          footers: { default: new Footer({ children: [] }) },
-          children: contentsChildren,
-        },
+        // {
+        //   properties: {
+        //     page: {
+        //       margin: { top: 1440, right: 720, bottom: 720, left: 720 },
+        //     },
+        //   },
+        //   footers: { default: new Footer({ children: [] }) },
+        //   children: contentsChildren,
+        // },
         {
           properties: {
             page: {
               margin: { top: 1480, right: 720, bottom: 720, left: 720 },
-              pageNumberStart: 3,
+              pageNumberStart: 2,
             },
           },
           headers: {

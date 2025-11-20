@@ -6258,7 +6258,6 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
         // For backwards compatibility with the rest of the code, get first blob
         const firstBlob = responses[0].blob;
-        const arrayBuf = await firstBlob.stream();
         const blobCopy = firstBlob.slice();
         try {
           const blobText = await blobCopy.text();
@@ -6295,7 +6294,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         }
 
         // Additional validation - check if blob starts with DOCX magic bytes
-        const arrayBuffer = await blob.slice(0, 4).arrayBuffer();
+        const arrayBuffer = await firstBlob.slice(0, 4).arrayBuffer();
         const bytes = new Uint8Array(arrayBuffer);
         const signature = Array.from(bytes)
           .map((b) => b.toString(16).padStart(2, "0"))
@@ -6312,20 +6311,20 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         }
 
         // Check for potential error responses that might be embedded in the DOCX
-        if (blob.size < 50000) {
+        if (firstBlob.size < 50000) {
           console.warn(
             "DOCX file is quite small for a comprehensive FCE report",
           );
           console.warn(
             "Expected size for 8 detailed tests: >50KB, actual:",
-            blob.size,
+            firstBlob.size,
             "bytes",
           );
 
           // Try to read more of the file content to check for embedded errors
           try {
-            const largerSample = await blob
-              .slice(0, Math.min(1000, blob.size))
+            const largerSample = await firstBlob
+              .slice(0, Math.min(1000, firstBlob.size))
               .arrayBuffer();
             const textDecoder = new TextDecoder("utf-8", { fatal: false });
             const sampleText = textDecoder.decode(largerSample);
@@ -6352,26 +6351,16 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         }
 
         // Validate blob size - should be much larger than 2 pages
-        if (blob.size < 50000) {
+        if (firstBlob.size < 50000) {
           console.warn(
             "WARNING: DOCX file seems very small, may be incomplete",
           );
           console.warn(
             "Expected size for comprehensive report: >100KB, actual:",
-            blob.size,
+            firstBlob.size,
             "bytes",
           );
         }
-
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `${fileName}.docx`;
-        a.style.display = "none";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
 
         console.log("DOCX download completed successfully");
         didSucceed = true;
