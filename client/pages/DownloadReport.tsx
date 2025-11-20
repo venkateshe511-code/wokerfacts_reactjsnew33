@@ -6352,6 +6352,47 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               <h3 className="text-lg font-semibold text-blue-800 mb-4">
                 Select Report(s)
               </h3>
+              <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="executiveSummary"
+                    checked={selectedReports.executiveSummary}
+                    onCheckedChange={(checked) =>
+                      setSelectedReports({
+                        ...selectedReports,
+                        executiveSummary: checked as boolean,
+                      })
+                    }
+                  />
+                  <Label
+                    htmlFor="executiveSummary"
+                    className="flex items-center cursor-pointer"
+                  >
+                    <FileText className="mr-2 h-4 w-4 text-blue-600" />
+                    FCE Executive Summary
+                  </Label>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <Checkbox
+                    id="fullReport"
+                    checked={selectedReports.fullReport}
+                    onCheckedChange={(checked) =>
+                      setSelectedReports({
+                        ...selectedReports,
+                        fullReport: checked as boolean,
+                      })
+                    }
+                  />
+                  <Label
+                    htmlFor="fullReport"
+                    className="flex items-center cursor-pointer"
+                  >
+                    <FileText className="mr-2 h-4 w-4 text-blue-600" />
+                    FCE Full Report
+                  </Label>
+                </div>
+              </div>
             </div>
 
             {/* Important Notice */}
