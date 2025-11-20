@@ -272,9 +272,8 @@ export default function DownloadReport() {
         setReportSummary({
           evaluatorName: evaluatorData.name || "Unknown Evaluator",
           claimantName:
-            `${claimantData.firstName || ""} ${
-              claimantData.lastName || ""
-            }`.trim() || "Unknown Claimant",
+            `${claimantData.firstName || ""} ${claimantData.lastName || ""
+              }`.trim() || "Unknown Claimant",
           completedSteps: completedSteps.length,
           totalTests: protocolTestsData.selectedTests?.length || 0,
           totalImages: totalImages,
@@ -531,104 +530,104 @@ export default function DownloadReport() {
 
     const normalizedTestArray = Array.isArray(testData?.tests)
       ? testData.tests
-          .filter((entry: any) => entry && typeof entry === "object")
-          .map((entry: any) => {
-            const leftMeasurements = normalizeMeasurements(
-              entry.leftMeasurements,
-            );
-            const rightMeasurements = normalizeMeasurements(
-              entry.rightMeasurements,
-            );
-            const derivedCategory = inferTestCategory(entry);
-            const unit = entry.unitMeasure || entry.valueToBeTestedUnit || "";
+        .filter((entry: any) => entry && typeof entry === "object")
+        .map((entry: any) => {
+          const leftMeasurements = normalizeMeasurements(
+            entry.leftMeasurements,
+          );
+          const rightMeasurements = normalizeMeasurements(
+            entry.rightMeasurements,
+          );
+          const derivedCategory = inferTestCategory(entry);
+          const unit = entry.unitMeasure || entry.valueToBeTestedUnit || "";
 
-            const leftAvg = calculateAverage(leftMeasurements);
-            const rightAvg = calculateAverage(rightMeasurements);
-            const leftCv = calculateCV(leftMeasurements);
-            const rightCv = calculateCV(rightMeasurements);
-            const bilateralDef = calculateBilateralDeficiency(
-              leftAvg,
-              rightAvg,
-            );
+          const leftAvg = calculateAverage(leftMeasurements);
+          const rightAvg = calculateAverage(rightMeasurements);
+          const leftCv = calculateCV(leftMeasurements);
+          const rightCv = calculateCV(rightMeasurements);
+          const bilateralDef = calculateBilateralDeficiency(
+            leftAvg,
+            rightAvg,
+          );
 
-            const existingResult =
-              typeof entry.result === "string" ? entry.result.trim() : "";
-            const derivedResult = (() => {
-              const segments: string[] = [];
-              if (leftAvg > 0) {
-                segments.push(
-                  `Left Avg: ${leftAvg.toFixed(1)}${unit ? ` ${unit}` : ""}`,
-                );
-              }
-              if (rightAvg > 0) {
-                segments.push(
-                  `Right Avg: ${rightAvg.toFixed(1)}${unit ? ` ${unit}` : ""}`,
-                );
-              }
-              return segments.join(" | ");
-            })();
+          const existingResult =
+            typeof entry.result === "string" ? entry.result.trim() : "";
+          const derivedResult = (() => {
+            const segments: string[] = [];
+            if (leftAvg > 0) {
+              segments.push(
+                `Left Avg: ${leftAvg.toFixed(1)}${unit ? ` ${unit}` : ""}`,
+              );
+            }
+            if (rightAvg > 0) {
+              segments.push(
+                `Right Avg: ${rightAvg.toFixed(1)}${unit ? ` ${unit}` : ""}`,
+              );
+            }
+            return segments.join(" | ");
+          })();
 
-            const normalizedObservations = Array.isArray(entry.observations)
-              ? entry.observations
-              : typeof entry.observations === "string" &&
-                  entry.observations.trim() !== ""
-                ? [entry.observations.trim()]
-                : [];
+          const normalizedObservations = Array.isArray(entry.observations)
+            ? entry.observations
+            : typeof entry.observations === "string" &&
+              entry.observations.trim() !== ""
+              ? [entry.observations.trim()]
+              : [];
 
-            const normalizedDemonstrated = coerceBoolean(entry.demonstrated);
+          const normalizedDemonstrated = coerceBoolean(entry.demonstrated);
 
-            return {
-              testId: entry.testId,
-              testName: entry.testName,
-              category: entry.category || derivedCategory,
-              testType: entry.testType || derivedCategory,
-              leftMeasurements,
-              rightMeasurements,
-              result: existingResult || derivedResult || "",
-              comments: entry.comments || "",
-              effort: entry.effort || "",
-              observations: normalizedObservations,
-              dynamicEndpointType:
-                entry.dynamicEndpointType ||
-                entry.parameters?.dynamicEndpointType ||
-                "",
-              demonstrated:
-                normalizedDemonstrated !== undefined
-                  ? normalizedDemonstrated
-                  : typeof entry.demonstrated === "boolean"
-                    ? entry.demonstrated
-                    : undefined,
-              perceived: entry.perceived ?? "",
-              jobRequirements: entry.jobRequirements || "",
-              jobMatch: entry.jobMatch || "",
-              jobDemands: entry.jobDemands || "",
-              jobDescription: entry.jobDescription || "",
-              normLevel: entry.normLevel || "",
-              valueToBeTestedNumber: entry.valueToBeTestedNumber || "",
-              valueToBeTestedUnit: entry.valueToBeTestedUnit || unit,
-              unitMeasure: unit,
-              measurements: entry.measurements || undefined,
-              trials: Array.isArray(entry.trials) ? entry.trials : [],
-              clientImages: Array.isArray(entry.clientImages)
-                ? entry.clientImages
-                : [],
-              serializedImages: Array.isArray(entry.serializedImages)
-                ? entry.serializedImages
-                : [],
-              cardioSummary: entry.cardioSummary || undefined,
-              vo2Max: entry.vo2Max || undefined,
-              predictedVo2Max: entry.predictedVo2Max || undefined,
-              classification: entry.classification || undefined,
-              hbr: entry.hbr || undefined,
-              aerobicFitnessScore: entry.aerobicFitnessScore || undefined,
-              leftAverage: leftAvg,
-              rightAverage: rightAvg,
-              leftCoefficientOfVariation: leftCv,
-              rightCoefficientOfVariation: rightCv,
-              bilateralDeficiency: bilateralDef,
-            };
-          })
-          .filter((entry: any) => Boolean(entry.testName))
+          return {
+            testId: entry.testId,
+            testName: entry.testName,
+            category: entry.category || derivedCategory,
+            testType: entry.testType || derivedCategory,
+            leftMeasurements,
+            rightMeasurements,
+            result: existingResult || derivedResult || "",
+            comments: entry.comments || "",
+            effort: entry.effort || "",
+            observations: normalizedObservations,
+            dynamicEndpointType:
+              entry.dynamicEndpointType ||
+              entry.parameters?.dynamicEndpointType ||
+              "",
+            demonstrated:
+              normalizedDemonstrated !== undefined
+                ? normalizedDemonstrated
+                : typeof entry.demonstrated === "boolean"
+                  ? entry.demonstrated
+                  : undefined,
+            perceived: entry.perceived ?? "",
+            jobRequirements: entry.jobRequirements || "",
+            jobMatch: entry.jobMatch || "",
+            jobDemands: entry.jobDemands || "",
+            jobDescription: entry.jobDescription || "",
+            normLevel: entry.normLevel || "",
+            valueToBeTestedNumber: entry.valueToBeTestedNumber || "",
+            valueToBeTestedUnit: entry.valueToBeTestedUnit || unit,
+            unitMeasure: unit,
+            measurements: entry.measurements || undefined,
+            trials: Array.isArray(entry.trials) ? entry.trials : [],
+            clientImages: Array.isArray(entry.clientImages)
+              ? entry.clientImages
+              : [],
+            serializedImages: Array.isArray(entry.serializedImages)
+              ? entry.serializedImages
+              : [],
+            cardioSummary: entry.cardioSummary || undefined,
+            vo2Max: entry.vo2Max || undefined,
+            predictedVo2Max: entry.predictedVo2Max || undefined,
+            classification: entry.classification || undefined,
+            hbr: entry.hbr || undefined,
+            aerobicFitnessScore: entry.aerobicFitnessScore || undefined,
+            leftAverage: leftAvg,
+            rightAverage: rightAvg,
+            leftCoefficientOfVariation: leftCv,
+            rightCoefficientOfVariation: rightCv,
+            bilateralDeficiency: bilateralDef,
+          };
+        })
+        .filter((entry: any) => Boolean(entry.testName))
       : [];
 
     const normalizedCurrentIndex =
@@ -717,50 +716,50 @@ export default function DownloadReport() {
 
                     <!-- All MTM Tests Combined -->
                     ${Object.entries(mtmData)
-                      .map(
-                        (
-                          [testType, testData]: [string, any],
-                          index: number,
-                        ) => {
-                          const trials = testData.trials || [];
-                          const testName =
-                            testData.testName ||
-                            testType.charAt(0).toUpperCase() +
-                              testType.slice(1);
+          .map(
+            (
+              [testType, testData]: [string, any],
+              index: number,
+            ) => {
+              const trials = testData.trials || [];
+              const testName =
+                testData.testName ||
+                testType.charAt(0).toUpperCase() +
+                testType.slice(1);
 
-                          // Find corresponding test in regular test data for comments (same logic as ReviewReport)
-                          // Try multiple matching strategies for better compatibility
-                          const correspondingTest = mainTestData.tests?.find(
-                            (test: any) => {
-                              const testNameLower =
-                                test.testName?.toLowerCase() || "";
-                              const testTypeLower = testType.toLowerCase();
-                              const testNameDisplayLower =
-                                testName.toLowerCase();
+              // Find corresponding test in regular test data for comments (same logic as ReviewReport)
+              // Try multiple matching strategies for better compatibility
+              const correspondingTest = mainTestData.tests?.find(
+                (test: any) => {
+                  const testNameLower =
+                    test.testName?.toLowerCase() || "";
+                  const testTypeLower = testType.toLowerCase();
+                  const testNameDisplayLower =
+                    testName.toLowerCase();
 
-                              return (
-                                testNameLower.includes(testTypeLower) ||
-                                testNameLower.includes(testNameDisplayLower) ||
-                                testTypeLower.includes(testNameLower) ||
-                                testNameDisplayLower.includes(testNameLower) ||
-                                test.testId === testType ||
-                                test.testId === testName ||
-                                // Try exact matches without case sensitivity
-                                testNameLower === testTypeLower ||
-                                testNameLower === testNameDisplayLower
-                              );
-                            },
-                          );
+                  return (
+                    testNameLower.includes(testTypeLower) ||
+                    testNameLower.includes(testNameDisplayLower) ||
+                    testTypeLower.includes(testNameLower) ||
+                    testNameDisplayLower.includes(testNameLower) ||
+                    test.testId === testType ||
+                    test.testId === testName ||
+                    // Try exact matches without case sensitivity
+                    testNameLower === testTypeLower ||
+                    testNameLower === testNameDisplayLower
+                  );
+                },
+              );
 
-                          return generateMTMTestSection(
-                            testName,
-                            testData,
-                            trials,
-                            correspondingTest,
-                          );
-                        },
-                      )
-                      .join("")}
+              return generateMTMTestSection(
+                testName,
+                testData,
+                trials,
+                correspondingTest,
+              );
+            },
+          )
+          .join("")}
 
                     <!-- References for MTM (styled like regular tests) -->
                     <div class="test-references" style="margin-top: 12px; padding: 8px; background: #f9f9f9; border-left: 3px solid #ddd;">
@@ -932,27 +931,26 @@ export default function DownloadReport() {
             </div>
 
             <!-- Client Images Section -->
-            ${
-              test.serializedImages && test.serializedImages.length > 0
-                ? `
+            ${test.serializedImages && test.serializedImages.length > 0
+            ? `
               <div style="margin-top: 16px;">
                 <h5 style="font-weight: bold; margin-bottom: 8px; font-size: 11px;">CLIENT IMAGES:</h5>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
                   ${test.serializedImages
-                    .map(
-                      (img: any, idx: number) => `
+              .map(
+                (img: any, idx: number) => `
                     <div style="border: 1px solid #333; padding: 4px; background: white; text-align: center; width: 80px;">
                       <img src="${img.data}" alt="${img.name || `Bruce Treadmill Image ${idx + 1}`}" style="width: 80px; height: 60px; object-fit: contain;" />
                       ${img.name ? `<p style="font-size: 8px; margin: 4px 0 0 0; text-overflow: ellipsis; overflow: hidden;">${img.name}</p>` : ""}
                     </div>
                   `,
-                    )
-                    .join("")}
+              )
+              .join("")}
                 </div>
               </div>
             `
-                : ""
-            }
+            : ""
+          }
           </div>
         `;
       } else if (testNameLower.includes("mcaft")) {
@@ -1050,27 +1048,26 @@ export default function DownloadReport() {
             </div>
 
             <!-- Client Images Section -->
-            ${
-              test.serializedImages && test.serializedImages.length > 0
-                ? `
+            ${test.serializedImages && test.serializedImages.length > 0
+            ? `
               <div style="margin-top: 16px;">
                 <h5 style="font-weight: bold; margin-bottom: 8px; font-size: 11px;">CLIENT IMAGES:</h5>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
                   ${test.serializedImages
-                    .map(
-                      (img: any, idx: number) => `
+              .map(
+                (img: any, idx: number) => `
                     <div style="border: 1px solid #333; padding: 4px; background: white; text-align: center; width: 80px;">
                       <img src="${img.data}" alt="${img.name || `mCAFT Image ${idx + 1}`}" style="width: 80px; height: 60px; object-fit: contain;" />
                       ${img.name ? `<p style="font-size: 8px; margin: 4px 0 0 0; text-overflow: ellipsis; overflow: hidden;">${img.name}</p>` : ""}
                     </div>
                   `,
-                    )
-                    .join("")}
+              )
+              .join("")}
                 </div>
               </div>
             `
-                : ""
-            }
+            : ""
+          }
           </div>
         `;
       } else if (testNameLower.includes("kasch")) {
@@ -1183,27 +1180,26 @@ export default function DownloadReport() {
             </div>
 
             <!-- Client Images Section -->
-            ${
-              test.serializedImages && test.serializedImages.length > 0
-                ? `
+            ${test.serializedImages && test.serializedImages.length > 0
+            ? `
               <div style="margin-top: 16px;">
                 <h5 style="font-weight: bold; margin-bottom: 8px; font-size: 11px;">CLIENT IMAGES:</h5>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
                   ${test.serializedImages
-                    .map(
-                      (img: any, idx: number) => `
+              .map(
+                (img: any, idx: number) => `
                     <div style="border: 1px solid #333; padding: 4px; background: white; text-align: center; width: 80px;">
                       <img src="${img.data}" alt="${img.name || `Kasch Image ${idx + 1}`}" style="width: 80px; height: 60px; object-fit: contain;" />
                       ${img.name ? `<p style="font-size: 8px; margin: 4px 0 0 0; text-overflow: ellipsis; overflow: hidden;">${img.name}</p>` : ""}
                     </div>
                   `,
-                    )
-                    .join("")}
+              )
+              .join("")}
                 </div>
               </div>
             `
-                : ""
-            }
+            : ""
+          }
           </div>
         `;
       }
@@ -1270,11 +1266,10 @@ export default function DownloadReport() {
                     </tr>
                 </thead>
                 <tbody>
-                    ${
-                      trials.length > 0
-                        ? trials
-                            .map((trial: any, trialIndex: number) => {
-                              return `
+                    ${trials.length > 0
+          ? trials
+            .map((trial: any, trialIndex: number) => {
+              return `
                         <tr>
                             <td style="border: 1px solid #333; padding: 4px; text-align: center; font-size: 8px;">${trial.trial || trialIndex + 1}</td>
                             <td style="border: 1px solid #333; padding: 4px; text-align: center; font-size: 8px;">${trial.side || "Both"}</td>
@@ -1286,19 +1281,18 @@ export default function DownloadReport() {
                             <td style="border: 1px solid #333; padding: 4px; text-align: center; font-size: 8px;"></td>
                         </tr>
                       `;
-                            })
-                            .join("")
-                        : `
+            })
+            .join("")
+          : `
                         <tr>
                             <td colspan="8" style="border: 1px solid #333; padding: 8px; text-align: center; font-size: 8px;">
                                 No trial data available for ${testName}
                             </td>
                         </tr>
                     `
-                    }
-                    ${
-                      trials.length > 0
-                        ? `
+        }
+                    ${trials.length > 0
+          ? `
                         <!-- Average row -->
                         <tr style="background: #f3f4f6;">
                             <td style="border: 1px solid #333; padding: 4px; text-align: center; font-weight: bold; font-size: 8px;">Avg.</td>
@@ -1310,9 +1304,8 @@ export default function DownloadReport() {
                             <td style="border: 1px solid #333; padding: 4px; text-align: center; font-size: 8px;">${trials.length > 0 ? (trials.reduce((sum: number, t: any) => sum + (t.percentIS || 0), 0) / trials.length).toFixed(2) : "0.00"}</td>
                             <td style="border: 1px solid #333; padding: 4px; text-align: center; font-size: 8px;">${trials.length > 0 ? trials.reduce((sum: number, t: any) => sum + getTrialTime(t), 0).toFixed(1) : "0.0"}</td>
                         </tr>
-                        ${
-                          trials.length > 0
-                            ? `
+                        ${trials.length > 0
+            ? `
                         <tr style="background: #dbeafe; border-top: 2px solid #3b82f6;">
                             <td style="border: 1px solid #333; padding: 4px; text-align: left; font-weight: 600; color: #1e40af; font-size: 8px;">Total IS%</td>
                             <td style="border: 1px solid #333; padding: 4px; text-align: center; font-size: 8px;"></td>
@@ -1323,37 +1316,35 @@ export default function DownloadReport() {
                             <td style="border: 1px solid #333; padding: 4px; text-align: center; font-weight: bold; color: #1e40af; font-size: 8px;">${(trials.reduce((sum: number, t: any) => sum + (t.percentIS || 0), 0) / trials.length).toFixed(1)}%</td>
                             <td style="border: 1px solid #333; padding: 4px; text-align: center; font-size: 8px;"></td>
                         </tr>`
-                            : ``
-                        }
+            : ``
+          }
                     `
-                        : ""
-                    }
+          : ""
+        }
                 </tbody>
             </table>
 
             <!-- Heart Rate Data if available -->
-            ${
-              testData.hrPre || testData.hrPost
-                ? `
+            ${testData.hrPre || testData.hrPost
+          ? `
                 <div style="font-size: 11px; color: #374151; margin-bottom: 2px;">
                     <strong>Heart Rate:</strong>
                     ${testData.hrPre ? ` Pre: ${testData.hrPre} bpm` : ""}
                     ${testData.hrPost ? ` Post: ${testData.hrPost} bpm` : ""}
                 </div>
             `
-                : ""
-            }
+          : ""
+        }
 
             <!-- MTM Test Images if available -->
-            ${
-              testData.savedImageData && testData.savedImageData.length > 0
-                ? `
+            ${testData.savedImageData && testData.savedImageData.length > 0
+          ? `
                 <div style="margin-top: 12px; page-break-inside: avoid;">
                     <h6 style="font-size: 10px; font-weight: bold; margin-bottom: 8px; color: #374151;">Test Images:</h6>
                     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 8px;">
                         ${testData.savedImageData
-                          .map(
-                            (image: any, imageIndex: number) => `
+            .map(
+              (image: any, imageIndex: number) => `
                             <div style="text-align: center;">
                                 <img src="${image.dataUrl || image.data}"
                                      alt="${image.name || `${testName} test image ${imageIndex + 1}`}"
@@ -1363,8 +1354,8 @@ export default function DownloadReport() {
                                 </p>
                             </div>
                         `,
-                          )
-                          .join("")}
+            )
+            .join("")}
                     </div>
                     <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 4px; padding: 6px; margin-top: 6px;">
                         <p style="font-size: 8px; color: #1e40af; margin: 0;">
@@ -1373,14 +1364,13 @@ export default function DownloadReport() {
                     </div>
                 </div>
                 `
-                : ""
-            }
+          : ""
+        }
 
-            ${
-              correspondingTest?.comments
-                ? `<p style="font-style: italic; font-size: 11px; margin-top: 16px;"><strong>Comments:</strong> ${correspondingTest.comments}</p>`
-                : ""
-            }
+            ${correspondingTest?.comments
+          ? `<p style="font-style: italic; font-size: 11px; margin-top: 16px;"><strong>Comments:</strong> ${correspondingTest.comments}</p>`
+          : ""
+        }
         </div>
       `;
     };
@@ -1631,15 +1621,12 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
         <!-- Logo -->
         <div style="margin-bottom: 25px;">
-            ${
-              evaluatorData.clinicLogo
-                ? `<img src="${evaluatorData.clinicLogo}" alt="${
-                    evaluatorData.clinicName || "Company Logo"
-                  }" style="width: auto; height: auto; max-width: 240px; max-height: 100px; margin: 0 auto; display: block;" />`
-                : `<div style="color: #4472C4; font-size: 16px; font-weight: bold; font-style: italic;">${
-                    evaluatorData.clinicName || "MedSource"
-                  }</div>`
-            }
+            ${evaluatorData.clinicLogo
+        ? `<img src="${evaluatorData.clinicLogo}" alt="${evaluatorData.clinicName || "Company Logo"
+        }" style="width: auto; height: auto; max-width: 240px; max-height: 100px; margin: 0 auto; display: block;" />`
+        : `<div style="color: #4472C4; font-size: 16px; font-weight: bold; font-style: italic;">${evaluatorData.clinicName || "MedSource"
+        }</div>`
+      }
         </div>
 
         <!-- Title and client Information Container (Vertically Centered Together) -->
@@ -1655,15 +1642,13 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 <table class="no-border-table" style="font-size: 12px; line-height: 1.3; border-collapse: collapse; border: none; margin: 0; font-family: Arial, sans-serif;">
                     <tr>
                         <td style="font-weight: bold; text-decoration: underline; padding: 0 10px 0 0; text-align: left; white-space: nowrap; font-family: Arial, sans-serif;">Claimant Name:</td>
-                        <td style="text-align: left; padding: 0; font-family: Arial, sans-serif;">${
-                          claimantData.firstName || ""
-                        } ${claimantData.lastName || ""}</td>
+                        <td style="text-align: left; padding: 0; font-family: Arial, sans-serif;">${claimantData.firstName || ""
+      } ${claimantData.lastName || ""}</td>
                     </tr>
                     <tr>
                         <td style="font-weight: bold; text-decoration: underline; padding: 0 10px 0 0; text-align: left; white-space: nowrap; font-family: Arial, sans-serif;">Claimant #:</td>
-                        <td style="text-align: left; padding: 0; font-family: Arial, sans-serif;">${
-                          claimantData.claimantId || reportSummary.reportId
-                        }</td>
+                        <td style="text-align: left; padding: 0; font-family: Arial, sans-serif;">${claimantData.claimantId || reportSummary.reportId
+      }</td>
                     </tr>
                     <tr>
                         <td style="font-weight: bold; text-decoration: underline; padding: 0 10px 0 0; text-align: left; white-space: nowrap; font-family: Arial, sans-serif;">Date of Evaluation(s):</td>
@@ -1678,16 +1663,13 @@ padding-top: 120px; align-items: center; min-height: 0; ">
     <div style="color: #666; text-align: center; padding-top: 15px; padding-bottom: 40px; flex-shrink: 0; margin-top: auto;">
         <p style="font-size: 11px; font-weight: bold; margin-bottom: 6px; letter-spacing: 0.5px; font-family: Arial, sans-serif;">CONFIDENTIAL INFORMATION ENCLOSED</p>
         <div style="font-size: 9px; line-height: 1.2; font-family: Arial, sans-serif;">
-            <p style="font-weight: bold; margin-bottom: 1px; font-family: Arial, sans-serif;">${
-              evaluatorData.clinicName || "MedSource"
-            }</p>
-            <p style="margin-bottom: 1px; font-family: Arial, sans-serif;">${
-              evaluatorData.address ||
-              "1490-5A Quarterpath Road #242, Williamsburg, VA  23185"
-            }</p>
-            <p style="font-family: Arial, sans-serif;">Phone: ${
-              evaluatorData.phone || "757-220-5051"
-            } &nbsp;&nbsp; Fax: ${evaluatorData.phone || "757-273-6198"}</p>
+            <p style="font-weight: bold; margin-bottom: 1px; font-family: Arial, sans-serif;">${evaluatorData.clinicName || "MedSource"
+      }</p>
+            <p style="margin-bottom: 1px; font-family: Arial, sans-serif;">${evaluatorData.address ||
+      "1490-5A Quarterpath Road #242, Williamsburg, VA  23185"
+      }</p>
+            <p style="font-family: Arial, sans-serif;">Phone: ${evaluatorData.phone || "757-220-5051"
+      } &nbsp;&nbsp; Fax: ${evaluatorData.phone || "757-273-6198"}</p>
         </div>
     </div>
 </div>
@@ -1727,27 +1709,21 @@ padding-top: 120px; align-items: center; min-height: 0; ">
     <!-- Client Information Section -->
     <div style="padding: 40px 0 0 0; page-break-before: always; position: relative;">
         <div style="text-align: center; margin-bottom: 24px;">
-            ${
-              evaluatorData.clinicLogo
-                ? `<img src="${evaluatorData.clinicLogo}" alt="${
-                    evaluatorData.clinicName || "Company Logo"
-                  }" style="width: auto; height: auto; max-width: 240px; max-height: 100px; margin: 0 auto 8px auto; display: block; text-align: center;" />`
-                : `<div style="height: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px auto;"><span style="font-size: 12px; font-weight: bold; color: #4472C4;">${
-                    evaluatorData.clinicName || "MedSource"
-                  }</span></div>`
-            }
+            ${evaluatorData.clinicLogo
+        ? `<img src="${evaluatorData.clinicLogo}" alt="${evaluatorData.clinicName || "Company Logo"
+        }" style="width: auto; height: auto; max-width: 240px; max-height: 100px; margin: 0 auto 8px auto; display: block; text-align: center;" />`
+        : `<div style="height: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px auto;"><span style="font-size: 12px; font-weight: bold; color: #4472C4;">${evaluatorData.clinicName || "MedSource"
+        }</span></div>`
+      }
             <h1 style="font-size: 22px; font-weight: bold; color: #4472C4; margin: 8px 0; font-family: Arial, sans-serif;">Functional Abilities Evaluation</h1>
              <div style="font-size: 9px; line-height: 1.2; font-family: Arial, sans-serif;">
-            <p style="font-weight: bold; margin-bottom: 1px; font-family: Arial, sans-serif;">${
-              evaluatorData.clinicName || "MedSource"
-            }</p>
-            <p style="margin-bottom: 1px; font-family: Arial, sans-serif;">${
-              evaluatorData.address ||
-              "1490-5A Quarterpath Road #242, Williamsburg, VA  23185"
-            }</p>
-            <p style="font-family: Arial, sans-serif;">Phone: ${
-              evaluatorData.phone || "757-220-5051"
-            } &nbsp;&nbsp; Fax: ${evaluatorData.phone || "757-273-6198"}</p>
+            <p style="font-weight: bold; margin-bottom: 1px; font-family: Arial, sans-serif;">${evaluatorData.clinicName || "MedSource"
+      }</p>
+            <p style="margin-bottom: 1px; font-family: Arial, sans-serif;">${evaluatorData.address ||
+      "1490-5A Quarterpath Road #242, Williamsburg, VA  23185"
+      }</p>
+            <p style="font-family: Arial, sans-serif;">Phone: ${evaluatorData.phone || "757-220-5051"
+      } &nbsp;&nbsp; Fax: ${evaluatorData.phone || "757-273-6198"}</p>
         </div>
         </div>
 
@@ -1762,16 +1738,14 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         <div style="font-size: 12px; font-family: Arial, sans-serif; margin-bottom: 8px;">
             <strong>Report Date:</strong> ${currentDate || new Date().toLocaleDateString()}
         </div>
-        ${
-          claimantData.profilePhoto
-            ? `<div style="border: 1px solid #333; margin: 0 auto 12px auto; display: inline-block; max-width: 128px; max-height: 160px;">
+        ${claimantData.profilePhoto
+        ? `<div style="border: 1px solid #333; margin: 0 auto 12px auto; display: inline-block; max-width: 128px; max-height: 160px;">
                 <img src="${claimantData.profilePhoto}" alt="${claimantData.firstName} ${claimantData.lastName}" style="width: auto; height: auto; max-width: 128px; max-height: 160px; display: block;" />
             </div>`
-            : '<div style="width: 128px; height: 160px; border: 1px solid #333; margin: 0 auto 12px auto; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #666; text-align: center; flex-direction: column;"><div>Claimant Photo</div><div>(If Available)</div></div>'
-        }
-        <p style="font-weight: bold; font-size: 14px; margin: 8px 0 0 0;">${
-          claimantData.firstName || ""
-        } ${claimantData.lastName || ""}</p>
+        : '<div style="width: 128px; height: 160px; border: 1px solid #333; margin: 0 auto 12px auto; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #666; text-align: center; flex-direction: column;"><div>Claimant Photo</div><div>(If Available)</div></div>'
+      }
+        <p style="font-weight: bold; font-size: 14px; margin: 8px 0 0 0;">${claimantData.firstName || ""
+      } ${claimantData.lastName || ""}</p>
     </div>
 
     <!-- Right: Claimant Info -->
@@ -1817,10 +1791,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             <!-- Data row -->
             <div style="display: flex; font-size: 11px; font-family: Arial, sans-serif; line-height: 1.3;">
                 <div style="width: 70px;">04/2011</div>
-                <div style="flex: 1; margin-left: 10px;">${
-                  claimantData.claimantHistory ||
-                  "While working in Cartons assembly area, client noted groin pain and subsequently was diagnosed with a hernia – PT - 4-5 wks – back to work - continued to have pain – lumbar area – cortisone injection (had three injections total) – Sept 10th out of work again – to date no return to duties – last injection was Oct 4th2011."
-                }</div>
+                <div style="flex: 1; margin-left: 10px;">${claimantData.claimantHistory ||
+      "While working in Cartons assembly area, client noted groin pain and subsequently was diagnosed with a hernia – PT - 4-5 wks – back to work - continued to have pain – lumbar area – cortisone injection (had three injections total) – Sept 10th out of work again – to date no return to duties – last injection was Oct 4th2011."
+      }</div>
             </div>
         </div>
 
@@ -1833,24 +1806,24 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         <div style="padding: 4px; width: 640px; margin-left: 0; float: left;">
             <div style="display: flex; gap: 2px; justify-content: center; align-items: flex-start;">
                 ${["front", "back", "right", "left"]
-                  .map((view) => {
-                    const labelMap = {
-                      front: "Anterior View",
-                      back: "Posterior View",
-                      left: "Right Lateral View",
-                      right: "Left Lateral View",
-                    };
-                    const imageMap = {
-                      front: "/humanBody/front_view.png",
-                      back: "/humanBody/back_view.png",
-                      left: "/humanBody/left_view.png",
-                      right: "/humanBody/right_view.png",
-                    };
-                    const markers =
-                      painIllustrationData.markers?.filter(
-                        (m) => m.view === view,
-                      ) || [];
-                    return `
+        .map((view) => {
+          const labelMap = {
+            front: "Anterior View",
+            back: "Posterior View",
+            left: "Right Lateral View",
+            right: "Left Lateral View",
+          };
+          const imageMap = {
+            front: "/humanBody/front_view.png",
+            back: "/humanBody/back_view.png",
+            left: "/humanBody/left_view.png",
+            right: "/humanBody/right_view.png",
+          };
+          const markers =
+            painIllustrationData.markers?.filter(
+              (m) => m.view === view,
+            ) || [];
+          return `
                         <div style="
                             position: relative;
                             width: 150px;
@@ -1877,50 +1850,50 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                     "
                                 />
                                 ${markers
-                                  .map((marker) => {
-                                    let symbolText = "";
-                                    let symbolColor = "#dc2626";
-                                    if (marker.type === "primary-concern") {
-                                      symbolText = "P1";
-                                      symbolColor = "#2563eb";
-                                    } else if (
-                                      marker.type === "secondary-concern"
-                                    ) {
-                                      symbolText = "P2";
-                                      symbolColor = "#7c3aed";
-                                    } else if (marker.type === "dull-ache") {
-                                      symbolText = "~";
-                                      symbolColor = "#f59e0b";
-                                    } else if (marker.type === "shooting") {
-                                      symbolText = "/";
-                                      symbolColor = "#dc2626";
-                                    } else if (marker.type === "burning") {
-                                      symbolText = "x";
-                                      symbolColor = "#ea580c";
-                                    } else if (marker.type === "pins-needles") {
-                                      symbolText = "•";
-                                      symbolColor = "#7c3aed";
-                                    } else if (marker.type === "numbness") {
-                                      symbolText = "o";
-                                      symbolColor = "#475569";
-                                    } else if (marker.type === "temperature") {
-                                      symbolText = "T";
-                                      symbolColor = "#06b6d4";
-                                    } else if (marker.type === "swelling") {
-                                      symbolText = "SW";
-                                      symbolColor = "#059669";
-                                    } else if (marker.type === "scar") {
-                                      symbolText = "S";
-                                      symbolColor = "#db2777";
-                                    } else if (marker.type === "crepitus") {
-                                      symbolText = "C";
-                                      symbolColor = "#9333ea";
-                                    } else {
-                                      symbolText = marker.symbol || "P1";
-                                    }
-                                    const leftPercent = `${marker.x}%`;
-                                    const topPercent = `${marker.y}%`;
-                                    return `
+              .map((marker) => {
+                let symbolText = "";
+                let symbolColor = "#dc2626";
+                if (marker.type === "primary-concern") {
+                  symbolText = "P1";
+                  symbolColor = "#2563eb";
+                } else if (
+                  marker.type === "secondary-concern"
+                ) {
+                  symbolText = "P2";
+                  symbolColor = "#7c3aed";
+                } else if (marker.type === "dull-ache") {
+                  symbolText = "~";
+                  symbolColor = "#f59e0b";
+                } else if (marker.type === "shooting") {
+                  symbolText = "/";
+                  symbolColor = "#dc2626";
+                } else if (marker.type === "burning") {
+                  symbolText = "x";
+                  symbolColor = "#ea580c";
+                } else if (marker.type === "pins-needles") {
+                  symbolText = "•";
+                  symbolColor = "#7c3aed";
+                } else if (marker.type === "numbness") {
+                  symbolText = "o";
+                  symbolColor = "#475569";
+                } else if (marker.type === "temperature") {
+                  symbolText = "T";
+                  symbolColor = "#06b6d4";
+                } else if (marker.type === "swelling") {
+                  symbolText = "SW";
+                  symbolColor = "#059669";
+                } else if (marker.type === "scar") {
+                  symbolText = "S";
+                  symbolColor = "#db2777";
+                } else if (marker.type === "crepitus") {
+                  symbolText = "C";
+                  symbolColor = "#9333ea";
+                } else {
+                  symbolText = marker.symbol || "P1";
+                }
+                const leftPercent = `${marker.x}%`;
+                const topPercent = `${marker.y}%`;
+                return `
                                         <div style="
                                             position: absolute;
                                             left: ${leftPercent};
@@ -1937,29 +1910,28 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             ${symbolText}
                                         </div>
                                     `;
-                                  })
-                                  .join("")}
+              })
+              .join("")}
                             </div>
                         </div>
                     `;
-                  })
-                  .join("")}
+        })
+        .join("")}
             </div>
 
 
-        ${
-          painIllustrationData?.savedImageData &&
-          painIllustrationData.savedImageData.length > 0
-            ? `
+        ${painIllustrationData?.savedImageData &&
+        painIllustrationData.savedImageData.length > 0
+        ? `
     <div style="margin-top: 25px;">
         <div style="font-weight: bold; text-align: center; font-family: Arial, sans-serif; font-size: 12px; margin-bottom: 8px; color: #1e40af !important;">
             References
         </div>
         <div style="display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
             ${painIllustrationData.savedImageData
-              .slice(0, 3)
-              .map(
-                (img) => `
+          .slice(0, 3)
+          .map(
+            (img) => `
                 <div style="display: flex; flex-direction: column; align-items: center; width: 140px; margin-bottom: 15px;">
                     ${img.title ? `<div style="font-weight: bold; font-size: 11px; margin-bottom: 8px; text-align: center; color: #1e40af; font-family: Arial, sans-serif;">${img.title}</div>` : ""}
                     <img src="${img.dataUrl || img.data}"
@@ -1967,13 +1939,13 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                          style="width: 120px; height: 90px; object-fit: cover; border: 1px solid #ccc; border-radius: 4px; background: #fff;" />
                 </div>
                 `,
-              )
-              .join("")}
+          )
+          .join("")}
         </div>
     </div>
 `
-            : ""
-        }
+        : ""
+      }
 
 
 
@@ -2058,24 +2030,24 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
             <!-- Range of Motion Supporting Photos -->
             ${(() => {
-              const romQuestion = referralQuestionsData.questions?.find(
-                (qa: any) =>
-                  qa.question &&
-                  (qa.question.toLowerCase().includes("range of motion") ||
-                    qa.question.toLowerCase().includes("lumbar")),
-              );
+        const romQuestion = referralQuestionsData.questions?.find(
+          (qa: any) =>
+            qa.question &&
+            (qa.question.toLowerCase().includes("range of motion") ||
+              qa.question.toLowerCase().includes("lumbar")),
+        );
 
-              if (
-                romQuestion?.savedImageData &&
-                romQuestion.savedImageData.length > 0
-              ) {
-                return `
+        if (
+          romQuestion?.savedImageData &&
+          romQuestion.savedImageData.length > 0
+        ) {
+          return `
                         <div style="margin: 4px 0;">
                             <h5 style="font-weight: bold; font-size: 10px; color: #374151; margin-bottom: 4px;">Range of Motion Assessment Documentation:</h5>
                             <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; max-width: 100%;">
   ${romQuestion.savedImageData
-    .map(
-      (imageData, imgIndex) => `
+              .map(
+                (imageData, imgIndex) => `
       <div style="
   height: 70px; 
   border: 1px solid #333; 
@@ -2093,74 +2065,69 @@ padding-top: 120px; align-items: center; min-height: 0; ">
   />
 </div>
 `,
-    )
-    .join("")}
+              )
+              .join("")}
 </div>
                         </div>
                     `;
-              }
-              return "";
-            })()}
+        }
+        return "";
+      })()}
         </div>
         <!-- Additional Referral Questions -->
         <div class="section">
-            ${
-              referralQuestionsData.questions &&
-              referralQuestionsData.questions.length > 0
-                ? referralQuestionsData.questions
-                    .filter(
-                      (qa: any) =>
-                        qa.question &&
-                        !qa.question.toLowerCase().includes("lumbar") &&
-                        !qa.question
-                          .toLowerCase()
-                          .includes("physical demand classification") &&
-                        !qa.question.toLowerCase().includes("conclusion") &&
-                        !qa.question.includes("6b)") &&
-                        !qa.question.includes("6c)"),
-                    )
-                    .map(
-                      (qa: any, index: number) => `
+            ${referralQuestionsData.questions &&
+        referralQuestionsData.questions.length > 0
+        ? referralQuestionsData.questions
+          .filter(
+            (qa: any) =>
+              qa.question &&
+              !qa.question.toLowerCase().includes("lumbar") &&
+              !qa.question
+                .toLowerCase()
+                .includes("physical demand classification") &&
+              !qa.question.toLowerCase().includes("conclusion") &&
+              !qa.question.includes("6b)") &&
+              !qa.question.includes("6c)"),
+          )
+          .map(
+            (qa: any, index: number) => `
                     <div style="margin-bottom: 8px; page-break-inside: avoid;">
                         <h4 style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">${qa.question.replace(
-                          /^6a\)\s*/,
-                          "",
-                        )}</h4>
-                        <p style="font-size: 11px; line-height: 1.5; margin-bottom: 6px; font-family: Arial, sans-serif;">${
-                          qa.answer ||
-                          "Client demonstrated appropriate functional capacity for this area with minimal limitations noted based on comprehensive testing and evaluation."
-                        }</p>
+              /^6a\)\s*/,
+              "",
+            )}</h4>
+                        <p style="font-size: 11px; line-height: 1.5; margin-bottom: 6px; font-family: Arial, sans-serif;">${qa.answer ||
+              "Client demonstrated appropriate functional capacity for this area with minimal limitations noted based on comprehensive testing and evaluation."
+              }</p>
 
                         <!-- Include specific images uploaded for this question -->
-                        ${
-                          qa.savedImageData && qa.savedImageData.length > 0
-                            ? `
+                        ${qa.savedImageData && qa.savedImageData.length > 0
+                ? `
                             <div style="margin: 4px 0;">
                                 <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; max-width: 100%;">
                                     ${qa.savedImageData
-                                      .map(
-                                        (imageData: any, imgIndex: number) => `
+                  .map(
+                    (imageData: any, imgIndex: number) => `
                                         <div style="width: 100%; height: 60px; overflow: hidden; border: 1px solid #333; border-radius: 3px;">
-                                            <img src="${
-                                              imageData.dataUrl ||
-                                              imageData.data
-                                            }" alt="Question ${index + 1} Image ${
-                                              imgIndex + 1
-                                            }" style="width: 100%; height: 100%; object-fit: cover;" />
+                                            <img src="${imageData.dataUrl ||
+                      imageData.data
+                      }" alt="Question ${index + 1} Image ${imgIndex + 1
+                      }" style="width: 100%; height: 100%; object-fit: cover;" />
                                         </div>
                                     `,
-                                      )
-                                      .join("")}
+                  )
+                  .join("")}
                                 </div>
                             </div>
                         `
-                            : ""
-                        }
+                : ""
+              }
                     </div>
                 `,
-                    )
-                    .join("")
-                : `
+          )
+          .join("")
+        : `
                     <div style="margin-bottom: 15px;">
                         <h4 style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">Are there any safety concerns with this client returning to work?</h4>
                         <p style="font-size: 11px; line-height: 1.5; font-family: Arial, sans-serif;">Based on the comprehensive evaluation, no significant safety concerns were identified that would prevent the client from returning to work. Standard workplace safety protocols should be maintained.</p>
@@ -2170,122 +2137,119 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                         <p style="font-size: 11px; line-height: 1.5; font-family: Arial, sans-serif;">The prognosis for functional capacity improvement is good with appropriate medical management and graduated activity progression. Regular reassessment is recommended.</p>
                     </div>
                 `
-            }
+      }
         </div>
 
         <!-- Consistency Questions (6b and 6c) -->
         <div class="section">
-            ${
-              referralQuestionsData.questions &&
-              referralQuestionsData.questions.length > 0
-                ? referralQuestionsData.questions
-                    .filter(
-                      (qa: any) =>
-                        qa.question &&
-                        (qa.question.includes("6b)") ||
-                          qa.question.includes("6c)")),
-                    )
-                    .map((qa: any) => {
-                      const answerParts = qa.answer?.split("|") || [];
-                      const status = answerParts[0] || "";
-                      const comments = answerParts[1] || "";
+            ${referralQuestionsData.questions &&
+        referralQuestionsData.questions.length > 0
+        ? referralQuestionsData.questions
+          .filter(
+            (qa: any) =>
+              qa.question &&
+              (qa.question.includes("6b)") ||
+                qa.question.includes("6c)")),
+          )
+          .map((qa: any) => {
+            const answerParts = qa.answer?.split("|") || [];
+            const status = answerParts[0] || "";
+            const comments = answerParts[1] || "";
 
-                      return `
+            return `
                     <div style="margin-bottom: 15px; page-break-inside: avoid;">
                         <h4 style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">${qa.question.replace(/^6[bc]\)\s*/, "")}</h4>
                         <div style="margin-bottom: 8px;">
                             <span style="font-weight: bold; font-size: 11px; font-family: Arial, sans-serif;">Status: </span>
-                            <span style="display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 10px; font-weight: bold; ${
-                              status.toUpperCase().includes("PASS")
-                                ? "background-color: #dcfce7; color: #166534;"
-                                : "background-color: #fee2e2; color: #991b1b;"
-                            }">${status}</span>
+                            <span style="display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 10px; font-weight: bold; ${status.toUpperCase().includes("PASS")
+                ? "background-color: #dcfce7; color: #166534;"
+                : "background-color: #fee2e2; color: #991b1b;"
+              }">${status}</span>
                         </div>
-                        ${
-                          comments
-                            ? `
+                        ${comments
+                ? `
                         <div>
                             <span style="font-weight: bold; font-size: 11px; font-family: Arial, sans-serif;">Comments: </span>
                             <p style="font-size: 11px; line-height: 1.5; margin-top: 4px; font-family: Arial, sans-serif;">${comments}</p>
                         </div>
                         `
-                            : ""
-                        }
-                    </div>`;
-                    })
-                    .join("")
                 : ""
-            }
+              }
+                    </div>`;
+          })
+          .join("")
+        : ""
+      }
         </div>
 
         <!-- Physical Demand Classification Question (moved to end) -->
         <div style="margin-bottom: 30px; page-break-inside: auto;">
             <h4 style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">What would be the Physical Demand Classification (PDC) for this client?</h4>
             ${(() => {
-              const qa = referralQuestionsData?.questions?.find(
-                (x: any) =>
-                  x?.question &&
-                  x.question.includes("Physical Demand Classification"),
-              );
-              const selectedLevel = qa?.answer
-                ? String(qa.answer).split("|")[0].replace("PDC:", "")
-                : null;
-              if (!selectedLevel) return "";
-              return `<p style="font-size: 11px; line-height: 1.5; margin-bottom: 12px; font-family: Arial, sans-serif;">*${selectedLevel} which is in line with full return to duties.</p>`;
-            })()}
+        const qa = referralQuestionsData?.questions?.find(
+          (x: any) =>
+            x?.question &&
+            x.question.includes("Physical Demand Classification"),
+        );
+        const selectedLevel = qa?.answer
+          ? String(qa.answer).split("|")[0].replace("PDC:", "")
+          : null;
+        if (!selectedLevel) return "";
+        return `<p style="font-size: 11px; line-height: 1.5; margin-bottom: 12px; font-family: Arial, sans-serif;">*${selectedLevel} which is in line with full return to duties.</p>`;
+      })()}
 
             ${(() => {
-              const map: Record<
-                string,
-                { title: string; description: string }
-              > = {
-                Sedentary: {
-                  title: "(S) Sedentary Work",
-                  description:
-                    "Exerting up to 10 lbs of force occasionally and/or a negligible amount of force frequently to lift, carry, push, pull, or otherwise move objects, including the human body. Sedentary work involves sitting most of the time but may involve walking or standing for brief periods of time. Jobs are sedentary if walking and standing are required occasionally and all other sedentary criteria are met. Strength is considered sedentary when none of the light strength requirements are met and standing is required less than or equal to 1/3 of the work schedule or workday. For civilian workers, 30.6 percent of workers were required to work at a sedentary strength level. Occupations with critical tasks where workers typically spend the day sitting and occasionally lift items of little weight, like a pen or a few pieces of paper, require sedentary strength.",
-                },
-                Light: {
-                  title: "(L) Light Work",
-                  description:
-                    "Exerting 11 to 25 lb of force occasionally, and/or up to 10 lb of force frequently, and/or a negligible amount of force constantly to move objects. Physical demand requirements are in excess of those for sedentary work. Even though the weight lifted may be only negligible, a job should be rated Light Work: (1) when it requires walking or standing to a significant degree; or (2) when it requires sitting most of the time but entails pushing and/or pulling of arm or leg controls; and/or (3) when the job requires working at a production rate pace entailing the constant pushing and/or pulling of materials even though the weight of those materials is negligible. The constant stress and strain of maintaining a production rate pace, especially in an industrial setting, can be and is physically exhausting. If the work level of an occupation does not meet the conditions for the other strength levels, including sedentary, a light strength level is required. For civilian workers, 33.3 percent of workers were required to work at a light strength level.",
-                },
-                Medium: {
-                  title: "(M) Medium Work",
-                  description:
-                    "Exerting 26 to 50 lbs of force occasionally, and/or 11 to 25 lbs of force frequently, and/or greater than negligible up to 10 lbs of force constantly to move objects. Physical demand requirements are in excess of those for light work. For civilian workers, 29.0 percent of workers were required to work at a medium strength level.",
-                },
-                Heavy: {
-                  title: "(H) Heavy Work",
-                  description:
-                    "Exerting 51 to 100 lbs of force occasionally, and/or 26 to 50 lbs of force frequently, and/or 11 to 25 lbs of force constantly to move objects. Physical demand requirements are in excess of those for medium work. For civilian workers, 6.4 percent of workers were required to work at a heavy strength level.",
-                },
-                "Very Heavy": {
-                  title: "(VH) Very Heavy",
-                  description:
-                    "Exerting over 100 lbs of force occasionally, and over 50 lbs of force frequently, and over 25 lbs of force constantly to move objects. For civilian workers, 0.7 percent required a very heavy strength level, which indicates requirements beyond the conditions set for heavy work. Examples of occupational groups with heavy strength level requirements include: Laborers in construction and extraction occupations may lift items that weigh 50 pounds or more, like bags of cement or sheets of plywood, for more than 1/3 of the workday. *'Occasionally' indicates that an activity or condition exists up to one third of the time; 'frequently' indicates that an activity or condition exists from one third to two thirds of the time; 'constantly' indicates that an activity or condition exists two thirds or more of the time. *Duration levels are used to calculate the amount of time spent lifting or carrying. There are four duration levels in relation to a job's workday schedule: seldom (up to 2 percent), occasional (2 percent to 1/3), frequent (1/3 to 2/3), and constant (2/3 or more).",
-                },
-              };
-              const qa = referralQuestionsData.questions?.find(
-                (x: any) =>
-                  x?.question &&
-                  x.question
-                    .toLowerCase()
-                    .includes("physical demand classification"),
-              );
-              if (!qa || !qa.answer || !String(qa.answer).startsWith("PDC:"))
-                return "";
-              const level = String(qa.answer).split("|")[0].replace("PDC:", "");
-              const comments = String(qa.answer).split("|")[1] || "";
-              const info = (map as any)[level];
-              if (!info) return "";
-              return `
+        const map: Record<
+          string,
+          { title: string; description: string }
+        > = {
+          Sedentary: {
+            title: "(S) Sedentary Work",
+            description:
+              "Exerting up to 10 lbs of force occasionally and/or a negligible amount of force frequently to lift, carry, push, pull, or otherwise move objects, including the human body. Sedentary work involves sitting most of the time but may involve walking or standing for brief periods of time. Jobs are sedentary if walking and standing are required occasionally and all other sedentary criteria are met. Strength is considered sedentary when none of the light strength requirements are met and standing is required less than or equal to 1/3 of the work schedule or workday. For civilian workers, 30.6 percent of workers were required to work at a sedentary strength level. Occupations with critical tasks where workers typically spend the day sitting and occasionally lift items of little weight, like a pen or a few pieces of paper, require sedentary strength.",
+          },
+          Light: {
+            title: "(L) Light Work",
+            description:
+              "Exerting 11 to 25 lb of force occasionally, and/or up to 10 lb of force frequently, and/or a negligible amount of force constantly to move objects. Physical demand requirements are in excess of those for sedentary work. Even though the weight lifted may be only negligible, a job should be rated Light Work: (1) when it requires walking or standing to a significant degree; or (2) when it requires sitting most of the time but entails pushing and/or pulling of arm or leg controls; and/or (3) when the job requires working at a production rate pace entailing the constant pushing and/or pulling of materials even though the weight of those materials is negligible. The constant stress and strain of maintaining a production rate pace, especially in an industrial setting, can be and is physically exhausting. If the work level of an occupation does not meet the conditions for the other strength levels, including sedentary, a light strength level is required. For civilian workers, 33.3 percent of workers were required to work at a light strength level.",
+          },
+          Medium: {
+            title: "(M) Medium Work",
+            description:
+              "Exerting 26 to 50 lbs of force occasionally, and/or 11 to 25 lbs of force frequently, and/or greater than negligible up to 10 lbs of force constantly to move objects. Physical demand requirements are in excess of those for light work. For civilian workers, 29.0 percent of workers were required to work at a medium strength level.",
+          },
+          Heavy: {
+            title: "(H) Heavy Work",
+            description:
+              "Exerting 51 to 100 lbs of force occasionally, and/or 26 to 50 lbs of force frequently, and/or 11 to 25 lbs of force constantly to move objects. Physical demand requirements are in excess of those for medium work. For civilian workers, 6.4 percent of workers were required to work at a heavy strength level.",
+          },
+          "Very Heavy": {
+            title: "(VH) Very Heavy",
+            description:
+              "Exerting over 100 lbs of force occasionally, and over 50 lbs of force frequently, and over 25 lbs of force constantly to move objects. For civilian workers, 0.7 percent required a very heavy strength level, which indicates requirements beyond the conditions set for heavy work. Examples of occupational groups with heavy strength level requirements include: Laborers in construction and extraction occupations may lift items that weigh 50 pounds or more, like bags of cement or sheets of plywood, for more than 1/3 of the workday. *'Occasionally' indicates that an activity or condition exists up to one third of the time; 'frequently' indicates that an activity or condition exists from one third to two thirds of the time; 'constantly' indicates that an activity or condition exists two thirds or more of the time. *Duration levels are used to calculate the amount of time spent lifting or carrying. There are four duration levels in relation to a job's workday schedule: seldom (up to 2 percent), occasional (2 percent to 1/3), frequent (1/3 to 2/3), and constant (2/3 or more).",
+          },
+        };
+        const qa = referralQuestionsData.questions?.find(
+          (x: any) =>
+            x?.question &&
+            x.question
+              .toLowerCase()
+              .includes("physical demand classification"),
+        );
+        if (!qa || !qa.answer || !String(qa.answer).startsWith("PDC:"))
+          return "";
+        const level = String(qa.answer).split("|")[0].replace("PDC:", "");
+        const comments = String(qa.answer).split("|")[1] || "";
+        const info = (map as any)[level];
+        if (!info) return "";
+        return `
                 <div style="border: 1px solid #93c5fd; background: #dbeafe; padding: 8px; border-radius: 6px; margin-bottom: 12px;">
                   <div style="font-weight: bold; color: #1d4ed8; margin-bottom: 4px;">${info.title}</div>
                   <div style="font-size: 11px; line-height: 1.5; color: #111827;">${info.description}</div>
                   ${comments ? `<div style="margin-top: 6px; font-size: 11px;"><strong>Additional Comments:</strong> ${comments}</div>` : ""}
                 </div>
               `;
-            })()}
+      })()}
 
             <table style="width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 16px;">
                 <thead>
@@ -2298,56 +2262,56 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 </thead>
                 <tbody>
                     ${(() => {
-                      const pdcLevels = [
-                        {
-                          name: "Sedentary",
-                          occasional: "1 - 10 lbs.",
-                          frequent: "Negligible",
-                          constant: "Negligible",
-                        },
-                        {
-                          name: "Light",
-                          occasional: "11 - 25 lbs.",
-                          frequent: "1 - 10 lbs.",
-                          constant: "Negligible",
-                        },
-                        {
-                          name: "Medium",
-                          occasional: "26 - 50 lbs.",
-                          frequent: "11 - 25 lbs.",
-                          constant: "1 - 10 lbs.",
-                        },
-                        {
-                          name: "Heavy",
-                          occasional: "51 - 100 lbs.",
-                          frequent: "26 - 50 lbs.",
-                          constant: "11 - 25 lbs.",
-                        },
-                        {
-                          name: "Very Heavy",
-                          occasional: "Over 100 lbs.",
-                          frequent: "Over 50 lbs.",
-                          constant: "Over 25 lbs.",
-                        },
-                      ];
+        const pdcLevels = [
+          {
+            name: "Sedentary",
+            occasional: "1 - 10 lbs.",
+            frequent: "Negligible",
+            constant: "Negligible",
+          },
+          {
+            name: "Light",
+            occasional: "11 - 25 lbs.",
+            frequent: "1 - 10 lbs.",
+            constant: "Negligible",
+          },
+          {
+            name: "Medium",
+            occasional: "26 - 50 lbs.",
+            frequent: "11 - 25 lbs.",
+            constant: "1 - 10 lbs.",
+          },
+          {
+            name: "Heavy",
+            occasional: "51 - 100 lbs.",
+            frequent: "26 - 50 lbs.",
+            constant: "11 - 25 lbs.",
+          },
+          {
+            name: "Very Heavy",
+            occasional: "Over 100 lbs.",
+            frequent: "Over 50 lbs.",
+            constant: "Over 25 lbs.",
+          },
+        ];
 
-                      const pdcQuestion =
-                        referralQuestionsData?.questions?.find(
-                          (x: any) =>
-                            x?.question &&
-                            x.question.includes(
-                              "Physical Demand Classification",
-                            ),
-                        );
-                      const selectedLevel = pdcQuestion?.answer
-                        ? String(pdcQuestion.answer)
-                            .split("|")[0]
-                            .replace("PDC:", "")
-                        : null;
+        const pdcQuestion =
+          referralQuestionsData?.questions?.find(
+            (x: any) =>
+              x?.question &&
+              x.question.includes(
+                "Physical Demand Classification",
+              ),
+          );
+        const selectedLevel = pdcQuestion?.answer
+          ? String(pdcQuestion.answer)
+            .split("|")[0]
+            .replace("PDC:", "")
+          : null;
 
-                      return pdcLevels
-                        .map(
-                          (lvl) => `
+        return pdcLevels
+          .map(
+            (lvl) => `
                     <tr${selectedLevel === lvl.name ? ' style="background: #dbeafe;"' : ""}>
                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px; font-weight: bold;">${lvl.name}</td>
                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;">${lvl.occasional}</td>
@@ -2355,34 +2319,34 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;">${lvl.constant}</td>
                     </tr>
               `,
-                        )
-                        .join("");
-                    })()}
+          )
+          .join("");
+      })()}
                 </tbody>
             </table>
 
             <!-- Physical Demand Classification Supporting Photos -->
             ${(() => {
-              const physicalDemandQuestion =
-                referralQuestionsData.questions?.find(
-                  (qa: any) =>
-                    qa.question &&
-                    qa.question
-                      .toLowerCase()
-                      .includes("physical demand classification"),
-                );
+        const physicalDemandQuestion =
+          referralQuestionsData.questions?.find(
+            (qa: any) =>
+              qa.question &&
+              qa.question
+                .toLowerCase()
+                .includes("physical demand classification"),
+          );
 
-              if (
-                physicalDemandQuestion?.savedImageData &&
-                physicalDemandQuestion.savedImageData.length > 0
-              ) {
-                return `
+        if (
+          physicalDemandQuestion?.savedImageData &&
+          physicalDemandQuestion.savedImageData.length > 0
+        ) {
+          return `
                         <div style="margin: 4px 0;">
                             <h5 style="font-weight: bold; font-size: 10px; color: #374151; margin-bottom: 4px;">Physical Demand Assessment Documentation:</h5>
                             <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; max-width: 100%;">
                                 ${physicalDemandQuestion.savedImageData
-                                  .map(
-                                    (imageData: any, imgIndex: number) => `
+              .map(
+                (imageData: any, imgIndex: number) => `
                                     <div style="width: 100%; border: 1px solid #333; border-radius: 3px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
                 <img 
                   src="${imageData.dataUrl || imageData.data}" 
@@ -2391,14 +2355,14 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 />
               </div>
                                 `,
-                                  )
-                                  .join("")}
+              )
+              .join("")}
                             </div>
                         </div>
                     `;
-              }
-              return "";
-            })()}
+        }
+        return "";
+      })()}
         </div>
     </div>
 
@@ -2413,61 +2377,61 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         <div style="margin-top: 30px;">
             <div style="margin-bottom: 20px;">
               ${(() => {
-                const conclusionQuestion =
-                  referralQuestionsData?.questions?.find(
-                    (qa) =>
-                      qa &&
-                      qa.question &&
-                      qa.question.toLowerCase().includes("conclusion"),
-                  );
-                if (conclusionQuestion?.answer) {
-                  const safe = String(conclusionQuestion.answer)
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/\n/g, "<br/>");
-                  return `
+        const conclusionQuestion =
+          referralQuestionsData?.questions?.find(
+            (qa) =>
+              qa &&
+              qa.question &&
+              qa.question.toLowerCase().includes("conclusion"),
+          );
+        if (conclusionQuestion?.answer) {
+          const safe = String(conclusionQuestion.answer)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/\n/g, "<br/>");
+          return `
                 <p style="font-size: 12px; color: #374151; line-height: 1.6; font-family: Arial, sans-serif;">${safe}</p>
               `;
-                }
-                return "";
-              })()}
+        }
+        return "";
+      })()}
             </div>
 
             <!-- Supporting Documentation and Images Section from Conclusions Question -->
             ${(() => {
-              // Find the "Conclusions?" question and get its images
-              const conclusionQuestion = referralQuestionsData?.questions?.find(
-                (qa) =>
-                  qa.question &&
-                  qa.question.toLowerCase().includes("conclusion"),
-              );
+        // Find the "Conclusions?" question and get its images
+        const conclusionQuestion = referralQuestionsData?.questions?.find(
+          (qa) =>
+            qa.question &&
+            qa.question.toLowerCase().includes("conclusion"),
+        );
 
-              // Only show images if the Conclusions question has uploaded images
-              if (
-                conclusionQuestion?.savedImageData &&
-                conclusionQuestion.savedImageData.length > 0
-              ) {
-                return `
+        // Only show images if the Conclusions question has uploaded images
+        if (
+          conclusionQuestion?.savedImageData &&
+          conclusionQuestion.savedImageData.length > 0
+        ) {
+          return `
                   <div style="margin-top: 30px; page-break-inside: avoid;">
                     <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
                       ${conclusionQuestion.savedImageData
-                        .map(
-                          (image, index) => `
+              .map(
+                (image, index) => `
                         <div style="text-align: center; page-break-inside: avoid;">
                           <div style="border: 1px solid #333; padding: 4px; background: white;">
                             <img src="${image.dataUrl}" alt="${image.name || `Conclusion Image ${index + 1}`}" style="width: 100%; height: 80px; object-fit: cover; display: block;" />
                           </div>
                         </div>
                       `,
-                        )
-                        .join("")}
+              )
+              .join("")}
                     </div>
                   </div>
                 `;
-              }
-              return "";
-            })()}
+        }
+        return "";
+      })()}
         </div>
 
         <!-- Signature of Evaluator Section -->
@@ -2483,11 +2447,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     ${evaluatorData.name || "Licensed Evaluator"}
                 </p>
                 <p style="font-size: 10px; color: #666; font-family: Arial, sans-serif;">
-                    ${
-                      evaluatorData.licenseNo
-                        ? `License: ${evaluatorData.licenseNo}`
-                        : "Licensed Evaluator"
-                    }
+                    ${evaluatorData.licenseNo
+        ? `License: ${evaluatorData.licenseNo}`
+        : "Licensed Evaluator"
+      }
                 </p>
             </div>
         </div>
@@ -2495,8 +2458,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
 
     <!-- Test Data & Results -->
-    ${
-      testData.tests
+    ${testData.tests
         ? `
     <div class="test-details" style="page-break-before: always; padding: 40px 0;">
         <h3 style="font-weight: bold; margin-bottom: 8px; font-size: 12px; font-family: Arial, sans-serif;">Functional Abilities Determination and Job Match Results</h3>
@@ -2533,423 +2495,423 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">Yes</td>
                 </tr>
                 ${(() => {
-                  // Define comprehensive normative standards for job match evaluation
-                  const getJobRequirements = (testName) => {
-                    const testNameLower = testName.toLowerCase();
+          // Define comprehensive normative standards for job match evaluation
+          const getJobRequirements = (testName) => {
+            const testNameLower = testName.toLowerCase();
 
-                    // Grip Strength Norms (based on DOT levels and research)
-                    if (testNameLower.includes("grip")) {
-                      return {
-                        requirement:
-                          "Grip strength ≥20 kg (Light work) / ≥30 kg (Medium work)",
-                        lightWork: 20, // kg - DOT Level 2
-                        mediumWork: 30, // kg - DOT Level 3
-                        unit: "kg",
-                        type: "weight",
-                      };
-                    }
+            // Grip Strength Norms (based on DOT levels and research)
+            if (testNameLower.includes("grip")) {
+              return {
+                requirement:
+                  "Grip strength ≥20 kg (Light work) / ≥30 kg (Medium work)",
+                lightWork: 20, // kg - DOT Level 2
+                mediumWork: 30, // kg - DOT Level 3
+                unit: "kg",
+                type: "weight",
+              };
+            }
 
-                    // Pinch Strength Norms (DOT-based standards)
-                    if (
-                      testNameLower.includes("key") &&
-                      testNameLower.includes("pinch")
-                    ) {
-                      return {
-                        requirement:
-                          "Key pinch ≥4.3 kg (Light) / ≥7.0 kg (Medium work)",
-                        lightWork: 4.3, // kg
-                        mediumWork: 7.0, // kg
-                        unit: "kg",
-                        type: "weight",
-                      };
-                    }
-                    if (
-                      testNameLower.includes("tip") &&
-                      testNameLower.includes("pinch")
-                    ) {
-                      return {
-                        requirement:
-                          "Tip pinch ≥1.8 kg (Light) / ≥3.7 kg (Medium work)",
-                        lightWork: 1.8, // kg
-                        mediumWork: 3.7, // kg
-                        unit: "kg",
-                        type: "weight",
-                      };
-                    }
-                    if (
-                      testNameLower.includes("palmar") &&
-                      testNameLower.includes("pinch")
-                    ) {
-                      return {
-                        requirement:
-                          "Palmar pinch ≥2.1 kg (Light) / ≥4.3 kg (Medium work)",
-                        lightWork: 2.1, // kg
-                        mediumWork: 4.3, // kg
-                        unit: "kg",
-                        type: "weight",
-                      };
-                    }
+            // Pinch Strength Norms (DOT-based standards)
+            if (
+              testNameLower.includes("key") &&
+              testNameLower.includes("pinch")
+            ) {
+              return {
+                requirement:
+                  "Key pinch ≥4.3 kg (Light) / ≥7.0 kg (Medium work)",
+                lightWork: 4.3, // kg
+                mediumWork: 7.0, // kg
+                unit: "kg",
+                type: "weight",
+              };
+            }
+            if (
+              testNameLower.includes("tip") &&
+              testNameLower.includes("pinch")
+            ) {
+              return {
+                requirement:
+                  "Tip pinch ≥1.8 kg (Light) / ≥3.7 kg (Medium work)",
+                lightWork: 1.8, // kg
+                mediumWork: 3.7, // kg
+                unit: "kg",
+                type: "weight",
+              };
+            }
+            if (
+              testNameLower.includes("palmar") &&
+              testNameLower.includes("pinch")
+            ) {
+              return {
+                requirement:
+                  "Palmar pinch ≥2.1 kg (Light) / ≥4.3 kg (Medium work)",
+                lightWork: 2.1, // kg
+                mediumWork: 4.3, // kg
+                unit: "kg",
+                type: "weight",
+              };
+            }
 
-                    // Range of Motion Norms - Cervical Spine
-                    if (testNameLower.includes("cervical")) {
-                      if (testNameLower.includes("flexion")) {
-                        return {
-                          requirement:
-                            "Cervical flexion ≥45° for functional neck movement",
-                          norm: 45, // degrees
-                          functionalMin: 45,
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                      if (testNameLower.includes("extension")) {
-                        return {
-                          requirement:
-                            "Cervical extension ≥45° for functional neck movement",
-                          norm: 45, // degrees
-                          functionalMin: 45,
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                      if (testNameLower.includes("lateral")) {
-                        return {
-                          requirement:
-                            "Cervical lateral flexion ≥35° for functional movement",
-                          norm: 35, // degrees
-                          functionalMin: 35,
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                    }
+            // Range of Motion Norms - Cervical Spine
+            if (testNameLower.includes("cervical")) {
+              if (testNameLower.includes("flexion")) {
+                return {
+                  requirement:
+                    "Cervical flexion ≥45° for functional neck movement",
+                  norm: 45, // degrees
+                  functionalMin: 45,
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+              if (testNameLower.includes("extension")) {
+                return {
+                  requirement:
+                    "Cervical extension ≥45° for functional neck movement",
+                  norm: 45, // degrees
+                  functionalMin: 45,
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+              if (testNameLower.includes("lateral")) {
+                return {
+                  requirement:
+                    "Cervical lateral flexion ≥35° for functional movement",
+                  norm: 35, // degrees
+                  functionalMin: 35,
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+            }
 
-                    // Range of Motion Norms - Lumbar Spine
-                    if (testNameLower.includes("lumbar")) {
-                      if (testNameLower.includes("flexion")) {
-                        return {
-                          requirement:
-                            "Lumbar flexion ≥80° for bending and lifting activities",
-                          norm: 80, // degrees
-                          functionalMin: 60, // Minimum for basic function
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                      if (testNameLower.includes("extension")) {
-                        return {
-                          requirement:
-                            "Lumbar extension ≥20° for postural activities",
-                          norm: 20, // degrees
-                          functionalMin: 15,
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                    }
+            // Range of Motion Norms - Lumbar Spine
+            if (testNameLower.includes("lumbar")) {
+              if (testNameLower.includes("flexion")) {
+                return {
+                  requirement:
+                    "Lumbar flexion ≥80° for bending and lifting activities",
+                  norm: 80, // degrees
+                  functionalMin: 60, // Minimum for basic function
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+              if (testNameLower.includes("extension")) {
+                return {
+                  requirement:
+                    "Lumbar extension ≥20° for postural activities",
+                  norm: 20, // degrees
+                  functionalMin: 15,
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+            }
 
-                    // Range of Motion Norms - Shoulder
-                    if (testNameLower.includes("shoulder")) {
-                      if (testNameLower.includes("flexion")) {
-                        return {
-                          requirement:
-                            "Shoulder flexion ≥150° for overhead work activities",
-                          norm: 150, // degrees
-                          functionalMin: 120, // Minimum for most work
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                      if (testNameLower.includes("abduction")) {
-                        return {
-                          requirement:
-                            "Shoulder abduction ≥150° for lateral reach activities",
-                          norm: 150, // degrees
-                          functionalMin: 120,
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                      if (testNameLower.includes("extension")) {
-                        return {
-                          requirement:
-                            "Shoulder extension ��45° for reach-behind activities",
-                          norm: 45, // degrees
-                          functionalMin: 30,
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                    }
+            // Range of Motion Norms - Shoulder
+            if (testNameLower.includes("shoulder")) {
+              if (testNameLower.includes("flexion")) {
+                return {
+                  requirement:
+                    "Shoulder flexion ≥150° for overhead work activities",
+                  norm: 150, // degrees
+                  functionalMin: 120, // Minimum for most work
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+              if (testNameLower.includes("abduction")) {
+                return {
+                  requirement:
+                    "Shoulder abduction ≥150° for lateral reach activities",
+                  norm: 150, // degrees
+                  functionalMin: 120,
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+              if (testNameLower.includes("extension")) {
+                return {
+                  requirement:
+                    "Shoulder extension ��45° for reach-behind activities",
+                  norm: 45, // degrees
+                  functionalMin: 30,
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+            }
 
-                    // Range of Motion Norms - Hip
-                    if (testNameLower.includes("hip")) {
-                      if (testNameLower.includes("flexion")) {
-                        return {
-                          requirement:
-                            "Hip flexion ≥90° for lifting and squatting activities",
-                          norm: 90, // degrees
-                          functionalMin: 80,
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                      if (testNameLower.includes("extension")) {
-                        return {
-                          requirement:
-                            "Hip extension ≥20° for walking and posture",
-                          norm: 20, // degrees
-                          functionalMin: 15,
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                      if (testNameLower.includes("abduction")) {
-                        return {
-                          requirement:
-                            "Hip abduction ≥35° for stability and lateral movement",
-                          norm: 35, // degrees
-                          functionalMin: 25,
-                          unit: "degrees",
-                          type: "degrees",
-                        };
-                      }
-                    }
+            // Range of Motion Norms - Hip
+            if (testNameLower.includes("hip")) {
+              if (testNameLower.includes("flexion")) {
+                return {
+                  requirement:
+                    "Hip flexion ≥90° for lifting and squatting activities",
+                  norm: 90, // degrees
+                  functionalMin: 80,
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+              if (testNameLower.includes("extension")) {
+                return {
+                  requirement:
+                    "Hip extension ≥20° for walking and posture",
+                  norm: 20, // degrees
+                  functionalMin: 15,
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+              if (testNameLower.includes("abduction")) {
+                return {
+                  requirement:
+                    "Hip abduction ≥35° for stability and lateral movement",
+                  norm: 35, // degrees
+                  functionalMin: 25,
+                  unit: "degrees",
+                  type: "degrees",
+                };
+              }
+            }
 
-                    // Lifting Capacity Norms (DOT-based)
-                    if (testNameLower.includes("lift")) {
-                      return {
-                        requirement:
-                          "Lifting capacity ≥10 kg (Light) / ≥25 kg (Medium work)",
-                        lightWork: 10, // kg - DOT Level 2
-                        mediumWork: 25, // kg - DOT Level 3
-                        unit: "kg",
-                        type: "weight",
-                      };
-                    }
+            // Lifting Capacity Norms (DOT-based)
+            if (testNameLower.includes("lift")) {
+              return {
+                requirement:
+                  "Lifting capacity ≥10 kg (Light) / ≥25 kg (Medium work)",
+                lightWork: 10, // kg - DOT Level 2
+                mediumWork: 25, // kg - DOT Level 3
+                unit: "kg",
+                type: "weight",
+              };
+            }
 
-                    // Cardiovascular Norms
-                    if (
-                      testNameLower.includes("step") ||
-                      testNameLower.includes("cardio") ||
-                      testNameLower.includes("treadmill")
-                    ) {
-                      return {
-                        requirement:
-                          "Cardiovascular endurance within normal limits for work demands",
-                        norm: null, // No specific numeric norm
-                        unit: "bpm",
-                        type: "cardio",
-                      };
-                    }
+            // Cardiovascular Norms
+            if (
+              testNameLower.includes("step") ||
+              testNameLower.includes("cardio") ||
+              testNameLower.includes("treadmill")
+            ) {
+              return {
+                requirement:
+                  "Cardiovascular endurance within normal limits for work demands",
+                norm: null, // No specific numeric norm
+                unit: "bpm",
+                type: "cardio",
+              };
+            }
 
-                    // Default for other tests
-                    return {
-                      requirement:
-                        "Functional capacity within normal work demands",
-                      norm: null,
-                      unit: "",
-                      type: "general",
-                    };
-                  };
+            // Default for other tests
+            return {
+              requirement:
+                "Functional capacity within normal work demands",
+              norm: null,
+              unit: "",
+              type: "general",
+            };
+          };
 
-                  // Function to evaluate if test results meet job requirements
-                  const evaluateJobMatch = (test) => {
-                    const jobReq = getJobRequirements(test.testName);
+          // Function to evaluate if test results meet job requirements
+          const evaluateJobMatch = (test) => {
+            const jobReq = getJobRequirements(test.testName);
 
-                    // Priority 1: Use user's explicit job match selection if provided
-                    if (test.jobMatch === "matched") {
-                      return true;
-                    }
-                    if (test.jobMatch === "not_matched") {
-                      return false;
-                    }
+            // Priority 1: Use user's explicit job match selection if provided
+            if (test.jobMatch === "matched") {
+              return true;
+            }
+            if (test.jobMatch === "not_matched") {
+              return false;
+            }
 
-                    // Priority 2: If user marked norm level as "yes", consider it a match
-                    if (test.normLevel === "yes") {
-                      return true;
-                    }
-                    if (test.normLevel === "no") {
-                      return false;
-                    }
+            // Priority 2: If user marked norm level as "yes", consider it a match
+            if (test.normLevel === "yes") {
+              return true;
+            }
+            if (test.normLevel === "no") {
+              return false;
+            }
 
-                    // Priority 3: Compare actual test results to industry standards
-                    const leftAvg = calculateAverage(test.leftMeasurements);
-                    const rightAvg = calculateAverage(test.rightMeasurements);
+            // Priority 3: Compare actual test results to industry standards
+            const leftAvg = calculateAverage(test.leftMeasurements);
+            const rightAvg = calculateAverage(test.rightMeasurements);
 
-                    if (jobReq.type === "weight") {
-                      // For strength/weight tests - use highest value achieved
-                      const maxResult = Math.max(leftAvg, rightAvg);
+            if (jobReq.type === "weight") {
+              // For strength/weight tests - use highest value achieved
+              const maxResult = Math.max(leftAvg, rightAvg);
 
-                      // If user provided specific target value, use that
-                      if (test.valueToBeTestedNumber) {
-                        const userTarget = parseFloat(
-                          test.valueToBeTestedNumber,
-                        );
-                        return maxResult >= userTarget;
-                      }
+              // If user provided specific target value, use that
+              if (test.valueToBeTestedNumber) {
+                const userTarget = parseFloat(
+                  test.valueToBeTestedNumber,
+                );
+                return maxResult >= userTarget;
+              }
 
-                      // Otherwise use industry standards (prefer medium work level)
-                      if (jobReq.mediumWork) {
-                        return maxResult >= jobReq.lightWork; // Meet at least light work level
-                      }
-                      if (jobReq.norm) {
-                        return maxResult >= jobReq.norm;
-                      }
-                    }
+              // Otherwise use industry standards (prefer medium work level)
+              if (jobReq.mediumWork) {
+                return maxResult >= jobReq.lightWork; // Meet at least light work level
+              }
+              if (jobReq.norm) {
+                return maxResult >= jobReq.norm;
+              }
+            }
 
-                    if (jobReq.type === "degrees") {
-                      // For ROM tests - handle flexion/extension vs bilateral comparisons
-                      const testNameLower = test.testName.toLowerCase();
-                      let testResult;
+            if (jobReq.type === "degrees") {
+              // For ROM tests - handle flexion/extension vs bilateral comparisons
+              const testNameLower = test.testName.toLowerCase();
+              let testResult;
 
-                      // For flexion/extension tests, left = flexion, right = extension typically
-                      if (
-                        testNameLower.includes("flexion") &&
-                        testNameLower.includes("extension")
-                      ) {
-                        testResult = leftAvg; // Flexion value
-                      } else if (testNameLower.includes("flexion")) {
-                        testResult = Math.max(leftAvg, rightAvg); // Best flexion result
-                      } else if (testNameLower.includes("extension")) {
-                        testResult = Math.max(leftAvg, rightAvg); // Best extension result
-                      } else if (testNameLower.includes("abduction")) {
-                        testResult = Math.max(leftAvg, rightAvg); // Best abduction result
-                      } else {
-                        // For bilateral ROM tests, use the better side
-                        testResult = Math.max(leftAvg, rightAvg);
-                      }
+              // For flexion/extension tests, left = flexion, right = extension typically
+              if (
+                testNameLower.includes("flexion") &&
+                testNameLower.includes("extension")
+              ) {
+                testResult = leftAvg; // Flexion value
+              } else if (testNameLower.includes("flexion")) {
+                testResult = Math.max(leftAvg, rightAvg); // Best flexion result
+              } else if (testNameLower.includes("extension")) {
+                testResult = Math.max(leftAvg, rightAvg); // Best extension result
+              } else if (testNameLower.includes("abduction")) {
+                testResult = Math.max(leftAvg, rightAvg); // Best abduction result
+              } else {
+                // For bilateral ROM tests, use the better side
+                testResult = Math.max(leftAvg, rightAvg);
+              }
 
-                      // If user provided specific target value, use that
-                      if (test.valueToBeTestedNumber) {
-                        const userTarget = parseFloat(
-                          test.valueToBeTestedNumber,
-                        );
-                        return testResult >= userTarget;
-                      }
+              // If user provided specific target value, use that
+              if (test.valueToBeTestedNumber) {
+                const userTarget = parseFloat(
+                  test.valueToBeTestedNumber,
+                );
+                return testResult >= userTarget;
+              }
 
-                      // Otherwise use industry standards
-                      if (jobReq.functionalMin) {
-                        return testResult >= jobReq.functionalMin; // Meet functional minimum
-                      }
-                      if (jobReq.norm) {
-                        return testResult >= jobReq.norm;
-                      }
-                    }
+              // Otherwise use industry standards
+              if (jobReq.functionalMin) {
+                return testResult >= jobReq.functionalMin; // Meet functional minimum
+              }
+              if (jobReq.norm) {
+                return testResult >= jobReq.norm;
+              }
+            }
 
-                    // Priority 4: If test was demonstrated successfully and no specific standards apply
-                    if (test.demonstrated === true) {
-                      return true;
-                    }
+            // Priority 4: If test was demonstrated successfully and no specific standards apply
+            if (test.demonstrated === true) {
+              return true;
+            }
 
-                    // Default: no match if test was not demonstrated or failed
-                    return false;
-                  };
+            // Default: no match if test was not demonstrated or failed
+            return false;
+          };
 
-                  // Group tests by specific categories collected in software (same as ReviewReport)
-                  const testsByCategory = {
-                    Strength: [],
-                    "ROM Total Spine/Extremity": [],
-                    "ROM Hand/Foot": [],
-                    "Occupational Tasks": [],
-                    Cardio: [],
-                  };
+          // Group tests by specific categories collected in software (same as ReviewReport)
+          const testsByCategory = {
+            Strength: [],
+            "ROM Total Spine/Extremity": [],
+            "ROM Hand/Foot": [],
+            "Occupational Tasks": [],
+            Cardio: [],
+          };
 
-                  testData.tests?.forEach((test: any) => {
-                    const testName = test.testName.toLowerCase();
-                    const originalCategory =
-                      test.category || test.testType || "";
-                    const category = originalCategory.toLowerCase();
+          testData.tests?.forEach((test: any) => {
+            const testName = test.testName.toLowerCase();
+            const originalCategory =
+              test.category || test.testType || "";
+            const category = originalCategory.toLowerCase();
 
-                    // Use exact category match first, then fall back to pattern matching
-                    if (originalCategory === "ROM Hand/Foot") {
-                      testsByCategory["ROM Hand/Foot"].push(test);
-                    } else if (
-                      originalCategory === "ROM Total Spine/Extremity"
-                    ) {
-                      testsByCategory["ROM Total Spine/Extremity"].push(test);
-                    } else if (originalCategory === "Occupational Tasks") {
-                      testsByCategory["Occupational Tasks"].push(test);
-                    } else if (originalCategory === "Cardio") {
-                      testsByCategory["Cardio"].push(test);
-                    } else if (originalCategory === "Strength") {
-                      testsByCategory["Strength"].push(test);
-                    } else if (
-                      testName.includes("step-test") ||
-                      testName.includes("treadmill") ||
-                      testName.includes("mcaft") ||
-                      testName.includes("kasch") ||
-                      testName.includes("cardio") ||
-                      testName.includes("cardiovascular") ||
-                      testName.includes("aerobic") ||
-                      category.includes("cardio") ||
-                      category.includes("heart") ||
-                      category.includes("cardiovascular")
-                    ) {
-                      testsByCategory["Cardio"].push(test);
-                    } else if (
-                      testName.includes("fingering") ||
-                      testName.includes("handling") ||
-                      testName.includes("reach") ||
-                      testName.includes("climb") ||
-                      testName.includes("crawl") ||
-                      testName.includes("stoop") ||
-                      testName.includes("walk") ||
-                      testName.includes("push") ||
-                      testName.includes("pull") ||
-                      testName.includes("crouch") ||
-                      testName.includes("carry") ||
-                      testName.includes("kneel") ||
-                      testName.includes("ladder") ||
-                      testName.includes("balance") ||
-                      category.includes("occupational") ||
-                      category.includes("task")
-                    ) {
-                      testsByCategory["Occupational Tasks"].push(test);
-                    } else if (
-                      ((testName.includes("hand") ||
-                        testName.includes("foot") ||
-                        testName.includes("finger") ||
-                        testName.includes("wrist") ||
-                        testName.includes("ankle") ||
-                        testName.includes("thumb")) &&
-                        (testName.includes("flexion") ||
-                          testName.includes("extension") ||
-                          testName.includes("abduction") ||
-                          testName.includes("adduction"))) ||
-                      ((category.includes("hand") ||
-                        category.includes("foot")) &&
-                        (category.includes("range") ||
-                          category.includes("motion")))
-                    ) {
-                      testsByCategory["ROM Hand/Foot"].push(test);
-                    } else if (
-                      category.includes("range") ||
-                      category.includes("motion") ||
-                      testName.includes("flexion") ||
-                      testName.includes("extension") ||
-                      testName.includes("spine") ||
-                      testName.includes("cervical") ||
-                      testName.includes("back") ||
-                      testName.includes("shoulder")
-                    ) {
-                      testsByCategory["ROM Total Spine/Extremity"].push(test);
-                    } else {
-                      // Default to Strength for grip, pinch, muscle strength tests
-                      testsByCategory["Strength"].push(test);
-                    }
-                  });
+            // Use exact category match first, then fall back to pattern matching
+            if (originalCategory === "ROM Hand/Foot") {
+              testsByCategory["ROM Hand/Foot"].push(test);
+            } else if (
+              originalCategory === "ROM Total Spine/Extremity"
+            ) {
+              testsByCategory["ROM Total Spine/Extremity"].push(test);
+            } else if (originalCategory === "Occupational Tasks") {
+              testsByCategory["Occupational Tasks"].push(test);
+            } else if (originalCategory === "Cardio") {
+              testsByCategory["Cardio"].push(test);
+            } else if (originalCategory === "Strength") {
+              testsByCategory["Strength"].push(test);
+            } else if (
+              testName.includes("step-test") ||
+              testName.includes("treadmill") ||
+              testName.includes("mcaft") ||
+              testName.includes("kasch") ||
+              testName.includes("cardio") ||
+              testName.includes("cardiovascular") ||
+              testName.includes("aerobic") ||
+              category.includes("cardio") ||
+              category.includes("heart") ||
+              category.includes("cardiovascular")
+            ) {
+              testsByCategory["Cardio"].push(test);
+            } else if (
+              testName.includes("fingering") ||
+              testName.includes("handling") ||
+              testName.includes("reach") ||
+              testName.includes("climb") ||
+              testName.includes("crawl") ||
+              testName.includes("stoop") ||
+              testName.includes("walk") ||
+              testName.includes("push") ||
+              testName.includes("pull") ||
+              testName.includes("crouch") ||
+              testName.includes("carry") ||
+              testName.includes("kneel") ||
+              testName.includes("ladder") ||
+              testName.includes("balance") ||
+              category.includes("occupational") ||
+              category.includes("task")
+            ) {
+              testsByCategory["Occupational Tasks"].push(test);
+            } else if (
+              ((testName.includes("hand") ||
+                testName.includes("foot") ||
+                testName.includes("finger") ||
+                testName.includes("wrist") ||
+                testName.includes("ankle") ||
+                testName.includes("thumb")) &&
+                (testName.includes("flexion") ||
+                  testName.includes("extension") ||
+                  testName.includes("abduction") ||
+                  testName.includes("adduction"))) ||
+              ((category.includes("hand") ||
+                category.includes("foot")) &&
+                (category.includes("range") ||
+                  category.includes("motion")))
+            ) {
+              testsByCategory["ROM Hand/Foot"].push(test);
+            } else if (
+              category.includes("range") ||
+              category.includes("motion") ||
+              testName.includes("flexion") ||
+              testName.includes("extension") ||
+              testName.includes("spine") ||
+              testName.includes("cervical") ||
+              testName.includes("back") ||
+              testName.includes("shoulder")
+            ) {
+              testsByCategory["ROM Total Spine/Extremity"].push(test);
+            } else {
+              // Default to Strength for grip, pinch, muscle strength tests
+              testsByCategory["Strength"].push(test);
+            }
+          });
 
-                  let rows = [];
-                  let totalSitTime = 45; // Initial interview sit time
-                  let totalStandTime = 5; // Initial activity overview stand time
+          let rows = [];
+          let totalSitTime = 45; // Initial interview sit time
+          let totalStandTime = 5; // Initial activity overview stand time
 
-                  // Add tests grouped by their actual categories
-                  Object.entries(testsByCategory).forEach(
-                    ([category, tests]) => {
-                      if (tests.length > 0) {
-                        // Add category header row using actual category name from software
-                        rows.push(`
+          // Add tests grouped by their actual categories
+          Object.entries(testsByCategory).forEach(
+            ([category, tests]) => {
+              if (tests.length > 0) {
+                // Add category header row using actual category name from software
+                rows.push(`
                                 <tr style="background: #dbeafe;">
                                     <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px; font-weight: bold; color: #1e40af;" colspan="7">
                                         ${category}
@@ -2957,149 +2919,149 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                 </tr>
                             `);
 
-                        // Add individual tests in this category
-                        tests.forEach((test: any) => {
-                          const leftAvg = calculateAverage(
-                            test.leftMeasurements,
-                          );
-                          const rightAvg = calculateAverage(
-                            test.rightMeasurements,
-                          );
+                // Add individual tests in this category
+                tests.forEach((test: any) => {
+                  const leftAvg = calculateAverage(
+                    test.leftMeasurements,
+                  );
+                  const rightAvg = calculateAverage(
+                    test.rightMeasurements,
+                  );
 
-                          // Determine sit/stand time based on test type
-                          const testNameLower = test.testName.toLowerCase();
-                          const isStandingTest =
-                            testNameLower.includes("lumbar") ||
-                            testNameLower.includes("cervical") ||
-                            testNameLower.includes("thoracic") ||
-                            testNameLower.includes("shoulder") ||
-                            testNameLower.includes("elbow") ||
-                            testNameLower.includes("wrist") ||
-                            testNameLower.includes("reach") ||
-                            testNameLower.includes("crouch") ||
-                            testNameLower.includes("stoop") ||
-                            testNameLower.includes("bend") ||
-                            testNameLower.includes("balance") ||
-                            testNameLower.includes("climb") ||
-                            testNameLower.includes("walk") ||
-                            testNameLower.includes("push") ||
-                            testNameLower.includes("pull") ||
-                            testNameLower.includes("carry") ||
-                            testNameLower.includes("lift") ||
-                            testNameLower.includes("overhead");
+                  // Determine sit/stand time based on test type
+                  const testNameLower = test.testName.toLowerCase();
+                  const isStandingTest =
+                    testNameLower.includes("lumbar") ||
+                    testNameLower.includes("cervical") ||
+                    testNameLower.includes("thoracic") ||
+                    testNameLower.includes("shoulder") ||
+                    testNameLower.includes("elbow") ||
+                    testNameLower.includes("wrist") ||
+                    testNameLower.includes("reach") ||
+                    testNameLower.includes("crouch") ||
+                    testNameLower.includes("stoop") ||
+                    testNameLower.includes("bend") ||
+                    testNameLower.includes("balance") ||
+                    testNameLower.includes("climb") ||
+                    testNameLower.includes("walk") ||
+                    testNameLower.includes("push") ||
+                    testNameLower.includes("pull") ||
+                    testNameLower.includes("carry") ||
+                    testNameLower.includes("lift") ||
+                    testNameLower.includes("overhead");
 
-                          const sitTime = isStandingTest ? "" : "5 min";
-                          const standTime = isStandingTest ? "5 min" : "";
+                  const sitTime = isStandingTest ? "" : "5 min";
+                  const standTime = isStandingTest ? "5 min" : "";
 
-                          if (!isStandingTest) totalSitTime += 5;
-                          if (isStandingTest) totalStandTime += 5;
+                  if (!isStandingTest) totalSitTime += 5;
+                  if (isStandingTest) totalStandTime += 5;
 
-                          // Format heart rate data from left and right measurements
-                          const leftPreHR =
-                            test.leftMeasurements?.preHeartRate || 0;
-                          const leftPostHR =
-                            test.leftMeasurements?.postHeartRate || 0;
-                          const rightPreHR =
-                            test.rightMeasurements?.preHeartRate || 0;
-                          const rightPostHR =
-                            test.rightMeasurements?.postHeartRate || 0;
+                  // Format heart rate data from left and right measurements
+                  const leftPreHR =
+                    test.leftMeasurements?.preHeartRate || 0;
+                  const leftPostHR =
+                    test.leftMeasurements?.postHeartRate || 0;
+                  const rightPreHR =
+                    test.rightMeasurements?.preHeartRate || 0;
+                  const rightPostHR =
+                    test.rightMeasurements?.postHeartRate || 0;
 
-                          const hrData =
-                            leftPreHR > 0 ||
-                            leftPostHR > 0 ||
-                            rightPreHR > 0 ||
-                            rightPostHR > 0
-                              ? `${Math.max(leftPreHR, rightPreHR)}//${Math.max(
-                                  leftPostHR,
-                                  rightPostHR,
-                                )}`
-                              : "Norm";
+                  const hrData =
+                    leftPreHR > 0 ||
+                      leftPostHR > 0 ||
+                      rightPreHR > 0 ||
+                      rightPostHR > 0
+                      ? `${Math.max(leftPreHR, rightPreHR)}//${Math.max(
+                        leftPostHR,
+                        rightPostHR,
+                      )}`
+                      : "Norm";
 
-                          // Job requirements logic with industry standards
-                          const jobRequirements = (() => {
-                            const jobReq = getJobRequirements(test.testName);
+                  // Job requirements logic with industry standards
+                  const jobRequirements = (() => {
+                    const jobReq = getJobRequirements(test.testName);
 
-                            // Show user's specific target only for weight-based tests
-                            if (
-                              test.valueToBeTestedNumber &&
-                              jobReq.type === "weight"
-                            ) {
-                              return `Target: ${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || jobReq.unit}`;
-                            }
+                    // Show user's specific target only for weight-based tests
+                    if (
+                      test.valueToBeTestedNumber &&
+                      jobReq.type === "weight"
+                    ) {
+                      return `Target: ${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || jobReq.unit}`;
+                    }
 
-                            // Show norm status if user indicated
-                            if (test.normLevel === "yes") {
-                              return "Within Normal Limits";
-                            } else if (test.normLevel === "no") {
-                              return "Below Normal Limits";
-                            }
+                    // Show norm status if user indicated
+                    if (test.normLevel === "yes") {
+                      return "Within Normal Limits";
+                    } else if (test.normLevel === "no") {
+                      return "Below Normal Limits";
+                    }
 
-                            // Show industry standards based on test type
-                            if (jobReq.type === "weight") {
-                              if (jobReq.lightWork && jobReq.mediumWork) {
-                                return `≥${jobReq.lightWork} ${jobReq.unit} (Light) / ≥${jobReq.mediumWork} ${jobReq.unit} (Medium)`;
-                              } else if (jobReq.norm) {
-                                return `≥${jobReq.norm} ${jobReq.unit}`;
-                              }
-                            }
+                    // Show industry standards based on test type
+                    if (jobReq.type === "weight") {
+                      if (jobReq.lightWork && jobReq.mediumWork) {
+                        return `≥${jobReq.lightWork} ${jobReq.unit} (Light) / ≥${jobReq.mediumWork} ${jobReq.unit} (Medium)`;
+                      } else if (jobReq.norm) {
+                        return `≥${jobReq.norm} ${jobReq.unit}`;
+                      }
+                    }
 
-                            if (jobReq.type === "degrees") {
-                              if (jobReq.functionalMin && jobReq.norm) {
-                                return `≥${jobReq.functionalMin}° (Min) / ≥${jobReq.norm}° (Normal)`;
-                              } else if (jobReq.norm) {
-                                return `≥${jobReq.norm}°`;
-                              }
-                            }
+                    if (jobReq.type === "degrees") {
+                      if (jobReq.functionalMin && jobReq.norm) {
+                        return `≥${jobReq.functionalMin}° (Min) / ≥${jobReq.norm}° (Normal)`;
+                      } else if (jobReq.norm) {
+                        return `≥${jobReq.norm}°`;
+                      }
+                    }
 
-                            return "Functional Assessment";
-                          })();
+                    return "Functional Assessment";
+                  })();
 
-                          // Test results format logic like ReviewReport
-                          const testResults = (() => {
-                            if (category === "Occupational Tasks") {
-                              // Calculate percentage for occupational tasks
-                              const avgResult = (leftAvg + rightAvg) / 2;
-                              return `%IS=${avgResult.toFixed(1)}`;
-                            } else if (
-                              category === "ROM Hand/Foot" ||
-                              category === "ROM Total Spine/Extremity"
-                            ) {
-                              // ROM tests: check if it's flexion/extension or left/right
-                              const testNameLower = test.testName.toLowerCase();
-                              if (
-                                testNameLower.includes("flexion") &&
-                                testNameLower.includes("extension")
-                              ) {
-                                return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
-                              } else if (testNameLower.includes("lateral")) {
-                                return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
-                              } else {
-                                return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
-                              }
-                            } else if (
-                              test.testName?.toLowerCase().includes("lift")
-                            ) {
-                              // Lift tests: show average weight with selected metric
-                              const unit = (
-                                test.unitMeasure || "lbs"
-                              ).toLowerCase();
-                              const baseAvg = leftAvg > 0 ? leftAvg : rightAvg;
-                              const avgValue =
-                                unit === "kg"
-                                  ? Math.round(baseAvg * 2.20462 * 10) / 10
-                                  : Math.round(baseAvg * 10) / 10;
-                              return `${avgValue.toFixed(1)} ${unit}`;
-                            } else {
-                              // Default format for strength and cardio tests
-                              return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
-                            }
-                          })();
+                  // Test results format logic like ReviewReport
+                  const testResults = (() => {
+                    if (category === "Occupational Tasks") {
+                      // Calculate percentage for occupational tasks
+                      const avgResult = (leftAvg + rightAvg) / 2;
+                      return `%IS=${avgResult.toFixed(1)}`;
+                    } else if (
+                      category === "ROM Hand/Foot" ||
+                      category === "ROM Total Spine/Extremity"
+                    ) {
+                      // ROM tests: check if it's flexion/extension or left/right
+                      const testNameLower = test.testName.toLowerCase();
+                      if (
+                        testNameLower.includes("flexion") &&
+                        testNameLower.includes("extension")
+                      ) {
+                        return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
+                      } else if (testNameLower.includes("lateral")) {
+                        return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
+                      } else {
+                        return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
+                      }
+                    } else if (
+                      test.testName?.toLowerCase().includes("lift")
+                    ) {
+                      // Lift tests: show average weight with selected metric
+                      const unit = (
+                        test.unitMeasure || "lbs"
+                      ).toLowerCase();
+                      const baseAvg = leftAvg > 0 ? leftAvg : rightAvg;
+                      const avgValue =
+                        unit === "kg"
+                          ? Math.round(baseAvg * 2.20462 * 10) / 10
+                          : Math.round(baseAvg * 10) / 10;
+                      return `${avgValue.toFixed(1)} ${unit}`;
+                    } else {
+                      // Default format for strength and cardio tests
+                      return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
+                    }
+                  })();
 
-                          const jobMatch = evaluateJobMatch(test)
-                            ? "Yes"
-                            : "No";
+                  const jobMatch = evaluateJobMatch(test)
+                    ? "Yes"
+                    : "No";
 
-                          rows.push(`
+                  rows.push(`
                                     <tr>
                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${test.testName}</td>
                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${sitTime}</td>
@@ -3110,48 +3072,48 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">${jobMatch}</td>
                                     </tr>
                                 `);
-                        });
-                      }
-                    },
-                  );
+                });
+              }
+            },
+          );
 
-                  return rows.join("");
-                })()}
+          return rows.join("");
+        })()}
                 ${(() => {
-                  // Calculate total times based on actual tests
-                  let finalTotalSitTime = 45; // Interview
-                  let finalTotalStandTime = 5; // Activity Overview
+          // Calculate total times based on actual tests
+          let finalTotalSitTime = 45; // Interview
+          let finalTotalStandTime = 5; // Activity Overview
 
-                  testData.tests?.forEach((test: any) => {
-                    const testName = test.testName.toLowerCase();
-                    const isStandingTest =
-                      testName.includes("lumbar") ||
-                      testName.includes("cervical") ||
-                      testName.includes("thoracic") ||
-                      testName.includes("shoulder") ||
-                      testName.includes("elbow") ||
-                      testName.includes("wrist") ||
-                      testName.includes("reach") ||
-                      testName.includes("crouch") ||
-                      testName.includes("stoop") ||
-                      testName.includes("bend") ||
-                      testName.includes("balance") ||
-                      testName.includes("climb") ||
-                      testName.includes("walk") ||
-                      testName.includes("push") ||
-                      testName.includes("pull") ||
-                      testName.includes("carry") ||
-                      testName.includes("lift") ||
-                      testName.includes("overhead");
+          testData.tests?.forEach((test: any) => {
+            const testName = test.testName.toLowerCase();
+            const isStandingTest =
+              testName.includes("lumbar") ||
+              testName.includes("cervical") ||
+              testName.includes("thoracic") ||
+              testName.includes("shoulder") ||
+              testName.includes("elbow") ||
+              testName.includes("wrist") ||
+              testName.includes("reach") ||
+              testName.includes("crouch") ||
+              testName.includes("stoop") ||
+              testName.includes("bend") ||
+              testName.includes("balance") ||
+              testName.includes("climb") ||
+              testName.includes("walk") ||
+              testName.includes("push") ||
+              testName.includes("pull") ||
+              testName.includes("carry") ||
+              testName.includes("lift") ||
+              testName.includes("overhead");
 
-                    if (isStandingTest) {
-                      finalTotalStandTime += 5;
-                    } else {
-                      finalTotalSitTime += 5;
-                    }
-                  });
+            if (isStandingTest) {
+              finalTotalStandTime += 5;
+            } else {
+              finalTotalSitTime += 5;
+            }
+          });
 
-                  return `
+          return `
                         <tr style="background: #fef3c7;">
                             <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px; font-weight: bold;">Total Sit / Stand Time</td>
                             <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px; font-weight: bold;">${finalTotalSitTime} min</td>
@@ -3162,7 +3124,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                             <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;"></td>
                         </tr>
                     `;
-                })()}
+        })()}
             </tbody>
         </table>
 
@@ -3172,42 +3134,42 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         <div style="margin-top: 12px;">
             <h4 style="font-weight: bold; margin-bottom: 6px; font-size: 11px;">Consistency Overview:</h4>
             ${(() => {
-              // Calculate actual effort counts from test data
-              const effortCounts = {
-                poor: 0,
-                fair: 0,
-                good: 0,
-                demonstrated: 0,
-                notDemonstrated: 0,
-              };
+          // Calculate actual effort counts from test data
+          const effortCounts = {
+            poor: 0,
+            fair: 0,
+            good: 0,
+            demonstrated: 0,
+            notDemonstrated: 0,
+          };
 
-              testData.tests.forEach((test: any) => {
-                // Count demonstrated vs not demonstrated
-                if (test.demonstrated) {
-                  effortCounts.demonstrated++;
-                } else {
-                  effortCounts.notDemonstrated++;
-                }
+          testData.tests.forEach((test: any) => {
+            // Count demonstrated vs not demonstrated
+            if (test.demonstrated) {
+              effortCounts.demonstrated++;
+            } else {
+              effortCounts.notDemonstrated++;
+            }
 
-                // Categorize effort based on the effort field
-                const effort = test.effort ? test.effort.toLowerCase() : "";
-                if (effort === "poor") {
-                  effortCounts.poor++;
-                } else if (
-                  effort === "fair" ||
-                  effort === "average" ||
-                  effort === "fair to average"
-                ) {
-                  effortCounts.fair++;
-                } else if (effort === "good") {
-                  effortCounts.good++;
-                } else {
-                  // Default to fair if no specific effort recorded
-                  effortCounts.fair++;
-                }
-              });
+            // Categorize effort based on the effort field
+            const effort = test.effort ? test.effort.toLowerCase() : "";
+            if (effort === "poor") {
+              effortCounts.poor++;
+            } else if (
+              effort === "fair" ||
+              effort === "average" ||
+              effort === "fair to average"
+            ) {
+              effortCounts.fair++;
+            } else if (effort === "good") {
+              effortCounts.good++;
+            } else {
+              // Default to fair if no specific effort recorded
+              effortCounts.fair++;
+            }
+          });
 
-              return `
+          return `
                     <table style="width: 100%; border-collapse: collapse; font-size: 6px; line-height: 1;">
                         <thead>
                             <tr style="background: #fef3c7;">
@@ -3218,21 +3180,18 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                         <tbody>
                             <tr>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">Poor effort</td>
-                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${
-                                  effortCounts.poor
-                                } out of ${testData.tests.length} Tests</td>
+                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${effortCounts.poor
+            } out of ${testData.tests.length} Tests</td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">Fair to Average effort</td>
-                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${
-                                  effortCounts.fair
-                                } out of ${testData.tests.length} Tests</td>
+                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${effortCounts.fair
+            } out of ${testData.tests.length} Tests</td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">Good effort</td>
-                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${
-                                  effortCounts.good
-                                } out of ${testData.tests.length} Tests</td>
+                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${effortCounts.good
+            } out of ${testData.tests.length} Tests</td>
                             </tr>
                         </tbody>
                     </table>
@@ -3249,28 +3208,25 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                         <tbody>
                             <tr>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">Tests Successfully Demonstrated</td>
-                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${
-                                  effortCounts.demonstrated
-                                } out of ${testData.tests.length} Tests</td>
+                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${effortCounts.demonstrated
+            } out of ${testData.tests.length} Tests</td>
                             </tr>
                             <tr>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">Tests Not Demonstrated</td>
-                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${
-                                  effortCounts.notDemonstrated
-                                } out of ${testData.tests.length} Tests</td>
+                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${effortCounts.notDemonstrated
+            } out of ${testData.tests.length} Tests</td>
                             </tr>
                             <tr style="background: #e6f3ff;">
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-weight: bold;">Overall Consistency Rate</td>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-weight: bold; color: #1e40af;">
-                                    ${
-                                      testData.tests.length > 0
-                                        ? Math.round(
-                                            (effortCounts.demonstrated /
-                                              testData.tests.length) *
-                                              100,
-                                          )
-                                        : 0
-                                    }% Consistent Performance
+                                    ${testData.tests.length > 0
+              ? Math.round(
+                (effortCounts.demonstrated /
+                  testData.tests.length) *
+                100,
+              )
+              : 0
+            }% Consistent Performance
                                 </td>
                             </tr>
                         </tbody>
@@ -3286,37 +3242,34 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                 <p style="font-weight: bold;">Tests with Recorded Effort Levels:</p>
                                 <div style="margin-top: 8px; font-size: 10px;">
                                     ${testData.tests
-                                      .filter((test: any) => test.effort)
-                                      .map(
-                                        (test: any) => `
+              .filter((test: any) => test.effort)
+              .map(
+                (test: any) => `
                                         <div style="display: flex; justify-content: space-between; margin-bottom: 2px;">
                                             <span style="margin-right: 8px;">${test.testName}:</span>
                                             <span style="font-weight: bold;">${test.effort}</span>
                                         </div>
                                     `,
-                                      )
-                                      .join("")}
+              )
+              .join("")}
                                 </div>
                             </div>
                             <div>
                                 <p style="font-weight: bold;">Demonstration Summary:</p>
                                 <div style="margin-top: 8px; font-size: 10px;">
-                                    <p>✔ Demonstrated: <span style="font-weight: bold; color: #28a745;">${
-                                      effortCounts.demonstrated
-                                    } tests</span></p>
-                                    <p>✗ Not Demonstrated: <span style="font-weight: bold; color: #dc3545;">${
-                                      effortCounts.notDemonstrated
-                                    } tests</span></p>
+                                    <p>✔ Demonstrated: <span style="font-weight: bold; color: #28a745;">${effortCounts.demonstrated
+            } tests</span></p>
+                                    <p>✗ Not Demonstrated: <span style="font-weight: bold; color: #dc3545;">${effortCounts.notDemonstrated
+            } tests</span></p>
                                     <p>Success Rate: <span style="font-weight: bold; color: #007bff;">
-                                        ${
-                                          testData.tests.length > 0
-                                            ? Math.round(
-                                                (effortCounts.demonstrated /
-                                                  testData.tests.length) *
-                                                  100,
-                                              )
-                                            : 0
-                                        }%
+                                        ${testData.tests.length > 0
+              ? Math.round(
+                (effortCounts.demonstrated /
+                  testData.tests.length) *
+                100,
+              )
+              : 0
+            }%
                                     </span></p>
                                 </div>
                             </div>
@@ -3324,7 +3277,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     </div>
                     -->
                 `;
-            })()}
+        })()}
 
             <!-- Consistent crosschecks Table -->
             <table style="width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 6px; line-height: 1;">
@@ -3338,482 +3291,482 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 </thead>
                 <tbody>
                     ${(() => {
-                      const crosschecks = [];
+          const crosschecks = [];
 
-                      // Calculate CV function for DownloadReport context
-                      const calculateCV = (measurements) => {
-                        const values = [
-                          measurements.trial1,
-                          measurements.trial2,
-                          measurements.trial3,
-                          measurements.trial4,
-                          measurements.trial5,
-                          measurements.trial6,
-                        ].filter((val) => val > 0);
+          // Calculate CV function for DownloadReport context
+          const calculateCV = (measurements) => {
+            const values = [
+              measurements.trial1,
+              measurements.trial2,
+              measurements.trial3,
+              measurements.trial4,
+              measurements.trial5,
+              measurements.trial6,
+            ].filter((val) => val > 0);
 
-                        if (values.length === 0) return 0;
+            if (values.length === 0) return 0;
 
-                        const mean =
-                          values.reduce((sum, val) => sum + val, 0) /
-                          values.length;
-                        const variance =
-                          values.reduce(
-                            (sum, val) => sum + Math.pow(val - mean, 2),
-                            0,
-                          ) / values.length;
-                        const standardDeviation = Math.sqrt(variance);
-                        return Math.round((standardDeviation / mean) * 100);
-                      };
+            const mean =
+              values.reduce((sum, val) => sum + val, 0) /
+              values.length;
+            const variance =
+              values.reduce(
+                (sum, val) => sum + Math.pow(val - mean, 2),
+                0,
+              ) / values.length;
+            const standardDeviation = Math.sqrt(variance);
+            return Math.round((standardDeviation / mean) * 100);
+          };
 
-                      // Find relevant tests for crosschecks
-                      const gripTests =
-                        testData.tests?.filter((test) => {
-                          const n = (test.testName || "").toLowerCase();
-                          return n.includes("grip") || n.includes("hand");
-                        }) || [];
+          // Find relevant tests for crosschecks
+          const gripTests =
+            testData.tests?.filter((test) => {
+              const n = (test.testName || "").toLowerCase();
+              return n.includes("grip") || n.includes("hand");
+            }) || [];
 
-                      const pinchTests =
-                        testData.tests?.filter((test) =>
-                          test.testName.toLowerCase().includes("pinch"),
-                        ) || [];
+          const pinchTests =
+            testData.tests?.filter((test) =>
+              test.testName.toLowerCase().includes("pinch"),
+            ) || [];
 
-                      const liftTests =
-                        testData.tests?.filter((test) =>
-                          test.testName.toLowerCase().includes("lift"),
-                        ) || [];
+          const liftTests =
+            testData.tests?.filter((test) =>
+              test.testName.toLowerCase().includes("lift"),
+            ) || [];
 
-                      const romTests =
-                        testData.tests?.filter(
-                          (test) =>
-                            test.testName.toLowerCase().includes("range") ||
-                            test.testName.toLowerCase().includes("motion") ||
-                            test.testName.toLowerCase().includes("flexion") ||
-                            test.testName.toLowerCase().includes("extension"),
-                        ) || [];
+          const romTests =
+            testData.tests?.filter(
+              (test) =>
+                test.testName.toLowerCase().includes("range") ||
+                test.testName.toLowerCase().includes("motion") ||
+                test.testName.toLowerCase().includes("flexion") ||
+                test.testName.toLowerCase().includes("extension"),
+            ) || [];
 
-                      const allTests = testData.tests || [];
+          const allTests = testData.tests || [];
 
-                      // Hand grip rapid exchange check - compare rapid/exchange tests to the standard position (position 2) grip. Pass when rapid <= 85% of standard (i.e. 15% less or equal)
-                      const rapidExchangeValid = (() => {
-                        if (gripTests.length === 0) return null; // no grip tests at all
+          // Hand grip rapid exchange check - compare rapid/exchange tests to the standard position (position 2) grip. Pass when rapid <= 85% of standard (i.e. 15% less or equal)
+          const rapidExchangeValid = (() => {
+            if (gripTests.length === 0) return null; // no grip tests at all
 
-                        const normalize = (s) => (s ? s.toLowerCase() : "");
+            const normalize = (s) => (s ? s.toLowerCase() : "");
 
-                        // Identify rapid/exchange tests
-                        const rapidTests = allTests.filter((t) => {
-                          const n = normalize(t.testName);
-                          return (
-                            n.includes("rapid") ||
-                            n.includes("exchange") ||
-                            n.includes("rapid-exchange") ||
-                            n.includes("rapid exchange")
-                          );
-                        });
+            // Identify rapid/exchange tests
+            const rapidTests = allTests.filter((t) => {
+              const n = normalize(t.testName);
+              return (
+                n.includes("rapid") ||
+                n.includes("exchange") ||
+                n.includes("rapid-exchange") ||
+                n.includes("rapid exchange")
+              );
+            });
 
-                        // Find a standard grip test (prefer position 2 / pos 2 / standard); fallback to the grip test with highest average
-                        let standardTest = gripTests.find((t) => {
-                          const n = normalize(t.testName);
-                          return (
-                            n.includes("position 2") ||
-                            n.includes("pos 2") ||
-                            n.includes("position2") ||
-                            n.includes("std position") ||
-                            n.includes("standard") ||
-                            n.includes("p2")
-                          );
-                        });
+            // Find a standard grip test (prefer position 2 / pos 2 / standard); fallback to the grip test with highest average
+            let standardTest = gripTests.find((t) => {
+              const n = normalize(t.testName);
+              return (
+                n.includes("position 2") ||
+                n.includes("pos 2") ||
+                n.includes("position2") ||
+                n.includes("std position") ||
+                n.includes("standard") ||
+                n.includes("p2")
+              );
+            });
 
-                        if (!standardTest) {
-                          standardTest = gripTests.reduce((best, cur) => {
-                            const bestAvg =
-                              (calculateAverage(best.leftMeasurements) +
-                                calculateAverage(best.rightMeasurements)) /
-                              2;
-                            const curAvg =
-                              (calculateAverage(cur.leftMeasurements) +
-                                calculateAverage(cur.rightMeasurements)) /
-                              2;
-                            return curAvg > bestAvg ? cur : best;
-                          }, gripTests[0]);
-                        }
+            if (!standardTest) {
+              standardTest = gripTests.reduce((best, cur) => {
+                const bestAvg =
+                  (calculateAverage(best.leftMeasurements) +
+                    calculateAverage(best.rightMeasurements)) /
+                  2;
+                const curAvg =
+                  (calculateAverage(cur.leftMeasurements) +
+                    calculateAverage(cur.rightMeasurements)) /
+                  2;
+                return curAvg > bestAvg ? cur : best;
+              }, gripTests[0]);
+            }
 
-                        if (!standardTest || rapidTests.length === 0)
-                          return null; // not applicable if either missing
+            if (!standardTest || rapidTests.length === 0)
+              return null; // not applicable if either missing
 
-                        const avgAcross = (tests, side) => {
-                          const vals = tests
-                            .map((t) => {
-                              const m =
-                                side === "left"
-                                  ? t.leftMeasurements
-                                  : t.rightMeasurements;
-                              return calculateAverage(m);
-                            })
-                            .filter((v) => v > 0);
-                          if (vals.length === 0) return 0;
-                          return vals.reduce((s, v) => s + v, 0) / vals.length;
-                        };
+            const avgAcross = (tests, side) => {
+              const vals = tests
+                .map((t) => {
+                  const m =
+                    side === "left"
+                      ? t.leftMeasurements
+                      : t.rightMeasurements;
+                  return calculateAverage(m);
+                })
+                .filter((v) => v > 0);
+              if (vals.length === 0) return 0;
+              return vals.reduce((s, v) => s + v, 0) / vals.length;
+            };
 
-                        const rapidLeftAvg = avgAcross(rapidTests, "left");
-                        const rapidRightAvg = avgAcross(rapidTests, "right");
+            const rapidLeftAvg = avgAcross(rapidTests, "left");
+            const rapidRightAvg = avgAcross(rapidTests, "right");
 
-                        const stdLeftAvg = calculateAverage(
-                          standardTest.leftMeasurements,
-                        );
-                        const stdRightAvg = calculateAverage(
-                          standardTest.rightMeasurements,
-                        );
+            const stdLeftAvg = calculateAverage(
+              standardTest.leftMeasurements,
+            );
+            const stdRightAvg = calculateAverage(
+              standardTest.rightMeasurements,
+            );
 
-                        const comparisons = [];
-                        if (stdLeftAvg > 0 && rapidLeftAvg > 0)
-                          comparisons.push(rapidLeftAvg <= stdLeftAvg * 0.85);
-                        if (stdRightAvg > 0 && rapidRightAvg > 0)
-                          comparisons.push(rapidRightAvg <= stdRightAvg * 0.85);
+            const comparisons = [];
+            if (stdLeftAvg > 0 && rapidLeftAvg > 0)
+              comparisons.push(rapidLeftAvg <= stdLeftAvg * 0.85);
+            if (stdRightAvg > 0 && rapidRightAvg > 0)
+              comparisons.push(rapidRightAvg <= stdRightAvg * 0.85);
 
-                        if (comparisons.length === 0) return null; // insufficient data
+            if (comparisons.length === 0) return null; // insufficient data
 
-                        return comparisons.every(Boolean);
-                      })();
+            return comparisons.every(Boolean);
+          })();
 
-                      crosschecks.push({
-                        name: "Hand grip rapid exchange",
-                        description:
-                          "Rapid Exchange Grip was 15% less to equal that of the Std position 2 Hand Grip measure.",
-                        pass: rapidExchangeValid,
-                        applicable: rapidExchangeValid !== null,
-                      });
+          crosschecks.push({
+            name: "Hand grip rapid exchange",
+            description:
+              "Rapid Exchange Grip was 15% less to equal that of the Std position 2 Hand Grip measure.",
+            pass: rapidExchangeValid,
+            applicable: rapidExchangeValid !== null,
+          });
 
-                      // Hand grip MVE check
-                      const gripMVEValid =
-                        gripTests.length > 0
-                          ? gripTests.every((test) => {
-                              const leftAvg = calculateAverage(
-                                test.leftMeasurements,
-                              );
-                              const rightAvg = calculateAverage(
-                                test.rightMeasurements,
-                              );
-                              const bilateralDiff =
-                                calculateBilateralDeficiency(leftAvg, rightAvg);
-                              return bilateralDiff <= 20; // MVE criteria
-                            })
-                          : null;
+          // Hand grip MVE check
+          const gripMVEValid =
+            gripTests.length > 0
+              ? gripTests.every((test) => {
+                const leftAvg = calculateAverage(
+                  test.leftMeasurements,
+                );
+                const rightAvg = calculateAverage(
+                  test.rightMeasurements,
+                );
+                const bilateralDiff =
+                  calculateBilateralDeficiency(leftAvg, rightAvg);
+                return bilateralDiff <= 20; // MVE criteria
+              })
+              : null;
 
-                      crosschecks.push({
-                        name: "Hand grip MVE",
-                        description:
-                          "Position 1 through 5 displayed a bell curve showing greatest strength in position 2-3.",
-                        pass: gripMVEValid,
-                        applicable: gripTests.length > 0,
-                      });
+          crosschecks.push({
+            name: "Hand grip MVE",
+            description:
+              "Position 1 through 5 displayed a bell curve showing greatest strength in position 2-3.",
+            pass: gripMVEValid,
+            applicable: gripTests.length > 0,
+          });
 
-                      // Pinch grip consistency check
-                      const pinchValid =
-                        pinchTests.length > 0
-                          ? pinchTests.every((test) => {
-                              const leftCV = calculateCV(test.leftMeasurements);
-                              const rightCV = calculateCV(
-                                test.rightMeasurements,
-                              );
-                              return leftCV <= 15 && rightCV <= 15;
-                            })
-                          : null; // No pinch tests available
+          // Pinch grip consistency check
+          const pinchValid =
+            pinchTests.length > 0
+              ? pinchTests.every((test) => {
+                const leftCV = calculateCV(test.leftMeasurements);
+                const rightCV = calculateCV(
+                  test.rightMeasurements,
+                );
+                return leftCV <= 15 && rightCV <= 15;
+              })
+              : null; // No pinch tests available
 
-                      crosschecks.push({
-                        name: "Pinch grip key/tip/palmar ratio",
-                        description:
-                          "Key grip was greater than palmar which was greater than tip grip.",
-                        pass: pinchValid,
-                        applicable: pinchTests.length > 0,
-                      });
+          crosschecks.push({
+            name: "Pinch grip key/tip/palmar ratio",
+            description:
+              "Key grip was greater than palmar which was greater than tip grip.",
+            pass: pinchValid,
+            applicable: pinchTests.length > 0,
+          });
 
-                      // Dynamic lift HR fluctuation check — pass if any dynamic lift (low/mid/high/overhead/frequent) shows postHR > preHR
-                      const dynamicLifts = liftTests.filter((test) => {
-                        const n = (test.testName || "").toLowerCase();
-                        return (
-                          n.includes("low") ||
-                          n.includes("mid") ||
-                          n.includes("high") ||
-                          n.includes("overhead") ||
-                          n.includes("frequent") ||
-                          n.includes("dynamic")
-                        );
-                      });
+          // Dynamic lift HR fluctuation check — pass if any dynamic lift (low/mid/high/overhead/frequent) shows postHR > preHR
+          const dynamicLifts = liftTests.filter((test) => {
+            const n = (test.testName || "").toLowerCase();
+            return (
+              n.includes("low") ||
+              n.includes("mid") ||
+              n.includes("high") ||
+              n.includes("overhead") ||
+              n.includes("frequent") ||
+              n.includes("dynamic")
+            );
+          });
 
-                      const hrConsistent =
-                        dynamicLifts.length > 0
-                          ? dynamicLifts.some((test) => {
-                              const preHR =
-                                test.leftMeasurements?.preHeartRate ??
-                                test.rightMeasurements?.preHeartRate ??
-                                0;
-                              const postHR =
-                                test.leftMeasurements?.postHeartRate ??
-                                test.rightMeasurements?.postHeartRate ??
-                                0;
-                              return postHR > preHR;
-                            })
-                          : null; // Not applicable if no dynamic lifts found
+          const hrConsistent =
+            dynamicLifts.length > 0
+              ? dynamicLifts.some((test) => {
+                const preHR =
+                  test.leftMeasurements?.preHeartRate ??
+                  test.rightMeasurements?.preHeartRate ??
+                  0;
+                const postHR =
+                  test.leftMeasurements?.postHeartRate ??
+                  test.rightMeasurements?.postHeartRate ??
+                  0;
+                return postHR > preHR;
+              })
+              : null; // Not applicable if no dynamic lifts found
 
-                      crosschecks.push({
-                        name: "Dynamic lift HR fluctuation",
-                        description:
-                          "Client displayed an increase in heart rate when weight and/or repetitions were increased (any dynamic lift: low, mid, high, overhead, or frequent).",
-                        pass: hrConsistent,
-                        applicable: dynamicLifts.length > 0,
-                      });
+          crosschecks.push({
+            name: "Dynamic lift HR fluctuation",
+            description:
+              "Client displayed an increase in heart rate when weight and/or repetitions were increased (any dynamic lift: low, mid, high, overhead, or frequent).",
+            pass: hrConsistent,
+            applicable: dynamicLifts.length > 0,
+          });
 
-                      // ROM consistency check
-                      const romValid =
-                        romTests.length > 0
-                          ? romTests.every((test) => {
-                              // Extract trial values from measurement objects
-                              const leftTrials = test.leftMeasurements
-                                ? [
-                                    test.leftMeasurements.trial1,
-                                    test.leftMeasurements.trial2,
-                                    test.leftMeasurements.trial3,
-                                    test.leftMeasurements.trial4,
-                                    test.leftMeasurements.trial5,
-                                    test.leftMeasurements.trial6,
-                                  ].filter((val) => val != null && !isNaN(val))
-                                : [];
+          // ROM consistency check
+          const romValid =
+            romTests.length > 0
+              ? romTests.every((test) => {
+                // Extract trial values from measurement objects
+                const leftTrials = test.leftMeasurements
+                  ? [
+                    test.leftMeasurements.trial1,
+                    test.leftMeasurements.trial2,
+                    test.leftMeasurements.trial3,
+                    test.leftMeasurements.trial4,
+                    test.leftMeasurements.trial5,
+                    test.leftMeasurements.trial6,
+                  ].filter((val) => val != null && !isNaN(val))
+                  : [];
 
-                              const rightTrials = test.rightMeasurements
-                                ? [
-                                    test.rightMeasurements.trial1,
-                                    test.rightMeasurements.trial2,
-                                    test.rightMeasurements.trial3,
-                                    test.rightMeasurements.trial4,
-                                    test.rightMeasurements.trial5,
-                                    test.rightMeasurements.trial6,
-                                  ].filter((val) => val != null && !isNaN(val))
-                                : [];
+                const rightTrials = test.rightMeasurements
+                  ? [
+                    test.rightMeasurements.trial1,
+                    test.rightMeasurements.trial2,
+                    test.rightMeasurements.trial3,
+                    test.rightMeasurements.trial4,
+                    test.rightMeasurements.trial5,
+                    test.rightMeasurements.trial6,
+                  ].filter((val) => val != null && !isNaN(val))
+                  : [];
 
-                              const allMeasurements = [
-                                ...leftTrials,
-                                ...rightTrials,
-                              ];
-                              if (allMeasurements.length < 6) return false;
+                const allMeasurements = [
+                  ...leftTrials,
+                  ...rightTrials,
+                ];
+                if (allMeasurements.length < 6) return false;
 
-                              // Find three consecutive trials within 5 degrees and 10% of each other
-                              for (
-                                let i = 0;
-                                i <= allMeasurements.length - 3;
-                                i++
-                              ) {
-                                const trial1 = allMeasurements[i];
-                                const trial2 = allMeasurements[i + 1];
-                                const trial3 = allMeasurements[i + 2];
+                // Find three consecutive trials within 5 degrees and 10% of each other
+                for (
+                  let i = 0;
+                  i <= allMeasurements.length - 3;
+                  i++
+                ) {
+                  const trial1 = allMeasurements[i];
+                  const trial2 = allMeasurements[i + 1];
+                  const trial3 = allMeasurements[i + 2];
 
-                                // Check if three consecutive trials are within 5 degrees of each other
-                                const maxDiff = Math.max(
-                                  Math.abs(trial1 - trial2),
-                                  Math.abs(trial2 - trial3),
-                                  Math.abs(trial1 - trial3),
-                                );
+                  // Check if three consecutive trials are within 5 degrees of each other
+                  const maxDiff = Math.max(
+                    Math.abs(trial1 - trial2),
+                    Math.abs(trial2 - trial3),
+                    Math.abs(trial1 - trial3),
+                  );
 
-                                // Check if within 10% of each other
-                                const avgValue = (trial1 + trial2 + trial3) / 3;
-                                const maxPercDiff = Math.max(
-                                  (Math.abs(trial1 - avgValue) / avgValue) *
-                                    100,
-                                  (Math.abs(trial2 - avgValue) / avgValue) *
-                                    100,
-                                  (Math.abs(trial3 - avgValue) / avgValue) *
-                                    100,
-                                );
+                  // Check if within 10% of each other
+                  const avgValue = (trial1 + trial2 + trial3) / 3;
+                  const maxPercDiff = Math.max(
+                    (Math.abs(trial1 - avgValue) / avgValue) *
+                    100,
+                    (Math.abs(trial2 - avgValue) / avgValue) *
+                    100,
+                    (Math.abs(trial3 - avgValue) / avgValue) *
+                    100,
+                  );
 
-                                if (maxDiff <= 5 && maxPercDiff <= 10) {
-                                  return true; // Found valid consecutive trials
-                                }
-                              }
-                              return false;
-                            })
-                          : null;
+                  if (maxDiff <= 5 && maxPercDiff <= 10) {
+                    return true; // Found valid consecutive trials
+                  }
+                }
+                return false;
+              })
+              : null;
 
-                      crosschecks.push({
-                        name: "ROM consistency check",
-                        description:
-                          "During total spine ROM, the client provided three consecutive trials between 5 degrees and 10% of each other in a six-trial session.",
-                        pass: romValid,
-                        applicable: romTests.length > 0,
-                      });
+          crosschecks.push({
+            name: "ROM consistency check",
+            description:
+              "During total spine ROM, the client provided three consecutive trials between 5 degrees and 10% of each other in a six-trial session.",
+            pass: romValid,
+            applicable: romTests.length > 0,
+          });
 
-                      // Overall test/retest consistency
-                      // Check for similar values (CV consistency)
-                      const validTests = allTests.filter((test) => {
-                        const leftCV = calculateCV(test.leftMeasurements);
-                        const rightCV = calculateCV(test.rightMeasurements);
-                        return leftCV <= 15 && rightCV <= 15;
-                      });
-                      const similarValues =
-                        allTests.length > 0
-                          ? validTests.length / allTests.length >= 0.8
-                          : null;
+          // Overall test/retest consistency
+          // Check for similar values (CV consistency)
+          const validTests = allTests.filter((test) => {
+            const leftCV = calculateCV(test.leftMeasurements);
+            const rightCV = calculateCV(test.rightMeasurements);
+            return leftCV <= 15 && rightCV <= 15;
+          });
+          const similarValues =
+            allTests.length > 0
+              ? validTests.length / allTests.length >= 0.8
+              : null;
 
-                      // Check for consistent left/right deficiency patterns
-                      let consistentDeficiency = true;
-                      if (allTests.length > 1) {
-                        const firstTestLeftAvg = calculateAverage(
-                          allTests[0].leftMeasurements,
-                        );
-                        const firstTestRightAvg = calculateAverage(
-                          allTests[0].rightMeasurements,
-                        );
-                        const firstTestWeakerSide =
-                          firstTestLeftAvg < firstTestRightAvg
-                            ? "left"
-                            : "right";
+          // Check for consistent left/right deficiency patterns
+          let consistentDeficiency = true;
+          if (allTests.length > 1) {
+            const firstTestLeftAvg = calculateAverage(
+              allTests[0].leftMeasurements,
+            );
+            const firstTestRightAvg = calculateAverage(
+              allTests[0].rightMeasurements,
+            );
+            const firstTestWeakerSide =
+              firstTestLeftAvg < firstTestRightAvg
+                ? "left"
+                : "right";
 
-                        // Check if the same side remains weaker across all repeated tests
-                        for (let i = 1; i < allTests.length; i++) {
-                          const leftAvg = calculateAverage(
-                            allTests[i].leftMeasurements,
-                          );
-                          const rightAvg = calculateAverage(
-                            allTests[i].rightMeasurements,
-                          );
-                          const weakerSide =
-                            leftAvg < rightAvg ? "left" : "right";
+            // Check if the same side remains weaker across all repeated tests
+            for (let i = 1; i < allTests.length; i++) {
+              const leftAvg = calculateAverage(
+                allTests[i].leftMeasurements,
+              );
+              const rightAvg = calculateAverage(
+                allTests[i].rightMeasurements,
+              );
+              const weakerSide =
+                leftAvg < rightAvg ? "left" : "right";
 
-                          if (weakerSide !== firstTestWeakerSide) {
-                            consistentDeficiency = false;
-                            break;
-                          }
-                        }
-                      }
+              if (weakerSide !== firstTestWeakerSide) {
+                consistentDeficiency = false;
+                break;
+              }
+            }
+          }
 
-                      // Pass only if both similar values AND consistent left/right deficiency
-                      const overallValid =
-                        allTests.length > 0
-                          ? similarValues && consistentDeficiency
-                          : null;
+          // Pass only if both similar values AND consistent left/right deficiency
+          const overallValid =
+            allTests.length > 0
+              ? similarValues && consistentDeficiency
+              : null;
 
-                      crosschecks.push({
-                        name: "Test/retest trial consistency",
-                        description:
-                          "When tests were repeated the client displayed similar values and left/right deficiency.",
-                        pass: overallValid,
-                        applicable: allTests.length > 0,
-                      });
+          crosschecks.push({
+            name: "Test/retest trial consistency",
+            description:
+              "When tests were repeated the client displayed similar values and left/right deficiency.",
+            pass: overallValid,
+            applicable: allTests.length > 0,
+          });
 
-                      // Dominant side monitoring check
-                      const dominantSideValid =
-                        allTests.length > 0
-                          ? allTests.every((test) => {
-                              const leftAvg = calculateAverage(
-                                test.leftMeasurements,
-                              );
-                              const rightAvg = calculateAverage(
-                                test.rightMeasurements,
-                              );
+          // Dominant side monitoring check
+          const dominantSideValid =
+            allTests.length > 0
+              ? allTests.every((test) => {
+                const leftAvg = calculateAverage(
+                  test.leftMeasurements,
+                );
+                const rightAvg = calculateAverage(
+                  test.rightMeasurements,
+                );
 
-                              // For right-handed (majority): expect ~10% greater on right side
-                              // For left-handed: expect values to be close to same
-                              // Since handedness data not available, use 10% threshold as per description
-                              const ratio =
-                                Math.max(leftAvg, rightAvg) /
-                                Math.min(leftAvg, rightAvg);
-                              return (
-                                ratio <= 1.1 || // 10% difference threshold as per description
-                                Math.min(leftAvg, rightAvg) === 0
-                              );
-                            })
-                          : null; // No tests available
+                // For right-handed (majority): expect ~10% greater on right side
+                // For left-handed: expect values to be close to same
+                // Since handedness data not available, use 10% threshold as per description
+                const ratio =
+                  Math.max(leftAvg, rightAvg) /
+                  Math.min(leftAvg, rightAvg);
+                return (
+                  ratio <= 1.1 || // 10% difference threshold as per description
+                  Math.min(leftAvg, rightAvg) === 0
+                );
+              })
+              : null; // No tests available
 
-                      crosschecks.push({
-                        name: "Dominant side monitoring",
-                        description:
-                          "It is expected that if the client is Right-Handed, he/she will demonstrate approx.10% greater values on the dominant side – if Left-Handed then the values would be close to the same.",
-                        pass: dominantSideValid,
-                        applicable: allTests.length > 0,
-                      });
+          crosschecks.push({
+            name: "Dominant side monitoring",
+            description:
+              "It is expected that if the client is Right-Handed, he/she will demonstrate approx.10% greater values on the dominant side – if Left-Handed then the values would be close to the same.",
+            pass: dominantSideValid,
+            applicable: allTests.length > 0,
+          });
 
-                      // Distraction test consistency - Based on evaluator input from referral question 6b
-                      if (referralQuestionsData.questions) {
-                        const distractionQuestion =
-                          referralQuestionsData.questions.find(
-                            (q) =>
-                              q.question &&
-                              q.question.includes(
-                                "6b) Distraction test consistency",
-                              ),
-                          );
+          // Distraction test consistency - Based on evaluator input from referral question 6b
+          if (referralQuestionsData.questions) {
+            const distractionQuestion =
+              referralQuestionsData.questions.find(
+                (q) =>
+                  q.question &&
+                  q.question.includes(
+                    "6b) Distraction test consistency",
+                  ),
+              );
 
-                        if (distractionQuestion) {
-                          // Parse new format: "PASS|comments" or "FAIL|comments"
-                          const answerParts =
-                            distractionQuestion.answer?.split("|") || [];
-                          const status = answerParts[0] || "";
-                          const distractionPass = status
-                            .toUpperCase()
-                            .includes("PASS");
+            if (distractionQuestion) {
+              // Parse new format: "PASS|comments" or "FAIL|comments"
+              const answerParts =
+                distractionQuestion.answer?.split("|") || [];
+              const status = answerParts[0] || "";
+              const distractionPass = status
+                .toUpperCase()
+                .includes("PASS");
 
-                          crosschecks.push({
-                            name: "Distraction test consistency",
-                            description:
-                              "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
-                            pass: distractionPass,
-                            applicable: true,
-                          });
-                        }
-                      }
+              crosschecks.push({
+                name: "Distraction test consistency",
+                description:
+                  "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
+                pass: distractionPass,
+                applicable: true,
+              });
+            }
+          }
 
-                      // Consistency with diagnosis - Based on evaluator input from referral question 6c
-                      if (referralQuestionsData.questions) {
-                        const diagnosisQuestion =
-                          referralQuestionsData.questions.find(
-                            (q) =>
-                              q.question &&
-                              q.question.includes(
-                                "6c) Consistency with diagnosis",
-                              ),
-                          );
+          // Consistency with diagnosis - Based on evaluator input from referral question 6c
+          if (referralQuestionsData.questions) {
+            const diagnosisQuestion =
+              referralQuestionsData.questions.find(
+                (q) =>
+                  q.question &&
+                  q.question.includes(
+                    "6c) Consistency with diagnosis",
+                  ),
+              );
 
-                        if (diagnosisQuestion) {
-                          // Parse new format: "PASS|comments" or "FAIL|comments"
-                          const answerParts =
-                            diagnosisQuestion.answer?.split("|") || [];
-                          const status = answerParts[0] || "";
-                          const diagnosisPass = status
-                            .toUpperCase()
-                            .includes("PASS");
+            if (diagnosisQuestion) {
+              // Parse new format: "PASS|comments" or "FAIL|comments"
+              const answerParts =
+                diagnosisQuestion.answer?.split("|") || [];
+              const status = answerParts[0] || "";
+              const diagnosisPass = status
+                .toUpperCase()
+                .includes("PASS");
 
-                          crosschecks.push({
-                            name: "Consistency with diagnosis",
-                            description:
-                              "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
-                            pass: diagnosisPass,
-                            applicable: true,
-                          });
-                        }
-                      }
+              crosschecks.push({
+                name: "Consistency with diagnosis",
+                description:
+                  "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
+                pass: diagnosisPass,
+                applicable: true,
+              });
+            }
+          }
 
-                      // Coefficient of Variation analysis
-                      const validCVTests = allTests.filter((test) => {
-                        const leftCV = calculateCV(test.leftMeasurements);
-                        const rightCV = calculateCV(test.rightMeasurements);
-                        return leftCV < 15 && rightCV < 15; // CV less than 15% as per description
-                      });
-                      const cvValid =
-                        allTests.length > 0
-                          ? validCVTests.length / allTests.length >= 0.7
-                          : null;
+          // Coefficient of Variation analysis
+          const validCVTests = allTests.filter((test) => {
+            const leftCV = calculateCV(test.leftMeasurements);
+            const rightCV = calculateCV(test.rightMeasurements);
+            return leftCV < 15 && rightCV < 15; // CV less than 15% as per description
+          });
+          const cvValid =
+            allTests.length > 0
+              ? validCVTests.length / allTests.length >= 0.7
+              : null;
 
-                      crosschecks.push({
-                        name: "Coefficient of Variation (CV)",
-                        description:
-                          "We would expect to see a CV less than 15% for a client that is deemed to be consistent.",
-                        pass: cvValid,
-                        applicable: allTests.length > 0,
-                      });
+          crosschecks.push({
+            name: "Coefficient of Variation (CV)",
+            description:
+              "We would expect to see a CV less than 15% for a client that is deemed to be consistent.",
+            pass: cvValid,
+            applicable: allTests.length > 0,
+          });
 
-                      // No overall consistency item - only the 10 specific items requested
+          // No overall consistency item - only the 10 specific items requested
 
-                      return crosschecks
-                        .map(
-                          (check, index) => `
+          return crosschecks
+            .map(
+              (check, index) => `
                             <tr>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${check.name}</td>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">${check.description}</td>
@@ -3821,9 +3774,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">${!check.applicable ? "N/A" : !check.pass ? "✓" : ""}</td>
                             </tr>
                         `,
-                        )
-                        .join("");
-                    })()}
+            )
+            .join("");
+        })()}
                 </tbody>
             </table>
 
@@ -3845,98 +3798,92 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 </thead>
                 <tbody>
                     ${testData.tests
-                      .map((test: any, index: number) => {
-                        // Determine if test passed based on demonstrated status and effort
-                        const testPassed =
-                          test.demonstrated &&
-                          test.effort &&
-                          !test.effort.toLowerCase().includes("poor") &&
-                          !test.effort
-                            .toLowerCase()
-                            .includes("extremely light");
+          .map((test: any, index: number) => {
+            // Determine if test passed based on demonstrated status and effort
+            const testPassed =
+              test.demonstrated &&
+              test.effort &&
+              !test.effort.toLowerCase().includes("poor") &&
+              !test.effort
+                .toLowerCase()
+                .includes("extremely light");
 
-                        return `
+            return `
                             <tr>
-                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-weight: bold;">${
-                                  test.testName
-                                }</td>
+                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-weight: bold;">${test.testName
+              }</td>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">
-                                    ${
-                                      test.jobMatch === "matched"
-                                        ? '<span style="background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">✓</span>'
-                                        : test.jobMatch === "not_matched"
-                                          ? '<span style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Not Matched</span>'
-                                          : '<span style="color: #6c757d;">-</span>'
-                                    }
+                                    ${test.jobMatch === "matched"
+                ? '<span style="background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">✓</span>'
+                : test.jobMatch === "not_matched"
+                  ? '<span style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Not Matched</span>'
+                  : '<span style="color: #6c757d;">-</span>'
+              }
                                 </td>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">
-                                    ${
-                                      test.jobDemands === "normal"
-                                        ? '<span style="background: #e1f5fe; color: #01579b; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Normal</span>'
-                                        : test.jobDemands === "other"
-                                          ? '<span style="background: #fff3e0; color: #e65100; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Other</span>'
-                                          : '<span style="color: #6c757d;">-</span>'
-                                    }
+                                    ${test.jobDemands === "normal"
+                ? '<span style="background: #e1f5fe; color: #01579b; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Normal</span>'
+                : test.jobDemands === "other"
+                  ? '<span style="background: #fff3e0; color: #e65100; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Other</span>'
+                  : '<span style="color: #6c757d;">-</span>'
+              }
                                 </td>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; font-family: Arial, sans-serif;">
                                     <div style="font-size: 10px;">
-                                        ${
-                                          test.jobDescription
-                                            ? `<span style="font-style: italic; color: #495057;">"${test.jobDescription}"</span>`
-                                            : '<span style="color: #6c757d;">No description provided</span>'
-                                        }
+                                        ${test.jobDescription
+                ? `<span style="font-style: italic; color: #495057;">"${test.jobDescription}"</span>`
+                : '<span style="color: #6c757d;">No description provided</span>'
+              }
                                     </div>
                                 </td>
                             </tr>
                         `;
-                      })
-                      .join("")}
+          })
+          .join("")}
                 </tbody>
             </table>
 
             <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; text-align: center;">
                 <div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 16px; border-radius: 8px;">
-                    <div style="font-size: 24px; font-weight: bold; color: #155724;">${
-                      testData.tests.filter(
-                        (test: any) =>
-                          test.demonstrated &&
-                          test.effort &&
-                          !test.effort.toLowerCase().includes("poor") &&
-                          !test.effort
-                            .toLowerCase()
-                            .includes("extremely light"),
-                      ).length
-                    }</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #155724;">${testData.tests.filter(
+            (test: any) =>
+              test.demonstrated &&
+              test.effort &&
+              !test.effort.toLowerCase().includes("poor") &&
+              !test.effort
+                .toLowerCase()
+                .includes("extremely light"),
+          ).length
+        }</div>
                     <div style="font-size: 12px; color: #155724; font-weight: bold;">Tests Passed</div>
                 </div>
                 <div style="background: #f8d7da; border: 1px solid #f5c6cb; padding: 16px; border-radius: 8px;">
-                    <div style="font-size: 24px; font-weight: bold; color: #721c24;">${
-                      testData.tests.filter(
-                        (test: any) =>
-                          !test.demonstrated ||
-                          (test.effort &&
-                            (test.effort.toLowerCase().includes("poor") ||
-                              test.effort
-                                .toLowerCase()
-                                .includes("extremely light"))),
-                      ).length
-                    }</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #721c24;">${testData.tests.filter(
+          (test: any) =>
+            !test.demonstrated ||
+            (test.effort &&
+              (test.effort.toLowerCase().includes("poor") ||
+                test.effort
+                  .toLowerCase()
+                  .includes("extremely light"))),
+        ).length
+        }</div>
                     <div style="font-size: 12px; color: #721c24; font-weight: bold;">Tests Failed</div>
                 </div>
                 <div style="background: #cce7ff; border: 1px solid #b3d7ff; padding: 16px; border-radius: 8px;">
                     <div style="font-size: 24px; font-weight: bold; color: #004085;">${Math.round(
-                      (testData.tests.filter(
-                        (test: any) =>
-                          test.demonstrated &&
-                          test.effort &&
-                          !test.effort.toLowerCase().includes("poor") &&
-                          !test.effort
-                            .toLowerCase()
-                            .includes("extremely light"),
-                      ).length /
-                        testData.tests.length) *
-                        100,
-                    )}%</div>
+          (testData.tests.filter(
+            (test: any) =>
+              test.demonstrated &&
+              test.effort &&
+              !test.effort.toLowerCase().includes("poor") &&
+              !test.effort
+                .toLowerCase()
+                .includes("extremely light"),
+          ).length /
+            testData.tests.length) *
+          100,
+        )}%</div>
                     <div style="font-size: 12px; color: #004085; font-weight: bold;">Job Match Rate</div>
                 </div>
             </div>
@@ -3948,9 +3895,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
     <div style="page-break-before: always;"></div>
 
     <!-- Client Perceived Activity Rating Chart -->
-    ${
-      activityRatingData.activities
-        ? `
+    ${activityRatingData.activities
+          ? `
     <div style="padding: 16px; margin-top: 12px;">
         <h3 style="font-weight: bold; margin-bottom: 8px; font-family: Arial, sans-serif; text-align: left;">Client Perceived Activity Rating Chart</h3>
         <p style="font-size: 14px; font-style: italic; margin-bottom: 8px; font-family: Arial, sans-serif;">
@@ -3960,28 +3906,28 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         <div style="padding: 4px; background: white; max-width: 750px; margin: 0 auto; border: 1px solid #9ca3af;">
             <div style="display: flex; flex-direction: column; gap: 0px;">
                 ${activityRatingData.activities
-                  .map((activity, index) => {
-                    const rating = activity.rating || 0;
-                    // Define different colors for each activity (exact same as ReviewReport)
-                    const barColors = [
-                      "#D4A574", // Yellow/gold
-                      "#5B9BD5", // Blue
-                      "#70AD47", // Green
-                      "#C55A5A", // Red
-                      "#E87D5A", // Orange
-                      "#9575CD", // Purple
-                      "#4FC3F7", // Light blue
-                      "#66BB6A", // Light green
-                      "#FFB74D", // Orange yellow
-                      "#F06292", // Pink
-                      "#81C784", // Green
-                      "#64B5F6", // Blue
-                      "#FFD54F", // Yellow
-                      "#A1887F", // Brown
-                      "#90A4AE", // Blue grey
-                    ];
+            .map((activity, index) => {
+              const rating = activity.rating || 0;
+              // Define different colors for each activity (exact same as ReviewReport)
+              const barColors = [
+                "#D4A574", // Yellow/gold
+                "#5B9BD5", // Blue
+                "#70AD47", // Green
+                "#C55A5A", // Red
+                "#E87D5A", // Orange
+                "#9575CD", // Purple
+                "#4FC3F7", // Light blue
+                "#66BB6A", // Light green
+                "#FFB74D", // Orange yellow
+                "#F06292", // Pink
+                "#81C784", // Green
+                "#64B5F6", // Blue
+                "#FFD54F", // Yellow
+                "#A1887F", // Brown
+                "#90A4AE", // Blue grey
+              ];
 
-                    return `
+              return `
                 <div style="display: flex; align-items: center; margin: 0; padding: 0; line-height: 0;">
                     <div style="width: 80px; font-size: 12px; font-weight: 500; padding-right: 8px; font-family: Arial, sans-serif; height: 20px; display: flex; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                         ${activity.name}
@@ -4007,8 +3953,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     </div>
                 </div>
             `;
-                  })
-                  .join("")}
+            })
+            .join("")}
             </div>
 
             <!-- Scale indicators at bottom (exact copy from ReviewReport) -->
@@ -4041,8 +3987,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         </div>
     </div>
     `
-        : ""
-    }
+          : ""
+        }
 
         <!-- Individual FACTS Test Results (Combined with Graphs) -->
         ${testData.tests
@@ -4208,9 +4154,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             const illos = getSampleIllustrations(test.testId || testName);
             return `
                 <div class="test-section ${isPinchTest ? "pinch-test" : ""}" style="page-break-before: always; padding: 20px 0; position: relative;">
-                    <h4 class="test-header" style="font-weight: bold; margin-bottom: 16px; color: #4472C4;">${
-                      test.testName
-                    }</h4>
+                    <h4 class="test-header" style="font-weight: bold; margin-bottom: 16px; color: #4472C4;">${test.testName
+              }</h4>
 
                     <!-- Full height vertical line starting below the heading (moved left to match occupational test) -->
                     <div style="position: absolute; left: 150px; top: 60px; bottom: 0; width: 1px; background-color: #333;"></div>
@@ -4226,42 +4171,39 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                         <div style="display: flex; flex-direction: column; gap: 15px;">
                             <!-- Test Description -->
                             <p style="font-size: 11px; line-height: 1.3; text-align: justify; text-justify: inter-word; margin: 0;">
-                                ${
-                                  isRangeOfMotion
-                                    ? "The client was tested in our facility using range of motion inclinometers. The test results were compared to normative data when available."
-                                    : isGripTest
-                                      ? "The client was tested in our facility using a hand grip evaluation device. The test results were compared to normative data when available. It is expected that the dominant hand will display 10% greater values than the non-dominant hand with the exception of left handed individuals where the hand strength is equal. Strength measurements are in pounds (lbs)."
-                                      : isLiftTest
-                                        ? "The client was tested in our facility using a dynamic lift evaluation apparatus. The test results were compared to normative data when available."
-                                        : isCardioTest
-                                          ? testName.includes("bruce") ||
-                                            testName.includes("treadmill")
-                                            ? "The Bruce Treadmill Test (Bruce Protocol) is commonly used to help identify a person's level of aerobic endurance by providing an all-out maximal oxygen uptake or VO₂ max, which measures the capacity to perform sustained exercise and is linked to aerobic endurance."
-                                            : testName.includes("mcaft")
-                                              ? ""
-                                              : testName.includes("kasch")
-                                                ? ""
-                                                : "The client was tested in our facility using standardized cardiovascular assessment protocols. The test results were compared to normative data when available."
-                                          : "The client was tested in our facility using standardized assessment protocols. The test results were compared to normative data when available."
-                                }
+                                ${isRangeOfMotion
+                ? "The client was tested in our facility using range of motion inclinometers. The test results were compared to normative data when available."
+                : isGripTest
+                  ? "The client was tested in our facility using a hand grip evaluation device. The test results were compared to normative data when available. It is expected that the dominant hand will display 10% greater values than the non-dominant hand with the exception of left handed individuals where the hand strength is equal. Strength measurements are in pounds (lbs)."
+                  : isLiftTest
+                    ? "The client was tested in our facility using a dynamic lift evaluation apparatus. The test results were compared to normative data when available."
+                    : isCardioTest
+                      ? testName.includes("bruce") ||
+                        testName.includes("treadmill")
+                        ? "The Bruce Treadmill Test (Bruce Protocol) is commonly used to help identify a person's level of aerobic endurance by providing an all-out maximal oxygen uptake or VO₂ max, which measures the capacity to perform sustained exercise and is linked to aerobic endurance."
+                        : testName.includes("mcaft")
+                          ? ""
+                          : testName.includes("kasch")
+                            ? ""
+                            : "The client was tested in our facility using standardized cardiovascular assessment protocols. The test results were compared to normative data when available."
+                      : "The client was tested in our facility using standardized assessment protocols. The test results were compared to normative data when available."
+              }
                             </p>
 
-                            ${
-                              test.testId?.startsWith("dynamic-lift-") &&
-                              !test.testId.includes("infrequent")
-                                ? `<div style="margin-bottom: 12px; padding: 8px; background-color: #3b82f6; color: white; border-radius: 6px; text-align: center; font-weight: 500; font-size: 11px;">
+                            ${test.testId?.startsWith("dynamic-lift-") &&
+                !test.testId.includes("infrequent")
+                ? `<div style="margin-bottom: 12px; padding: 8px; background-color: #3b82f6; color: white; border-radius: 6px; text-align: center; font-weight: 500; font-size: 11px;">
                                     Note: frequent lifts are four lifts per cycle.
                                 </div>`
-                                : ""
-                            }
+                : ""
+              }
 
                             <!-- Results Section with Combined Tables and Charts -->
                             <div style="margin: 0;">
                                 <h4 style="font-weight: bold; margin-bottom: 2px; font-size: 12px;">Results:</h4>
 
-                                ${
-                                  isRangeOfMotion
-                                    ? `
+                                ${isRangeOfMotion
+                ? `
                                     <!-- Range of Motion Table -->
                                     <table style="width: 100%; border-collapse: collapse; font-size: 10px; margin: 8px 0 12px 0; table-layout: auto;">
                                         <thead>
@@ -4276,47 +4218,43 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
-                                                  test.testName
-                                                }</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${test.testName
+                }</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${Math.max(
-                                                  leftAvg,
-                                                  rightAvg,
-                                                ).toFixed(0)} °</td>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
-                                                  test.demonstrated
-                                                    ? "Pass"
-                                                    : "Fail"
-                                                }</td>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
-                                                  testName.includes("flexion")
-                                                    ? "60 °"
-                                                    : testName.includes(
-                                                          "extension",
-                                                        )
-                                                      ? "25 °"
-                                                      : "25 °"
-                                                }</td>
+                  leftAvg,
+                  rightAvg,
+                ).toFixed(0)} °</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${test.demonstrated
+                  ? "Pass"
+                  : "Fail"
+                }</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${testName.includes("flexion")
+                  ? "60 °"
+                  : testName.includes(
+                    "extension",
+                  )
+                    ? "25 °"
+                    : "25 °"
+                }</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${Math.round(
-                                                  (Math.max(leftAvg, rightAvg) /
-                                                    (testName.includes(
-                                                      "flexion",
-                                                    )
-                                                      ? 60
-                                                      : 25)) *
-                                                    100,
-                                                )}%</td>
+                  (Math.max(leftAvg, rightAvg) /
+                    (testName.includes(
+                      "flexion",
+                    )
+                      ? 60
+                      : 25)) *
+                  100,
+                )}%</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;text-align: center;">${currentDate}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 `
-                                    : ""
-                                }
+                : ""
+              }
 
-                                ${
-                                  isLiftTest
-                                    ? `
+                                ${isLiftTest
+                ? `
                                     <!-- Lift Results - Demonstrated Activity (single row, like ReviewReport) -->
                                     <table style="width: 100%; border-collapse: collapse; font-size: 10px; margin: 8px 0 12px 0; table-layout: auto;">
                                         <thead>
@@ -4331,46 +4269,44 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             <tr>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${test.testName}</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${(() => {
-                                                  const unit = String(
-                                                    test.unitMeasure ||
-                                                      (test as any).unit ||
-                                                      "",
-                                                  ).toLowerCase();
-                                                  const avg =
-                                                    unit === "kg"
-                                                      ? Math.round(
-                                                          leftAvg *
-                                                            2.20462 *
-                                                            10,
-                                                        ) / 10
-                                                      : Math.round(
-                                                          leftAvg * 10,
-                                                        ) / 10;
-                                                  return avg.toFixed(1);
-                                                })()}</td>
+                  const unit = String(
+                    test.unitMeasure ||
+                    (test as any).unit ||
+                    "",
+                  ).toLowerCase();
+                  const avg =
+                    unit === "kg"
+                      ? Math.round(
+                        leftAvg *
+                        2.20462 *
+                        10,
+                      ) / 10
+                      : Math.round(
+                        leftAvg * 10,
+                      ) / 10;
+                  return avg.toFixed(1);
+                })()}</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${leftCV}%</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${currentDate}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 `
-                                    : ""
-                                }
+                : ""
+              }
 
-                                ${
-                                  isCardioTest
-                                    ? generateCardioTestContent(
-                                        test,
-                                        test.testName,
-                                      )
-                                    : ""
-                                }
+                                ${isCardioTest
+                ? generateCardioTestContent(
+                  test,
+                  test.testName,
+                )
+                : ""
+              }
 
-                                ${
-                                  !isRangeOfMotion &&
-                                  !isLiftTest &&
-                                  !isCardioTest
-                                    ? `
+                                ${!isRangeOfMotion &&
+                !isLiftTest &&
+                !isCardioTest
+                ? `
                                     <!-- Strength/Grip Test Table -->
                                     <table style="width: 100%; border-collapse: collapse; font-size: 10px; margin: 8px 0 12px 0; table-layout: auto;">
                                         <thead>
@@ -4395,127 +4331,124 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;"></td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
-                                                  test.testName
-                                                }</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${test.testName
+                }</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${leftAvg.toFixed(
-                                                  1,
-                                                )} | ${rightAvg.toFixed(1)}</td>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
-                                                  isGripTest
-                                                    ? "110.5 | 120.8"
-                                                    : "85.0 | 90.0"
-                                                }</td>
+                  1,
+                )} | ${rightAvg.toFixed(1)}</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${isGripTest
+                  ? "110.5 | 120.8"
+                  : "85.0 | 90.0"
+                }</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${Math.round(
-                                                  (leftAvg /
-                                                    (isGripTest
-                                                      ? 110.5
-                                                      : 85.0)) *
-                                                    100,
-                                                )}% | ${Math.round(
-                                                  (rightAvg /
-                                                    (isGripTest
-                                                      ? 120.8
-                                                      : 90.0)) *
-                                                    100,
-                                                )}%</td>
+                  (leftAvg /
+                    (isGripTest
+                      ? 110.5
+                      : 85.0)) *
+                  100,
+                )}% | ${Math.round(
+                  (rightAvg /
+                    (isGripTest
+                      ? 120.8
+                      : 90.0)) *
+                  100,
+                )}%</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${leftCV}% | ${rightCV}%</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${bilateralDef.toFixed(
-                                                  1,
-                                                )}%</td>
+                  1,
+                )}%</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${currentDate}<br/>10:05:38 AM</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 `
-                                    : ""
-                                }
+                : ""
+              }
 
                                     <!-- Trial-by-Trial Measurement Table (FOR NON-CARDIO TESTS) -->
-                                    ${
-                                      !isCardioTest
-                                        ? (() => {
-                                            const hasAnyTrials =
-                                              hasSeparateSides ||
-                                              useSingleMeasurementSet ||
-                                              hasLeftTrials ||
-                                              hasRightTrials;
+                                    ${!isCardioTest
+                ? (() => {
+                  const hasAnyTrials =
+                    hasSeparateSides ||
+                    useSingleMeasurementSet ||
+                    hasLeftTrials ||
+                    hasRightTrials;
 
-                                            const averageLabel = isRangeOfMotion
-                                              ? "Average (range of motion)"
-                                              : "Average (weight)";
-                                            const liftTrialSource = (() => {
-                                              if (!isLiftTest) {
-                                                return null;
-                                              }
-                                              const leftCount =
-                                                leftTrialValues.length;
-                                              const rightCount =
-                                                rightTrialValues.length;
-                                              if (
-                                                leftCount === 0 &&
-                                                rightCount === 0
-                                              ) {
-                                                return null;
-                                              }
-                                              if (leftCount >= rightCount) {
-                                                return {
-                                                  measurements:
-                                                    primaryMeasurements,
-                                                  average: leftAvg,
-                                                };
-                                              }
-                                              return {
-                                                measurements:
-                                                  secondaryMeasurements,
-                                                average: rightAvg,
-                                              };
-                                            })();
+                  const averageLabel = isRangeOfMotion
+                    ? "Average (range of motion)"
+                    : "Average (weight)";
+                  const liftTrialSource = (() => {
+                    if (!isLiftTest) {
+                      return null;
+                    }
+                    const leftCount =
+                      leftTrialValues.length;
+                    const rightCount =
+                      rightTrialValues.length;
+                    if (
+                      leftCount === 0 &&
+                      rightCount === 0
+                    ) {
+                      return null;
+                    }
+                    if (leftCount >= rightCount) {
+                      return {
+                        measurements:
+                          primaryMeasurements,
+                        average: leftAvg,
+                      };
+                    }
+                    return {
+                      measurements:
+                        secondaryMeasurements,
+                      average: rightAvg,
+                    };
+                  })();
 
-                                            if (
-                                              !hasAnyTrials &&
-                                              !liftTrialSource
-                                            ) {
-                                              return "";
-                                            }
+                  if (
+                    !hasAnyTrials &&
+                    !liftTrialSource
+                  ) {
+                    return "";
+                  }
 
-                                            const buildTrialCells = (
-                                              source: Record<string, number>,
-                                            ) =>
-                                              Array.from(
-                                                { length: 6 },
-                                                (_, idx) => {
-                                                  const key =
-                                                    `trial${idx + 1}` as keyof typeof source;
-                                                  const rawValue = Number(
-                                                    source?.[key] ?? 0,
-                                                  );
-                                                  const displayValue =
-                                                    Number.isFinite(rawValue) &&
-                                                    rawValue > 0
-                                                      ? rawValue
-                                                      : 0;
-                                                  return `<td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${displayValue}</td>`;
-                                                },
-                                              ).join("");
+                  const buildTrialCells = (
+                    source: Record<string, number>,
+                  ) =>
+                    Array.from(
+                      { length: 6 },
+                      (_, idx) => {
+                        const key =
+                          `trial${idx + 1}` as keyof typeof source;
+                        const rawValue = Number(
+                          source?.[key] ?? 0,
+                        );
+                        const displayValue =
+                          Number.isFinite(rawValue) &&
+                            rawValue > 0
+                            ? rawValue
+                            : 0;
+                        return `<td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${displayValue}</td>`;
+                      },
+                    ).join("");
 
-                                            const headerCells = Array.from(
-                                              { length: 6 },
-                                              (_, idx) =>
-                                                `<th style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">Trial ${idx + 1}</th>`,
-                                            ).join("");
+                  const headerCells = Array.from(
+                    { length: 6 },
+                    (_, idx) =>
+                      `<th style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">Trial ${idx + 1}</th>`,
+                  ).join("");
 
-                                            if (isLiftTest && liftTrialSource) {
-                                              const valueCells =
-                                                buildTrialCells(
-                                                  liftTrialSource.measurements,
-                                                );
-                                              const avgValue = Number.isFinite(
-                                                liftTrialSource.average,
-                                              )
-                                                ? liftTrialSource.average
-                                                : 0;
-                                              return `
+                  if (isLiftTest && liftTrialSource) {
+                    const valueCells =
+                      buildTrialCells(
+                        liftTrialSource.measurements,
+                      );
+                    const avgValue = Number.isFinite(
+                      liftTrialSource.average,
+                    )
+                      ? liftTrialSource.average
+                      : 0;
+                    return `
                                             <table style="width: 100%; border-collapse: collapse; font-size: 10px; margin: 8px 0 12px 0; table-layout: auto;">
                                                 <thead>
                                                     <tr style="background: #fef3c7;">
@@ -4527,21 +4460,21 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                                     <tr>
                                                         ${valueCells}
                                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;"><strong>${avgValue.toFixed(
-                                                          1,
-                                                        )} ${unit}</strong></td>
+                      1,
+                    )} ${unit}</strong></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         `;
-                                            }
+                  }
 
-                                            if (useSingleMeasurementSet) {
-                                              const valueCells =
-                                                buildTrialCells(
-                                                  primaryMeasurements,
-                                                );
+                  if (useSingleMeasurementSet) {
+                    const valueCells =
+                      buildTrialCells(
+                        primaryMeasurements,
+                      );
 
-                                              return `
+                    return `
                                             <table style="width: 100%; border-collapse: collapse; font-size: 10px; margin: 8px 0 12px 0; table-layout: auto;">
                                                 <thead>
                                                     <tr style="background: #fef3c7;">
@@ -4553,61 +4486,61 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                                     <tr>
                                                         ${valueCells}
                                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;"><strong>${leftAvg.toFixed(
-                                                          1,
-                                                        )} ${unit}</strong></td>
+                      1,
+                    )} ${unit}</strong></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         `;
-                                            }
+                  }
 
-                                            const headerLabel = "Side";
+                  const headerLabel = "Side";
 
-                                            const buildRow = (
-                                              label: string,
-                                              source: Record<string, number>,
-                                              averageValue: number,
-                                            ) => {
-                                              const valueCells =
-                                                buildTrialCells(source);
-                                              return `<tr>
+                  const buildRow = (
+                    label: string,
+                    source: Record<string, number>,
+                    averageValue: number,
+                  ) => {
+                    const valueCells =
+                      buildTrialCells(source);
+                    return `<tr>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;"><strong>${label}</strong></td>
                                                 ${valueCells}
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;"><strong>${averageValue.toFixed(
-                                                  1,
-                                                )} ${unit}</strong></td>
+                      1,
+                    )} ${unit}</strong></td>
                                             </tr>`;
-                                            };
+                  };
 
-                                            const rows: string[] = [];
+                  const rows: string[] = [];
 
-                                            if (hasLeftTrials) {
-                                              rows.push(
-                                                buildRow(
-                                                  "Left",
-                                                  primaryMeasurements,
-                                                  leftAvg,
-                                                ),
-                                              );
-                                            }
-                                            if (
-                                              hasSeparateSides ||
-                                              hasRightTrials
-                                            ) {
-                                              rows.push(
-                                                buildRow(
-                                                  "Right",
-                                                  secondaryMeasurements,
-                                                  rightAvg,
-                                                ),
-                                              );
-                                            }
+                  if (hasLeftTrials) {
+                    rows.push(
+                      buildRow(
+                        "Left",
+                        primaryMeasurements,
+                        leftAvg,
+                      ),
+                    );
+                  }
+                  if (
+                    hasSeparateSides ||
+                    hasRightTrials
+                  ) {
+                    rows.push(
+                      buildRow(
+                        "Right",
+                        secondaryMeasurements,
+                        rightAvg,
+                      ),
+                    );
+                  }
 
-                                            if (!rows.length) {
-                                              return "";
-                                            }
+                  if (!rows.length) {
+                    return "";
+                  }
 
-                                            return `
+                  return `
                                             <table style="width: 100%; border-collapse: collapse; font-size: 10px; margin: 8px 0 12px 0; table-layout: auto;">
                                                 <thead>
                                                     <tr style="background: #fef3c7;">
@@ -4621,200 +4554,191 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                                 </tbody>
                                             </table>
                                         `;
-                                          })()
-                                        : ""
-                                    }
+                })()
+                : ""
+              }
 
                                     <!-- Visual Chart Representation (NOT FOR CARDIO TESTS) -->
-                                    ${
-                                      !isCardioTest
-                                        ? `
+                                    ${!isCardioTest
+                ? `
                                     <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0;">
                                         <!-- Primary Chart -->
                                         <div style="background: #ffffff; border: 2px solid #3b82f6; border-radius: 8px; padding: 12px; page-break-inside: avoid; flex: 1; min-width: 250px;">
                                             ${(() => {
-                                              if (!leftChartTitle) {
-                                                return "";
-                                              }
-                                              return `<div style="background: #3b82f6; color: white; padding: 1px; margin: -12px -12px 12px -12px; font-weight: bold; text-align: center; font-size: 12px;">${leftChartTitle}</div>`;
-                                            })()}
+                  if (!leftChartTitle) {
+                    return "";
+                  }
+                  return `<div style="background: #3b82f6; color: white; padding: 1px; margin: -12px -12px 12px -12px; font-weight: bold; text-align: center; font-size: 12px;">${leftChartTitle}</div>`;
+                })()}
                                             <div style="display: flex; align-items: end; justify-content: space-between; height: 120px; padding: 3px 0; position: relative; background: #f8fafc; border-radius: 4px;">
                                                 ${(() => {
-                                                  const maxValue =
-                                                    chartMaxValue;
-                                                  return `
+                  const maxValue =
+                    chartMaxValue;
+                  return `
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #1e40af, #3b82f6); width: 100%; height: ${computeBarHeight(
-                                                              primaryMeasurements?.trial1 ||
-                                                                0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #1e40af;"></div>
+                    primaryMeasurements?.trial1 ||
+                    0,
+                    maxValue,
+                  )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #1e40af;"></div>
                                                             <span style="font-size: 8px; color: #1e40af; font-weight: bold;">T1</span>
                                                             <span style="font-size: 7px; color: #374151;">${primaryMeasurements?.trial1 || 0}</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #059669, #10b981); width: 100%; height: ${computeBarHeight(
-                                                              primaryMeasurements?.trial2 ||
-                                                                0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #059669;"></div>
+                    primaryMeasurements?.trial2 ||
+                    0,
+                    maxValue,
+                  )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #059669;"></div>
                                                             <span style="font-size: 8px; color: #059669; font-weight: bold;">T2</span>
                                                             <span style="font-size: 7px; color: #374151;">${primaryMeasurements?.trial2 || 0}</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #d97706, #f59e0b); width: 100%; height: ${computeBarHeight(
-                                                              primaryMeasurements?.trial3 ||
-                                                                0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #d97706;"></div>
+                    primaryMeasurements?.trial3 ||
+                    0,
+                    maxValue,
+                  )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #d97706;"></div>
                                                             <span style="font-size: 8px; color: #d97706; font-weight: bold;">T3</span>
                                                             <span style="font-size: 7px; color: #374151;">${primaryMeasurements?.trial3 || 0}</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #dc2626, #ef4444); width: 100%; height: ${computeBarHeight(
-                                                              primaryMeasurements?.trial4 ||
-                                                                0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #dc2626;"></div>
+                    primaryMeasurements?.trial4 ||
+                    0,
+                    maxValue,
+                  )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #dc2626;"></div>
                                                             <span style="font-size: 8px; color: #dc2626; font-weight: bold;">T4</span>
                                                             <span style="font-size: 7px; color: #374151;">${primaryMeasurements?.trial4 || 0}</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #7c3aed, #a855f7); width: 100%; height: ${computeBarHeight(
-                                                              primaryMeasurements?.trial5 ||
-                                                                0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #7c3aed;"></div>
+                    primaryMeasurements?.trial5 ||
+                    0,
+                    maxValue,
+                  )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #7c3aed;"></div>
                                                             <span style="font-size: 8px; color: #7c3aed; font-weight: bold;">T5</span>
                                                             <span style="font-size: 7px; color: #374151;">${primaryMeasurements?.trial5 || 0}</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #0891b2, #06b6d4); width: 100%; height: ${computeBarHeight(
-                                                              primaryMeasurements?.trial6 ||
-                                                                0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #0891b2;"></div>
+                    primaryMeasurements?.trial6 ||
+                    0,
+                    maxValue,
+                  )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #0891b2;"></div>
                                                             <span style="font-size: 8px; color: #0891b2; font-weight: bold;">T6</span>
                                                             <span style="font-size: 7px; color: #374151;">${primaryMeasurements?.trial6 || 0}</span>
                                                         </div>
                                                     `;
-                                                })()}
+                })()}
                                             </div>
                                             <div style="text-align: center; font-size: 10px; color: #1e40af; margin-top: 8px; font-weight: bold; background: #dbeafe; padding: 4px; border-radius: 4px;">
                                                 Avg: ${leftAvg.toFixed(1)} ${unit}
                                             </div>
                                         </div>
 
-                                        ${
-                                          showRightChart
-                                            ? `
+                                        ${showRightChart
+                  ? `
                                         <!-- Right Side Chart -->
                                         <div style="background: #ffffff; border: 2px solid #10b981; border-radius: 8px; padding: 12px; page-break-inside: avoid; flex: 1; min-width: 250px;">
                                             <div style="background: #10b981; color: white; padding: 1px; margin: -12px -12px 12px -12px; font-weight: bold; text-align: center; font-size: 12px;">Right Side</div>
                                             <div style="display: flex; align-items: end; justify-content: space-between; height: 120px; padding: 3px 0; position: relative; background: #f8fafc; border-radius: 4px;">
                                                 ${(() => {
-                                                  const maxValue =
-                                                    chartMaxValue;
-                                                  return `
+                    const maxValue =
+                      chartMaxValue;
+                    return `
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #1e40af, #3b82f6); width: 100%; height: ${computeBarHeight(
-                                                              test
-                                                                .rightMeasurements
-                                                                ?.trial1 || 0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #1e40af;"></div>
+                      test
+                        .rightMeasurements
+                        ?.trial1 || 0,
+                      maxValue,
+                    )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #1e40af;"></div>
                                                             <span style="font-size: 8px; color: #1e40af; font-weight: bold;">T1</span>
-                                                            <span style="font-size: 7px; color: #374151;">${
-                                                              test
-                                                                .rightMeasurements
-                                                                .trial1 || 0
-                                                            }</span>
+                                                            <span style="font-size: 7px; color: #374151;">${test
+                        .rightMeasurements
+                        .trial1 || 0
+                      }</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #059669, #10b981); width: 100%; height: ${computeBarHeight(
-                                                              test
-                                                                .rightMeasurements
-                                                                ?.trial2 || 0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #059669;"></div>
+                        test
+                          .rightMeasurements
+                          ?.trial2 || 0,
+                        maxValue,
+                      )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #059669;"></div>
                                                             <span style="font-size: 8px; color: #059669; font-weight: bold;">T2</span>
-                                                            <span style="font-size: 7px; color: #374151;">${
-                                                              test
-                                                                .rightMeasurements
-                                                                .trial2 || 0
-                                                            }</span>
+                                                            <span style="font-size: 7px; color: #374151;">${test
+                        .rightMeasurements
+                        .trial2 || 0
+                      }</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #d97706, #f59e0b); width: 100%; height: ${computeBarHeight(
-                                                              test
-                                                                .rightMeasurements
-                                                                ?.trial3 || 0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #d97706;"></div>
+                        test
+                          .rightMeasurements
+                          ?.trial3 || 0,
+                        maxValue,
+                      )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #d97706;"></div>
                                                             <span style="font-size: 8px; color: #d97706; font-weight: bold;">T3</span>
-                                                            <span style="font-size: 7px; color: #374151;">${
-                                                              test
-                                                                .rightMeasurements
-                                                                .trial3 || 0
-                                                            }</span>
+                                                            <span style="font-size: 7px; color: #374151;">${test
+                        .rightMeasurements
+                        .trial3 || 0
+                      }</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #dc2626, #ef4444); width: 100%; height: ${computeBarHeight(
-                                                              test
-                                                                .rightMeasurements
-                                                                ?.trial4 || 0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #dc2626;"></div>
+                        test
+                          .rightMeasurements
+                          ?.trial4 || 0,
+                        maxValue,
+                      )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #dc2626;"></div>
                                                             <span style="font-size: 8px; color: #dc2626; font-weight: bold;">T4</span>
-                                                            <span style="font-size: 7px; color: #374151;">${
-                                                              test
-                                                                .rightMeasurements
-                                                                .trial4 || 0
-                                                            }</span>
+                                                            <span style="font-size: 7px; color: #374151;">${test
+                        .rightMeasurements
+                        .trial4 || 0
+                      }</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #7c3aed, #a855f7); width: 100%; height: ${computeBarHeight(
-                                                              test
-                                                                .rightMeasurements
-                                                                ?.trial5 || 0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #7c3aed;"></div>
+                        test
+                          .rightMeasurements
+                          ?.trial5 || 0,
+                        maxValue,
+                      )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #7c3aed;"></div>
                                                             <span style="font-size: 8px; color: #7c3aed; font-weight: bold;">T5</span>
-                                                            <span style="font-size: 7px; color: #374151;">${
-                                                              test
-                                                                .rightMeasurements
-                                                                .trial5 || 0
-                                                            }</span>
+                                                            <span style="font-size: 7px; color: #374151;">${test
+                        .rightMeasurements
+                        .trial5 || 0
+                      }</span>
                                                         </div>
                                                         <div style="width: 15%; display: flex; flex-direction: column; align-items: center;">
                                                             <div style="background: linear-gradient(to top, #0891b2, #06b6d4); width: 100%; height: ${computeBarHeight(
-                                                              test
-                                                                .rightMeasurements
-                                                                ?.trial6 || 0,
-                                                              maxValue,
-                                                            )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #0891b2;"></div>
+                        test
+                          .rightMeasurements
+                          ?.trial6 || 0,
+                        maxValue,
+                      )}px; margin-bottom: 4px; border-radius: 2px; min-height: 2px; border: 1px solid #0891b2;"></div>
                                                             <span style="font-size: 8px; color: #0891b2; font-weight: bold;">T6</span>
-                                                            <span style="font-size: 7px; color: #374151;">${
-                                                              test
-                                                                .rightMeasurements
-                                                                .trial6 || 0
-                                                            }</span>
+                                                            <span style="font-size: 7px; color: #374151;">${test
+                        .rightMeasurements
+                        .trial6 || 0
+                      }</span>
                                                         </div>
                                                     `;
-                                                })()}
+                  })()}
                                             </div>
                                             <div style="text-align: center; font-size: 10px; color: #10b981; margin-top: 8px; font-weight: bold; background: #d1fae5; padding: 4px; border-radius: 4px;">
                                                 Avg: ${rightAvg.toFixed(1)} ${unit}
                                             </div>
                                         </div
                                         `
-                                            : ""
-                                        }>
+                  : ""
+                }>
                                     </div>
 
-                                    ${
-                                      showRightChart
-                                        ? `
+                                    ${showRightChart
+                  ? `
                                     <!-- Comparison Summary -->
                                     <div style="background: #f8f9fa; border: 1px solid #dee2e6; padding: 8px; margin: 8px 0; text-align: center;">
                                         <div style="font-size: 11px; color: #666;">
@@ -4824,153 +4748,149 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                         </div>
                                     </div>
                                     `
-                                        : ""
-                                    }
+                  : ""
+                }
                                     `
-                                        : ""
-                                    }
+                : ""
+              }
 
-                                ${
-                                  test.effort
-                                    ? `<p style="font-size: 11px; margin: 4px 0 0px 0;">*Rating of Perceived Effort = ${
-                                        test.perceived || test.effort
-                                      }</p>`
-                                    : ""
-                                }
+                                ${test.effort
+                ? `<p style="font-size: 11px; margin: 4px 0 0px 0;">*Rating of Perceived Effort = ${test.perceived || test.effort
+                }</p>`
+                : ""
+              }
 
-                                ${
-                                  !test.demonstrated &&
-                                  !isCardioTest &&
-                                  !isStaticLift
-                                    ? (() => {
-                                        const endpointLabel =
-                                          resolveDynamicEndpointLabel(test);
-                                        const isDynamicLift = (
-                                          test.testName || ""
-                                        )
-                                          .toLowerCase()
-                                          .includes("dynamic");
-                                        const endpointMarkup =
-                                          isDynamicLift && endpointLabel
-                                            ? `<p style="font-size: 11px; font-weight: bold; margin-top: 8px;">Endpoint condition (for full description refer to references):</p>
+                                ${!test.demonstrated &&
+                !isCardioTest &&
+                !isStaticLift
+                ? (() => {
+                  const endpointLabel =
+                    resolveDynamicEndpointLabel(test);
+                  const isDynamicLift = (
+                    test.testName || ""
+                  )
+                    .toLowerCase()
+                    .includes("dynamic");
+                  const endpointMarkup =
+                    isDynamicLift && endpointLabel
+                      ? `<p style="font-size: 11px; font-weight: bold; margin-top: 8px;">Endpoint condition (for full description refer to references):</p>
                                         <p style="font-size: 11px;">${endpointLabel}</p>`
-                                            : "";
-                                        return `
+                      : "";
+                  return `
                                     <div style="margin: 8px 0 12px 0;">
                                         <p style="font-size: 11px; font-weight: bold;">Reason For Incomplete Test:</p>
                                         <p style="font-size: 11px;">Limited by pain/discomfort</p>
                                         ${endpointMarkup}
                                     </div>
                                 `;
-                                      })()
-                                    : ""
-                                }
+                })()
+                : ""
+              }
                             </div>
 
                             <!-- Heart Rate Data if available (general tests) -->
                             ${(() => {
-                              const pre = Number(
-                                (test.leftMeasurements &&
-                                  test.leftMeasurements.preHeartRate) ||
-                                  (test.rightMeasurements &&
-                                    test.rightMeasurements.preHeartRate) ||
-                                  0,
-                              );
-                              const post = Number(
-                                (test.leftMeasurements &&
-                                  test.leftMeasurements.postHeartRate) ||
-                                  (test.rightMeasurements &&
-                                    test.rightMeasurements.postHeartRate) ||
-                                  0,
-                              );
-                              return pre || post
-                                ? `
+                const pre = Number(
+                  (test.leftMeasurements &&
+                    test.leftMeasurements.preHeartRate) ||
+                  (test.rightMeasurements &&
+                    test.rightMeasurements.preHeartRate) ||
+                  0,
+                );
+                const post = Number(
+                  (test.leftMeasurements &&
+                    test.leftMeasurements.postHeartRate) ||
+                  (test.rightMeasurements &&
+                    test.rightMeasurements.postHeartRate) ||
+                  0,
+                );
+                return pre || post
+                  ? `
                                   <div style="font-size: 11px; color: #374151; margin:0;">
                                     <strong>Heart Rate:</strong>
                                     ${pre ? ` Pre: ${pre} bpm` : ""}
                                     ${post ? ` Post: ${post} bpm` : ""}
                                   </div>
                                 `
-                                : "";
-                            })()}
+                  : "";
+              })()}
 
                             ${(() => {
-                              if (!isLiftTest) {
-                                return "";
-                              }
-                              const testNameLower = (
-                                test.testName || ""
-                              ).toLowerCase();
-                              const isDynamicLift =
-                                testNameLower.includes("dynamic frequent") ||
-                                testNameLower.includes("dynamic infrequent") ||
-                                testNameLower.includes("dynamic");
-                              if (!isDynamicLift) {
-                                return "";
-                              }
-                              const label = resolveDynamicEndpointLabel(test);
-                              if (!label) {
-                                return "";
-                              }
-                              return `<div style="font-size: 11px; color: #374151; margin: 6px 0;">
+                if (!isLiftTest) {
+                  return "";
+                }
+                const testNameLower = (
+                  test.testName || ""
+                ).toLowerCase();
+                const isDynamicLift =
+                  testNameLower.includes("dynamic frequent") ||
+                  testNameLower.includes("dynamic infrequent") ||
+                  testNameLower.includes("dynamic");
+                if (!isDynamicLift) {
+                  return "";
+                }
+                const label = resolveDynamicEndpointLabel(test);
+                if (!label) {
+                  return "";
+                }
+                return `<div style="font-size: 11px; color: #374151; margin: 6px 0;">
                                 <strong>Endpoint condition (for full description refer to references):</strong> ${label}
                               </div>`;
-                            })()}
+              })()}
 
                            
-                            ${
-                              test.comments
-                                ? `<p style="font-style: italic; font-size: 11px; margin: 0px 0 0px 0;"><strong>Comments:</strong> ${test.comments}</p>`
-                                : ""
-                            }
+                            ${test.comments
+                ? `<p style="font-style: italic; font-size: 11px; margin: 0px 0 0px 0;"><strong>Comments:</strong> ${test.comments}</p>`
+                : ""
+              }
 
               <!-- References section for each test -->
               <div class="test-references" style="margin-top: 0px; padding: 4px; background: #f9f9f9; border-left: 3px solid #ddd;">
                   <p style="font-size: 9px; font-weight: bold; color: #666; margin-bottom: 2px; font-family: Arial, sans-serif;">References:</p>
                   <div style="font-size: 8px; color: #888; line-height: 1.3; font-family: Arial, sans-serif;">
                       ${(() => {
-                        // Check test type and return specific references
-                        const testName = (test.testName || "").toLowerCase();
+                // Check test type and return specific references
+                const testName = (test.testName || "").toLowerCase();
 
-                        if (testName.includes("kasch")) {
-                          return `
+                if (testName.includes("kasch")) {
+                  return `
                             <p style="margin: 2px 0;">Validation of a bench stepping test for cardiorespiratory fitness classification of emergency service personnel J A Davis, J H Wilmore, PMID: 501456</p>
                           `;
-                        } else if (testName.includes("mcaft")) {
-                          return `
+                } else if (testName.includes("mcaft")) {
+                  return `
                             <p style="margin: 2px 0;">· Weller et al. Prediction of maximal oxygen uptake from a modified Canadian aerobic fitness test. Can. J. Appl. Physiol. 18(2) 175-188, 1993</p>
                             <p style="margin: 2px 0;">· Weller et al. A study to validate the Canadian aerobic fitness test. Can. J. Appl. Physiol. 20(2) 211-221, 1995</p>
                           `;
-                        } else if (
-                          testName.includes("bruce") ||
-                          testName.includes("treadmill")
-                        ) {
-                          return `
+                } else if (
+                  testName.includes("bruce") ||
+                  testName.includes("treadmill")
+                ) {
+                  return `
                             <p style="margin: 2px 0;">· Bires AM, Lawson D, Wasser TE, Raber-Baer D. Comparison of Bruce treadmill exercise test protocols: is ramped Bruce equal or superior to standard bruce in producing clinically valid studies for patients presenting for evaluation of cardiac ischemia or arrhythmia with body mass index equal to or greater than 30? J Nucl Med Technol. 2013 Dec;41(4):274-8</p>
                             <p style="margin: 2px 0;">· Poehling CP, Llewellyn TL. The Effects of Submaximal and Maximal Exercise on Heart Rate Variability. Int J Exerc Sci. 2019;12(2):9-14.</p>
                           `;
-                        } else {
-                          // Use shared reference system for other tests
-                          const references = getReferencesForTest(test.testId);
+                } else {
+                  // Use shared reference system for other tests
+                  const references = getReferencesForTest(test.testId);
 
-                          if (references.length === 0) {
-                            // Fallback references for general functional capacity evaluation
-                            return `
+                  if (references.length === 0) {
+                    // Fallback references for general functional capacity evaluation
+                    return `
                               <p style="margin: 2px 0;">Innes, E., & Straker, L. (1999). Reliability of work-related assessments. Work, 13(2), 107-124.</p>
                               <p style="margin: 2px 0;">Matheson, L.N., et al. (1995). Development of a database of functional assessment measures related to work disability. Journal of Occupational Rehabilitation, 5(4), 191-204.</p>
                               <p style="margin: 2px 0;">Reneman, M.F., et al. (2002). Reliability of a functional capacity evaluation in patients with chronic low back pain. Journal of Occupational Rehabilitation, 12(4), 277-286.</p>
                             `;
-                          }
+                  }
 
-                          // Remove numbering from all references
-                          return references
-                            .map(
-                              (ref) =>
-                                `<p style="margin: 2px 0;">${formatReference(ref)}</p>`,
-                            )
-                            .join("");
-                        }
-                      })()}
+                  // Remove numbering from all references
+                  return references
+                    .map(
+                      (ref) =>
+                        `<p style="margin: 2px 0;">${formatReference(ref)}</p>`,
+                    )
+                    .join("");
+                }
+              })()}
                   </div>
               </div>
                         </div>
@@ -4982,7 +4902,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
     </div>
     `
         : ""
-    }
+      }
 
 
     </div>
@@ -5158,8 +5078,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
     </div>
 
     <!-- Digital Library Documentation -->
-    ${
-      (() => {
+    ${(() => {
         console.log(
           `PDF Generation: Digital library check - has savedFileData: ${!!digitalLibraryData.savedFileData}, count: ${digitalLibraryData.savedFileData?.length || 0}`,
         );
@@ -5175,32 +5094,30 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
             <div class="digital-library-grid">
                 ${digitalLibraryData.savedFileData
-                  .map((file: any, index: number) => {
-                    if (file.type && file.type.startsWith("image/")) {
-                      return `
+          .map((file: any, index: number) => {
+            if (file.type && file.type.startsWith("image/")) {
+              return `
                             <div class="image-container no-break" style="text-align: center;">
-                                <img src="${
-                                  file.dataUrl || file.data
-                                }" alt="Evaluation Image ${
-                                  index + 1
-                                }" class="report-image digital-library-item" style="border: 1px solid #ccc;" />
+                                <img src="${file.dataUrl || file.data
+                }" alt="Evaluation Image ${index + 1
+                }" class="report-image digital-library-item" style="border: 1px solid #ccc;" />
                             </div>
                         `;
-                    } else {
-                      return `
+            } else {
+              return `
                             <div class="digital-library-item no-break" style="display: flex; align-items: center; justify-content: center; background: #f0f0f0; color: #666; border: 1px solid #ccc;">
                                 <div style="font-size: 24px; margin-bottom: 5px;">✔</div>
                             </div>
                         `;
-                    }
-                  })
-                  .join("")}
+            }
+          })
+          .join("")}
             </div>
         </div>
     </div>
     `
         : `<!-- No digital library images found for PDF generation -->`
-    }
+      }
 
     <!-- Footer -->
 </body>
@@ -5628,7 +5545,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               try {
                 const img = await loadImage(baseUrl);
                 ctx.drawImage(img, 0, 0, width, height);
-              } catch {}
+              } catch { }
 
               const view = views[i];
               const viewMarkers = markers.filter(
@@ -5734,9 +5651,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         );
         const requestData = {
           claimantName:
-            `${claimantData.firstName || ""} ${
-              claimantData.lastName || ""
-            }`.trim() || "Anonymous",
+            `${claimantData.firstName || ""} ${claimantData.lastName || ""
+              }`.trim() || "Anonymous",
           claimNumber: claimantData.claimantId || reportSummary.reportId,
           evaluationDate: currentDate,
           // Redundant logo fields so the cloud function can resolve any of them
@@ -5819,86 +5735,86 @@ padding-top: 120px; align-items: center; min-height: 0; ">
           activityRatingData: {
             activities:
               activityRatingData.activities &&
-              activityRatingData.activities.length > 0
+                activityRatingData.activities.length > 0
                 ? activityRatingData.activities.map((activity: any) => ({
-                    name: activity.name,
-                    rating: activity.rating,
-                    comments: activity.comments || "",
-                    demonstrated: activity.demonstrated,
-                    perceived: activity.perceived,
-                  }))
+                  name: activity.name,
+                  rating: activity.rating,
+                  comments: activity.comments || "",
+                  demonstrated: activity.demonstrated,
+                  perceived: activity.perceived,
+                }))
                 : [
-                    {
-                      name: "Lifting",
-                      rating: 5,
-                      comments: "Moderate difficulty",
-                      demonstrated: true,
-                      perceived: true,
-                    },
-                    {
-                      name: "Carrying",
-                      rating: 6,
-                      comments: "Some limitations noted",
-                      demonstrated: true,
-                      perceived: true,
-                    },
-                    {
-                      name: "Walking",
-                      rating: 3,
-                      comments: "Good endurance",
-                      demonstrated: true,
-                      perceived: true,
-                    },
-                    {
-                      name: "Standing",
-                      rating: 4,
-                      comments: "Can maintain posture",
-                      demonstrated: true,
-                      perceived: true,
-                    },
-                    {
-                      name: "Sitting",
-                      rating: 2,
-                      comments: "No difficulty",
-                      demonstrated: true,
-                      perceived: true,
-                    },
-                  ],
+                  {
+                    name: "Lifting",
+                    rating: 5,
+                    comments: "Moderate difficulty",
+                    demonstrated: true,
+                    perceived: true,
+                  },
+                  {
+                    name: "Carrying",
+                    rating: 6,
+                    comments: "Some limitations noted",
+                    demonstrated: true,
+                    perceived: true,
+                  },
+                  {
+                    name: "Walking",
+                    rating: 3,
+                    comments: "Good endurance",
+                    demonstrated: true,
+                    perceived: true,
+                  },
+                  {
+                    name: "Standing",
+                    rating: 4,
+                    comments: "Can maintain posture",
+                    demonstrated: true,
+                    perceived: true,
+                  },
+                  {
+                    name: "Sitting",
+                    rating: 2,
+                    comments: "No difficulty",
+                    demonstrated: true,
+                    perceived: true,
+                  },
+                ],
           },
 
           // Enhanced referral questions data
           referralQuestionsData: {
             questions:
               referralQuestionsData.questions &&
-              referralQuestionsData.questions.length > 0
+                referralQuestionsData.questions.length > 0
                 ? referralQuestionsData.questions.map((q: any) => ({
-                    question: q.question,
-                    answer: q.answer,
-                    savedImageData: q.savedImageData || [],
-                  }))
+                  question: q.question,
+                  answer: q.answer,
+                  savedImageData: q.savedImageData || [],
+                }))
                 : [
-                    {
-                      question:
-                        "What is the client's current functional capacity?",
-                      answer:
-                        "Based on evaluation, client demonstrates light to medium capacity.",
-                      savedImageData: [],
-                    },
-                    {
-                      question:
-                        "What is the present lumbar range of motion noted for the client?",
-                      answer:
-                        "Range of motion is within functional limits with some restrictions in extreme flexion.",
-                      savedImageData: [],
-                    },
-                    {
-                      question:
-                        "What would be the Physical Demand Classification (PDC) for this client?",
-                      answer:
-                        "Client can perform light to medium physical demand work activities.",
-                      savedImageData: [],
-                    },
-                  ],
+                  {
+                    question:
+                      "What is the client's current functional capacity?",
+                    answer:
+                      "Based on evaluation, client demonstrates light to medium capacity.",
+                    savedImageData: [],
+                  },
+                  {
+                    question:
+                      "What is the present lumbar range of motion noted for the client?",
+                    answer:
+                      "Range of motion is within functional limits with some restrictions in extreme flexion.",
+                    savedImageData: [],
+                  },
+                  {
+                    question:
+                      "What would be the Physical Demand Classification (PDC) for this client?",
+                    answer:
+                      "Client can perform light to medium physical demand work activities.",
+                    savedImageData: [],
+                  },
+                ],
           },
 
           // Enhanced protocol and tests data
@@ -5907,109 +5823,109 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               protocolTestsData.selectedProtocol || "Standard FCE Protocol",
             selectedTests:
               protocolTestsData.selectedTests &&
-              protocolTestsData.selectedTests.length > 0
+                protocolTestsData.selectedTests.length > 0
                 ? protocolTestsData.selectedTests
                 : [
-                    "Lifting Test - Floor to Waist",
-                    "Lifting Test - Waist to Shoulder",
-                    "Carrying Test",
-                    "Walking Endurance Test",
-                    "Static Standing Test",
-                    "Postural Tolerance Assessment",
-                    "Distraction Test",
-                    "Consistency Test",
-                  ],
+                  "Lifting Test - Floor to Waist",
+                  "Lifting Test - Waist to Shoulder",
+                  "Carrying Test",
+                  "Walking Endurance Test",
+                  "Static Standing Test",
+                  "Postural Tolerance Assessment",
+                  "Distraction Test",
+                  "Consistency Test",
+                ],
           },
 
           // Enhanced occupational tasks data
           occupationalTasksData: {
             selectedTests:
               occupationalTasksData.selectedTests &&
-              occupationalTasksData.selectedTests.length > 0
+                occupationalTasksData.selectedTests.length > 0
                 ? occupationalTasksData.selectedTests
                 : ["fingering", "reach-immediate", "balance", "carry"],
             testResults:
               // Use actual MTM test data if available, otherwise use existing occupational tasks data
               Object.keys(mtmTestData).length > 0
                 ? Object.entries(mtmTestData).map(
-                    ([testType, testData]: [string, any]) => ({
-                      id: testType,
-                      name:
-                        testData.testName ||
-                        testType.charAt(0).toUpperCase() + testType.slice(1),
-                      trials: testData.trials || [],
-                      parameters: {
-                        numberOfTrials: testData.trials?.length || 3,
-                        numberOfReps: testData.trials?.[0]?.reps || 1,
-                        bodySides: testData.trials?.[0]?.side || "Both",
-                        plane:
-                          testData.trials?.[0]?.weight ||
-                          testData.trials?.[0]?.plane ||
-                          "Immediate",
-                        position:
-                          testData.trials?.[0]?.distance ||
-                          testData.trials?.[0]?.position ||
-                          "Standing",
-                      },
-                      isCompleted:
-                        testData.trials && testData.trials.length > 0,
-                    }),
-                  )
+                  ([testType, testData]: [string, any]) => ({
+                    id: testType,
+                    name:
+                      testData.testName ||
+                      testType.charAt(0).toUpperCase() + testType.slice(1),
+                    trials: testData.trials || [],
+                    parameters: {
+                      numberOfTrials: testData.trials?.length || 3,
+                      numberOfReps: testData.trials?.[0]?.reps || 1,
+                      bodySides: testData.trials?.[0]?.side || "Both",
+                      plane:
+                        testData.trials?.[0]?.weight ||
+                        testData.trials?.[0]?.plane ||
+                        "Immediate",
+                      position:
+                        testData.trials?.[0]?.distance ||
+                        testData.trials?.[0]?.position ||
+                        "Standing",
+                    },
+                    isCompleted:
+                      testData.trials && testData.trials.length > 0,
+                  }),
+                )
                 : occupationalTasksData.testResults &&
-                    occupationalTasksData.testResults.length > 0
+                  occupationalTasksData.testResults.length > 0
                   ? occupationalTasksData.testResults.map((test: any) => ({
-                      id: test.id,
-                      name: test.name,
-                      trials: test.trials || [],
-                      parameters: test.parameters || {},
-                      isCompleted: test.isCompleted || false,
-                    }))
+                    id: test.id,
+                    name: test.name,
+                    trials: test.trials || [],
+                    parameters: test.parameters || {},
+                    isCompleted: test.isCompleted || false,
+                  }))
                   : [
-                      {
-                        id: "fingering",
-                        name: "MTM - Fingering",
-                        trials: [
-                          {
-                            trial: 1,
-                            side: "Both",
-                            plane: "Immediate",
-                            position: "Standing",
-                            reps: 10,
-                            testTime: 7.3,
-                            percentIS: 217.8,
-                            totalCompleted: 217.8,
-                          },
-                          {
-                            trial: 2,
-                            side: "Both",
-                            plane: "Immediate",
-                            position: "Standing",
-                            reps: 10,
-                            testTime: 7.5,
-                            percentIS: 212.1,
-                            totalCompleted: 214.9,
-                          },
-                          {
-                            trial: 3,
-                            side: "Both",
-                            plane: "Immediate",
-                            position: "Standing",
-                            reps: 10,
-                            testTime: 6.9,
-                            percentIS: 244.7,
-                            totalCompleted: 224.8,
-                          },
-                        ],
-                        parameters: {
-                          numberOfTrials: 3,
-                          numberOfReps: 10,
-                          bodySides: "Both",
+                    {
+                      id: "fingering",
+                      name: "MTM - Fingering",
+                      trials: [
+                        {
+                          trial: 1,
+                          side: "Both",
                           plane: "Immediate",
                           position: "Standing",
+                          reps: 10,
+                          testTime: 7.3,
+                          percentIS: 217.8,
+                          totalCompleted: 217.8,
                         },
-                        isCompleted: true,
+                        {
+                          trial: 2,
+                          side: "Both",
+                          plane: "Immediate",
+                          position: "Standing",
+                          reps: 10,
+                          testTime: 7.5,
+                          percentIS: 212.1,
+                          totalCompleted: 214.9,
+                        },
+                        {
+                          trial: 3,
+                          side: "Both",
+                          plane: "Immediate",
+                          position: "Standing",
+                          reps: 10,
+                          testTime: 6.9,
+                          percentIS: 244.7,
+                          totalCompleted: 224.8,
+                        },
+                      ],
+                      parameters: {
+                        numberOfTrials: 3,
+                        numberOfReps: 10,
+                        bodySides: "Both",
+                        plane: "Immediate",
+                        position: "Standing",
                       },
-                    ],
+                      isCompleted: true,
+                    },
+                  ],
           },
           // Enhanced test data with comprehensive results - MUST have enough tests to trigger all DOCX sections
           testData: testData,
@@ -6019,30 +5935,30 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             // Include resolvable image sources so the server can render DOCX
             savedFileData:
               digitalLibraryData.savedFileData &&
-              digitalLibraryData.savedFileData.length > 0
+                digitalLibraryData.savedFileData.length > 0
                 ? digitalLibraryData.savedFileData
-                    .filter((f: any) =>
-                      typeof f?.type === "string"
-                        ? f.type.toLowerCase().startsWith("image/")
-                        : !!(
-                            f?.dataUrl ||
-                            f?.data ||
-                            f?.url ||
-                            f?.path ||
-                            f?.src
-                          ),
-                    )
-                    .map((f: any) => ({
-                      name: f.name,
-                      type: f.type,
-                      size: f.size,
-                      // server probes these in order using getImageBuffer
-                      dataUrl: f.dataUrl,
-                      data: f.data,
-                      url: f.url,
-                      path: f.path,
-                      src: f.src,
-                    }))
+                  .filter((f: any) =>
+                    typeof f?.type === "string"
+                      ? f.type.toLowerCase().startsWith("image/")
+                      : !!(
+                        f?.dataUrl ||
+                        f?.data ||
+                        f?.url ||
+                        f?.path ||
+                        f?.src
+                      ),
+                  )
+                  .map((f: any) => ({
+                    name: f.name,
+                    type: f.type,
+                    size: f.size,
+                    // server probes these in order using getImageBuffer
+                    dataUrl: f.dataUrl,
+                    data: f.data,
+                    url: f.url,
+                    path: f.path,
+                    src: f.src,
+                  }))
                 : [],
           },
 
@@ -6431,13 +6347,14 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             {/* Format Selection */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
               <h3 className="text-lg font-semibold text-blue-800 mb-4">
-                Select Report Format
+                Select Report(s)
               </h3>
               <RadioGroup
                 value={selectedFormat}
                 onValueChange={setSelectedFormat}
                 className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6"
               >
+                {/* 
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="pdf" id="pdf" />
                   <Label
@@ -6448,6 +6365,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     PDF Format
                   </Label>
                 </div>
+              */}
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="docx" id="docx" />
                   <Label
@@ -6455,7 +6373,19 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     className="flex items-center cursor-pointer"
                   >
                     <FileText className="mr-2 h-4 w-4 text-blue-600" />
-                    DOCX Format
+                    FCE Executive Summary 
+                  </Label>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="docx" id="docx" />
+                  <Label
+                    htmlFor="docx"
+                    className="flex items-center cursor-pointer"
+                  >
+                    <FileText className="mr-2 h-4 w-4 text-blue-600" />
+                    {/* DOCX Format */}
+                    FCE Full Report
                   </Label>
                 </div>
               </RadioGroup>
@@ -6530,7 +6460,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         </Card>
 
         {/* Success Dialog */}
-        <Dialog open={showSuccessDialog} onOpenChange={() => {}}>
+        <Dialog open={showSuccessDialog} onOpenChange={() => { }}>
           <DialogContent className="max-w-md">
             <DialogHeader>
               <DialogTitle className="flex items-center text-xl text-green-600">
