@@ -6475,8 +6475,13 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             <div className="mt-6 text-center text-sm text-gray-500">
               <p>
                 Report will be downloaded as "FCE_
-                {reportSummary.claimantName.replace(/[^a-zA-Z0-9]/g, "_")}" in{" "}
-                {selectedFormat.toUpperCase()} format.
+                {reportSummary.claimantName.replace(/[^a-zA-Z0-9]/g, "_")}" {" "}
+                {selectedReports.executiveSummary && selectedReports.fullReport
+                  ? "(FCE Executive Summary and Full Report)"
+                  : selectedReports.executiveSummary
+                    ? "(FCE Executive Summary)"
+                    : "(FCE Full Report)"}{" "}
+                in DOCX format.
               </p>
               <p>
                 Professional formatting and exact content matching review report
