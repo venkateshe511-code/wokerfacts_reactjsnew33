@@ -6072,74 +6072,102 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
         const isLocal = process.env.NODE_ENV === "development";
 
-        // Determine which API to call based on checkbox selection
-        // If both are selected, we'll call the full report API (which is more comprehensive)
-        // Then download the executive summary if that's specifically selected
-        let apiUrl: string;
+        // Collect all APIs to call based on checkbox selection
+        const apisToCall: Array<{ name: string; url: string }> = [];
+
+        if (selectedReports.executiveSummary) {
+          apisToCall.push({
+            name: "Executive Summary",
+            url: "https://generateexecutivesummaryclaimantreportapi-tn63kvymra-uc.a.run.app",
+          });
+        }
 
         if (selectedReports.fullReport) {
-          // Full Report API
-          apiUrl = "https://generateclaimantreportapi-tn63kvymra-uc.a.run.app";
-          console.log("Using Full Report API:", apiUrl);
-        } else if (selectedReports.executiveSummary) {
-          // Executive Summary API
-          apiUrl = "https://generateexecutivesummaryclaimantreportapi-tn63kvymra-uc.a.run.app";
-          console.log("Using Executive Summary API:", apiUrl);
-        } else {
+          apisToCall.push({
+            name: "Full Report",
+            url: "https://generateclaimantreportapi-tn63kvymra-uc.a.run.app",
+          });
+        }
+
+        if (apisToCall.length === 0) {
           throw new Error("No report type selected");
         }
 
-        const response = await fetch(apiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestData),
-        });
+        console.log(`Calling ${apisToCall.length} API(s):`, apisToCall.map(a => a.name).join(", "));
+
+        // Call all selected APIs and collect responses
+        const responses = await Promise.all(
+          apisToCall.map(async (api) => {
+            const apiStartTime = Date.now();
+            console.log(`Sending request to ${api.name} API: ${api.url}`);
+
+            const response = await fetch(api.url, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(requestData),
+            });
+
+            const apiDuration = Date.now() - apiStartTime;
+            console.log(
+              `${api.name} API request completed in:`,
+              apiDuration,
+              "ms",
+            );
+
+            console.log(`${api.name} response status:`, response.status);
+
+            if (!response.ok) {
+              const errorText = await response.text();
+              console.error(`${api.name} error response:`, errorText);
+              throw new Error(
+                `Failed to generate ${api.name} report: ${response.status} - ${errorText}`,
+              );
+            }
+
+            // Check if response has any debugging information in headers
+            const debugHeader = response.headers.get("x-debug-info");
+            if (debugHeader) {
+              console.log(`${api.name} debug info:`, debugHeader);
+            }
+
+            // Force correct MIME type to help some viewers
+            const arrayBuf = await response.arrayBuffer();
+            const blob = new Blob([arrayBuf], {
+              type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            });
+            console.log(`${api.name} DOCX blob size:`, blob.size, "bytes");
+
+            return { name: api.name, blob };
+          })
+        );
 
         const requestDuration = Date.now() - requestStartTime;
-        console.log(
-          "Cloud function request completed in:",
-          requestDuration,
-          "ms",
-        );
+        console.log("All cloud function requests completed in:", requestDuration, "ms");
 
-        console.log("Cloud function response status:", response.status);
-        console.log(
-          "Cloud function response headers:",
-          Object.fromEntries(response.headers.entries()),
-        );
+        // Download all reports
+        responses.forEach(({ name, blob }) => {
+          // Create a unique filename for each report type
+          const reportTypeSuffix = name === "Executive Summary" ? "Summary" : "Full";
+          const downloadFileName = `FCE_Report_${reportTypeSuffix}_${claimantName}_${currentDate}.docx`;
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.error("Cloud function error response:", errorText);
-          throw new Error(
-            `Failed to generate DOCX report: ${response.status} - ${errorText}`,
-          );
-        }
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = downloadFileName;
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+          document.body.removeChild(a);
 
-        // Check if response has any debugging information in headers
-        const debugHeader = response.headers.get("x-debug-info");
-        if (debugHeader) {
-          console.log("Cloud function debug info:", debugHeader);
-        }
-
-        // Log all response headers for debugging
-        console.log("All response headers:");
-        for (let [key, value] of response.headers.entries()) {
-          console.log(`  ${key}: ${value}`);
-        }
-
-        // Force correct MIME type to help some viewers
-        const arrayBuf = await response.arrayBuffer();
-        const blob = new Blob([arrayBuf], {
-          type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          console.log(`Downloaded ${name} report as: ${downloadFileName}`);
         });
-        console.log("Received DOCX blob size:", blob.size, "bytes");
-        console.log("Blob type:", blob.type);
 
-        // Try to read blob as text to see if it contains error messages
-        const blobCopy = blob.slice();
+        // For backwards compatibility with the rest of the code, get first blob
+        const firstBlob = responses[0].blob;
+        const arrayBuf = await firstBlob.stream();
+        const blobCopy = firstBlob.slice();
         try {
           const blobText = await blobCopy.text();
           console.log("Blob content preview:", blobText.substring(0, 200));
