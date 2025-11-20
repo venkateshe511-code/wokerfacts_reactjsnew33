@@ -6352,14 +6352,14 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               <h3 className="text-lg font-semibold text-blue-800 mb-4">
                 Select Report(s)
               </h3>
-              <RadioGroup
+              // RADIOGROUP_REMOVED
                 value={selectedFormat}
                 onValueChange={setSelectedFormat}
                 className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6"
               >
                 {/* 
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="pdf" id="pdf" />
+                  // RADIOGROUP_REMOVEDItem value="pdf" id="pdf" />
                   <Label
                     htmlFor="pdf"
                     className="flex items-center cursor-pointer"
@@ -6370,7 +6370,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 </div>
               */}
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="docx" id="docx" />
+                  // RADIOGROUP_REMOVEDItem value="docx" id="docx" />
                   <Label
                     htmlFor="docx"
                     className="flex items-center cursor-pointer"
@@ -6381,7 +6381,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="docx" id="docx" />
+                  // RADIOGROUP_REMOVEDItem value="docx" id="docx" />
                   <Label
                     htmlFor="docx"
                     className="flex items-center cursor-pointer"
