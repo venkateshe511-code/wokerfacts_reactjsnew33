@@ -6352,46 +6352,6 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               <h3 className="text-lg font-semibold text-blue-800 mb-4">
                 Select Report(s)
               </h3>
-              // RADIOGROUP_REMOVED
-                value={selectedFormat}
-                onValueChange={setSelectedFormat}
-                className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6"
-              >
-                {/* 
-                <div className="flex items-center space-x-2">
-                  // RADIOGROUP_REMOVEDItem value="pdf" id="pdf" />
-                  <Label
-                    htmlFor="pdf"
-                    className="flex items-center cursor-pointer"
-                  >
-                    <FileText className="mr-2 h-4 w-4 text-red-600" />
-                    PDF Format
-                  </Label>
-                </div>
-              */}
-                <div className="flex items-center space-x-2">
-                  // RADIOGROUP_REMOVEDItem value="docx" id="docx" />
-                  <Label
-                    htmlFor="docx"
-                    className="flex items-center cursor-pointer"
-                  >
-                    <FileText className="mr-2 h-4 w-4 text-blue-600" />
-                    FCE Executive Summary  
-                  </Label>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  // RADIOGROUP_REMOVEDItem value="docx" id="docx" />
-                  <Label
-                    htmlFor="docx"
-                    className="flex items-center cursor-pointer"
-                  >
-                    <FileText className="mr-2 h-4 w-4 text-blue-600" />
-                    {/* DOCX Format */}
-                    FCE Full Report
-                  </Label>
-                </div>
-              </RadioGroup>
             </div>
 
             {/* Important Notice */}
