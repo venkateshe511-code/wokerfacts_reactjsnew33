@@ -3403,7 +3403,8 @@ async function addCoverPage(children, body) {
       alignment: AlignmentType.CENTER,
       children: [
         new TextRun({
-          text: "Functional Abilities Determination",
+          // text: "Functional Abilities Determination",
+          text:"FCE Executive Summary",
           bold: true,
           color: BRAND_COLOR,
           size: 24,
@@ -3623,7 +3624,8 @@ async function addClientInformation(children, body) {
 
   // --- 🔹 Dynamic Header Lines ---
   const headerLines = [
-    "Functional Abilities Determination", // Fixed main headline
+    // "Functional Abilities Determination", // Fixed main headline
+    "FCE Executive Summary",
     clinicName,
     clinicAddress,
     phoneFax,
@@ -3716,7 +3718,7 @@ async function addClientInformation(children, body) {
           new TextRun({
             text: line,
             bold: true,
-            color: line.startsWith("Functional") ? BRAND_COLOR : "000000",
+            color: line.startsWith("FCE") ? BRAND_COLOR : "000000",
             size: idx === 0 ? 24 : idx === 1 ? 20 : 18,
           }),
         ],
@@ -8265,15 +8267,15 @@ router.post("/", async (req, res) => {
     const restChildren = [];
     // Contents of Report on current page; page break will be inserted after inside the function
     const contentsChildren = [];
-    await addContentsOfReport(contentsChildren);
+    // await addContentsOfReport(contentsChildren);
     await addClientInformation(restChildren, body);
     await addReferralQuestionsContent(restChildren, body);
     await addConclusionContent(restChildren, body);
     await addFunctionalAbilitiesDeterminationContent(restChildren, body);
-    await addActivityRatingChart(restChildren, body);
-    await addTestDataContent(restChildren, body);
-    await addReferenceChartsContent(restChildren, body);
-    await addDigitalLibraryContent(restChildren, body);
+    // await addActivityRatingChart(restChildren, body);
+    // await addTestDataContent(restChildren, body);
+    // await addReferenceChartsContent(restChildren, body);
+    // await addDigitalLibraryContent(restChildren, body);
 
     const doc = new Document({
       styles: {
