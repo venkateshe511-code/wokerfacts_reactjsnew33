@@ -6066,13 +6066,29 @@ padding-top: 120px; align-items: center; min-height: 0; ">
           });
         }
 
-        // Send complete data to Cloud Function
+        // Send complete data to Cloud Function(s) based on selected reports
         console.log("Sending request to cloud function...");
         const requestStartTime = Date.now();
 
         const isLocal = process.env.NODE_ENV === "development";
-        const apiUrl =
-          "https://generateclaimantreportapi-tn63kvymra-uc.a.run.app";
+
+        // Determine which API to call based on checkbox selection
+        // If both are selected, we'll call the full report API (which is more comprehensive)
+        // Then download the executive summary if that's specifically selected
+        let apiUrl: string;
+
+        if (selectedReports.fullReport) {
+          // Full Report API
+          apiUrl = "https://generateclaimantreportapi-tn63kvymra-uc.a.run.app";
+          console.log("Using Full Report API:", apiUrl);
+        } else if (selectedReports.executiveSummary) {
+          // Executive Summary API
+          apiUrl = "https://generateexecutivesummaryclaimantreportapi-tn63kvymra-uc.a.run.app";
+          console.log("Using Executive Summary API:", apiUrl);
+        } else {
+          throw new Error("No report type selected");
+        }
+
         const response = await fetch(apiUrl, {
           method: "POST",
           headers: {
