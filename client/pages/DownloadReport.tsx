@@ -143,7 +143,10 @@ export default function DownloadReport() {
   const [isDownloading, setIsDownloading] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [showClearDialog, setShowClearDialog] = useState(false);
-  const [selectedFormat, setSelectedFormat] = useState("pdf");
+  const [selectedReports, setSelectedReports] = useState({
+    executiveSummary: false,
+    fullReport: false,
+  });
 
   // Helper to get evaluator data with Firestore fallback to ensure logo and branding are present
   const getEvaluatorData = async (): Promise<any> => {
