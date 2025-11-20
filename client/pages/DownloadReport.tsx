@@ -5350,6 +5350,16 @@ padding-top: 120px; align-items: center; min-height: 0; ">
   };
 
   const handleDownloadReport = async () => {
+    // Check if at least one report is selected
+    if (!selectedReports.executiveSummary && !selectedReports.fullReport) {
+      toast({
+        title: "No Report Selected",
+        description: "Please select at least one report type to download.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsDownloading(true);
 
     let didSucceed = false;
@@ -5368,11 +5378,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
       .replace(/_{2,}/g, "_");
     const fileName = `FCE_Report_${claimantName}_${currentDate}`;
 
-    if (selectedFormat === "pdf") {
-      // Use print dialog for PDF generation with auto-naming
-      convertHTMLToPDF(reportContent, fileName);
-      didSucceed = true;
-    } else {
+    // Handle report downloads based on checkbox selections
+    if (selectedReports.executiveSummary || selectedReports.fullReport) {
       try {
         // Load all evaluation data for DOCX generation
         const evaluatorData = await getEvaluatorData();
