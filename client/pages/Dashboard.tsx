@@ -574,7 +574,8 @@ export default function Dashboard() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "Clinical Test of Sensory Interaction on Balance (CTSIB).pdf";
+      a.download =
+        "Clinical Test of Sensory Interaction on Balance (CTSIB).pdf";
       document.body.appendChild(a);
       a.click();
       a.remove();
