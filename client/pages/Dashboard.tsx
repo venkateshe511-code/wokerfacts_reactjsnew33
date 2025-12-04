@@ -735,7 +735,7 @@ export default function Dashboard() {
       <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         <div className="mb-4 sm:mb-6">
           <p className="text-sm font-medium text-gray-800 mb-2 italic">
-            *Downloadable forms for FCE preparation.
+            *Downloadable forms for FCE preparation and balance tests
           </p>
           <Tabs defaultValue="fce-prep" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-4">
