@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Dialog,
   DialogContent,
@@ -537,6 +538,75 @@ export default function Dashboard() {
     }
   };
 
+  const downloadBERGBalanceScalePdfUrl = "/BERG BALANCE SCALE.pdf";
+
+  const downloadBERGBalanceScalePdf = async () => {
+    try {
+      const res = await fetch(downloadBERGBalanceScalePdfUrl, { mode: "cors" });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "BERG BALANCE SCALE.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(
+        downloadBERGBalanceScalePdfUrl,
+        "_blank",
+        "noopener,noreferrer",
+      );
+    }
+  };
+
+  const downloadCTSIBPdfUrl =
+    "/Clinical Test of Sensory Interaction on Balance (CTSIB).pdf";
+
+  const downloadCTSIBPdf = async () => {
+    try {
+      const res = await fetch(downloadCTSIBPdfUrl, { mode: "cors" });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download =
+        "Clinical Test of Sensory Interaction on Balance (CTSIB).pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadCTSIBPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadTUGTestPdfUrl = "/TUG TEST.pdf";
+
+  const downloadTUGTestPdf = async () => {
+    try {
+      const res = await fetch(downloadTUGTestPdfUrl, { mode: "cors" });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "TUG TEST.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadTUGTestPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
   const confirmBackNavigation = () => {
     // Complete data wipe - clear ALL stored data including profile
     const keysToRemove = [
@@ -666,42 +736,82 @@ export default function Dashboard() {
       <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8">
         <div className="mb-4 sm:mb-6">
           <p className="text-sm font-medium text-gray-800 mb-2 italic">
-            *Downloadable forms for FCE preparation.
+            *Downloadable forms for FCE preparation and balance tests
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            <Button
-              size="sm"
-              onClick={downloadWFFCEProcessFlowOverviewRGPdf}
-              className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
-            >
-              <Download className="mr-2 h-4 w-4 text-white" />
-              WF FCE Process Flow Overview RG
-            </Button>
-            <Button
-              size="sm"
-              onClick={downloadWFFCEClientInformedConsentDocx}
-              className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
-            >
-              <Download className="mr-2 h-4 w-4 text-white" />
-              WF FCE Client Informed Consent
-            </Button>
-            <Button
-              size="sm"
-              onClick={downloadmCAFTDataCollectionSheetPdf}
-              className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
-            >
-              <Download className="mr-2 h-4 w-4 text-white" />
-              mCAFT Data Collection Sheet
-            </Button>
-            <Button
-              size="sm"
-              onClick={downloadFCEDATACOLLECTIONFORMPdf}
-              className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
-            >
-              <Download className="mr-2 h-4 w-4 text-white" />
-              WF FCE DATA COLLECTION FORM
-            </Button>
-          </div>
+          <Tabs defaultValue="fce-prep" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 mb-4">
+              <TabsTrigger value="fce-prep">FCE Preparation</TabsTrigger>
+              <TabsTrigger value="balance-tests">
+                Additional Balance Tests
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="fce-prep">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <Button
+                  size="sm"
+                  onClick={downloadWFFCEProcessFlowOverviewRGPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  WF FCE Process Flow Overview RG
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadWFFCEClientInformedConsentDocx}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  WF FCE Client Informed Consent
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadmCAFTDataCollectionSheetPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  mCAFT Data Collection Sheet
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadFCEDATACOLLECTIONFORMPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  WF FCE DATA COLLECTION FORM
+                </Button>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="balance-tests">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <Button
+                  size="sm"
+                  onClick={downloadBERGBalanceScalePdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  BERG BALANCE SCALE
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadCTSIBPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  Clinical Test of Sensory Interaction on Balance (CTSIB)
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadTUGTestPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  TUG TEST
+                </Button>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-8">
           {/* Profile Sidebar */}
