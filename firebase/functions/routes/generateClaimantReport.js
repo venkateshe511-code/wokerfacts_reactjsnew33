@@ -4642,9 +4642,9 @@ async function addReferenceChartsContent(children) {
       new TableRow({
         children: [
           paddedCell("Physical Demand Level", { bold: true, fill: "FFFF99" }),
-          paddedCell("Occasional (0–33%)", { bold: true, fill: "FFFF99" }),
-          paddedCell("Frequent (34–66%)", { bold: true, fill: "FFFF99" }),
-          paddedCell("Constant (67–100%)", { bold: true, fill: "FFFF99" }),
+          paddedCell("Seldom / Occasionally (0–33%)", { bold: true, fill: "FFFF99" }),
+          paddedCell("Frequently (34–66%)", { bold: true, fill: "FFFF99" }),
+          paddedCell("Constantly (67–100%)", { bold: true, fill: "FFFF99" }),
         ],
       }),
       new TableRow({
