@@ -1755,17 +1755,17 @@ export default function ReviewReport() {
                               Physical Demand Level
                             </th>
                             <th className="border border-gray-300 p-2">
-                              OCCASIONAL
+                              SELDOM / OCCASIONALLY
                               <br />
                               0-33% of the workday
                             </th>
                             <th className="border border-gray-300 p-2">
-                              FREQUENT
+                              FREQUENTLY
                               <br />
                               34-66% of the workday
                             </th>
                             <th className="border border-gray-300 p-2">
-                              CONSTANT
+                              CONSTANTLY
                               <br />
                               67-100% of the workday
                             </th>
@@ -6876,17 +6876,17 @@ export default function ReviewReport() {
                           Physical Demand Level
                         </th>
                         <th className="border border-gray-400 border-r-gray-400 p-2">
-                          OCCASIONAL
+                          SELDOM / OCCASIONALLY
                           <br />
                           0-33% of the workday
                         </th>
                         <th className="border border-gray-400 border-r-gray-400 p-2">
-                          FREQUENT
+                          FREQUENTLY
                           <br />
                           34-66% of the workday
                         </th>
                         <th className="border border-gray-400 border-r-gray-400 p-2">
-                          CONSTANT
+                          CONSTANTLY
                           <br />
                           67-100% of the workday
                         </th>

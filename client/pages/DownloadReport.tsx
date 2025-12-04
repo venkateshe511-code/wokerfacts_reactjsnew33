@@ -5049,9 +5049,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     </tr>
                     <tr style="background: #fef3c7;">
                         <th style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">Physical Demand Level</th>
-                        <th style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">OCCASIONAL<br/>0-33% of the workday</th>
-                        <th style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">FREQUENT<br/>34-66% of the workday</th>
-                        <th style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">CONSTANT<br/>67-100% of the workday</th>
+                        <th style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">SELDOM / OCCASIONALLY<br/>0-33% of the workday</th>
+                        <th style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">FREQUENTLY<br/>34-66% of the workday</th>
+                        <th style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">CONSTANTLY<br/>67-100% of the workday</th>
                     </tr>
                 </thead>
                 <tbody>
