@@ -538,6 +538,74 @@ export default function Dashboard() {
     }
   };
 
+  const downloadBERGBalanceScalePdfUrl = "/BERG BALANCE SCALE.pdf";
+
+  const downloadBERGBalanceScalePdf = async () => {
+    try {
+      const res = await fetch(downloadBERGBalanceScalePdfUrl, { mode: "cors" });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "BERG BALANCE SCALE.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(
+        downloadBERGBalanceScalePdfUrl,
+        "_blank",
+        "noopener,noreferrer",
+      );
+    }
+  };
+
+  const downloadCTSIBPdfUrl =
+    "/Clinical Test of Sensory Interaction on Balance (CTSIB).pdf";
+
+  const downloadCTSIBPdf = async () => {
+    try {
+      const res = await fetch(downloadCTSIBPdfUrl, { mode: "cors" });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Clinical Test of Sensory Interaction on Balance (CTSIB).pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadCTSIBPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadTUGTestPdfUrl = "/TUG TEST.pdf";
+
+  const downloadTUGTestPdf = async () => {
+    try {
+      const res = await fetch(downloadTUGTestPdfUrl, { mode: "cors" });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "TUG TEST.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadTUGTestPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
   const confirmBackNavigation = () => {
     // Complete data wipe - clear ALL stored data including profile
     const keysToRemove = [
