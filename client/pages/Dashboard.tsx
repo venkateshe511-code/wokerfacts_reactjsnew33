@@ -737,40 +737,80 @@ export default function Dashboard() {
           <p className="text-sm font-medium text-gray-800 mb-2 italic">
             *Downloadable forms for FCE preparation.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            <Button
-              size="sm"
-              onClick={downloadWFFCEProcessFlowOverviewRGPdf}
-              className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
-            >
-              <Download className="mr-2 h-4 w-4 text-white" />
-              WF FCE Process Flow Overview RG
-            </Button>
-            <Button
-              size="sm"
-              onClick={downloadWFFCEClientInformedConsentDocx}
-              className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
-            >
-              <Download className="mr-2 h-4 w-4 text-white" />
-              WF FCE Client Informed Consent
-            </Button>
-            <Button
-              size="sm"
-              onClick={downloadmCAFTDataCollectionSheetPdf}
-              className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
-            >
-              <Download className="mr-2 h-4 w-4 text-white" />
-              mCAFT Data Collection Sheet
-            </Button>
-            <Button
-              size="sm"
-              onClick={downloadFCEDATACOLLECTIONFORMPdf}
-              className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
-            >
-              <Download className="mr-2 h-4 w-4 text-white" />
-              WF FCE DATA COLLECTION FORM
-            </Button>
-          </div>
+          <Tabs defaultValue="fce-prep" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 mb-4">
+              <TabsTrigger value="fce-prep">FCE Preparation</TabsTrigger>
+              <TabsTrigger value="balance-tests">
+                Additional Balance Tests
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="fce-prep">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <Button
+                  size="sm"
+                  onClick={downloadWFFCEProcessFlowOverviewRGPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  WF FCE Process Flow Overview RG
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadWFFCEClientInformedConsentDocx}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  WF FCE Client Informed Consent
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadmCAFTDataCollectionSheetPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  mCAFT Data Collection Sheet
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadFCEDATACOLLECTIONFORMPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  WF FCE DATA COLLECTION FORM
+                </Button>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="balance-tests">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <Button
+                  size="sm"
+                  onClick={downloadBERGBalanceScalePdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  BERG BALANCE SCALE
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadCTSIBPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  Clinical Test of Sensory Interaction on Balance (CTSIB)
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={downloadTUGTestPdf}
+                  className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  TUG TEST
+                </Button>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-8">
           {/* Profile Sidebar */}
