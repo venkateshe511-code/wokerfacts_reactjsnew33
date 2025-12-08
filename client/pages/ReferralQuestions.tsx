@@ -530,14 +530,9 @@ export default function ReferralQuestions() {
     // Store data in localStorage (much faster now)
     const dataToSave = {
       questions: questionsWithImageData,
+      returnToWorkStatus: referralData.returnToWorkStatus,
     };
     localStorage.setItem("referralQuestionsData", JSON.stringify(dataToSave));
-
-    // Store Return to Work Status
-    localStorage.setItem(
-      "returnToWorkStatus",
-      JSON.stringify(returnToWorkStatus),
-    );
 
     // Mark step 4 as completed
     const completedSteps = JSON.parse(
