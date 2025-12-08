@@ -509,10 +509,13 @@ export default function ReferralQuestions() {
       RETURN_TO_WORK_OPTIONS[
         selectedStatus as keyof typeof RETURN_TO_WORK_OPTIONS
       ] || "";
-    setReturnToWorkStatus({
-      status: selectedStatus,
-      comments: predefinedComments,
-    });
+    setReferralData((prev) => ({
+      ...prev,
+      returnToWorkStatus: {
+        status: selectedStatus,
+        comments: predefinedComments,
+      },
+    }));
   };
 
   const handleSubmit = async () => {
