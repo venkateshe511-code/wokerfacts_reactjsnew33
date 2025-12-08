@@ -348,6 +348,9 @@ export default function DownloadReport() {
     const referralQuestionsData = JSON.parse(
       localStorage.getItem("referralQuestionsData") || "{}",
     );
+    const returnToWorkStatus = JSON.parse(
+      localStorage.getItem("returnToWorkStatus") || "{}",
+    );
     const protocolTestsData = JSON.parse(
       localStorage.getItem("protocolTestsData") || "{}",
     );
@@ -5473,14 +5476,17 @@ padding-top: 120px; align-items: center; min-height: 0; ">
           localStorage.getItem("painIllustrationData") || "{}",
         );
         const activityRatingData = JSON.parse(
-          localStorage.getItem("activityRatingData") || "{}",
-        );
-        const referralQuestionsData = JSON.parse(
-          localStorage.getItem("referralQuestionsData") || "{}",
-        );
-        const protocolTestsData = JSON.parse(
-          localStorage.getItem("protocolTestsData") || "{}",
-        );
+        localStorage.getItem("activityRatingData") || "{}",
+      );
+      const referralQuestionsData = JSON.parse(
+        localStorage.getItem("referralQuestionsData") || "{}",
+      );
+      const returnToWorkStatus = JSON.parse(
+        localStorage.getItem("returnToWorkStatus") || "{}",
+      );
+      const protocolTestsData = JSON.parse(
+        localStorage.getItem("protocolTestsData") || "{}",
+      );
         const occupationalTasksData = JSON.parse(
           localStorage.getItem("occupationalTasksData") || "{}",
         );
