@@ -8356,6 +8356,7 @@ router.post("/", async (req, res) => {
     const contentsChildren = [];
     // await addContentsOfReport(contentsChildren);
     await addClientInformation(restChildren, body);
+    await addReturnToWorkStatusContent(restChildren, body);
     await addReferralQuestionsContent(restChildren, body);
     await addConclusionContent(restChildren, body);
     await addFunctionalAbilitiesDeterminationContent(restChildren, body);
