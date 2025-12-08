@@ -348,9 +348,7 @@ export default function DownloadReport() {
     const referralQuestionsData = JSON.parse(
       localStorage.getItem("referralQuestionsData") || "{}",
     );
-    const returnToWorkStatus = JSON.parse(
-      localStorage.getItem("returnToWorkStatus") || "{}",
-    );
+    const returnToWorkStatus = referralQuestionsData.returnToWorkStatus || {};
     const protocolTestsData = JSON.parse(
       localStorage.getItem("protocolTestsData") || "{}",
     );
