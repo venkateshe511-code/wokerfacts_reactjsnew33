@@ -177,6 +177,10 @@ export default function ReferralQuestions() {
         savedImageData: [],
       },
     ],
+    returnToWorkStatus: {
+      status: "Return to Regular Duties",
+      comments: RETURN_TO_WORK_OPTIONS["Return to Regular Duties"],
+    },
   };
 
   const fillSampleReferralQuestions = async () => {
