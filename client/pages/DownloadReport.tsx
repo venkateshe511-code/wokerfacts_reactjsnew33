@@ -5882,6 +5882,12 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                   ],
           },
 
+          // Return to Work Status data
+          returnToWorkStatus: {
+            status: returnToWorkStatus?.status || "",
+            comments: returnToWorkStatus?.comments || "",
+          },
+
           // Enhanced referral questions data
           referralQuestionsData: {
             questions:
