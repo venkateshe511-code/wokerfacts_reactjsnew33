@@ -25,13 +25,14 @@ interface ReferralQuestion {
   }>;
 }
 
-interface ReferralData {
-  questions: ReferralQuestion[];
-}
-
 interface ReturnToWorkStatus {
   status: string;
   comments: string;
+}
+
+interface ReferralData {
+  questions: ReferralQuestion[];
+  returnToWorkStatus: ReturnToWorkStatus;
 }
 
 const RETURN_TO_WORK_OPTIONS = {
