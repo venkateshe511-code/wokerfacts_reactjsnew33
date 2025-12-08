@@ -207,14 +207,6 @@ export default function ReferralQuestions() {
   };
 
   useEffect(() => {
-    // Load Return to Work Status from localStorage
-    const existingReturnToWorkStatus = localStorage.getItem(
-      "returnToWorkStatus",
-    );
-    if (existingReturnToWorkStatus) {
-      setReturnToWorkStatus(JSON.parse(existingReturnToWorkStatus));
-    }
-
     // Check if we have existing referral data (edit mode)
     const existingData = localStorage.getItem("referralQuestionsData");
     if (existingData) {
@@ -295,6 +287,10 @@ export default function ReferralQuestions() {
 
       setReferralData({
         questions: questionsWithFiles,
+        returnToWorkStatus: savedData.returnToWorkStatus || {
+          status: "",
+          comments: "",
+        },
       });
 
       // Save the migrated data back to localStorage
@@ -302,6 +298,10 @@ export default function ReferralQuestions() {
         "referralQuestionsData",
         JSON.stringify({
           questions: questionsWithFiles,
+          returnToWorkStatus: savedData.returnToWorkStatus || {
+            status: "",
+            comments: "",
+          },
         }),
       );
 
