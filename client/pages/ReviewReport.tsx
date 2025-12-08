@@ -177,7 +177,6 @@ export default function ReviewReport() {
       const referralQuestionsData = localStorage.getItem(
         "referralQuestionsData",
       );
-      const returnToWorkStatus = localStorage.getItem("returnToWorkStatus");
       const protocolTestsData = localStorage.getItem("protocolTestsData");
       const occupationalTasksData = localStorage.getItem(
         "occupationalTasksData",
