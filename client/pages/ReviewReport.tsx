@@ -94,6 +94,7 @@ interface ReportData {
   painIllustrationData: any;
   activityRatingData: any;
   referralQuestionsData: any;
+  returnToWorkStatus: any;
   protocolTestsData: any;
   occupationalTasksData: any;
   testData: any;
@@ -176,6 +177,7 @@ export default function ReviewReport() {
       const referralQuestionsData = localStorage.getItem(
         "referralQuestionsData",
       );
+      const returnToWorkStatus = localStorage.getItem("returnToWorkStatus");
       const protocolTestsData = localStorage.getItem("protocolTestsData");
       const occupationalTasksData = localStorage.getItem(
         "occupationalTasksData",
@@ -300,6 +302,9 @@ export default function ReviewReport() {
           : null,
         referralQuestionsData: referralQuestionsData
           ? JSON.parse(referralQuestionsData)
+          : null,
+        returnToWorkStatus: returnToWorkStatus
+          ? JSON.parse(returnToWorkStatus)
           : null,
         protocolTestsData: protocolTestsData
           ? JSON.parse(protocolTestsData)
