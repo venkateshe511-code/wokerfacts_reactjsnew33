@@ -5498,14 +5498,12 @@ padding-top: 120px; align-items: center; min-height: 0; ">
       const referralQuestionsData = JSON.parse(
         localStorage.getItem("referralQuestionsData") || "{}",
       );
-      const returnToWorkStatus = JSON.parse(
-        localStorage.getItem("returnToWorkStatus") || "{}",
-      );
+      const returnToWorkStatus = referralQuestionsData.returnToWorkStatus || {};
       const protocolTestsData = JSON.parse(
         localStorage.getItem("protocolTestsData") || "{}",
       );
-        const occupationalTasksData = JSON.parse(
-          localStorage.getItem("occupationalTasksData") || "{}",
+      const occupationalTasksData = JSON.parse(
+        localStorage.getItem("occupationalTasksData") || "{}",
         );
         const testData = JSON.parse(localStorage.getItem("testData") || "{}");
         const mtmTestData = JSON.parse(
