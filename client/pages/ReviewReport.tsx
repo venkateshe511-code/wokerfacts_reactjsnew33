@@ -302,8 +302,8 @@ export default function ReviewReport() {
         referralQuestionsData: referralQuestionsData
           ? JSON.parse(referralQuestionsData)
           : null,
-        returnToWorkStatus: returnToWorkStatus
-          ? JSON.parse(returnToWorkStatus)
+        returnToWorkStatus: referralQuestionsData
+          ? JSON.parse(referralQuestionsData).returnToWorkStatus || null
           : null,
         protocolTestsData: protocolTestsData
           ? JSON.parse(protocolTestsData)
