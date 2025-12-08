@@ -25,9 +25,28 @@ interface ReferralQuestion {
   }>;
 }
 
+interface ReturnToWorkStatus {
+  status: string;
+  comments: string;
+}
+
 interface ReferralData {
   questions: ReferralQuestion[];
+  returnToWorkStatus: ReturnToWorkStatus;
 }
+
+const RETURN_TO_WORK_OPTIONS = {
+  "Return to Regular Duties":
+    "Client demonstrated the ability to Return to Work at prior level of function. The capabilities displayed meet or exceed the demands of the pre-injury job, a full return to work without restrictions is recommended.",
+  "Return with Restrictions/Modified Duties":
+    "The demonstrated abilities tested are lower than the job demands as per the restrictions noted. At the employer's discretion they may desire to modify the job or reassign the client to a different role that fits within these new capabilities.",
+  "Need for Further Rehabilitation":
+    "Significant deficits were identified and based on the FCE results; it is recommended that the client undergoes additional physical / occupational therapy and retest in 4-6 weeks.",
+  "Need for Work Conditioning":
+    "Based on the FCE results, it is recommended that the client undergoes 3 to 6 weeks of work conditioning to build up their strength and endurance gradually before attempting to return to work.",
+  "Vocational Retraining":
+    "Based on the results of the FCE and the essential and critical demands of the job, the client has demonstrated that their previous occupation is not physically feasible long-term and their may be a need for vocational retraining for a different career.",
+};
 
 const defaultQuestions = [
   "What is the present lumbar range of motion noted for the client?",
@@ -54,6 +73,10 @@ export default function ReferralQuestions() {
         : "",
       images: [],
     })),
+    returnToWorkStatus: {
+      status: "",
+      comments: "",
+    },
   });
 
   const [isEditMode, setIsEditMode] = useState(false);
@@ -154,6 +177,10 @@ export default function ReferralQuestions() {
         savedImageData: [],
       },
     ],
+    returnToWorkStatus: {
+      status: "Return to Regular Duties",
+      comments: RETURN_TO_WORK_OPTIONS["Return to Regular Duties"],
+    },
   };
 
   const fillSampleReferralQuestions = async () => {
@@ -260,6 +287,10 @@ export default function ReferralQuestions() {
 
       setReferralData({
         questions: questionsWithFiles,
+        returnToWorkStatus: savedData.returnToWorkStatus || {
+          status: "",
+          comments: "",
+        },
       });
 
       // Save the migrated data back to localStorage
@@ -267,6 +298,10 @@ export default function ReferralQuestions() {
         "referralQuestionsData",
         JSON.stringify({
           questions: questionsWithFiles,
+          returnToWorkStatus: savedData.returnToWorkStatus || {
+            status: "",
+            comments: "",
+          },
         }),
       );
 
@@ -469,6 +504,20 @@ export default function ReferralQuestions() {
     }));
   };
 
+  const handleReturnToWorkStatusChange = (selectedStatus: string) => {
+    const predefinedComments =
+      RETURN_TO_WORK_OPTIONS[
+        selectedStatus as keyof typeof RETURN_TO_WORK_OPTIONS
+      ] || "";
+    setReferralData((prev) => ({
+      ...prev,
+      returnToWorkStatus: {
+        status: selectedStatus,
+        comments: predefinedComments,
+      },
+    }));
+  };
+
   const handleSubmit = async () => {
     setIsSubmitting(true);
 
@@ -481,6 +530,7 @@ export default function ReferralQuestions() {
     // Store data in localStorage (much faster now)
     const dataToSave = {
       questions: questionsWithImageData,
+      returnToWorkStatus: referralData.returnToWorkStatus,
     };
     localStorage.setItem("referralQuestionsData", JSON.stringify(dataToSave));
 
@@ -587,6 +637,62 @@ export default function ReferralQuestions() {
             </Button>
           </CardHeader>
           <CardContent className="p-8">
+            {/* Return to Work Status Section */}
+            <div className="mb-12 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+              <h2 className="text-2xl font-bold text-blue-900 mb-6">
+                Return to Work Status
+              </h2>
+
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    Select Return to Work Status
+                  </label>
+                  <select
+                    value={referralData.returnToWorkStatus.status}
+                    onChange={(e) =>
+                      handleReturnToWorkStatusChange(e.target.value)
+                    }
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">-- Choose an option --</option>
+                    {Object.keys(RETURN_TO_WORK_OPTIONS).map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    Comments
+                  </label>
+                  <Textarea
+                    value={referralData.returnToWorkStatus.comments}
+                    onChange={(e) =>
+                      setReferralData((prev) => ({
+                        ...prev,
+                        returnToWorkStatus: {
+                          ...prev.returnToWorkStatus,
+                          comments: e.target.value,
+                        },
+                      }))
+                    }
+                    placeholder="Comments will auto-populate based on your selection above..."
+                    className="min-h-[150px]"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <hr className="border-gray-300 my-8" />
+
+            {/* Referral Questions Section */}
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Referral Questions
+            </h2>
+
             <div className="space-y-8">
               {referralData.questions.map((question, index) => (
                 <div
