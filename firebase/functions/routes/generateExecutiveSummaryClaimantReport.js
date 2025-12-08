@@ -5080,6 +5080,93 @@ async function addDigitalLibraryContent(children, body) {
   children.push(new Paragraph({ children: [new PageBreak()] }));
 }
 
+async function addReturnToWorkStatusContent(children, body) {
+  const referralData = body.referralQuestionsData || {};
+  const returnToWorkStatus = referralData.returnToWorkStatus || {};
+
+  // Only render if status is selected
+  if (!returnToWorkStatus.status) return;
+
+  // Page break before section
+  children.push(new Paragraph({ children: [new PageBreak()] }));
+
+  // Section Header Box
+  children.push(
+    new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      rows: [
+        new TableRow({
+          children: [
+            new TableCell({
+              shading: { fill: "DBEAFE" }, // light blue
+              margins: { top: 100, bottom: 100, left: 150, right: 150 },
+              children: [
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "Return to Work Status",
+                      bold: true,
+                      size: 16,
+                      color: "1e40af",
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          ],
+        }),
+      ],
+    }),
+  );
+
+  children.push(new Paragraph({ text: "" })); // spacing
+
+  // Selected Status
+  children.push(
+    new Paragraph({
+      spacing: { before: 80, after: 80 },
+      children: [
+        new TextRun({
+          text: "Selected Status: ",
+          bold: true,
+          size: 16,
+        }),
+        new TextRun({
+          text: returnToWorkStatus.status || "",
+          size: 16,
+        }),
+      ],
+    }),
+  );
+
+  // Comments
+  if (returnToWorkStatus.comments) {
+    children.push(
+      new Paragraph({
+        spacing: { before: 80, after: 80 },
+        children: [
+          new TextRun({
+            text: "Comments:",
+            bold: true,
+            size: 16,
+          }),
+        ],
+      }),
+    );
+
+    // Split comments into paragraphs to preserve formatting
+    const commentLines = (returnToWorkStatus.comments || "").split("\n");
+    for (const line of commentLines) {
+      children.push(
+        new Paragraph({
+          text: line,
+          spacing: { after: 40 },
+        }),
+      );
+    }
+  }
+}
+
 async function addReferralQuestionsContent(children, body) {
   const referralData = body.referralQuestionsData || {};
   const questions = referralData.questions || [];
