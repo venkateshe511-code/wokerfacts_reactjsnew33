@@ -649,7 +649,7 @@ export default function ReferralQuestions() {
                     Select Return to Work Status
                   </label>
                   <select
-                    value={returnToWorkStatus.status}
+                    value={referralData.returnToWorkStatus.status}
                     onChange={(e) =>
                       handleReturnToWorkStatusChange(e.target.value)
                     }
@@ -669,12 +669,15 @@ export default function ReferralQuestions() {
                     Comments
                   </label>
                   <Textarea
-                    value={returnToWorkStatus.comments}
+                    value={referralData.returnToWorkStatus.comments}
                     onChange={(e) =>
-                      setReturnToWorkStatus({
-                        ...returnToWorkStatus,
-                        comments: e.target.value,
-                      })
+                      setReferralData((prev) => ({
+                        ...prev,
+                        returnToWorkStatus: {
+                          ...prev.returnToWorkStatus,
+                          comments: e.target.value,
+                        },
+                      }))
                     }
                     placeholder="Comments will auto-populate based on your selection above..."
                     className="min-h-[150px]"
