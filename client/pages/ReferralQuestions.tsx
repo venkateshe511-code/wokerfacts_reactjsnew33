@@ -73,13 +73,11 @@ export default function ReferralQuestions() {
         : "",
       images: [],
     })),
-  });
-
-  const [returnToWorkStatus, setReturnToWorkStatus] =
-    useState<ReturnToWorkStatus>({
+    returnToWorkStatus: {
       status: "",
       comments: "",
-    });
+    },
+  });
 
   const [isEditMode, setIsEditMode] = useState(false);
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
