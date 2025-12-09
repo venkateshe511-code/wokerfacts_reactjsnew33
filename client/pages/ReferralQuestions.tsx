@@ -1050,14 +1050,17 @@ export default function ReferralQuestions() {
                         />
                       </div>
 
-                      {/* Tabbed Section - Return to Work Status & RPDR */}
+                      {/* Tabbed Section - Return to Work Status, RPDR & CTP */}
                       <Tabs defaultValue="return-to-work" className="w-full">
-                        <TabsList className="grid w-full grid-cols-2">
+                        <TabsList className="grid w-full grid-cols-3">
                           <TabsTrigger value="return-to-work">
                             Return to Work Status
                           </TabsTrigger>
                           <TabsTrigger value="rpdr">
                             Observed Symptom Behavior (RPDR)
+                          </TabsTrigger>
+                          <TabsTrigger value="ctp">
+                            Observable Signs of Effort (CTP)
                           </TabsTrigger>
                         </TabsList>
 
