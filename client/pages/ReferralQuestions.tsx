@@ -71,7 +71,6 @@ const RPDR_BEHAVIORS = [
   "Decreased speed of movement/mobility",
   "Alternating positions/postures",
   "Sitting for unoffered breaks",
-  "Stretching",
   "Taking short breaks",
   "Terminating tasks due to pain and apprehension",
   "Demonstrated need to lay down",
@@ -1039,25 +1038,17 @@ export default function ReferralQuestions() {
                     </div>
                   ) : question.question.includes("Conclusions?") ? (
                     <div className="space-y-6">
-                      <div>
-                        <Textarea
-                          value={question.answer}
-                          onChange={(e) =>
-                            handleAnswerChange(question.id, e.target.value)
-                          }
-                          placeholder="Enter your conclusion here..."
-                          className="min-h-[120px]"
-                        />
-                      </div>
-
-                      {/* Tabbed Section - Return to Work Status & RPDR */}
+                      {/* Tabbed Section - Return to Work Status, RPDR & CTP */}
                       <Tabs defaultValue="return-to-work" className="w-full">
-                        <TabsList className="grid w-full grid-cols-2">
+                        <TabsList className="grid w-full grid-cols-3">
                           <TabsTrigger value="return-to-work">
                             Return to Work Status
                           </TabsTrigger>
                           <TabsTrigger value="rpdr">
                             Observed Symptom Behavior (RPDR)
+                          </TabsTrigger>
+                          <TabsTrigger value="ctp">
+                            Observable Signs of Effort (CTP)
                           </TabsTrigger>
                         </TabsList>
 
@@ -1182,7 +1173,179 @@ export default function ReferralQuestions() {
                             </div>
                           </div>
                         </TabsContent>
+
+                        <TabsContent
+                          value="ctp"
+                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
+                        >
+                          <div>
+                            <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                              Observable Signs of Effort / Competitive Testing
+                              Performance (CTP)
+                            </h3>
+                            <p className="text-xs text-gray-600 mb-4">
+                              Observable behaviors in which a person attempts to
+                              gain an advantage to improve scores.
+                            </p>
+                            <div className="space-y-3 max-h-[400px] overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white">
+                              {CTP_BEHAVIORS.map((behavior) => (
+                                <div
+                                  key={behavior}
+                                  className="flex items-center space-x-3"
+                                >
+                                  <Checkbox
+                                    id={`ctp-${behavior}`}
+                                    checked={
+                                      referralData.conclusionData?.ctpBehaviors[
+                                        behavior
+                                      ] || false
+                                    }
+                                    onCheckedChange={(checked) =>
+                                      setReferralData((prev) => ({
+                                        ...prev,
+                                        conclusionData: {
+                                          ...prev.conclusionData!,
+                                          ctpBehaviors: {
+                                            ...prev.conclusionData!
+                                              .ctpBehaviors,
+                                            [behavior]: checked,
+                                          },
+                                        },
+                                      }))
+                                    }
+                                  />
+                                  <label
+                                    htmlFor={`ctp-${behavior}`}
+                                    className="text-sm text-gray-700 cursor-pointer flex-1"
+                                  >
+                                    {behavior}
+                                  </label>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </TabsContent>
                       </Tabs>
+
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Conclusion
+                        </label>
+                        <Textarea
+                          value={question.answer}
+                          onChange={(e) =>
+                            handleAnswerChange(question.id, e.target.value)
+                          }
+                          placeholder="Enter your conclusion here..."
+                          className="min-h-[120px]"
+                        />
+                      </div>
+
+                      {/* Image Upload for Conclusions Question */}
+                      <div className="space-y-4">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          disabled={uploadingImages === question.id}
+                          onClick={() =>
+                            document
+                              .getElementById(`image-upload-${question.id}`)
+                              ?.click()
+                          }
+                          className={`flex items-center ${
+                            uploadingImages === question.id
+                              ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                              : "bg-blue-100 text-blue-600 hover:bg-blue-200"
+                          }`}
+                        >
+                          <Upload className="mr-2 h-4 w-4" />
+                          {uploadingImages === question.id
+                            ? "Processing..."
+                            : "Upload Image Library"}
+                        </Button>
+
+                        <input
+                          id={`image-upload-${question.id}`}
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          onChange={(e) => handleImageUpload(question.id, e)}
+                          className="hidden"
+                        />
+
+                        {/* Upload Progress Indicator */}
+                        {uploadingImages === question.id && (
+                          <div className="flex items-center justify-center p-4 border border-blue-200 rounded-lg bg-blue-50">
+                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600 mr-2"></div>
+                            <span className="text-sm text-blue-600">
+                              Processing images...
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Uploaded Images Preview */}
+                        {(question.savedImageData?.length > 0 ||
+                          question.images.length > 0) && (
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            {/* Show savedImageData first (processed images) */}
+                            {question.savedImageData?.map(
+                              (imageData, imageIndex) => (
+                                <div
+                                  key={`saved-${imageIndex}`}
+                                  className="relative group"
+                                >
+                                  <img
+                                    src={imageData.dataUrl}
+                                    alt={`Uploaded ${imageIndex + 1}`}
+                                    className="w-full h-24 object-cover rounded-lg border shadow-sm"
+                                  />
+                                  <Button
+                                    type="button"
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() =>
+                                      removeImage(question.id, imageIndex)
+                                    }
+                                    className="absolute top-1 right-1 h-6 w-6 p-0 bg-red-500 text-white hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                                  >
+                                    <X className="h-3 w-3" />
+                                  </Button>
+                                  <p className="text-xs text-gray-500 mt-1 truncate">
+                                    {imageData.name}
+                                  </p>
+                                </div>
+                              ),
+                            ) ||
+                              /* Fallback to File objects if savedImageData not available */
+                              question.images.map((file, imageIndex) => (
+                                <div
+                                  key={`file-${imageIndex}`}
+                                  className="relative group"
+                                >
+                                  <img
+                                    src={URL.createObjectURL(file)}
+                                    alt={`Uploaded ${imageIndex + 1}`}
+                                    className="w-full h-24 object-cover rounded-lg border shadow-sm"
+                                  />
+                                  <Button
+                                    type="button"
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() =>
+                                      removeImage(question.id, imageIndex)
+                                    }
+                                    className="absolute top-1 right-1 h-6 w-6 p-0 bg-red-500 text-white hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity"
+                                  >
+                                    <X className="h-3 w-3" />
+                                  </Button>
+                                  <p className="text-xs text-gray-500 mt-1 truncate">
+                                    {file.name}
+                                  </p>
+                                </div>
+                              ))}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   ) : (
                     <Textarea
@@ -1197,7 +1360,8 @@ export default function ReferralQuestions() {
 
                   {/* Hide image upload for 6b and 6c questions */}
                   {!question.question.includes("6b)") &&
-                    !question.question.includes("6c)") && (
+                    !question.question.includes("6c)") &&
+                    !question.question.includes("Conclusions?") && (
                       <div className="space-y-4">
                         <Button
                           type="button"

@@ -2005,30 +2005,6 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 </div>
 
 
-    <!-- Return to Work Status -->
-    <div class="return-to-work-section" style="page-break-before: always; padding: 40px 0;">
-        <div style="background: #dbeafe; border: 1px solid #3b82f6; padding: 12px; font-weight: bold; margin-bottom: 20px; border-radius: 4px; color: #1e40af;">
-            Return to Work Status
-        </div>
-
-        ${(() => {
-          if (returnToWorkStatus && returnToWorkStatus.status) {
-            const html =
-              '<div style="margin-bottom: 16px;"><p style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">Selected Status:</p>' +
-              '<p style="margin-bottom: 12px; font-family: Arial, sans-serif;">' +
-              (returnToWorkStatus.status || "") +
-              "</p>" +
-              '<p style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">Comments:</p>' +
-              '<p style="margin-bottom: 12px; font-family: Arial, sans-serif; line-height: 1.6; white-space: pre-wrap;">' +
-              (returnToWorkStatus.comments || "No comments provided") +
-              "</p></div>";
-            return html;
-          }
-          return '<p style="font-style: italic; color: #666; font-family: Arial, sans-serif;">No Return to Work Status selected.</p>';
-        })()}
-    </div>
-
-
     <!-- Referral Questions -->
     <div class="referral-section" style="page-break-before: always; padding: 40px 0;">
         <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 12px; font-weight: bold; margin-bottom: 20px; border-radius: 4px;">
@@ -2436,9 +2412,71 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             Conclusions
         </div>
 
+        <!-- Return to Work Status Tab -->
+        ${(() => {
+          const rtw = referralQuestionsData?.conclusionData?.returnToWorkStatus;
+          if (rtw?.status) {
+            const safe = String(rtw.comments || "")
+              .replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/\n/g, "<br/>");
+            return `
+              <div style="background: #eff6ff; border: 1px solid #93c5fd; border-radius: 4px; padding: 12px; margin-bottom: 20px;">
+                <h4 style="font-weight: bold; font-size: 12px; color: #333; margin-bottom: 8px; font-family: Arial, sans-serif;">Return to Work Status</h4>
+                <p style="font-size: 11px; color: #374151; margin-bottom: 6px; font-family: Arial, sans-serif;"><strong>Status:</strong> ${rtw.status}</p>
+                <p style="font-size: 11px; color: #374151; line-height: 1.5; font-family: Arial, sans-serif;">${safe}</p>
+              </div>
+            `;
+          }
+          return "";
+        })()}
+
+        <!-- Observed Symptom Behavior (RPDR) Tab -->
+        ${(() => {
+          const rpdr = referralQuestionsData?.conclusionData?.rpdrBehaviors;
+          const hasChecked =
+            rpdr && Object.values(rpdr).some((v) => v === true);
+          if (hasChecked) {
+            const checked = Object.entries(rpdr)
+              .filter(([_, v]) => v === true)
+              .map(([behavior]) => behavior);
+            return `
+              <div style="background: #eff6ff; border: 1px solid #93c5fd; border-radius: 4px; padding: 12px; margin-bottom: 20px;">
+                <h4 style="font-weight: bold; font-size: 12px; color: #333; margin-bottom: 6px; font-family: Arial, sans-serif;">Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)</h4>
+                <p style="font-size: 10px; color: #666; margin-bottom: 8px; font-family: Arial, sans-serif;">Observable demonstrations of the patient that were consistent or inconsistent with the medical diagnosis and reported pain level.</p>
+                <ul style="margin: 0; padding-left: 20px; font-size: 11px; color: #374151; font-family: Arial, sans-serif;">
+                  ${checked.map((behavior) => `<li style="margin: 4px 0;">${behavior}</li>`).join("")}
+                </ul>
+              </div>
+            `;
+          }
+          return "";
+        })()}
+
+        <!-- Observable Signs of Effort (CTP) Tab -->
+        ${(() => {
+          const ctp = referralQuestionsData?.conclusionData?.ctpBehaviors;
+          const hasChecked = ctp && Object.values(ctp).some((v) => v === true);
+          if (hasChecked) {
+            const checked = Object.entries(ctp)
+              .filter(([_, v]) => v === true)
+              .map(([behavior]) => behavior);
+            return `
+              <div style="background: #eff6ff; border: 1px solid #93c5fd; border-radius: 4px; padding: 12px; margin-bottom: 20px;">
+                <h4 style="font-weight: bold; font-size: 12px; color: #333; margin-bottom: 6px; font-family: Arial, sans-serif;">Observable Signs of Effort / Competitive Testing Performance (CTP)</h4>
+                <p style="font-size: 10px; color: #666; margin-bottom: 8px; font-family: Arial, sans-serif;">Observable behaviors in which a person attempts to gain an advantage to improve scores.</p>
+                <ul style="margin: 0; padding-left: 20px; font-size: 11px; color: #374151; font-family: Arial, sans-serif;">
+                  ${checked.map((behavior) => `<li style="margin: 4px 0;">${behavior}</li>`).join("")}
+                </ul>
+              </div>
+            `;
+          }
+          return "";
+        })()}
 
         <!-- Enhanced Conclusions Text -->
-        <div style="margin-top: 30px;">
+        <div style="margin-top: 20px;">
             <div style="margin-bottom: 20px;">
               ${(() => {
                 const conclusionQuestion =
@@ -2455,6 +2493,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     .replace(/>/g, "&gt;")
                     .replace(/\n/g, "<br/>");
                   return `
+                <h4 style="font-weight: bold; font-size: 12px; color: #333; margin-bottom: 8px; font-family: Arial, sans-serif;">Conclusion</h4>
                 <p style="font-size: 12px; color: #374151; line-height: 1.6; font-family: Arial, sans-serif;">${safe}</p>
               `;
                 }
