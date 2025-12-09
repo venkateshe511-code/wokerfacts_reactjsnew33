@@ -516,7 +516,7 @@ export default function Dashboard() {
     }
   };
 
-  const sampleDocxUrl = "/WF FCE Client Informed Consent.docx";
+  const sampleDocxUrl = "/INFORMED CONSENT & PRE OR POST PAIN CHARTS.docx";
 
   const downloadWFFCEClientInformedConsentDocx = async () => {
     try {
@@ -526,7 +526,7 @@ export default function Dashboard() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "WF FCE Client Informed Consent.docx"; // Set the desired filename
+      a.download = "INFORMED CONSENT & PRE OR POST PAIN CHARTS.docx"; // Set the desired filename
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -762,7 +762,7 @@ export default function Dashboard() {
                   className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
                 >
                   <Download className="mr-2 h-4 w-4 text-white" />
-                  WF FCE Client Informed Consent
+                  Informed Consent & Pre/Post Pain Charts
                 </Button>
                 <Button
                   size="sm"
