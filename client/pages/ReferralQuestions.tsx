@@ -242,12 +242,12 @@ export default function ReferralQuestions() {
         comments: RETURN_TO_WORK_OPTIONS["Return to Regular Duties"],
       },
       rpdrBehaviors: {
-        "Grimacing": true,
-        "Stretching": true,
+        Grimacing: true,
+        Stretching: true,
         "Rubbing area": false,
         "Unloading extremity(s)": true,
         "Shaking the involved area": false,
-        "Guarding": true,
+        Guarding: true,
         "Decreased speed of movement/mobility": false,
         "Alternating positions/postures": true,
         "Sitting for unoffered breaks": false,
@@ -1061,7 +1061,10 @@ export default function ReferralQuestions() {
                           </TabsTrigger>
                         </TabsList>
 
-                        <TabsContent value="return-to-work" className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4">
+                        <TabsContent
+                          value="return-to-work"
+                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
+                        >
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-3">
                               Select Return to Work Status
@@ -1080,7 +1083,8 @@ export default function ReferralQuestions() {
                                       status: e.target.value,
                                       comments:
                                         RETURN_TO_WORK_OPTIONS[
-                                          e.target.value as keyof typeof RETURN_TO_WORK_OPTIONS
+                                          e.target
+                                            .value as keyof typeof RETURN_TO_WORK_OPTIONS
                                         ] || "",
                                     },
                                   },
@@ -1127,13 +1131,19 @@ export default function ReferralQuestions() {
                           </div>
                         </TabsContent>
 
-                        <TabsContent value="rpdr" className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4">
+                        <TabsContent
+                          value="rpdr"
+                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
+                        >
                           <div>
                             <h3 className="text-sm font-semibold text-gray-900 mb-4">
-                              Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)
+                              Observed Symptom Behavior / Reliability of Pain
+                              and Disability Reports (RPDR)
                             </h3>
                             <p className="text-xs text-gray-600 mb-4">
-                              Observable demonstrations of the patient that were consistent or inconsistent with the medical diagnosis and reported pain level.
+                              Observable demonstrations of the patient that were
+                              consistent or inconsistent with the medical
+                              diagnosis and reported pain level.
                             </p>
                             <div className="space-y-3 max-h-[400px] overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white">
                               {RPDR_BEHAVIORS.map((behavior) => (
@@ -1144,9 +1154,8 @@ export default function ReferralQuestions() {
                                   <Checkbox
                                     id={`rpdr-${behavior}`}
                                     checked={
-                                      referralData.conclusionData?.rpdrBehaviors[
-                                        behavior
-                                      ] || false
+                                      referralData.conclusionData
+                                        ?.rpdrBehaviors[behavior] || false
                                     }
                                     onCheckedChange={(checked) =>
                                       setReferralData((prev) => ({
