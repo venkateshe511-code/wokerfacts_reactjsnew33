@@ -1038,17 +1038,6 @@ export default function ReferralQuestions() {
                     </div>
                   ) : question.question.includes("Conclusions?") ? (
                     <div className="space-y-6">
-                      <div>
-                        <Textarea
-                          value={question.answer}
-                          onChange={(e) =>
-                            handleAnswerChange(question.id, e.target.value)
-                          }
-                          placeholder="Enter your conclusion here..."
-                          className="min-h-[120px]"
-                        />
-                      </div>
-
                       {/* Tabbed Section - Return to Work Status, RPDR & CTP */}
                       <Tabs defaultValue="return-to-work" className="w-full">
                         <TabsList className="grid w-full grid-cols-3">
