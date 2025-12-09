@@ -386,6 +386,10 @@ export default function ReferralQuestions() {
             (acc, behavior) => ({ ...acc, [behavior]: false }),
             {},
           ),
+          ctpBehaviors: CTP_BEHAVIORS.reduce(
+            (acc, behavior) => ({ ...acc, [behavior]: false }),
+            {},
+          ),
         },
       });
 
@@ -404,6 +408,10 @@ export default function ReferralQuestions() {
               comments: "",
             },
             rpdrBehaviors: RPDR_BEHAVIORS.reduce(
+              (acc, behavior) => ({ ...acc, [behavior]: false }),
+              {},
+            ),
+            ctpBehaviors: CTP_BEHAVIORS.reduce(
               (acc, behavior) => ({ ...acc, [behavior]: false }),
               {},
             ),
