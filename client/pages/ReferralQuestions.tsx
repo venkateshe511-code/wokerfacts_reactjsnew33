@@ -32,9 +32,19 @@ interface ReturnToWorkStatus {
   comments: string;
 }
 
+interface RPDRBehaviors {
+  [key: string]: boolean;
+}
+
+interface ConclusionData {
+  returnToWorkStatus: ReturnToWorkStatus;
+  rpdrBehaviors: RPDRBehaviors;
+}
+
 interface ReferralData {
   questions: ReferralQuestion[];
   returnToWorkStatus: ReturnToWorkStatus;
+  conclusionData?: ConclusionData;
 }
 
 const RETURN_TO_WORK_OPTIONS = {
