@@ -106,6 +106,16 @@ export default function ReferralQuestions() {
       status: "",
       comments: "",
     },
+    conclusionData: {
+      returnToWorkStatus: {
+        status: "",
+        comments: "",
+      },
+      rpdrBehaviors: RPDR_BEHAVIORS.reduce(
+        (acc, behavior) => ({ ...acc, [behavior]: false }),
+        {},
+      ),
+    },
   });
 
   const [isEditMode, setIsEditMode] = useState(false);
