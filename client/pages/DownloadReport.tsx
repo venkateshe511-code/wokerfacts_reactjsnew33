@@ -2435,7 +2435,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         <!-- Observed Symptom Behavior (RPDR) Tab -->
         ${(() => {
           const rpdr = referralQuestionsData?.conclusionData?.rpdrBehaviors;
-          const hasChecked = rpdr && Object.values(rpdr).some(v => v === true);
+          const hasChecked =
+            rpdr && Object.values(rpdr).some((v) => v === true);
           if (hasChecked) {
             const checked = Object.entries(rpdr)
               .filter(([_, v]) => v === true)
@@ -2445,7 +2446,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 <h4 style="font-weight: bold; font-size: 12px; color: #333; margin-bottom: 6px; font-family: Arial, sans-serif;">Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)</h4>
                 <p style="font-size: 10px; color: #666; margin-bottom: 8px; font-family: Arial, sans-serif;">Observable demonstrations of the patient that were consistent or inconsistent with the medical diagnosis and reported pain level.</p>
                 <ul style="margin: 0; padding-left: 20px; font-size: 11px; color: #374151; font-family: Arial, sans-serif;">
-                  ${checked.map(behavior => `<li style="margin: 4px 0;">${behavior}</li>`).join("")}
+                  ${checked.map((behavior) => `<li style="margin: 4px 0;">${behavior}</li>`).join("")}
                 </ul>
               </div>
             `;
@@ -2456,7 +2457,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         <!-- Observable Signs of Effort (CTP) Tab -->
         ${(() => {
           const ctp = referralQuestionsData?.conclusionData?.ctpBehaviors;
-          const hasChecked = ctp && Object.values(ctp).some(v => v === true);
+          const hasChecked = ctp && Object.values(ctp).some((v) => v === true);
           if (hasChecked) {
             const checked = Object.entries(ctp)
               .filter(([_, v]) => v === true)
@@ -2466,7 +2467,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 <h4 style="font-weight: bold; font-size: 12px; color: #333; margin-bottom: 6px; font-family: Arial, sans-serif;">Observable Signs of Effort / Competitive Testing Performance (CTP)</h4>
                 <p style="font-size: 10px; color: #666; margin-bottom: 8px; font-family: Arial, sans-serif;">Observable behaviors in which a person attempts to gain an advantage to improve scores.</p>
                 <ul style="margin: 0; padding-left: 20px; font-size: 11px; color: #374151; font-family: Arial, sans-serif;">
-                  ${checked.map(behavior => `<li style="margin: 4px 0;">${behavior}</li>`).join("")}
+                  ${checked.map((behavior) => `<li style="margin: 4px 0;">${behavior}</li>`).join("")}
                 </ul>
               </div>
             `;

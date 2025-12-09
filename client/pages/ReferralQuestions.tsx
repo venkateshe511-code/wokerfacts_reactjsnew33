@@ -1196,8 +1196,9 @@ export default function ReferralQuestions() {
                                   <Checkbox
                                     id={`ctp-${behavior}`}
                                     checked={
-                                      referralData.conclusionData
-                                        ?.ctpBehaviors[behavior] || false
+                                      referralData.conclusionData?.ctpBehaviors[
+                                        behavior
+                                      ] || false
                                     }
                                     onCheckedChange={(checked) =>
                                       setReferralData((prev) => ({

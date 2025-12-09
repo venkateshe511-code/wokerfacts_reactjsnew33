@@ -1957,7 +1957,8 @@ export default function ReviewReport() {
 
                 <div className="space-y-6 text-sm">
                   {/* Return to Work Status Tab */}
-                  {reportData.referralQuestionsData?.conclusionData?.returnToWorkStatus?.status && (
+                  {reportData.referralQuestionsData?.conclusionData
+                    ?.returnToWorkStatus?.status && (
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                       <h4 className="font-semibold text-gray-900 mb-3">
                         Return to Work Status
@@ -1985,7 +1986,8 @@ export default function ReviewReport() {
                   )}
 
                   {/* Observed Symptom Behavior (RPDR) Tab */}
-                  {reportData.referralQuestionsData?.conclusionData?.rpdrBehaviors &&
+                  {reportData.referralQuestionsData?.conclusionData
+                    ?.rpdrBehaviors &&
                     Object.values(
                       reportData.referralQuestionsData.conclusionData
                         .rpdrBehaviors,
@@ -2016,7 +2018,8 @@ export default function ReviewReport() {
                     )}
 
                   {/* Observable Signs of Effort (CTP) Tab */}
-                  {reportData.referralQuestionsData?.conclusionData?.ctpBehaviors &&
+                  {reportData.referralQuestionsData?.conclusionData
+                    ?.ctpBehaviors &&
                     Object.values(
                       reportData.referralQuestionsData.conclusionData
                         .ctpBehaviors,
