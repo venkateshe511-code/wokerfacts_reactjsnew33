@@ -1015,21 +1015,41 @@ export default function ReferralQuestions() {
                         />
                       </div>
 
-                      {/* Return to Work Status Section - Part of Conclusions */}
-                      <div className="p-6 bg-blue-50 border border-blue-200 rounded-lg">
-                        <h3 className="text-lg font-bold text-blue-900 mb-4">
-                          Return to Work Status
-                        </h3>
+                      {/* Tabbed Section - Return to Work Status & RPDR */}
+                      <Tabs defaultValue="return-to-work" className="w-full">
+                        <TabsList className="grid w-full grid-cols-2">
+                          <TabsTrigger value="return-to-work">
+                            Return to Work Status
+                          </TabsTrigger>
+                          <TabsTrigger value="rpdr">
+                            Observed Symptom Behavior (RPDR)
+                          </TabsTrigger>
+                        </TabsList>
 
-                        <div className="space-y-4">
+                        <TabsContent value="return-to-work" className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4">
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-3">
                               Select Return to Work Status
                             </label>
                             <select
-                              value={referralData.returnToWorkStatus.status}
+                              value={
+                                referralData.conclusionData?.returnToWorkStatus
+                                  .status || ""
+                              }
                               onChange={(e) =>
-                                handleReturnToWorkStatusChange(e.target.value)
+                                setReferralData((prev) => ({
+                                  ...prev,
+                                  conclusionData: {
+                                    ...prev.conclusionData!,
+                                    returnToWorkStatus: {
+                                      status: e.target.value,
+                                      comments:
+                                        RETURN_TO_WORK_OPTIONS[
+                                          e.target.value as keyof typeof RETURN_TO_WORK_OPTIONS
+                                        ] || "",
+                                    },
+                                  },
+                                }))
                               }
                               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             >
@@ -1049,13 +1069,20 @@ export default function ReferralQuestions() {
                               Comments
                             </label>
                             <Textarea
-                              value={referralData.returnToWorkStatus.comments}
+                              value={
+                                referralData.conclusionData?.returnToWorkStatus
+                                  .comments || ""
+                              }
                               onChange={(e) =>
                                 setReferralData((prev) => ({
                                   ...prev,
-                                  returnToWorkStatus: {
-                                    ...prev.returnToWorkStatus,
-                                    comments: e.target.value,
+                                  conclusionData: {
+                                    ...prev.conclusionData!,
+                                    returnToWorkStatus: {
+                                      ...prev.conclusionData!
+                                        .returnToWorkStatus,
+                                      comments: e.target.value,
+                                    },
                                   },
                                 }))
                               }
@@ -1063,8 +1090,55 @@ export default function ReferralQuestions() {
                               className="min-h-[150px]"
                             />
                           </div>
-                        </div>
-                      </div>
+                        </TabsContent>
+
+                        <TabsContent value="rpdr" className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4">
+                          <div>
+                            <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                              Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)
+                            </h3>
+                            <p className="text-xs text-gray-600 mb-4">
+                              Observable demonstrations of the patient that were consistent or inconsistent with the medical diagnosis and reported pain level.
+                            </p>
+                            <div className="space-y-3 max-h-[400px] overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white">
+                              {RPDR_BEHAVIORS.map((behavior) => (
+                                <div
+                                  key={behavior}
+                                  className="flex items-center space-x-3"
+                                >
+                                  <Checkbox
+                                    id={`rpdr-${behavior}`}
+                                    checked={
+                                      referralData.conclusionData?.rpdrBehaviors[
+                                        behavior
+                                      ] || false
+                                    }
+                                    onCheckedChange={(checked) =>
+                                      setReferralData((prev) => ({
+                                        ...prev,
+                                        conclusionData: {
+                                          ...prev.conclusionData!,
+                                          rpdrBehaviors: {
+                                            ...prev.conclusionData!
+                                              .rpdrBehaviors,
+                                            [behavior]: checked,
+                                          },
+                                        },
+                                      }))
+                                    }
+                                  />
+                                  <label
+                                    htmlFor={`rpdr-${behavior}`}
+                                    className="text-sm text-gray-700 cursor-pointer flex-1"
+                                  >
+                                    {behavior}
+                                  </label>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </TabsContent>
+                      </Tabs>
                     </div>
                   ) : (
                     <Textarea
