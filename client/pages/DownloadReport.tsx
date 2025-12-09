@@ -318,8 +318,6 @@ export default function DownloadReport() {
     keysToRemove.forEach((key) => {
       localStorage.removeItem(key);
     });
-
-    setSignatureImage(null);
   };
 
   const clearAllData = () => {
