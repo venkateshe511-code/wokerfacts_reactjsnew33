@@ -198,6 +198,12 @@ export default function DownloadReport() {
     // Load summary data from all steps
     const loadSummaryData = async () => {
       try {
+        // Load signature from localStorage if it exists
+        const savedSignature = localStorage.getItem("signatureImage");
+        if (savedSignature) {
+          setSignatureImage(savedSignature);
+        }
+
         const evaluatorData = await getEvaluatorData();
         const claimantData = JSON.parse(
           localStorage.getItem("claimantData") || "{}",
