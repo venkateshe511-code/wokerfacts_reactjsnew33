@@ -6656,6 +6656,53 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               </div>
             </div>
 
+            {/* Signature Upload Section */}
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-6">
+              <h3 className="text-lg font-semibold text-purple-800 mb-4">
+                Upload Evaluator Signature
+              </h3>
+              <p className="text-sm text-purple-700 mb-4">
+                Upload your signature image to be included in the "Signature of Evaluator" section of all reports.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <input
+                    type="file"
+                    id="signatureUpload"
+                    accept="image/png,image/jpeg,image/jpg"
+                    onChange={handleSignatureUpload}
+                    className="flex-1 px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  />
+                </div>
+                {signatureImage && (
+                  <div className="flex items-center space-x-4 bg-white p-4 rounded-lg border border-purple-200">
+                    <div>
+                      <p className="text-sm font-semibold text-purple-800">Signature Preview:</p>
+                      <img
+                        src={signatureImage}
+                        alt="Signature Preview"
+                        style={{ maxWidth: "150px", maxHeight: "80px" }}
+                        className="mt-2 border border-purple-300 rounded"
+                      />
+                    </div>
+                    <button
+                      onClick={() => {
+                        setSignatureImage(null);
+                        localStorage.removeItem("signatureImage");
+                        toast({
+                          title: "Signature removed",
+                          description: "The signature has been removed from your reports",
+                        });
+                      }}
+                      className="text-red-600 hover:text-red-700 text-sm font-medium"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
             {/* Important Notice */}
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-8">
               <h3 className="text-lg font-semibold text-amber-800 mb-2 flex items-center">
