@@ -147,6 +147,7 @@ export default function DownloadReport() {
     executiveSummary: false,
     fullReport: false,
   });
+  const [signatureImage, setSignatureImage] = useState<string | null>(null);
 
   // Helper to get evaluator data with Firestore fallback to ensure logo and branding are present
   const getEvaluatorData = async (): Promise<any> => {
@@ -197,6 +198,12 @@ export default function DownloadReport() {
     // Load summary data from all steps
     const loadSummaryData = async () => {
       try {
+        // Load signature from localStorage if it exists
+        const savedSignature = localStorage.getItem("signatureImage");
+        if (savedSignature) {
+          setSignatureImage(savedSignature);
+        }
+
         const evaluatorData = await getEvaluatorData();
         const claimantData = JSON.parse(
           localStorage.getItem("claimantData") || "{}",
@@ -293,7 +300,7 @@ export default function DownloadReport() {
   }, []);
 
   const clearStepsData = () => {
-    // Clear only steps data, keep evaluator profile
+    // Clear only steps data, keep evaluator profile and signature
     const keysToRemove = [
       "claimantData",
       "painIllustrationData",
@@ -331,6 +338,50 @@ export default function DownloadReport() {
       );
     if (sampleAccessBackup)
       localStorage.setItem("sampleAccess", sampleAccessBackup);
+  };
+
+  const handleSignatureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const validTypes = ["image/png", "image/jpeg", "image/jpg"];
+      if (!validTypes.includes(file.type)) {
+        toast({
+          title: "Invalid file type",
+          description: "Please upload a PNG or JPEG image",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        toast({
+          title: "File too large",
+          description: "Please upload an image smaller than 5MB",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target?.result as string;
+        setSignatureImage(dataUrl);
+        localStorage.setItem("signatureImage", dataUrl);
+        toast({
+          title: "Signature uploaded",
+          description: "Your signature will be included in the final reports",
+        });
+      };
+      reader.onerror = () => {
+        toast({
+          title: "Error reading file",
+          description: "Unable to read the image file",
+          variant: "destructive",
+        });
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const generateReportContent = async () => {
@@ -2544,7 +2595,13 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             </div>
 
             <div style="margin-top: 40px;">
-                <div style="border-bottom: 1px solid #333; width: 250px; margin-bottom: 8px;"></div>
+                ${
+                  signatureImage
+                    ? `<div style="margin-bottom: 20px;">
+                        <img src="${signatureImage}" alt="Evaluator Signature" style="max-width: 200px; max-height: 100px; border: 1px solid #ccc; padding: 4px;" />
+                      </div>`
+                    : `<div style="border-bottom: 1px solid #333; width: 250px; margin-bottom: 8px;"></div>`
+                }
                 <p style="font-size: 12px; font-family: Arial, sans-serif;">Date: ${currentDate}</p>
                 <p style="font-size: 12px; font-weight: bold; font-family: Arial, sans-serif;">
                     ${evaluatorData.name || "Licensed Evaluator"}
@@ -6143,6 +6200,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             totalImages: reportSummary.totalImages,
             completedSteps: reportSummary.completedSteps,
           },
+
+          // Signature Image
+          signatureImage: signatureImage || null,
         };
 
         // Debug: Log comprehensive data being sent to cloud function
@@ -6596,6 +6656,57 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     FCE Full Report
                   </Label>
                 </div>
+              </div>
+            </div>
+
+            {/* Signature Upload Section */}
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-6">
+              <h3 className="text-lg font-semibold text-purple-800 mb-4">
+                Upload Evaluator Signature
+              </h3>
+              <p className="text-sm text-purple-700 mb-4">
+                Upload your signature image to be included in the "Signature of
+                Evaluator" section of all reports.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <input
+                    type="file"
+                    id="signatureUpload"
+                    accept="image/png,image/jpeg,image/jpg"
+                    onChange={handleSignatureUpload}
+                    className="flex-1 px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  />
+                </div>
+                {signatureImage && (
+                  <div className="flex items-center space-x-4 bg-white p-4 rounded-lg border border-purple-200">
+                    <div>
+                      <p className="text-sm font-semibold text-purple-800">
+                        Signature Preview:
+                      </p>
+                      <img
+                        src={signatureImage}
+                        alt="Signature Preview"
+                        style={{ maxWidth: "150px", maxHeight: "80px" }}
+                        className="mt-2 border border-purple-300 rounded"
+                      />
+                    </div>
+                    <button
+                      onClick={() => {
+                        setSignatureImage(null);
+                        localStorage.removeItem("signatureImage");
+                        toast({
+                          title: "Signature removed",
+                          description:
+                            "The signature has been removed from your reports",
+                        });
+                      }}
+                      className="text-red-600 hover:text-red-700 text-sm font-medium"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
