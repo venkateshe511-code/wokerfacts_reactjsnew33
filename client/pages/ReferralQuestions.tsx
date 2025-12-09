@@ -71,7 +71,6 @@ const RPDR_BEHAVIORS = [
   "Decreased speed of movement/mobility",
   "Alternating positions/postures",
   "Sitting for unoffered breaks",
-  "Stretching",
   "Taking short breaks",
   "Terminating tasks due to pain and apprehension",
   "Demonstrated need to lay down",
