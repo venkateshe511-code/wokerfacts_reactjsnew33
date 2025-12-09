@@ -220,6 +220,27 @@ export default function ReferralQuestions() {
       status: "Return to Regular Duties",
       comments: RETURN_TO_WORK_OPTIONS["Return to Regular Duties"],
     },
+    conclusionData: {
+      returnToWorkStatus: {
+        status: "Return to Regular Duties",
+        comments: RETURN_TO_WORK_OPTIONS["Return to Regular Duties"],
+      },
+      rpdrBehaviors: {
+        "Grimacing": true,
+        "Stretching": true,
+        "Rubbing area": false,
+        "Unloading extremity(s)": true,
+        "Shaking the involved area": false,
+        "Guarding": true,
+        "Decreased speed of movement/mobility": false,
+        "Alternating positions/postures": true,
+        "Sitting for unoffered breaks": false,
+        "Taking short breaks": true,
+        "Terminating tasks due to pain and apprehension": false,
+        "Demonstrated need to lay down": false,
+        "Open/Close hand(s) repeatedly": true,
+      },
+    },
   };
 
   const fillSampleReferralQuestions = async () => {
