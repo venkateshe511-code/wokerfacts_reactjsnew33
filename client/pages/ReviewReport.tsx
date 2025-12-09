@@ -1296,39 +1296,6 @@ export default function ReviewReport() {
                 </div>
               )}
 
-              {/* Return to Work Status */}
-              {reportData.returnToWorkStatus &&
-                reportData.returnToWorkStatus.status && (
-                  <div className="p-8 border-b">
-                    <div className="bg-blue-100 border border-blue-400 p-2 mb-4">
-                      <h3 className="font-bold text-blue-900">
-                        Return to Work Status
-                      </h3>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div>
-                        <p className="text-sm font-semibold text-gray-700 mb-2">
-                          Selected Status:
-                        </p>
-                        <p className="text-gray-900 mb-4">
-                          {reportData.returnToWorkStatus.status}
-                        </p>
-                      </div>
-
-                      <div>
-                        <p className="text-sm font-semibold text-gray-700 mb-2">
-                          Comments:
-                        </p>
-                        <p className="text-gray-900 whitespace-pre-wrap">
-                          {reportData.returnToWorkStatus.comments ||
-                            "No comments provided"}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
               {/* Referral Questions */}
               {reportData.referralQuestionsData &&
                 reportData.referralQuestionsData.questions && (
