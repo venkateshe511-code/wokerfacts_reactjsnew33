@@ -5841,12 +5841,43 @@ async function addConclusionContent(children, body) {
   );
 
   // === Signature Details (Date, Name, License) ===
-  children.push(
-    new Paragraph({
-      text: "__________________________________________",
-      spacing: { before: 300, after: 150 },
-    }),
-  );
+  if (body.signatureImage) {
+    try {
+      const base64Data = body.signatureImage.replace(
+        /^data:image\/\w+;base64,/,
+        "",
+      );
+      const buffer = Buffer.from(base64Data, "base64");
+
+      children.push(
+        new Paragraph({
+          alignment: AlignmentType.LEFT,
+          children: [
+            new ImageRun({
+              data: buffer,
+              transformation: { width: 150, height: 75 },
+            }),
+          ],
+          spacing: { before: 300, after: 150 },
+        }),
+      );
+    } catch (e) {
+      console.warn("Invalid signature image data:", e.message);
+      children.push(
+        new Paragraph({
+          text: "__________________________________________",
+          spacing: { before: 300, after: 150 },
+        }),
+      );
+    }
+  } else {
+    children.push(
+      new Paragraph({
+        text: "__________________________________________",
+        spacing: { before: 300, after: 150 },
+      }),
+    );
+  }
 
   children.push(
     new Paragraph({
