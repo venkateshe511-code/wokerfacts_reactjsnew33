@@ -77,6 +77,17 @@ const RPDR_BEHAVIORS = [
   "Open/Close hand(s) repeatedly",
 ];
 
+const CTP_BEHAVIORS = [
+  "Wiping hands",
+  "Repositioning body closer to a task",
+  "Starting a task early, ending a task late",
+  "Asking for more weight",
+  "Extra muscular recruitment",
+  "Asking to repeat a task",
+  "Asking if met norms/comparing scores on tasks",
+  "Verbal expressions of frustration",
+];
+
 const defaultQuestions = [
   "What is the present lumbar range of motion noted for the client?",
   "What is the present range of motion noted for the client for the affected area of injury?",
