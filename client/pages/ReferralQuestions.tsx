@@ -60,6 +60,23 @@ const RETURN_TO_WORK_OPTIONS = {
     "Based on the results of the FCE and the essential and critical demands of the job, the client has demonstrated that their previous occupation is not physically feasible long-term and their may be a need for vocational retraining for a different career.",
 };
 
+const RPDR_BEHAVIORS = [
+  "Grimacing",
+  "Stretching",
+  "Rubbing area",
+  "Unloading extremity(s)",
+  "Shaking the involved area",
+  "Guarding",
+  "Decreased speed of movement/mobility",
+  "Alternating positions/postures",
+  "Sitting for unoffered breaks",
+  "Stretching",
+  "Taking short breaks",
+  "Terminating tasks due to pain and apprehension",
+  "Demonstrated need to lay down",
+  "Open/Close hand(s) repeatedly",
+];
+
 const defaultQuestions = [
   "What is the present lumbar range of motion noted for the client?",
   "What is the present range of motion noted for the client for the affected area of injury?",
