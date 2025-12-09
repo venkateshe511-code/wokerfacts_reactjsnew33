@@ -256,6 +256,16 @@ export default function ReferralQuestions() {
         "Demonstrated need to lay down": false,
         "Open/Close hand(s) repeatedly": true,
       },
+      ctpBehaviors: {
+        "Wiping hands": true,
+        "Repositioning body closer to a task": false,
+        "Starting a task early, ending a task late": true,
+        "Asking for more weight": false,
+        "Extra muscular recruitment": true,
+        "Asking to repeat a task": false,
+        "Asking if met norms/comparing scores on tasks": true,
+        "Verbal expressions of frustration": false,
+      },
     },
   };
 
