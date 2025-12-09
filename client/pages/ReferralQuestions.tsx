@@ -12,6 +12,8 @@ import {
 import { ArrowLeft, Save, Edit, Check, Plus, Upload, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDemoMode } from "@/hooks/use-demo-mode";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface ReferralQuestion {
   id: string;
@@ -30,9 +32,20 @@ interface ReturnToWorkStatus {
   comments: string;
 }
 
+interface RPDRBehaviors {
+  [key: string]: boolean;
+}
+
+interface ConclusionData {
+  returnToWorkStatus: ReturnToWorkStatus;
+  rpdrBehaviors: RPDRBehaviors;
+  ctpBehaviors: { [key: string]: boolean };
+}
+
 interface ReferralData {
   questions: ReferralQuestion[];
   returnToWorkStatus: ReturnToWorkStatus;
+  conclusionData?: ConclusionData;
 }
 
 const RETURN_TO_WORK_OPTIONS = {
@@ -47,6 +60,34 @@ const RETURN_TO_WORK_OPTIONS = {
   "Vocational Retraining":
     "Based on the results of the FCE and the essential and critical demands of the job, the client has demonstrated that their previous occupation is not physically feasible long-term and their may be a need for vocational retraining for a different career.",
 };
+
+const RPDR_BEHAVIORS = [
+  "Grimacing",
+  "Stretching",
+  "Rubbing area",
+  "Unloading extremity(s)",
+  "Shaking the involved area",
+  "Guarding",
+  "Decreased speed of movement/mobility",
+  "Alternating positions/postures",
+  "Sitting for unoffered breaks",
+  "Stretching",
+  "Taking short breaks",
+  "Terminating tasks due to pain and apprehension",
+  "Demonstrated need to lay down",
+  "Open/Close hand(s) repeatedly",
+];
+
+const CTP_BEHAVIORS = [
+  "Wiping hands",
+  "Repositioning body closer to a task",
+  "Starting a task early, ending a task late",
+  "Asking for more weight",
+  "Extra muscular recruitment",
+  "Asking to repeat a task",
+  "Asking if met norms/comparing scores on tasks",
+  "Verbal expressions of frustration",
+];
 
 const defaultQuestions = [
   "What is the present lumbar range of motion noted for the client?",
@@ -76,6 +117,20 @@ export default function ReferralQuestions() {
     returnToWorkStatus: {
       status: "",
       comments: "",
+    },
+    conclusionData: {
+      returnToWorkStatus: {
+        status: "",
+        comments: "",
+      },
+      rpdrBehaviors: RPDR_BEHAVIORS.reduce(
+        (acc, behavior) => ({ ...acc, [behavior]: false }),
+        {},
+      ),
+      ctpBehaviors: CTP_BEHAVIORS.reduce(
+        (acc, behavior) => ({ ...acc, [behavior]: false }),
+        {},
+      ),
     },
   });
 
@@ -180,6 +235,37 @@ export default function ReferralQuestions() {
     returnToWorkStatus: {
       status: "Return to Regular Duties",
       comments: RETURN_TO_WORK_OPTIONS["Return to Regular Duties"],
+    },
+    conclusionData: {
+      returnToWorkStatus: {
+        status: "Return to Regular Duties",
+        comments: RETURN_TO_WORK_OPTIONS["Return to Regular Duties"],
+      },
+      rpdrBehaviors: {
+        Grimacing: true,
+        Stretching: true,
+        "Rubbing area": false,
+        "Unloading extremity(s)": true,
+        "Shaking the involved area": false,
+        Guarding: true,
+        "Decreased speed of movement/mobility": false,
+        "Alternating positions/postures": true,
+        "Sitting for unoffered breaks": false,
+        "Taking short breaks": true,
+        "Terminating tasks due to pain and apprehension": false,
+        "Demonstrated need to lay down": false,
+        "Open/Close hand(s) repeatedly": true,
+      },
+      ctpBehaviors: {
+        "Wiping hands": true,
+        "Repositioning body closer to a task": false,
+        "Starting a task early, ending a task late": true,
+        "Asking for more weight": false,
+        "Extra muscular recruitment": true,
+        "Asking to repeat a task": false,
+        "Asking if met norms/comparing scores on tasks": true,
+        "Verbal expressions of frustration": false,
+      },
     },
   };
 
@@ -291,6 +377,20 @@ export default function ReferralQuestions() {
           status: "",
           comments: "",
         },
+        conclusionData: savedData.conclusionData || {
+          returnToWorkStatus: {
+            status: "",
+            comments: "",
+          },
+          rpdrBehaviors: RPDR_BEHAVIORS.reduce(
+            (acc, behavior) => ({ ...acc, [behavior]: false }),
+            {},
+          ),
+          ctpBehaviors: CTP_BEHAVIORS.reduce(
+            (acc, behavior) => ({ ...acc, [behavior]: false }),
+            {},
+          ),
+        },
       });
 
       // Save the migrated data back to localStorage
@@ -301,6 +401,20 @@ export default function ReferralQuestions() {
           returnToWorkStatus: savedData.returnToWorkStatus || {
             status: "",
             comments: "",
+          },
+          conclusionData: savedData.conclusionData || {
+            returnToWorkStatus: {
+              status: "",
+              comments: "",
+            },
+            rpdrBehaviors: RPDR_BEHAVIORS.reduce(
+              (acc, behavior) => ({ ...acc, [behavior]: false }),
+              {},
+            ),
+            ctpBehaviors: CTP_BEHAVIORS.reduce(
+              (acc, behavior) => ({ ...acc, [behavior]: false }),
+              {},
+            ),
           },
         }),
       );
@@ -531,6 +645,7 @@ export default function ReferralQuestions() {
     const dataToSave = {
       questions: questionsWithImageData,
       returnToWorkStatus: referralData.returnToWorkStatus,
+      conclusionData: referralData.conclusionData,
     };
     localStorage.setItem("referralQuestionsData", JSON.stringify(dataToSave));
 
@@ -637,57 +752,6 @@ export default function ReferralQuestions() {
             </Button>
           </CardHeader>
           <CardContent className="p-8">
-            {/* Return to Work Status Section */}
-            <div className="mb-12 p-6 bg-blue-50 border border-blue-200 rounded-lg">
-              <h2 className="text-2xl font-bold text-blue-900 mb-6">
-                Return to Work Status
-              </h2>
-
-              <div className="space-y-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">
-                    Select Return to Work Status
-                  </label>
-                  <select
-                    value={referralData.returnToWorkStatus.status}
-                    onChange={(e) =>
-                      handleReturnToWorkStatusChange(e.target.value)
-                    }
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="">-- Choose an option --</option>
-                    {Object.keys(RETURN_TO_WORK_OPTIONS).map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">
-                    Comments
-                  </label>
-                  <Textarea
-                    value={referralData.returnToWorkStatus.comments}
-                    onChange={(e) =>
-                      setReferralData((prev) => ({
-                        ...prev,
-                        returnToWorkStatus: {
-                          ...prev.returnToWorkStatus,
-                          comments: e.target.value,
-                        },
-                      }))
-                    }
-                    placeholder="Comments will auto-populate based on your selection above..."
-                    className="min-h-[150px]"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <hr className="border-gray-300 my-8" />
-
             {/* Referral Questions Section */}
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Referral Questions
@@ -972,6 +1036,153 @@ export default function ReferralQuestions() {
                           className="min-h-[120px]"
                         />
                       </div>
+                    </div>
+                  ) : question.question.includes("Conclusions?") ? (
+                    <div className="space-y-6">
+                      <div>
+                        <Textarea
+                          value={question.answer}
+                          onChange={(e) =>
+                            handleAnswerChange(question.id, e.target.value)
+                          }
+                          placeholder="Enter your conclusion here..."
+                          className="min-h-[120px]"
+                        />
+                      </div>
+
+                      {/* Tabbed Section - Return to Work Status & RPDR */}
+                      <Tabs defaultValue="return-to-work" className="w-full">
+                        <TabsList className="grid w-full grid-cols-2">
+                          <TabsTrigger value="return-to-work">
+                            Return to Work Status
+                          </TabsTrigger>
+                          <TabsTrigger value="rpdr">
+                            Observed Symptom Behavior (RPDR)
+                          </TabsTrigger>
+                        </TabsList>
+
+                        <TabsContent
+                          value="return-to-work"
+                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
+                        >
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-3">
+                              Select Return to Work Status
+                            </label>
+                            <select
+                              value={
+                                referralData.conclusionData?.returnToWorkStatus
+                                  .status || ""
+                              }
+                              onChange={(e) =>
+                                setReferralData((prev) => ({
+                                  ...prev,
+                                  conclusionData: {
+                                    ...prev.conclusionData!,
+                                    returnToWorkStatus: {
+                                      status: e.target.value,
+                                      comments:
+                                        RETURN_TO_WORK_OPTIONS[
+                                          e.target
+                                            .value as keyof typeof RETURN_TO_WORK_OPTIONS
+                                        ] || "",
+                                    },
+                                  },
+                                }))
+                              }
+                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            >
+                              <option value="">-- Choose an option --</option>
+                              {Object.keys(RETURN_TO_WORK_OPTIONS).map(
+                                (option) => (
+                                  <option key={option} value={option}>
+                                    {option}
+                                  </option>
+                                ),
+                              )}
+                            </select>
+                          </div>
+
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-3">
+                              Comments
+                            </label>
+                            <Textarea
+                              value={
+                                referralData.conclusionData?.returnToWorkStatus
+                                  .comments || ""
+                              }
+                              onChange={(e) =>
+                                setReferralData((prev) => ({
+                                  ...prev,
+                                  conclusionData: {
+                                    ...prev.conclusionData!,
+                                    returnToWorkStatus: {
+                                      ...prev.conclusionData!
+                                        .returnToWorkStatus,
+                                      comments: e.target.value,
+                                    },
+                                  },
+                                }))
+                              }
+                              placeholder="Comments will auto-populate based on your selection above..."
+                              className="min-h-[150px]"
+                            />
+                          </div>
+                        </TabsContent>
+
+                        <TabsContent
+                          value="rpdr"
+                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
+                        >
+                          <div>
+                            <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                              Observed Symptom Behavior / Reliability of Pain
+                              and Disability Reports (RPDR)
+                            </h3>
+                            <p className="text-xs text-gray-600 mb-4">
+                              Observable demonstrations of the patient that were
+                              consistent or inconsistent with the medical
+                              diagnosis and reported pain level.
+                            </p>
+                            <div className="space-y-3 max-h-[400px] overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white">
+                              {RPDR_BEHAVIORS.map((behavior) => (
+                                <div
+                                  key={behavior}
+                                  className="flex items-center space-x-3"
+                                >
+                                  <Checkbox
+                                    id={`rpdr-${behavior}`}
+                                    checked={
+                                      referralData.conclusionData
+                                        ?.rpdrBehaviors[behavior] || false
+                                    }
+                                    onCheckedChange={(checked) =>
+                                      setReferralData((prev) => ({
+                                        ...prev,
+                                        conclusionData: {
+                                          ...prev.conclusionData!,
+                                          rpdrBehaviors: {
+                                            ...prev.conclusionData!
+                                              .rpdrBehaviors,
+                                            [behavior]: checked,
+                                          },
+                                        },
+                                      }))
+                                    }
+                                  />
+                                  <label
+                                    htmlFor={`rpdr-${behavior}`}
+                                    className="text-sm text-gray-700 cursor-pointer flex-1"
+                                  >
+                                    {behavior}
+                                  </label>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </TabsContent>
+                      </Tabs>
                     </div>
                   ) : (
                     <Textarea
