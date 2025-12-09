@@ -2005,30 +2005,6 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 </div>
 
 
-    <!-- Return to Work Status -->
-    <div class="return-to-work-section" style="page-break-before: always; padding: 40px 0;">
-        <div style="background: #dbeafe; border: 1px solid #3b82f6; padding: 12px; font-weight: bold; margin-bottom: 20px; border-radius: 4px; color: #1e40af;">
-            Return to Work Status
-        </div>
-
-        ${(() => {
-          if (returnToWorkStatus && returnToWorkStatus.status) {
-            const html =
-              '<div style="margin-bottom: 16px;"><p style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">Selected Status:</p>' +
-              '<p style="margin-bottom: 12px; font-family: Arial, sans-serif;">' +
-              (returnToWorkStatus.status || "") +
-              "</p>" +
-              '<p style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">Comments:</p>' +
-              '<p style="margin-bottom: 12px; font-family: Arial, sans-serif; line-height: 1.6; white-space: pre-wrap;">' +
-              (returnToWorkStatus.comments || "No comments provided") +
-              "</p></div>";
-            return html;
-          }
-          return '<p style="font-style: italic; color: #666; font-family: Arial, sans-serif;">No Return to Work Status selected.</p>';
-        })()}
-    </div>
-
-
     <!-- Referral Questions -->
     <div class="referral-section" style="page-break-before: always; padding: 40px 0;">
         <div style="background: #fef3c7; border: 1px solid #f59e0b; padding: 12px; font-weight: bold; margin-bottom: 20px; border-radius: 4px;">
