@@ -39,6 +39,7 @@ interface RPDRBehaviors {
 interface ConclusionData {
   returnToWorkStatus: ReturnToWorkStatus;
   rpdrBehaviors: RPDRBehaviors;
+  ctpBehaviors: { [key: string]: boolean };
 }
 
 interface ReferralData {
