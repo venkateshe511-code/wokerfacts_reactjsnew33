@@ -1226,6 +1226,20 @@ export default function ReferralQuestions() {
                         </TabsContent>
                       </Tabs>
 
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Conclusion
+                        </label>
+                        <Textarea
+                          value={question.answer}
+                          onChange={(e) =>
+                            handleAnswerChange(question.id, e.target.value)
+                          }
+                          placeholder="Enter your conclusion here..."
+                          className="min-h-[120px]"
+                        />
+                      </div>
+
                       {/* Image Upload for Conclusions Question */}
                       <div className="space-y-4">
                         <Button
