@@ -300,7 +300,7 @@ export default function DownloadReport() {
   }, []);
 
   const clearStepsData = () => {
-    // Clear only steps data, keep evaluator profile
+    // Clear only steps data, keep evaluator profile and signature
     const keysToRemove = [
       "claimantData",
       "painIllustrationData",
@@ -318,6 +318,8 @@ export default function DownloadReport() {
     keysToRemove.forEach((key) => {
       localStorage.removeItem(key);
     });
+
+    setSignatureImage(null);
   };
 
   const clearAllData = () => {
