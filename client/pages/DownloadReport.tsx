@@ -6200,6 +6200,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             totalImages: reportSummary.totalImages,
             completedSteps: reportSummary.completedSteps,
           },
+
+          // Signature Image
+          signatureImage: signatureImage || null,
         };
 
         // Debug: Log comprehensive data being sent to cloud function
