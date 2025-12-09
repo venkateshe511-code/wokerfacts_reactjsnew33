@@ -147,6 +147,7 @@ export default function DownloadReport() {
     executiveSummary: false,
     fullReport: false,
   });
+  const [signatureImage, setSignatureImage] = useState<string | null>(null);
 
   // Helper to get evaluator data with Firestore fallback to ensure logo and branding are present
   const getEvaluatorData = async (): Promise<any> => {
