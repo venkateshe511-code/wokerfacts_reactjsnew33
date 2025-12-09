@@ -6665,7 +6665,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 Upload Evaluator Signature
               </h3>
               <p className="text-sm text-purple-700 mb-4">
-                Upload your signature image to be included in the "Signature of Evaluator" section of all reports.
+                Upload your signature image to be included in the "Signature of
+                Evaluator" section of all reports.
               </p>
               <div className="space-y-4">
                 <div className="flex items-center space-x-4">
@@ -6680,7 +6681,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 {signatureImage && (
                   <div className="flex items-center space-x-4 bg-white p-4 rounded-lg border border-purple-200">
                     <div>
-                      <p className="text-sm font-semibold text-purple-800">Signature Preview:</p>
+                      <p className="text-sm font-semibold text-purple-800">
+                        Signature Preview:
+                      </p>
                       <img
                         src={signatureImage}
                         alt="Signature Preview"
@@ -6694,7 +6697,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                         localStorage.removeItem("signatureImage");
                         toast({
                           title: "Signature removed",
-                          description: "The signature has been removed from your reports",
+                          description:
+                            "The signature has been removed from your reports",
                         });
                       }}
                       className="text-red-600 hover:text-red-700 text-sm font-medium"
