@@ -611,6 +611,7 @@ export default function ReferralQuestions() {
     const dataToSave = {
       questions: questionsWithImageData,
       returnToWorkStatus: referralData.returnToWorkStatus,
+      conclusionData: referralData.conclusionData,
     };
     localStorage.setItem("referralQuestionsData", JSON.stringify(dataToSave));
 
