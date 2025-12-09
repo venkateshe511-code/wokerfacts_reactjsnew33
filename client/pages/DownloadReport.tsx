@@ -334,6 +334,50 @@ export default function DownloadReport() {
       localStorage.setItem("sampleAccess", sampleAccessBackup);
   };
 
+  const handleSignatureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const validTypes = ["image/png", "image/jpeg", "image/jpg"];
+      if (!validTypes.includes(file.type)) {
+        toast({
+          title: "Invalid file type",
+          description: "Please upload a PNG or JPEG image",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        toast({
+          title: "File too large",
+          description: "Please upload an image smaller than 5MB",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target?.result as string;
+        setSignatureImage(dataUrl);
+        localStorage.setItem("signatureImage", dataUrl);
+        toast({
+          title: "Signature uploaded",
+          description: "Your signature will be included in the final reports",
+        });
+      };
+      reader.onerror = () => {
+        toast({
+          title: "Error reading file",
+          description: "Unable to read the image file",
+          variant: "destructive",
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const generateReportContent = async () => {
     // Load all evaluation data
     const evaluatorData = await getEvaluatorData();
