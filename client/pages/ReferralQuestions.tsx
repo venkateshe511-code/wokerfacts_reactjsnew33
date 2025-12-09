@@ -351,6 +351,16 @@ export default function ReferralQuestions() {
           status: "",
           comments: "",
         },
+        conclusionData: savedData.conclusionData || {
+          returnToWorkStatus: {
+            status: "",
+            comments: "",
+          },
+          rpdrBehaviors: RPDR_BEHAVIORS.reduce(
+            (acc, behavior) => ({ ...acc, [behavior]: false }),
+            {},
+          ),
+        },
       });
 
       // Save the migrated data back to localStorage
@@ -361,6 +371,16 @@ export default function ReferralQuestions() {
           returnToWorkStatus: savedData.returnToWorkStatus || {
             status: "",
             comments: "",
+          },
+          conclusionData: savedData.conclusionData || {
+            returnToWorkStatus: {
+              status: "",
+              comments: "",
+            },
+            rpdrBehaviors: RPDR_BEHAVIORS.reduce(
+              (acc, behavior) => ({ ...acc, [behavior]: false }),
+              {},
+            ),
           },
         }),
       );
