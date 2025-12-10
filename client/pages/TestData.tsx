@@ -749,12 +749,12 @@ export default function TestData() {
         testName.includes("cardio") ||
         testName.includes("mcaft") ||
         testName.includes("kasch") ||
-        testName.includes("bruce")
+        testName.includes("bruce") ||
+        testName.includes("ymca")
       ) {
         if (
           testId.includes("bruce") ||
-          testName.includes("bruce") ||
-          testName.includes("treadmill")
+          (testName.includes("bruce") && !testName.includes("ymca"))
         ) {
           sampleCardioData[testId] = {
             classification: "Good",
@@ -769,10 +769,42 @@ export default function TestData() {
             clientImages: [],
             serializedImages: [],
           };
+        } else if (testId.includes("ymca") && testId.includes("step")) {
+          sampleCardioData[testId] = {
+            classification: "Good",
+            vo2MaxScore: `${Math.floor(Math.random() * 12 + 40)} ml/kg/min`,
+            clientImages: [],
+            serializedImages: [],
+          };
+        } else if (testId.includes("ymca") && testId.includes("treadmill")) {
+          sampleCardioData[testId] = {
+            vo2Max: `${Math.floor(Math.random() * 15 + 35)} ml/kg/min`,
+            heartRate: `${Math.floor(Math.random() * 30 + 110)} bpm`,
+            bloodPressure: `${Math.floor(Math.random() * 20 + 110)}/${Math.floor(Math.random() * 20 + 70)}`,
+            rpe: `${Math.floor(Math.random() * 6 + 12)}`,
+            clientImages: [],
+            serializedImages: [],
+          };
+        } else if (testName.includes("ymca") && testName.includes("step")) {
+          sampleCardioData[testId] = {
+            classification: "Good",
+            vo2MaxScore: `${Math.floor(Math.random() * 12 + 40)} ml/kg/min`,
+            clientImages: [],
+            serializedImages: [],
+          };
+        } else if (testName.includes("ymca") && testName.includes("treadmill")) {
+          sampleCardioData[testId] = {
+            vo2Max: `${Math.floor(Math.random() * 15 + 35)} ml/kg/min`,
+            heartRate: `${Math.floor(Math.random() * 30 + 110)} bpm`,
+            bloodPressure: `${Math.floor(Math.random() * 20 + 110)}/${Math.floor(Math.random() * 20 + 70)}`,
+            rpe: `${Math.floor(Math.random() * 6 + 12)}`,
+            clientImages: [],
+            serializedImages: [],
+          };
         } else if (
           testId.includes("kasch") ||
           testName.includes("kasch") ||
-          testName.includes("step")
+          (testName.includes("step") && !testName.includes("ymca"))
         ) {
           sampleCardioData[testId] = {
             classification: "Average",
