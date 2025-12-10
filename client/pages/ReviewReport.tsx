@@ -2167,7 +2167,7 @@ export default function ReviewReport() {
                     Test Results and Job Match:
                   </h4>
 
-                  <table className="w-full border border-gray-300 text-xs">
+                  <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                     <thead>
                       <tr className="bg-yellow-200">
                         <th className="p-2">
@@ -7447,7 +7447,7 @@ export default function ReviewReport() {
                         TABLE 4 - VARIABLES WITH 100% SPECIFICITY AND PARTICIPANTS'
                         SCORES ON THESE VARIABLES
                       </h4>
-                      <table className="w-full border border-gray-300 text-xs">
+                      <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
                           <tr className="bg-yellow-200">
                             <th className="border border-gray-300 p-2 text-left">
@@ -7583,7 +7583,7 @@ export default function ReviewReport() {
                       <h4 className="font-semibold text-sm mb-3 bg-gray-200 p-2">
                         TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS
                       </h4>
-                      <table className="w-full border border-gray-300 text-xs">
+                      <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
                           <tr className="bg-yellow-200">
                             <th className="border border-gray-300 p-2 text-left">
@@ -7665,7 +7665,7 @@ export default function ReviewReport() {
                         TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS FUNCTIONAL
                         CAPACITY CUTOFF SCORES
                       </h4>
-                      <table className="w-full border border-gray-300 text-xs">
+                      <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
                           <tr className="bg-yellow-200">
                             <th className="border border-gray-300 p-2 text-left">
@@ -7720,7 +7720,7 @@ export default function ReviewReport() {
                         TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER AND
                         PARTICIPANTS' SCORES ON THESE VARIABLES
                       </h4>
-                      <table className="w-full border border-gray-300 text-xs">
+                      <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
                           <tr className="bg-yellow-200">
                             <th className="border border-gray-300 p-2 text-left">Variable/Score</th>
