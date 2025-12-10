@@ -926,10 +926,10 @@ export default function ReviewReport() {
                     </thead>
                     <tbody>
                       <tr>
-                        <td className="border border-gray-300 p-2">
+                        <td className="p-2">
                           {formatDate(reportData.claimantData.dateOfBirth)}
                         </td>
-                        <td className="border border-gray-300 p-2">
+                        <td className="p-2">
                           {reportData.claimantData.claimantHistory ||
                             "No specific injury history provided. Client presents for functional capacity evaluation to determine current work abilities and limitations."}
                         </td>
@@ -1331,60 +1331,49 @@ export default function ReviewReport() {
 
                       <table className="w-full border border-gray-300 text-sm mb-4">
                         <thead>
-                          <tr className="bg-yellow-200">
-                            <th className="border border-gray-300 p-2">
-                              Area Evaluated:
-                            </th>
-                            <th className="border border-gray-300 p-2">
-                              Data:
-                            </th>
-                            <th className="border border-gray-300 p-2">
-                              Valid?
-                            </th>
-                            <th className="border border-gray-300 p-2">
-                              Norm:
-                            </th>
-                            <th className="border border-gray-300 p-2">
-                              % of Norm:
-                            </th>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2">Area Evaluated:</th>
+                            <th className="p-2">Data:</th>
+                            <th className="p-2">Valid?</th>
+                            <th className="p-2">Norm:</th>
+                            <th className="p-2">% of Norm:</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td className="border border-gray-300 p-2">
-                              Lumbar Flexion
-                            </td>
-                            <td className="border border-gray-300 p-2">49 °</td>
-                            <td className="border border-gray-300 p-2">Pass</td>
-                            <td className="border border-gray-300 p-2">60 °</td>
-                            <td className="border border-gray-300 p-2">82%</td>
+                            <td className="p-2">Lumbar Flexion</td>
+                            <td className="p-2">49 °</td>
+                            <td className="p-2">Pass</td>
+                            <td className="p-2">60 °</td>
+                            <td className="p-2">82%</td>
                           </tr>
                           <tr>
-                            <td className="border border-gray-300 p-2">
-                              Lumbar Extension
-                            </td>
-                            <td className="border border-gray-300 p-2">28 °</td>
-                            <td className="border border-gray-300 p-2">Pass</td>
-                            <td className="border border-gray-300 p-2">25 °</td>
-                            <td className="border border-gray-300 p-2">112%</td>
+                            <td className="p-2">Lumbar Extension</td>
+                            <td className="p-2">28 °</td>
+                            <td className="p-2">Pass</td>
+                            <td className="p-2">25 °</td>
+                            <td className="p-2">112%</td>
                           </tr>
                           <tr>
-                            <td className="border border-gray-300 p-2">
+                            <td className="p-2">
                               Lumbar Lateral Flexion - Left
                             </td>
-                            <td className="border border-gray-300 p-2">27 °</td>
-                            <td className="border border-gray-300 p-2">Pass</td>
-                            <td className="border border-gray-300 p-2">25 °</td>
-                            <td className="border border-gray-300 p-2">108%</td>
+                            <td className="p-2">27 °</td>
+                            <td className="p-2">Pass</td>
+                            <td className="p-2">25 °</td>
+                            <td className="p-2">108%</td>
                           </tr>
                           <tr>
-                            <td className="border border-gray-300 p-2">
+                            <td className="p-2">
                               Lumbar Lateral Flexion - Right
                             </td>
-                            <td className="border border-gray-300 p-2">25 °</td>
-                            <td className="border border-gray-300 p-2">Pass</td>
-                            <td className="border border-gray-300 p-2">25 °</td>
-                            <td className="border border-gray-300 p-2">116%</td>
+                            <td className="p-2">25 °</td>
+                            <td className="p-2">Pass</td>
+                            <td className="p-2">25 °</td>
+                            <td className="p-2">116%</td>
                           </tr>
                         </tbody>
                       </table>
@@ -1767,21 +1756,22 @@ export default function ReviewReport() {
 
                       <table className="w-full border border-gray-300 text-sm mb-4">
                         <thead>
-                          <tr className="bg-yellow-200">
-                            <th className="border border-gray-300 p-2">
-                              Physical Demand Level
-                            </th>
-                            <th className="border border-gray-300 p-2">
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2">Physical Demand Level</th>
+                            <th className="p-2">
                               SELDOM / OCCASIONALLY
                               <br />
                               0-33% of the workday
                             </th>
-                            <th className="border border-gray-300 p-2">
+                            <th className="p-2">
                               FREQUENTLY
                               <br />
                               34-66% of the workday
                             </th>
-                            <th className="border border-gray-300 p-2">
+                            <th className="p-2">
                               CONSTANTLY
                               <br />
                               67-100% of the workday
@@ -1849,15 +1839,9 @@ export default function ReviewReport() {
                                 <td className="border border-gray-300 p-2 font-semibold">
                                   {level.name}
                                 </td>
-                                <td className="border border-gray-300 p-2">
-                                  {level.occasional}
-                                </td>
-                                <td className="border border-gray-300 p-2">
-                                  {level.frequent}
-                                </td>
-                                <td className="border border-gray-300 p-2">
-                                  {level.constant}
-                                </td>
+                                <td className="p-2">{level.occasional}</td>
+                                <td className="p-2">{level.frequent}</td>
+                                <td className="p-2">{level.constant}</td>
                               </tr>
                             ));
                           })()}
@@ -2167,61 +2151,47 @@ export default function ReviewReport() {
                     Test Results and Job Match:
                   </h4>
 
-                  <table className="w-full border border-gray-300 text-xs">
+                  <table
+                    className="w-full text-xs"
+                    style={{
+                      borderCollapse: "collapse",
+                      border: "1px solid #d1d5db",
+                    }}
+                  >
                     <thead>
                       <tr className="bg-yellow-200">
-                        <th className="border border-gray-300 p-2">
-                          Activity Tested
-                        </th>
-                        <th className="border border-gray-300 p-2">Sit Time</th>
-                        <th className="border border-gray-300 p-2">
-                          Stand Time
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Test Results
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Job Description
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Job Requirements
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Job Match (Yes/No)
-                        </th>
+                        <th className="p-2">Activity Tested</th>
+                        <th className="p-2">Sit Time</th>
+                        <th className="p-2">Stand Time</th>
+                        <th className="p-2">Test Results</th>
+                        <th className="p-2">Job Description</th>
+                        <th className="p-2">Job Requirements</th>
+                        <th className="p-2">Job Match (Yes/No)</th>
                       </tr>
                     </thead>
                     <tbody>
                       {/* Initial Assessment */}
                       <tr>
-                        <td className="border border-gray-300 p-2">
-                          Client Interview Test
-                        </td>
-                        <td className="border border-gray-300 p-2">45 min</td>
-                        <td className="border border-gray-300 p-2"></td>
-                        <td className="border border-gray-300 p-2">N/A</td>
-                        <td className="border border-gray-300 p-2">
+                        <td className="p-2">Client Interview Test</td>
+                        <td className="p-2">45 min</td>
+                        <td className="p-2"></td>
+                        <td className="p-2">N/A</td>
+                        <td className="p-2">
                           Initial assessment and history gathering
                         </td>
-                        <td className="border border-gray-300 p-2">
-                          Basic interview requirements
-                        </td>
-                        <td className="border border-gray-300 p-2">Yes</td>
+                        <td className="p-2">Basic interview requirements</td>
+                        <td className="p-2">Yes</td>
                       </tr>
                       <tr>
-                        <td className="border border-gray-300 p-2">
-                          Activity Overview
-                        </td>
-                        <td className="border border-gray-300 p-2"></td>
-                        <td className="border border-gray-300 p-2">5 min</td>
-                        <td className="border border-gray-300 p-2">Complete</td>
-                        <td className="border border-gray-300 p-2">
+                        <td className="p-2">Activity Overview</td>
+                        <td className="p-2"></td>
+                        <td className="p-2">5 min</td>
+                        <td className="p-2">Complete</td>
+                        <td className="p-2">
                           Overview of testing procedures and activities
                         </td>
-                        <td className="border border-gray-300 p-2">
-                          Orientation and instruction
-                        </td>
-                        <td className="border border-gray-300 p-2">Yes</td>
+                        <td className="p-2">Orientation and instruction</td>
+                        <td className="p-2">Yes</td>
                       </tr>
 
                       {/* Categorized Test Results */}
@@ -2733,16 +2703,10 @@ export default function ReviewReport() {
 
                                 rows.push(
                                   <tr key={`${category}-${index}`}>
-                                    <td className="border border-gray-300 p-2">
-                                      {test.testName}
-                                    </td>
-                                    <td className="border border-gray-300 p-2">
-                                      {sitTime}
-                                    </td>
-                                    <td className="border border-gray-300 p-2">
-                                      {standTime}
-                                    </td>
-                                    <td className="border border-gray-300 p-2">
+                                    <td className="p-2">{test.testName}</td>
+                                    <td className="p-2">{sitTime}</td>
+                                    <td className="p-2">{standTime}</td>
+                                    <td className="p-2">
                                       {(() => {
                                         if (category === "Occupational Tasks") {
                                           // Calculate percentage for occupational tasks
@@ -2793,7 +2757,7 @@ export default function ReviewReport() {
                                         }
                                       })()}
                                     </td>
-                                    <td className="border border-gray-300 p-2">
+                                    <td className="p-2">
                                       {(() => {
                                         const jobReq = getJobRequirements(
                                           test.testName,
@@ -2804,7 +2768,7 @@ export default function ReviewReport() {
                                         );
                                       })()}
                                     </td>
-                                    <td className="border border-gray-300 p-2">
+                                    <td className="p-2">
                                       {(() => {
                                         const jobReq = getJobRequirements(
                                           test.testName,
@@ -2851,7 +2815,7 @@ export default function ReviewReport() {
                                         return "Functional Assessment";
                                       })()}
                                     </td>
-                                    <td className="border border-gray-300 p-2 text-center">
+                                    <td className="p-2 text-center">
                                       {evaluateJobMatch(test) ? "Yes" : "No"}
                                     </td>
                                   </tr>,
@@ -2873,10 +2837,10 @@ export default function ReviewReport() {
                             <td className="border border-gray-300 p-2 font-semibold">
                               {totalStandTime} min
                             </td>
-                            <td className="border border-gray-300 p-2"></td>
-                            <td className="border border-gray-300 p-2"></td>
-                            <td className="border border-gray-300 p-2"></td>
-                            <td className="border border-gray-300 p-2"></td>
+                            <td className="p-2"></td>
+                            <td className="p-2"></td>
+                            <td className="p-2"></td>
+                            <td className="p-2"></td>
                           </tr>,
                         );
 
@@ -2943,37 +2907,34 @@ export default function ReviewReport() {
                         <>
                           <table className="w-full border border-gray-300 text-sm mb-4">
                             <thead>
-                              <tr className="bg-yellow-200">
-                                <th className="border border-gray-300 p-2">
+                              <tr
+                                className="bg-gray-600 text-white"
+                                style={{ borderBottom: "1px solid #d1d5db" }}
+                              >
+                                <th className="p-2">
                                   Observed Effort During Testing
                                 </th>
-                                <th className="border border-gray-300 p-2">
+                                <th className="p-2">
                                   Total Noted for all Tested Activities
                                 </th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <td className="border border-gray-300 p-2">
-                                  Poor effort
-                                </td>
-                                <td className="border border-gray-300 p-2">
+                                <td className="p-2">Poor effort</td>
+                                <td className="p-2">
                                   {effortCounts.poor} out of {totalTests} Tests
                                 </td>
                               </tr>
                               <tr>
-                                <td className="border border-gray-300 p-2">
-                                  Fair to Average effort
-                                </td>
-                                <td className="border border-gray-300 p-2">
+                                <td className="p-2">Fair to Average effort</td>
+                                <td className="p-2">
                                   {effortCounts.fair} out of {totalTests} Tests
                                 </td>
                               </tr>
                               <tr>
-                                <td className="border border-gray-300 p-2">
-                                  Good effort
-                                </td>
-                                <td className="border border-gray-300 p-2">
+                                <td className="p-2">Good effort</td>
+                                <td className="p-2">
                                   {effortCounts.good} out of {totalTests} Tests
                                 </td>
                               </tr>
@@ -3479,20 +3440,16 @@ export default function ReviewReport() {
 
                         return crosschecks.map((check, index) => (
                           <tr key={index}>
-                            <td className="border border-gray-300 p-2">
-                              {check.name}
-                            </td>
-                            <td className="border border-gray-300 p-2">
-                              {check.description}
-                            </td>
-                            <td className="border border-gray-300 p-2 text-center">
+                            <td className="p-2">{check.name}</td>
+                            <td className="p-2">{check.description}</td>
+                            <td className="p-2 text-center">
                               {!check.applicable
                                 ? "N/A"
                                 : check.pass
                                   ? "✓"
                                   : ""}
                             </td>
-                            <td className="border border-gray-300 p-2 text-center">
+                            <td className="p-2 text-center">
                               {!check.applicable
                                 ? "N/A"
                                 : !check.pass
@@ -5833,7 +5790,7 @@ export default function ReviewReport() {
                                       </h4>
                                       <div className="grid grid-cols-2 gap-4">
                                         {/* Left Side Graph */}
-                                        <div className="border border-gray-300 p-2">
+                                        <div className="p-2">
                                           <div className="h-40 bg-white border relative overflow-hidden">
                                             <div className="flex items-end justify-center h-full p-2 space-x-1">
                                               {[
@@ -5917,7 +5874,7 @@ export default function ReviewReport() {
                                         </div>
 
                                         {/* Right Side Graph */}
-                                        <div className="border border-gray-300 p-2">
+                                        <div className="p-2">
                                           <div className="h-40 bg-white border relative overflow-hidden">
                                             <div className="flex items-end justify-center h-full p-2 space-x-1">
                                               {[
@@ -6008,7 +5965,7 @@ export default function ReviewReport() {
                                       <h4 className="font-semibold mb-3">
                                         Graph:
                                       </h4>
-                                      <div className="border border-gray-300 p-2">
+                                      <div className="p-2">
                                         <div className="h-40 bg-white border relative overflow-hidden">
                                           <div className="flex items-end justify-center h-full p-2 space-x-1">
                                             {[
@@ -7402,8 +7359,8 @@ export default function ReviewReport() {
 
               {/* Blankenship FCE System Reference */}
               <div className="p-8 border-b">
-                <div className="grid grid-cols-3 gap-8 mb-8">
-                  <div className="col-span-2">
+                <div className="grid grid-cols-2 gap-8 mb-8">
+                  <div>
                     <h3 className="font-bold text-sm mb-2">
                       Sensitivity and Specificity of the Blankenship FCE
                       System's Indicators of Submaximal Effort
@@ -7440,788 +7397,429 @@ export default function ReviewReport() {
                       leg static-strength test. The sensitivity was 78.6% and
                       specificity was 72.2%.
                     </p>
+
+                    {/* Table 4: Variables With 100% Specificity - Left Column */}
+                    <div className="mt-6">
+                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
+                        TABLE 4 - VARIABLES WITH 100% SPECIFICITY AND
+                        PARTICIPANTS' SCORES ON THESE VARIABLES
+                      </h4>
+                      <table
+                        className="w-full text-xs"
+                        style={{
+                          borderCollapse: "collapse",
+                          border: "1px solid #d1d5db",
+                        }}
+                      >
+                        <thead>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2 text-left">Variable/Score</th>
+                            <th className="p-2">100% Effort</th>
+                            <th className="p-2">50% Effort</th>
+                            <th className="p-2">Sensitivity</th>
+                            <th className="p-2">Specificity</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td className="p-2">
+                              Distraction or static high: Invalid/Equivocal
+                            </td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">1</td>
+                            <td className="p-2 text-center">4.0</td>
+                            <td className="p-2 text-center">100</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Trunk: Invalid/Equivocal</td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">6</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Valid</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">24</td>
+                            <td className="p-2 text-center">28.0</td>
+                            <td className="p-2 text-center">100</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">
+                              Distraction (OAM): Invalid/Equivocal
+                            </td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">1</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Valid</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">25</td>
+                            <td className="p-2 text-center">46.7</td>
+                            <td className="p-2 text-center">100</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">
+                              ROM greater high extrapolation for shoulder:
+                              Invalid/Equivocal
+                            </td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">14</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Valid</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">10</td>
+                            <td className="p-2 text-center">46.7</td>
+                            <td className="p-2 text-center">100</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">
+                              ROM push right &gt; left: Invalid/Equivocal
+                            </td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">20</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Valid</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">30</td>
+                            <td className="p-2 text-center">30.0</td>
+                            <td className="p-2 text-center">100</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">
+                              Right key grips: Invalid/Equivocal
+                            </td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">7</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Valid</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">26</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Mounted palms machine pass</td>
+                            <td className="p-2 text-center">3</td>
+                            <td className="p-2 text-center">2</td>
+                            <td className="p-2 text-center">18.5</td>
+                            <td className="p-2 text-center">100</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Distraction (OAM)</td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">7</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Valid</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">15</td>
+                            <td className="p-2 text-center">10.3</td>
+                            <td className="p-2 text-center">100</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p className="text-xs text-gray-600 mt-2">
+                        Abbreviations: OSMT,
+                        occupational-musculoskeletal-handling test; BEG,
+                        rapid-exchange grip test; SST, static-strength test;
+                        OAM, occupational-activity-handling test.
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Table 1 on the right */}
+                  {/* Right Column: Tables 1, 2, 3 stacked */}
                   <div>
-                    <h4 className="font-bold text-xs mb-2 bg-gray-600 text-white p-2">
-                      TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS
-                    </h4>
-                    <table className="w-full border border-gray-300 text-xs">
-                      <thead>
-                        <tr className="bg-yellow-200">
-                          <th className="border border-gray-300 p-1 text-left text-xs">
-                            Subject Characteristics
-                          </th>
-                          <th className="border border-gray-300 p-1 text-xs">
-                            100% Effort
-                          </th>
-                          <th className="border border-gray-300 p-1 text-xs">
-                            50% Effort
-                          </th>
-                          <th className="border border-gray-300 p-1 text-xs">
-                            Significance Test
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td className="border border-gray-300 p-1">
-                            Age (y)
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            35.7
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            33.5
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            t = 13.9* (= .5)
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="border border-gray-300 p-1">Range</td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            23-60
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            18-55
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center"></td>
-                        </tr>
-                        <tr>
-                          <td className="border border-gray-300 p-1">
-                            Gender: Male/Female
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            7/5
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            10/2
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            χ² = 0.67* (= .3)
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="border border-gray-300 p-1">
-                            Race: Caucasian/African American
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            12/0
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            10/2
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            χ² = 0.67* (= .3)
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="border border-gray-300 p-1">
-                            Hard dominance: Right/Left
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            11/1
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            11/1
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center"></td>
-                        </tr>
-                        <tr>
-                          <td className="border border-gray-300 p-1">
-                            Body mass (kg): Mean
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            15.20
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            17
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            t = 1.4* (= .2)
-                          </td>
-                        </tr>
-                        <tr>
-                          <td className="border border-gray-300 p-1">Range</td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            54.0-127.8
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            54.0-103.5
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center"></td>
-                        </tr>
-                        <tr>
-                          <td className="border border-gray-300 p-1">
-                            Insurance: Yes/No
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            11/1
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            10/2
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center"></td>
-                        </tr>
-                        <tr>
-                          <td className="border border-gray-300 p-1">
-                            Employment: Employed/Not employed/Retired
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            11/1/0
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            10/2/0
-                          </td>
-                          <td className="border border-gray-300 p-1 text-center">
-                            χ² = 0.1 (= .8)
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    {/* Table 1: Demographic Data */}
+                    <div className="mb-8">
+                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
+                        TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS
+                      </h4>
+                      <table
+                        className="w-full text-xs"
+                        style={{
+                          borderCollapse: "collapse",
+                          border: "1px solid #d1d5db",
+                        }}
+                      >
+                        <thead>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2 text-left">
+                              Subject Characteristics
+                            </th>
+                            <th className="p-2">100% Effort (n=12)</th>
+                            <th className="p-2">50% Effort (n=12)</th>
+                            <th className="p-2">Significance Test</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td className="p-2">Age (y)</td>
+                            <td className="p-2 text-center">35.7</td>
+                            <td className="p-2 text-center">33.5</td>
+                            <td className="p-2 text-center">
+                              t = 13.9* (= .5)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Range</td>
+                            <td className="p-2 text-center">23-60</td>
+                            <td className="p-2 text-center">18-55</td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Gender: Male/Female</td>
+                            <td className="p-2 text-center">7/5</td>
+                            <td className="p-2 text-center">10/2</td>
+                            <td className="p-2 text-center">
+                              χ² = 0.67* (= .3)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">
+                              Race: Caucasian/African American
+                            </td>
+                            <td className="p-2 text-center">12/0</td>
+                            <td className="p-2 text-center">10/2</td>
+                            <td className="p-2 text-center">
+                              χ² = 0.67* (= .3)
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Hard dominance: Right/Left</td>
+                            <td className="p-2 text-center">11/1</td>
+                            <td className="p-2 text-center">11/1</td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Body mass (kg): Mean</td>
+                            <td className="p-2 text-center">15.20</td>
+                            <td className="p-2 text-center">17</td>
+                            <td className="p-2 text-center">t = 1.4* (= .2)</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Range</td>
+                            <td className="p-2 text-center">54.0-127.8</td>
+                            <td className="p-2 text-center">54.0-103.5</td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Insurance: Yes/No</td>
+                            <td className="p-2 text-center">11/1</td>
+                            <td className="p-2 text-center">10/2</td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">
+                              Employment: Employed/Not employed/Retired
+                            </td>
+                            <td className="p-2 text-center">11/1/0</td>
+                            <td className="p-2 text-center">10/2/0</td>
+                            <td className="p-2 text-center">χ² = 0.1 (= .8)</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Table 2: Sensitivity and Specificity */}
+                    <div className="mb-8">
+                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
+                        TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS
+                        FUNCTIONAL CAPACITY CUTOFF SCORES
+                      </h4>
+                      <table
+                        className="w-full text-xs"
+                        style={{
+                          borderCollapse: "collapse",
+                          border: "1px solid #d1d5db",
+                        }}
+                      >
+                        <thead>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2 text-left">Cutoff Score</th>
+                            <th className="p-2">Sensitivity (%)</th>
+                            <th className="p-2">Specificity (%)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td className="p-2">55%</td>
+                            <td className="p-2 text-center">33.7</td>
+                            <td className="p-2 text-center">100.0</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">60%</td>
+                            <td className="p-2 text-center">58.0</td>
+                            <td className="p-2 text-center">88.5</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">65%</td>
+                            <td className="p-2 text-center">60.0</td>
+                            <td className="p-2 text-center">88.5</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">70%</td>
+                            <td className="p-2 text-center">85.0</td>
+                            <td className="p-2 text-center">84.2</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">75%</td>
+                            <td className="p-2 text-center">88.7</td>
+                            <td className="p-2 text-center">68.4</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">80%</td>
+                            <td className="p-2 text-center">100.0</td>
+                            <td className="p-2 text-center">40.0</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    {/* Table 3: Variables With 70% Sensitivity */}
+                    <div>
+                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
+                        TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER AND
+                        PARTICIPANTS' SCORES ON THESE VARIABLES
+                      </h4>
+                      <table
+                        className="w-full text-xs"
+                        style={{
+                          borderCollapse: "collapse",
+                          border: "1px solid #d1d5db",
+                        }}
+                      >
+                        <thead>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2 text-left">Variable/Score</th>
+                            <th className="p-2">
+                              100% Effort (n Participants)
+                            </th>
+                            <th className="p-2">50% Effort (n Participants)</th>
+                            <th className="p-2">Sensitivity</th>
+                            <th className="p-2">Specificity</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td className="p-2">
+                              Finger flexion (slide of the high for SST):
+                              Invalid
+                            </td>
+                            <td className="p-2 text-center">1</td>
+                            <td className="p-2 text-center">5</td>
+                            <td className="p-2 text-center">70.0</td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Equivocal</td>
+                            <td className="p-2 text-center">2</td>
+                            <td className="p-2 text-center">13</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Valid</td>
+                            <td className="p-2 text-center">9</td>
+                            <td className="p-2 text-center">9</td>
+                            <td className="p-2 text-center">78.6</td>
+                            <td className="p-2 text-center">72.2</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">
+                              ROM greater than high extrapolation of the leg
+                              test
+                            </td>
+                            <td className="p-2 text-center">5</td>
+                            <td className="p-2 text-center">22</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Invalid</td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">8</td>
+                            <td className="p-2 text-center">83.3</td>
+                            <td className="p-2 text-center">68.4</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">BEG on right</td>
+                            <td className="p-2 text-center">1</td>
+                            <td className="p-2 text-center">24</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Invalid</td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">5</td>
+                            <td className="p-2 text-center">83.3</td>
+                            <td className="p-2 text-center">52.9</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">BEG on left</td>
+                            <td className="p-2 text-center">8</td>
+                            <td className="p-2 text-center">24</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Invalid</td>
+                            <td className="p-2 text-center">6</td>
+                            <td className="p-2 text-center">5</td>
+                            <td className="p-2 text-center">72.4</td>
+                            <td className="p-2 text-center">42.4</td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">
+                              BEG: ROM greater than the leg lift
+                            </td>
+                            <td className="p-2 text-center">10</td>
+                            <td className="p-2 text-center">21</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr>
+                            <td className="p-2">Invalid</td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">6</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <p className="text-xs text-gray-600 mt-2">
+                        *Abbreviations: OSMT,
+                        occupational-musculoskeletal-handling test; BEG,
+                        rapid-exchange grip test; SST, static-strength test.
+                      </p>
+                    </div>
                   </div>
-                </div>
-
-                {/* Table 1: Demographic Data */}
-                <div className="mb-8">
-                  <h4 className="font-semibold text-sm mb-3 bg-gray-200 p-2">
-                    TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS
-                  </h4>
-                  <table className="w-full border border-gray-300 text-xs">
-                    <thead>
-                      <tr className="bg-yellow-200">
-                        <th className="border border-gray-300 p-2 text-left">
-                          Subject Characteristics
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          100% Effort (n=12)
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          50% Effort (n=12)
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Significance Test
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Age (y)</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          35.7
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          33.5
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          t = 13.9* (= .5)
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Range</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          23-60
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          18-55
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Gender: Male/Female
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          7/5
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          10/2
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          χ² = 0.67* (= .3)
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Race: Caucasian/African American
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          12/0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          10/2
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          χ² = 0.67* (= .3)
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Hard dominance: Right/Left
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          11/1
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          11/1
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Body mass (kg): Mean
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          15.20
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          17
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          t = 1.4* (= .2)
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Range</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          54.0-127.8
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          54.0-103.5
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Insurance: Yes/No
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          11/1
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          10/2
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Employment: Employed/Not employed/Retired
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          11/1/0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          10/2/0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          χ² = 0.1 (= .8)
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Table 2: Sensitivity and Specificity */}
-                <div className="mb-8">
-                  <h4 className="font-semibold text-sm mb-3 bg-gray-200 p-2">
-                    TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS FUNCTIONAL
-                    CAPACITY CUTOFF SCORES
-                  </h4>
-                  <table className="w-full border border-gray-300 text-xs">
-                    <thead>
-                      <tr className="bg-yellow-200">
-                        <th className="border border-gray-300 p-2 text-left">
-                          Cutoff Score
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Sensitivity (%)
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Specificity (%)
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="border border-gray-300 p-2">55%</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          33.7
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          100.0
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">60%</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          58.0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          88.5
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">65%</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          60.0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          88.5
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">70%</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          85.0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          84.2
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">75%</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          88.7
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          68.4
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">80%</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          100.0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          40.0
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-                {/* Table 3: Variables With 70% Sensitivity */}
-                <div className="mb-8">
-                  <h4 className="font-semibold text-sm mb-3 bg-gray-200 p-2">
-                    TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER AND
-                    PARTICIPANTS' SCORES ON THESE VARIABLES
-                  </h4>
-                  <table className="w-full border border-gray-300 text-xs">
-                    <thead>
-                      <tr className="bg-yellow-200">
-                        <th className="border border-gray-300 p-2 text-left">
-                          Variable/Score
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          100% Effort (n Participants)
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          50% Effort (n Participants)
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Sensitivity
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Specificity
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Finger flexion (slide of the high for SST): Invalid
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          1
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          5
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          70.0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Equivocal
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          2
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          13
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Valid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          9
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          9
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          78.6
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          72.2
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          ROM greater than high extrapolation of the leg test
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          5
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          22
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Invalid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          8
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          83.3
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          68.4
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          BEG on right
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          1
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          24
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Invalid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          5
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          83.3
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          52.9
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          BEG on left
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          8
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          24
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Invalid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          6
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          5
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          72.4
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          42.4
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          BEG: ROM greater than the leg lift
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          10
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          21
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Invalid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          6
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p className="text-xs text-gray-600 mt-2">
-                    *Abbreviations: OSMT, occupational-musculoskeletal-handling
-                    test; BEG, rapid-exchange grip test; SST, static-strength
-                    test.
-                  </p>
-                </div>
-
-                {/* Table 4: Variables With 100% Specificity */}
-                <div className="mb-8">
-                  <h4 className="font-semibold text-sm mb-3 bg-gray-200 p-2">
-                    TABLE 4 - VARIABLES WITH 100% SPECIFICITY AND PARTICIPANTS'
-                    SCORES ON THESE VARIABLES
-                  </h4>
-                  <table className="w-full border border-gray-300 text-xs">
-                    <thead>
-                      <tr className="bg-yellow-200">
-                        <th className="border border-gray-300 p-2 text-left">
-                          Variable/Score
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          100% Effort
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          50% Effort
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Sensitivity
-                        </th>
-                        <th className="border border-gray-300 p-2">
-                          Specificity
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Distraction or static high: Invalid/Equivocal
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          1
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          4.0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          100
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Trunk: Invalid/Equivocal
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          6
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Valid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          12
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          24
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          28.0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          100
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Distraction (OAM): Invalid/Equivocal
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          1
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Valid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          12
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          25
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          46.7
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          100
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          ROM greater high extrapolation for shoulder:
-                          Invalid/Equivocal
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          14
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Valid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          12
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          10
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          46.7
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          100
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          ROM push right &gt; left: Invalid/Equivocal
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          20
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Valid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          12
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          30
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          30.0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          100
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Right key grips: Invalid/Equivocal
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          7
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Valid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          12
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          26
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Mounted palms machine pass
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          3
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          2
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          18.5
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          100
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">
-                          Distraction (OAM)
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          0
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          7
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                        <td className="border border-gray-300 p-2 text-center"></td>
-                      </tr>
-                      <tr>
-                        <td className="border border-gray-300 p-2">Valid</td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          12
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          15
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          10.3
-                        </td>
-                        <td className="border border-gray-300 p-2 text-center">
-                          100
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p className="text-xs text-gray-600 mt-2">
-                    Abbreviations: OSMT, occupational-musculoskeletal-handling
-                    test; BEG, rapid-exchange grip test; SST, static-strength
-                    test; OAM, occupational-activity-handling test.
-                  </p>
                 </div>
 
                 <p className="text-xs text-gray-600 mt-8 text-center">
