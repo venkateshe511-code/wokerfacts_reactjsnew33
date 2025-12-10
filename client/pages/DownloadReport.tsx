@@ -425,6 +425,10 @@ export default function DownloadReport() {
             classification: cardioData.classification || "",
             hbr: cardioData.hbr || "",
             aerobicFitnessScore: cardioData.aerobicFitnessScore || "",
+            // YMCA Submaximal Treadmill Test fields
+            heartRate: cardioData.heartRate || "",
+            bloodPressure: cardioData.bloodPressure || "",
+            rpe: cardioData.rpe || "",
             // Include image data
             clientImages: cardioData.clientImages || [],
             serializedImages: cardioData.serializedImages || [],
@@ -441,7 +445,7 @@ export default function DownloadReport() {
       const target = `${name} ${id}`;
 
       if (
-        /(bruce|treadmill|cardio|mcaft|kasch|step|aerobic|heart|pulse)/.test(
+        /(bruce|treadmill|cardio|mcaft|kasch|step|aerobic|heart|pulse|ymca)/.test(
           target,
         )
       ) {
