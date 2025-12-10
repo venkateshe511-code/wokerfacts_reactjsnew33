@@ -5335,6 +5335,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     <tr><td style="border: 1px solid #999; padding: 3px;">Mounted palms machine pass</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">3</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">2</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">18.5</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">100</td></tr>
                 </tbody>
             </table>
+            <p style="font-size: 8px; color: #666; margin-top: 12px; font-family: Arial, sans-serif; text-align: center;">Journal of orthopaedic & sports physical therapy | volume 37 | number 4 | April 2007.</p>
         </div>
     </div>
 
