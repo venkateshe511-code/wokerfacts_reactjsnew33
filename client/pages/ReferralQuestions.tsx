@@ -138,6 +138,7 @@ export default function ReferralQuestions() {
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadingImages, setUploadingImages] = useState<string | null>(null);
+  const [signatureImage, setSignatureImage] = useState<string | null>(null);
 
   const questionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const textareaRefs = useRef<Record<string, HTMLTextAreaElement | null>>({});
