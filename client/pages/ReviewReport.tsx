@@ -8646,11 +8646,11 @@ export default function ReviewReport() {
                     {/* Table 1: Demographic Data */}
                     <div className="mb-8">
                       <div className="flex bg-gray-600 text-white">
-                        <div className="flex-1 p-3 border-r border-gray-500">
+                        <div className="p-3 border-r border-gray-500 w-24">
                           <div className="font-bold text-sm">TABLE 1</div>
                         </div>
                         <div className="flex-1 p-3">
-                          <div className="font-semibold text-sm">
+                          <div className="font-semibold text-sm tracking-wide">
                             Demographic Data of Participants
                           </div>
                         </div>
@@ -9285,7 +9285,7 @@ export default function ReviewReport() {
                     {/* Table 2: Sensitivity and Specificity */}
                     <div className="mb-8">
                       <div className="flex bg-gray-600 text-white">
-                        <div className="flex-1 p-3 border-r border-gray-500">
+                        <div className="p-3 border-r border-gray-500 w-24">
                           <div className="font-bold text-sm">TABLE 2</div>
                         </div>
                         <div className="flex-1 p-3">
@@ -9497,7 +9497,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -9532,7 +9532,7 @@ export default function ReviewReport() {
                               52.9
                             </td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -9604,7 +9604,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -9639,7 +9639,7 @@ export default function ReviewReport() {
                               72.2
                             </td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -9710,7 +9710,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -9745,7 +9745,7 @@ export default function ReviewReport() {
                               68.4
                             </td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -9851,7 +9851,7 @@ export default function ReviewReport() {
                               52.9
                             </td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -9922,7 +9922,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -9982,7 +9982,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
