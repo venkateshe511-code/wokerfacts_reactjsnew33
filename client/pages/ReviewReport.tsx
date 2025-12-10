@@ -1331,38 +1331,27 @@ export default function ReviewReport() {
 
                       <table className="w-full border border-gray-300 text-sm mb-4">
                         <thead>
-                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
-                            <th className="p-2">
-                              Area Evaluated:
-                            </th>
-                            <th className="p-2">
-                              Data:
-                            </th>
-                            <th className="p-2">
-                              Valid?
-                            </th>
-                            <th className="p-2">
-                              Norm:
-                            </th>
-                            <th className="p-2">
-                              % of Norm:
-                            </th>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2">Area Evaluated:</th>
+                            <th className="p-2">Data:</th>
+                            <th className="p-2">Valid?</th>
+                            <th className="p-2">Norm:</th>
+                            <th className="p-2">% of Norm:</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td className="p-2">
-                              Lumbar Flexion
-                            </td>
+                            <td className="p-2">Lumbar Flexion</td>
                             <td className="p-2">49 °</td>
                             <td className="p-2">Pass</td>
                             <td className="p-2">60 °</td>
                             <td className="p-2">82%</td>
                           </tr>
                           <tr>
-                            <td className="p-2">
-                              Lumbar Extension
-                            </td>
+                            <td className="p-2">Lumbar Extension</td>
                             <td className="p-2">28 °</td>
                             <td className="p-2">Pass</td>
                             <td className="p-2">25 °</td>
@@ -1767,10 +1756,11 @@ export default function ReviewReport() {
 
                       <table className="w-full border border-gray-300 text-sm mb-4">
                         <thead>
-                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
-                            <th className="p-2">
-                              Physical Demand Level
-                            </th>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2">Physical Demand Level</th>
                             <th className="p-2">
                               SELDOM / OCCASIONALLY
                               <br />
@@ -1849,15 +1839,9 @@ export default function ReviewReport() {
                                 <td className="border border-gray-300 p-2 font-semibold">
                                   {level.name}
                                 </td>
-                                <td className="p-2">
-                                  {level.occasional}
-                                </td>
-                                <td className="p-2">
-                                  {level.frequent}
-                                </td>
-                                <td className="p-2">
-                                  {level.constant}
-                                </td>
+                                <td className="p-2">{level.occasional}</td>
+                                <td className="p-2">{level.frequent}</td>
+                                <td className="p-2">{level.constant}</td>
                               </tr>
                             ));
                           })()}
@@ -2167,60 +2151,46 @@ export default function ReviewReport() {
                     Test Results and Job Match:
                   </h4>
 
-                  <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
+                  <table
+                    className="w-full text-xs"
+                    style={{
+                      borderCollapse: "collapse",
+                      border: "1px solid #d1d5db",
+                    }}
+                  >
                     <thead>
                       <tr className="bg-yellow-200">
-                        <th className="p-2">
-                          Activity Tested
-                        </th>
+                        <th className="p-2">Activity Tested</th>
                         <th className="p-2">Sit Time</th>
-                        <th className="p-2">
-                          Stand Time
-                        </th>
-                        <th className="p-2">
-                          Test Results
-                        </th>
-                        <th className="p-2">
-                          Job Description
-                        </th>
-                        <th className="p-2">
-                          Job Requirements
-                        </th>
-                        <th className="p-2">
-                          Job Match (Yes/No)
-                        </th>
+                        <th className="p-2">Stand Time</th>
+                        <th className="p-2">Test Results</th>
+                        <th className="p-2">Job Description</th>
+                        <th className="p-2">Job Requirements</th>
+                        <th className="p-2">Job Match (Yes/No)</th>
                       </tr>
                     </thead>
                     <tbody>
                       {/* Initial Assessment */}
                       <tr>
-                        <td className="p-2">
-                          Client Interview Test
-                        </td>
+                        <td className="p-2">Client Interview Test</td>
                         <td className="p-2">45 min</td>
                         <td className="p-2"></td>
                         <td className="p-2">N/A</td>
                         <td className="p-2">
                           Initial assessment and history gathering
                         </td>
-                        <td className="p-2">
-                          Basic interview requirements
-                        </td>
+                        <td className="p-2">Basic interview requirements</td>
                         <td className="p-2">Yes</td>
                       </tr>
                       <tr>
-                        <td className="p-2">
-                          Activity Overview
-                        </td>
+                        <td className="p-2">Activity Overview</td>
                         <td className="p-2"></td>
                         <td className="p-2">5 min</td>
                         <td className="p-2">Complete</td>
                         <td className="p-2">
                           Overview of testing procedures and activities
                         </td>
-                        <td className="p-2">
-                          Orientation and instruction
-                        </td>
+                        <td className="p-2">Orientation and instruction</td>
                         <td className="p-2">Yes</td>
                       </tr>
 
@@ -2733,15 +2703,9 @@ export default function ReviewReport() {
 
                                 rows.push(
                                   <tr key={`${category}-${index}`}>
-                                    <td className="p-2">
-                                      {test.testName}
-                                    </td>
-                                    <td className="p-2">
-                                      {sitTime}
-                                    </td>
-                                    <td className="p-2">
-                                      {standTime}
-                                    </td>
+                                    <td className="p-2">{test.testName}</td>
+                                    <td className="p-2">{sitTime}</td>
+                                    <td className="p-2">{standTime}</td>
                                     <td className="p-2">
                                       {(() => {
                                         if (category === "Occupational Tasks") {
@@ -2943,7 +2907,10 @@ export default function ReviewReport() {
                         <>
                           <table className="w-full border border-gray-300 text-sm mb-4">
                             <thead>
-                              <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
+                              <tr
+                                className="bg-gray-600 text-white"
+                                style={{ borderBottom: "1px solid #d1d5db" }}
+                              >
                                 <th className="p-2">
                                   Observed Effort During Testing
                                 </th>
@@ -2954,25 +2921,19 @@ export default function ReviewReport() {
                             </thead>
                             <tbody>
                               <tr>
-                                <td className="p-2">
-                                  Poor effort
-                                </td>
+                                <td className="p-2">Poor effort</td>
                                 <td className="p-2">
                                   {effortCounts.poor} out of {totalTests} Tests
                                 </td>
                               </tr>
                               <tr>
-                                <td className="p-2">
-                                  Fair to Average effort
-                                </td>
+                                <td className="p-2">Fair to Average effort</td>
                                 <td className="p-2">
                                   {effortCounts.fair} out of {totalTests} Tests
                                 </td>
                               </tr>
                               <tr>
-                                <td className="p-2">
-                                  Good effort
-                                </td>
+                                <td className="p-2">Good effort</td>
                                 <td className="p-2">
                                   {effortCounts.good} out of {totalTests} Tests
                                 </td>
@@ -3479,12 +3440,8 @@ export default function ReviewReport() {
 
                         return crosschecks.map((check, index) => (
                           <tr key={index}>
-                            <td className="p-2">
-                              {check.name}
-                            </td>
-                            <td className="p-2">
-                              {check.description}
-                            </td>
+                            <td className="p-2">{check.name}</td>
+                            <td className="p-2">{check.description}</td>
                             <td className="p-2 text-center">
                               {!check.applicable
                                 ? "N/A"
@@ -7444,32 +7401,33 @@ export default function ReviewReport() {
                     {/* Table 4: Variables With 100% Specificity - Left Column */}
                     <div className="mt-6">
                       <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
-                        TABLE 4 - VARIABLES WITH 100% SPECIFICITY AND PARTICIPANTS'
-                        SCORES ON THESE VARIABLES
+                        TABLE 4 - VARIABLES WITH 100% SPECIFICITY AND
+                        PARTICIPANTS' SCORES ON THESE VARIABLES
                       </h4>
-                      <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
+                      <table
+                        className="w-full text-xs"
+                        style={{
+                          borderCollapse: "collapse",
+                          border: "1px solid #d1d5db",
+                        }}
+                      >
                         <thead>
-                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
-                            <th className="p-2 text-left">
-                              Variable/Score
-                            </th>
-                            <th className="p-2">
-                              100% Effort
-                            </th>
-                            <th className="p-2">
-                              50% Effort
-                            </th>
-                            <th className="p-2">
-                              Sensitivity
-                            </th>
-                            <th className="p-2">
-                              Specificity
-                            </th>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2 text-left">Variable/Score</th>
+                            <th className="p-2">100% Effort</th>
+                            <th className="p-2">50% Effort</th>
+                            <th className="p-2">Sensitivity</th>
+                            <th className="p-2">Specificity</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td className="p-2">Distraction or static high: Invalid/Equivocal</td>
+                            <td className="p-2">
+                              Distraction or static high: Invalid/Equivocal
+                            </td>
                             <td className="p-2 text-center">0</td>
                             <td className="p-2 text-center">1</td>
                             <td className="p-2 text-center">4.0</td>
@@ -7490,7 +7448,9 @@ export default function ReviewReport() {
                             <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
-                            <td className="p-2">Distraction (OAM): Invalid/Equivocal</td>
+                            <td className="p-2">
+                              Distraction (OAM): Invalid/Equivocal
+                            </td>
                             <td className="p-2 text-center">0</td>
                             <td className="p-2 text-center">1</td>
                             <td className="p-2 text-center"></td>
@@ -7504,7 +7464,10 @@ export default function ReviewReport() {
                             <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
-                            <td className="p-2">ROM greater high extrapolation for shoulder: Invalid/Equivocal</td>
+                            <td className="p-2">
+                              ROM greater high extrapolation for shoulder:
+                              Invalid/Equivocal
+                            </td>
                             <td className="p-2 text-center">0</td>
                             <td className="p-2 text-center">14</td>
                             <td className="p-2 text-center"></td>
@@ -7518,7 +7481,9 @@ export default function ReviewReport() {
                             <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
-                            <td className="p-2">ROM push right &gt; left: Invalid/Equivocal</td>
+                            <td className="p-2">
+                              ROM push right &gt; left: Invalid/Equivocal
+                            </td>
                             <td className="p-2 text-center">0</td>
                             <td className="p-2 text-center">20</td>
                             <td className="p-2 text-center"></td>
@@ -7532,7 +7497,9 @@ export default function ReviewReport() {
                             <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
-                            <td className="p-2">Right key grips: Invalid/Equivocal</td>
+                            <td className="p-2">
+                              Right key grips: Invalid/Equivocal
+                            </td>
                             <td className="p-2 text-center">0</td>
                             <td className="p-2 text-center">7</td>
                             <td className="p-2 text-center"></td>
@@ -7569,9 +7536,10 @@ export default function ReviewReport() {
                         </tbody>
                       </table>
                       <p className="text-xs text-gray-600 mt-2">
-                        Abbreviations: OSMT, occupational-musculoskeletal-handling
-                        test; BEG, rapid-exchange grip test; SST, static-strength
-                        test; OAM, occupational-activity-handling test.
+                        Abbreviations: OSMT,
+                        occupational-musculoskeletal-handling test; BEG,
+                        rapid-exchange grip test; SST, static-strength test;
+                        OAM, occupational-activity-handling test.
                       </p>
                     </div>
                   </div>
@@ -7583,21 +7551,24 @@ export default function ReviewReport() {
                       <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
                         TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS
                       </h4>
-                      <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
+                      <table
+                        className="w-full text-xs"
+                        style={{
+                          borderCollapse: "collapse",
+                          border: "1px solid #d1d5db",
+                        }}
+                      >
                         <thead>
-                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
                             <th className="p-2 text-left">
                               Subject Characteristics
                             </th>
-                            <th className="p-2">
-                              100% Effort (n=12)
-                            </th>
-                            <th className="p-2">
-                              50% Effort (n=12)
-                            </th>
-                            <th className="p-2">
-                              Significance Test
-                            </th>
+                            <th className="p-2">100% Effort (n=12)</th>
+                            <th className="p-2">50% Effort (n=12)</th>
+                            <th className="p-2">Significance Test</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -7605,7 +7576,9 @@ export default function ReviewReport() {
                             <td className="p-2">Age (y)</td>
                             <td className="p-2 text-center">35.7</td>
                             <td className="p-2 text-center">33.5</td>
-                            <td className="p-2 text-center">t = 13.9* (= .5)</td>
+                            <td className="p-2 text-center">
+                              t = 13.9* (= .5)
+                            </td>
                           </tr>
                           <tr>
                             <td className="p-2">Range</td>
@@ -7617,13 +7590,19 @@ export default function ReviewReport() {
                             <td className="p-2">Gender: Male/Female</td>
                             <td className="p-2 text-center">7/5</td>
                             <td className="p-2 text-center">10/2</td>
-                            <td className="p-2 text-center">χ² = 0.67* (= .3)</td>
+                            <td className="p-2 text-center">
+                              χ² = 0.67* (= .3)
+                            </td>
                           </tr>
                           <tr>
-                            <td className="p-2">Race: Caucasian/African American</td>
+                            <td className="p-2">
+                              Race: Caucasian/African American
+                            </td>
                             <td className="p-2 text-center">12/0</td>
                             <td className="p-2 text-center">10/2</td>
-                            <td className="p-2 text-center">χ² = 0.67* (= .3)</td>
+                            <td className="p-2 text-center">
+                              χ² = 0.67* (= .3)
+                            </td>
                           </tr>
                           <tr>
                             <td className="p-2">Hard dominance: Right/Left</td>
@@ -7650,7 +7629,9 @@ export default function ReviewReport() {
                             <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
-                            <td className="p-2">Employment: Employed/Not employed/Retired</td>
+                            <td className="p-2">
+                              Employment: Employed/Not employed/Retired
+                            </td>
                             <td className="p-2 text-center">11/1/0</td>
                             <td className="p-2 text-center">10/2/0</td>
                             <td className="p-2 text-center">χ² = 0.1 (= .8)</td>
@@ -7662,21 +7643,24 @@ export default function ReviewReport() {
                     {/* Table 2: Sensitivity and Specificity */}
                     <div className="mb-8">
                       <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
-                        TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS FUNCTIONAL
-                        CAPACITY CUTOFF SCORES
+                        TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS
+                        FUNCTIONAL CAPACITY CUTOFF SCORES
                       </h4>
-                      <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
+                      <table
+                        className="w-full text-xs"
+                        style={{
+                          borderCollapse: "collapse",
+                          border: "1px solid #d1d5db",
+                        }}
+                      >
                         <thead>
-                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
-                            <th className="p-2 text-left">
-                              Cutoff Score
-                            </th>
-                            <th className="p-2">
-                              Sensitivity (%)
-                            </th>
-                            <th className="p-2">
-                              Specificity (%)
-                            </th>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
+                            <th className="p-2 text-left">Cutoff Score</th>
+                            <th className="p-2">Sensitivity (%)</th>
+                            <th className="p-2">Specificity (%)</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -7720,11 +7704,22 @@ export default function ReviewReport() {
                         TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER AND
                         PARTICIPANTS' SCORES ON THESE VARIABLES
                       </h4>
-                      <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
+                      <table
+                        className="w-full text-xs"
+                        style={{
+                          borderCollapse: "collapse",
+                          border: "1px solid #d1d5db",
+                        }}
+                      >
                         <thead>
-                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
+                          <tr
+                            className="bg-gray-600 text-white"
+                            style={{ borderBottom: "1px solid #d1d5db" }}
+                          >
                             <th className="p-2 text-left">Variable/Score</th>
-                            <th className="p-2">100% Effort (n Participants)</th>
+                            <th className="p-2">
+                              100% Effort (n Participants)
+                            </th>
                             <th className="p-2">50% Effort (n Participants)</th>
                             <th className="p-2">Sensitivity</th>
                             <th className="p-2">Specificity</th>
@@ -7732,7 +7727,10 @@ export default function ReviewReport() {
                         </thead>
                         <tbody>
                           <tr>
-                            <td className="p-2">Finger flexion (slide of the high for SST): Invalid</td>
+                            <td className="p-2">
+                              Finger flexion (slide of the high for SST):
+                              Invalid
+                            </td>
                             <td className="p-2 text-center">1</td>
                             <td className="p-2 text-center">5</td>
                             <td className="p-2 text-center">70.0</td>
@@ -7753,7 +7751,10 @@ export default function ReviewReport() {
                             <td className="p-2 text-center">72.2</td>
                           </tr>
                           <tr>
-                            <td className="p-2">ROM greater than high extrapolation of the leg test</td>
+                            <td className="p-2">
+                              ROM greater than high extrapolation of the leg
+                              test
+                            </td>
                             <td className="p-2 text-center">5</td>
                             <td className="p-2 text-center">22</td>
                             <td className="p-2 text-center"></td>
@@ -7795,7 +7796,9 @@ export default function ReviewReport() {
                             <td className="p-2 text-center">42.4</td>
                           </tr>
                           <tr>
-                            <td className="p-2">BEG: ROM greater than the leg lift</td>
+                            <td className="p-2">
+                              BEG: ROM greater than the leg lift
+                            </td>
                             <td className="p-2 text-center">10</td>
                             <td className="p-2 text-center">21</td>
                             <td className="p-2 text-center"></td>
@@ -7811,9 +7814,9 @@ export default function ReviewReport() {
                         </tbody>
                       </table>
                       <p className="text-xs text-gray-600 mt-2">
-                        *Abbreviations: OSMT, occupational-musculoskeletal-handling
-                        test; BEG, rapid-exchange grip test; SST, static-strength
-                        test.
+                        *Abbreviations: OSMT,
+                        occupational-musculoskeletal-handling test; BEG,
+                        rapid-exchange grip test; SST, static-strength test.
                       </p>
                     </div>
                   </div>
