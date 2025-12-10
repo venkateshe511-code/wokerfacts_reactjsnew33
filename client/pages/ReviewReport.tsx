@@ -167,7 +167,6 @@ export default function ReviewReport() {
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [signatureImage, setSignatureImage] = useState<string | null>(null);
-  const [signatureSize, setSignatureSize] = useState<"small" | "medium" | "large">("medium");
 
   useEffect(() => {
     // Load all data from previous steps
