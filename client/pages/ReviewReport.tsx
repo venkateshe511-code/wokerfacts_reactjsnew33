@@ -9106,7 +9106,12 @@ export default function ReviewReport() {
                             >
                               1.5-1.8
                             </td>
-                            <td className="p-2 text-center"></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{
+                                borderBottom: "1px solid #ccc",
+                              }}
+                            ></td>
                           </tr>
                           <tr>
                             <td
@@ -9274,7 +9279,12 @@ export default function ReviewReport() {
                             >
                               12
                             </td>
-                            <td className="p-2 text-center"></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{
+                                borderBottom: "1px solid #ccc",
+                              }}
+                            ></td>
                           </tr>
                           <tr>
                             <td
@@ -10121,13 +10131,13 @@ export default function ReviewReport() {
                         </tbody>
                       </table>
                     </div>
+
+                    <p className="text-xs text-gray-600 mt-8 text-center">
+                      Journal of orthopaedic & sports physical therapy | volume
+                      37 | number 4 | April 2007.
+                    </p>
                   </div>
                 </div>
-
-                <p className="text-xs text-gray-600 mt-8 text-center">
-                  Journal of orthopaedic & sports physical therapy | volume 37 |
-                  number 4 | April 2007.
-                </p>
               </div>
 
               {/* Digital Library */}
