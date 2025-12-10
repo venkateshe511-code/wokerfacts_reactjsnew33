@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useDemoMode } from "@/hooks/use-demo-mode";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "@/hooks/use-toast";
 
 interface ReferralQuestion {
   id: string;
@@ -137,6 +138,7 @@ export default function ReferralQuestions() {
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadingImages, setUploadingImages] = useState<string | null>(null);
+  const [signatureImage, setSignatureImage] = useState<string | null>(null);
 
   const questionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const textareaRefs = useRef<Record<string, HTMLTextAreaElement | null>>({});
@@ -421,6 +423,58 @@ export default function ReferralQuestions() {
       setIsEditMode(true);
     }
   }, []);
+
+  useEffect(() => {
+    // Load signature from localStorage if it exists
+    const savedSignature = localStorage.getItem("signatureImage");
+    if (savedSignature) {
+      setSignatureImage(savedSignature);
+    }
+  }, []);
+
+  const handleSignatureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const validTypes = ["image/png", "image/jpeg", "image/jpg"];
+      if (!validTypes.includes(file.type)) {
+        toast({
+          title: "Invalid file type",
+          description: "Please upload a PNG or JPEG image",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (file.size > maxSize) {
+        toast({
+          title: "File too large",
+          description: "Please upload an image smaller than 5MB",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target?.result as string;
+        setSignatureImage(dataUrl);
+        localStorage.setItem("signatureImage", dataUrl);
+        toast({
+          title: "Signature uploaded",
+          description: "Your signature will be included in the final reports",
+        });
+      };
+      reader.onerror = () => {
+        toast({
+          title: "Error reading file",
+          description: "Unable to read the image file",
+          variant: "destructive",
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleAnswerChange = (questionId: string, answer: string) => {
     setReferralData((prev) => ({
@@ -1239,6 +1293,60 @@ export default function ReferralQuestions() {
                           placeholder="Enter your conclusion here..."
                           className="min-h-[120px]"
                         />
+                      </div>
+
+                      {/* Evaluator Signature Section - Separate from tabs */}
+                      <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 mt-6">
+                        <h3 className="text-lg font-semibold text-purple-800 mb-4">
+                          Upload Evaluator Signature
+                        </h3>
+                        <p className="text-sm text-purple-700 mb-4">
+                          Upload your signature image to be included in the
+                          "Signature of Evaluator" section of all reports.
+                        </p>
+                        <div className="space-y-4">
+                          <div className="flex items-center space-x-4">
+                            <input
+                              type="file"
+                              id="signatureUpload"
+                              accept="image/png,image/jpeg,image/jpg"
+                              onChange={handleSignatureUpload}
+                              className="flex-1 px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            />
+                          </div>
+                          {signatureImage && (
+                            <div className="flex items-center space-x-4 bg-white p-4 rounded-lg border border-purple-200">
+                              <div>
+                                <p className="text-sm font-semibold text-purple-800">
+                                  Signature Preview:
+                                </p>
+                                <img
+                                  src={signatureImage}
+                                  alt="Signature Preview"
+                                  style={{
+                                    maxWidth: "150px",
+                                    maxHeight: "80px",
+                                  }}
+                                  className="mt-2 border border-purple-300 rounded"
+                                />
+                              </div>
+                              <button
+                                onClick={() => {
+                                  setSignatureImage(null);
+                                  localStorage.removeItem("signatureImage");
+                                  toast({
+                                    title: "Signature removed",
+                                    description:
+                                      "The signature has been removed from your reports",
+                                  });
+                                }}
+                                className="text-red-600 hover:text-red-700 text-sm font-medium"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          )}
+                        </div>
                       </div>
 
                       {/* Image Upload for Conclusions Question */}
