@@ -7454,7 +7454,7 @@ export default function ReviewReport() {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 font-bold"
                               style={{ borderRight: "1px solid #ccc" }}
