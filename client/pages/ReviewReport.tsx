@@ -8185,57 +8185,137 @@ export default function ReviewReport() {
 
                     {/* Table 2: Sensitivity and Specificity */}
                     <div className="mb-8">
-                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
-                        TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS
-                        FUNCTIONAL CAPACITY CUTOFF SCORES
-                      </h4>
+                      <div className="flex bg-gray-600 text-white">
+                        <div className="flex-1 p-3 border-r border-gray-500">
+                          <div className="font-bold text-sm">TABLE 2</div>
+                        </div>
+                        <div className="flex-1 p-3">
+                          <div className="font-semibold text-sm tracking-wide">
+                            Sensitivity and Specificity for Various Functional
+                            Capacity Evaluation Cutoff Scores
+                          </div>
+                        </div>
+                      </div>
                       <table
-                        className="w-full text-xs"
+                        className="w-full text-xs border border-gray-400"
                         style={{
                           borderCollapse: "collapse",
-                          border: "1px solid #d1d5db",
                         }}
                       >
                         <thead>
                           <tr
-                            className="bg-gray-600 text-white"
-                            style={{ borderBottom: "1px solid #d1d5db" }}
+                            style={{
+                              backgroundColor: "#f5f5f5",
+                              borderBottom: "2px solid #333",
+                            }}
                           >
-                            <th className="p-2 text-left">Cutoff Score</th>
-                            <th className="p-2">Sensitivity (%)</th>
-                            <th className="p-2">Specificity (%)</th>
+                            <th
+                              className="p-2 text-left font-bold text-gray-800"
+                              style={{ borderRight: "1px solid #666" }}
+                            >
+                              Cutoff Score
+                            </th>
+                            <th
+                              className="p-2 font-bold text-gray-800"
+                              style={{ borderRight: "1px solid #666" }}
+                            >
+                              Sensitivity
+                            </th>
+                            <th className="p-2 font-bold text-gray-800">
+                              Specificity
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td className="p-2">55%</td>
-                            <td className="p-2 text-center">33.7</td>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              55%
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              36.7
+                            </td>
                             <td className="p-2 text-center">100.0</td>
                           </tr>
-                          <tr>
-                            <td className="p-2">60%</td>
-                            <td className="p-2 text-center">58.0</td>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              60%
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              51.0
+                            </td>
                             <td className="p-2 text-center">88.5</td>
                           </tr>
-                          <tr>
-                            <td className="p-2">65%</td>
-                            <td className="p-2 text-center">60.0</td>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              65%
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              60.0
+                            </td>
                             <td className="p-2 text-center">88.5</td>
                           </tr>
-                          <tr>
-                            <td className="p-2">70%</td>
-                            <td className="p-2 text-center">85.0</td>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              70%
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              80.0
+                            </td>
                             <td className="p-2 text-center">84.2</td>
                           </tr>
-                          <tr>
-                            <td className="p-2">75%</td>
-                            <td className="p-2 text-center">88.7</td>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              75%
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              86.7
+                            </td>
                             <td className="p-2 text-center">68.4</td>
                           </tr>
                           <tr>
-                            <td className="p-2">80%</td>
-                            <td className="p-2 text-center">100.0</td>
-                            <td className="p-2 text-center">40.0</td>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              80%
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              82.0
+                            </td>
+                            <td className="p-2 text-center">42.0</td>
                           </tr>
                         </tbody>
                       </table>
