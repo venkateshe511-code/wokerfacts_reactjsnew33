@@ -8646,11 +8646,11 @@ export default function ReviewReport() {
                     {/* Table 1: Demographic Data */}
                     <div className="mb-8">
                       <div className="flex bg-gray-600 text-white">
-                        <div className="flex-1 p-3 border-r border-gray-500">
+                        <div className="p-3 border-r border-gray-500 w-24">
                           <div className="font-bold text-sm">TABLE 1</div>
                         </div>
                         <div className="flex-1 p-3">
-                          <div className="font-semibold text-sm">
+                          <div className="font-semibold text-sm tracking-wide">
                             Demographic Data of Participants
                           </div>
                         </div>
