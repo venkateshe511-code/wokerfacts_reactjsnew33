@@ -7462,11 +7462,11 @@ export default function ReviewReport() {
                               Overreaction for static
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -7475,7 +7475,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7496,13 +7496,13 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               4.0
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7560,11 +7560,11 @@ export default function ReviewReport() {
                               Do movement patterns match pain for static?
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -7573,7 +7573,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7594,13 +7594,13 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               28.0
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7658,11 +7658,11 @@ export default function ReviewReport() {
                               Do movement patterns improve with distraction for static?
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -7671,7 +7671,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7696,7 +7696,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7742,11 +7742,11 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               25.0
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr style={{ borderBottom: "1px solid #ccc" }}>
                             <td
@@ -7756,11 +7756,11 @@ export default function ReviewReport() {
                               OMH greater than high extrapolation for shoulder
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -7769,7 +7769,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7790,13 +7790,13 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               46.7
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7854,11 +7854,11 @@ export default function ReviewReport() {
                               OMH greater than high extrapolation for overhead
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -7867,7 +7867,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7888,13 +7888,13 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               65.5
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7952,11 +7952,11 @@ export default function ReviewReport() {
                               REG consistent right
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -7965,7 +7965,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -7986,13 +7986,13 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               40.0
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8050,11 +8050,11 @@ export default function ReviewReport() {
                               REG consistent left
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -8063,7 +8063,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8084,13 +8084,13 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               50.0
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8148,11 +8148,11 @@ export default function ReviewReport() {
                               Right key pinch
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -8161,7 +8161,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8186,7 +8186,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8232,11 +8232,11 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               30.0
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr style={{ borderBottom: "1px solid #ccc" }}>
                             <td
@@ -8246,11 +8246,11 @@ export default function ReviewReport() {
                               Movement pattern matches pain for HT
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -8259,7 +8259,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8280,13 +8280,13 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               18.5
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8344,11 +8344,11 @@ export default function ReviewReport() {
                               Movement patterns improve with distraction for HT
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -8357,7 +8357,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8382,7 +8382,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8428,11 +8428,11 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               22.2
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr style={{ borderBottom: "1px solid #ccc" }}>
                             <td
@@ -8442,11 +8442,11 @@ export default function ReviewReport() {
                               Overreaction (OMH)
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -8455,7 +8455,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8476,13 +8476,13 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               10.3
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8532,7 +8532,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
                             <td
                               className="p-2 font-bold"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -8540,11 +8540,11 @@ export default function ReviewReport() {
                               Distraction (OMH)
                             </td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
-                              className="p-2 text-center"
+                              className="p-2"
                               style={{ borderRight: "1px solid #ccc" }}
                             ></td>
                             <td
@@ -8574,11 +8574,11 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{ borderRight: "1px solid #ccc" }}
                             >
                               37.9
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>100</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
                             <td
