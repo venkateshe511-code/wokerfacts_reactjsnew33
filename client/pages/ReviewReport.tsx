@@ -249,6 +249,10 @@ export default function ReviewReport() {
               classification: cardioData.classification || "",
               hbr: cardioData.hbr || "",
               aerobicFitnessScore: cardioData.aerobicFitnessScore || "",
+              // YMCA Submaximal Treadmill Test fields
+              heartRate: cardioData.heartRate || "",
+              bloodPressure: cardioData.bloodPressure || "",
+              rpe: cardioData.rpe || "",
               // Include image data
               clientImages: cardioData.clientImages || [],
               serializedImages: cardioData.serializedImages || [],
