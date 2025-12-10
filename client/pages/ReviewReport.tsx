@@ -2851,7 +2851,7 @@ export default function ReviewReport() {
                                         return "Functional Assessment";
                                       })()}
                                     </td>
-                                    <td className="border border-gray-300 p-2 text-center">
+                                    <td className="p-2 text-center">
                                       {evaluateJobMatch(test) ? "Yes" : "No"}
                                     </td>
                                   </tr>,
@@ -3485,14 +3485,14 @@ export default function ReviewReport() {
                             <td className="p-2">
                               {check.description}
                             </td>
-                            <td className="border border-gray-300 p-2 text-center">
+                            <td className="p-2 text-center">
                               {!check.applicable
                                 ? "N/A"
                                 : check.pass
                                   ? "✓"
                                   : ""}
                             </td>
-                            <td className="border border-gray-300 p-2 text-center">
+                            <td className="p-2 text-center">
                               {!check.applicable
                                 ? "N/A"
                                 : !check.pass
@@ -7470,101 +7470,101 @@ export default function ReviewReport() {
                         <tbody>
                           <tr>
                             <td className="p-2">Distraction or static high: Invalid/Equivocal</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">1</td>
-                            <td className="border border-gray-300 p-2 text-center">4.0</td>
-                            <td className="border border-gray-300 p-2 text-center">100</td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">1</td>
+                            <td className="p-2 text-center">4.0</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
                             <td className="p-2">Trunk: Invalid/Equivocal</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">6</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">6</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Valid</td>
-                            <td className="border border-gray-300 p-2 text-center">12</td>
-                            <td className="border border-gray-300 p-2 text-center">24</td>
-                            <td className="border border-gray-300 p-2 text-center">28.0</td>
-                            <td className="border border-gray-300 p-2 text-center">100</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">24</td>
+                            <td className="p-2 text-center">28.0</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
                             <td className="p-2">Distraction (OAM): Invalid/Equivocal</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">1</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">1</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Valid</td>
-                            <td className="border border-gray-300 p-2 text-center">12</td>
-                            <td className="border border-gray-300 p-2 text-center">25</td>
-                            <td className="border border-gray-300 p-2 text-center">46.7</td>
-                            <td className="border border-gray-300 p-2 text-center">100</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">25</td>
+                            <td className="p-2 text-center">46.7</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
                             <td className="p-2">ROM greater high extrapolation for shoulder: Invalid/Equivocal</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">14</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">14</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Valid</td>
-                            <td className="border border-gray-300 p-2 text-center">12</td>
-                            <td className="border border-gray-300 p-2 text-center">10</td>
-                            <td className="border border-gray-300 p-2 text-center">46.7</td>
-                            <td className="border border-gray-300 p-2 text-center">100</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">10</td>
+                            <td className="p-2 text-center">46.7</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
                             <td className="p-2">ROM push right &gt; left: Invalid/Equivocal</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">20</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">20</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Valid</td>
-                            <td className="border border-gray-300 p-2 text-center">12</td>
-                            <td className="border border-gray-300 p-2 text-center">30</td>
-                            <td className="border border-gray-300 p-2 text-center">30.0</td>
-                            <td className="border border-gray-300 p-2 text-center">100</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">30</td>
+                            <td className="p-2 text-center">30.0</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
                             <td className="p-2">Right key grips: Invalid/Equivocal</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">7</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">7</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Valid</td>
-                            <td className="border border-gray-300 p-2 text-center">12</td>
-                            <td className="border border-gray-300 p-2 text-center">26</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">26</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Mounted palms machine pass</td>
-                            <td className="border border-gray-300 p-2 text-center">3</td>
-                            <td className="border border-gray-300 p-2 text-center">2</td>
-                            <td className="border border-gray-300 p-2 text-center">18.5</td>
-                            <td className="border border-gray-300 p-2 text-center">100</td>
+                            <td className="p-2 text-center">3</td>
+                            <td className="p-2 text-center">2</td>
+                            <td className="p-2 text-center">18.5</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                           <tr>
                             <td className="p-2">Distraction (OAM)</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">7</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">7</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Valid</td>
-                            <td className="border border-gray-300 p-2 text-center">12</td>
-                            <td className="border border-gray-300 p-2 text-center">15</td>
-                            <td className="border border-gray-300 p-2 text-center">10.3</td>
-                            <td className="border border-gray-300 p-2 text-center">100</td>
+                            <td className="p-2 text-center">12</td>
+                            <td className="p-2 text-center">15</td>
+                            <td className="p-2 text-center">10.3</td>
+                            <td className="p-2 text-center">100</td>
                           </tr>
                         </tbody>
                       </table>
@@ -7603,57 +7603,57 @@ export default function ReviewReport() {
                         <tbody>
                           <tr>
                             <td className="p-2">Age (y)</td>
-                            <td className="border border-gray-300 p-2 text-center">35.7</td>
-                            <td className="border border-gray-300 p-2 text-center">33.5</td>
-                            <td className="border border-gray-300 p-2 text-center">t = 13.9* (= .5)</td>
+                            <td className="p-2 text-center">35.7</td>
+                            <td className="p-2 text-center">33.5</td>
+                            <td className="p-2 text-center">t = 13.9* (= .5)</td>
                           </tr>
                           <tr>
                             <td className="p-2">Range</td>
-                            <td className="border border-gray-300 p-2 text-center">23-60</td>
-                            <td className="border border-gray-300 p-2 text-center">18-55</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">23-60</td>
+                            <td className="p-2 text-center">18-55</td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Gender: Male/Female</td>
-                            <td className="border border-gray-300 p-2 text-center">7/5</td>
-                            <td className="border border-gray-300 p-2 text-center">10/2</td>
-                            <td className="border border-gray-300 p-2 text-center">χ² = 0.67* (= .3)</td>
+                            <td className="p-2 text-center">7/5</td>
+                            <td className="p-2 text-center">10/2</td>
+                            <td className="p-2 text-center">χ² = 0.67* (= .3)</td>
                           </tr>
                           <tr>
                             <td className="p-2">Race: Caucasian/African American</td>
-                            <td className="border border-gray-300 p-2 text-center">12/0</td>
-                            <td className="border border-gray-300 p-2 text-center">10/2</td>
-                            <td className="border border-gray-300 p-2 text-center">χ² = 0.67* (= .3)</td>
+                            <td className="p-2 text-center">12/0</td>
+                            <td className="p-2 text-center">10/2</td>
+                            <td className="p-2 text-center">χ² = 0.67* (= .3)</td>
                           </tr>
                           <tr>
                             <td className="p-2">Hard dominance: Right/Left</td>
-                            <td className="border border-gray-300 p-2 text-center">11/1</td>
-                            <td className="border border-gray-300 p-2 text-center">11/1</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">11/1</td>
+                            <td className="p-2 text-center">11/1</td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Body mass (kg): Mean</td>
-                            <td className="border border-gray-300 p-2 text-center">15.20</td>
-                            <td className="border border-gray-300 p-2 text-center">17</td>
-                            <td className="border border-gray-300 p-2 text-center">t = 1.4* (= .2)</td>
+                            <td className="p-2 text-center">15.20</td>
+                            <td className="p-2 text-center">17</td>
+                            <td className="p-2 text-center">t = 1.4* (= .2)</td>
                           </tr>
                           <tr>
                             <td className="p-2">Range</td>
-                            <td className="border border-gray-300 p-2 text-center">54.0-127.8</td>
-                            <td className="border border-gray-300 p-2 text-center">54.0-103.5</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">54.0-127.8</td>
+                            <td className="p-2 text-center">54.0-103.5</td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Insurance: Yes/No</td>
-                            <td className="border border-gray-300 p-2 text-center">11/1</td>
-                            <td className="border border-gray-300 p-2 text-center">10/2</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">11/1</td>
+                            <td className="p-2 text-center">10/2</td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Employment: Employed/Not employed/Retired</td>
-                            <td className="border border-gray-300 p-2 text-center">11/1/0</td>
-                            <td className="border border-gray-300 p-2 text-center">10/2/0</td>
-                            <td className="border border-gray-300 p-2 text-center">χ² = 0.1 (= .8)</td>
+                            <td className="p-2 text-center">11/1/0</td>
+                            <td className="p-2 text-center">10/2/0</td>
+                            <td className="p-2 text-center">χ² = 0.1 (= .8)</td>
                           </tr>
                         </tbody>
                       </table>
@@ -7682,33 +7682,33 @@ export default function ReviewReport() {
                         <tbody>
                           <tr>
                             <td className="p-2">55%</td>
-                            <td className="border border-gray-300 p-2 text-center">33.7</td>
-                            <td className="border border-gray-300 p-2 text-center">100.0</td>
+                            <td className="p-2 text-center">33.7</td>
+                            <td className="p-2 text-center">100.0</td>
                           </tr>
                           <tr>
                             <td className="p-2">60%</td>
-                            <td className="border border-gray-300 p-2 text-center">58.0</td>
-                            <td className="border border-gray-300 p-2 text-center">88.5</td>
+                            <td className="p-2 text-center">58.0</td>
+                            <td className="p-2 text-center">88.5</td>
                           </tr>
                           <tr>
                             <td className="p-2">65%</td>
-                            <td className="border border-gray-300 p-2 text-center">60.0</td>
-                            <td className="border border-gray-300 p-2 text-center">88.5</td>
+                            <td className="p-2 text-center">60.0</td>
+                            <td className="p-2 text-center">88.5</td>
                           </tr>
                           <tr>
                             <td className="p-2">70%</td>
-                            <td className="border border-gray-300 p-2 text-center">85.0</td>
-                            <td className="border border-gray-300 p-2 text-center">84.2</td>
+                            <td className="p-2 text-center">85.0</td>
+                            <td className="p-2 text-center">84.2</td>
                           </tr>
                           <tr>
                             <td className="p-2">75%</td>
-                            <td className="border border-gray-300 p-2 text-center">88.7</td>
-                            <td className="border border-gray-300 p-2 text-center">68.4</td>
+                            <td className="p-2 text-center">88.7</td>
+                            <td className="p-2 text-center">68.4</td>
                           </tr>
                           <tr>
                             <td className="p-2">80%</td>
-                            <td className="border border-gray-300 p-2 text-center">100.0</td>
-                            <td className="border border-gray-300 p-2 text-center">40.0</td>
+                            <td className="p-2 text-center">100.0</td>
+                            <td className="p-2 text-center">40.0</td>
                           </tr>
                         </tbody>
                       </table>
@@ -7733,80 +7733,80 @@ export default function ReviewReport() {
                         <tbody>
                           <tr>
                             <td className="p-2">Finger flexion (slide of the high for SST): Invalid</td>
-                            <td className="border border-gray-300 p-2 text-center">1</td>
-                            <td className="border border-gray-300 p-2 text-center">5</td>
-                            <td className="border border-gray-300 p-2 text-center">70.0</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">1</td>
+                            <td className="p-2 text-center">5</td>
+                            <td className="p-2 text-center">70.0</td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Equivocal</td>
-                            <td className="border border-gray-300 p-2 text-center">2</td>
-                            <td className="border border-gray-300 p-2 text-center">13</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">2</td>
+                            <td className="p-2 text-center">13</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Valid</td>
-                            <td className="border border-gray-300 p-2 text-center">9</td>
-                            <td className="border border-gray-300 p-2 text-center">9</td>
-                            <td className="border border-gray-300 p-2 text-center">78.6</td>
-                            <td className="border border-gray-300 p-2 text-center">72.2</td>
+                            <td className="p-2 text-center">9</td>
+                            <td className="p-2 text-center">9</td>
+                            <td className="p-2 text-center">78.6</td>
+                            <td className="p-2 text-center">72.2</td>
                           </tr>
                           <tr>
                             <td className="p-2">ROM greater than high extrapolation of the leg test</td>
-                            <td className="border border-gray-300 p-2 text-center">5</td>
-                            <td className="border border-gray-300 p-2 text-center">22</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">5</td>
+                            <td className="p-2 text-center">22</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Invalid</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">8</td>
-                            <td className="border border-gray-300 p-2 text-center">83.3</td>
-                            <td className="border border-gray-300 p-2 text-center">68.4</td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">8</td>
+                            <td className="p-2 text-center">83.3</td>
+                            <td className="p-2 text-center">68.4</td>
                           </tr>
                           <tr>
                             <td className="p-2">BEG on right</td>
-                            <td className="border border-gray-300 p-2 text-center">1</td>
-                            <td className="border border-gray-300 p-2 text-center">24</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">1</td>
+                            <td className="p-2 text-center">24</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Invalid</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">5</td>
-                            <td className="border border-gray-300 p-2 text-center">83.3</td>
-                            <td className="border border-gray-300 p-2 text-center">52.9</td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">5</td>
+                            <td className="p-2 text-center">83.3</td>
+                            <td className="p-2 text-center">52.9</td>
                           </tr>
                           <tr>
                             <td className="p-2">BEG on left</td>
-                            <td className="border border-gray-300 p-2 text-center">8</td>
-                            <td className="border border-gray-300 p-2 text-center">24</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">8</td>
+                            <td className="p-2 text-center">24</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Invalid</td>
-                            <td className="border border-gray-300 p-2 text-center">6</td>
-                            <td className="border border-gray-300 p-2 text-center">5</td>
-                            <td className="border border-gray-300 p-2 text-center">72.4</td>
-                            <td className="border border-gray-300 p-2 text-center">42.4</td>
+                            <td className="p-2 text-center">6</td>
+                            <td className="p-2 text-center">5</td>
+                            <td className="p-2 text-center">72.4</td>
+                            <td className="p-2 text-center">42.4</td>
                           </tr>
                           <tr>
                             <td className="p-2">BEG: ROM greater than the leg lift</td>
-                            <td className="border border-gray-300 p-2 text-center">10</td>
-                            <td className="border border-gray-300 p-2 text-center">21</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">10</td>
+                            <td className="p-2 text-center">21</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
                             <td className="p-2">Invalid</td>
-                            <td className="border border-gray-300 p-2 text-center">0</td>
-                            <td className="border border-gray-300 p-2 text-center">6</td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
-                            <td className="border border-gray-300 p-2 text-center"></td>
+                            <td className="p-2 text-center">0</td>
+                            <td className="p-2 text-center">6</td>
+                            <td className="p-2 text-center"></td>
+                            <td className="p-2 text-center"></td>
                           </tr>
                         </tbody>
                       </table>
