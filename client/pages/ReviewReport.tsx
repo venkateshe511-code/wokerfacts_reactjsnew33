@@ -7421,7 +7421,7 @@ export default function ReviewReport() {
                           <tr
                             style={{
                               backgroundColor: "#f5f5f5",
-                              borderBottom: "2px solid #333",
+                              borderBottom: "1px solid #666",
                             }}
                           >
                             <th
@@ -7451,6 +7451,20 @@ export default function ReviewReport() {
                             <th className="p-2 font-bold text-gray-800">
                               Specificity
                             </th>
+                          </tr>
+                          <tr
+                            style={{
+                              backgroundColor: "#f0f0f0",
+                              borderBottom: "1px solid #ccc",
+                            }}
+                          >
+                            <td
+                              colSpan={5}
+                              className="p-2 text-xs text-gray-600"
+                              style={{ borderRight: "1px solid #666" }}
+                            >
+                              Abbreviations: HT, hand test; OMH, occupational-material-handling test; REG, rapid-exchange grip test; SST, static-strength test.
+                            </td>
                           </tr>
                         </thead>
                         <tbody>
@@ -10009,11 +10023,6 @@ export default function ReviewReport() {
                           </tr>
                         </tbody>
                       </table>
-                      <p className="text-xs text-gray-600 mt-2">
-                        Abbreviations: OMH, occupational-material-handling test;
-                        REG, rapid-exchange grip test; SST, static-strength
-                        test.
-                      </p>
                     </div>
                   </div>
                 </div>
