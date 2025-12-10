@@ -585,6 +585,8 @@ export default function ProtocolTests() {
       // Cardio
       "mcaft-step-test",
       "bruce-treadmill-test",
+      "ymca-step-test",
+      "ymca-submaximal-treadmill-test",
     ],
     activeTab: "strength",
   };
