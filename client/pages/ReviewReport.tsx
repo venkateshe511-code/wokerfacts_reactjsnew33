@@ -9472,9 +9472,9 @@ export default function ReviewReport() {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
-                              className="p-2"
+                              className="p-2 font-bold"
                               style={{ borderRight: "1px solid #ccc" }}
                             >
                               Fatigue Percent Index of the high-for SST
@@ -9570,13 +9570,12 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
-                              className="p-2"
+                              className="p-2 font-bold"
                               style={{ borderRight: "1px solid #ccc" }}
                             >
-                              OMH greater than high extrapolation of the leg
-                              test
+                              OMH greater than high extrapolation of the leg test
                             </td>
                             <td
                               className="p-2 text-center"
@@ -9669,9 +9668,9 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
-                              className="p-2"
+                              className="p-2 font-bold"
                               style={{ borderRight: "1px solid #ccc" }}
                             >
                               REG on right
@@ -9767,9 +9766,9 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
-                              className="p-2"
+                              className="p-2 font-bold"
                               style={{ borderRight: "1px solid #ccc" }}
                             >
                               REG on left
@@ -9865,9 +9864,9 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
-                              className="p-2"
+                              className="p-2 font-bold"
                               style={{ borderRight: "1px solid #ccc" }}
                             >
                               30-cm lift greater than the leg lift
