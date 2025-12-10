@@ -2557,10 +2557,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             <div style="margin-top: 40px;">
                 ${
                   signatureImage
-                    ? `<div style="margin-bottom: 20px;">
-                        <img src="${signatureImage}" alt="Evaluator Signature" style="max-width: 200px; max-height: 100px; border: 1px solid #ccc; padding: 4px;" />
+                    ? `<div style="margin-bottom: 24px;">
+                        <img src="${signatureImage}" alt="Evaluator Signature" style="max-width: 250px; max-height: 100px; object-fit: contain;" />
                       </div>`
-                    : `<div style="border-bottom: 1px solid #333; width: 250px; margin-bottom: 8px;"></div>`
+                    : `<div style="border-bottom: 1px solid #333; width: 250px; margin-bottom: 24px;"></div>`
                 }
                 <p style="font-size: 12px; font-family: Arial, sans-serif;">Date: ${currentDate}</p>
                 <p style="font-size: 12px; font-weight: bold; font-family: Arial, sans-serif;">
