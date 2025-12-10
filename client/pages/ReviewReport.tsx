@@ -327,6 +327,14 @@ export default function ReviewReport() {
     loadAllData();
   }, [selectedProfileId]);
 
+  useEffect(() => {
+    // Load signature image from localStorage
+    const savedSignature = localStorage.getItem("signatureImage");
+    if (savedSignature) {
+      setSignatureImage(savedSignature);
+    }
+  }, []);
+
   const calculateBilateralDeficiency = (
     leftAvg: number,
     rightAvg: number,
