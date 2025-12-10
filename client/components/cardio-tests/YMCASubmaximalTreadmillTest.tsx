@@ -30,7 +30,10 @@ interface Props {
   initialData?: Partial<YMCASubmaximalTreadmillTestData>;
 }
 
-export default function YMCASubmaximalTreadmillTest({ onSave, initialData }: Props) {
+export default function YMCASubmaximalTreadmillTest({
+  onSave,
+  initialData,
+}: Props) {
   const [vo2Max, setVo2Max] = useState(initialData?.vo2Max || "");
   const [heartRate, setHeartRate] = useState(initialData?.heartRate || "");
   const [bloodPressure, setBloodPressure] = useState(
@@ -123,8 +126,20 @@ export default function YMCASubmaximalTreadmillTest({ onSave, initialData }: Pro
   }, [initialData?.serializedImages]);
 
   const protocolTable = [
-    { stage: "Warm-up", duration: "3 min", speed: "Self-selected (2.0-4.5 mph)", grade: "0%", targetHeartRate: "50-70% of age-predicted MHR" },
-    { stage: "Test Stage", duration: "4 min", speed: "Maintain Warm-up Speed", grade: "5%", targetHeartRate: "HR between 50-70% MHR" },
+    {
+      stage: "Warm-up",
+      duration: "3 min",
+      speed: "Self-selected (2.0-4.5 mph)",
+      grade: "0%",
+      targetHeartRate: "50-70% of age-predicted MHR",
+    },
+    {
+      stage: "Test Stage",
+      duration: "4 min",
+      speed: "Maintain Warm-up Speed",
+      grade: "5%",
+      targetHeartRate: "HR between 50-70% MHR",
+    },
   ];
 
   return (
@@ -136,7 +151,8 @@ export default function YMCASubmaximalTreadmillTest({ onSave, initialData }: Pro
             🏃‍♂️ YMCA SUBMAXIMAL TREADMILL TEST
           </CardTitle>
           <p className="text-center text-emerald-100 text-sm relative z-10 font-medium mt-2">
-            Single-stage protocol to assess cardiovascular fitness with steady-state heart rate between 50-70% age-predicted MHR.
+            Single-stage protocol to assess cardiovascular fitness with
+            steady-state heart rate between 50-70% age-predicted MHR.
           </p>
         </CardHeader>
         <CardContent className="space-y-6 bg-gradient-to-br from-green-50 via-emerald-50 to-cyan-50">
@@ -144,32 +160,60 @@ export default function YMCASubmaximalTreadmillTest({ onSave, initialData }: Pro
           <div className="bg-white rounded-lg p-4 border-2 border-green-200">
             <h3 className="font-bold text-green-900 mb-2">Test Protocol:</h3>
             <p className="text-sm text-gray-700">
-              This test involves a warm-up followed by a single, four-minute testing stage intended to elicit a steady-state heart rate (HR) between 50% and 70% of age-predicted maximum heart rate for healthy individuals.
+              This test involves a warm-up followed by a single, four-minute
+              testing stage intended to elicit a steady-state heart rate (HR)
+              between 50% and 70% of age-predicted maximum heart rate for
+              healthy individuals.
             </p>
           </div>
 
           {/* Protocol Table */}
           <div className="space-y-3">
-            <h3 className="font-bold text-lg text-green-900">Test Protocol Stages</h3>
+            <h3 className="font-bold text-lg text-green-900">
+              Test Protocol Stages
+            </h3>
             <div className="overflow-x-auto">
               <table className="w-full border-collapse bg-white rounded-lg shadow-md">
                 <thead>
                   <tr className="bg-green-200">
-                    <th className="border border-green-300 px-3 py-2 text-left font-semibold">Stage</th>
-                    <th className="border border-green-300 px-3 py-2 text-center font-semibold">Duration</th>
-                    <th className="border border-green-300 px-3 py-2 text-center font-semibold">Speed</th>
-                    <th className="border border-green-300 px-3 py-2 text-center font-semibold">Grade</th>
-                    <th className="border border-green-300 px-3 py-2 text-center font-semibold">Target Heart Rate</th>
+                    <th className="border border-green-300 px-3 py-2 text-left font-semibold">
+                      Stage
+                    </th>
+                    <th className="border border-green-300 px-3 py-2 text-center font-semibold">
+                      Duration
+                    </th>
+                    <th className="border border-green-300 px-3 py-2 text-center font-semibold">
+                      Speed
+                    </th>
+                    <th className="border border-green-300 px-3 py-2 text-center font-semibold">
+                      Grade
+                    </th>
+                    <th className="border border-green-300 px-3 py-2 text-center font-semibold">
+                      Target Heart Rate
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {protocolTable.map((row, idx) => (
-                    <tr key={idx} className={idx % 2 === 0 ? "bg-green-50" : "bg-white"}>
-                      <td className="border border-green-300 px-3 py-2 font-semibold text-green-900">{row.stage}</td>
-                      <td className="border border-green-300 px-3 py-2 text-center">{row.duration}</td>
-                      <td className="border border-green-300 px-3 py-2 text-center text-sm">{row.speed}</td>
-                      <td className="border border-green-300 px-3 py-2 text-center">{row.grade}</td>
-                      <td className="border border-green-300 px-3 py-2 text-center text-sm">{row.targetHeartRate}</td>
+                    <tr
+                      key={idx}
+                      className={idx % 2 === 0 ? "bg-green-50" : "bg-white"}
+                    >
+                      <td className="border border-green-300 px-3 py-2 font-semibold text-green-900">
+                        {row.stage}
+                      </td>
+                      <td className="border border-green-300 px-3 py-2 text-center">
+                        {row.duration}
+                      </td>
+                      <td className="border border-green-300 px-3 py-2 text-center text-sm">
+                        {row.speed}
+                      </td>
+                      <td className="border border-green-300 px-3 py-2 text-center">
+                        {row.grade}
+                      </td>
+                      <td className="border border-green-300 px-3 py-2 text-center text-sm">
+                        {row.targetHeartRate}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -183,40 +227,80 @@ export default function YMCASubmaximalTreadmillTest({ onSave, initialData }: Pro
             <ul className="space-y-2 text-sm text-gray-700">
               <li className="flex gap-2">
                 <span className="font-semibold">• Warm-up:</span>
-                <span>Find a comfortable walking or jogging speed (2.0-4.5 mph) that results in a heart rate within the target range.</span>
+                <span>
+                  Find a comfortable walking or jogging speed (2.0-4.5 mph) that
+                  results in a heart rate within the target range.
+                </span>
               </li>
               <li className="flex gap-2">
                 <span className="font-semibold">• Test Stage:</span>
-                <span>After 3-minute warm-up, increase grade to 5% while maintaining speed. Test lasts 4 minutes.</span>
+                <span>
+                  After 3-minute warm-up, increase grade to 5% while maintaining
+                  speed. Test lasts 4 minutes.
+                </span>
               </li>
               <li className="flex gap-2">
                 <span className="font-semibold">• Data Collection:</span>
-                <span>Measure heart rate during last 30 seconds of minutes 2, 3, and 4 to ensure steady state.</span>
+                <span>
+                  Measure heart rate during last 30 seconds of minutes 2, 3, and
+                  4 to ensure steady state.
+                </span>
               </li>
             </ul>
           </div>
 
           {/* Data Collection Points */}
           <div className="bg-white rounded-lg p-4 border-2 border-green-200">
-            <h3 className="font-bold text-green-900 mb-3">Data Collection Chart Points:</h3>
+            <h3 className="font-bold text-green-900 mb-3">
+              Data Collection Chart Points:
+            </h3>
             <ul className="space-y-2 text-sm text-gray-700">
-              <li>• <span className="font-semibold">Time (min):</span> Record test duration</li>
-              <li>• <span className="font-semibold">Speed (mph) and Grade (%):</span> Record treadmill settings</li>
-              <li>• <span className="font-semibold">Heart Rate (bpm):</span> Measured at specific intervals to confirm steady state</li>
-              <li>• <span className="font-semibold">Blood Pressure (BP):</span> Systolic and diastolic measurements</li>
-              <li>• <span className="font-semibold">Ratings of Perceived Exertion (RPE):</span> Using Borg Scale (6-20 or 1-10)</li>
-              <li>• <span className="font-semibold">Signs/Symptoms:</span> Any subject discomfort, dizziness, or abnormal responses</li>
+              <li>
+                • <span className="font-semibold">Time (min):</span> Record test
+                duration
+              </li>
+              <li>
+                •{" "}
+                <span className="font-semibold">
+                  Speed (mph) and Grade (%):
+                </span>{" "}
+                Record treadmill settings
+              </li>
+              <li>
+                • <span className="font-semibold">Heart Rate (bpm):</span>{" "}
+                Measured at specific intervals to confirm steady state
+              </li>
+              <li>
+                • <span className="font-semibold">Blood Pressure (BP):</span>{" "}
+                Systolic and diastolic measurements
+              </li>
+              <li>
+                •{" "}
+                <span className="font-semibold">
+                  Ratings of Perceived Exertion (RPE):
+                </span>{" "}
+                Using Borg Scale (6-20 or 1-10)
+              </li>
+              <li>
+                • <span className="font-semibold">Signs/Symptoms:</span> Any
+                subject discomfort, dizziness, or abnormal responses
+              </li>
             </ul>
           </div>
 
           {/* VO2max Estimation */}
           <div className="bg-white rounded-lg p-4 border-2 border-green-200">
-            <h3 className="font-bold text-green-900 mb-2">VO2max Estimation Formula:</h3>
+            <h3 className="font-bold text-green-900 mb-2">
+              VO2max Estimation Formula:
+            </h3>
             <p className="text-sm text-gray-700 mb-2">
-              VO2(mL·kg⁻¹·min⁻¹) = 15.1 + 21.8 × Speed (mph) - 0.327 × Heart Rate (bpm) - 0.263 × Speed × Age (yrs) + 0.00504 × Heart Rate × Age + 5.98 × Gender (0=F, 1=M)
+              VO2(mL·kg⁻¹·min⁻¹) = 15.1 + 21.8 × Speed (mph) - 0.327 × Heart
+              Rate (bpm) - 0.263 × Speed × Age (yrs) + 0.00504 × Heart Rate ×
+              Age + 5.98 × Gender (0=F, 1=M)
             </p>
             <p className="text-xs text-gray-600 italic">
-              Data from steady-state heart rate and speed in the final test stage are used in this regression equation.
+              Data from steady-state heart rate and speed in the final test
+              stage are used in this regression equation.
             </p>
           </div>
 

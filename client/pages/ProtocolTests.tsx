@@ -533,7 +533,10 @@ const testGroups = {
         { id: "kasch-step-test", name: "KASCH Step Test" },
         { id: "bruce-treadmill-test", name: "Bruce Treadmill Test" },
         { id: "ymca-step-test", name: "YMCA 3-Minute Step Test" },
-        { id: "ymca-submaximal-treadmill-test", name: "YMCA Submaximal Treadmill Test" },
+        {
+          id: "ymca-submaximal-treadmill-test",
+          name: "YMCA Submaximal Treadmill Test",
+        },
       ],
     },
   ],

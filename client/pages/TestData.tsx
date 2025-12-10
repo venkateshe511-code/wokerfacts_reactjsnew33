@@ -792,7 +792,10 @@ export default function TestData() {
             clientImages: [],
             serializedImages: [],
           };
-        } else if (testName.includes("ymca") && testName.includes("treadmill")) {
+        } else if (
+          testName.includes("ymca") &&
+          testName.includes("treadmill")
+        ) {
           sampleCardioData[testId] = {
             vo2Max: `${Math.floor(Math.random() * 15 + 35)} ml/kg/min`,
             heartRate: `${Math.floor(Math.random() * 30 + 110)} bpm`,

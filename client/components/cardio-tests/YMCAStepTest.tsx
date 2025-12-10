@@ -115,23 +115,135 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
   }, [initialData?.serializedImages]);
 
   const menTable = [
-    { rating: "Excellent", "18-25": "50-76", "26-35": "51-76", "36-45": "49-76", "46-55": "56-82", "56-65": "60-77", "≥65": "59-81" },
-    { rating: "Good", "18-25": "79-84", "26-35": "79-85", "36-45": "80-88", "46-55": "87-93", "56-65": "86-94", "≥65": "87-92" },
-    { rating: "Above average", "18-25": "88-93", "26-35": "88-94", "36-45": "92-98", "46-55": "95-101", "56-65": "97-100", "≥65": "94-102" },
-    { rating: "Average", "18-25": "95-100", "26-35": "96-102", "36-45": "100-105", "46-55": "103-111", "56-65": "103-109", "≥65": "104-110" },
-    { rating: "Below Average", "18-25": "102-107", "26-35": "104-110", "36-45": "108-113", "46-55": "113-119", "56-65": "111-117", "≥65": "114-118" },
-    { rating: "Poor", "18-25": "111-119", "26-35": "114-121", "36-45": "116-124", "46-55": "121-126", "56-65": "119-128", "≥65": "121-126" },
-    { rating: "Very poor", "18-25": "124-157", "26-35": "126-161", "36-45": "130-163", "46-55": "131-159", "56-65": "131-154", "≥65": "130-151" },
+    {
+      rating: "Excellent",
+      "18-25": "50-76",
+      "26-35": "51-76",
+      "36-45": "49-76",
+      "46-55": "56-82",
+      "56-65": "60-77",
+      "≥65": "59-81",
+    },
+    {
+      rating: "Good",
+      "18-25": "79-84",
+      "26-35": "79-85",
+      "36-45": "80-88",
+      "46-55": "87-93",
+      "56-65": "86-94",
+      "≥65": "87-92",
+    },
+    {
+      rating: "Above average",
+      "18-25": "88-93",
+      "26-35": "88-94",
+      "36-45": "92-98",
+      "46-55": "95-101",
+      "56-65": "97-100",
+      "≥65": "94-102",
+    },
+    {
+      rating: "Average",
+      "18-25": "95-100",
+      "26-35": "96-102",
+      "36-45": "100-105",
+      "46-55": "103-111",
+      "56-65": "103-109",
+      "≥65": "104-110",
+    },
+    {
+      rating: "Below Average",
+      "18-25": "102-107",
+      "26-35": "104-110",
+      "36-45": "108-113",
+      "46-55": "113-119",
+      "56-65": "111-117",
+      "≥65": "114-118",
+    },
+    {
+      rating: "Poor",
+      "18-25": "111-119",
+      "26-35": "114-121",
+      "36-45": "116-124",
+      "46-55": "121-126",
+      "56-65": "119-128",
+      "≥65": "121-126",
+    },
+    {
+      rating: "Very poor",
+      "18-25": "124-157",
+      "26-35": "126-161",
+      "36-45": "130-163",
+      "46-55": "131-159",
+      "56-65": "131-154",
+      "≥65": "130-151",
+    },
   ];
 
   const womenTable = [
-    { rating: "Excellent", "18-25": "52-81", "26-35": "58-80", "36-45": "51-84", "46-55": "63-91", "56-65": "60-92", "≥65": "70-92" },
-    { rating: "Good", "18-25": "85-93", "26-35": "85-92", "36-45": "89-96", "46-55": "95-101", "56-65": "97-103", "≥65": "96-101" },
-    { rating: "Above average", "18-25": "96-102", "26-35": "95-101", "36-45": "100-104", "46-55": "104-110", "56-65": "106-111", "≥65": "104-111" },
-    { rating: "Average", "18-25": "104-110", "26-35": "104-110", "36-45": "107-112", "46-55": "113-118", "56-65": "113-118", "≥65": "116-121" },
-    { rating: "Below Average", "18-25": "113-120", "26-35": "113-119", "36-45": "115-120", "46-55": "120-124", "56-65": "119-127", "≥65": "123-126" },
-    { rating: "Poor", "18-25": "122-131", "26-35": "122-129", "36-45": "124-132", "46-55": "126-132", "56-65": "129-135", "≥65": "128-133" },
-    { rating: "Very poor", "18-25": "135-169", "26-35": "134-171", "36-45": "137-169", "46-55": "137-171", "56-65": "141-174", "≥65": "135-155" },
+    {
+      rating: "Excellent",
+      "18-25": "52-81",
+      "26-35": "58-80",
+      "36-45": "51-84",
+      "46-55": "63-91",
+      "56-65": "60-92",
+      "≥65": "70-92",
+    },
+    {
+      rating: "Good",
+      "18-25": "85-93",
+      "26-35": "85-92",
+      "36-45": "89-96",
+      "46-55": "95-101",
+      "56-65": "97-103",
+      "≥65": "96-101",
+    },
+    {
+      rating: "Above average",
+      "18-25": "96-102",
+      "26-35": "95-101",
+      "36-45": "100-104",
+      "46-55": "104-110",
+      "56-65": "106-111",
+      "≥65": "104-111",
+    },
+    {
+      rating: "Average",
+      "18-25": "104-110",
+      "26-35": "104-110",
+      "36-45": "107-112",
+      "46-55": "113-118",
+      "56-65": "113-118",
+      "≥65": "116-121",
+    },
+    {
+      rating: "Below Average",
+      "18-25": "113-120",
+      "26-35": "113-119",
+      "36-45": "115-120",
+      "46-55": "120-124",
+      "56-65": "119-127",
+      "≥65": "123-126",
+    },
+    {
+      rating: "Poor",
+      "18-25": "122-131",
+      "26-35": "122-129",
+      "36-45": "124-132",
+      "46-55": "126-132",
+      "56-65": "129-135",
+      "≥65": "128-133",
+    },
+    {
+      rating: "Very poor",
+      "18-25": "135-169",
+      "26-35": "134-171",
+      "36-45": "137-169",
+      "46-55": "137-171",
+      "56-65": "141-174",
+      "≥65": "135-155",
+    },
   ];
 
   return (
@@ -143,7 +255,8 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
             🪜 YMCA 3-MINUTE STEP TEST
           </CardTitle>
           <p className="text-center text-pink-100 text-sm relative z-10 font-medium mt-2">
-            Purpose: To assess cardiorespiratory fitness using a 12-inch step with metronome set to 96 beats per minute.
+            Purpose: To assess cardiorespiratory fitness using a 12-inch step
+            with metronome set to 96 beats per minute.
           </p>
         </CardHeader>
         <CardContent className="space-y-6 bg-gradient-to-br from-purple-50 via-pink-50 to-red-50">
@@ -163,10 +276,7 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
             </div>
 
             <div className="space-y-2">
-              <Label
-                htmlFor="vo2MaxScore"
-                className="text-sm font-semibold"
-              >
+              <Label htmlFor="vo2MaxScore" className="text-sm font-semibold">
                 VO2 MAX SCORE:
               </Label>
               <Input
@@ -182,30 +292,63 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
           {/* Ratings Tables */}
           <div className="space-y-6">
             <div className="space-y-3">
-              <h3 className="font-bold text-lg text-purple-900">Ratings for Men by Age</h3>
+              <h3 className="font-bold text-lg text-purple-900">
+                Ratings for Men by Age
+              </h3>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse bg-white rounded-lg shadow-md">
                   <thead>
                     <tr className="bg-purple-200">
-                      <th className="border border-purple-300 px-3 py-2 text-left font-semibold">Rating</th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">18-25</th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">26-35</th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">36-45</th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">46-55</th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">56-65</th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">≥65</th>
+                      <th className="border border-purple-300 px-3 py-2 text-left font-semibold">
+                        Rating
+                      </th>
+                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                        18-25
+                      </th>
+                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                        26-35
+                      </th>
+                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                        36-45
+                      </th>
+                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                        46-55
+                      </th>
+                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                        56-65
+                      </th>
+                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                        ≥65
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {menTable.map((row, idx) => (
-                      <tr key={idx} className={idx % 2 === 0 ? "bg-purple-50" : "bg-white"}>
-                        <td className="border border-purple-300 px-3 py-2 font-semibold text-purple-900">{row.rating}</td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">{row["18-25"]}</td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">{row["26-35"]}</td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">{row["36-45"]}</td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">{row["46-55"]}</td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">{row["56-65"]}</td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">{row["≥65"]}</td>
+                      <tr
+                        key={idx}
+                        className={idx % 2 === 0 ? "bg-purple-50" : "bg-white"}
+                      >
+                        <td className="border border-purple-300 px-3 py-2 font-semibold text-purple-900">
+                          {row.rating}
+                        </td>
+                        <td className="border border-purple-300 px-3 py-2 text-center">
+                          {row["18-25"]}
+                        </td>
+                        <td className="border border-purple-300 px-3 py-2 text-center">
+                          {row["26-35"]}
+                        </td>
+                        <td className="border border-purple-300 px-3 py-2 text-center">
+                          {row["36-45"]}
+                        </td>
+                        <td className="border border-purple-300 px-3 py-2 text-center">
+                          {row["46-55"]}
+                        </td>
+                        <td className="border border-purple-300 px-3 py-2 text-center">
+                          {row["56-65"]}
+                        </td>
+                        <td className="border border-purple-300 px-3 py-2 text-center">
+                          {row["≥65"]}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -214,30 +357,63 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
             </div>
 
             <div className="space-y-3">
-              <h3 className="font-bold text-lg text-purple-900">Ratings for Women by Age</h3>
+              <h3 className="font-bold text-lg text-purple-900">
+                Ratings for Women by Age
+              </h3>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse bg-white rounded-lg shadow-md">
                   <thead>
                     <tr className="bg-pink-200">
-                      <th className="border border-pink-300 px-3 py-2 text-left font-semibold">Rating</th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">18-25</th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">26-35</th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">36-45</th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">46-55</th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">56-65</th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">≥65</th>
+                      <th className="border border-pink-300 px-3 py-2 text-left font-semibold">
+                        Rating
+                      </th>
+                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                        18-25
+                      </th>
+                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                        26-35
+                      </th>
+                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                        36-45
+                      </th>
+                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                        46-55
+                      </th>
+                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                        56-65
+                      </th>
+                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                        ≥65
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {womenTable.map((row, idx) => (
-                      <tr key={idx} className={idx % 2 === 0 ? "bg-pink-50" : "bg-white"}>
-                        <td className="border border-pink-300 px-3 py-2 font-semibold text-pink-900">{row.rating}</td>
-                        <td className="border border-pink-300 px-3 py-2 text-center">{row["18-25"]}</td>
-                        <td className="border border-pink-300 px-3 py-2 text-center">{row["26-35"]}</td>
-                        <td className="border border-pink-300 px-3 py-2 text-center">{row["36-45"]}</td>
-                        <td className="border border-pink-300 px-3 py-2 text-center">{row["46-55"]}</td>
-                        <td className="border border-pink-300 px-3 py-2 text-center">{row["56-65"]}</td>
-                        <td className="border border-pink-300 px-3 py-2 text-center">{row["≥65"]}</td>
+                      <tr
+                        key={idx}
+                        className={idx % 2 === 0 ? "bg-pink-50" : "bg-white"}
+                      >
+                        <td className="border border-pink-300 px-3 py-2 font-semibold text-pink-900">
+                          {row.rating}
+                        </td>
+                        <td className="border border-pink-300 px-3 py-2 text-center">
+                          {row["18-25"]}
+                        </td>
+                        <td className="border border-pink-300 px-3 py-2 text-center">
+                          {row["26-35"]}
+                        </td>
+                        <td className="border border-pink-300 px-3 py-2 text-center">
+                          {row["36-45"]}
+                        </td>
+                        <td className="border border-pink-300 px-3 py-2 text-center">
+                          {row["46-55"]}
+                        </td>
+                        <td className="border border-pink-300 px-3 py-2 text-center">
+                          {row["56-65"]}
+                        </td>
+                        <td className="border border-pink-300 px-3 py-2 text-center">
+                          {row["≥65"]}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

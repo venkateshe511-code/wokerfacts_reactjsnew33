@@ -206,9 +206,12 @@ export default function CardioTestRouter({
     // No matching test found
     return (
       <div className="text-center p-8">
-        <p className="text-gray-500">No matching cardio test found for: {testName}</p>
+        <p className="text-gray-500">
+          No matching cardio test found for: {testName}
+        </p>
         <p className="text-sm text-gray-400 mt-2">
-          Supported tests: Bruce Treadmill, mCAFT, KASCH Step Test, YMCA Step Test, YMCA Submaximal Treadmill Test
+          Supported tests: Bruce Treadmill, mCAFT, KASCH Step Test, YMCA Step
+          Test, YMCA Submaximal Treadmill Test
         </p>
       </div>
     );
