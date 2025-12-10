@@ -9806,11 +9806,11 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
                             >
                               72.4
                             </td>
-                            <td className="p-2 text-center">47.4</td>
+                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>47.4</td>
                           </tr>
                           <tr>
                             <td
