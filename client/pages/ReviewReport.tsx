@@ -8707,17 +8707,26 @@ export default function ReviewReport() {
                           <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               Age (y)
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
@@ -9009,17 +9018,26 @@ export default function ReviewReport() {
                           <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               Height (m)
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td
                               className="p-2 text-center"
@@ -9034,19 +9052,28 @@ export default function ReviewReport() {
                           <tr>
                             <td
                               className="p-2 pl-4"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               Mean
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               1.6
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               1.7
                             </td>
@@ -9054,19 +9081,28 @@ export default function ReviewReport() {
                           <tr>
                             <td
                               className="p-2 pl-4"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               Range
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               1.5-2.0
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               1.5-1.8
                             </td>
@@ -9075,17 +9111,26 @@ export default function ReviewReport() {
                           <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               Body mass (kg)
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
@@ -9141,17 +9186,26 @@ export default function ReviewReport() {
                           <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               Injury/pain
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td
                               className="p-2 text-center"
@@ -9166,19 +9220,28 @@ export default function ReviewReport() {
                           <tr>
                             <td
                               className="p-2 pl-4"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               Yes
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               11
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               18
                             </td>
@@ -9186,19 +9249,28 @@ export default function ReviewReport() {
                           <tr>
                             <td
                               className="p-2 pl-4"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               No
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               8
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               12
                             </td>
@@ -9207,17 +9279,26 @@ export default function ReviewReport() {
                           <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             >
                               Employment
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "1px solid #ccc",
+                              }}
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
@@ -10027,11 +10108,14 @@ export default function ReviewReport() {
                             <td
                               colSpan={5}
                               className="p-2 text-xs text-gray-600"
-                              style={{ borderRight: "1px solid #666", fontStyle: "italic" }}
+                              style={{
+                                borderRight: "1px solid #666",
+                                fontStyle: "italic",
+                              }}
                             >
-                              Abbreviations: OMH, occasional-material-handling test; REG,
-                              rapid-exchange grip test; SST, static-strength
-                              test.
+                              Abbreviations: OMH, occasional-material-handling
+                              test; REG, rapid-exchange grip test; SST,
+                              static-strength test.
                             </td>
                           </tr>
                         </tbody>
