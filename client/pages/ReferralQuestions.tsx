@@ -1092,9 +1092,9 @@ export default function ReferralQuestions() {
                     </div>
                   ) : question.question.includes("Conclusions?") ? (
                     <div className="space-y-6">
-                      {/* Tabbed Section - Return to Work Status, RPDR & CTP */}
+                      {/* Tabbed Section - Return to Work Status, RPDR, CTP & Signature */}
                       <Tabs defaultValue="return-to-work" className="w-full">
-                        <TabsList className="grid w-full grid-cols-3">
+                        <TabsList className="grid w-full grid-cols-4">
                           <TabsTrigger value="return-to-work">
                             Return to Work Status
                           </TabsTrigger>
@@ -1103,6 +1103,9 @@ export default function ReferralQuestions() {
                           </TabsTrigger>
                           <TabsTrigger value="ctp">
                             Observable Signs of Effort (CTP)
+                          </TabsTrigger>
+                          <TabsTrigger value="signature">
+                            Evaluator Signature
                           </TabsTrigger>
                         </TabsList>
 
