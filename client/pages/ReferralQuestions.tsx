@@ -1094,14 +1094,14 @@ export default function ReferralQuestions() {
                     <div className="space-y-6">
                       {/* Tabbed Section - Return to Work Status, RPDR & CTP */}
                       <Tabs defaultValue="return-to-work" className="w-full">
-                        <TabsList className="grid w-full grid-cols-3">
-                          <TabsTrigger value="return-to-work">
+                        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 gap-2 h-auto">
+                          <TabsTrigger value="return-to-work" className="text-xs sm:text-sm whitespace-normal">
                             Return to Work Status
                           </TabsTrigger>
-                          <TabsTrigger value="rpdr">
+                          <TabsTrigger value="rpdr" className="text-xs sm:text-sm whitespace-normal">
                             Observed Symptom Behavior (RPDR)
                           </TabsTrigger>
-                          <TabsTrigger value="ctp">
+                          <TabsTrigger value="ctp" className="text-xs sm:text-sm whitespace-normal">
                             Observable Signs of Effort (CTP)
                           </TabsTrigger>
                         </TabsList>
