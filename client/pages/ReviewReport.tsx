@@ -7401,13 +7401,12 @@ export default function ReviewReport() {
                     {/* Table 4: Variables With 100% Specificity - Left Column */}
                     <div className="mt-6">
                       <div className="flex bg-gray-600 text-white">
-                        <div className="flex-1 p-3 border-r border-gray-500">
+                        <div className="p-3 border-r border-gray-500 w-24">
                           <div className="font-bold text-sm">TABLE 4</div>
                         </div>
                         <div className="flex-1 p-3">
                           <div className="font-semibold text-sm tracking-wide">
-                            Variables With 100% Specificity and Participants'
-                            Scores on These Variables
+                            Variables With 100% Specificity and Participants' Scores on These Variables
                           </div>
                         </div>
                       </div>
