@@ -9419,13 +9419,12 @@ export default function ReviewReport() {
                     {/* Table 3: Variables With 70% Sensitivity */}
                     <div>
                       <div className="flex bg-gray-600 text-white">
-                        <div className="flex-1 p-3 border-r border-gray-500">
+                        <div className="p-3 border-r border-gray-500 w-24">
                           <div className="font-bold text-sm">TABLE 3</div>
                         </div>
                         <div className="flex-1 p-3">
                           <div className="font-semibold text-sm tracking-wide">
-                            Variables With 70% Sensitivity or Greater and
-                            Participants' Scores on These Variables
+                            Variables With 70% Sensitivity or Greater and Participants' Scores on These Variables
                           </div>
                         </div>
                       </div>
