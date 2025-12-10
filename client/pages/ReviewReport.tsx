@@ -2131,47 +2131,17 @@ export default function ReviewReport() {
 
                   <div className="mt-8">
                     {signatureImage ? (
-                      <div className="space-y-4">
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                          <div className="flex-1">
-                            <p className="text-xs text-gray-600 mb-2">Signature Size:</p>
-                            <div className="flex gap-2 flex-wrap">
-                              {(["small", "medium", "large"] as const).map((size) => (
-                                <button
-                                  key={size}
-                                  onClick={() => setSignatureSize(size)}
-                                  className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
-                                    signatureSize === size
-                                      ? "bg-blue-600 text-white"
-                                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                                  }`}
-                                >
-                                  {size.charAt(0).toUpperCase() + size.slice(1)}
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-                          <div
-                            className={`border border-gray-300 rounded-lg p-2 bg-white ${
-                              signatureSize === "small"
-                                ? "w-24 h-12"
-                                : signatureSize === "medium"
-                                  ? "w-40 h-20"
-                                  : "w-56 h-28"
-                            }`}
-                          >
-                            <img
-                              src={signatureImage}
-                              alt="Evaluator Signature"
-                              className="w-full h-full object-contain"
-                            />
-                          </div>
-                        </div>
+                      <div className="mb-6 flex items-end">
+                        <img
+                          src={signatureImage}
+                          alt="Evaluator Signature"
+                          className="max-w-xs h-24 object-contain"
+                        />
                       </div>
                     ) : (
-                      <div className="border-b border-gray-400 w-64 mb-2"></div>
+                      <div className="border-b border-gray-400 mb-6" style={{ width: "250px" }}></div>
                     )}
-                    <p className="text-sm mt-4">Date: {currentDate}</p>
+                    <p className="text-sm">Date: {currentDate}</p>
                     <p className="text-sm font-semibold">
                       {reportData.evaluatorData.name}
                     </p>
