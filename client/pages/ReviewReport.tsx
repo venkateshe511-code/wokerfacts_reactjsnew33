@@ -7450,7 +7450,7 @@ export default function ReviewReport() {
                       <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
                           <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
-                            <th className="border border-gray-300 p-2 text-left">
+                            <th className="p-2 text-left">
                               Variable/Score
                             </th>
                             <th className="p-2">
@@ -7586,7 +7586,7 @@ export default function ReviewReport() {
                       <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
                           <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
-                            <th className="border border-gray-300 p-2 text-left">
+                            <th className="p-2 text-left">
                               Subject Characteristics
                             </th>
                             <th className="p-2">
@@ -7668,7 +7668,7 @@ export default function ReviewReport() {
                       <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
                           <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
-                            <th className="border border-gray-300 p-2 text-left">
+                            <th className="p-2 text-left">
                               Cutoff Score
                             </th>
                             <th className="p-2">
@@ -7723,7 +7723,7 @@ export default function ReviewReport() {
                       <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
                           <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
-                            <th className="border border-gray-300 p-2 text-left">Variable/Score</th>
+                            <th className="p-2 text-left">Variable/Score</th>
                             <th className="p-2">100% Effort (n Participants)</th>
                             <th className="p-2">50% Effort (n Participants)</th>
                             <th className="p-2">Sensitivity</th>
