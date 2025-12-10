@@ -9051,22 +9051,22 @@ export default function ReviewReport() {
                               1.7
                             </td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               Range
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               1.5-2.0
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               1.5-1.8
                             </td>
@@ -9183,22 +9183,22 @@ export default function ReviewReport() {
                               18
                             </td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               No
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               8
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               12
                             </td>
