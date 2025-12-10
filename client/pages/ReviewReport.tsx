@@ -9285,7 +9285,7 @@ export default function ReviewReport() {
                     {/* Table 2: Sensitivity and Specificity */}
                     <div className="mb-8">
                       <div className="flex bg-gray-600 text-white">
-                        <div className="flex-1 p-3 border-r border-gray-500">
+                        <div className="p-3 border-r border-gray-500 w-24">
                           <div className="font-bold text-sm">TABLE 2</div>
                         </div>
                         <div className="flex-1 p-3">
