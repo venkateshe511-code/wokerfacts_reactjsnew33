@@ -8631,6 +8631,20 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
+                          <tr
+                            style={{
+                              backgroundColor: "#f0f0f0",
+                              borderBottom: "1px solid #ccc",
+                            }}
+                          >
+                            <td
+                              colSpan={5}
+                              className="p-2 text-xs text-gray-600"
+                              style={{ borderRight: "1px solid #666" }}
+                            >
+                              Abbreviations: HT, hand test; OMH, occupational-material-handling test; REG, rapid-exchange grip test; SST, static-strength test.
+                            </td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
