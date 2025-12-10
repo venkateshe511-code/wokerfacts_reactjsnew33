@@ -8704,20 +8704,20 @@ export default function ReviewReport() {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               Age (y)
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
@@ -9006,20 +9006,20 @@ export default function ReviewReport() {
                               1
                             </td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               Height (m)
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td
                               className="p-2 text-center"
@@ -9072,20 +9072,20 @@ export default function ReviewReport() {
                             </td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               Body mass (kg)
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
@@ -9138,20 +9138,20 @@ export default function ReviewReport() {
                               54.0-103.5
                             </td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               Injury/pain
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td
                               className="p-2 text-center"
@@ -9204,20 +9204,20 @@ export default function ReviewReport() {
                             </td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 font-semibold"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             >
                               Employment
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc" }}
+                              style={{ borderRight: "1px solid #ccc", borderBottom: "1px solid #ccc" }}
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
