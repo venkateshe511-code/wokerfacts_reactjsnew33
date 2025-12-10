@@ -9497,7 +9497,7 @@ export default function ReviewReport() {
                             ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
@@ -9532,7 +9532,7 @@ export default function ReviewReport() {
                               52.9
                             </td>
                           </tr>
-                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                          <tr>
                             <td
                               className="p-2 pl-4"
                               style={{ borderRight: "1px solid #ccc" }}
