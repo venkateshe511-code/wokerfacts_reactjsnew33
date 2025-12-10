@@ -1331,7 +1331,7 @@ export default function ReviewReport() {
 
                       <table className="w-full border border-gray-300 text-sm mb-4">
                         <thead>
-                          <tr className="bg-yellow-200">
+                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
                             <th className="p-2">
                               Area Evaluated:
                             </th>
@@ -1767,7 +1767,7 @@ export default function ReviewReport() {
 
                       <table className="w-full border border-gray-300 text-sm mb-4">
                         <thead>
-                          <tr className="bg-yellow-200">
+                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
                             <th className="p-2">
                               Physical Demand Level
                             </th>
@@ -2943,7 +2943,7 @@ export default function ReviewReport() {
                         <>
                           <table className="w-full border border-gray-300 text-sm mb-4">
                             <thead>
-                              <tr className="bg-yellow-200">
+                              <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
                                 <th className="p-2">
                                   Observed Effort During Testing
                                 </th>
@@ -7449,7 +7449,7 @@ export default function ReviewReport() {
                       </h4>
                       <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
-                          <tr className="bg-yellow-200">
+                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
                             <th className="border border-gray-300 p-2 text-left">
                               Variable/Score
                             </th>
@@ -7585,7 +7585,7 @@ export default function ReviewReport() {
                       </h4>
                       <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
-                          <tr className="bg-yellow-200">
+                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
                             <th className="border border-gray-300 p-2 text-left">
                               Subject Characteristics
                             </th>
@@ -7667,7 +7667,7 @@ export default function ReviewReport() {
                       </h4>
                       <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
-                          <tr className="bg-yellow-200">
+                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
                             <th className="border border-gray-300 p-2 text-left">
                               Cutoff Score
                             </th>
@@ -7722,7 +7722,7 @@ export default function ReviewReport() {
                       </h4>
                       <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
                         <thead>
-                          <tr className="bg-yellow-200">
+                          <tr className="bg-gray-600 text-white" style={{borderBottom: '1px solid #d1d5db'}}>
                             <th className="border border-gray-300 p-2 text-left">Variable/Score</th>
                             <th className="p-2">100% Effort (n Participants)</th>
                             <th className="p-2">50% Effort (n Participants)</th>
