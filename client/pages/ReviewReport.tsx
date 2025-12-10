@@ -7762,6 +7762,8 @@ export default function ReviewReport() {
                   </table>
                   <p className="text-xs text-gray-600 mt-2">Abbreviations: OSMT, occupational-musculoskeletal-handling test; BEG, rapid-exchange grip test; SST, static-strength test; OAM, occupational-activity-handling test.</p>
                 </div>
+
+                <p className="text-xs text-gray-600 mt-8 text-center">Journal of orthopaedic & sports physical therapy | volume 37 | number 4 | April 2007.</p>
               </div>
 
               {/* Digital Library */}
