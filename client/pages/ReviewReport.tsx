@@ -8647,11 +8647,6 @@ export default function ReviewReport() {
                           </tr>
                         </tbody>
                       </table>
-                      <p className="text-xs text-gray-600 mt-2">
-                        Abbreviations: HT, hand test; OMH,
-                        occupational-material-handling test; REG, rapid-exchange
-                        grip test; SST, static-strength test.
-                      </p>
                     </div>
                   </div>
 
