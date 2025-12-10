@@ -432,7 +432,7 @@ export default function ReferralQuestions() {
     }
   }, []);
 
-  const handleSignatureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSignatureUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const validTypes = ["image/png", "image/jpeg", "image/jpg"];
@@ -455,24 +455,22 @@ export default function ReferralQuestions() {
         return;
       }
 
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const dataUrl = event.target?.result as string;
-        setSignatureImage(dataUrl);
-        localStorage.setItem("signatureImage", dataUrl);
+      try {
+        const compressedDataUrl = await compressImage(file);
+        setSignatureImage(compressedDataUrl);
+        localStorage.setItem("signatureImage", compressedDataUrl);
         toast({
           title: "Signature uploaded",
           description: "Your signature will be included in the final reports",
         });
-      };
-      reader.onerror = () => {
+      } catch (error) {
+        console.error("Error compressing signature:", error);
         toast({
-          title: "Error reading file",
-          description: "Unable to read the image file",
+          title: "Error processing signature",
+          description: "Unable to process the signature image",
           variant: "destructive",
         });
-      };
-      reader.readAsDataURL(file);
+      }
     }
   };
 
