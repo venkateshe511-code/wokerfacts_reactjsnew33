@@ -752,7 +752,7 @@ export default function ReviewReport() {
                   <p>Test Data:</p>
                   <div className="ml-2 space-y-1">
                     <p>• Activity Overview</p>
-                    <p>�� Extremity Strength</p>
+                    <p>• Extremity Strength</p>
                     <p>• Occupational Tasks</p>
                     <p>• Range of Motion (Spine)</p>
                   </div>
