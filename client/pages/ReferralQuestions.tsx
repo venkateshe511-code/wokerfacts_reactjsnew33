@@ -432,7 +432,9 @@ export default function ReferralQuestions() {
     }
   }, []);
 
-  const handleSignatureUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSignatureUpload = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const file = e.target.files?.[0];
     if (file) {
       const validTypes = ["image/png", "image/jpeg", "image/jpg"];
@@ -455,24 +457,22 @@ export default function ReferralQuestions() {
         return;
       }
 
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const dataUrl = event.target?.result as string;
-        setSignatureImage(dataUrl);
-        localStorage.setItem("signatureImage", dataUrl);
+      try {
+        const compressedDataUrl = await compressImage(file);
+        setSignatureImage(compressedDataUrl);
+        localStorage.setItem("signatureImage", compressedDataUrl);
         toast({
           title: "Signature uploaded",
           description: "Your signature will be included in the final reports",
         });
-      };
-      reader.onerror = () => {
+      } catch (error) {
+        console.error("Error compressing signature:", error);
         toast({
-          title: "Error reading file",
-          description: "Unable to read the image file",
+          title: "Error processing signature",
+          description: "Unable to process the signature image",
           variant: "destructive",
         });
-      };
-      reader.readAsDataURL(file);
+      }
     }
   };
 
@@ -1094,14 +1094,23 @@ export default function ReferralQuestions() {
                     <div className="space-y-6">
                       {/* Tabbed Section - Return to Work Status, RPDR & CTP */}
                       <Tabs defaultValue="return-to-work" className="w-full">
-                        <TabsList className="grid w-full grid-cols-3">
-                          <TabsTrigger value="return-to-work">
+                        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 gap-2 h-auto">
+                          <TabsTrigger
+                            value="return-to-work"
+                            className="text-xs sm:text-sm whitespace-normal"
+                          >
                             Return to Work Status
                           </TabsTrigger>
-                          <TabsTrigger value="rpdr">
+                          <TabsTrigger
+                            value="rpdr"
+                            className="text-xs sm:text-sm whitespace-normal"
+                          >
                             Observed Symptom Behavior (RPDR)
                           </TabsTrigger>
-                          <TabsTrigger value="ctp">
+                          <TabsTrigger
+                            value="ctp"
+                            className="text-xs sm:text-sm whitespace-normal"
+                          >
                             Observable Signs of Effort (CTP)
                           </TabsTrigger>
                         </TabsList>

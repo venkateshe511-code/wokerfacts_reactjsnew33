@@ -2557,10 +2557,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             <div style="margin-top: 40px;">
                 ${
                   signatureImage
-                    ? `<div style="margin-bottom: 20px;">
-                        <img src="${signatureImage}" alt="Evaluator Signature" style="max-width: 200px; max-height: 100px; border: 1px solid #ccc; padding: 4px;" />
+                    ? `<div style="margin-bottom: 24px;">
+                        <img src="${signatureImage}" alt="Evaluator Signature" style="max-width: 250px; max-height: 100px; object-fit: contain;" />
                       </div>`
-                    : `<div style="border-bottom: 1px solid #333; width: 250px; margin-bottom: 8px;"></div>`
+                    : `<div style="border-bottom: 1px solid #333; width: 250px; margin-bottom: 24px;"></div>`
                 }
                 <p style="font-size: 12px; font-family: Arial, sans-serif;">Date: ${currentDate}</p>
                 <p style="font-size: 12px; font-weight: bold; font-family: Arial, sans-serif;">
@@ -5238,6 +5238,104 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 </tbody>
             </table>
             </div>
+        </div>
+    </div>
+
+    <!-- Blankenship FCE System Reference -->
+    <div style="page-break-before: always; padding: 40px 0;">
+        <div class="section">
+            <h3 style="font-weight: bold; margin-bottom: 8px; font-family: Arial, sans-serif;">Sensitivity and Specificity of the Blankenship FCE System's Indicators of Submaximal Effort</h3>
+            <p style="font-size: 9px; color: #333; margin-bottom: 12px; font-family: Arial, sans-serif;">Penny N Brubaker, PT, MSI; Frank J Fearon, PT, DHSc, OCS, FAACGPT2; Stephen M Smith, PhD; Richard J. Bohannon, PT, MS, ECS4; James Alday, MDS; Sheryl S Andrew, PT, MS6; Everald Clarke, PT, MS7; George L Shaw Jr, PT, MS8</p>
+            <p style="font-size: 9px; color: #333; margin-bottom: 20px; line-height: 1.5; font-family: Arial, sans-serif; text-align: justify;">Four components of the Blankenship-slip FCE demonstrated a sensitivity of 80% and a specificity of 84.2% in determining submaximal effort. The 70% cutoff score developed by the Blankenship Group was shown to provide greatest diagnostic accuracy for identifying submaximal effort. Five indicators of validity were shown to have 70% sensitivity or greater and 12 indicators had 100% specificity. The clinical relevance for this study is that the validity indicators of 4 components of the Blankenship FCE had good sensitivity and specificity, however, raters should recognize that a small percentage of false positives (maximum effort identified as submaximal effort) might occur. Also, the clinician should note that scores of equivocal are not scored in the criteria-based category and could potentially increase a worker's overall FCE validity score. Only 5 of the indicators of validity tested scored greater than 70% sensitivity (Table 3). Likewise, 12 indicators had 100% specificity (Table 4). However, these variables had low sensitivity (less than 70%). Only 1 indicator had both sensitivity and specificity greater than 70%. This indicator of validity was OMH is greater than the high extrapolation from the leg static-strength test. The sensitivity was 78.6% and specificity was 72.2%.</p>
+
+            <!-- Table 1: Demographic Data -->
+            <h4 style="font-weight: bold; font-size: 10px; margin-bottom: 8px; background: #e5e7eb; padding: 8px; font-family: Arial, sans-serif;">TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS</h4>
+            <table style="width: 100%; border-collapse: collapse; font-size: 8px; font-family: Arial, sans-serif; margin-bottom: 20px;">
+                <thead>
+                    <tr style="background: #fef3c7;">
+                        <th style="border: 1px solid #999; padding: 6px; text-align: left;">Subject Characteristics</th>
+                        <th style="border: 1px solid #999; padding: 6px;">100% Effort (n=12)</th>
+                        <th style="border: 1px solid #999; padding: 6px;">50% Effort (n=12)</th>
+                        <th style="border: 1px solid #999; padding: 6px;">Significance Test</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">Age (y)</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">35.7</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">33.5</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">t = 13.9* (= .5)</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">Range</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">23-60</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">18-55</td><td style="border: 1px solid #999; padding: 4px; text-align: center;"></td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">Gender: Male/Female</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">7/5</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">10/2</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">χ² = 0.67* (= .3)</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">Race: Caucasian/African American</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">12/0</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">10/2</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">χ² = 0.67* (= .3)</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">Hard dominance: Right/Left</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">11/1</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">11/1</td><td style="border: 1px solid #999; padding: 4px; text-align: center;"></td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">Body mass (kg): Mean</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">15.20</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">17</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">t = 1.4* (= .2)</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">Range</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">54.0-127.8</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">54.0-103.5</td><td style="border: 1px solid #999; padding: 4px; text-align: center;"></td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">Insurance: Yes/No</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">11/1</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">10/2</td><td style="border: 1px solid #999; padding: 4px; text-align: center;"></td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">Employment: Employed/Not employed/Retired</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">11/1/0</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">10/2/0</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">χ² = 0.1 (= .8)</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Table 2: Sensitivity and Specificity -->
+            <h4 style="font-weight: bold; font-size: 10px; margin-bottom: 8px; background: #e5e7eb; padding: 8px; font-family: Arial, sans-serif;">TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS FUNCTIONAL CAPACITY CUTOFF SCORES</h4>
+            <table style="width: 100%; border-collapse: collapse; font-size: 8px; font-family: Arial, sans-serif; margin-bottom: 20px;">
+                <thead>
+                    <tr style="background: #fef3c7;">
+                        <th style="border: 1px solid #999; padding: 6px; text-align: left;">Cutoff Score</th>
+                        <th style="border: 1px solid #999; padding: 6px;">Sensitivity (%)</th>
+                        <th style="border: 1px solid #999; padding: 6px;">Specificity (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">55%</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">33.7</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">100.0</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">60%</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">58.0</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">88.5</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">65%</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">60.0</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">88.5</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">70%</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">85.0</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">84.2</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">75%</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">88.7</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">68.4</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 4px;">80%</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">100.0</td><td style="border: 1px solid #999; padding: 4px; text-align: center;">40.0</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Table 3: Variables With 70% Sensitivity -->
+            <h4 style="font-weight: bold; font-size: 10px; margin-bottom: 8px; background: #e5e7eb; padding: 8px; font-family: Arial, sans-serif;">TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER</h4>
+            <table style="width: 100%; border-collapse: collapse; font-size: 7px; font-family: Arial, sans-serif; margin-bottom: 20px;">
+                <thead>
+                    <tr style="background: #fef3c7;">
+                        <th style="border: 1px solid #999; padding: 4px; text-align: left;">Variable/Score</th>
+                        <th style="border: 1px solid #999; padding: 4px;">100% Effort</th>
+                        <th style="border: 1px solid #999; padding: 4px;">50% Effort</th>
+                        <th style="border: 1px solid #999; padding: 4px;">Sensitivity</th>
+                        <th style="border: 1px solid #999; padding: 4px;">Specificity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">Finger flexion Invalid</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">1</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">5</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">70.0</td><td style="border: 1px solid #999; padding: 3px; text-align: center;"></td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">Equivocal</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">2</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">13</td><td style="border: 1px solid #999; padding: 3px; text-align: center;"></td><td style="border: 1px solid #999; padding: 3px; text-align: center;"></td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">Valid</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">9</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">9</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">78.6</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">72.2</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">ROM greater Invalid</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">5</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">22</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">83.3</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">68.4</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">BEG on right Invalid</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">0</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">5</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">83.3</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">52.9</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">BEG on left Invalid</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">8</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">5</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">72.4</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">42.4</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Table 4: Variables With 100% Specificity -->
+            <h4 style="font-weight: bold; font-size: 10px; margin-bottom: 8px; background: #e5e7eb; padding: 8px; font-family: Arial, sans-serif;">TABLE 4 - VARIABLES WITH 100% SPECIFICITY</h4>
+            <table style="width: 100%; border-collapse: collapse; font-size: 7px; font-family: Arial, sans-serif; margin-bottom: 20px;">
+                <thead>
+                    <tr style="background: #fef3c7;">
+                        <th style="border: 1px solid #999; padding: 4px; text-align: left;">Variable/Score</th>
+                        <th style="border: 1px solid #999; padding: 4px;">100% Effort</th>
+                        <th style="border: 1px solid #999; padding: 4px;">50% Effort</th>
+                        <th style="border: 1px solid #999; padding: 4px;">Sensitivity</th>
+                        <th style="border: 1px solid #999; padding: 4px;">Specificity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">Distraction Invalid/Equivocal</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">0</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">1</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">4.0</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">100</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">Trunk Invalid/Equivocal</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">0</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">6</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">28.0</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">100</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">Distraction (OAM) Valid</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">12</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">25</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">46.7</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">100</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">ROM shoulder Invalid/Equivocal</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">0</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">14</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">46.7</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">100</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">ROM push right &gt; left Invalid</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">0</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">20</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">30.0</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">100</td></tr>
+                    <tr><td style="border: 1px solid #999; padding: 3px;">Mounted palms machine pass</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">3</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">2</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">18.5</td><td style="border: 1px solid #999; padding: 3px; text-align: center;">100</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size: 8px; color: #666; margin-top: 12px; font-family: Arial, sans-serif; text-align: center;">Journal of orthopaedic & sports physical therapy | volume 37 | number 4 | April 2007.</p>
         </div>
     </div>
 
