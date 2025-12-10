@@ -7399,8 +7399,39 @@ export default function ReviewReport() {
 
               {/* Blankenship FCE System Reference */}
               <div className="p-8 border-b">
-                <h3 className="font-bold mb-2">Appendix One-A: Sensitivity and Specificity of the Blankenship FCE System</h3>
-                <p className="text-xs text-gray-600 mb-6">Source: Penny N Brubaker, PT, MSI; Frank J Fearon, PT, DHSc, OCS, FAACGPT2; Stephen M Smith, PhD; Richard J. Bohannon, PT, MS, ECS4; James Alday, MDS; Sheryl S Andrew, PT, MS6; Everald Clarke, PT, MS7; George L Shaw Jr, PT, MS8</p>
+                <div className="grid grid-cols-3 gap-8 mb-8">
+                  <div className="col-span-2">
+                    <h3 className="font-bold text-sm mb-2">Sensitivity and Specificity of the Blankenship FCE System's Indicators of Submaximal Effort</h3>
+                    <p className="text-xs text-gray-700 mb-3">Penny N Brubaker, PT, MSI; Frank J Fearon, PT, DHSc, OCS, FAACGPT2; Stephen M Smith, PhD; Richard J. Bohannon, PT, MS, ECS4; James Alday, MDS; Sheryl S Andrew, PT, MS6; Everald Clarke, PT, MS7; George L Shaw Jr, PT, MS8</p>
+                    <p className="text-xs text-gray-700 mb-4">Four components of the Blankenship-slip FCE demonstrated a sensitivity of 80% and a specificity of 84.2% in determining submaximal effort. The 70% cutoff score developed by the Blankenship Group was shown to provide greatest diagnostic accuracy for identifying submaximal effort. Five indicators of validity were shown to have 70% sensitivity or greater and 12 indicators had 100% specificity. The clinical relevance for this study is that the validity indicators of 4 components of the Blankenship FCE had good sensitivity and specificity, however, raters should recognize that a small percentage of false positives (maximum effort identified as submaximal effort) might occur. Also, the clinician should note that scores of equivocal are not scored in the criteria-based category and could potentially increase a worker's overall FCE validity score. Only 5 of the indicators of validity tested scored greater than 70% sensitivity (Table 3). Likewise, 12 indicators had 100% specificity (Table 4). However, these variables had low sensitivity (less than 70%). Only 1 indicator had both sensitivity and specificity greater than 70%. This indicator of validity was OMH is greater than the high extrapolation from the leg static-strength test. The sensitivity was 78.6% and specificity was 72.2%.</p>
+                  </div>
+
+                  {/* Table 1 on the right */}
+                  <div>
+                    <h4 className="font-bold text-xs mb-2 bg-gray-600 text-white p-2">TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS</h4>
+                    <table className="w-full border border-gray-300 text-xs">
+                      <thead>
+                        <tr className="bg-yellow-200">
+                          <th className="border border-gray-300 p-1 text-left text-xs">Subject Characteristics</th>
+                          <th className="border border-gray-300 p-1 text-xs">100% Effort</th>
+                          <th className="border border-gray-300 p-1 text-xs">50% Effort</th>
+                          <th className="border border-gray-300 p-1 text-xs">Significance Test</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td className="border border-gray-300 p-1">Age (y)</td><td className="border border-gray-300 p-1 text-center">35.7</td><td className="border border-gray-300 p-1 text-center">33.5</td><td className="border border-gray-300 p-1 text-center">t = 13.9* (= .5)</td></tr>
+                        <tr><td className="border border-gray-300 p-1">Range</td><td className="border border-gray-300 p-1 text-center">23-60</td><td className="border border-gray-300 p-1 text-center">18-55</td><td className="border border-gray-300 p-1 text-center"></td></tr>
+                        <tr><td className="border border-gray-300 p-1">Gender: Male/Female</td><td className="border border-gray-300 p-1 text-center">7/5</td><td className="border border-gray-300 p-1 text-center">10/2</td><td className="border border-gray-300 p-1 text-center">χ² = 0.67* (= .3)</td></tr>
+                        <tr><td className="border border-gray-300 p-1">Race: Caucasian/African American</td><td className="border border-gray-300 p-1 text-center">12/0</td><td className="border border-gray-300 p-1 text-center">10/2</td><td className="border border-gray-300 p-1 text-center">χ² = 0.67* (= .3)</td></tr>
+                        <tr><td className="border border-gray-300 p-1">Hard dominance: Right/Left</td><td className="border border-gray-300 p-1 text-center">11/1</td><td className="border border-gray-300 p-1 text-center">11/1</td><td className="border border-gray-300 p-1 text-center"></td></tr>
+                        <tr><td className="border border-gray-300 p-1">Body mass (kg): Mean</td><td className="border border-gray-300 p-1 text-center">15.20</td><td className="border border-gray-300 p-1 text-center">17</td><td className="border border-gray-300 p-1 text-center">t = 1.4* (= .2)</td></tr>
+                        <tr><td className="border border-gray-300 p-1">Range</td><td className="border border-gray-300 p-1 text-center">54.0-127.8</td><td className="border border-gray-300 p-1 text-center">54.0-103.5</td><td className="border border-gray-300 p-1 text-center"></td></tr>
+                        <tr><td className="border border-gray-300 p-1">Insurance: Yes/No</td><td className="border border-gray-300 p-1 text-center">11/1</td><td className="border border-gray-300 p-1 text-center">10/2</td><td className="border border-gray-300 p-1 text-center"></td></tr>
+                        <tr><td className="border border-gray-300 p-1">Employment: Employed/Not employed/Retired</td><td className="border border-gray-300 p-1 text-center">11/1/0</td><td className="border border-gray-300 p-1 text-center">10/2/0</td><td className="border border-gray-300 p-1 text-center">χ² = 0.1 (= .8)</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
 
                 {/* Table 1: Demographic Data */}
                 <div className="mb-8">
