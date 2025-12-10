@@ -7402,8 +7402,8 @@ export default function ReviewReport() {
 
               {/* Blankenship FCE System Reference */}
               <div className="p-8 border-b">
-                <div className="grid grid-cols-3 gap-8 mb-8">
-                  <div className="col-span-2">
+                <div className="grid grid-cols-2 gap-8 mb-8">
+                  <div>
                     <h3 className="font-bold text-sm mb-2">
                       Sensitivity and Specificity of the Blankenship FCE
                       System's Indicators of Submaximal Effort
