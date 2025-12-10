@@ -7443,7 +7443,7 @@ export default function ReviewReport() {
 
                     {/* Table 4: Variables With 100% Specificity - Left Column */}
                     <div className="mt-6">
-                      <h4 className="font-semibold text-sm mb-3 bg-gray-200 p-2">
+                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
                         TABLE 4 - VARIABLES WITH 100% SPECIFICITY AND PARTICIPANTS'
                         SCORES ON THESE VARIABLES
                       </h4>
@@ -7580,7 +7580,7 @@ export default function ReviewReport() {
                   <div>
                     {/* Table 1: Demographic Data */}
                     <div className="mb-8">
-                      <h4 className="font-semibold text-sm mb-3 bg-gray-200 p-2">
+                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
                         TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS
                       </h4>
                       <table className="w-full text-xs" style={{borderCollapse: 'collapse', border: '1px solid #d1d5db'}}>
@@ -7661,7 +7661,7 @@ export default function ReviewReport() {
 
                     {/* Table 2: Sensitivity and Specificity */}
                     <div className="mb-8">
-                      <h4 className="font-semibold text-sm mb-3 bg-gray-200 p-2">
+                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
                         TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS FUNCTIONAL
                         CAPACITY CUTOFF SCORES
                       </h4>
@@ -7716,7 +7716,7 @@ export default function ReviewReport() {
 
                     {/* Table 3: Variables With 70% Sensitivity */}
                     <div>
-                      <h4 className="font-semibold text-sm mb-3 bg-gray-200 p-2">
+                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
                         TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER AND
                         PARTICIPANTS' SCORES ON THESE VARIABLES
                       </h4>
