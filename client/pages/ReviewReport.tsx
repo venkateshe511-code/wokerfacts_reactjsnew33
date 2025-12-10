@@ -10133,8 +10133,8 @@ export default function ReviewReport() {
                     </div>
 
                     <p className="text-xs text-gray-600 mt-8 text-center">
-                      Journal of orthopaedic & sports physical therapy | volume 37 |
-                      number 4 | April 2007.
+                      Journal of orthopaedic & sports physical therapy | volume
+                      37 | number 4 | April 2007.
                     </p>
                   </div>
                 </div>
