@@ -7406,7 +7406,8 @@ export default function ReviewReport() {
                         </div>
                         <div className="flex-1 p-3">
                           <div className="font-semibold text-sm tracking-wide">
-                            Variables With 100% Specificity and Participants' Scores on These Variables
+                            Variables With 100% Specificity and Participants'
+                            Scores on These Variables
                           </div>
                         </div>
                       </div>
@@ -7654,7 +7655,8 @@ export default function ReviewReport() {
                               className="p-2 font-bold"
                               style={{ borderRight: "1px solid #ccc" }}
                             >
-                              Do movement patterns improve with distraction for static?
+                              Do movement patterns improve with distraction for
+                              static?
                             </td>
                             <td
                               className="p-2"
@@ -8632,9 +8634,9 @@ export default function ReviewReport() {
                         </tbody>
                       </table>
                       <p className="text-xs text-gray-600 mt-2">
-                        Abbreviations: HT, hand test; OMH, occupational-material-handling
-                        test; REG, rapid-exchange grip test; SST,
-                        static-strength test.
+                        Abbreviations: HT, hand test; OMH,
+                        occupational-material-handling test; REG, rapid-exchange
+                        grip test; SST, static-strength test.
                       </p>
                     </div>
                   </div>
@@ -8648,7 +8650,9 @@ export default function ReviewReport() {
                           <div className="font-bold text-sm">TABLE 1</div>
                         </div>
                         <div className="flex-1 p-3">
-                          <div className="font-semibold text-sm">Demographic Data of Participants</div>
+                          <div className="font-semibold text-sm">
+                            Demographic Data of Participants
+                          </div>
                         </div>
                       </div>
                       <table
@@ -9424,7 +9428,8 @@ export default function ReviewReport() {
                         </div>
                         <div className="flex-1 p-3">
                           <div className="font-semibold text-sm tracking-wide">
-                            Variables With 70% Sensitivity or Greater and Participants' Scores on These Variables
+                            Variables With 70% Sensitivity or Greater and
+                            Participants' Scores on These Variables
                           </div>
                         </div>
                       </div>
@@ -9513,11 +9518,19 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "none",
+                              }}
                             >
                               70.0
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>52.9</td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderBottom: "none" }}
+                            >
+                              52.9
+                            </td>
                           </tr>
                           <tr style={{ borderBottom: "1px solid #ccc" }}>
                             <td
@@ -9574,7 +9587,8 @@ export default function ReviewReport() {
                               className="p-2 font-bold"
                               style={{ borderRight: "1px solid #ccc" }}
                             >
-                              OMH greater than high extrapolation of the leg test
+                              OMH greater than high extrapolation of the leg
+                              test
                             </td>
                             <td
                               className="p-2 text-center"
@@ -9611,11 +9625,19 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "none",
+                              }}
                             >
                               78.6
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>72.2</td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderBottom: "none" }}
+                            >
+                              72.2
+                            </td>
                           </tr>
                           <tr style={{ borderBottom: "1px solid #ccc" }}>
                             <td
@@ -9709,11 +9731,19 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "none",
+                              }}
                             >
                               83.3
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>68.4</td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderBottom: "none" }}
+                            >
+                              68.4
+                            </td>
                           </tr>
                           <tr style={{ borderBottom: "1px solid #ccc" }}>
                             <td
@@ -9807,11 +9837,19 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "none",
+                              }}
                             >
                               83.3
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>52.9</td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderBottom: "none" }}
+                            >
+                              52.9
+                            </td>
                           </tr>
                           <tr style={{ borderBottom: "1px solid #ccc" }}>
                             <td
@@ -9905,11 +9943,19 @@ export default function ReviewReport() {
                             </td>
                             <td
                               className="p-2 text-center"
-                              style={{ borderRight: "1px solid #ccc", borderBottom: "none" }}
+                              style={{
+                                borderRight: "1px solid #ccc",
+                                borderBottom: "none",
+                              }}
                             >
                               72.4
                             </td>
-                            <td className="p-2 text-center" style={{ borderBottom: "none" }}>47.4</td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderBottom: "none" }}
+                            >
+                              47.4
+                            </td>
                           </tr>
                           <tr>
                             <td
