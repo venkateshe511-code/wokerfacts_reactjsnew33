@@ -8323,123 +8323,557 @@ export default function ReviewReport() {
 
                     {/* Table 3: Variables With 70% Sensitivity */}
                     <div>
-                      <h4 className="font-semibold text-sm mb-3 bg-gray-600 text-white p-2">
-                        TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER AND
-                        PARTICIPANTS' SCORES ON THESE VARIABLES
-                      </h4>
+                      <div className="flex bg-gray-600 text-white">
+                        <div className="flex-1 p-3 border-r border-gray-500">
+                          <div className="font-bold text-sm">TABLE 3</div>
+                        </div>
+                        <div className="flex-1 p-3">
+                          <div className="font-semibold text-sm tracking-wide">
+                            Variables With 70% Sensitivity or Greater and
+                            Participants' Scores on These Variables
+                          </div>
+                        </div>
+                      </div>
                       <table
-                        className="w-full text-xs"
+                        className="w-full text-xs border border-gray-400"
                         style={{
                           borderCollapse: "collapse",
-                          border: "1px solid #d1d5db",
                         }}
                       >
                         <thead>
                           <tr
-                            className="bg-gray-600 text-white"
-                            style={{ borderBottom: "1px solid #d1d5db" }}
+                            style={{
+                              backgroundColor: "#f5f5f5",
+                              borderBottom: "2px solid #333",
+                            }}
                           >
-                            <th className="p-2 text-left">Variable/Score</th>
-                            <th className="p-2">
+                            <th
+                              className="p-2 text-left font-bold text-gray-800"
+                              style={{ borderRight: "1px solid #666" }}
+                            >
+                              Variable/Score
+                            </th>
+                            <th
+                              className="p-2 font-bold text-gray-800"
+                              style={{ borderRight: "1px solid #666" }}
+                            >
                               100% Effort (n Participants)
                             </th>
-                            <th className="p-2">50% Effort (n Participants)</th>
-                            <th className="p-2">Sensitivity</th>
-                            <th className="p-2">Specificity</th>
+                            <th
+                              className="p-2 font-bold text-gray-800"
+                              style={{ borderRight: "1px solid #666" }}
+                            >
+                              50% Effort (n Participants)
+                            </th>
+                            <th
+                              className="p-2 font-bold text-gray-800"
+                              style={{ borderRight: "1px solid #666" }}
+                            >
+                              Sensitivity
+                            </th>
+                            <th className="p-2 font-bold text-gray-800">
+                              Specificity
+                            </th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td className="p-2">
-                              Finger flexion (slide of the high for SST):
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Fatigue Percent Index of the high-for SST
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
                               Invalid
                             </td>
-                            <td className="p-2 text-center">1</td>
-                            <td className="p-2 text-center">5</td>
-                            <td className="p-2 text-center">70.0</td>
-                            <td className="p-2 text-center"></td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">Equivocal</td>
-                            <td className="p-2 text-center">2</td>
-                            <td className="p-2 text-center">13</td>
-                            <td className="p-2 text-center"></td>
-                            <td className="p-2 text-center"></td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">Valid</td>
-                            <td className="p-2 text-center">9</td>
-                            <td className="p-2 text-center">9</td>
-                            <td className="p-2 text-center">78.6</td>
-                            <td className="p-2 text-center">72.2</td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">
-                              ROM greater than high extrapolation of the leg
-                              test
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              5
                             </td>
-                            <td className="p-2 text-center">5</td>
-                            <td className="p-2 text-center">22</td>
-                            <td className="p-2 text-center"></td>
-                            <td className="p-2 text-center"></td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">Invalid</td>
-                            <td className="p-2 text-center">0</td>
-                            <td className="p-2 text-center">8</td>
-                            <td className="p-2 text-center">83.3</td>
-                            <td className="p-2 text-center">68.4</td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">BEG on right</td>
-                            <td className="p-2 text-center">1</td>
-                            <td className="p-2 text-center">24</td>
-                            <td className="p-2 text-center"></td>
-                            <td className="p-2 text-center"></td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">Invalid</td>
-                            <td className="p-2 text-center">0</td>
-                            <td className="p-2 text-center">5</td>
-                            <td className="p-2 text-center">83.3</td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              13
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              70.0
+                            </td>
                             <td className="p-2 text-center">52.9</td>
                           </tr>
-                          <tr>
-                            <td className="p-2">BEG on left</td>
-                            <td className="p-2 text-center">8</td>
-                            <td className="p-2 text-center">24</td>
-                            <td className="p-2 text-center"></td>
-                            <td className="p-2 text-center"></td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">Invalid</td>
-                            <td className="p-2 text-center">6</td>
-                            <td className="p-2 text-center">5</td>
-                            <td className="p-2 text-center">72.4</td>
-                            <td className="p-2 text-center">42.4</td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">
-                              BEG: ROM greater than the leg lift
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Equivocal
                             </td>
-                            <td className="p-2 text-center">10</td>
-                            <td className="p-2 text-center">21</td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              3
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              7
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
                             <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Valid
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              11
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              9
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              OMH greater than high extrapolation of the leg
+                              test
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Invalid
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              5
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              22
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              78.6
+                            </td>
+                            <td className="p-2 text-center">72.2</td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Equivocal
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              0
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              0
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Valid
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              13
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              6
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              REG on right
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Invalid
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              6
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              24
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              83.3
+                            </td>
+                            <td className="p-2 text-center">68.4</td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Equivocal
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              0
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              1
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Valid
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              13
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              5
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              REG on left
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Invalid
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              8
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              24
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              83.3
+                            </td>
+                            <td className="p-2 text-center">52.9</td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Equivocal
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              0
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              1
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Valid
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              11
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              5
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              30-cm lift greater than the leg lift
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
+                            <td className="p-2 text-center"></td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #ccc" }}>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Invalid
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              10
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              21
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              72.4
+                            </td>
+                            <td className="p-2 text-center">47.4</td>
+                          </tr>
+                          <tr>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Equivocal
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              0
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              0
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
                           <tr>
-                            <td className="p-2">Invalid</td>
-                            <td className="p-2 text-center">0</td>
-                            <td className="p-2 text-center">6</td>
-                            <td className="p-2 text-center"></td>
+                            <td
+                              className="p-2 pl-4"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              Valid
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              8
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            >
+                              9
+                            </td>
+                            <td
+                              className="p-2 text-center"
+                              style={{ borderRight: "1px solid #ccc" }}
+                            ></td>
                             <td className="p-2 text-center"></td>
                           </tr>
                         </tbody>
                       </table>
                       <p className="text-xs text-gray-600 mt-2">
-                        *Abbreviations: OSMT,
-                        occupational-musculoskeletal-handling test; BEG,
-                        rapid-exchange grip test; SST, static-strength test.
+                        Abbreviations: OMH, occupational-material-handling test;
+                        REG, rapid-exchange grip test; SST, static-strength
+                        test.
                       </p>
                     </div>
                   </div>
