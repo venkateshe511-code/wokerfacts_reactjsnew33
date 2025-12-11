@@ -1356,13 +1356,6 @@ export default function DownloadReport() {
                 </span>
                 <span style="font-size: 10px;"> (mL·kg⁻¹·min⁻¹)</span>
               </div>
-              <div>
-                <span style="font-weight: bold; font-size: 11px;">Heart Rate: </span>
-                <span style="border-bottom: 1px solid #333; padding: 4px 16px; display: inline-block; min-width: 120px; font-size: 11px;">
-                  ${test.heartRate || ""}
-                </span>
-                <span style="font-size: 10px;"> (bpm)</span>
-              </div>
             </div>
 
             <!-- Client Images Section -->
