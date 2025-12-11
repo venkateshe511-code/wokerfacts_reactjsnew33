@@ -11,14 +11,20 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   filesToBase64Array,
   base64ArrayToFiles,
   SerializedImage,
 } from "@/lib/cardio-utils";
 
 interface YMCAStepTestData {
-  classification: string;
-  vo2MaxScore: string;
+  clientRating: string;
   clientImages: File[];
   serializedImages?: SerializedImage[];
 }
@@ -29,11 +35,8 @@ interface Props {
 }
 
 export default function YMCAStepTest({ onSave, initialData }: Props) {
-  const [classification, setClassification] = useState(
-    initialData?.classification || "",
-  );
-  const [vo2MaxScore, setVo2MaxScore] = useState(
-    initialData?.vo2MaxScore || "",
+  const [clientRating, setClientRating] = useState(
+    initialData?.clientRating || "",
   );
   const [clientImages, setClientImages] = useState<File[]>(
     initialData?.clientImages || [],
@@ -56,8 +59,7 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
 
     const serializedImages = await filesToBase64Array(newImages);
     onSave({
-      classification,
-      vo2MaxScore,
+      clientRating,
       clientImages: newImages,
       serializedImages,
     });
@@ -69,8 +71,7 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
 
     const serializedImages = await filesToBase64Array(newImages);
     onSave({
-      classification,
-      vo2MaxScore,
+      clientRating,
       clientImages: newImages,
       serializedImages,
     });
@@ -82,11 +83,10 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
 
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
-      if (classification || vo2MaxScore) {
+      if (clientRating) {
         const serializedImages = await filesToBase64Array(clientImages);
         onSave({
-          classification,
-          vo2MaxScore,
+          clientRating,
           clientImages,
           serializedImages,
         });
@@ -94,7 +94,7 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [classification, vo2MaxScore]);
+  }, [clientRating]);
 
   useEffect(() => {
     if (
@@ -260,35 +260,6 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
           </p>
         </CardHeader>
         <CardContent className="space-y-6 bg-gradient-to-br from-purple-50 via-pink-50 to-red-50">
-          {/* Input Fields */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label htmlFor="classification" className="text-sm font-semibold">
-                CLASSIFICATION:
-              </Label>
-              <Input
-                id="classification"
-                value={classification}
-                onChange={(e) => setClassification(e.target.value)}
-                className="border-2 border-purple-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 bg-white shadow-sm"
-                placeholder="Enter classification (e.g., Excellent, Good, Average)"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="vo2MaxScore" className="text-sm font-semibold">
-                VO2 MAX SCORE:
-              </Label>
-              <Input
-                id="vo2MaxScore"
-                value={vo2MaxScore}
-                onChange={(e) => setVo2MaxScore(e.target.value)}
-                className="border-2 border-purple-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 bg-white shadow-sm"
-                placeholder="Enter VO2 max score"
-              />
-            </div>
-          </div>
-
           {/* Ratings Tables */}
           <div className="space-y-6">
             <div className="space-y-3">
@@ -420,6 +391,30 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
                 </table>
               </div>
             </div>
+          </div>
+
+          {/* Client Rating Selection */}
+          <div className="bg-white rounded-lg p-4 border-2 border-purple-200">
+            <Label
+              htmlFor="clientRating"
+              className="text-sm font-semibold text-purple-900"
+            >
+              Client Rating Based on Test Completion:
+            </Label>
+            <Select value={clientRating} onValueChange={setClientRating}>
+              <SelectTrigger className="mt-2 border-2 border-purple-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 bg-white shadow-sm">
+                <SelectValue placeholder="Select rating" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Excellent">Excellent</SelectItem>
+                <SelectItem value="Good">Good</SelectItem>
+                <SelectItem value="Above Average">Above Average</SelectItem>
+                <SelectItem value="Average">Average</SelectItem>
+                <SelectItem value="Below Average">Below Average</SelectItem>
+                <SelectItem value="Poor">Poor</SelectItem>
+                <SelectItem value="Very Poor">Very Poor</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           {/* Image Upload Section */}

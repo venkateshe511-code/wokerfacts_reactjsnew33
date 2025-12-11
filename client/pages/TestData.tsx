@@ -771,8 +771,7 @@ export default function TestData() {
           };
         } else if (testId.includes("ymca") && testId.includes("step")) {
           sampleCardioData[testId] = {
-            classification: "Good",
-            vo2MaxScore: `${Math.floor(Math.random() * 12 + 40)} ml/kg/min`,
+            clientRating: "Good",
             clientImages: [],
             serializedImages: [],
           };
@@ -787,8 +786,7 @@ export default function TestData() {
           };
         } else if (testName.includes("ymca") && testName.includes("step")) {
           sampleCardioData[testId] = {
-            classification: "Good",
-            vo2MaxScore: `${Math.floor(Math.random() * 12 + 40)} ml/kg/min`,
+            clientRating: "Good",
             clientImages: [],
             serializedImages: [],
           };

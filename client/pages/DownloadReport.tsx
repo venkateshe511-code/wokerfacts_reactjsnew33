@@ -381,6 +381,8 @@ export default function DownloadReport() {
             classification: cardioData.classification || "",
             hbr: cardioData.hbr || "",
             aerobicFitnessScore: cardioData.aerobicFitnessScore || "",
+            // YMCA Step Test fields
+            clientRating: cardioData.clientRating || "",
             // YMCA Submaximal Treadmill Test fields
             heartRate: cardioData.heartRate || "",
             bloodPressure: cardioData.bloodPressure || "",
@@ -1209,6 +1211,110 @@ export default function DownloadReport() {
                       (img: any, idx: number) => `
                     <div style="border: 1px solid #333; padding: 4px; background: white; text-align: center; width: 80px;">
                       <img src="${img.data}" alt="${img.name || `Kasch Image ${idx + 1}`}" style="width: 80px; height: 60px; object-fit: contain;" />
+                      ${img.name ? `<p style="font-size: 8px; margin: 4px 0 0 0; text-overflow: ellipsis; overflow: hidden;">${img.name}</p>` : ""}
+                    </div>
+                  `,
+                    )
+                    .join("")}
+                </div>
+              </div>
+            `
+                : ""
+            }
+          </div>
+        `;
+      } else if (
+        testNameLower.includes("ymca") &&
+        testNameLower.includes("step")
+      ) {
+        return `
+          <!-- YMCA 3-Minute Step Test Details -->
+          <div style="space-y: 16px;">
+            <p style="font-size: 10px; margin-bottom: 16px; text-align: justify; text-justify: inter-word;">
+              The YMCA 3-Minute Step Test is a submaximal aerobic fitness test used to assess cardiorespiratory fitness. The test involves stepping onto a 12-inch step at a rate of 96 beats per minute (managed by a metronome) for 3 minutes, with heart rate recovery measured immediately after exercise.
+            </p>
+
+            <!-- Ratings Tables -->
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px;">
+              <div style="flex: 1; min-width: 300px;">
+                <h6 style="font-size: 9px; font-weight: bold; text-align: center; margin-bottom: 4px;">
+                  Ratings for Women, Based on Age
+                </h6>
+                <table style="width: 100%; border-collapse: collapse; border: 1px solid #333; font-size: 7px; table-layout: auto;">
+                  <thead>
+                    <tr style="background: #f0f0f0;">
+                      <th style="border: 1px solid #333; padding: 2px;"></th>
+                      <th style="border: 1px solid #333; padding: 2px;">18-25</th>
+                      <th style="border: 1px solid #333; padding: 2px;">26-35</th>
+                      <th style="border: 1px solid #333; padding: 2px;">36-45</th>
+                      <th style="border: 1px solid #333; padding: 2px;">46-55</th>
+                      <th style="border: 1px solid #333; padding: 2px;">56-65</th>
+                      <th style="border: 1px solid #333; padding: 2px;">≥65</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Excellent</td><td style="border: 1px solid #333; padding: 2px;">52-81</td><td style="border: 1px solid #333; padding: 2px;">58-80</td><td style="border: 1px solid #333; padding: 2px;">51-84</td><td style="border: 1px solid #333; padding: 2px;">63-91</td><td style="border: 1px solid #333; padding: 2px;">60-92</td><td style="border: 1px solid #333; padding: 2px;">70-92</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Good</td><td style="border: 1px solid #333; padding: 2px;">85-93</td><td style="border: 1px solid #333; padding: 2px;">85-92</td><td style="border: 1px solid #333; padding: 2px;">89-96</td><td style="border: 1px solid #333; padding: 2px;">95-101</td><td style="border: 1px solid #333; padding: 2px;">97-103</td><td style="border: 1px solid #333; padding: 2px;">96-101</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Above Average</td><td style="border: 1px solid #333; padding: 2px;">96-102</td><td style="border: 1px solid #333; padding: 2px;">95-101</td><td style="border: 1px solid #333; padding: 2px;">100-104</td><td style="border: 1px solid #333; padding: 2px;">104-110</td><td style="border: 1px solid #333; padding: 2px;">106-111</td><td style="border: 1px solid #333; padding: 2px;">104-111</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Average</td><td style="border: 1px solid #333; padding: 2px;">104-110</td><td style="border: 1px solid #333; padding: 2px;">104-110</td><td style="border: 1px solid #333; padding: 2px;">107-112</td><td style="border: 1px solid #333; padding: 2px;">113-118</td><td style="border: 1px solid #333; padding: 2px;">113-118</td><td style="border: 1px solid #333; padding: 2px;">116-121</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Below Average</td><td style="border: 1px solid #333; padding: 2px;">113-120</td><td style="border: 1px solid #333; padding: 2px;">113-119</td><td style="border: 1px solid #333; padding: 2px;">115-120</td><td style="border: 1px solid #333; padding: 2px;">120-124</td><td style="border: 1px solid #333; padding: 2px;">119-127</td><td style="border: 1px solid #333; padding: 2px;">123-126</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Poor</td><td style="border: 1px solid #333; padding: 2px;">122-131</td><td style="border: 1px solid #333; padding: 2px;">122-129</td><td style="border: 1px solid #333; padding: 2px;">124-132</td><td style="border: 1px solid #333; padding: 2px;">126-132</td><td style="border: 1px solid #333; padding: 2px;">129-135</td><td style="border: 1px solid #333; padding: 2px;">128-133</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Very Poor</td><td style="border: 1px solid #333; padding: 2px;">135-169</td><td style="border: 1px solid #333; padding: 2px;">134-171</td><td style="border: 1px solid #333; padding: 2px;">137-169</td><td style="border: 1px solid #333; padding: 2px;">137-171</td><td style="border: 1px solid #333; padding: 2px;">141-174</td><td style="border: 1px solid #333; padding: 2px;">135-155</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style="flex: 1; min-width: 300px;">
+                <h6 style="font-size: 9px; font-weight: bold; text-align: center; margin-bottom: 4px;">
+                  Ratings for Men, Based on Age
+                </h6>
+                <table style="width: 100%; border-collapse: collapse; border: 1px solid #333; font-size: 7px; table-layout: auto;">
+                  <thead>
+                    <tr style="background: #f0f0f0;">
+                      <th style="border: 1px solid #333; padding: 2px;"></th>
+                      <th style="border: 1px solid #333; padding: 2px;">18-25</th>
+                      <th style="border: 1px solid #333; padding: 2px;">26-35</th>
+                      <th style="border: 1px solid #333; padding: 2px;">36-45</th>
+                      <th style="border: 1px solid #333; padding: 2px;">46-55</th>
+                      <th style="border: 1px solid #333; padding: 2px;">56-65</th>
+                      <th style="border: 1px solid #333; padding: 2px;">≥65</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Excellent</td><td style="border: 1px solid #333; padding: 2px;">50-76</td><td style="border: 1px solid #333; padding: 2px;">51-76</td><td style="border: 1px solid #333; padding: 2px;">49-76</td><td style="border: 1px solid #333; padding: 2px;">56-82</td><td style="border: 1px solid #333; padding: 2px;">60-77</td><td style="border: 1px solid #333; padding: 2px;">59-81</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Good</td><td style="border: 1px solid #333; padding: 2px;">79-84</td><td style="border: 1px solid #333; padding: 2px;">79-85</td><td style="border: 1px solid #333; padding: 2px;">80-88</td><td style="border: 1px solid #333; padding: 2px;">87-93</td><td style="border: 1px solid #333; padding: 2px;">86-94</td><td style="border: 1px solid #333; padding: 2px;">87-92</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Above Average</td><td style="border: 1px solid #333; padding: 2px;">88-93</td><td style="border: 1px solid #333; padding: 2px;">88-94</td><td style="border: 1px solid #333; padding: 2px;">92-98</td><td style="border: 1px solid #333; padding: 2px;">95-101</td><td style="border: 1px solid #333; padding: 2px;">97-100</td><td style="border: 1px solid #333; padding: 2px;">94-102</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Average</td><td style="border: 1px solid #333; padding: 2px;">95-100</td><td style="border: 1px solid #333; padding: 2px;">96-102</td><td style="border: 1px solid #333; padding: 2px;">100-105</td><td style="border: 1px solid #333; padding: 2px;">103-111</td><td style="border: 1px solid #333; padding: 2px;">103-109</td><td style="border: 1px solid #333; padding: 2px;">104-110</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Below Average</td><td style="border: 1px solid #333; padding: 2px;">102-107</td><td style="border: 1px solid #333; padding: 2px;">104-110</td><td style="border: 1px solid #333; padding: 2px;">108-113</td><td style="border: 1px solid #333; padding: 2px;">113-119</td><td style="border: 1px solid #333; padding: 2px;">111-117</td><td style="border: 1px solid #333; padding: 2px;">114-118</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Poor</td><td style="border: 1px solid #333; padding: 2px;">111-119</td><td style="border: 1px solid #333; padding: 2px;">114-121</td><td style="border: 1px solid #333; padding: 2px;">116-124</td><td style="border: 1px solid #333; padding: 2px;">121-126</td><td style="border: 1px solid #333; padding: 2px;">119-128</td><td style="border: 1px solid #333; padding: 2px;">121-126</td></tr>
+                    <tr><td style="border: 1px solid #333; padding: 2px;">Very Poor</td><td style="border: 1px solid #333; padding: 2px;">124-157</td><td style="border: 1px solid #333; padding: 2px;">126-161</td><td style="border: 1px solid #333; padding: 2px;">130-163</td><td style="border: 1px solid #333; padding: 2px;">131-159</td><td style="border: 1px solid #333; padding: 2px;">131-154</td><td style="border: 1px solid #333; padding: 2px;">130-151</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Client Rating Results -->
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 12px 0;">
+              <div>
+                <span style="font-weight: bold; font-size: 11px;">Client Rating Based on Test Completion: </span>
+                <span style="border-bottom: 1px solid #333; padding: 4px 16px; display: inline-block; min-width: 150px; font-size: 11px;">
+                  ${test.clientRating || ""}
+                </span>
+              </div>
+            </div>
+
+            <!-- Client Images Section -->
+            ${
+              test.serializedImages && test.serializedImages.length > 0
+                ? `
+              <div style="margin-top: 16px;">
+                <h5 style="font-weight: bold; margin-bottom: 8px; font-size: 11px;">CLIENT IMAGES:</h5>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                  ${test.serializedImages
+                    .map(
+                      (img: any, idx: number) => `
+                    <div style="border: 1px solid #333; padding: 4px; background: white; text-align: center; width: 80px;">
+                      <img src="${img.data}" alt="${img.name || `YMCA Step Test Image ${idx + 1}`}" style="width: 80px; height: 60px; object-fit: contain;" />
                       ${img.name ? `<p style="font-size: 8px; margin: 4px 0 0 0; text-overflow: ellipsis; overflow: hidden;">${img.name}</p>` : ""}
                     </div>
                   `,
