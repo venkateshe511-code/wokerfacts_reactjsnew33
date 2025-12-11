@@ -83,11 +83,10 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
 
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
-      if (classification || vo2MaxScore) {
+      if (clientRating) {
         const serializedImages = await filesToBase64Array(clientImages);
         onSave({
-          classification,
-          vo2MaxScore,
+          clientRating,
           clientImages,
           serializedImages,
         });
@@ -95,7 +94,7 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [classification, vo2MaxScore]);
+  }, [clientRating]);
 
   useEffect(() => {
     if (
