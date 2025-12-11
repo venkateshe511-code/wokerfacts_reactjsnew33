@@ -5151,25 +5151,6 @@ export default function ReviewReport() {
                                                 </div>
                                               </div>
 
-                                              {/* References */}
-                                              <div className="border border-gray-300 p-3 bg-gray-50 rounded mt-4">
-                                                <h6 className="font-semibold text-xs mb-2">
-                                                  Reference:
-                                                </h6>
-                                                <p className="text-xs text-gray-700">
-                                                  Vehrs, P.R., George, J.D.,
-                                                  Fellingham, G.W., & Plowman,
-                                                  S.A. "Submaximal Treadmill
-                                                  Exercise Test to Predict
-                                                  VO2max in Fit Adults."
-                                                  Measurement in Physical
-                                                  Education and Exercise
-                                                  Science, Vol. 11, No. 2, pp.
-                                                  61-72, April 2007.
-                                                  DOI:10.1080/10913670701294047
-                                                </p>
-                                              </div>
-
                                               {/* Client Images */}
                                               {test.serializedImages &&
                                                 test.serializedImages.length >
@@ -6240,33 +6221,34 @@ export default function ReviewReport() {
                                     </div>
                                   )}
 
-                                  {/* Heart Rate Data if available for this test */}
-                                  {(() => {
-                                    const pre = Number(
-                                      (test.leftMeasurements
-                                        ?.preHeartRate as any) ||
-                                        (test.rightMeasurements
+                                  {/* Heart Rate Data if available for this test (not for cardio tests) */}
+                                  {!isCardioTest &&
+                                    (() => {
+                                      const pre = Number(
+                                        (test.leftMeasurements
                                           ?.preHeartRate as any) ||
-                                        0,
-                                    );
-                                    const post = Number(
-                                      (test.leftMeasurements
-                                        ?.postHeartRate as any) ||
-                                        (test.rightMeasurements
+                                          (test.rightMeasurements
+                                            ?.preHeartRate as any) ||
+                                          0,
+                                      );
+                                      const post = Number(
+                                        (test.leftMeasurements
                                           ?.postHeartRate as any) ||
-                                        0,
-                                    );
-                                    if (!pre && !post) return null;
-                                    return (
-                                      <div className="text-xs text-gray-600 mb-2">
-                                        <span className="font-semibold">
-                                          Heart Rate:
-                                        </span>
-                                        {pre ? ` Pre: ${pre} bpm` : ""}
-                                        {post ? ` Post: ${post} bpm` : ""}
-                                      </div>
-                                    );
-                                  })()}
+                                          (test.rightMeasurements
+                                            ?.postHeartRate as any) ||
+                                          0,
+                                      );
+                                      if (!pre && !post) return null;
+                                      return (
+                                        <div className="text-xs text-gray-600 mb-2">
+                                          <span className="font-semibold">
+                                            Heart Rate:
+                                          </span>
+                                          {pre ? ` Pre: ${pre} bpm` : ""}
+                                          {post ? ` Post: ${post} bpm` : ""}
+                                        </div>
+                                      );
+                                    })()}
 
                                   {/* Test Comments */}
                                   {test.comments && (
@@ -6388,8 +6370,16 @@ export default function ReviewReport() {
                                             'Grant, G.W.B., Moores, B. and Whelan, E. (1975) "Applications of Methods-time measurement in training centers for the mentally handicapped". Journal of Methods-Time Measurement, 11, 23-30.',
                                           ];
                                         } else if (
+                                          testName.includes("ymca") &&
+                                          testName.includes("submaximal")
+                                        ) {
+                                          references = [
+                                            "Submaximal Treadmill Exercise Test to Predict VO2max in Fit Adults: April 2007 Measurement in Physical Education and Exercise Science 11(2):61-72, DOI:10.1080/10913670701294047 Authors: P. R. Vehrs Brigham Young University, James D. George, Gilbert W Fellingham Brigham Young University, Sharon Plowman Northern Illinois University",
+                                          ];
+                                        } else if (
                                           testName.includes("bruce") ||
-                                          testName.includes("treadmill")
+                                          (testName.includes("treadmill") &&
+                                            !testName.includes("ymca"))
                                         ) {
                                           references = [
                                             "Bruce AM, Lawson D, Wasser TE, Raber-Baer D. Comparison of Bruce treadmill exercise test protocols: Is ramped Bruce equal or superior to standard bruce in producing clinically valid studies for patients presenting for evaluation of cardiac ischemia or arrhythmia with body mass index equal to or greater than 30? J Nucl Med Technol. 2013 Dec;41(4):274-8",
@@ -6403,6 +6393,14 @@ export default function ReviewReport() {
                                         } else if (testName.includes("kasch")) {
                                           references = [
                                             "Validation of a bench stepping test for cardiorespiratory fitness classification of emergency service personnel J A Davis, J H Wilmore, PMID: 5014456",
+                                          ];
+                                        } else if (
+                                          testName.includes("ymca") &&
+                                          testName.includes("step")
+                                        ) {
+                                          references = [
+                                            "· The Validity of the YMCA 3-Minute Step Test for Estimating Maximal Oxygen Uptake in Healthy Korean and Vietnamese Adults: Nguyen Thi Van Kieu 1,6,7, Su-Jin Jung 1,2, Sang-Wook Shin 3, Han-Wool Jung 2, Eun-Soo Jung 1, Yu Hui Won 4, Young-Gon Kim 1,2,5,*, Soo-Wan Chae 1,2,6,* PMCID: PMC7171059 PMID: 32328445",
+                                            "· Variable Height Step Test Provides Reliable Heart Rate Values During Virtual Cardiorespiratory Fitness Testing Evan L. Matthews, Fiona M. Horvat & David A. Phillips Pages 155-164 | Published online: 08 Aug 2021 Cite this article https://doi.org/10.1080/1091367X.2021.1964507",
                                           ];
                                         } else if (
                                           testName.includes("facts") ||

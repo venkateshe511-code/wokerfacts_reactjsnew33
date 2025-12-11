@@ -1307,8 +1307,8 @@ export default function DownloadReport() {
             <div style="margin-top: 12px; border: 1px solid #ccc; padding: 8px; background-color: #f9f9f9;">
               <h5 style="font-weight: bold; margin-bottom: 4px; font-size: 10px;">References:</h5>
               <ol style="font-size: 8px; margin: 0; padding-left: 16px; line-height: 1.3;">
-                <li style="margin-bottom: 4px;">Nguyen Thi Van Kieu, Su-Jin Jung, Sang-Wook Shin, et al. "The Validity of the YMCA 3-Minute Step Test for Estimating Maximal Oxygen Uptake in Healthy Korean and Vietnamese Adults." PMCID: PMC7171059, PMID: 32328445.</li>
-                <li>Matthews, E.L., Horvat, F.M., & Phillips, D.A. "Variable Height Step Test Provides Reliable Heart Rate Values During Virtual Cardiorespiratory Fitness Testing." Published online: 08 Aug 2021. https://doi.org/10.1080/1091367X.2021.196450</li>
+                <li style="margin-bottom: 4px;">· The Validity of the YMCA 3-Minute Step Test for Estimating Maximal Oxygen Uptake in Healthy Korean and Vietnamese Adults: Nguyen Thi Van Kieu 1,6,7, Su-Jin Jung 1,2, Sang-Wook Shin 3, Han-Wool Jung 2, Eun-Soo Jung 1, Yu Hui Won 4, Young-Gon Kim 1,2,5,*, Soo-Wan Chae 1,2,6,* PMCID: PMC7171059 PMID: 32328445</li>
+                <li>· Variable Height Step Test Provides Reliable Heart Rate Values During Virtual Cardiorespiratory Fitness Testing Evan L. Matthews,Fiona M. Horvat &amp;David A. Phillips Pages 155-164 | Published online: 08 Aug 2021 Cite this article https://doi.org/10.1080/1091367X.2021.1964507</li>
               </ol>
             </div>
 
@@ -1356,19 +1356,12 @@ export default function DownloadReport() {
                 </span>
                 <span style="font-size: 10px;"> (mL·kg⁻¹·min⁻¹)</span>
               </div>
-              <div>
-                <span style="font-weight: bold; font-size: 11px;">Heart Rate: </span>
-                <span style="border-bottom: 1px solid #333; padding: 4px 16px; display: inline-block; min-width: 120px; font-size: 11px;">
-                  ${test.heartRate || ""}
-                </span>
-                <span style="font-size: 10px;"> (bpm)</span>
-              </div>
             </div>
 
             <!-- References Section -->
             <div style="margin-top: 12px; border: 1px solid #ccc; padding: 8px; background-color: #f9f9f9;">
               <h5 style="font-weight: bold; margin-bottom: 4px; font-size: 10px;">Reference:</h5>
-              <p style="font-size: 8px; margin: 0; line-height: 1.3;">Vehrs, P.R., George, J.D., Fellingham, G.W., & Plowman, S.A. "Submaximal Treadmill Exercise Test to Predict VO2max in Fit Adults." Measurement in Physical Education and Exercise Science, Vol. 11, No. 2, pp. 61-72, April 2007. DOI:10.1080/10913670701294047</p>
+              <p style="font-size: 8px; margin: 0; line-height: 1.3;">Submaximal Treadmill Exercise Test to Predict VO2max in Fit Adults: April 2007 Measurement in Physical Education and Exercise Science 11(2):61-72, DOI:10.1080/10913670701294047 Authors: P. R. Vehrs Brigham Young University, James D. George, Gilbert W Fellingham Brigham Young University, Sharon Plowman Northern Illinois University</p>
             </div>
 
             <!-- Client Images Section -->
