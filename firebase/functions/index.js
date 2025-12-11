@@ -6,6 +6,7 @@ const generateDocxRoute = require("./routes/generateClaimantReport");
 const createCheckoutSessionRoute = require("./routes/createCheckoutSession");
 const stripeWebhookRoute = require("./routes/stripeWebhook");
 const generateExecutiveSummaryClaimantReportRoute = require("./routes/generateExecutiveSummaryClaimantReport");
+const sendContactEmailRoute = require("./routes/sendContactEmail");
 
 // Create separate apps
 const app1 = express();
