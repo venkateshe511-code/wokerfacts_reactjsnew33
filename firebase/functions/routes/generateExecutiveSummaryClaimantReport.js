@@ -847,6 +847,40 @@ const testReferences = {
       pages: "PMID: 5014456",
     },
   ],
+
+  // YMCA Step Test
+  "ymca-step-test": [
+    {
+      author: "YMCA of the USA",
+      title: "YMCA Fitness Testing and Assessment Manual",
+      publisher: "Human Kinetics Publishers",
+      year: 2000,
+    },
+    {
+      author: "Golding LA, Myers CR, Sinning WE",
+      title: "Y's Way to Physical Fitness",
+      publisher: "YMCA of the USA",
+      year: 1989,
+    },
+  ],
+
+  // YMCA Submaximal Treadmill Test
+  "ymca-submaximal-treadmill-test": [
+    {
+      author: "YMCA of the USA",
+      title: "YMCA Fitness Testing and Assessment Manual",
+      publisher: "Human Kinetics Publishers",
+      year: 2000,
+    },
+    {
+      author: "Ebbeling CB, Ward A, Puleo EM, Widrick J, Rippe JM",
+      title: "Development of a single-stage submaximal treadmill walking test",
+      journal: "Medicine & Science in Sports & Exercise",
+      year: 1991,
+      volume: "23(8)",
+      pages: "966-973",
+    },
+  ],
 };
 // Map test IDs to reference categories
 const testToCategory = {
@@ -969,14 +1003,21 @@ const testToCategory = {
 
   // Cardio Tests
   "bruce-treadmill": "bruce-treadmill",
+  "bruce-treadmill-test": "bruce-treadmill",
   "treadmill-test": "bruce-treadmill",
   "bruce-test": "bruce-treadmill",
   mcaft: "mcaft",
   "mcaft-test": "mcaft",
+  "mcaft-step-test": "mcaft",
   "step-test": "mcaft",
   kasch: "kasch",
   "kasch-test": "kasch",
   "kasch-step": "kasch",
+  "kasch-step-test": "kasch",
+  "ymca-step-test": "ymca-step-test",
+  "ymca-step": "ymca-step-test",
+  "ymca-submaximal-treadmill-test": "ymca-submaximal-treadmill-test",
+  "ymca-treadmill": "ymca-submaximal-treadmill-test",
 };
 const getReferencesForTest = (testId) => {
   const category = testToCategory[testId];
@@ -5706,6 +5747,7 @@ async function addReferralQuestionsContent(children, body) {
 async function addConclusionContent(children, body) {
   const referralData = body.referralQuestionsData || {};
   const questions = referralData.questions || [];
+  const conclusionData = referralData.conclusionData || {};
 
   children.push(
     new Paragraph({
@@ -5749,6 +5791,181 @@ async function addConclusionContent(children, body) {
     }),
   );
 
+  // === Return to Work Status ===
+  const returnToWorkStatus = conclusionData.returnToWorkStatus || {};
+  if (returnToWorkStatus.status) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Return to Work Status",
+            bold: true,
+            size: 16,
+            color: "1e40af",
+          }),
+        ],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `Status: ${returnToWorkStatus.status}`,
+            size: 16,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+    );
+
+    if (returnToWorkStatus.comments) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Comments:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 80 },
+        }),
+      );
+
+      // Split comments into paragraphs
+      const commentLines = returnToWorkStatus.comments.split("\n");
+      for (const line of commentLines) {
+        children.push(
+          new Paragraph({
+            text: line,
+            spacing: { after: 40 },
+          }),
+        );
+      }
+    }
+
+    children.push(
+      new Paragraph({
+        children: [],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+  }
+
+  // === RPDR Behaviors (Observed Symptom Behavior) ===
+  const rpdrBehaviors = conclusionData.rpdrBehaviors || {};
+  const checkedRpdrBehaviors = Object.entries(rpdrBehaviors)
+    .filter(([_, checked]) => checked === true)
+    .map(([behavior]) => behavior);
+
+  if (checkedRpdrBehaviors.length > 0) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+            bold: true,
+            size: 16,
+            color: "1e40af",
+          }),
+        ],
+        spacing: { before: 100, after: 80 },
+      }),
+    );
+
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable demonstrations of the patient that were consistent or inconsistent with the medical diagnosis and reported pain level.",
+            size: 14,
+            italics: true,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+    );
+
+    for (const behavior of checkedRpdrBehaviors) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `• ${behavior}`,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 60 },
+        }),
+      );
+    }
+
+    children.push(
+      new Paragraph({
+        children: [],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+  }
+
+  // === CTP Behaviors (Observable Signs of Effort) ===
+  const ctpBehaviors = conclusionData.ctpBehaviors || {};
+  const checkedCtpBehaviors = Object.entries(ctpBehaviors)
+    .filter(([_, checked]) => checked === true)
+    .map(([behavior]) => behavior);
+
+  if (checkedCtpBehaviors.length > 0) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable Signs of Effort / Competitive Testing Performance (CTP)",
+            bold: true,
+            size: 16,
+            color: "1e40af",
+          }),
+        ],
+        spacing: { before: 100, after: 80 },
+      }),
+    );
+
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable behaviors in which a person attempts to gain an advantage to improve scores.",
+            size: 14,
+            italics: true,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+    );
+
+    for (const behavior of checkedCtpBehaviors) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `• ${behavior}`,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 60 },
+        }),
+      );
+    }
+
+    children.push(
+      new Paragraph({
+        children: [],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+  }
+
   // === Find Conclusion Question ===
   const conclusionQuestion = questions.find(
     (q) =>
@@ -5757,11 +5974,22 @@ async function addConclusionContent(children, body) {
       (q.answer || (q.savedImageData && q.savedImageData.length > 0)),
   );
 
-  // Show nothing if no conclusion data
-  if (!conclusionQuestion) return;
-
   // === Conclusion Answer ===
-  if (conclusionQuestion.answer) {
+  if (conclusionQuestion?.answer) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Conclusion",
+            bold: true,
+            size: 16,
+            color: "000000",
+          }),
+        ],
+        spacing: { before: 100, after: 80 },
+      }),
+    );
+
     children.push(
       new Paragraph({
         children: [
@@ -5771,13 +5999,14 @@ async function addConclusionContent(children, body) {
             color: "000000",
           }),
         ],
-        spacing: { before: 100, after: 200 },
+        spacing: { before: 80, after: 200 },
       }),
     );
   }
 
   // === Conclusion Images (if any) ===
   if (
+    conclusionQuestion &&
     Array.isArray(conclusionQuestion.savedImageData) &&
     conclusionQuestion.savedImageData.length > 0
   ) {
@@ -6268,13 +6497,17 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
       originalCategory.includes("cardio") ||
       originalCategory.includes("heart") ||
       originalCategory.includes("aerobic") ||
-      testName.includes("step-test") ||
+      testName.includes("step") ||
       testName.includes("treadmill") ||
       testName.includes("mcaft") ||
       testName.includes("kasch") ||
+      testName.includes("bruce") ||
+      testName.includes("ymca") ||
       testName.includes("cardio") ||
       testName.includes("cardiovascular") ||
-      testName.includes("aerobic")
+      testName.includes("aerobic") ||
+      testName.includes("vo2") ||
+      testName.includes("heart rate")
     ) {
       categories["Cardio"].push(test);
       continue;

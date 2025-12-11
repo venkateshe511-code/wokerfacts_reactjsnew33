@@ -874,8 +874,7 @@ const testReferences = {
     },
     {
       author: "Ebbeling CB, Ward A, Puleo EM, Widrick J, Rippe JM",
-      title:
-        "Development of a single-stage submaximal treadmill walking test",
+      title: "Development of a single-stage submaximal treadmill walking test",
       journal: "Medicine & Science in Sports & Exercise",
       year: 1991,
       volume: "23(8)",
@@ -2048,44 +2047,468 @@ function addKaschDocxContent(children, test) {
 }
 
 async function addYMCAStepDocxContent(children, test) {
-  children.push(new Paragraph({children:[new TextRun({text:"YMCA 3-Minute Step Test",bold:true,color:"1E3A8A",size:18})],spacing:{before:0,after:120}}));
-  children.push(new Paragraph({children:[new TextRun({text:"The YMCA 3-Minute Step Test is a submaximal cardiovascular fitness test designed to assess aerobic capacity. The test involves stepping up and down on a 12-inch step at a rate of 96 beats per minute (24 steps per minute) for three minutes, with heart rate measured immediately after exercise to estimate cardiorespiratory fitness levels.",size:16})],spacing:{after:120}}));
-  children.push(new Paragraph({children:[new TextRun({text:"Purpose: ",bold:true,size:16}),new TextRun({text:"To assess cardiorespiratory fitness in a quick and efficient manner using minimal equipment.",size:16})],spacing:{after:80}}));
-  children.push(new Paragraph({children:[new TextRun({text:"Equipment Required:",bold:true,size:16})],spacing:{after:60}}));
-  ["12-inch step","Metronome (96 beats per minute)","Stopwatch"].forEach(item=>{children.push(new Paragraph({children:[new TextRun({text:`• ${item}`,size:16})],spacing:{after:40}}));});
-  children.push(new Paragraph({children:[new TextRun({text:"Procedure:",bold:true,size:16})],spacing:{before:80,after:60}}));
-  ["A metronome is set to 96 beats per minute.","The individual steps up and down to the metronome's beat for three minutes (up with one foot, then the other; down with one foot, then the other).","Immediately after the three minutes, the individual sits down and their heart rate is measured for a full minute.","The heart rate is then used to gauge fitness level or to calculate estimated VO2max."].forEach((step,i)=>{children.push(new Paragraph({children:[new TextRun({text:`${i+1}. ${step}`,size:16})],spacing:{after:60}}));});
-  children.push(new Paragraph({spacing:{before:160,after:80},children:[new TextRun({text:"CLIENT RATING: ",bold:true,size:16}),new TextRun({text:test.clientRating||"",underline:{},size:16})]}));
-  children.push(new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:"Ratings for Men (Post-Exercise Heart Rate in bpm)",bold:true,size:16,color:BRAND_COLOR})],spacing:{before:100,after:80}}));
-  const menRatings=[["Excellent","50-76","51-76","49-76","56-82","60-77","59-81"],["Good","79-84","79-85","80-88","87-93","86-94","87-92"],["Above Average","88-93","88-94","92-98","95-101","97-100","94-102"],["Average","95-100","96-102","100-105","103-111","103-109","104-110"],["Below Average","102-107","104-110","108-113","113-119","111-117","114-118"],["Poor","111-119","114-121","116-124","121-126","119-128","121-126"],["Very Poor","124-157","126-161","130-163","131-159","131-154","130-151"]];
-  children.push(new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:[new TableRow({children:[createHeaderCell("Rating"),createHeaderCell("18-25"),createHeaderCell("26-35"),createHeaderCell("36-45"),createHeaderCell("46-55"),createHeaderCell("56-65"),createHeaderCell("≥65")]}),... menRatings.map(r=>new TableRow({children:r.map((c,idx)=>idx===0?new TableCell({children:[new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:c,bold:true,size:16})]})]}):new TableCell({children:[new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:c,size:16})]})]}))}))],borders:{top:{style:BorderStyle.SINGLE,size:1,color:"000000"},bottom:{style:BorderStyle.SINGLE,size:1,color:"000000"},left:{style:BorderStyle.SINGLE,size:1,color:"000000"},right:{style:BorderStyle.SINGLE,size:1,color:"000000"},insideHorizontal:{style:BorderStyle.SINGLE,size:1,color:"000000"},insideVertical:{style:BorderStyle.SINGLE,size:1,color:"000000"}}}));
-  children.push(new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:"Ratings for Women (Post-Exercise Heart Rate in bpm)",bold:true,size:16,color:BRAND_COLOR})],spacing:{before:160,after:80}}));
-  const womenRatings=[["Excellent","52-81","58-80","51-84","63-91","60-92","70-92"],["Good","85-93","85-92","89-96","95-101","97-103","96-101"],["Above Average","96-102","95-101","100-104","104-110","106-111","104-111"],["Average","104-110","104-110","107-112","113-118","113-118","116-121"],["Below Average","113-120","113-119","115-120","120-124","119-127","123-126"],["Poor","122-131","122-129","124-132","126-132","129-135","128-133"],["Very Poor","135-169","134-171","137-169","137-171","141-174","135-155"]];
-  children.push(new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:[new TableRow({children:[createHeaderCell("Rating"),createHeaderCell("18-25"),createHeaderCell("26-35"),createHeaderCell("36-45"),createHeaderCell("46-55"),createHeaderCell("56-65"),createHeaderCell("≥65")]}),... womenRatings.map(r=>new TableRow({children:r.map((c,idx)=>idx===0?new TableCell({children:[new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:c,bold:true,size:16})]})]}):new TableCell({children:[new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:c,size:16})]})]}))}))],borders:{top:{style:BorderStyle.SINGLE,size:1,color:"000000"},bottom:{style:BorderStyle.SINGLE,size:1,color:"000000"},left:{style:BorderStyle.SINGLE,size:1,color:"000000"},right:{style:BorderStyle.SINGLE,size:1,color:"000000"},insideHorizontal:{style:BorderStyle.SINGLE,size:1,color:"000000"},insideVertical:{style:BorderStyle.SINGLE,size:1,color:"000000"}}}));
-  await appendSampleIllustrationsForTest(children,test);
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "YMCA 3-Minute Step Test",
+          bold: true,
+          color: "1E3A8A",
+          size: 18,
+        }),
+      ],
+      spacing: { before: 0, after: 120 },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "The YMCA 3-Minute Step Test is a submaximal cardiovascular fitness test designed to assess aerobic capacity. The test involves stepping up and down on a 12-inch step at a rate of 96 beats per minute (24 steps per minute) for three minutes, with heart rate measured immediately after exercise to estimate cardiorespiratory fitness levels.",
+          size: 16,
+        }),
+      ],
+      spacing: { after: 120 },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({ text: "Purpose: ", bold: true, size: 16 }),
+        new TextRun({
+          text: "To assess cardiorespiratory fitness in a quick and efficient manner using minimal equipment.",
+          size: 16,
+        }),
+      ],
+      spacing: { after: 80 },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({ text: "Equipment Required:", bold: true, size: 16 }),
+      ],
+      spacing: { after: 60 },
+    }),
+  );
+  ["12-inch step", "Metronome (96 beats per minute)", "Stopwatch"].forEach(
+    (item) => {
+      children.push(
+        new Paragraph({
+          children: [new TextRun({ text: `• ${item}`, size: 16 })],
+          spacing: { after: 40 },
+        }),
+      );
+    },
+  );
+  children.push(
+    new Paragraph({
+      children: [new TextRun({ text: "Procedure:", bold: true, size: 16 })],
+      spacing: { before: 80, after: 60 },
+    }),
+  );
+  [
+    "A metronome is set to 96 beats per minute.",
+    "The individual steps up and down to the metronome's beat for three minutes (up with one foot, then the other; down with one foot, then the other).",
+    "Immediately after the three minutes, the individual sits down and their heart rate is measured for a full minute.",
+    "The heart rate is then used to gauge fitness level or to calculate estimated VO2max.",
+  ].forEach((step, i) => {
+    children.push(
+      new Paragraph({
+        children: [new TextRun({ text: `${i + 1}. ${step}`, size: 16 })],
+        spacing: { after: 60 },
+      }),
+    );
+  });
+  children.push(
+    new Paragraph({
+      spacing: { before: 160, after: 80 },
+      children: [
+        new TextRun({ text: "CLIENT RATING: ", bold: true, size: 16 }),
+        new TextRun({ text: test.clientRating || "", underline: {}, size: 16 }),
+      ],
+    }),
+  );
+  children.push(
+    new Paragraph({
+      alignment: AlignmentType.CENTER,
+      children: [
+        new TextRun({
+          text: "Ratings for Men (Post-Exercise Heart Rate in bpm)",
+          bold: true,
+          size: 16,
+          color: BRAND_COLOR,
+        }),
+      ],
+      spacing: { before: 100, after: 80 },
+    }),
+  );
+  const menRatings = [
+    ["Excellent", "50-76", "51-76", "49-76", "56-82", "60-77", "59-81"],
+    ["Good", "79-84", "79-85", "80-88", "87-93", "86-94", "87-92"],
+    ["Above Average", "88-93", "88-94", "92-98", "95-101", "97-100", "94-102"],
+    ["Average", "95-100", "96-102", "100-105", "103-111", "103-109", "104-110"],
+    [
+      "Below Average",
+      "102-107",
+      "104-110",
+      "108-113",
+      "113-119",
+      "111-117",
+      "114-118",
+    ],
+    ["Poor", "111-119", "114-121", "116-124", "121-126", "119-128", "121-126"],
+    [
+      "Very Poor",
+      "124-157",
+      "126-161",
+      "130-163",
+      "131-159",
+      "131-154",
+      "130-151",
+    ],
+  ];
+  children.push(
+    new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      rows: [
+        new TableRow({
+          children: [
+            createHeaderCell("Rating"),
+            createHeaderCell("18-25"),
+            createHeaderCell("26-35"),
+            createHeaderCell("36-45"),
+            createHeaderCell("46-55"),
+            createHeaderCell("56-65"),
+            createHeaderCell("≥65"),
+          ],
+        }),
+        ...menRatings.map(
+          (r) =>
+            new TableRow({
+              children: r.map((c, idx) =>
+                idx === 0
+                  ? new TableCell({
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [
+                            new TextRun({ text: c, bold: true, size: 16 }),
+                          ],
+                        }),
+                      ],
+                    })
+                  : new TableCell({
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [new TextRun({ text: c, size: 16 })],
+                        }),
+                      ],
+                    }),
+              ),
+            }),
+        ),
+      ],
+      borders: {
+        top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        insideHorizontal: {
+          style: BorderStyle.SINGLE,
+          size: 1,
+          color: "000000",
+        },
+        insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      alignment: AlignmentType.CENTER,
+      children: [
+        new TextRun({
+          text: "Ratings for Women (Post-Exercise Heart Rate in bpm)",
+          bold: true,
+          size: 16,
+          color: BRAND_COLOR,
+        }),
+      ],
+      spacing: { before: 160, after: 80 },
+    }),
+  );
+  const womenRatings = [
+    ["Excellent", "52-81", "58-80", "51-84", "63-91", "60-92", "70-92"],
+    ["Good", "85-93", "85-92", "89-96", "95-101", "97-103", "96-101"],
+    [
+      "Above Average",
+      "96-102",
+      "95-101",
+      "100-104",
+      "104-110",
+      "106-111",
+      "104-111",
+    ],
+    [
+      "Average",
+      "104-110",
+      "104-110",
+      "107-112",
+      "113-118",
+      "113-118",
+      "116-121",
+    ],
+    [
+      "Below Average",
+      "113-120",
+      "113-119",
+      "115-120",
+      "120-124",
+      "119-127",
+      "123-126",
+    ],
+    ["Poor", "122-131", "122-129", "124-132", "126-132", "129-135", "128-133"],
+    [
+      "Very Poor",
+      "135-169",
+      "134-171",
+      "137-169",
+      "137-171",
+      "141-174",
+      "135-155",
+    ],
+  ];
+  children.push(
+    new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      rows: [
+        new TableRow({
+          children: [
+            createHeaderCell("Rating"),
+            createHeaderCell("18-25"),
+            createHeaderCell("26-35"),
+            createHeaderCell("36-45"),
+            createHeaderCell("46-55"),
+            createHeaderCell("56-65"),
+            createHeaderCell("≥65"),
+          ],
+        }),
+        ...womenRatings.map(
+          (r) =>
+            new TableRow({
+              children: r.map((c, idx) =>
+                idx === 0
+                  ? new TableCell({
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [
+                            new TextRun({ text: c, bold: true, size: 16 }),
+                          ],
+                        }),
+                      ],
+                    })
+                  : new TableCell({
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [new TextRun({ text: c, size: 16 })],
+                        }),
+                      ],
+                    }),
+              ),
+            }),
+        ),
+      ],
+      borders: {
+        top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        insideHorizontal: {
+          style: BorderStyle.SINGLE,
+          size: 1,
+          color: "000000",
+        },
+        insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      },
+    }),
+  );
+  await appendSampleIllustrationsForTest(children, test);
 }
 
 async function addYMCASubmaximalTreadmillDocxContent(children, test) {
-  children.push(new Paragraph({children:[new TextRun({text:"YMCA Submaximal Treadmill Test",bold:true,color:"1E3A8A",size:18})],spacing:{before:0,after:120}}));
-  children.push(new Paragraph({children:[new TextRun({text:"The YMCA Submaximal Treadmill Test is a single-stage protocol designed to assess cardiovascular fitness without requiring the client to reach maximum exertion. The test involves a warm-up phase followed by a single four-minute testing stage intended to elicit a steady-state heart rate between 50% and 70% of age-predicted maximum heart rate.",size:16})],spacing:{after:120}}));
-  children.push(new Paragraph({children:[new TextRun({text:"Purpose: ",bold:true,size:16}),new TextRun({text:"To estimate maximal oxygen uptake (VO2max) and assess aerobic fitness using submaximal exercise intensities.",size:16})],spacing:{after:80}}));
-  children.push(new Paragraph({children:[new TextRun({text:"Test Protocol Stages:",bold:true,size:16})],spacing:{before:80,after:80}}));
-  const protocolRows=[["Warm-up","3 min","2.0-4.5 mph (self-selected)","0%","50-70% MHR"],["Test Stage","4 min","Maintain warm-up speed","5%","50-70% MHR"]];
-  children.push(new Table({width:{size:100,type:WidthType.PERCENTAGE},rows:[new TableRow({children:[createHeaderCell("Stage"),createHeaderCell("Duration"),createHeaderCell("Speed"),createHeaderCell("Grade"),createHeaderCell("Target HR")]}),... protocolRows.map(r=>new TableRow({children:r.map(c=>new TableCell({children:[new Paragraph({alignment:AlignmentType.CENTER,children:[new TextRun({text:c,size:16})]})]}))}))],borders:{top:{style:BorderStyle.SINGLE,size:1,color:"000000"},bottom:{style:BorderStyle.SINGLE,size:1,color:"000000"},left:{style:BorderStyle.SINGLE,size:1,color:"000000"},right:{style:BorderStyle.SINGLE,size:1,color:"000000"},insideHorizontal:{style:BorderStyle.SINGLE,size:1,color:"000000"},insideVertical:{style:BorderStyle.SINGLE,size:1,color:"000000"}}}));
-  children.push(new Paragraph({children:[new TextRun({text:"Procedure:",bold:true,size:16})],spacing:{before:100,after:80}}));
-  ["Warm-up: Find a comfortable walking or jogging speed (2.0-4.5 mph) that results in a heart rate within the target range (50-70% MHR).","Test Stage: After 3-minute warm-up, increase grade to 5% while maintaining speed. Test lasts 4 minutes at steady state.","Data Collection: Measure heart rate during last 30 seconds of minutes 2, 3, and 4 to ensure steady state is achieved."].forEach((step,i)=>{children.push(new Paragraph({children:[new TextRun({text:`${i+1}. ${step}`,size:16})],spacing:{after:60}}));});
-  children.push(new Paragraph({children:[new TextRun({text:"VO2max Estimation Formula:",bold:true,size:16})],spacing:{before:100,after:60}}));
-  children.push(new Paragraph({children:[new TextRun({text:"VO2(mL·kg⁻¹·min⁻¹) = 15.1 + 21.8 × Speed (mph) - 0.327 × Heart Rate (bpm) - 0.263 × Speed × Age (yrs) + 0.00504 × Heart Rate × Age + 5.98 × Gender (0=F, 1=M)",italics:true,size:16})],spacing:{after:60}}));
-  children.push(new Paragraph({children:[new TextRun({text:"Data from steady-state heart rate and speed in the final test stage are used in this regression equation.",size:14,italics:true,color:"666666"})],spacing:{after:120}}));
-  children.push(new Paragraph({spacing:{before:100,after:80},children:[new TextRun({text:"VO2 MAX: ",bold:true,size:16}),new TextRun({text:test.vo2Max||"",underline:{},size:16}),new TextRun({text:"    "}),new TextRun({text:"HEART RATE: ",bold:true,size:16}),new TextRun({text:test.heartRate||"",underline:{},size:16})]}));
-  await appendSampleIllustrationsForTest(children,test);
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "YMCA Submaximal Treadmill Test",
+          bold: true,
+          color: "1E3A8A",
+          size: 18,
+        }),
+      ],
+      spacing: { before: 0, after: 120 },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "The YMCA Submaximal Treadmill Test is a single-stage protocol designed to assess cardiovascular fitness without requiring the client to reach maximum exertion. The test involves a warm-up phase followed by a single four-minute testing stage intended to elicit a steady-state heart rate between 50% and 70% of age-predicted maximum heart rate.",
+          size: 16,
+        }),
+      ],
+      spacing: { after: 120 },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({ text: "Purpose: ", bold: true, size: 16 }),
+        new TextRun({
+          text: "To estimate maximal oxygen uptake (VO2max) and assess aerobic fitness using submaximal exercise intensities.",
+          size: 16,
+        }),
+      ],
+      spacing: { after: 80 },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({ text: "Test Protocol Stages:", bold: true, size: 16 }),
+      ],
+      spacing: { before: 80, after: 80 },
+    }),
+  );
+  const protocolRows = [
+    ["Warm-up", "3 min", "2.0-4.5 mph (self-selected)", "0%", "50-70% MHR"],
+    ["Test Stage", "4 min", "Maintain warm-up speed", "5%", "50-70% MHR"],
+  ];
+  children.push(
+    new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      rows: [
+        new TableRow({
+          children: [
+            createHeaderCell("Stage"),
+            createHeaderCell("Duration"),
+            createHeaderCell("Speed"),
+            createHeaderCell("Grade"),
+            createHeaderCell("Target HR"),
+          ],
+        }),
+        ...protocolRows.map(
+          (r) =>
+            new TableRow({
+              children: r.map(
+                (c) =>
+                  new TableCell({
+                    children: [
+                      new Paragraph({
+                        alignment: AlignmentType.CENTER,
+                        children: [new TextRun({ text: c, size: 16 })],
+                      }),
+                    ],
+                  }),
+              ),
+            }),
+        ),
+      ],
+      borders: {
+        top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        insideHorizontal: {
+          style: BorderStyle.SINGLE,
+          size: 1,
+          color: "000000",
+        },
+        insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      children: [new TextRun({ text: "Procedure:", bold: true, size: 16 })],
+      spacing: { before: 100, after: 80 },
+    }),
+  );
+  [
+    "Warm-up: Find a comfortable walking or jogging speed (2.0-4.5 mph) that results in a heart rate within the target range (50-70% MHR).",
+    "Test Stage: After 3-minute warm-up, increase grade to 5% while maintaining speed. Test lasts 4 minutes at steady state.",
+    "Data Collection: Measure heart rate during last 30 seconds of minutes 2, 3, and 4 to ensure steady state is achieved.",
+  ].forEach((step, i) => {
+    children.push(
+      new Paragraph({
+        children: [new TextRun({ text: `${i + 1}. ${step}`, size: 16 })],
+        spacing: { after: 60 },
+      }),
+    );
+  });
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "VO2max Estimation Formula:",
+          bold: true,
+          size: 16,
+        }),
+      ],
+      spacing: { before: 100, after: 60 },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "VO2(mL·kg⁻¹·min⁻¹) = 15.1 + 21.8 × Speed (mph) - 0.327 × Heart Rate (bpm) - 0.263 × Speed × Age (yrs) + 0.00504 × Heart Rate × Age + 5.98 × Gender (0=F, 1=M)",
+          italics: true,
+          size: 16,
+        }),
+      ],
+      spacing: { after: 60 },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "Data from steady-state heart rate and speed in the final test stage are used in this regression equation.",
+          size: 14,
+          italics: true,
+          color: "666666",
+        }),
+      ],
+      spacing: { after: 120 },
+    }),
+  );
+  children.push(
+    new Paragraph({
+      spacing: { before: 100, after: 80 },
+      children: [
+        new TextRun({ text: "VO2 MAX: ", bold: true, size: 16 }),
+        new TextRun({ text: test.vo2Max || "", underline: {}, size: 16 }),
+        new TextRun({ text: "    " }),
+        new TextRun({ text: "HEART RATE: ", bold: true, size: 16 }),
+        new TextRun({ text: test.heartRate || "", underline: {}, size: 16 }),
+      ],
+    }),
+  );
+  await appendSampleIllustrationsForTest(children, test);
 }
 
 // Cardio switch
 async function addCardioDocxContent(children, test) {
   const name = (test.testName || "").toLowerCase();
 
-  if (name.includes("bruce") || (name.includes("treadmill") && !name.includes("ymca"))) {
+  if (
+    name.includes("bruce") ||
+    (name.includes("treadmill") && !name.includes("ymca"))
+  ) {
     addBruceDocxContent(children, test);
   } else if (name.includes("mcaft")) {
     addMCAFTDocxContent(children, test);
@@ -6257,6 +6680,7 @@ async function addReferralQuestionsContent(children, body) {
 async function addConclusionContent(children, body) {
   const referralData = body.referralQuestionsData || {};
   const questions = referralData.questions || [];
+  const conclusionData = referralData.conclusionData || {};
 
   children.push(
     new Paragraph({
@@ -6300,6 +6724,181 @@ async function addConclusionContent(children, body) {
     }),
   );
 
+  // === Return to Work Status ===
+  const returnToWorkStatus = conclusionData.returnToWorkStatus || {};
+  if (returnToWorkStatus.status) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Return to Work Status",
+            bold: true,
+            size: 16,
+            color: "1e40af",
+          }),
+        ],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `Status: ${returnToWorkStatus.status}`,
+            size: 16,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+    );
+
+    if (returnToWorkStatus.comments) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Comments:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 80 },
+        }),
+      );
+
+      // Split comments into paragraphs
+      const commentLines = returnToWorkStatus.comments.split("\n");
+      for (const line of commentLines) {
+        children.push(
+          new Paragraph({
+            text: line,
+            spacing: { after: 40 },
+          }),
+        );
+      }
+    }
+
+    children.push(
+      new Paragraph({
+        children: [],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+  }
+
+  // === RPDR Behaviors (Observed Symptom Behavior) ===
+  const rpdrBehaviors = conclusionData.rpdrBehaviors || {};
+  const checkedRpdrBehaviors = Object.entries(rpdrBehaviors)
+    .filter(([_, checked]) => checked === true)
+    .map(([behavior]) => behavior);
+
+  if (checkedRpdrBehaviors.length > 0) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+            bold: true,
+            size: 16,
+            color: "1e40af",
+          }),
+        ],
+        spacing: { before: 100, after: 80 },
+      }),
+    );
+
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable demonstrations of the patient that were consistent or inconsistent with the medical diagnosis and reported pain level.",
+            size: 14,
+            italics: true,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+    );
+
+    for (const behavior of checkedRpdrBehaviors) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `• ${behavior}`,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 60 },
+        }),
+      );
+    }
+
+    children.push(
+      new Paragraph({
+        children: [],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+  }
+
+  // === CTP Behaviors (Observable Signs of Effort) ===
+  const ctpBehaviors = conclusionData.ctpBehaviors || {};
+  const checkedCtpBehaviors = Object.entries(ctpBehaviors)
+    .filter(([_, checked]) => checked === true)
+    .map(([behavior]) => behavior);
+
+  if (checkedCtpBehaviors.length > 0) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable Signs of Effort / Competitive Testing Performance (CTP)",
+            bold: true,
+            size: 16,
+            color: "1e40af",
+          }),
+        ],
+        spacing: { before: 100, after: 80 },
+      }),
+    );
+
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable behaviors in which a person attempts to gain an advantage to improve scores.",
+            size: 14,
+            italics: true,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+    );
+
+    for (const behavior of checkedCtpBehaviors) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `• ${behavior}`,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 60 },
+        }),
+      );
+    }
+
+    children.push(
+      new Paragraph({
+        children: [],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+  }
+
   // === Find Conclusion Question ===
   const conclusionQuestion = questions.find(
     (q) =>
@@ -6308,11 +6907,22 @@ async function addConclusionContent(children, body) {
       (q.answer || (q.savedImageData && q.savedImageData.length > 0)),
   );
 
-  // Show nothing if no conclusion data
-  if (!conclusionQuestion) return;
-
   // === Conclusion Answer ===
-  if (conclusionQuestion.answer) {
+  if (conclusionQuestion?.answer) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Conclusion",
+            bold: true,
+            size: 16,
+            color: "000000",
+          }),
+        ],
+        spacing: { before: 100, after: 80 },
+      }),
+    );
+
     children.push(
       new Paragraph({
         children: [
@@ -6322,13 +6932,14 @@ async function addConclusionContent(children, body) {
             color: "000000",
           }),
         ],
-        spacing: { before: 100, after: 200 },
+        spacing: { before: 80, after: 200 },
       }),
     );
   }
 
   // === Conclusion Images (if any) ===
   if (
+    conclusionQuestion &&
     Array.isArray(conclusionQuestion.savedImageData) &&
     conclusionQuestion.savedImageData.length > 0
   ) {
@@ -6819,13 +7430,17 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
       originalCategory.includes("cardio") ||
       originalCategory.includes("heart") ||
       originalCategory.includes("aerobic") ||
-      testName.includes("step-test") ||
+      testName.includes("step") ||
       testName.includes("treadmill") ||
       testName.includes("mcaft") ||
       testName.includes("kasch") ||
+      testName.includes("bruce") ||
+      testName.includes("ymca") ||
       testName.includes("cardio") ||
       testName.includes("cardiovascular") ||
-      testName.includes("aerobic")
+      testName.includes("aerobic") ||
+      testName.includes("vo2") ||
+      testName.includes("heart rate")
     ) {
       categories["Cardio"].push(test);
       continue;
