@@ -403,7 +403,7 @@ export default function DownloadReport() {
       const target = `${name} ${id}`;
 
       if (
-        /(bruce|treadmill|cardio|mcaft|kasch|step|aerobic|heart|pulse|ymca)/.test(
+        /(bruce|treadmill|cardio|mcaft|kasch|step|aerobic|heart|pulse|ymca|vo2)/.test(
           target,
         )
       ) {
