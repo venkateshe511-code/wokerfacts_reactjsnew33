@@ -393,6 +393,27 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
             </div>
           </div>
 
+          {/* Client Rating Selection */}
+          <div className="bg-white rounded-lg p-4 border-2 border-purple-200">
+            <Label htmlFor="clientRating" className="text-sm font-semibold text-purple-900">
+              Client Rating Based on Test Completion:
+            </Label>
+            <Select value={clientRating} onValueChange={setClientRating}>
+              <SelectTrigger className="mt-2 border-2 border-purple-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 bg-white shadow-sm">
+                <SelectValue placeholder="Select rating" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Excellent">Excellent</SelectItem>
+                <SelectItem value="Good">Good</SelectItem>
+                <SelectItem value="Above Average">Above Average</SelectItem>
+                <SelectItem value="Average">Average</SelectItem>
+                <SelectItem value="Below Average">Below Average</SelectItem>
+                <SelectItem value="Poor">Poor</SelectItem>
+                <SelectItem value="Very Poor">Very Poor</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           {/* Image Upload Section */}
           <div className="space-y-4">
             <div className="text-center">
