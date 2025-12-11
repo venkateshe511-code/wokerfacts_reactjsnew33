@@ -260,35 +260,6 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
           </p>
         </CardHeader>
         <CardContent className="space-y-6 bg-gradient-to-br from-purple-50 via-pink-50 to-red-50">
-          {/* Input Fields */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <Label htmlFor="classification" className="text-sm font-semibold">
-                CLASSIFICATION:
-              </Label>
-              <Input
-                id="classification"
-                value={classification}
-                onChange={(e) => setClassification(e.target.value)}
-                className="border-2 border-purple-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 bg-white shadow-sm"
-                placeholder="Enter classification (e.g., Excellent, Good, Average)"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="vo2MaxScore" className="text-sm font-semibold">
-                VO2 MAX SCORE:
-              </Label>
-              <Input
-                id="vo2MaxScore"
-                value={vo2MaxScore}
-                onChange={(e) => setVo2MaxScore(e.target.value)}
-                className="border-2 border-purple-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 bg-white shadow-sm"
-                placeholder="Enter VO2 max score"
-              />
-            </div>
-          </div>
-
           {/* Ratings Tables */}
           <div className="space-y-6">
             <div className="space-y-3">
