@@ -648,6 +648,12 @@ const map = {
   "bruce-treadmill-test": [
     { src: "/mcaft-step-illustration.jpg", label: "Bruce Treadmill" },
   ],
+  "ymca-step-test": [
+    { src: `${BASE}/YMCA_Step_Test.png`, label: "YMCA 3-Minute Step Test" },
+  ],
+  "ymca-submaximal-treadmill-test": [
+    { src: `${BASE}/YMCA_Treadmill_Test.png`, label: "YMCA Submaximal Treadmill Test" },
+  ],
 } as Record<string, Illustration[]>;
 
 function normalizeKey(key: string) {
