@@ -910,6 +910,11 @@ export default function TestData() {
         "dynamic-infrequent-lift-mid": "Dynamic Infrequent Lift Mid",
         "dynamic-infrequent-lift-high": "Dynamic Infrequent Lift High",
         "dynamic-infrequent-lift-overhead": "Dynamic Infrequent Lift Overhead",
+        "ymca-step-test": "YMCA 3-Minute Step Test",
+        "ymca-submaximal-treadmill-test": "YMCA Submaximal Treadmill Test",
+        "bruce-treadmill": "Bruce Treadmill Test",
+        mcaft: "mCAFT Test",
+        kasch: "Kasch Pulse Recovery Test",
 
         // Add more mappings as needed
       };
