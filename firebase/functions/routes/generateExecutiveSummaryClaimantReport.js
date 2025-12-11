@@ -969,14 +969,21 @@ const testToCategory = {
 
   // Cardio Tests
   "bruce-treadmill": "bruce-treadmill",
+  "bruce-treadmill-test": "bruce-treadmill",
   "treadmill-test": "bruce-treadmill",
   "bruce-test": "bruce-treadmill",
   mcaft: "mcaft",
   "mcaft-test": "mcaft",
+  "mcaft-step-test": "mcaft",
   "step-test": "mcaft",
   kasch: "kasch",
   "kasch-test": "kasch",
   "kasch-step": "kasch",
+  "kasch-step-test": "kasch",
+  "ymca-step-test": "ymca-step-test",
+  "ymca-step": "ymca-step-test",
+  "ymca-submaximal-treadmill-test": "ymca-submaximal-treadmill-test",
+  "ymca-treadmill": "ymca-submaximal-treadmill-test",
 };
 const getReferencesForTest = (testId) => {
   const category = testToCategory[testId];
