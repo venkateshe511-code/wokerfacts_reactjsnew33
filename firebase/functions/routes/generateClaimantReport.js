@@ -8569,6 +8569,10 @@ async function addTestDataContent(children, body) {
               classification: cData.classification ?? "",
               hbr: cData.hbr ?? "",
               aerobicFitnessScore: cData.aerobicFitnessScore ?? "",
+              clientRating: cData.clientRating ?? "",
+              heartRate: cData.heartRate ?? "",
+              bloodPressure: cData.bloodPressure ?? "",
+              rpe: cData.rpe ?? "",
               clientImages: cData.clientImages ?? [],
               serializedImages: cData.serializedImages ?? [],
             });
