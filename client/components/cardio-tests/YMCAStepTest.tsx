@@ -59,8 +59,7 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
 
     const serializedImages = await filesToBase64Array(newImages);
     onSave({
-      classification,
-      vo2MaxScore,
+      clientRating,
       clientImages: newImages,
       serializedImages,
     });
@@ -72,8 +71,7 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
 
     const serializedImages = await filesToBase64Array(newImages);
     onSave({
-      classification,
-      vo2MaxScore,
+      clientRating,
       clientImages: newImages,
       serializedImages,
     });
