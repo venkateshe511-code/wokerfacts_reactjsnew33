@@ -8585,6 +8585,10 @@ async function addTestDataContent(children, body) {
               classification: test.classification,
               hbr: test.hbr,
               aerobicFitnessScore: test.aerobicFitnessScore,
+              clientRating: test.clientRating,
+              heartRate: test.heartRate,
+              bloodPressure: test.bloodPressure,
+              rpe: test.rpe,
               clientImages: test.clientImages ?? [],
               serializedImages: test.serializedImages ?? [],
             });
