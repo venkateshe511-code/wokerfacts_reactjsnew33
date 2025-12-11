@@ -2031,19 +2031,19 @@ function addKaschDocxContent(children, test) {
     men,
   );
 
-  // === Heart Rate Section ===
-  children.push(
-    new Paragraph({
-      spacing: { before: 160, after: 80 },
-      children: [
-        new TextRun({ text: "Heart Rate: ", bold: true, size: 16 }),
-        new TextRun({
-          text: `Pre: ${test.hrPre || "71"} bpm   Post: ${test.hrPost || "76"} bpm`,
-          size: 16,
-        }),
-      ],
-    }),
-  );
+  // // === Heart Rate Section ===
+  // children.push(
+  //   new Paragraph({
+  //     spacing: { before: 160, after: 80 },
+  //     children: [
+  //       new TextRun({ text: "Heart Rate: ", bold: true, size: 16 }),
+  //       new TextRun({
+  //         text: `Pre: ${test.hrPre || "71"} bpm   Post: ${test.hrPost || "76"} bpm`,
+  //         size: 16,
+  //       }),
+  //     ],
+  //   }),
+  // );
 }
 
 async function addYMCAStepDocxContent(children, test) {
