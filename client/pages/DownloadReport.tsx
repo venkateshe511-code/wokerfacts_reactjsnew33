@@ -1223,7 +1223,10 @@ export default function DownloadReport() {
             }
           </div>
         `;
-      } else if (testNameLower.includes("ymca") && testNameLower.includes("step")) {
+      } else if (
+        testNameLower.includes("ymca") &&
+        testNameLower.includes("step")
+      ) {
         return `
           <!-- YMCA 3-Minute Step Test Details -->
           <div style="space-y: 16px;">

@@ -395,7 +395,10 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
 
           {/* Client Rating Selection */}
           <div className="bg-white rounded-lg p-4 border-2 border-purple-200">
-            <Label htmlFor="clientRating" className="text-sm font-semibold text-purple-900">
+            <Label
+              htmlFor="clientRating"
+              className="text-sm font-semibold text-purple-900"
+            >
               Client Rating Based on Test Completion:
             </Label>
             <Select value={clientRating} onValueChange={setClientRating}>

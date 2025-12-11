@@ -5551,14 +5551,14 @@ export default function ReviewReport() {
                                               <p className="text-xs mb-3">
                                                 The YMCA 3-Minute Step Test is a
                                                 submaximal aerobic fitness test
-                                                used to assess
-                                                cardiorespiratory fitness. The
-                                                test involves stepping onto a
-                                                12-inch step at a rate of 96 beats
-                                                per minute (managed by a
-                                                metronome) for 3 minutes, with
-                                                heart rate recovery measured
-                                                immediately after exercise.
+                                                used to assess cardiorespiratory
+                                                fitness. The test involves
+                                                stepping onto a 12-inch step at
+                                                a rate of 96 beats per minute
+                                                (managed by a metronome) for 3
+                                                minutes, with heart rate
+                                                recovery measured immediately
+                                                after exercise.
                                               </p>
 
                                               {/* Ratings Tables */}
@@ -5760,7 +5760,8 @@ export default function ReviewReport() {
 
                                                 <div>
                                                   <h6 className="text-sm font-semibold text-center mb-2">
-                                                    Ratings for Men, Based on Age
+                                                    Ratings for Men, Based on
+                                                    Age
                                                   </h6>
                                                   <table className="w-full border border-gray-400 text-xs">
                                                     <thead>
