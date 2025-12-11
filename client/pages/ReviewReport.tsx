@@ -3844,13 +3844,20 @@ export default function ReviewReport() {
                                       `The client was tested in our facility using a dynamic lift evaluation apparatus. The test results were compared to normative data when available.`}
                                     {isCardioTest &&
                                       (testName.includes("bruce") ||
-                                      testName.includes("treadmill")
+                                      (testName.includes("treadmill") &&
+                                        !testName.includes("ymca"))
                                         ? `The Bruce Treadmill Test (Bruce Protocol) is commonly used to help identify a person's level of aerobic endurance by providing an all-out maximal oxygen uptake or VO2 max, which measures the capacity to perform sustained exercise and is linked to aerobic endurance.`
                                         : testName.includes("mcaft")
                                           ? `mCAFT is designed to give information about the aerobic fitness of a person, while using minimal equipment. The subject works by lifting its own body weight up and down double steps (40.6 cm in height total) while listening to set cadences from a compact disc. The end-stage of the age and gender specific stepping rate requires 65% of the age-predicted maximum heart rate. The heart rate increases approximately in a linear fashion from 50% to 100% of maximal oxygen intake. The heart rate does not decrease significantly during the first fifteen seconds of recovery (O₂ in). Thus, one can predict an aerobic fitness using the heart rate right after exercise of a known sub-maximal rate of working.`
                                           : testName.includes("kasch")
                                             ? `The Kasch step test, officially the Kasch Pulse Recovery Test (KPR Test), is a 3-minute step test used to assess cardiorespiratory fitness. The test involves stepping onto a 0.305-meter (12-inch) step at a rate of 24 steps per minute for three minutes, followed by immediately sitting and measuring heart rate recovery for one minute to determine fitness levels.`
-                                            : `The client was tested in our facility using standardized cardiovascular assessment protocols. The test results were compared to normative data when available.`)}
+                                            : testName.includes("ymca") &&
+                                                testName.includes("step")
+                                              ? `The YMCA 3-Minute Step Test is used to assess cardiorespiratory fitness. A metronome is set to 96 beats per minute. The individual steps up and down to the metronome's beat for three minutes, then sits down and their heart rate is measured for a full minute to gauge fitness level.`
+                                              : testName.includes("ymca") &&
+                                                  testName.includes("submaximal")
+                                                ? `The YMCA Submaximal Treadmill Test is a single-stage protocol used to assess cardiovascular fitness with a steady-state heart rate target between 50% and 70% of age-predicted maximum heart rate, making it safer for certain populations as it does not require maximum effort.`
+                                                : `The client was tested in our facility using standardized cardiovascular assessment protocols. The test results were compared to normative data when available.`)}
                                     {!isRangeOfMotion &&
                                       !isGripTest &&
                                       !isLiftTest &&
