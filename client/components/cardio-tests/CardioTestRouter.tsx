@@ -16,7 +16,7 @@ interface CardioTestData {
   // KASCH Step Test
   aerobicFitnessScore?: string;
   // YMCA Step Test
-  // (uses classification and vo2MaxScore like Bruce Test)
+  clientRating?: string;
   // YMCA Submaximal Treadmill Test
   vo2Max?: string;
   heartRate?: string;
