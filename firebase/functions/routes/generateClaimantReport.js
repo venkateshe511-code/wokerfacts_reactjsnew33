@@ -4968,6 +4968,482 @@ async function addReferenceChartsContent(children) {
   children.push(endPointTable);
 }
 
+async function addBlankenshipFCEContent(children, body) {
+  // === Page Break ===
+  children.push(new Paragraph({ children: [new PageBreak()] }));
+
+  // === Title ===
+  children.push(
+    new Paragraph({
+      spacing: { after: 100 },
+      children: [
+        new TextRun({
+          text: "Sensitivity and Specificity of the Blankenship FCE System's Indicators of Submaximal Effort",
+          bold: true,
+          color: BRAND_COLOR,
+          size: 18,
+        }),
+      ],
+    }),
+  );
+
+  // === Authors ===
+  children.push(
+    new Paragraph({
+      spacing: { after: 150 },
+      children: [
+        new TextRun({
+          text: "Penny N Brubaker, PT, MSI; Frank J Fearon, PT, DHSc, OCS, FAACGPT2; Stephen M Smith, PhD; Richard J. Bohannon, PT, MS, ECS4; James Alday, MDS; Sheryl S Andrew, PT, MS6; Everald Clarke, PT, MS7; George L Shaw Jr, PT, MS8",
+          size: 14,
+          italics: true,
+        }),
+      ],
+    }),
+  );
+
+  // === Introduction ===
+  children.push(
+    new Paragraph({
+      spacing: { after: 200 },
+      alignment: AlignmentType.JUSTIFIED,
+      children: [
+        new TextRun({
+          text: "Four components of the Blankenship-slip FCE demonstrated a sensitivity of 80% and a specificity of 84.2% in determining submaximal effort. The 70% cutoff score developed by the Blankenship Group was shown to provide greatest diagnostic accuracy for identifying submaximal effort. Five indicators of validity were shown to have 70% sensitivity or greater and 12 indicators had 100% specificity. The clinical relevance for this study is that the validity indicators of 4 components of the Blankenship FCE had good sensitivity and specificity, however, raters should recognize that a small percentage of false positives (maximum effort identified as submaximal effort) might occur. Also, the clinician should note that scores of equivocal are not scored in the criteria-based category and could potentially increase a worker's overall FCE validity score. Only 5 of the indicators of validity tested scored greater than 70% sensitivity (Table 3). Likewise, 12 indicators had 100% specificity (Table 4). However, these variables had low sensitivity (less than 70%). Only 1 indicator had both sensitivity and specificity greater than 70%. This indicator of validity was OMH is greater than the high extrapolation from the leg static-strength test. The sensitivity was 78.6% and specificity was 72.2%.",
+          size: 16,
+        }),
+      ],
+    }),
+  );
+
+  // === TABLE 1: Demographic Data ===
+  children.push(
+    new Paragraph({
+      spacing: { before: 150, after: 100 },
+      children: [
+        new TextRun({
+          text: "TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS",
+          bold: true,
+          size: 16,
+          color: "FFFFFF",
+        }),
+      ],
+      shading: { type: ShadingType.CLEAR, fill: "404040" },
+    }),
+  );
+
+  const demographicTable = new Table({
+    width: { size: 100, type: WidthType.PERCENTAGE },
+    borders: {
+      top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+    },
+    rows: [
+      // Header row
+      new TableRow({
+        children: [
+          paddedCell("Subject Characteristics", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+          paddedCell("100% Effort (n=12)", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+          paddedCell("50% Effort (n=12)", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+          paddedCell("Significance Test", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+        ],
+      }),
+      // Data rows
+      new TableRow({
+        children: [
+          paddedCell("Age (y)", { size: 14 }),
+          paddedCell("35.7", { size: 14 }),
+          paddedCell("33.5", { size: 14 }),
+          paddedCell("t = 13.9* (= .5)", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Range", { size: 14 }),
+          paddedCell("23-60", { size: 14 }),
+          paddedCell("18-55", { size: 14 }),
+          paddedCell("", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Gender: Male/Female", { size: 14 }),
+          paddedCell("7/5", { size: 14 }),
+          paddedCell("10/2", { size: 14 }),
+          paddedCell("χ² = 0.67* (= .3)", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Race: Caucasian/African American", { size: 14 }),
+          paddedCell("12/0", { size: 14 }),
+          paddedCell("10/2", { size: 14 }),
+          paddedCell("χ² = 0.67* (= .3)", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Hand dominance: Right/Left", { size: 14 }),
+          paddedCell("11/1", { size: 14 }),
+          paddedCell("11/1", { size: 14 }),
+          paddedCell("", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Body mass (kg): Mean", { size: 14 }),
+          paddedCell("15.20", { size: 14 }),
+          paddedCell("17", { size: 14 }),
+          paddedCell("t = 1.4* (= .2)", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Range", { size: 14 }),
+          paddedCell("54.0-127.8", { size: 14 }),
+          paddedCell("54.0-103.5", { size: 14 }),
+          paddedCell("", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Insurance: Yes/No", { size: 14 }),
+          paddedCell("11/1", { size: 14 }),
+          paddedCell("10/2", { size: 14 }),
+          paddedCell("", { size: 14 }),
+        ],
+      }),
+    ],
+  });
+
+  children.push(demographicTable);
+  children.push(new Paragraph({ text: "", spacing: { after: 200 } }));
+
+  // === TABLE 2: Sensitivity and Specificity for Cutoff Scores ===
+  children.push(
+    new Paragraph({
+      spacing: { before: 150, after: 100 },
+      children: [
+        new TextRun({
+          text: "TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS FUNCTIONAL CAPACITY CUTOFF SCORES",
+          bold: true,
+          size: 16,
+          color: "FFFFFF",
+        }),
+      ],
+      shading: { type: ShadingType.CLEAR, fill: "404040" },
+    }),
+  );
+
+  const cutoffTable = new Table({
+    width: { size: 100, type: WidthType.PERCENTAGE },
+    borders: {
+      top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+    },
+    rows: [
+      new TableRow({
+        children: [
+          paddedCell("Cutoff Score", { bold: true, size: 16, fill: "FEF3C7" }),
+          paddedCell("Sensitivity (%)", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+          paddedCell("Specificity (%)", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("55%", { size: 14 }),
+          paddedCell("33.7", { size: 14 }),
+          paddedCell("100.0", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("60%", { size: 14 }),
+          paddedCell("58.0", { size: 14 }),
+          paddedCell("88.5", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("65%", { size: 14 }),
+          paddedCell("60.0", { size: 14 }),
+          paddedCell("88.5", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("70%", { size: 14 }),
+          paddedCell("85.0", { size: 14 }),
+          paddedCell("84.2", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("75%", { size: 14 }),
+          paddedCell("88.7", { size: 14 }),
+          paddedCell("68.4", { size: 14 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("80%", { size: 14 }),
+          paddedCell("100.0", { size: 14 }),
+          paddedCell("40.0", { size: 14 }),
+        ],
+      }),
+    ],
+  });
+
+  children.push(cutoffTable);
+  children.push(new Paragraph({ text: "", spacing: { after: 200 } }));
+
+  // === TABLE 3: Variables With 70% Sensitivity ===
+  children.push(
+    new Paragraph({
+      spacing: { before: 150, after: 100 },
+      children: [
+        new TextRun({
+          text: "TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER",
+          bold: true,
+          size: 16,
+          color: "FFFFFF",
+        }),
+      ],
+      shading: { type: ShadingType.CLEAR, fill: "404040" },
+    }),
+  );
+
+  const sensitivityTable = new Table({
+    width: { size: 100, type: WidthType.PERCENTAGE },
+    borders: {
+      top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+    },
+    rows: [
+      new TableRow({
+        children: [
+          paddedCell("Variable/Score", {
+            bold: true,
+            size: 14,
+            fill: "FEF3C7",
+          }),
+          paddedCell("100% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
+          paddedCell("50% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
+          paddedCell("Sensitivity", { bold: true, size: 14, fill: "FEF3C7" }),
+          paddedCell("Specificity", { bold: true, size: 14, fill: "FEF3C7" }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Finger flexion Invalid", { size: 12 }),
+          paddedCell("1", { size: 12 }),
+          paddedCell("5", { size: 12 }),
+          paddedCell("70.0", { size: 12 }),
+          paddedCell("", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Equivocal", { size: 12 }),
+          paddedCell("2", { size: 12 }),
+          paddedCell("13", { size: 12 }),
+          paddedCell("", { size: 12 }),
+          paddedCell("", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Valid", { size: 12 }),
+          paddedCell("9", { size: 12 }),
+          paddedCell("9", { size: 12 }),
+          paddedCell("78.6", { size: 12 }),
+          paddedCell("72.2", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("ROM greater Invalid", { size: 12 }),
+          paddedCell("5", { size: 12 }),
+          paddedCell("22", { size: 12 }),
+          paddedCell("83.3", { size: 12 }),
+          paddedCell("68.4", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("BEG on right Invalid", { size: 12 }),
+          paddedCell("0", { size: 12 }),
+          paddedCell("5", { size: 12 }),
+          paddedCell("83.3", { size: 12 }),
+          paddedCell("52.9", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("BEG on left Invalid", { size: 12 }),
+          paddedCell("8", { size: 12 }),
+          paddedCell("5", { size: 12 }),
+          paddedCell("72.4", { size: 12 }),
+          paddedCell("42.4", { size: 12 }),
+        ],
+      }),
+    ],
+  });
+
+  children.push(sensitivityTable);
+  children.push(new Paragraph({ text: "", spacing: { after: 200 } }));
+
+  // === TABLE 4: Variables With 100% Specificity ===
+  children.push(
+    new Paragraph({
+      spacing: { before: 150, after: 100 },
+      children: [
+        new TextRun({
+          text: "TABLE 4 - VARIABLES WITH 100% SPECIFICITY",
+          bold: true,
+          size: 16,
+          color: "FFFFFF",
+        }),
+      ],
+      shading: { type: ShadingType.CLEAR, fill: "404040" },
+    }),
+  );
+
+  const specificityTable = new Table({
+    width: { size: 100, type: WidthType.PERCENTAGE },
+    borders: {
+      top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+    },
+    rows: [
+      new TableRow({
+        children: [
+          paddedCell("Variable/Score", {
+            bold: true,
+            size: 14,
+            fill: "FEF3C7",
+          }),
+          paddedCell("100% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
+          paddedCell("50% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
+          paddedCell("Sensitivity", { bold: true, size: 14, fill: "FEF3C7" }),
+          paddedCell("Specificity", { bold: true, size: 14, fill: "FEF3C7" }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Distraction Invalid/Equivocal", { size: 12 }),
+          paddedCell("0", { size: 12 }),
+          paddedCell("1", { size: 12 }),
+          paddedCell("4.0", { size: 12 }),
+          paddedCell("100", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Trunk Invalid/Equivocal", { size: 12 }),
+          paddedCell("0", { size: 12 }),
+          paddedCell("6", { size: 12 }),
+          paddedCell("28.0", { size: 12 }),
+          paddedCell("100", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Distraction (OAM) Valid", { size: 12 }),
+          paddedCell("12", { size: 12 }),
+          paddedCell("25", { size: 12 }),
+          paddedCell("46.7", { size: 12 }),
+          paddedCell("100", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("ROM shoulder Invalid/Equivocal", { size: 12 }),
+          paddedCell("0", { size: 12 }),
+          paddedCell("14", { size: 12 }),
+          paddedCell("46.7", { size: 12 }),
+          paddedCell("100", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("ROM push right > left Invalid", { size: 12 }),
+          paddedCell("0", { size: 12 }),
+          paddedCell("20", { size: 12 }),
+          paddedCell("30.0", { size: 12 }),
+          paddedCell("100", { size: 12 }),
+        ],
+      }),
+      new TableRow({
+        children: [
+          paddedCell("Mounted palms machine pass", { size: 12 }),
+          paddedCell("3", { size: 12 }),
+          paddedCell("2", { size: 12 }),
+          paddedCell("18.5", { size: 12 }),
+          paddedCell("100", { size: 12 }),
+        ],
+      }),
+    ],
+  });
+
+  children.push(specificityTable);
+
+  // === Citation ===
+  children.push(
+    new Paragraph({
+      spacing: { before: 200, after: 100 },
+      alignment: AlignmentType.CENTER,
+      children: [
+        new TextRun({
+          text: "Journal of orthopaedic & sports physical therapy | volume 37 | number 4 | April 2007.",
+          size: 14,
+          color: "666666",
+          italics: true,
+        }),
+      ],
+    }),
+  );
+}
+
 async function addDigitalLibraryContent(children, body) {
   children.push(new Paragraph({ children: [new PageBreak()] }));
 
@@ -8397,6 +8873,7 @@ router.post("/", async (req, res) => {
     await addActivityRatingChart(restChildren, body);
     await addTestDataContent(restChildren, body);
     await addReferenceChartsContent(restChildren, body);
+    await addBlankenshipFCEContent(restChildren, body);
     await addDigitalLibraryContent(restChildren, body);
 
     const doc = new Document({
