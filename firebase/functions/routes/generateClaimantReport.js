@@ -8553,7 +8553,11 @@ async function addTestDataContent(children, body) {
           const cData =
             cardioData?.[test.testId] ?? cardioData?.[safeName] ?? null;
 
-          // Debug
+          // Debug - check all cardio data keys
+          console.log(
+            "[Cardio] Available keys in cardioData:",
+            Object.keys(cardioData || {}),
+          );
           console.log(
             "[Cardio] testId:",
             test.testId,
@@ -8594,6 +8598,12 @@ async function addTestDataContent(children, body) {
               clientImages: test.clientImages ?? [],
               serializedImages: test.serializedImages ?? [],
             });
+          } else {
+            console.warn(
+              "[Cardio] No cardio data found for test:",
+              test.testId,
+              "- expected fields may be empty",
+            );
           }
 
           await addCardioDocxContent(rightCol, test);
