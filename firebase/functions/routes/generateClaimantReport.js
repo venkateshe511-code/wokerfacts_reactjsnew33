@@ -847,6 +847,41 @@ const testReferences = {
       pages: "PMID: 5014456",
     },
   ],
+
+  // YMCA Step Test
+  "ymca-step-test": [
+    {
+      author: "YMCA of the USA",
+      title: "YMCA Fitness Testing and Assessment Manual",
+      publisher: "Human Kinetics Publishers",
+      year: 2000,
+    },
+    {
+      author: "Golding LA, Myers CR, Sinning WE",
+      title: "Y's Way to Physical Fitness",
+      publisher: "YMCA of the USA",
+      year: 1989,
+    },
+  ],
+
+  // YMCA Submaximal Treadmill Test
+  "ymca-submaximal-treadmill-test": [
+    {
+      author: "YMCA of the USA",
+      title: "YMCA Fitness Testing and Assessment Manual",
+      publisher: "Human Kinetics Publishers",
+      year: 2000,
+    },
+    {
+      author: "Ebbeling CB, Ward A, Puleo EM, Widrick J, Rippe JM",
+      title:
+        "Development of a single-stage submaximal treadmill walking test",
+      journal: "Medicine & Science in Sports & Exercise",
+      year: 1991,
+      volume: "23(8)",
+      pages: "966-973",
+    },
+  ],
 };
 // Map test IDs to reference categories
 const testToCategory = {
@@ -977,6 +1012,10 @@ const testToCategory = {
   kasch: "kasch",
   "kasch-test": "kasch",
   "kasch-step": "kasch",
+  "ymca-step-test": "ymca-step-test",
+  "ymca-step": "ymca-step-test",
+  "ymca-submaximal-treadmill-test": "ymca-submaximal-treadmill-test",
+  "ymca-treadmill": "ymca-submaximal-treadmill-test",
 };
 const getReferencesForTest = (testId) => {
   const category = testToCategory[testId];
@@ -2012,12 +2051,16 @@ function addKaschDocxContent(children, test) {
 async function addCardioDocxContent(children, test) {
   const name = (test.testName || "").toLowerCase();
 
-  if (name.includes("bruce") || name.includes("treadmill")) {
+  if (name.includes("bruce") || (name.includes("treadmill") && !name.includes("ymca"))) {
     addBruceDocxContent(children, test);
   } else if (name.includes("mcaft")) {
     addMCAFTDocxContent(children, test);
   } else if (name.includes("kasch")) {
     addKaschDocxContent(children, test);
+  } else if (name.includes("ymca") && name.includes("step")) {
+    await addYMCAStepDocxContent(children, test);
+  } else if (name.includes("ymca") && name.includes("submaximal")) {
+    await addYMCASubmaximalTreadmillDocxContent(children, test);
   } else {
     children.push(
       new Paragraph({
