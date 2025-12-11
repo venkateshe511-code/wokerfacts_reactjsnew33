@@ -74,15 +74,13 @@ export default function CardioTestRouter({
         <YMCAStepTest
           onSave={(data) =>
             onSave({
-              classification: data.classification,
-              vo2MaxScore: data.vo2MaxScore,
+              clientRating: data.clientRating,
               clientImages: data.clientImages,
               serializedImages: data.serializedImages,
             })
           }
           initialData={{
-            classification: initialData?.classification,
-            vo2MaxScore: initialData?.vo2MaxScore,
+            clientRating: initialData?.clientRating,
             clientImages: initialData?.clientImages,
             serializedImages: initialData?.serializedImages,
           }}
@@ -95,15 +93,13 @@ export default function CardioTestRouter({
         <YMCAStepTest
           onSave={(data) =>
             onSave({
-              classification: data.classification,
-              vo2MaxScore: data.vo2MaxScore,
+              clientRating: data.clientRating,
               clientImages: data.clientImages,
               serializedImages: data.serializedImages,
             })
           }
           initialData={{
-            classification: initialData?.classification,
-            vo2MaxScore: initialData?.vo2MaxScore,
+            clientRating: initialData?.clientRating,
             clientImages: initialData?.clientImages,
             serializedImages: initialData?.serializedImages,
           }}
