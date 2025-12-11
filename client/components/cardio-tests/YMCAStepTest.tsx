@@ -11,14 +11,20 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   filesToBase64Array,
   base64ArrayToFiles,
   SerializedImage,
 } from "@/lib/cardio-utils";
 
 interface YMCAStepTestData {
-  classification: string;
-  vo2MaxScore: string;
+  clientRating: string;
   clientImages: File[];
   serializedImages?: SerializedImage[];
 }
@@ -29,11 +35,8 @@ interface Props {
 }
 
 export default function YMCAStepTest({ onSave, initialData }: Props) {
-  const [classification, setClassification] = useState(
-    initialData?.classification || "",
-  );
-  const [vo2MaxScore, setVo2MaxScore] = useState(
-    initialData?.vo2MaxScore || "",
+  const [clientRating, setClientRating] = useState(
+    initialData?.clientRating || "",
   );
   const [clientImages, setClientImages] = useState<File[]>(
     initialData?.clientImages || [],
