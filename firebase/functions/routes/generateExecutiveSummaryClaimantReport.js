@@ -7636,6 +7636,10 @@ async function addTestDataContent(children, body) {
               classification: cData.classification ?? "",
               hbr: cData.hbr ?? "",
               aerobicFitnessScore: cData.aerobicFitnessScore ?? "",
+              clientRating: cData.clientRating ?? "",
+              heartRate: cData.heartRate ?? "",
+              bloodPressure: cData.bloodPressure ?? "",
+              rpe: cData.rpe ?? "",
               clientImages: cData.clientImages ?? [],
               serializedImages: cData.serializedImages ?? [],
             });
@@ -7648,6 +7652,10 @@ async function addTestDataContent(children, body) {
               classification: test.classification,
               hbr: test.hbr,
               aerobicFitnessScore: test.aerobicFitnessScore,
+              clientRating: test.clientRating,
+              heartRate: test.heartRate,
+              bloodPressure: test.bloodPressure,
+              rpe: test.rpe,
               clientImages: test.clientImages ?? [],
               serializedImages: test.serializedImages ?? [],
             });
