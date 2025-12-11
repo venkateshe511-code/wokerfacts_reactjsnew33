@@ -8841,6 +8841,7 @@ router.post("/", async (req, res) => {
     await addActivityRatingChart(restChildren, body);
     await addTestDataContent(restChildren, body);
     await addReferenceChartsContent(restChildren, body);
+    await addBlankenshipFCEContent(restChildren, body);
     await addDigitalLibraryContent(restChildren, body);
 
     const doc = new Document({
