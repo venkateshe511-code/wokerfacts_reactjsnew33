@@ -2335,7 +2335,7 @@ async function addYMCAStepDocxContent(children, test) {
       },
     }),
   );
-  await appendSampleIllustrationsForTest(children, test);
+  // await appendSampleIllustrationsForTest(children, test);
 }
 
 async function addYMCASubmaximalTreadmillDocxContent(children, test) {
@@ -2498,7 +2498,7 @@ async function addYMCASubmaximalTreadmillDocxContent(children, test) {
       ],
     }),
   );
-  await appendSampleIllustrationsForTest(children, test);
+  // await appendSampleIllustrationsForTest(children, test);
 }
 
 // Cardio switch
