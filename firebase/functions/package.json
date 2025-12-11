@@ -26,6 +26,7 @@
     "firebase-functions": "^6.5.0",
     "html-to-docx": "^1.8.0",
     "node-fetch": "^3.3.2",
+    "nodemailer": "^6.9.0",
     "os": "^0.1.2",
     "pizzip": "^3.2.0",
     "stripe": "^18.5.0"
