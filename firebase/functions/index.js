@@ -6,12 +6,14 @@ const generateDocxRoute = require("./routes/generateClaimantReport");
 const createCheckoutSessionRoute = require("./routes/createCheckoutSession");
 const stripeWebhookRoute = require("./routes/stripeWebhook");
 const generateExecutiveSummaryClaimantReportRoute = require("./routes/generateExecutiveSummaryClaimantReport");
+const sendContactEmailRoute = require("./routes/sendContactEmail");
 
 // Create separate apps
 const app1 = express();
 const app2 = express();
 const app3 = express();
 const app4 = express();
+const app5 = express();
 
 const corsOptions = {
   origin: true,
@@ -34,21 +36,25 @@ app2.use("/", createCheckoutSessionRoute);
 app3.use(cors(corsOptions));
 app3.use("/", stripeWebhookRoute);
 
-
 app4.use(cors(corsOptions));
 app4.use(express.json({ limit: "400mb" }));
 app4.use(express.urlencoded({ extended: true, limit: "400mb" }));
 app4.use("/", generateExecutiveSummaryClaimantReportRoute);
 
+app5.use(cors(corsOptions));
+app5.use(express.json({ limit: "20mb" }));
+app5.use(express.urlencoded({ extended: true, limit: "20mb" }));
+app5.use("/", sendContactEmailRoute);
+
 // Export Gen 2 functions
 exports.generateClaimantReportApi = onRequest(
   {
-    memory: "1GiB",  // Note: Gen 2 uses "GiB" not "GB"
+    memory: "1GiB", // Note: Gen 2 uses "GiB" not "GB"
     timeoutSeconds: 540,
-    cpu: 1,  // Now you can set CPU (0.08 to 2)
+    cpu: 1, // Now you can set CPU (0.08 to 2)
     maxInstances: 100,
   },
-  app1
+  app1,
 );
 
 exports.createCheckoutSessionApi = onRequest(
@@ -56,7 +62,7 @@ exports.createCheckoutSessionApi = onRequest(
     memory: "256MiB",
     timeoutSeconds: 60,
   },
-  app2
+  app2,
 );
 
 exports.stripeWebhookApi = onRequest(
@@ -64,15 +70,23 @@ exports.stripeWebhookApi = onRequest(
     memory: "256MiB",
     timeoutSeconds: 60,
   },
-  app3
+  app3,
 );
 
 exports.generateExecutiveSummaryClaimantReportApi = onRequest(
   {
-    memory: "1GiB",  // Note: Gen 2 uses "GiB" not "GB"
+    memory: "1GiB", // Note: Gen 2 uses "GiB" not "GB"
     timeoutSeconds: 540,
-    cpu: 1,  // Now you can set CPU (0.08 to 2)
+    cpu: 1, // Now you can set CPU (0.08 to 2)
     maxInstances: 100,
   },
-  app4
+  app4,
+);
+
+exports.sendContactEmailApi = onRequest(
+  {
+    memory: "256MiB",
+    timeoutSeconds: 60,
+  },
+  app5,
 );

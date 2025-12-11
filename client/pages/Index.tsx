@@ -177,6 +177,34 @@ export default function Index() {
         submittedAt: new Date(),
       });
 
+      // Send email notification
+      try {
+        const response = await fetch(
+          "https://us-central1-workerfacts-43760.cloudfunctions.net/sendContactEmailApi",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: contactForm.name,
+              clinicName: contactForm.clinicName,
+              email: contactForm.email,
+              phone: contactForm.phone,
+              evaluationTypes: contactForm.evaluationTypes,
+              comments: contactForm.comments,
+            }),
+          },
+        );
+
+        if (!response.ok) {
+          console.error("Email notification failed:", response.statusText);
+        }
+      } catch (emailErr) {
+        console.error("Error sending email notification:", emailErr);
+        // Continue with success even if email fails
+      }
+
       // Show success message
       setShowContactSuccess(true);
 
