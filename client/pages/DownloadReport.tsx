@@ -6503,13 +6503,19 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         // Check conclusion data
         console.log("conclusionData structure:", {
           exists: !!requestData.referralQuestionsData?.conclusionData,
-          hasReturnToWork: !!requestData.referralQuestionsData?.conclusionData?.returnToWorkStatus,
-          returnToWorkStatus: requestData.referralQuestionsData?.conclusionData?.returnToWorkStatus?.status || "none",
+          hasReturnToWork:
+            !!requestData.referralQuestionsData?.conclusionData
+              ?.returnToWorkStatus,
+          returnToWorkStatus:
+            requestData.referralQuestionsData?.conclusionData
+              ?.returnToWorkStatus?.status || "none",
           rpdrBehaviors: Object.values(
-            requestData.referralQuestionsData?.conclusionData?.rpdrBehaviors || {}
+            requestData.referralQuestionsData?.conclusionData?.rpdrBehaviors ||
+              {},
           ).filter((v) => v === true).length,
           ctpBehaviors: Object.values(
-            requestData.referralQuestionsData?.conclusionData?.ctpBehaviors || {}
+            requestData.referralQuestionsData?.conclusionData?.ctpBehaviors ||
+              {},
           ).filter((v) => v === true).length,
         });
 
@@ -6518,7 +6524,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
           exists: !!requestData.cardioTestData,
           keys: Object.keys(requestData.cardioTestData || {}),
           testCount: Object.keys(requestData.cardioTestData || {}).length,
-          sampleTestData: requestData.cardioTestData ? Object.entries(requestData.cardioTestData)[0] : null,
+          sampleTestData: requestData.cardioTestData
+            ? Object.entries(requestData.cardioTestData)[0]
+            : null,
         });
 
         // Detailed analysis of test data to ensure it has all required fields
