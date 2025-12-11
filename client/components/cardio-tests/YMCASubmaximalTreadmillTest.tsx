@@ -145,7 +145,7 @@ export default function YMCASubmaximalTreadmillTest({
         </CardHeader>
         <CardContent className="space-y-6 bg-gradient-to-br from-green-50 via-emerald-50 to-cyan-50">
           {/* Test Description */}
-          <div className="bg-white rounded-lg p-4 border-2 border-green-200">
+          <div className="bg-white rounded-lg p-4 border-2 border-green-200 mt-8">
             <h3 className="font-bold text-green-900 mb-2">Test Protocol:</h3>
             <p className="text-sm text-gray-700">
               This test involves a warm-up followed by a single, four-minute
