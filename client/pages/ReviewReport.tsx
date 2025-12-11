@@ -4147,7 +4147,8 @@ export default function ReviewReport() {
                                       <div className="space-y-4">
                                         {/* Bruce Treadmill Test */}
                                         {(testName.includes("bruce") ||
-                                          testName.includes("treadmill")) && (
+                                          (testName.includes("treadmill") &&
+                                            !testName.includes("ymca"))) && (
                                           <div className="space-y-4">
                                             {/* Protocol Stages */}
                                             <div>
