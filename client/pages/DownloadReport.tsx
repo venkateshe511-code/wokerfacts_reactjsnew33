@@ -6264,6 +6264,15 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                       savedImageData: [],
                     },
                   ],
+            // Include conclusion data (Return to Work Status, RPDR, CTP behaviors)
+            conclusionData: referralQuestionsData.conclusionData || {
+              returnToWorkStatus: {
+                status: "",
+                comments: "",
+              },
+              rpdrBehaviors: {},
+              ctpBehaviors: {},
+            },
           },
 
           // Enhanced protocol and tests data
@@ -6489,6 +6498,35 @@ padding-top: 120px; align-items: center; min-height: 0; ">
           exists: !!requestData.protocolTestsData,
           hasSelectedTests: !!requestData.protocolTestsData?.selectedTests,
           testCount: requestData.protocolTestsData?.selectedTests?.length || 0,
+        });
+
+        // Check conclusion data
+        console.log("conclusionData structure:", {
+          exists: !!requestData.referralQuestionsData?.conclusionData,
+          hasReturnToWork:
+            !!requestData.referralQuestionsData?.conclusionData
+              ?.returnToWorkStatus,
+          returnToWorkStatus:
+            requestData.referralQuestionsData?.conclusionData
+              ?.returnToWorkStatus?.status || "none",
+          rpdrBehaviors: Object.values(
+            requestData.referralQuestionsData?.conclusionData?.rpdrBehaviors ||
+              {},
+          ).filter((v) => v === true).length,
+          ctpBehaviors: Object.values(
+            requestData.referralQuestionsData?.conclusionData?.ctpBehaviors ||
+              {},
+          ).filter((v) => v === true).length,
+        });
+
+        // Check cardio test data
+        console.log("cardioTestData structure:", {
+          exists: !!requestData.cardioTestData,
+          keys: Object.keys(requestData.cardioTestData || {}),
+          testCount: Object.keys(requestData.cardioTestData || {}).length,
+          sampleTestData: requestData.cardioTestData
+            ? Object.entries(requestData.cardioTestData)[0]
+            : null,
         });
 
         // Detailed analysis of test data to ensure it has all required fields
