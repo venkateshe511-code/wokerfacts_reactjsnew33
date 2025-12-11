@@ -5037,37 +5037,28 @@ export default function ReviewReport() {
                                         {testName.includes("ymca") &&
                                           testName.includes("step") && (
                                             <div className="space-y-4">
-                                              <div className="grid grid-cols-3 gap-4 mb-4">
-                                                <div className="col-span-2">
-                                                  <h5 className="font-semibold mb-2">
-                                                    YMCA 3-Minute Step Test
-                                                  </h5>
-                                                  <p className="text-xs mb-3">
-                                                    The YMCA 3-Minute Step Test
-                                                    is used to assess
-                                                    cardiorespiratory fitness. A
-                                                    metronome is set to 96 beats
-                                                    per minute. The individual
-                                                    steps up and down to the
-                                                    metronome's beat for three
-                                                    minutes (up with one foot,
-                                                    then the other; down with
-                                                    one foot, then the other).
-                                                    Immediately after the three
-                                                    minutes, the individual sits
-                                                    down and their heart rate is
-                                                    measured for a full minute.
-                                                    The heart rate is then used
-                                                    to gauge fitness level.
-                                                  </p>
-                                                </div>
-                                                <div className="border border-gray-400 p-2 bg-white flex items-center justify-center">
-                                                  <img
-                                                    src="/sample_illustration/YMCA_Step_Test.png"
-                                                    alt="YMCA 3-Minute Step Test"
-                                                    className="h-32 w-32 object-contain"
-                                                  />
-                                                </div>
+                                              <div>
+                                                <h5 className="font-semibold mb-2">
+                                                  YMCA 3-Minute Step Test
+                                                </h5>
+                                                <p className="text-xs mb-3">
+                                                  The YMCA 3-Minute Step Test is
+                                                  used to assess
+                                                  cardiorespiratory fitness. A
+                                                  metronome is set to 96 beats
+                                                  per minute. The individual
+                                                  steps up and down to the
+                                                  metronome's beat for three
+                                                  minutes (up with one foot,
+                                                  then the other; down with one
+                                                  foot, then the other).
+                                                  Immediately after the three
+                                                  minutes, the individual sits
+                                                  down and their heart rate is
+                                                  measured for a full minute.
+                                                  The heart rate is then used to
+                                                  gauge fitness level.
+                                                </p>
                                               </div>
 
                                               <div className="grid grid-cols-2 gap-4">
@@ -5079,36 +5070,6 @@ export default function ReviewReport() {
                                                     {test.clientRating || ""}
                                                   </span>
                                                 </div>
-                                              </div>
-
-                                              {/* References */}
-                                              <div className="border border-gray-300 p-3 bg-gray-50 rounded mt-4">
-                                                <h6 className="font-semibold text-xs mb-2">
-                                                  References:
-                                                </h6>
-                                                <ul className="text-xs space-y-1 text-gray-700">
-                                                  <li>
-                                                    • Nguyen Thi Van Kieu,
-                                                    Su-Jin Jung, Sang-Wook Shin,
-                                                    et al. "The Validity of the
-                                                    YMCA 3-Minute Step Test for
-                                                    Estimating Maximal Oxygen
-                                                    Uptake in Healthy Korean and
-                                                    Vietnamese Adults." PMCID:
-                                                    PMC7171059, PMID: 32328445.
-                                                  </li>
-                                                  <li>
-                                                    • Matthews, E.L., Horvat,
-                                                    F.M., & Phillips, D.A.
-                                                    "Variable Height Step Test
-                                                    Provides Reliable Heart Rate
-                                                    Values During Virtual
-                                                    Cardiorespiratory Fitness
-                                                    Testing." Published online:
-                                                    08 Aug 2021.
-                                                    https://doi.org/10.1080/1091367X.2021.196450
-                                                  </li>
-                                                </ul>
                                               </div>
 
                                               {/* Client Images */}
@@ -5155,39 +5116,28 @@ export default function ReviewReport() {
                                         {testName.includes("ymca") &&
                                           testName.includes("submaximal") && (
                                             <div className="space-y-4">
-                                              <div className="grid grid-cols-3 gap-4 mb-4">
-                                                <div className="col-span-2">
-                                                  <h5 className="font-semibold mb-2">
-                                                    YMCA Submaximal Treadmill
-                                                    Test
-                                                  </h5>
-                                                  <p className="text-xs mb-3">
-                                                    The YMCA Submaximal
-                                                    Treadmill Test is a
-                                                    single-stage protocol used
-                                                    to assess cardiovascular
-                                                    fitness. This test involves
-                                                    a warm-up followed by a
-                                                    single, four-minute testing
-                                                    stage intended to elicit a
-                                                    steady-state heart rate
-                                                    between 50% and 70% of
-                                                    age-predicted maximum heart
-                                                    rate. The test is
-                                                    submaximal, meaning it does
-                                                    not push the individual to
-                                                    maximum effort, making it
-                                                    safer for certain
-                                                    populations.
-                                                  </p>
-                                                </div>
-                                                <div className="border border-gray-400 p-2 bg-white flex items-center justify-center">
-                                                  <img
-                                                    src="/sample_illustration/YMCA_Treadmill_Test.png"
-                                                    alt="YMCA Submaximal Treadmill Test"
-                                                    className="h-32 w-32 object-contain"
-                                                  />
-                                                </div>
+                                              <div>
+                                                <h5 className="font-semibold mb-2">
+                                                  YMCA Submaximal Treadmill Test
+                                                </h5>
+                                                <p className="text-xs mb-3">
+                                                  The YMCA Submaximal Treadmill
+                                                  Test is a single-stage
+                                                  protocol used to assess
+                                                  cardiovascular fitness. This
+                                                  test involves a warm-up
+                                                  followed by a single,
+                                                  four-minute testing stage
+                                                  intended to elicit a
+                                                  steady-state heart rate
+                                                  between 50% and 70% of
+                                                  age-predicted maximum heart
+                                                  rate. The test is submaximal,
+                                                  meaning it does not push the
+                                                  individual to maximum effort,
+                                                  making it safer for certain
+                                                  populations.
+                                                </p>
                                               </div>
 
                                               <div className="grid grid-cols-2 gap-4">
@@ -5197,14 +5147,6 @@ export default function ReviewReport() {
                                                   </span>
                                                   <span className="border-b border-gray-400 px-4 py-1 inline-block min-w-[150px]">
                                                     {test.vo2Max || ""}
-                                                  </span>
-                                                </div>
-                                                <div>
-                                                  <span className="font-semibold">
-                                                    Heart Rate:{" "}
-                                                  </span>
-                                                  <span className="border-b border-gray-400 px-4 py-1 inline-block min-w-[150px]">
-                                                    {test.heartRate || ""}
                                                   </span>
                                                 </div>
                                               </div>
@@ -5793,462 +5735,7 @@ export default function ReviewReport() {
                                         {/* YMCA 3-Minute Step Test */}
                                         {testName.includes("ymca") &&
                                           testName.includes("step") && (
-                                            <div className="space-y-4">
-                                              <p className="text-xs mb-3">
-                                                The YMCA 3-Minute Step Test is a
-                                                submaximal aerobic fitness test
-                                                used to assess cardiorespiratory
-                                                fitness. The test involves
-                                                stepping onto a 12-inch step at
-                                                a rate of 96 beats per minute
-                                                (managed by a metronome) for 3
-                                                minutes, with heart rate
-                                                recovery measured immediately
-                                                after exercise.
-                                              </p>
-
-                                              {/* Ratings Tables */}
-                                              <div className="grid grid-cols-2 gap-4 mt-4">
-                                                <div>
-                                                  <h6 className="text-sm font-semibold text-center mb-2">
-                                                    Ratings for Women, Based on
-                                                    Age
-                                                  </h6>
-                                                  <table className="w-full border border-gray-400 text-xs">
-                                                    <thead>
-                                                      <tr className="bg-gray-200">
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]"></th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          18-25
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          26-35
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          36-45
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          46-55
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          56-65
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          ≥65
-                                                        </th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Excellent
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          52-81
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          58-80
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          51-84
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          63-91
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          60-92
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          70-92
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Good
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          85-93
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          85-92
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          89-96
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          95-101
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          97-103
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          96-101
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Above Average
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          96-102
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          95-101
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          100-104
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          104-110
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          106-111
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          104-111
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Average
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          104-110
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          104-110
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          107-112
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          113-118
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          113-118
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          116-121
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Below Average
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          113-120
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          113-119
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          115-120
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          120-124
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          119-127
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          123-126
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Poor
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          122-131
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          122-129
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          124-132
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          126-132
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          129-135
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          128-133
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Very Poor
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          135-169
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          134-171
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          137-169
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          137-171
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          141-174
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          135-155
-                                                        </td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-
-                                                <div>
-                                                  <h6 className="text-sm font-semibold text-center mb-2">
-                                                    Ratings for Men, Based on
-                                                    Age
-                                                  </h6>
-                                                  <table className="w-full border border-gray-400 text-xs">
-                                                    <thead>
-                                                      <tr className="bg-gray-200">
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]"></th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          18-25
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          26-35
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          36-45
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          46-55
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          56-65
-                                                        </th>
-                                                        <th className="border border-gray-400 px-1 py-0.5 text-[10px]">
-                                                          ≥65
-                                                        </th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Excellent
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          50-76
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          51-76
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          49-76
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          56-82
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          60-77
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          59-81
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Good
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          79-84
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          79-85
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          80-88
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          87-93
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          86-94
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          87-92
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Above Average
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          88-93
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          88-94
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          92-98
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          95-101
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          97-100
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          94-102
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Average
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          95-100
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          96-102
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          100-105
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          103-111
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          103-109
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          104-110
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Below Average
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          102-107
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          104-110
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          108-113
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          113-119
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          111-117
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          114-118
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Poor
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          111-119
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          114-121
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          116-124
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          121-126
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          119-128
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          121-126
-                                                        </td>
-                                                      </tr>
-                                                      <tr>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          Very Poor
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          124-157
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          126-161
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          130-163
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          131-159
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          131-154
-                                                        </td>
-                                                        <td className="border border-gray-400 px-1 py-0.5">
-                                                          130-151
-                                                        </td>
-                                                      </tr>
-                                                    </tbody>
-                                                  </table>
-                                                </div>
-                                              </div>
-
-                                              {/* Client Rating Selection */}
-                                              <div className="mt-4">
-                                                <span className="font-semibold">
-                                                  Client Rating Based on Test
-                                                  Completion:{" "}
-                                                </span>
-                                                <span className="border-b border-gray-400 px-4 py-1 inline-block min-w-[200px]">
-                                                  {test.clientRating || ""}
-                                                </span>
-                                              </div>
-
-                                              {/* Client Images - Only show header if images exist */}
-                                              {test.serializedImages &&
-                                                test.serializedImages.length >
-                                                  0 && (
-                                                  <div className="mt-4">
-                                                    <h5 className="font-semibold mb-2">
-                                                      CLIENT IMAGES:
-                                                    </h5>
-                                                    <div className="grid grid-cols-2 gap-4">
-                                                      {test.serializedImages.map(
-                                                        (
-                                                          img: any,
-                                                          idx: number,
-                                                        ) => (
-                                                          <div
-                                                            key={idx}
-                                                            className="border border-gray-400 p-1 bg-white"
-                                                          >
-                                                            <img
-                                                              src={img.data}
-                                                              alt={
-                                                                img.name ||
-                                                                `YMCA Step Test Image ${idx + 1}`
-                                                              }
-                                                              className="w-full h-32 object-contain"
-                                                            />
-                                                            {img.name && (
-                                                              <p className="text-xs mt-1 truncate">
-                                                                {img.name}
-                                                              </p>
-                                                            )}
-                                                          </div>
-                                                        ),
-                                                      )}
-                                                    </div>
-                                                  </div>
-                                                )}
-                                            </div>
+                                            <div className="space-y-4"></div>
                                           )}
                                       </div>
                                     ) : (

@@ -633,14 +633,19 @@ const map = {
   ],
 
   // Cardio (swapped per request)
-  "mcaft-step-test": [
-    { src: `${BASE}/mCAFT.png`, label: "mCAFT Step" },
-  ],
-  "kasch-step-test": [
-    { src: `${BASE}/Kasch.png`, label: "Kasch Step" },
-  ],
+  "mcaft-step-test": [{ src: `${BASE}/mCAFT.png`, label: "mCAFT Step" }],
+  "kasch-step-test": [{ src: `${BASE}/Kasch.png`, label: "Kasch Step" }],
   "bruce-treadmill-test": [
     { src: `${BASE}/Bruce.png`, label: "Bruce Treadmill" },
+  ],
+  "ymca-step-test": [
+    { src: `${BASE}/YMCA_Step_Test.png`, label: "YMCA 3-Minute Step Test" },
+  ],
+  "ymca-submaximal-treadmill-test": [
+    {
+      src: `${BASE}/YMCA_Treadmill_Test.png`,
+      label: "YMCA Submaximal Treadmill Test",
+    },
   ],
 };
 
