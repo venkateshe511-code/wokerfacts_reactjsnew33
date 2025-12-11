@@ -308,7 +308,6 @@ export default function YMCASubmaximalTreadmillTest({
                 placeholder="Enter steady-state heart rate"
               />
             </div>
-
           </div>
 
           {/* Image Upload Section */}

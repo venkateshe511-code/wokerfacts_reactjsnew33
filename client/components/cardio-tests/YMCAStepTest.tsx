@@ -283,9 +283,9 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
               <ul className="text-gray-700 leading-relaxed space-y-2">
                 <li>• A metronome is set to 96 beats per minute.</li>
                 <li>
-                  • The individual steps up and down to the metronome's beat
-                  for three minutes (up with one foot, then the other; down with
-                  one foot, then the other).
+                  • The individual steps up and down to the metronome's beat for
+                  three minutes (up with one foot, then the other; down with one
+                  foot, then the other).
                 </li>
                 <li>
                   • Immediately after the three minutes, the individual sits
