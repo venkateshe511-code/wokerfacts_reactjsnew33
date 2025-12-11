@@ -3319,7 +3319,7 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
 // === Helper for consistent padded, bordered cells ===
 function paddedCell(text, options = {}) {
   return new TableCell({
-    margins: { top: 100, bottom: 100, left: 150, right: 150 },
+    margins: { top: 40, bottom: 40, left: 60, right: 60 },
     verticalAlign: VerticalAlign.CENTER,
     borders: {
       top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
@@ -5563,7 +5563,7 @@ async function addBlankenshipFCEContent(children, body) {
   // === Title ===
   children.push(
     new Paragraph({
-      spacing: { after: 100 },
+      spacing: { after: 50 },
       children: [
         new TextRun({
           text: "Sensitivity and Specificity of the Blankenship FCE System's Indicators of Submaximal Effort",
@@ -5578,7 +5578,7 @@ async function addBlankenshipFCEContent(children, body) {
   // === Authors ===
   children.push(
     new Paragraph({
-      spacing: { after: 150 },
+      spacing: { after: 50 },
       children: [
         new TextRun({
           text: "Penny N Brubaker, PT, MSI; Frank J Fearon, PT, DHSc, OCS, FAACGPT2; Stephen M Smith, PhD; Richard J. Bohannon, PT, MS, ECS4; James Alday, MDS; Sheryl S Andrew, PT, MS6; Everald Clarke, PT, MS7; George L Shaw Jr, PT, MS8",
@@ -5592,7 +5592,7 @@ async function addBlankenshipFCEContent(children, body) {
   // === Introduction ===
   children.push(
     new Paragraph({
-      spacing: { after: 200 },
+      spacing: { after: 80 },
       alignment: AlignmentType.JUSTIFIED,
       children: [
         new TextRun({
@@ -5632,7 +5632,8 @@ async function addBlankenshipFCEContent(children, body) {
             children: [
               // TABLE 4 Header
               new Paragraph({
-                spacing: { before: 150, after: 100 },
+                spacing: { before: 50, after: 30 },
+                alignment: AlignmentType.CENTER,
                 children: [
                   new TextRun({
                     text: "TABLE 4 - VARIABLES WITH 100% SPECIFICITY",
@@ -6115,10 +6116,10 @@ async function addBlankenshipFCEContent(children, body) {
                         columnSpan: 5,
                         shading: { fill: "F0F0F0" },
                         margins: {
-                          top: 100,
-                          bottom: 100,
-                          left: 100,
-                          right: 100,
+                          top: 40,
+                          bottom: 40,
+                          left: 50,
+                          right: 50,
                         },
                         children: [
                           new Paragraph({
@@ -6154,7 +6155,8 @@ async function addBlankenshipFCEContent(children, body) {
             children: [
               // TABLE 1 - Demographic Data of Participants
               new Paragraph({
-                spacing: { before: 150, after: 100 },
+                spacing: { before: 50, after: 30 },
+                alignment: AlignmentType.CENTER,
                 children: [
                   new TextRun({
                     text: "TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS",
@@ -6233,11 +6235,12 @@ async function addBlankenshipFCEContent(children, body) {
                 ],
               }),
 
-              // new Paragraph({ text: "", spacing: { after: 200 } }),
+              new Paragraph({ text: "", spacing: { after: 200 } }),
 
               // TABLE 2 - Sensitivity and Specificity for Cutoff Scores
               new Paragraph({
-                spacing: { before: 150, after: 100 },
+                spacing: { before: 50, after: 30 },
+                alignment: AlignmentType.CENTER,
                 children: [
                   new TextRun({
                     text: "TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS FUNCTIONAL CAPACITY EVALUATION CUTOFF SCORES",
@@ -6277,11 +6280,12 @@ async function addBlankenshipFCEContent(children, body) {
                 ],
               }),
 
-              // new Paragraph({ text: "", spacing: { after: 200 } }),
+              new Paragraph({ text: "", spacing: { after: 200 } }),
 
               // TABLE 3: Variables With 70% Sensitivity
               new Paragraph({
-                spacing: { before: 150, after: 100 },
+                spacing: { before: 50, after: 30 },
+                alignment: AlignmentType.CENTER,
                 children: [
                   new TextRun({
                     text: "TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER",
@@ -6362,10 +6366,10 @@ async function addBlankenshipFCEContent(children, body) {
                         columnSpan: 5,
                         shading: { fill: "F0F0F0" },
                         margins: {
-                          top: 100,
-                          bottom: 100,
-                          left: 100,
-                          right: 100,
+                          top: 40,
+                          bottom: 40,
+                          left: 50,
+                          right: 50,
                         },
                         children: [
                           new Paragraph({
@@ -6395,7 +6399,7 @@ async function addBlankenshipFCEContent(children, body) {
   // === Citation ===
   children.push(
     new Paragraph({
-      spacing: { before: 200, after: 100 },
+      spacing: { before: 80, after: 50 },
       alignment: AlignmentType.CENTER,
       children: [
         new TextRun({
