@@ -5024,6 +5024,186 @@ export default function ReviewReport() {
                                           </div>
                                         )}
 
+                                        {/* YMCA 3-Minute Step Test */}
+                                        {testName.includes("ymca") &&
+                                          testName.includes("step") && (
+                                          <div className="space-y-4">
+                                            <div className="grid grid-cols-3 gap-4 mb-4">
+                                              <div className="col-span-2">
+                                                <h5 className="font-semibold mb-2">
+                                                  YMCA 3-Minute Step Test
+                                                </h5>
+                                                <p className="text-xs mb-3">
+                                                  The YMCA 3-Minute Step Test is
+                                                  used to assess
+                                                  cardiorespiratory fitness. A
+                                                  metronome is set to 96 beats per
+                                                  minute. The individual steps up
+                                                  and down to the metronome's beat
+                                                  for three minutes (up with one
+                                                  foot, then the other; down with
+                                                  one foot, then the other).
+                                                  Immediately after the three
+                                                  minutes, the individual sits down
+                                                  and their heart rate is measured
+                                                  for a full minute. The heart rate
+                                                  is then used to gauge fitness
+                                                  level.
+                                                </p>
+                                              </div>
+                                              <div className="border border-gray-400 p-2 bg-white flex items-center justify-center">
+                                                <img
+                                                  src="/sample_illustration/YMCA_Step_Test.png"
+                                                  alt="YMCA 3-Minute Step Test"
+                                                  className="h-32 w-32 object-contain"
+                                                />
+                                              </div>
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-4">
+                                              <div>
+                                                <span className="font-semibold">
+                                                  Client Rating:{" "}
+                                                </span>
+                                                <span className="border-b border-gray-400 px-4 py-1 inline-block min-w-[150px]">
+                                                  {test.clientRating || ""}
+                                                </span>
+                                              </div>
+                                            </div>
+
+                                            {/* Client Images */}
+                                            {test.serializedImages &&
+                                              test.serializedImages.length >
+                                                0 && (
+                                                <div className="mt-4">
+                                                  <h5 className="font-semibold mb-2">
+                                                    CLIENT IMAGES:
+                                                  </h5>
+                                                  <div className="grid grid-cols-2 gap-4">
+                                                    {test.serializedImages.map(
+                                                      (
+                                                        img: any,
+                                                        idx: number,
+                                                      ) => (
+                                                        <div
+                                                          key={idx}
+                                                          className="border border-gray-400 p-1 bg-white"
+                                                        >
+                                                          <img
+                                                            src={img.data}
+                                                            alt={
+                                                              img.name ||
+                                                              `YMCA Step Test Image ${idx + 1}`
+                                                            }
+                                                            className="w-full h-32 object-contain"
+                                                          />
+                                                          {img.name && (
+                                                            <p className="text-xs mt-1 truncate">
+                                                              {img.name}
+                                                            </p>
+                                                          )}
+                                                        </div>
+                                                      ),
+                                                    )}
+                                                  </div>
+                                                </div>
+                                              )}
+                                          </div>
+                                        )}
+
+                                        {/* YMCA Submaximal Treadmill Test */}
+                                        {testName.includes("ymca") &&
+                                          testName.includes("submaximal") && (
+                                          <div className="space-y-4">
+                                            <div className="grid grid-cols-3 gap-4 mb-4">
+                                              <div className="col-span-2">
+                                                <h5 className="font-semibold mb-2">
+                                                  YMCA Submaximal Treadmill Test
+                                                </h5>
+                                                <p className="text-xs mb-3">
+                                                  The YMCA Submaximal Treadmill
+                                                  Test is a single-stage protocol
+                                                  used to assess cardiovascular
+                                                  fitness. This test involves a
+                                                  warm-up followed by a single,
+                                                  four-minute testing stage intended
+                                                  to elicit a steady-state heart
+                                                  rate between 50% and 70% of
+                                                  age-predicted maximum heart rate.
+                                                  The test is submaximal, meaning it
+                                                  does not push the individual to
+                                                  maximum effort, making it safer
+                                                  for certain populations.
+                                                </p>
+                                              </div>
+                                              <div className="border border-gray-400 p-2 bg-white flex items-center justify-center">
+                                                <img
+                                                  src="/sample_illustration/YMCA_Treadmill_Test.png"
+                                                  alt="YMCA Submaximal Treadmill Test"
+                                                  className="h-32 w-32 object-contain"
+                                                />
+                                              </div>
+                                            </div>
+
+                                            <div className="grid grid-cols-2 gap-4">
+                                              <div>
+                                                <span className="font-semibold">
+                                                  VO2 Max:{" "}
+                                                </span>
+                                                <span className="border-b border-gray-400 px-4 py-1 inline-block min-w-[150px]">
+                                                  {test.vo2Max || ""}
+                                                </span>
+                                              </div>
+                                              <div>
+                                                <span className="font-semibold">
+                                                  Heart Rate:{" "}
+                                                </span>
+                                                <span className="border-b border-gray-400 px-4 py-1 inline-block min-w-[150px]">
+                                                  {test.heartRate || ""}
+                                                </span>
+                                              </div>
+                                            </div>
+
+                                            {/* Client Images */}
+                                            {test.serializedImages &&
+                                              test.serializedImages.length >
+                                                0 && (
+                                                <div className="mt-4">
+                                                  <h5 className="font-semibold mb-2">
+                                                    CLIENT IMAGES:
+                                                  </h5>
+                                                  <div className="grid grid-cols-2 gap-4">
+                                                    {test.serializedImages.map(
+                                                      (
+                                                        img: any,
+                                                        idx: number,
+                                                      ) => (
+                                                        <div
+                                                          key={idx}
+                                                          className="border border-gray-400 p-1 bg-white"
+                                                        >
+                                                          <img
+                                                            src={img.data}
+                                                            alt={
+                                                              img.name ||
+                                                              `YMCA Treadmill Test Image ${idx + 1}`
+                                                            }
+                                                            className="w-full h-32 object-contain"
+                                                          />
+                                                          {img.name && (
+                                                            <p className="text-xs mt-1 truncate">
+                                                              {img.name}
+                                                            </p>
+                                                          )}
+                                                        </div>
+                                                      ),
+                                                    )}
+                                                  </div>
+                                                </div>
+                                              )}
+                                          </div>
+                                        )}
+
                                         {/* Kasch Step Test */}
                                         {testName.includes("kasch") && (
                                           <div className="space-y-4">
