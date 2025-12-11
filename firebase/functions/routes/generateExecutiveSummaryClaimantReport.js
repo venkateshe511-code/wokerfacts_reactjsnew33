@@ -854,15 +854,35 @@ const testReferences = {
       author: "YMCA of the USA",
       title: "YMCA Fitness Testing and Assessment Manual",
       publisher: "Human Kinetics Publishers",
-      year: 2000,
+      year: 2000
     },
     {
       author: "Golding LA, Myers CR, Sinning WE",
       title: "Y's Way to Physical Fitness",
       publisher: "YMCA of the USA",
-      year: 1989,
+      year: 1989
     },
-  ],
+    {
+      author:
+        "Nguyen Thi Van Kieu, Su-Jin Jung, Sang-Wook Shin, Han-Wool Jung, Eun-Soo Jung, Yu Hui Won, Young-Gon Kim, Soo-Wan Chae",
+      title:
+        "The Validity of the YMCA 3-Minute Step Test for Estimating Maximal Oxygen Uptake in Healthy Korean and Vietnamese Adults",
+      journal: "Healthcare",
+      year: 2020,
+      pmcid: "PMC7171059",
+      pmid: "32328445"
+    },
+    {
+      author: "Evan L. Matthews, Fiona M. Horvat, David A. Phillips",
+      title:
+        "Variable Height Step Test Provides Reliable Heart Rate Values During Virtual Cardiorespiratory Fitness Testing",
+      journal: "Measurement in Physical Education and Exercise Science",
+      year: 2021,
+      pages: "155–164",
+      doi: "10.1080/1091367X.2021.1964507"
+    }
+  ]
+  ,
 
   // YMCA Submaximal Treadmill Test
   "ymca-submaximal-treadmill-test": [
@@ -870,17 +890,28 @@ const testReferences = {
       author: "YMCA of the USA",
       title: "YMCA Fitness Testing and Assessment Manual",
       publisher: "Human Kinetics Publishers",
-      year: 2000,
+      year: 2000
     },
     {
       author: "Ebbeling CB, Ward A, Puleo EM, Widrick J, Rippe JM",
-      title: "Development of a single-stage submaximal treadmill walking test",
+      title: "Development of a Single-Stage Submaximal Treadmill Walking Test",
       journal: "Medicine & Science in Sports & Exercise",
       year: 1991,
       volume: "23(8)",
-      pages: "966-973",
+      pages: "966–973"
     },
-  ],
+    {
+      author:
+        "P. R. Vehrs, James D. George, Gilbert W. Fellingham, Sharon Plowman",
+      title:
+        "Submaximal Treadmill Exercise Test to Predict VO2max in Fit Adults",
+      journal: "Measurement in Physical Education and Exercise Science",
+      year: 2007,
+      volume: "11(2)",
+      pages: "61–72",
+      doi: "10.1080/10913670701294047"
+    }
+  ]
 };
 // Map test IDs to reference categories
 const testToCategory = {
@@ -5842,7 +5873,7 @@ async function addConclusionContent(children, body) {
             children: [
               new TextRun({
                 text: line,
-                size: 32, // 16pt (docx uses half-points)
+                size: 16,
               }),
             ],
           }),
@@ -8164,8 +8195,8 @@ async function addTestDataContent(children, body) {
                   children: [
                     new TextRun({
                       text: `${averageLabel}: ${Number.isFinite(averageValue)
-                          ? averageValue.toFixed(1)
-                          : "n/a"
+                        ? averageValue.toFixed(1)
+                        : "n/a"
                         }${unitLabel ? ` ${unitLabel}` : ""}`,
                       color: "444444",
                       size: 16,

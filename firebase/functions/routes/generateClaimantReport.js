@@ -163,7 +163,7 @@ const getImageBuffer = async (src) => {
       try {
         const tmpPath = path.join(os.tmpdir(), `docx_img_${Date.now()}.bin`);
         fs.writeFileSync(tmpPath, buffer);
-      } catch {}
+      } catch { }
     }
 
     return buffer;
@@ -854,15 +854,35 @@ const testReferences = {
       author: "YMCA of the USA",
       title: "YMCA Fitness Testing and Assessment Manual",
       publisher: "Human Kinetics Publishers",
-      year: 2000,
+      year: 2000
     },
     {
       author: "Golding LA, Myers CR, Sinning WE",
       title: "Y's Way to Physical Fitness",
       publisher: "YMCA of the USA",
-      year: 1989,
+      year: 1989
     },
-  ],
+    {
+      author:
+        "Nguyen Thi Van Kieu, Su-Jin Jung, Sang-Wook Shin, Han-Wool Jung, Eun-Soo Jung, Yu Hui Won, Young-Gon Kim, Soo-Wan Chae",
+      title:
+        "The Validity of the YMCA 3-Minute Step Test for Estimating Maximal Oxygen Uptake in Healthy Korean and Vietnamese Adults",
+      journal: "Healthcare",
+      year: 2020,
+      pmcid: "PMC7171059",
+      pmid: "32328445"
+    },
+    {
+      author: "Evan L. Matthews, Fiona M. Horvat, David A. Phillips",
+      title:
+        "Variable Height Step Test Provides Reliable Heart Rate Values During Virtual Cardiorespiratory Fitness Testing",
+      journal: "Measurement in Physical Education and Exercise Science",
+      year: 2021,
+      pages: "155–164",
+      doi: "10.1080/1091367X.2021.1964507"
+    }
+  ]
+  ,
 
   // YMCA Submaximal Treadmill Test
   "ymca-submaximal-treadmill-test": [
@@ -870,17 +890,29 @@ const testReferences = {
       author: "YMCA of the USA",
       title: "YMCA Fitness Testing and Assessment Manual",
       publisher: "Human Kinetics Publishers",
-      year: 2000,
+      year: 2000
     },
     {
       author: "Ebbeling CB, Ward A, Puleo EM, Widrick J, Rippe JM",
-      title: "Development of a single-stage submaximal treadmill walking test",
+      title: "Development of a Single-Stage Submaximal Treadmill Walking Test",
       journal: "Medicine & Science in Sports & Exercise",
       year: 1991,
       volume: "23(8)",
-      pages: "966-973",
+      pages: "966–973"
     },
-  ],
+    {
+      author:
+        "P. R. Vehrs, James D. George, Gilbert W. Fellingham, Sharon Plowman",
+      title:
+        "Submaximal Treadmill Exercise Test to Predict VO2max in Fit Adults",
+      journal: "Measurement in Physical Education and Exercise Science",
+      year: 2007,
+      volume: "11(2)",
+      pages: "61–72",
+      doi: "10.1080/10913670701294047"
+    }
+  ]
+
 };
 // Map test IDs to reference categories
 const testToCategory = {
@@ -1160,13 +1192,13 @@ async function appendImageGrid(children, images, opts) {
             alignment: AlignmentType.START,
             children: data
               ? [
-                  new ImageRun({
-                    data,
-                    transformation: { width: imageWidth, height: imageHeight },
-                  }),
-                  new TextRun({ text: "\n" }),
-                  new TextRun({ text: name, size: 16, color: "6B7280" }),
-                ]
+                new ImageRun({
+                  data,
+                  transformation: { width: imageWidth, height: imageHeight },
+                }),
+                new TextRun({ text: "\n" }),
+                new TextRun({ text: name, size: 16, color: "6B7280" }),
+              ]
               : [new TextRun({ text: name })],
           }),
         ],
@@ -1188,12 +1220,12 @@ async function appendImageGrid(children, images, opts) {
       rows: rows.length
         ? rows
         : [
-            new TableRow({
-              children: [
-                new TableCell({ children: [new Paragraph("No images")] }),
-              ],
-            }),
-          ],
+          new TableRow({
+            children: [
+              new TableCell({ children: [new Paragraph("No images")] }),
+            ],
+          }),
+        ],
     }),
   );
 }
@@ -1256,13 +1288,13 @@ async function appendSampleIllustrationsForTest(children, test) {
 function appendHeartRateLine(children, test) {
   const pre = Number(
     test.leftMeasurements?.preHeartRate ||
-      test.rightMeasurements?.preHeartRate ||
-      0,
+    test.rightMeasurements?.preHeartRate ||
+    0,
   );
   const post = Number(
     test.leftMeasurements?.postHeartRate ||
-      test.rightMeasurements?.postHeartRate ||
-      0,
+    test.rightMeasurements?.postHeartRate ||
+    0,
   );
   if (!pre && !post) return;
 
@@ -1979,23 +2011,23 @@ function addKaschDocxContent(children, test) {
                 children: r.map((c, idx) =>
                   idx === 0
                     ? new TableCell({
-                        children: [
-                          new Paragraph({
-                            alignment: AlignmentType.CENTER,
-                            children: [
-                              new TextRun({ text: c, bold: true, size: 16 }),
-                            ],
-                          }),
-                        ],
-                      })
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [
+                            new TextRun({ text: c, bold: true, size: 16 }),
+                          ],
+                        }),
+                      ],
+                    })
                     : new TableCell({
-                        children: [
-                          new Paragraph({
-                            alignment: AlignmentType.CENTER,
-                            children: [new TextRun({ text: c, size: 16 })],
-                          }),
-                        ],
-                      }),
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [new TextRun({ text: c, size: 16 })],
+                        }),
+                      ],
+                    }),
                 ),
               }),
           ),
@@ -2189,23 +2221,23 @@ async function addYMCAStepDocxContent(children, test) {
               children: r.map((c, idx) =>
                 idx === 0
                   ? new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [
-                            new TextRun({ text: c, bold: true, size: 16 }),
-                          ],
-                        }),
-                      ],
-                    })
+                    children: [
+                      new Paragraph({
+                        alignment: AlignmentType.CENTER,
+                        children: [
+                          new TextRun({ text: c, bold: true, size: 16 }),
+                        ],
+                      }),
+                    ],
+                  })
                   : new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [new TextRun({ text: c, size: 16 })],
-                        }),
-                      ],
-                    }),
+                    children: [
+                      new Paragraph({
+                        alignment: AlignmentType.CENTER,
+                        children: [new TextRun({ text: c, size: 16 })],
+                      }),
+                    ],
+                  }),
               ),
             }),
         ),
@@ -2300,23 +2332,23 @@ async function addYMCAStepDocxContent(children, test) {
               children: r.map((c, idx) =>
                 idx === 0
                   ? new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [
-                            new TextRun({ text: c, bold: true, size: 16 }),
-                          ],
-                        }),
-                      ],
-                    })
+                    children: [
+                      new Paragraph({
+                        alignment: AlignmentType.CENTER,
+                        children: [
+                          new TextRun({ text: c, bold: true, size: 16 }),
+                        ],
+                      }),
+                    ],
+                  })
                   : new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [new TextRun({ text: c, size: 16 })],
-                        }),
-                      ],
-                    }),
+                    children: [
+                      new Paragraph({
+                        alignment: AlignmentType.CENTER,
+                        children: [new TextRun({ text: c, size: 16 })],
+                      }),
+                    ],
+                  }),
               ),
             }),
         ),
@@ -2584,9 +2616,9 @@ async function addCardioDocxContent(children, test) {
                 children: [
                   imageBuffer
                     ? new ImageRun({
-                        data: imageBuffer,
-                        transformation: { width: 120, height: 120 },
-                      })
+                      data: imageBuffer,
+                      transformation: { width: 120, height: 120 },
+                    })
                     : new TextRun({ text: "[Image Missing]", size: 16 }),
                 ],
                 alignment: AlignmentType.LEFT,
@@ -3174,9 +3206,9 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
                   children: [
                     imageBuffer
                       ? new ImageRun({
-                          data: imageBuffer,
-                          transformation: { width: 120, height: 120 },
-                        })
+                        data: imageBuffer,
+                        transformation: { width: 120, height: 120 },
+                      })
                       : new TextRun({ text: "[Image Missing]", size: 16 }),
                   ],
                   alignment: AlignmentType.LEFT,
@@ -3447,20 +3479,20 @@ function computeCrosschecksFromUnifiedTests(
   // Hand grip MVE
   const gripMVEValid = gripTests.length
     ? gripTests.every((test) => {
-        const leftAvg = _calcAverage(test.leftMeasurements);
-        const rightAvg = _calcAverage(test.rightMeasurements);
-        const bilateralDiff = _bilateralDeficiency(leftAvg, rightAvg);
-        return bilateralDiff <= 20;
-      })
+      const leftAvg = _calcAverage(test.leftMeasurements);
+      const rightAvg = _calcAverage(test.rightMeasurements);
+      const bilateralDiff = _bilateralDeficiency(leftAvg, rightAvg);
+      return bilateralDiff <= 20;
+    })
     : null;
 
   // Pinch grip CV
   const pinchValid = pinchTests.length
     ? pinchTests.every((test) => {
-        const leftCV = _calcCV(test.leftMeasurements);
-        const rightCV = _calcCV(test.rightMeasurements);
-        return leftCV <= 15 && rightCV <= 15;
-      })
+      const leftCV = _calcCV(test.leftMeasurements);
+      const rightCV = _calcCV(test.rightMeasurements);
+      return leftCV <= 15 && rightCV <= 15;
+    })
     : null;
 
   // Dynamic lift HR fluctuation
@@ -3478,52 +3510,52 @@ function computeCrosschecksFromUnifiedTests(
 
   const hrConsistent = dynamicLifts.length
     ? dynamicLifts.some((test) => {
-        const preHR =
-          (test.leftMeasurements &&
-            Number(test.leftMeasurements.preHeartRate)) ||
-          (test.rightMeasurements &&
-            Number(test.rightMeasurements.preHeartRate)) ||
-          0;
-        const postHR =
-          (test.leftMeasurements &&
-            Number(test.leftMeasurements.postHeartRate)) ||
-          (test.rightMeasurements &&
-            Number(test.rightMeasurements.postHeartRate)) ||
-          0;
-        return postHR > preHR;
-      })
+      const preHR =
+        (test.leftMeasurements &&
+          Number(test.leftMeasurements.preHeartRate)) ||
+        (test.rightMeasurements &&
+          Number(test.rightMeasurements.preHeartRate)) ||
+        0;
+      const postHR =
+        (test.leftMeasurements &&
+          Number(test.leftMeasurements.postHeartRate)) ||
+        (test.rightMeasurements &&
+          Number(test.rightMeasurements.postHeartRate)) ||
+        0;
+      return postHR > preHR;
+    })
     : null;
 
   // ROM consistency
   const romValid = romTests.length
     ? romTests.every((test) => {
-        const leftTrials = _getTrialValues(test.leftMeasurements);
-        const rightTrials = _getTrialValues(test.rightMeasurements);
-        const all = [...leftTrials, ...rightTrials].filter((v) =>
-          Number.isFinite(v),
-        );
-        if (all.length < 6) return false;
+      const leftTrials = _getTrialValues(test.leftMeasurements);
+      const rightTrials = _getTrialValues(test.rightMeasurements);
+      const all = [...leftTrials, ...rightTrials].filter((v) =>
+        Number.isFinite(v),
+      );
+      if (all.length < 6) return false;
 
-        for (let i = 0; i <= all.length - 3; i++) {
-          const t1 = all[i],
-            t2 = all[i + 1],
-            t3 = all[i + 2];
-          const maxDiff = Math.max(
-            Math.abs(t1 - t2),
-            Math.abs(t2 - t3),
-            Math.abs(t1 - t3),
-          );
-          const avg = (t1 + t2 + t3) / 3;
-          const denom = avg === 0 ? 1 : avg;
-          const maxPerc = Math.max(
-            (Math.abs(t1 - avg) / denom) * 100,
-            (Math.abs(t2 - avg) / denom) * 100,
-            (Math.abs(t3 - avg) / denom) * 100,
-          );
-          if (maxDiff <= 5 && maxPerc <= 10) return true;
-        }
-        return false;
-      })
+      for (let i = 0; i <= all.length - 3; i++) {
+        const t1 = all[i],
+          t2 = all[i + 1],
+          t3 = all[i + 2];
+        const maxDiff = Math.max(
+          Math.abs(t1 - t2),
+          Math.abs(t2 - t3),
+          Math.abs(t1 - t3),
+        );
+        const avg = (t1 + t2 + t3) / 3;
+        const denom = avg === 0 ? 1 : avg;
+        const maxPerc = Math.max(
+          (Math.abs(t1 - avg) / denom) * 100,
+          (Math.abs(t2 - avg) / denom) * 100,
+          (Math.abs(t3 - avg) / denom) * 100,
+        );
+        if (maxDiff <= 5 && maxPerc <= 10) return true;
+      }
+      return false;
+    })
     : null;
 
   // Test/retest trial consistency
@@ -3558,12 +3590,12 @@ function computeCrosschecksFromUnifiedTests(
   // Dominant side monitoring
   const dominantSideValid = allTests.length
     ? allTests.every((test) => {
-        const l = _calcAverage(test.leftMeasurements);
-        const r = _calcAverage(test.rightMeasurements);
-        if (Math.min(l, r) === 0) return true; // avoid divide-by-zero
-        const ratio = Math.max(l, r) / Math.min(l, r);
-        return ratio <= 1.1; // ~10%
-      })
+      const l = _calcAverage(test.leftMeasurements);
+      const r = _calcAverage(test.rightMeasurements);
+      if (Math.min(l, r) === 0) return true; // avoid divide-by-zero
+      const ratio = Math.max(l, r) / Math.min(l, r);
+      return ratio <= 1.1; // ~10%
+    })
     : null;
 
   // Distraction test (6b) and diagnosis consistency (6c)
@@ -3661,25 +3693,25 @@ function computeCrosschecksFromUnifiedTests(
     ...(distractionPass === null
       ? []
       : [
-          {
-            name: "Distraction test consistency",
-            description:
-              "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
-            pass: distractionPass,
-            applicable: true,
-          },
-        ]),
+        {
+          name: "Distraction test consistency",
+          description:
+            "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
+          pass: distractionPass,
+          applicable: true,
+        },
+      ]),
     ...(diagnosisPass === null
       ? []
       : [
-          {
-            name: "Consistency with diagnosis",
-            description:
-              "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
-            pass: diagnosisPass,
-            applicable: true,
-          },
-        ]),
+        {
+          name: "Consistency with diagnosis",
+          description:
+            "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
+          pass: diagnosisPass,
+          applicable: true,
+        },
+      ]),
     {
       name: "Coefficient of Variation (CV)",
       description:
@@ -3935,9 +3967,8 @@ async function addCoverPage(children, body) {
   children.push(coverRow("Date of Evaluation(s)", displayEvalDate));
 
   // Return footer content so caller can place at page bottom
-  const phoneFax = `Phone: ${clinicPhone || ""}${
-    clinicPhone && clinicFax ? "    " : ""
-  }${clinicPhone ? `Fax: ${clinicPhone}` : ""}`.trim();
+  const phoneFax = `Phone: ${clinicPhone || ""}${clinicPhone && clinicFax ? "    " : ""
+    }${clinicPhone ? `Fax: ${clinicPhone}` : ""}`.trim();
 
   const footerChildren = [];
   footerChildren.push(
@@ -4134,14 +4165,14 @@ async function addClientInformation(children, body) {
   const dob = cd.dateOfBirth || "";
   const age = dob
     ? (() => {
-        try {
-          const d = new Date(dob);
-          const diff = Date.now() - d.getTime();
-          return Math.max(0, Math.floor(diff / (365.25 * 24 * 3600 * 1000)));
-        } catch {
-          return "";
-        }
-      })()
+      try {
+        const d = new Date(dob);
+        const diff = Date.now() - d.getTime();
+        return Math.max(0, Math.floor(diff / (365.25 * 24 * 3600 * 1000)));
+      } catch {
+        return "";
+      }
+    })()
     : "";
   const heightDisp = `${cd.height || ""} ${cd.heightUnit || ""}`.trim();
   const weightDisp = `${cd.weight || ""} ${cd.weightUnit || ""}`.trim();
@@ -4467,42 +4498,42 @@ async function addClientInformation(children, body) {
                 }),
                 sampleImageBuffer
                   ? new Paragraph({
-                      children: [
-                        new ImageRun({
-                          data: sampleImageBuffer,
-                          transformation: { width: 120, height: 120 },
-                        }),
-                      ],
-                      alignment: AlignmentType.CENTER,
-                      spacing: { after: 10 },
-                    })
+                    children: [
+                      new ImageRun({
+                        data: sampleImageBuffer,
+                        transformation: { width: 120, height: 120 },
+                      }),
+                    ],
+                    alignment: AlignmentType.CENTER,
+                    spacing: { after: 10 },
+                  })
                   : new Paragraph({
-                      text: "[Photo Placeholder]",
-                      alignment: AlignmentType.START,
-                      spacing: { after: 10 },
-                      border: {
-                        top: {
-                          style: BorderStyle.SINGLE,
-                          size: 1,
-                          color: "CCCCCC",
-                        },
-                        bottom: {
-                          style: BorderStyle.SINGLE,
-                          size: 1,
-                          color: "CCCCCC",
-                        },
-                        left: {
-                          style: BorderStyle.SINGLE,
-                          size: 1,
-                          color: "CCCCCC",
-                        },
-                        right: {
-                          style: BorderStyle.SINGLE,
-                          size: 1,
-                          color: "CCCCCC",
-                        },
+                    text: "[Photo Placeholder]",
+                    alignment: AlignmentType.START,
+                    spacing: { after: 10 },
+                    border: {
+                      top: {
+                        style: BorderStyle.SINGLE,
+                        size: 1,
+                        color: "CCCCCC",
                       },
-                    }),
+                      bottom: {
+                        style: BorderStyle.SINGLE,
+                        size: 1,
+                        color: "CCCCCC",
+                      },
+                      left: {
+                        style: BorderStyle.SINGLE,
+                        size: 1,
+                        color: "CCCCCC",
+                      },
+                      right: {
+                        style: BorderStyle.SINGLE,
+                        size: 1,
+                        color: "CCCCCC",
+                      },
+                    },
+                  }),
 
                 new Paragraph({
                   children: [
@@ -4705,11 +4736,11 @@ async function addClientInformation(children, body) {
             spacing: { before: 0, after: 0 },
             children: buf
               ? [
-                  new ImageRun({
-                    data: buf,
-                    transformation: { width: 130, height: 200 },
-                  }),
-                ]
+                new ImageRun({
+                  data: buf,
+                  transformation: { width: 130, height: 200 },
+                }),
+              ]
               : [new TextRun(`Image ${idx + 1} not available`)],
           }),
         ],
@@ -5515,417 +5546,1047 @@ async function addBlankenshipFCEContent(children, body) {
     }),
   );
 
-  // === TABLE 1: Demographic Data ===
-  children.push(
-    new Paragraph({
-      spacing: { before: 150, after: 100 },
-      children: [
-        new TextRun({
-          text: "TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS",
-          bold: true,
-          size: 16,
-          color: "FFFFFF",
-        }),
-      ],
-      shading: { type: ShadingType.CLEAR, fill: "404040" },
-    }),
-  );
-
-  const demographicTable = new Table({
+  // === 2-COLUMN LAYOUT TABLE ===
+  const twoColumnLayout = new Table({
     width: { size: 100, type: WidthType.PERCENTAGE },
     borders: {
-      top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+      top: { style: BorderStyle.NONE },
+      bottom: { style: BorderStyle.NONE },
+      left: { style: BorderStyle.NONE },
+      right: { style: BorderStyle.NONE },
+      insideHorizontal: { style: BorderStyle.NONE },
+      insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "CCCCCC" },
     },
     rows: [
-      // Header row
       new TableRow({
         children: [
-          paddedCell("Subject Characteristics", {
-            bold: true,
-            size: 16,
-            fill: "FEF3C7",
+          // LEFT COLUMN: TABLE 4
+          new TableCell({
+            width: { size: 50, type: WidthType.PERCENTAGE },
+            borders: {
+              top: { style: BorderStyle.NONE },
+              bottom: { style: BorderStyle.NONE },
+              left: { style: BorderStyle.NONE },
+              right: { style: BorderStyle.SINGLE, size: 1, color: "CCCCCC" },
+              insideHorizontal: { style: BorderStyle.NONE },
+              insideVertical: { style: BorderStyle.NONE },
+            },
+            margins: { top: 0, bottom: 0, left: 50, right: 50 },
+            children: [
+              // TABLE 4 Header
+              new Paragraph({
+                spacing: { before: 150, after: 100 },
+                children: [
+                  new TextRun({
+                    text: "TABLE 4 - VARIABLES WITH 100% SPECIFICITY",
+                    bold: true,
+                    size: 16,
+                    color: "FFFFFF",
+                  }),
+                ],
+                shading: { type: ShadingType.CLEAR, fill: "404040" },
+              }),
+              // TABLE 4 Content
+              new Table({
+                width: { size: 100, type: WidthType.PERCENTAGE },
+                borders: {
+                  top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                },
+                rows: [
+                  new TableRow({
+                    children: [
+                      paddedCell("Variable/Score", { bold: true, size: 12, fill: "FEF3C7" }),
+                      paddedCell("100% Effort", { bold: true, size: 12, fill: "FEF3C7" }),
+                      paddedCell("50% Effort", { bold: true, size: 12, fill: "FEF3C7" }),
+                      paddedCell("Sensitivity", { bold: true, size: 12, fill: "FEF3C7" }),
+                      paddedCell("Specificity", { bold: true, size: 12, fill: "FEF3C7" }),
+                    ],
+                  }),
+                  // Overreaction for static
+                  new TableRow({
+                    children: [
+                      paddedCell("Overreaction for static", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("1", { size: 10 }),
+                      paddedCell("4.0", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("14", { size: 10 }),
+                      paddedCell("24", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  // Do movement patterns match pain for static
+                  new TableRow({
+                    children: [
+                      paddedCell("Do movement patterns match pain for static", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("2", { size: 10 }),
+                      paddedCell("28.0", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("5", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("14", { size: 10 }),
+                      paddedCell("18", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  // Do movement patterns improve with distraction for static
+                  new TableRow({
+                    children: [
+                      paddedCell("Do movement patterns improve with distraction for static", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("3", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("3", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("14", { size: 10 }),
+                      paddedCell("18", { size: 10 }),
+                      paddedCell("25.0", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  // OMH greater than high extrapolation for shoulder
+                  new TableRow({
+                    children: [
+                      paddedCell("OMH greater than high extrapolation for shoulder", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("14", { size: 10 }),
+                      paddedCell("46.7", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("19", { size: 10 }),
+                      paddedCell("16", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  // OMH greater than high extrapolation for overhead
+                  new TableRow({
+                    children: [
+                      paddedCell("OMH greater than high extrapolation for overhead", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("19", { size: 10 }),
+                      paddedCell("65.5", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("19", { size: 10 }),
+                      paddedCell("10", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  // REG consistent right
+                  new TableRow({
+                    children: [
+                      paddedCell("REG consistent right", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("10", { size: 10 }),
+                      paddedCell("40.0", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("2", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("19", { size: 10 }),
+                      paddedCell("18", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  // REG consistent left
+                  new TableRow({
+                    children: [
+                      paddedCell("REG consistent left", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("11", { size: 10 }),
+                      paddedCell("50.0", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("4", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("19", { size: 10 }),
+                      paddedCell("15", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  // Right key pinch
+                  new TableRow({
+                    children: [
+                      paddedCell("Right key pinch", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("7", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("2", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("19", { size: 10 }),
+                      paddedCell("21", { size: 10 }),
+                      paddedCell("30.0", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  // Movement pattern matches pain for HT
+                  new TableRow({
+                    children: [
+                      paddedCell("Movement pattern matches pain for HT", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("2", { size: 10 }),
+                      paddedCell("18.5", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("3", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("16", { size: 10 }),
+                      paddedCell("22", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  // Movement patterns improve with distraction for HT
+                  new TableRow({
+                    children: [
+                      paddedCell("Movement patterns improve with distraction for HT", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("3", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("3", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("15", { size: 10 }),
+                      paddedCell("21", { size: 10 }),
+                      paddedCell("22.2", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  // Overreaction (OMH)
+                  new TableRow({
+                    children: [
+                      paddedCell("Overreaction (OMH)", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("1", { size: 10 }),
+                      paddedCell("10.3", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("2", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("19", { size: 10 }),
+                      paddedCell("26", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  // Distraction (OMH)
+                  new TableRow({
+                    children: [
+                      paddedCell("Distraction (OMH)", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("7", { size: 10 }),
+                      paddedCell("37.9", { size: 10 }),
+                      paddedCell("100", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("4", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("19", { size: 10 }),
+                      paddedCell("18", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  // Abbreviations row
+                  new TableRow({
+                    children: [
+                      new TableCell({
+                        columnSpan: 5,
+                        shading: { fill: "F0F0F0" },
+                        children: [
+                          new Paragraph({
+                            children: [
+                              new TextRun({
+                                text: "Abbreviations: HT, hand test; OMH, occupational-material-handling test; REG, rapid-exchange grip test; SST, static-strength test.",
+                                size: 10,
+                                color: "666666",
+                              }),
+                            ],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                ],
+              }),
+            ],
           }),
-          paddedCell("100% Effort (n=12)", {
-            bold: true,
-            size: 16,
-            fill: "FEF3C7",
+
+          // RIGHT COLUMN: TABLES 1, 2, 3
+          new TableCell({
+            width: { size: 50, type: WidthType.PERCENTAGE },
+            borders: {
+              top: { style: BorderStyle.NONE },
+              bottom: { style: BorderStyle.NONE },
+              left: { style: BorderStyle.SINGLE, size: 1, color: "CCCCCC" },
+              right: { style: BorderStyle.NONE },
+              insideHorizontal: { style: BorderStyle.NONE },
+              insideVertical: { style: BorderStyle.NONE },
+            },
+            margins: { top: 0, bottom: 0, left: 50, right: 50 },
+            children: [
+              // TABLE 1: Demographic Data
+              new Paragraph({
+                spacing: { before: 150, after: 100 },
+                children: [
+                  new TextRun({
+                    text: "TABLE 1 - DEMOGRAPHIC DATA OF PARTICIPANTS",
+                    bold: true,
+                    size: 16,
+                    color: "FFFFFF",
+                  }),
+                ],
+                shading: { type: ShadingType.CLEAR, fill: "404040" },
+              }),
+              new Table({
+                width: { size: 100, type: WidthType.PERCENTAGE },
+                borders: {
+                  top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                },
+                rows: [
+                  new TableRow({
+                    children: [
+                      paddedCell("Subject Characteristics", { bold: true, size: 12, fill: "F5F5F5" }),
+                      paddedCell("100% Effort", { bold: true, size: 12, fill: "F5F5F5" }),
+                      paddedCell("50% Effort", { bold: true, size: 12, fill: "F5F5F5" }),
+                      paddedCell("Significance Test", { bold: true, size: 12, fill: "F5F5F5" }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Age (y)", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Mean", { size: 10 }),
+                      paddedCell("31.7", { size: 10 }),
+                      paddedCell("37.5", { size: 10 }),
+                      new TableCell({
+                        rowSpan: 2,
+                        borders: {
+                          top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                        },
+                        margins: { top: 50, bottom: 50, left: 20, right: 20 },
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: "t = 1.3 (P = .3)", size: 10 })],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Range", { size: 10 }),
+                      paddedCell("20-60", { size: 10 }),
+                      paddedCell("18-65", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Gender", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Male", { size: 10 }),
+                      paddedCell("7", { size: 10 }),
+                      paddedCell("10", { size: 10 }),
+                      new TableCell({
+                        rowSpan: 2,
+                        borders: {
+                          top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                        },
+                        margins: { top: 50, bottom: 50, left: 20, right: 20 },
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: "χ² = 0.1 (P = .8)", size: 10 })],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Female", { size: 10 }),
+                      paddedCell("12", { size: 10 }),
+                      paddedCell("20", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Race", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Caucasian", { size: 10 }),
+                      paddedCell("12", { size: 10 }),
+                      paddedCell("19", { size: 10 }),
+                      new TableCell({
+                        rowSpan: 3,
+                        borders: {
+                          top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                        },
+                        margins: { top: 50, bottom: 50, left: 20, right: 20 },
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: "χ² = 0.7 (P = .3)", size: 10 })],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("African American", { size: 10 }),
+                      paddedCell("7", { size: 10 }),
+                      paddedCell("10", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Other", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("1", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Hand dominance", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Right", { size: 10 }),
+                      paddedCell("18", { size: 10 }),
+                      paddedCell("28", { size: 10 }),
+                      new TableCell({
+                        rowSpan: 3,
+                        borders: {
+                          top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                        },
+                        margins: { top: 50, bottom: 50, left: 20, right: 20 },
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: "χ² = 0.7 (P = .3)", size: 10 })],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Left", { size: 10 }),
+                      paddedCell("1", { size: 10 }),
+                      paddedCell("1", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Both", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("1", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Height (m)", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Mean", { size: 10 }),
+                      paddedCell("1.6", { size: 10 }),
+                      paddedCell("1.7", { size: 10 }),
+                      new TableCell({
+                        rowSpan: 2,
+                        borders: {
+                          top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                        },
+                        margins: { top: 50, bottom: 50, left: 20, right: 20 },
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: "t = 1.4 (P = .2)", size: 10 })],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Range", { size: 10 }),
+                      paddedCell("1.5-2.0", { size: 10 }),
+                      paddedCell("1.5-1.8", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Body mass (kg)", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Mean", { size: 10 }),
+                      paddedCell("76.0", { size: 10 }),
+                      paddedCell("72.7", { size: 10 }),
+                      new TableCell({
+                        rowSpan: 2,
+                        borders: {
+                          top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                        },
+                        margins: { top: 50, bottom: 50, left: 20, right: 20 },
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: "t = 0.7 (P = .5)", size: 10 })],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Range", { size: 10 }),
+                      paddedCell("54.0-127.8", { size: 10 }),
+                      paddedCell("54.0-103.5", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Injury/pain", { size: 11, bold: true }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                      paddedCell("", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Yes", { size: 10 }),
+                      paddedCell("11", { size: 10 }),
+                      paddedCell("18", { size: 10 }),
+                      new TableCell({
+                        rowSpan: 2,
+                        borders: {
+                          top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                          right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                        },
+                        margins: { top: 50, bottom: 50, left: 20, right: 20 },
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: "χ² = 0.7 (P = .3)", size: 10 })],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("No", { size: 10 }),
+                      paddedCell("8", { size: 10 }),
+                      paddedCell("11", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                ],
+              }),
+              new Paragraph({ text: "", spacing: { after: 200 } }),
+
+              // TABLE 2: Sensitivity and Specificity for Cutoff Scores
+              new Paragraph({
+                spacing: { before: 150, after: 100 },
+                children: [
+                  new TextRun({
+                    text: "TABLE 2 - SENSITIVITY AND SPECIFICITY FOR CUTOFF SCORES",
+                    bold: true,
+                    size: 16,
+                    color: "FFFFFF",
+                  }),
+                ],
+                shading: { type: ShadingType.CLEAR, fill: "404040" },
+              }),
+              new Table({
+                width: { size: 100, type: WidthType.PERCENTAGE },
+                borders: {
+                  top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                },
+                rows: [
+                  new TableRow({
+                    children: [
+                      paddedCell("Cutoff Score", { bold: true, size: 12, fill: "F5F5F5" }),
+                      paddedCell("Sensitivity (%)", { bold: true, size: 12, fill: "F5F5F5" }),
+                      paddedCell("Specificity (%)", { bold: true, size: 12, fill: "F5F5F5" }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("55%", { size: 11 }),
+                      paddedCell("33.7", { size: 11 }),
+                      paddedCell("100.0", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("60%", { size: 11 }),
+                      paddedCell("58.0", { size: 11 }),
+                      paddedCell("88.5", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("65%", { size: 11 }),
+                      paddedCell("60.0", { size: 11 }),
+                      paddedCell("88.5", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("70%", { size: 11 }),
+                      paddedCell("85.0", { size: 11 }),
+                      paddedCell("84.2", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("75%", { size: 11 }),
+                      paddedCell("88.7", { size: 11 }),
+                      paddedCell("68.4", { size: 11 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("80%", { size: 11 }),
+                      paddedCell("100.0", { size: 11 }),
+                      paddedCell("40.0", { size: 11 }),
+                    ],
+                  }),
+                ],
+              }),
+              new Paragraph({ text: "", spacing: { after: 200 } }),
+
+              // TABLE 3: Variables With 70% Sensitivity
+              new Paragraph({
+                spacing: { before: 150, after: 100 },
+                children: [
+                  new TextRun({
+                    text: "TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER",
+                    bold: true,
+                    size: 16,
+                    color: "FFFFFF",
+                  }),
+                ],
+                shading: { type: ShadingType.CLEAR, fill: "404040" },
+              }),
+              new Table({
+                width: { size: 100, type: WidthType.PERCENTAGE },
+                borders: {
+                  top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                },
+                rows: [
+                  new TableRow({
+                    children: [
+                      paddedCell("Variable/Score", { bold: true, size: 11, fill: "F5F5F5" }),
+                      paddedCell("100% Effort", { bold: true, size: 11, fill: "F5F5F5" }),
+                      paddedCell("50% Effort", { bold: true, size: 11, fill: "F5F5F5" }),
+                      paddedCell("Sensitivity", { bold: true, size: 11, fill: "F5F5F5" }),
+                      paddedCell("Specificity", { bold: true, size: 11, fill: "F5F5F5" }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Finger flexion Invalid", { size: 10 }),
+                      paddedCell("1", { size: 10 }),
+                      paddedCell("5", { size: 10 }),
+                      paddedCell("70.0", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("2", { size: 10 }),
+                      paddedCell("13", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                      paddedCell("", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("9", { size: 10 }),
+                      paddedCell("9", { size: 10 }),
+                      paddedCell("78.6", { size: 10 }),
+                      paddedCell("72.2", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("ROM greater Invalid", { size: 10 }),
+                      paddedCell("5", { size: 10 }),
+                      paddedCell("22", { size: 10 }),
+                      paddedCell("83.3", { size: 10 }),
+                      paddedCell("68.4", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("BEG on right Invalid", { size: 10 }),
+                      paddedCell("0", { size: 10 }),
+                      paddedCell("5", { size: 10 }),
+                      paddedCell("83.3", { size: 10 }),
+                      paddedCell("52.9", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("BEG on left Invalid", { size: 10 }),
+                      paddedCell("8", { size: 10 }),
+                      paddedCell("5", { size: 10 }),
+                      paddedCell("72.4", { size: 10 }),
+                      paddedCell("42.4", { size: 10 }),
+                    ],
+                  }),
+                ],
+              }),
+            ],
           }),
-          paddedCell("50% Effort (n=12)", {
-            bold: true,
-            size: 16,
-            fill: "FEF3C7",
-          }),
-          paddedCell("Significance Test", {
-            bold: true,
-            size: 16,
-            fill: "FEF3C7",
-          }),
-        ],
-      }),
-      // Data rows
-      new TableRow({
-        children: [
-          paddedCell("Age (y)", { size: 14 }),
-          paddedCell("35.7", { size: 14 }),
-          paddedCell("33.5", { size: 14 }),
-          paddedCell("t = 13.9* (= .5)", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Range", { size: 14 }),
-          paddedCell("23-60", { size: 14 }),
-          paddedCell("18-55", { size: 14 }),
-          paddedCell("", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Gender: Male/Female", { size: 14 }),
-          paddedCell("7/5", { size: 14 }),
-          paddedCell("10/2", { size: 14 }),
-          paddedCell("χ² = 0.67* (= .3)", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Race: Caucasian/African American", { size: 14 }),
-          paddedCell("12/0", { size: 14 }),
-          paddedCell("10/2", { size: 14 }),
-          paddedCell("χ² = 0.67* (= .3)", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Hand dominance: Right/Left", { size: 14 }),
-          paddedCell("11/1", { size: 14 }),
-          paddedCell("11/1", { size: 14 }),
-          paddedCell("", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Body mass (kg): Mean", { size: 14 }),
-          paddedCell("15.20", { size: 14 }),
-          paddedCell("17", { size: 14 }),
-          paddedCell("t = 1.4* (= .2)", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Range", { size: 14 }),
-          paddedCell("54.0-127.8", { size: 14 }),
-          paddedCell("54.0-103.5", { size: 14 }),
-          paddedCell("", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Insurance: Yes/No", { size: 14 }),
-          paddedCell("11/1", { size: 14 }),
-          paddedCell("10/2", { size: 14 }),
-          paddedCell("", { size: 14 }),
         ],
       }),
     ],
   });
 
-  children.push(demographicTable);
-  children.push(new Paragraph({ text: "", spacing: { after: 200 } }));
-
-  // === TABLE 2: Sensitivity and Specificity for Cutoff Scores ===
-  children.push(
-    new Paragraph({
-      spacing: { before: 150, after: 100 },
-      children: [
-        new TextRun({
-          text: "TABLE 2 - SENSITIVITY AND SPECIFICITY FOR VARIOUS FUNCTIONAL CAPACITY CUTOFF SCORES",
-          bold: true,
-          size: 16,
-          color: "FFFFFF",
-        }),
-      ],
-      shading: { type: ShadingType.CLEAR, fill: "404040" },
-    }),
-  );
-
-  const cutoffTable = new Table({
-    width: { size: 100, type: WidthType.PERCENTAGE },
-    borders: {
-      top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-    },
-    rows: [
-      new TableRow({
-        children: [
-          paddedCell("Cutoff Score", { bold: true, size: 16, fill: "FEF3C7" }),
-          paddedCell("Sensitivity (%)", {
-            bold: true,
-            size: 16,
-            fill: "FEF3C7",
-          }),
-          paddedCell("Specificity (%)", {
-            bold: true,
-            size: 16,
-            fill: "FEF3C7",
-          }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("55%", { size: 14 }),
-          paddedCell("33.7", { size: 14 }),
-          paddedCell("100.0", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("60%", { size: 14 }),
-          paddedCell("58.0", { size: 14 }),
-          paddedCell("88.5", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("65%", { size: 14 }),
-          paddedCell("60.0", { size: 14 }),
-          paddedCell("88.5", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("70%", { size: 14 }),
-          paddedCell("85.0", { size: 14 }),
-          paddedCell("84.2", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("75%", { size: 14 }),
-          paddedCell("88.7", { size: 14 }),
-          paddedCell("68.4", { size: 14 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("80%", { size: 14 }),
-          paddedCell("100.0", { size: 14 }),
-          paddedCell("40.0", { size: 14 }),
-        ],
-      }),
-    ],
-  });
-
-  children.push(cutoffTable);
-  children.push(new Paragraph({ text: "", spacing: { after: 200 } }));
-
-  // === TABLE 3: Variables With 70% Sensitivity ===
-  children.push(
-    new Paragraph({
-      spacing: { before: 150, after: 100 },
-      children: [
-        new TextRun({
-          text: "TABLE 3 - VARIABLES WITH 70% SENSITIVITY OR GREATER",
-          bold: true,
-          size: 16,
-          color: "FFFFFF",
-        }),
-      ],
-      shading: { type: ShadingType.CLEAR, fill: "404040" },
-    }),
-  );
-
-  const sensitivityTable = new Table({
-    width: { size: 100, type: WidthType.PERCENTAGE },
-    borders: {
-      top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-    },
-    rows: [
-      new TableRow({
-        children: [
-          paddedCell("Variable/Score", {
-            bold: true,
-            size: 14,
-            fill: "FEF3C7",
-          }),
-          paddedCell("100% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
-          paddedCell("50% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
-          paddedCell("Sensitivity", { bold: true, size: 14, fill: "FEF3C7" }),
-          paddedCell("Specificity", { bold: true, size: 14, fill: "FEF3C7" }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Finger flexion Invalid", { size: 12 }),
-          paddedCell("1", { size: 12 }),
-          paddedCell("5", { size: 12 }),
-          paddedCell("70.0", { size: 12 }),
-          paddedCell("", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Equivocal", { size: 12 }),
-          paddedCell("2", { size: 12 }),
-          paddedCell("13", { size: 12 }),
-          paddedCell("", { size: 12 }),
-          paddedCell("", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Valid", { size: 12 }),
-          paddedCell("9", { size: 12 }),
-          paddedCell("9", { size: 12 }),
-          paddedCell("78.6", { size: 12 }),
-          paddedCell("72.2", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("ROM greater Invalid", { size: 12 }),
-          paddedCell("5", { size: 12 }),
-          paddedCell("22", { size: 12 }),
-          paddedCell("83.3", { size: 12 }),
-          paddedCell("68.4", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("BEG on right Invalid", { size: 12 }),
-          paddedCell("0", { size: 12 }),
-          paddedCell("5", { size: 12 }),
-          paddedCell("83.3", { size: 12 }),
-          paddedCell("52.9", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("BEG on left Invalid", { size: 12 }),
-          paddedCell("8", { size: 12 }),
-          paddedCell("5", { size: 12 }),
-          paddedCell("72.4", { size: 12 }),
-          paddedCell("42.4", { size: 12 }),
-        ],
-      }),
-    ],
-  });
-
-  children.push(sensitivityTable);
-  children.push(new Paragraph({ text: "", spacing: { after: 200 } }));
-
-  // === TABLE 4: Variables With 100% Specificity ===
-  children.push(
-    new Paragraph({
-      spacing: { before: 150, after: 100 },
-      children: [
-        new TextRun({
-          text: "TABLE 4 - VARIABLES WITH 100% SPECIFICITY",
-          bold: true,
-          size: 16,
-          color: "FFFFFF",
-        }),
-      ],
-      shading: { type: ShadingType.CLEAR, fill: "404040" },
-    }),
-  );
-
-  const specificityTable = new Table({
-    width: { size: 100, type: WidthType.PERCENTAGE },
-    borders: {
-      top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-    },
-    rows: [
-      new TableRow({
-        children: [
-          paddedCell("Variable/Score", {
-            bold: true,
-            size: 14,
-            fill: "FEF3C7",
-          }),
-          paddedCell("100% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
-          paddedCell("50% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
-          paddedCell("Sensitivity", { bold: true, size: 14, fill: "FEF3C7" }),
-          paddedCell("Specificity", { bold: true, size: 14, fill: "FEF3C7" }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Distraction Invalid/Equivocal", { size: 12 }),
-          paddedCell("0", { size: 12 }),
-          paddedCell("1", { size: 12 }),
-          paddedCell("4.0", { size: 12 }),
-          paddedCell("100", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Trunk Invalid/Equivocal", { size: 12 }),
-          paddedCell("0", { size: 12 }),
-          paddedCell("6", { size: 12 }),
-          paddedCell("28.0", { size: 12 }),
-          paddedCell("100", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Distraction (OAM) Valid", { size: 12 }),
-          paddedCell("12", { size: 12 }),
-          paddedCell("25", { size: 12 }),
-          paddedCell("46.7", { size: 12 }),
-          paddedCell("100", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("ROM shoulder Invalid/Equivocal", { size: 12 }),
-          paddedCell("0", { size: 12 }),
-          paddedCell("14", { size: 12 }),
-          paddedCell("46.7", { size: 12 }),
-          paddedCell("100", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("ROM push right > left Invalid", { size: 12 }),
-          paddedCell("0", { size: 12 }),
-          paddedCell("20", { size: 12 }),
-          paddedCell("30.0", { size: 12 }),
-          paddedCell("100", { size: 12 }),
-        ],
-      }),
-      new TableRow({
-        children: [
-          paddedCell("Mounted palms machine pass", { size: 12 }),
-          paddedCell("3", { size: 12 }),
-          paddedCell("2", { size: 12 }),
-          paddedCell("18.5", { size: 12 }),
-          paddedCell("100", { size: 12 }),
-        ],
-      }),
-    ],
-  });
-
-  children.push(specificityTable);
+  children.push(twoColumnLayout);
 
   // === Citation ===
   children.push(
@@ -6006,9 +6667,9 @@ async function addDigitalLibraryContent(children, body) {
                 children: [
                   imageBuffer
                     ? new ImageRun({
-                        data: imageBuffer,
-                        transformation: { width: 120, height: 120 },
-                      })
+                      data: imageBuffer,
+                      transformation: { width: 120, height: 120 },
+                    })
                     : new TextRun({ text: "[Image Missing]", size: 16 }),
                 ],
                 alignment: AlignmentType.CENTER,
@@ -6775,8 +7436,13 @@ async function addConclusionContent(children, body) {
       for (const line of commentLines) {
         children.push(
           new Paragraph({
-            text: line,
             spacing: { after: 40 },
+            children: [
+              new TextRun({
+                text: line,
+                size: 16,
+              }),
+            ],
           }),
         );
       }
@@ -9069,12 +9735,12 @@ async function addTestDataContent(children, body) {
 
             const titleNode = title
               ? new Paragraph({
-                  alignment: AlignmentType.CENTER,
-                  spacing: { after: 80 },
-                  children: [
-                    new TextRun({ text: title, bold: true, size: 16 }),
-                  ],
-                })
+                alignment: AlignmentType.CENTER,
+                spacing: { after: 80 },
+                children: [
+                  new TextRun({ text: title, bold: true, size: 16 }),
+                ],
+              })
               : null;
 
             return new TableCell({
@@ -9118,11 +9784,10 @@ async function addTestDataContent(children, body) {
                   spacing: { before: 80 },
                   children: [
                     new TextRun({
-                      text: `${averageLabel}: ${
-                        Number.isFinite(averageValue)
-                          ? averageValue.toFixed(1)
-                          : "n/a"
-                      }${unitLabel ? ` ${unitLabel}` : ""}`,
+                      text: `${averageLabel}: ${Number.isFinite(averageValue)
+                        ? averageValue.toFixed(1)
+                        : "n/a"
+                        }${unitLabel ? ` ${unitLabel}` : ""}`,
                       color: "444444",
                       size: 16,
                     }),
@@ -9199,7 +9864,7 @@ async function addTestDataContent(children, body) {
                   ChartJS.defaults.font.family = "Arial";
                   ChartJS.defaults.font.size = 12;
                   ChartJS.defaults.color = "#333";
-                } catch {}
+                } catch { }
               },
             });
             const labels = dataSeries.map((_, i) => `T${i + 1}`);
@@ -9298,11 +9963,11 @@ async function addTestDataContent(children, body) {
           if (!hasLeftSeries && !hasRightSeries) {
             singleSeries = extractTrialSeries(
               test.measurements ||
-                test.trials ||
-                test.series ||
-                test.results ||
-                test.data ||
-                [],
+              test.trials ||
+              test.series ||
+              test.results ||
+              test.data ||
+              [],
             );
           }
           // What do we actually have?
