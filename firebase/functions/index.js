@@ -39,7 +39,6 @@ app4.use(express.json({ limit: "400mb" }));
 app4.use(express.urlencoded({ extended: true, limit: "400mb" }));
 app4.use("/", generateExecutiveSummaryClaimantReportRoute);
 
-
 // Export Gen 2 functions
 exports.generateClaimantReportApi = onRequest(
   {
