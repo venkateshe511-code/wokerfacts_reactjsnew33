@@ -90,7 +90,7 @@ This message was submitted on: ${new Date().toLocaleString()}
 <p><small>Submitted on: ${new Date().toLocaleString()}</small></p>
     `;
 
-    // Send to both emails
+    // Send to website owners only
     const recipientEmails = [
       "workerfacts@gmail.com",
       "venkateshe511@gmail.com",
@@ -106,34 +106,7 @@ This message was submitted on: ${new Date().toLocaleString()}
       }),
     );
 
-    // Also send a confirmation email to the user
-    const confirmationPromise = transporter.sendMail({
-      from: process.env.EMAIL_USER || "workerfacts@gmail.com",
-      to: email,
-      subject: "We received your contact form - WorkerFacts",
-      text: `
-Dear ${name},
-
-Thank you for reaching out to WorkerFacts! We have received your contact form and will review your information shortly.
-
-We will contact you at your provided email address or phone number to discuss your evaluation needs.
-
-Best regards,
-WorkerFacts Team
-      `,
-      html: `
-<p>Dear ${name},</p>
-
-<p>Thank you for reaching out to <strong>WorkerFacts</strong>! We have received your contact form and will review your information shortly.</p>
-
-<p>We will contact you at your provided email address or phone number to discuss your evaluation needs.</p>
-
-<p>Best regards,<br/>
-WorkerFacts Team</p>
-      `,
-    });
-
-    await Promise.all([...mailPromises, confirmationPromise]);
+    await Promise.all(mailPromises);
 
     res.status(200).json({
       success: true,
