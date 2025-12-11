@@ -6053,8 +6053,6 @@ async function addDigitalLibraryContent(children, body) {
       },
     }),
   );
-
-  children.push(new Paragraph({ children: [new PageBreak()] }));
 }
 
 async function addReturnToWorkStatusContent(children, body) {
