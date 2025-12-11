@@ -6221,8 +6221,8 @@ export default function ReviewReport() {
                                     </div>
                                   )}
 
-                                  {/* Heart Rate Data if available for this test */}
-                                  {(() => {
+                                  {/* Heart Rate Data if available for this test (not for cardio tests) */}
+                                  {!isCardioTest && (() => {
                                     const pre = Number(
                                       (test.leftMeasurements
                                         ?.preHeartRate as any) ||
