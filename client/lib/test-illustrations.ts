@@ -652,7 +652,10 @@ const map = {
     { src: `${BASE}/YMCA_Step_Test.png`, label: "YMCA 3-Minute Step Test" },
   ],
   "ymca-submaximal-treadmill-test": [
-    { src: `${BASE}/YMCA_Treadmill_Test.png`, label: "YMCA Submaximal Treadmill Test" },
+    {
+      src: `${BASE}/YMCA_Treadmill_Test.png`,
+      label: "YMCA Submaximal Treadmill Test",
+    },
   ],
 } as Record<string, Illustration[]>;
 

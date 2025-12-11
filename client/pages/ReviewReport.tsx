@@ -5042,22 +5042,22 @@ export default function ReviewReport() {
                                                   YMCA 3-Minute Step Test
                                                 </h5>
                                                 <p className="text-xs mb-3">
-                                                  The YMCA 3-Minute Step Test
-                                                  is used to assess
+                                                  The YMCA 3-Minute Step Test is
+                                                  used to assess
                                                   cardiorespiratory fitness. A
                                                   metronome is set to 96 beats
                                                   per minute. The individual
                                                   steps up and down to the
                                                   metronome's beat for three
                                                   minutes (up with one foot,
-                                                  then the other; down with
-                                                  one foot, then the other).
+                                                  then the other; down with one
+                                                  foot, then the other).
                                                   Immediately after the three
                                                   minutes, the individual sits
                                                   down and their heart rate is
                                                   measured for a full minute.
-                                                  The heart rate is then used
-                                                  to gauge fitness level.
+                                                  The heart rate is then used to
+                                                  gauge fitness level.
                                                 </p>
                                               </div>
 
@@ -5118,26 +5118,24 @@ export default function ReviewReport() {
                                             <div className="space-y-4">
                                               <div>
                                                 <h5 className="font-semibold mb-2">
-                                                  YMCA Submaximal Treadmill
-                                                  Test
+                                                  YMCA Submaximal Treadmill Test
                                                 </h5>
                                                 <p className="text-xs mb-3">
-                                                  The YMCA Submaximal
-                                                  Treadmill Test is a
-                                                  single-stage protocol used
-                                                  to assess cardiovascular
-                                                  fitness. This test involves
-                                                  a warm-up followed by a
-                                                  single, four-minute testing
-                                                  stage intended to elicit a
+                                                  The YMCA Submaximal Treadmill
+                                                  Test is a single-stage
+                                                  protocol used to assess
+                                                  cardiovascular fitness. This
+                                                  test involves a warm-up
+                                                  followed by a single,
+                                                  four-minute testing stage
+                                                  intended to elicit a
                                                   steady-state heart rate
                                                   between 50% and 70% of
                                                   age-predicted maximum heart
-                                                  rate. The test is
-                                                  submaximal, meaning it does
-                                                  not push the individual to
-                                                  maximum effort, making it
-                                                  safer for certain
+                                                  rate. The test is submaximal,
+                                                  meaning it does not push the
+                                                  individual to maximum effort,
+                                                  making it safer for certain
                                                   populations.
                                                 </p>
                                               </div>
@@ -5737,8 +5735,7 @@ export default function ReviewReport() {
                                         {/* YMCA 3-Minute Step Test */}
                                         {testName.includes("ymca") &&
                                           testName.includes("step") && (
-                                            <div className="space-y-4">
-                                            </div>
+                                            <div className="space-y-4"></div>
                                           )}
                                       </div>
                                     ) : (
