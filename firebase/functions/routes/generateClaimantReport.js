@@ -3335,6 +3335,7 @@ function paddedCell(text, options = {}) {
             text: text ?? "",
             bold: options.bold || false,
             size: options.size || 14,
+            color: options.color || undefined,
           }),
         ],
       }),
@@ -5600,11 +5601,11 @@ async function addBlankenshipFCEContent(children, body) {
                 rows: [
                   new TableRow({
                     children: [
-                      paddedCell("Variable/Score", { bold: true, size: 12, fill: "FEF3C7" }),
-                      paddedCell("100% Effort", { bold: true, size: 12, fill: "FEF3C7" }),
-                      paddedCell("50% Effort", { bold: true, size: 12, fill: "FEF3C7" }),
-                      paddedCell("Sensitivity", { bold: true, size: 12, fill: "FEF3C7" }),
-                      paddedCell("Specificity", { bold: true, size: 12, fill: "FEF3C7" }),
+                      paddedCell("Variable/Score", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("100% Effort", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("50% Effort", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Sensitivity (%)", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Specificity (%)", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
                     ],
                   }),
                   // Overreaction for static
@@ -6115,10 +6116,10 @@ async function addBlankenshipFCEContent(children, body) {
                 rows: [
                   new TableRow({
                     children: [
-                      paddedCell("Subject Characteristics", { bold: true, size: 12, fill: "F5F5F5" }),
-                      paddedCell("100% Effort", { bold: true, size: 12, fill: "F5F5F5" }),
-                      paddedCell("50% Effort", { bold: true, size: 12, fill: "F5F5F5" }),
-                      paddedCell("Significance Test", { bold: true, size: 12, fill: "F5F5F5" }),
+                      paddedCell("Subject Characteristics", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("100% Effort", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("50% Effort", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Significance Test", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
                     ],
                   }),
                   new TableRow({
@@ -6439,9 +6440,9 @@ async function addBlankenshipFCEContent(children, body) {
                 rows: [
                   new TableRow({
                     children: [
-                      paddedCell("Cutoff Score", { bold: true, size: 12, fill: "F5F5F5" }),
-                      paddedCell("Sensitivity (%)", { bold: true, size: 12, fill: "F5F5F5" }),
-                      paddedCell("Specificity (%)", { bold: true, size: 12, fill: "F5F5F5" }),
+                      paddedCell("Cutoff Score", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Sensitivity (%)", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Specificity (%)", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
                     ],
                   }),
                   new TableRow({
@@ -6503,6 +6504,17 @@ async function addBlankenshipFCEContent(children, body) {
                 ],
                 shading: { type: ShadingType.CLEAR, fill: "404040" },
               }),
+              new Paragraph({
+                spacing: { after: 100 },
+                children: [
+                  new TextRun({
+                    text: "Indicators demonstrating 70% or greater sensitivity for detecting submaximal effort. These variables show strong ability to identify individuals not giving maximum effort.",
+                    size: 14,
+                    color: "666666",
+                    italics: true,
+                  }),
+                ],
+              }),
               new Table({
                 width: { size: 100, type: WidthType.PERCENTAGE },
                 borders: {
@@ -6516,34 +6528,43 @@ async function addBlankenshipFCEContent(children, body) {
                 rows: [
                   new TableRow({
                     children: [
-                      paddedCell("Variable/Score", { bold: true, size: 11, fill: "F5F5F5" }),
-                      paddedCell("100% Effort", { bold: true, size: 11, fill: "F5F5F5" }),
-                      paddedCell("50% Effort", { bold: true, size: 11, fill: "F5F5F5" }),
-                      paddedCell("Sensitivity", { bold: true, size: 11, fill: "F5F5F5" }),
-                      paddedCell("Specificity", { bold: true, size: 11, fill: "F5F5F5" }),
+                      paddedCell("Variable/Score", { bold: true, size: 11, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("100% Effort", { bold: true, size: 11, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("50% Effort", { bold: true, size: 11, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Sensitivity (%)", { bold: true, size: 11, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Specificity (%)", { bold: true, size: 11, fill: "404040", color: "FFFFFF" }),
                     ],
                   }),
                   new TableRow({
                     children: [
-                      paddedCell("Finger flexion Invalid", { size: 10 }),
+                      paddedCell("Finger Flexion", { size: 10, bold: true }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("  Invalid", { size: 10 }),
                       paddedCell("1", { size: 10 }),
                       paddedCell("5", { size: 10 }),
                       paddedCell("70.0", { size: 10 }),
-                      paddedCell("", { size: 10 }),
+                      paddedCell("85.7", { size: 10 }),
                     ],
                   }),
                   new TableRow({
                     children: [
-                      paddedCell("Equivocal", { size: 10 }),
+                      paddedCell("  Equivocal", { size: 10 }),
                       paddedCell("2", { size: 10 }),
                       paddedCell("13", { size: 10 }),
-                      paddedCell("", { size: 10 }),
-                      paddedCell("", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
                     ],
                   }),
                   new TableRow({
                     children: [
-                      paddedCell("Valid", { size: 10 }),
+                      paddedCell("  Valid", { size: 10 }),
                       paddedCell("9", { size: 10 }),
                       paddedCell("9", { size: 10 }),
                       paddedCell("78.6", { size: 10 }),
@@ -6552,7 +6573,16 @@ async function addBlankenshipFCEContent(children, body) {
                   }),
                   new TableRow({
                     children: [
-                      paddedCell("ROM greater Invalid", { size: 10 }),
+                      paddedCell("Range of Motion Greater", { size: 10, bold: true }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("  Invalid", { size: 10 }),
                       paddedCell("5", { size: 10 }),
                       paddedCell("22", { size: 10 }),
                       paddedCell("83.3", { size: 10 }),
@@ -6561,7 +6591,16 @@ async function addBlankenshipFCEContent(children, body) {
                   }),
                   new TableRow({
                     children: [
-                      paddedCell("BEG on right Invalid", { size: 10 }),
+                      paddedCell("Bilateral Effort Grip (Right)", { size: 10, bold: true }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("  Invalid", { size: 10 }),
                       paddedCell("0", { size: 10 }),
                       paddedCell("5", { size: 10 }),
                       paddedCell("83.3", { size: 10 }),
@@ -6570,11 +6609,39 @@ async function addBlankenshipFCEContent(children, body) {
                   }),
                   new TableRow({
                     children: [
-                      paddedCell("BEG on left Invalid", { size: 10 }),
+                      paddedCell("Bilateral Effort Grip (Left)", { size: 10, bold: true }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                      paddedCell("—", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      paddedCell("  Invalid", { size: 10 }),
                       paddedCell("8", { size: 10 }),
                       paddedCell("5", { size: 10 }),
                       paddedCell("72.4", { size: 10 }),
                       paddedCell("42.4", { size: 10 }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      new TableCell({
+                        columnSpan: 5,
+                        shading: { fill: "F0F0F0" },
+                        children: [
+                          new Paragraph({
+                            children: [
+                              new TextRun({
+                                text: "Note: Shaded rows represent categories (Invalid, Equivocal, Valid) and test indicators. Values presented as percentages (%) for sensitivity and specificity.",
+                                size: 10,
+                                color: "666666",
+                              }),
+                            ],
+                          }),
+                        ],
+                      }),
                     ],
                   }),
                 ],
