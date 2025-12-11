@@ -6500,6 +6500,19 @@ padding-top: 120px; align-items: center; min-height: 0; ">
           testCount: requestData.protocolTestsData?.selectedTests?.length || 0,
         });
 
+        // Check conclusion data
+        console.log("conclusionData structure:", {
+          exists: !!requestData.referralQuestionsData?.conclusionData,
+          hasReturnToWork: !!requestData.referralQuestionsData?.conclusionData?.returnToWorkStatus,
+          returnToWorkStatus: requestData.referralQuestionsData?.conclusionData?.returnToWorkStatus?.status || "none",
+          rpdrBehaviors: Object.values(
+            requestData.referralQuestionsData?.conclusionData?.rpdrBehaviors || {}
+          ).filter((v) => v === true).length,
+          ctpBehaviors: Object.values(
+            requestData.referralQuestionsData?.conclusionData?.ctpBehaviors || {}
+          ).filter((v) => v === true).length,
+        });
+
         // Detailed analysis of test data to ensure it has all required fields
         console.log("=== DETAILED TEST DATA ANALYSIS ===");
         if (requestData.testData?.tests) {
