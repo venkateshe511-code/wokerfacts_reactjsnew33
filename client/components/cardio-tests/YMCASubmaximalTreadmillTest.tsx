@@ -19,8 +19,6 @@ import {
 interface YMCASubmaximalTreadmillTestData {
   vo2Max: string;
   heartRate: string;
-  bloodPressure: string;
-  rpe: string;
   clientImages: File[];
   serializedImages?: SerializedImage[];
 }
@@ -36,10 +34,6 @@ export default function YMCASubmaximalTreadmillTest({
 }: Props) {
   const [vo2Max, setVo2Max] = useState(initialData?.vo2Max || "");
   const [heartRate, setHeartRate] = useState(initialData?.heartRate || "");
-  const [bloodPressure, setBloodPressure] = useState(
-    initialData?.bloodPressure || "",
-  );
-  const [rpe, setRpe] = useState(initialData?.rpe || "");
   const [clientImages, setClientImages] = useState<File[]>(
     initialData?.clientImages || [],
   );
@@ -63,8 +57,6 @@ export default function YMCASubmaximalTreadmillTest({
     onSave({
       vo2Max,
       heartRate,
-      bloodPressure,
-      rpe,
       clientImages: newImages,
       serializedImages,
     });
@@ -78,8 +70,6 @@ export default function YMCASubmaximalTreadmillTest({
     onSave({
       vo2Max,
       heartRate,
-      bloodPressure,
-      rpe,
       clientImages: newImages,
       serializedImages,
     });
@@ -91,13 +81,11 @@ export default function YMCASubmaximalTreadmillTest({
 
   useEffect(() => {
     const timeoutId = setTimeout(async () => {
-      if (vo2Max || heartRate || bloodPressure || rpe) {
+      if (vo2Max || heartRate) {
         const serializedImages = await filesToBase64Array(clientImages);
         onSave({
           vo2Max,
           heartRate,
-          bloodPressure,
-          rpe,
           clientImages,
           serializedImages,
         });
@@ -105,7 +93,7 @@ export default function YMCASubmaximalTreadmillTest({
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [vo2Max, heartRate, bloodPressure, rpe]);
+  }, [vo2Max, heartRate]);
 
   useEffect(() => {
     if (
@@ -157,7 +145,7 @@ export default function YMCASubmaximalTreadmillTest({
         </CardHeader>
         <CardContent className="space-y-6 bg-gradient-to-br from-green-50 via-emerald-50 to-cyan-50">
           {/* Test Description */}
-          <div className="bg-white rounded-lg p-4 border-2 border-green-200">
+          <div className="bg-white rounded-lg p-4 border-2 border-green-200 mt-8">
             <h3 className="font-bold text-green-900 mb-2">Test Protocol:</h3>
             <p className="text-sm text-gray-700">
               This test involves a warm-up followed by a single, four-minute
@@ -271,17 +259,6 @@ export default function YMCASubmaximalTreadmillTest({
                 Measured at specific intervals to confirm steady state
               </li>
               <li>
-                • <span className="font-semibold">Blood Pressure (BP):</span>{" "}
-                Systolic and diastolic measurements
-              </li>
-              <li>
-                •{" "}
-                <span className="font-semibold">
-                  Ratings of Perceived Exertion (RPE):
-                </span>{" "}
-                Using Borg Scale (6-20 or 1-10)
-              </li>
-              <li>
                 • <span className="font-semibold">Signs/Symptoms:</span> Any
                 subject discomfort, dizziness, or abnormal responses
               </li>
@@ -329,32 +306,6 @@ export default function YMCASubmaximalTreadmillTest({
                 onChange={(e) => setHeartRate(e.target.value)}
                 className="border-2 border-green-400 focus:border-green-600 focus:ring-2 focus:ring-green-200 bg-white shadow-sm"
                 placeholder="Enter steady-state heart rate"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="bloodPressure" className="text-sm font-semibold">
-                BLOOD PRESSURE (Systolic/Diastolic):
-              </Label>
-              <Input
-                id="bloodPressure"
-                value={bloodPressure}
-                onChange={(e) => setBloodPressure(e.target.value)}
-                className="border-2 border-green-400 focus:border-green-600 focus:ring-2 focus:ring-green-200 bg-white shadow-sm"
-                placeholder="e.g., 120/80"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="rpe" className="text-sm font-semibold">
-                RATINGS OF PERCEIVED EXERTION (RPE):
-              </Label>
-              <Input
-                id="rpe"
-                value={rpe}
-                onChange={(e) => setRpe(e.target.value)}
-                className="border-2 border-green-400 focus:border-green-600 focus:ring-2 focus:ring-green-200 bg-white shadow-sm"
-                placeholder="Enter RPE (Borg Scale 6-20)"
               />
             </div>
           </div>

@@ -1303,6 +1303,15 @@ export default function DownloadReport() {
               </div>
             </div>
 
+            <!-- References Section -->
+            <div style="margin-top: 12px; border: 1px solid #ccc; padding: 8px; background-color: #f9f9f9;">
+              <h5 style="font-weight: bold; margin-bottom: 4px; font-size: 10px;">References:</h5>
+              <ol style="font-size: 8px; margin: 0; padding-left: 16px; line-height: 1.3;">
+                <li style="margin-bottom: 4px;">Nguyen Thi Van Kieu, Su-Jin Jung, Sang-Wook Shin, et al. "The Validity of the YMCA 3-Minute Step Test for Estimating Maximal Oxygen Uptake in Healthy Korean and Vietnamese Adults." PMCID: PMC7171059, PMID: 32328445.</li>
+                <li>Matthews, E.L., Horvat, F.M., & Phillips, D.A. "Variable Height Step Test Provides Reliable Heart Rate Values During Virtual Cardiorespiratory Fitness Testing." Published online: 08 Aug 2021. https://doi.org/10.1080/1091367X.2021.196450</li>
+              </ol>
+            </div>
+
             <!-- Client Images Section -->
             ${
               test.serializedImages && test.serializedImages.length > 0
@@ -1315,6 +1324,65 @@ export default function DownloadReport() {
                       (img: any, idx: number) => `
                     <div style="border: 1px solid #333; padding: 4px; background: white; text-align: center; width: 80px;">
                       <img src="${img.data}" alt="${img.name || `YMCA Step Test Image ${idx + 1}`}" style="width: 80px; height: 60px; object-fit: contain;" />
+                      ${img.name ? `<p style="font-size: 8px; margin: 4px 0 0 0; text-overflow: ellipsis; overflow: hidden;">${img.name}</p>` : ""}
+                    </div>
+                  `,
+                    )
+                    .join("")}
+                </div>
+              </div>
+            `
+                : ""
+            }
+          </div>
+        `;
+      } else if (
+        testNameLower.includes("ymca") &&
+        testNameLower.includes("submaximal")
+      ) {
+        return `
+          <!-- YMCA Submaximal Treadmill Test Details -->
+          <div style="space-y: 16px;">
+            <p style="font-size: 10px; margin-bottom: 16px; text-align: justify; text-justify: inter-word;">
+              The YMCA Submaximal Treadmill Test is a single-stage protocol used to assess cardiovascular fitness. This test involves a warm-up followed by a single, four-minute testing stage intended to elicit a steady-state heart rate between 50% and 70% of age-predicted maximum heart rate. The test is submaximal, meaning it does not push the individual to maximum effort, making it safer for certain populations.
+            </p>
+
+            <!-- Test Results -->
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 12px 0;">
+              <div>
+                <span style="font-weight: bold; font-size: 11px;">VO2 Max: </span>
+                <span style="border-bottom: 1px solid #333; padding: 4px 16px; display: inline-block; min-width: 120px; font-size: 11px;">
+                  ${test.vo2Max || ""}
+                </span>
+                <span style="font-size: 10px;"> (mL·kg⁻¹·min⁻¹)</span>
+              </div>
+              <div>
+                <span style="font-weight: bold; font-size: 11px;">Heart Rate: </span>
+                <span style="border-bottom: 1px solid #333; padding: 4px 16px; display: inline-block; min-width: 120px; font-size: 11px;">
+                  ${test.heartRate || ""}
+                </span>
+                <span style="font-size: 10px;"> (bpm)</span>
+              </div>
+            </div>
+
+            <!-- References Section -->
+            <div style="margin-top: 12px; border: 1px solid #ccc; padding: 8px; background-color: #f9f9f9;">
+              <h5 style="font-weight: bold; margin-bottom: 4px; font-size: 10px;">Reference:</h5>
+              <p style="font-size: 8px; margin: 0; line-height: 1.3;">Vehrs, P.R., George, J.D., Fellingham, G.W., & Plowman, S.A. "Submaximal Treadmill Exercise Test to Predict VO2max in Fit Adults." Measurement in Physical Education and Exercise Science, Vol. 11, No. 2, pp. 61-72, April 2007. DOI:10.1080/10913670701294047</p>
+            </div>
+
+            <!-- Client Images Section -->
+            ${
+              test.serializedImages && test.serializedImages.length > 0
+                ? `
+              <div style="margin-top: 16px;">
+                <h5 style="font-weight: bold; margin-bottom: 8px; font-size: 11px;">CLIENT IMAGES:</h5>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                  ${test.serializedImages
+                    .map(
+                      (img: any, idx: number) => `
+                    <div style="border: 1px solid #333; padding: 4px; background: white; text-align: center; width: 80px;">
+                      <img src="${img.data}" alt="${img.name || `YMCA Treadmill Test Image ${idx + 1}`}" style="width: 80px; height: 60px; object-fit: contain;" />
                       ${img.name ? `<p style="font-size: 8px; margin: 4px 0 0 0; text-overflow: ellipsis; overflow: hidden;">${img.name}</p>` : ""}
                     </div>
                   `,
@@ -3069,6 +3137,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                       testName.includes("treadmill") ||
                       testName.includes("mcaft") ||
                       testName.includes("kasch") ||
+                      testName.includes("ymca") ||
                       testName.includes("cardio") ||
                       testName.includes("cardiovascular") ||
                       testName.includes("aerobic") ||
