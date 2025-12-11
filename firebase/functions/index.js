@@ -42,6 +42,11 @@ app4.use(express.json({ limit: "400mb" }));
 app4.use(express.urlencoded({ extended: true, limit: "400mb" }));
 app4.use("/", generateExecutiveSummaryClaimantReportRoute);
 
+app5.use(cors(corsOptions));
+app5.use(express.json({ limit: "20mb" }));
+app5.use(express.urlencoded({ extended: true, limit: "20mb" }));
+app5.use("/", sendContactEmailRoute);
+
 // Export Gen 2 functions
 exports.generateClaimantReportApi = onRequest(
   {
@@ -77,4 +82,12 @@ exports.generateExecutiveSummaryClaimantReportApi = onRequest(
     maxInstances: 100,
   },
   app4
+);
+
+exports.sendContactEmailApi = onRequest(
+  {
+    memory: "256MiB",
+    timeoutSeconds: 60,
+  },
+  app5
 );
