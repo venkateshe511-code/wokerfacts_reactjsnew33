@@ -531,6 +531,13 @@ export default function TestData() {
       "dynamic-infrequent-lift-high": "Dynamic Infrequent Lift High",
       "dynamic-infrequent-lift-overhead": "Dynamic Infrequent Lift Overhead",
 
+      // Cardio Test Names
+      "bruce-treadmill-test": "Bruce Treadmill Test",
+      "mcaft-step-test": "mCAFT Step Test",
+      "kasch-step-test": "KASCH Step Test",
+      "ymca-step-test": "YMCA 3-Minute Step Test",
+      "ymca-submaximal-treadmill-test": "YMCA Submaximal Treadmill Test",
+
       // MTM Test Names
       fingering: "Fingering",
       "bi-manual-fingering": "Bi-manual Fingering",
