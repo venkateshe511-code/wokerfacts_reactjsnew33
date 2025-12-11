@@ -1303,6 +1303,15 @@ export default function DownloadReport() {
               </div>
             </div>
 
+            <!-- References Section -->
+            <div style="margin-top: 12px; border: 1px solid #ccc; padding: 8px; background-color: #f9f9f9;">
+              <h5 style="font-weight: bold; margin-bottom: 4px; font-size: 10px;">References:</h5>
+              <ol style="font-size: 8px; margin: 0; padding-left: 16px; line-height: 1.3;">
+                <li style="margin-bottom: 4px;">Nguyen Thi Van Kieu, Su-Jin Jung, Sang-Wook Shin, et al. "The Validity of the YMCA 3-Minute Step Test for Estimating Maximal Oxygen Uptake in Healthy Korean and Vietnamese Adults." PMCID: PMC7171059, PMID: 32328445.</li>
+                <li>Matthews, E.L., Horvat, F.M., & Phillips, D.A. "Variable Height Step Test Provides Reliable Heart Rate Values During Virtual Cardiorespiratory Fitness Testing." Published online: 08 Aug 2021. https://doi.org/10.1080/1091367X.2021.196450</li>
+              </ol>
+            </div>
+
             <!-- Client Images Section -->
             ${
               test.serializedImages && test.serializedImages.length > 0
