@@ -6222,32 +6222,33 @@ export default function ReviewReport() {
                                   )}
 
                                   {/* Heart Rate Data if available for this test (not for cardio tests) */}
-                                  {!isCardioTest && (() => {
-                                    const pre = Number(
-                                      (test.leftMeasurements
-                                        ?.preHeartRate as any) ||
-                                        (test.rightMeasurements
+                                  {!isCardioTest &&
+                                    (() => {
+                                      const pre = Number(
+                                        (test.leftMeasurements
                                           ?.preHeartRate as any) ||
-                                        0,
-                                    );
-                                    const post = Number(
-                                      (test.leftMeasurements
-                                        ?.postHeartRate as any) ||
-                                        (test.rightMeasurements
+                                          (test.rightMeasurements
+                                            ?.preHeartRate as any) ||
+                                          0,
+                                      );
+                                      const post = Number(
+                                        (test.leftMeasurements
                                           ?.postHeartRate as any) ||
-                                        0,
-                                    );
-                                    if (!pre && !post) return null;
-                                    return (
-                                      <div className="text-xs text-gray-600 mb-2">
-                                        <span className="font-semibold">
-                                          Heart Rate:
-                                        </span>
-                                        {pre ? ` Pre: ${pre} bpm` : ""}
-                                        {post ? ` Post: ${post} bpm` : ""}
-                                      </div>
-                                    );
-                                  })()}
+                                          (test.rightMeasurements
+                                            ?.postHeartRate as any) ||
+                                          0,
+                                      );
+                                      if (!pre && !post) return null;
+                                      return (
+                                        <div className="text-xs text-gray-600 mb-2">
+                                          <span className="font-semibold">
+                                            Heart Rate:
+                                          </span>
+                                          {pre ? ` Pre: ${pre} bpm` : ""}
+                                          {post ? ` Post: ${post} bpm` : ""}
+                                        </div>
+                                      );
+                                    })()}
 
                                   {/* Test Comments */}
                                   {test.comments && (
@@ -6377,7 +6378,8 @@ export default function ReviewReport() {
                                           ];
                                         } else if (
                                           testName.includes("bruce") ||
-                                          (testName.includes("treadmill") && !testName.includes("ymca"))
+                                          (testName.includes("treadmill") &&
+                                            !testName.includes("ymca"))
                                         ) {
                                           references = [
                                             "Bruce AM, Lawson D, Wasser TE, Raber-Baer D. Comparison of Bruce treadmill exercise test protocols: Is ramped Bruce equal or superior to standard bruce in producing clinically valid studies for patients presenting for evaluation of cardiac ischemia or arrhythmia with body mass index equal to or greater than 30? J Nucl Med Technol. 2013 Dec;41(4):274-8",
