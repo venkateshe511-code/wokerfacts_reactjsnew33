@@ -847,6 +847,41 @@ const testReferences = {
       pages: "PMID: 5014456",
     },
   ],
+
+  // YMCA Step Test
+  "ymca-step-test": [
+    {
+      author: "YMCA of the USA",
+      title: "YMCA Fitness Testing and Assessment Manual",
+      publisher: "Human Kinetics Publishers",
+      year: 2000,
+    },
+    {
+      author: "Golding LA, Myers CR, Sinning WE",
+      title: "Y's Way to Physical Fitness",
+      publisher: "YMCA of the USA",
+      year: 1989,
+    },
+  ],
+
+  // YMCA Submaximal Treadmill Test
+  "ymca-submaximal-treadmill-test": [
+    {
+      author: "YMCA of the USA",
+      title: "YMCA Fitness Testing and Assessment Manual",
+      publisher: "Human Kinetics Publishers",
+      year: 2000,
+    },
+    {
+      author: "Ebbeling CB, Ward A, Puleo EM, Widrick J, Rippe JM",
+      title:
+        "Development of a single-stage submaximal treadmill walking test",
+      journal: "Medicine & Science in Sports & Exercise",
+      year: 1991,
+      volume: "23(8)",
+      pages: "966-973",
+    },
+  ],
 };
 // Map test IDs to reference categories
 const testToCategory = {
