@@ -1365,6 +1365,12 @@ export default function DownloadReport() {
               </div>
             </div>
 
+            <!-- References Section -->
+            <div style="margin-top: 12px; border: 1px solid #ccc; padding: 8px; background-color: #f9f9f9;">
+              <h5 style="font-weight: bold; margin-bottom: 4px; font-size: 10px;">Reference:</h5>
+              <p style="font-size: 8px; margin: 0; line-height: 1.3;">Vehrs, P.R., George, J.D., Fellingham, G.W., & Plowman, S.A. "Submaximal Treadmill Exercise Test to Predict VO2max in Fit Adults." Measurement in Physical Education and Exercise Science, Vol. 11, No. 2, pp. 61-72, April 2007. DOI:10.1080/10913670701294047</p>
+            </div>
+
             <!-- Client Images Section -->
             ${
               test.serializedImages && test.serializedImages.length > 0
