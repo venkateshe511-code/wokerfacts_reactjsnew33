@@ -5045,10 +5045,26 @@ async function addBlankenshipFCEContent(children, body) {
       // Header row
       new TableRow({
         children: [
-          paddedCell("Subject Characteristics", { bold: true, size: 16, fill: "FEF3C7" }),
-          paddedCell("100% Effort (n=12)", { bold: true, size: 16, fill: "FEF3C7" }),
-          paddedCell("50% Effort (n=12)", { bold: true, size: 16, fill: "FEF3C7" }),
-          paddedCell("Significance Test", { bold: true, size: 16, fill: "FEF3C7" }),
+          paddedCell("Subject Characteristics", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+          paddedCell("100% Effort (n=12)", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+          paddedCell("50% Effort (n=12)", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+          paddedCell("Significance Test", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
         ],
       }),
       // Data rows
@@ -5152,8 +5168,16 @@ async function addBlankenshipFCEContent(children, body) {
       new TableRow({
         children: [
           paddedCell("Cutoff Score", { bold: true, size: 16, fill: "FEF3C7" }),
-          paddedCell("Sensitivity (%)", { bold: true, size: 16, fill: "FEF3C7" }),
-          paddedCell("Specificity (%)", { bold: true, size: 16, fill: "FEF3C7" }),
+          paddedCell("Sensitivity (%)", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
+          paddedCell("Specificity (%)", {
+            bold: true,
+            size: 16,
+            fill: "FEF3C7",
+          }),
         ],
       }),
       new TableRow({
@@ -5233,7 +5257,11 @@ async function addBlankenshipFCEContent(children, body) {
     rows: [
       new TableRow({
         children: [
-          paddedCell("Variable/Score", { bold: true, size: 14, fill: "FEF3C7" }),
+          paddedCell("Variable/Score", {
+            bold: true,
+            size: 14,
+            fill: "FEF3C7",
+          }),
           paddedCell("100% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
           paddedCell("50% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
           paddedCell("Sensitivity", { bold: true, size: 14, fill: "FEF3C7" }),
@@ -5329,7 +5357,11 @@ async function addBlankenshipFCEContent(children, body) {
     rows: [
       new TableRow({
         children: [
-          paddedCell("Variable/Score", { bold: true, size: 14, fill: "FEF3C7" }),
+          paddedCell("Variable/Score", {
+            bold: true,
+            size: 14,
+            fill: "FEF3C7",
+          }),
           paddedCell("100% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
           paddedCell("50% Effort", { bold: true, size: 14, fill: "FEF3C7" }),
           paddedCell("Sensitivity", { bold: true, size: 14, fill: "FEF3C7" }),
