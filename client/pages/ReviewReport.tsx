@@ -5078,6 +5078,36 @@ export default function ReviewReport() {
                                               </div>
                                             </div>
 
+                                            {/* References */}
+                                            <div className="border border-gray-300 p-3 bg-gray-50 rounded mt-4">
+                                              <h6 className="font-semibold text-xs mb-2">
+                                                References:
+                                              </h6>
+                                              <ul className="text-xs space-y-1 text-gray-700">
+                                                <li>
+                                                  • Nguyen Thi Van Kieu, Su-Jin
+                                                  Jung, Sang-Wook Shin, et al.
+                                                  "The Validity of the YMCA
+                                                  3-Minute Step Test for
+                                                  Estimating Maximal Oxygen
+                                                  Uptake in Healthy Korean and
+                                                  Vietnamese Adults." PMCID:
+                                                  PMC7171059, PMID: 32328445.
+                                                </li>
+                                                <li>
+                                                  • Matthews, E.L., Horvat, F.M.,
+                                                  & Phillips, D.A. "Variable
+                                                  Height Step Test Provides
+                                                  Reliable Heart Rate Values
+                                                  During Virtual
+                                                  Cardiorespiratory Fitness
+                                                  Testing." Published online: 08
+                                                  Aug 2021.
+                                                  https://doi.org/10.1080/1091367X.2021.196450
+                                                </li>
+                                              </ul>
+                                            </div>
+
                                             {/* Client Images */}
                                             {test.serializedImages &&
                                               test.serializedImages.length >
