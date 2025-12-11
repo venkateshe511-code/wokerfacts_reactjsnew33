@@ -6264,6 +6264,15 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                       savedImageData: [],
                     },
                   ],
+            // Include conclusion data (Return to Work Status, RPDR, CTP behaviors)
+            conclusionData: referralQuestionsData.conclusionData || {
+              returnToWorkStatus: {
+                status: "",
+                comments: "",
+              },
+              rpdrBehaviors: {},
+              ctpBehaviors: {},
+            },
           },
 
           // Enhanced protocol and tests data
