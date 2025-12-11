@@ -3069,6 +3069,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                       testName.includes("treadmill") ||
                       testName.includes("mcaft") ||
                       testName.includes("kasch") ||
+                      testName.includes("ymca") ||
                       testName.includes("cardio") ||
                       testName.includes("cardiovascular") ||
                       testName.includes("aerobic") ||
