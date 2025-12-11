@@ -874,8 +874,7 @@ const testReferences = {
     },
     {
       author: "Ebbeling CB, Ward A, Puleo EM, Widrick J, Rippe JM",
-      title:
-        "Development of a single-stage submaximal treadmill walking test",
+      title: "Development of a single-stage submaximal treadmill walking test",
       journal: "Medicine & Science in Sports & Exercise",
       year: 1991,
       volume: "23(8)",
