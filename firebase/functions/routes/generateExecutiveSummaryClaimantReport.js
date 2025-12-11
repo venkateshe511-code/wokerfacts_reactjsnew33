@@ -6268,13 +6268,17 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
       originalCategory.includes("cardio") ||
       originalCategory.includes("heart") ||
       originalCategory.includes("aerobic") ||
-      testName.includes("step-test") ||
+      testName.includes("step") ||
       testName.includes("treadmill") ||
       testName.includes("mcaft") ||
       testName.includes("kasch") ||
+      testName.includes("bruce") ||
+      testName.includes("ymca") ||
       testName.includes("cardio") ||
       testName.includes("cardiovascular") ||
-      testName.includes("aerobic")
+      testName.includes("aerobic") ||
+      testName.includes("vo2") ||
+      testName.includes("heart rate")
     ) {
       categories["Cardio"].push(test);
       continue;
