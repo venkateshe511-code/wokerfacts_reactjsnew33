@@ -260,6 +260,45 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
           </p>
         </CardHeader>
         <CardContent className="space-y-6 bg-gradient-to-br from-purple-50 via-pink-50 to-red-50">
+          {/* Test Information Section */}
+          <div className="bg-white rounded-lg p-6 border-2 border-purple-300 shadow-md space-y-4">
+            <div className="space-y-3">
+              <h3 className="font-bold text-lg text-purple-900">Purpose</h3>
+              <p className="text-gray-700 leading-relaxed">
+                To assess cardiorespiratory fitness.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="font-bold text-lg text-purple-900">Equipment</h3>
+              <ul className="text-gray-700 leading-relaxed space-y-1">
+                <li>• 12-inch (30cm) step</li>
+                <li>• Metronome</li>
+                <li>• Stopwatch</li>
+              </ul>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="font-bold text-lg text-purple-900">Procedure</h3>
+              <ul className="text-gray-700 leading-relaxed space-y-2">
+                <li>• A metronome is set to 96 beats per minute.</li>
+                <li>
+                  • The individual steps up and down to the metronome's beat
+                  for three minutes (up with one foot, then the other; down with
+                  one foot, then the other).
+                </li>
+                <li>
+                  • Immediately after the three minutes, the individual sits
+                  down and their heart rate is measured for a full minute.
+                </li>
+                <li>
+                  • The heart rate is then used to gauge fitness level or to
+                  calculate estimated VO2max.
+                </li>
+              </ul>
+            </div>
+          </div>
+
           {/* Ratings Tables */}
           <div className="space-y-6">
             <div className="space-y-3">
