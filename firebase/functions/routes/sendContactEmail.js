@@ -72,8 +72,7 @@ This message was submitted on: ${new Date().toLocaleString()}
             const typeMap = {
               functional:
                 "Functional Abilities and Capacity Evaluation / Fit for Duties / Return to Work",
-              "job-demands":
-                "Job / Physical Demands Analysis (JDA / PDA)",
+              "job-demands": "Job / Physical Demands Analysis (JDA / PDA)",
               "pre-employment": "Post Offer Pre-Employment Screening",
               rehab: "Rehab Baseline and Progress Evaluations",
             };
@@ -104,7 +103,7 @@ This message was submitted on: ${new Date().toLocaleString()}
         subject: `New Contact Form Submission from ${name}`,
         text: emailContent,
         html: htmlContent,
-      })
+      }),
     );
 
     // Also send a confirmation email to the user

@@ -194,7 +194,7 @@ export default function Index() {
               evaluationTypes: contactForm.evaluationTypes,
               comments: contactForm.comments,
             }),
-          }
+          },
         );
 
         if (!response.ok) {
