@@ -381,6 +381,8 @@ export default function DownloadReport() {
             classification: cardioData.classification || "",
             hbr: cardioData.hbr || "",
             aerobicFitnessScore: cardioData.aerobicFitnessScore || "",
+            // YMCA Step Test fields
+            clientRating: cardioData.clientRating || "",
             // YMCA Submaximal Treadmill Test fields
             heartRate: cardioData.heartRate || "",
             bloodPressure: cardioData.bloodPressure || "",
