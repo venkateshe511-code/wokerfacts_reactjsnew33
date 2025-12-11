@@ -1327,6 +1327,59 @@ export default function DownloadReport() {
             }
           </div>
         `;
+      } else if (
+        testNameLower.includes("ymca") &&
+        testNameLower.includes("submaximal")
+      ) {
+        return `
+          <!-- YMCA Submaximal Treadmill Test Details -->
+          <div style="space-y: 16px;">
+            <p style="font-size: 10px; margin-bottom: 16px; text-align: justify; text-justify: inter-word;">
+              The YMCA Submaximal Treadmill Test is a single-stage protocol used to assess cardiovascular fitness. This test involves a warm-up followed by a single, four-minute testing stage intended to elicit a steady-state heart rate between 50% and 70% of age-predicted maximum heart rate. The test is submaximal, meaning it does not push the individual to maximum effort, making it safer for certain populations.
+            </p>
+
+            <!-- Test Results -->
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 12px 0;">
+              <div>
+                <span style="font-weight: bold; font-size: 11px;">VO2 Max: </span>
+                <span style="border-bottom: 1px solid #333; padding: 4px 16px; display: inline-block; min-width: 120px; font-size: 11px;">
+                  ${test.vo2Max || ""}
+                </span>
+                <span style="font-size: 10px;"> (mL·kg⁻¹·min⁻¹)</span>
+              </div>
+              <div>
+                <span style="font-weight: bold; font-size: 11px;">Heart Rate: </span>
+                <span style="border-bottom: 1px solid #333; padding: 4px 16px; display: inline-block; min-width: 120px; font-size: 11px;">
+                  ${test.heartRate || ""}
+                </span>
+                <span style="font-size: 10px;"> (bpm)</span>
+              </div>
+            </div>
+
+            <!-- Client Images Section -->
+            ${
+              test.serializedImages && test.serializedImages.length > 0
+                ? `
+              <div style="margin-top: 16px;">
+                <h5 style="font-weight: bold; margin-bottom: 8px; font-size: 11px;">CLIENT IMAGES:</h5>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+                  ${test.serializedImages
+                    .map(
+                      (img: any, idx: number) => `
+                    <div style="border: 1px solid #333; padding: 4px; background: white; text-align: center; width: 80px;">
+                      <img src="${img.data}" alt="${img.name || `YMCA Treadmill Test Image ${idx + 1}`}" style="width: 80px; height: 60px; object-fit: contain;" />
+                      ${img.name ? `<p style="font-size: 8px; margin: 4px 0 0 0; text-overflow: ellipsis; overflow: hidden;">${img.name}</p>` : ""}
+                    </div>
+                  `,
+                    )
+                    .join("")}
+                </div>
+              </div>
+            `
+                : ""
+            }
+          </div>
+        `;
       }
 
       return "";
