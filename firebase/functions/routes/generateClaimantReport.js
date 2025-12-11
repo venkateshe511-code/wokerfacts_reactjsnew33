@@ -8502,7 +8502,7 @@ async function addTestDataContent(children, body) {
         } else if (isCardioTest) {
           if (
             testNameLower.includes("bruce") ||
-            testNameLower.includes("treadmill")
+            (testNameLower.includes("treadmill") && !testNameLower.includes("ymca"))
           )
             description =
               "The Bruce Treadmill Test measures aerobic endurance by estimating VO₂ max.";
@@ -8512,6 +8512,12 @@ async function addTestDataContent(children, body) {
           else if (testNameLower.includes("kasch"))
             description =
               "Kasch Step Test assesses post-exercise heart-rate recovery over 3 minutes.";
+          else if (testNameLower.includes("ymca") && testNameLower.includes("step"))
+            description =
+              "The YMCA 3-Minute Step Test assesses cardiorespiratory fitness using a standardized step protocol.";
+          else if (testNameLower.includes("ymca") && testNameLower.includes("submaximal"))
+            description =
+              "The YMCA Submaximal Treadmill Test estimates VO₂ max and aerobic fitness using submaximal exercise intensities.";
         }
 
         rightCol.push(
