@@ -6513,6 +6513,14 @@ padding-top: 120px; align-items: center; min-height: 0; ">
           ).filter((v) => v === true).length,
         });
 
+        // Check cardio test data
+        console.log("cardioTestData structure:", {
+          exists: !!requestData.cardioTestData,
+          keys: Object.keys(requestData.cardioTestData || {}),
+          testCount: Object.keys(requestData.cardioTestData || {}).length,
+          sampleTestData: requestData.cardioTestData ? Object.entries(requestData.cardioTestData)[0] : null,
+        });
+
         // Detailed analysis of test data to ensure it has all required fields
         console.log("=== DETAILED TEST DATA ANALYSIS ===");
         if (requestData.testData?.tests) {
