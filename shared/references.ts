@@ -474,7 +474,12 @@ export const getReferencesForTest = (testId: string): Reference[] => {
 };
 
 // Helper function to format a reference
-export const formatReference = (reference: Reference): string => {
+export const formatReference = (reference: Reference & { fullText?: string }): string => {
+  // If fullText is provided, use it directly
+  if (reference.fullText) {
+    return reference.fullText;
+  }
+
   let formatted = `${reference.title}, ${reference.author}`;
 
   if (reference.journal) {
