@@ -1310,8 +1310,7 @@ export default function ReferralQuestions() {
                           Upload Evaluator Signature
                         </h3>
                         <p className="text-sm text-purple-700 mb-4">
-                          Upload your signature image to be included in the
-                          "Signature of Evaluator" section of all reports/it will be left blank in the report if not uploaded.
+                        Upload your signature image to be inserted in the "Signature of Evaluator" section of all reports. If no image is uploaded, the section will remain blank.
                         </p>
                         <div className="space-y-4">
                           <div className="flex items-center space-x-4">
