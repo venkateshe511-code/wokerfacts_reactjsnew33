@@ -807,44 +807,75 @@ const testReferences = {
   // Bruce Treadmill Test
   "bruce-treadmill": [
     {
-      author: "Bruce AM, Lawson D, Wasser TE, Raber-Baer D",
+      author: "Bruce, R. A., et al.",
       title:
-        "Comparison of Bruce treadmill exercise test protocols: Is ramped Bruce equal or superior to standard bruce in producing clinically valid studies for patients presenting for evaluation of cardiac ischemia or arrhythmia with body mass index equal to or greater than 30?",
-      journal: "J Nucl Med Technol",
-      year: 2013,
-      volume: "41(4)",
-      pages: "274-8",
+        "Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease",
+      journal: "Am Heart J",
+      year: 1973,
     },
     {
-      author: "Poehlman CP, Llewellyn TL",
-      title:
-        "The Effects of Submaximal and Maximal Exercise on Heart Rate Variability",
-      journal: "Int J Exerc Sci",
-      year: 2019,
-      volume: "12(9)",
-      pages: "9-14",
+      author: "Acampa, W., Assante, R., Zampella, E.",
+      title: "The role of treadmill exercise testing",
+      journal: "J Nucl Cardiol",
+      year: 2016,
+      volume: "23(5)",
+      pages: "991-996",
+    },
+    {
+      author: "Qureshi, W.T., Alirhayim, Z., Blaha, M.J., et al.",
+      title: "Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project",
+      journal: "Circulation",
+      year: 2015,
+      volume: "131(21)",
+      pages: "1827-34",
+    },
+    {
+      author: "Gorman, M.W., Feigl, E.O.",
+      title: "Control of coronary blood flow during exercise",
+      journal: "Exerc Sport Sci Rev",
+      year: 2012,
+      volume: "40(1)",
+      pages: "37-42",
     },
   ],
 
   // mCAFT Test
   mcaft: [
     {
-      author: "Canadian Society for Exercise Physiology",
-      title: "mCAFT: modified Canadian Aerobic Fitness Test",
-      journal: "Health Canada",
-      year: 2003,
+      author: "Emily Wolfe Phillips, Deepa P. Rao, Leonard A. Kaminsky, Grant R. Tomkinson, Robert Ross, and Justin J. Lang",
+      title:
+        "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey",
+      journal: "Applied Physiology, Nutrition, and Metabolism",
+      year: 2020,
+      pages: "26 March 2020",
+    },
+    {
+      author: "Statistics Canada",
+      title: "Normative-referenced percentile values for physical fitness",
+      journal: "Health Reports",
+      year: 2019,
+      volume: "Vol. 30, no. 10",
+      pages: "pp. 14-22",
+      publisher: "Catalogue no. 82-003-X",
     },
   ],
 
   // Kasch Step Test
   kasch: [
     {
-      author: "Davis JA, Wilmore JH",
+      author: "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., & Boyer, J. L.",
       title:
-        "Validation of a bench stepping test for cardiorespiratory fitness classification of emergency service personnel",
-      journal: "Journal of Occupational Medicine",
-      year: 1979,
-      pages: "PMID: 5014456",
+        "A comparison of maximal oxygen uptake by treadmill and step-test procedures",
+      journal: "Journal of Applied Physiology",
+      year: 1966,
+      volume: "21(4)",
+      pages: "1387–1389",
+    },
+    {
+      author: "Kasch, F. W., & Boyer, J. L.",
+      title: "Adult fitness: Principles and practices",
+      publisher: "KASCH",
+      year: 1968,
     },
   ],
 
