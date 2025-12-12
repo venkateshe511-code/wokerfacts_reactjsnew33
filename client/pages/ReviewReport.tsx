@@ -2270,7 +2270,7 @@ export default function ReviewReport() {
                             if (testNameLower.includes("extension")) {
                               return {
                                 requirement:
-                                  "Cervical extension ��45° for functional neck movement",
+                                  "Cervical extension ≥45° for functional neck movement",
                                 norm: 45, // degrees
                                 functionalMin: 45,
                                 unit: "degrees",
@@ -2385,7 +2385,7 @@ export default function ReviewReport() {
                           if (testNameLower.includes("lift")) {
                             return {
                               requirement:
-                                "Lifting capacity ≥10 kg (Light) / ���25 kg (Medium work)",
+                                "Lifting capacity ≥10 kg (Light) / ≥25 kg (Medium work)",
                               lightWork: 10, // kg - DOT Level 2
                               mediumWork: 25, // kg - DOT Level 3
                               unit: "kg",
@@ -4233,7 +4233,7 @@ export default function ReviewReport() {
                                                 <p className="text-xs">
                                                   <strong>Men:</strong> 14.8 -
                                                   (1.379 × T) + (0.451 × T²) -
-                                                  (0.012 × T��) = VO₂ max
+                                                  (0.012 × T³) = VO₂ max
                                                   <br />
                                                   <strong>Women:</strong> 4.38 ×
                                                   T - 3.9 = VO₂ max

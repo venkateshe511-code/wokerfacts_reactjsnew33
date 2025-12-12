@@ -1993,7 +1993,7 @@ export default function Index() {
                   transit and at rest using industry-standard protocols
                 </p>
                 <p>
-                  �� <strong>Access Controls:</strong> Role-based access with
+                  • <strong>Access Controls:</strong> Role-based access with
                   multi-factor authentication
                 </p>
                 <p>

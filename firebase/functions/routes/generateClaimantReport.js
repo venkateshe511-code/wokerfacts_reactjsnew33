@@ -5503,21 +5503,121 @@ async function addReferenceChartsContent(children) {
 function paddedHeader(text) {
   return new TableRow({
     children: [
-      paddedCell(text, { bold: true, size: 11 }),
-      paddedCell(""),
-      paddedCell(""),
-      paddedCell(""),
-      paddedCell(""),
+      new TableCell({
+        borders: {
+          top: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        },
+        margins: { top: 40, bottom: 40, left: 50, right: 50 },
+        shading: { fill: "F5F5F5" },
+        children: [
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            children: [new TextRun({ text, bold: true, size: 11 })],
+          }),
+        ],
+      }),
+      new TableCell({
+        borders: {
+          top: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        },
+        margins: { top: 40, bottom: 40, left: 50, right: 50 },
+        shading: { fill: "F5F5F5" },
+        children: [new Paragraph("")],
+      }),
+      new TableCell({
+        borders: {
+          top: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        },
+        margins: { top: 40, bottom: 40, left: 50, right: 50 },
+        shading: { fill: "F5F5F5" },
+        children: [new Paragraph("")],
+      }),
+      new TableCell({
+        borders: {
+          top: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        },
+        margins: { top: 40, bottom: 40, left: 50, right: 50 },
+        shading: { fill: "F5F5F5" },
+        children: [new Paragraph("")],
+      }),
+      new TableCell({
+        borders: {
+          top: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        },
+        margins: { top: 40, bottom: 40, left: 50, right: 50 },
+        shading: { fill: "F5F5F5" },
+        children: [new Paragraph("")],
+      }),
     ],
   });
 }
 function paddedHeader1(text) {
   return new TableRow({
     children: [
-      paddedCell(text, { bold: true }),
-      paddedCell(""),
-      paddedCell(""),
-      paddedCell(""),  // <-- THIS WAS MISSING EARLIER
+      new TableCell({
+        borders: {
+          top: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        },
+        margins: { top: 40, bottom: 40, left: 50, right: 50 },
+        shading: { fill: "F5F5F5" },
+        children: [
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            children: [new TextRun({ text, size: 11, bold: true })],
+          }),
+        ],
+      }),
+      new TableCell({
+        borders: {
+          top: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        },
+        margins: { top: 40, bottom: 40, left: 50, right: 50 },
+        shading: { fill: "F5F5F5" },
+        children: [new Paragraph("")],
+      }),
+      new TableCell({
+        borders: {
+          top: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        },
+        margins: { top: 40, bottom: 40, left: 50, right: 50 },
+        shading: { fill: "F5F5F5" },
+        children: [new Paragraph("")],
+      }),
+      new TableCell({
+        borders: {
+          top: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+        },
+        margins: { top: 40, bottom: 40, left: 50, right: 50 },
+        shading: { fill: "F5F5F5" },
+        children: [new Paragraph("")],
+      }),
     ],
   });
 }
@@ -5537,10 +5637,10 @@ function row(label, eff100, eff50, sens = "", spec = "") {
 function tablePair(label, val1, val2, sig = "") {
   return new TableRow({
     children: [
-      paddedCell(label),
-      paddedCell(val1),
-      paddedCell(val2),
-      paddedCell(sig),
+      paddedCell(label, { size: 11 }),
+      paddedCell(val1, { size: 11 }),
+      paddedCell(val2, { size: 11 }),
+      paddedCell(sig, { size: 11 }),
     ],
   });
 }
@@ -5548,9 +5648,9 @@ function tablePair(label, val1, val2, sig = "") {
 function tableRow(a, b, c) {
   return new TableRow({
     children: [
-      paddedCell(a),
-      paddedCell(b),
-      paddedCell(c),
+      paddedCell(a, { size: 11 }),
+      paddedCell(b, { size: 11 }),
+      paddedCell(c, { size: 11 }),
     ],
   });
 }
@@ -5628,7 +5728,7 @@ async function addBlankenshipFCEContent(children, body) {
               insideHorizontal: { style: BorderStyle.NONE },
               insideVertical: { style: BorderStyle.NONE },
             },
-            margins: { top: 0, bottom: 0, left: 50, right: 50 },
+            margins: { top: 0, bottom: 0, left: 10, right: 10 },
             children: [
               // TABLE 4 Header
               new Paragraph({
@@ -5652,7 +5752,7 @@ async function addBlankenshipFCEContent(children, body) {
                   bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
                   left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
                   right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-                  insideHorizontal: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideHorizontal: { style: BorderStyle.NONE },
                   insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
                 },
                 rows: [
@@ -6137,8 +6237,26 @@ async function addBlankenshipFCEContent(children, body) {
                   }),
                 ],
               }),
+
+              new Paragraph({ text: "", spacing: { after: 100 } }),
+
+              // === Citation ===
+              new Paragraph({
+                spacing: { before: 80, after: 50 },
+                alignment: AlignmentType.CENTER,
+                children: [
+                  new TextRun({
+                    text: "Journal of orthopaedic & sports physical therapy | volume 37 | number 4 | April 2007.",
+                    size: 14,
+                    color: "666666",
+                    italics: true,
+                  }),
+                ],
+              }),
             ],
           }),
+
+
 
           // RIGHT COLUMN: TABLES 1, 2, 3
           new TableCell({
@@ -6151,7 +6269,7 @@ async function addBlankenshipFCEContent(children, body) {
               insideHorizontal: { style: BorderStyle.NONE },
               insideVertical: { style: BorderStyle.NONE },
             },
-            margins: { top: 0, bottom: 0, left: 50, right: 50 },
+            margins: { top: 0, bottom: 0, left: 10, right: 10 },
             children: [
               // TABLE 1 - Demographic Data of Participants
               new Paragraph({
@@ -6175,7 +6293,7 @@ async function addBlankenshipFCEContent(children, body) {
                   bottom: { style: BorderStyle.SINGLE, size: 1 },
                   left: { style: BorderStyle.SINGLE, size: 1 },
                   right: { style: BorderStyle.SINGLE, size: 1 },
-                  insideHorizontal: { style: BorderStyle.SINGLE, size: 1 },
+                  insideHorizontal: { style: BorderStyle.NONE },
                   insideVertical: { style: BorderStyle.SINGLE, size: 1 },
                 },
                 rows: [
@@ -6235,7 +6353,7 @@ async function addBlankenshipFCEContent(children, body) {
                 ],
               }),
 
-              new Paragraph({ text: "", spacing: { after: 200 } }),
+              new Paragraph({ text: "", spacing: { after: 100 } }),
 
               // TABLE 2 - Sensitivity and Specificity for Cutoff Scores
               new Paragraph({
@@ -6280,11 +6398,11 @@ async function addBlankenshipFCEContent(children, body) {
                 ],
               }),
 
-              new Paragraph({ text: "", spacing: { after: 200 } }),
+              new Paragraph({ text: "", spacing: { before: 100,after: 200 } }),
 
               // TABLE 3: Variables With 70% Sensitivity
               new Paragraph({
-                spacing: { before: 50, after: 30 },
+                spacing: { before: 0, after: 30 },
                 alignment: AlignmentType.CENTER,
                 children: [
                   new TextRun({
@@ -6303,7 +6421,7 @@ async function addBlankenshipFCEContent(children, body) {
                   bottom: { style: BorderStyle.SINGLE, size: 1 },
                   left: { style: BorderStyle.SINGLE, size: 1 },
                   right: { style: BorderStyle.SINGLE, size: 1 },
-                  insideHorizontal: { style: BorderStyle.SINGLE, size: 1 },
+                  insideHorizontal: { style: BorderStyle.NONE },
                   insideVertical: { style: BorderStyle.SINGLE, size: 1 },
                 },
                 rows: [
@@ -6396,21 +6514,21 @@ async function addBlankenshipFCEContent(children, body) {
 
   children.push(twoColumnLayout);
 
-  // === Citation ===
-  children.push(
-    new Paragraph({
-      spacing: { before: 80, after: 50 },
-      alignment: AlignmentType.CENTER,
-      children: [
-        new TextRun({
-          text: "Journal of orthopaedic & sports physical therapy | volume 37 | number 4 | April 2007.",
-          size: 14,
-          color: "666666",
-          italics: true,
-        }),
-      ],
-    }),
-  );
+  // // === Citation ===
+  // children.push(
+  //   new Paragraph({
+  //     spacing: { before: 80, after: 50 },
+  //     alignment: AlignmentType.CENTER,
+  //     children: [
+  //       new TextRun({
+  //         text: "Journal of orthopaedic & sports physical therapy | volume 37 | number 4 | April 2007.",
+  //         size: 14,
+  //         color: "666666",
+  //         italics: true,
+  //       }),
+  //     ],
+  //   }),
+  // );
 }
 
 async function addDigitalLibraryContent(children, body) {

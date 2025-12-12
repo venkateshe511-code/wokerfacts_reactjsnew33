@@ -2924,7 +2924,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                       if (testNameLower.includes("extension")) {
                         return {
                           requirement:
-                            "Shoulder extension ��45° for reach-behind activities",
+                            "Shoulder extension ≥45° for reach-behind activities",
                           norm: 45, // degrees
                           functionalMin: 30,
                           unit: "degrees",

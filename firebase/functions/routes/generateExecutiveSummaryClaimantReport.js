@@ -6281,7 +6281,7 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
         };
       if (testNameLower.includes("abduction"))
         return {
-          requirement: "Shoulder abduction ��150°",
+          requirement: "Shoulder abduction ≥150°",
           norm: 150,
           functionalMin: 120,
           unit: "degrees",
