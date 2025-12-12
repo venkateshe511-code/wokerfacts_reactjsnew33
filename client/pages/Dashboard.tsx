@@ -740,8 +740,8 @@ export default function Dashboard() {
           </p>
           <Tabs defaultValue="fce-prep" className="w-full">
             <TabsList className="grid w-full grid-cols-2 mb-4 border-2 border-gray-300 rounded-lg p-2 bg-white">
-              <TabsTrigger value="fce-prep">FCE Preparation</TabsTrigger>
-              <TabsTrigger value="balance-tests">
+              <TabsTrigger value="fce-prep" className="data-[state=active]:bg-blue-100 data-[state=active]:text-blue-900">FCE Preparation</TabsTrigger>
+              <TabsTrigger value="balance-tests" className="data-[state=active]:bg-blue-100 data-[state=active]:text-blue-900">
                 Additional Balance Tests
               </TabsTrigger>
             </TabsList>
