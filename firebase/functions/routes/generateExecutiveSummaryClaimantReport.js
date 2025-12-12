@@ -807,75 +807,79 @@ const testReferences = {
   // Bruce Treadmill Test
   "bruce-treadmill": [
     {
-      author: "Bruce, R. A., et al.",
+      author: "Bruce, R. A., Kusumi, F., Hosmer, D.",
       title:
         "Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease",
-      journal: "Am Heart J",
+      journal: "American Heart Journal",
       year: 1973,
+      volume: "85(4)",
+      pages: "546–562",
       fullText:
-        'Bruce, R. A., et al. "Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease." Am Heart J (1973).',
+        "Bruce RA, Kusumi F, Hosmer D. Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease. Am Heart J. 1973;85(4):546–562."
     },
     {
       author: "Acampa, W., Assante, R., Zampella, E.",
       title: "The role of treadmill exercise testing",
-      journal: "J Nucl Cardiol",
+      journal: "Journal of Nuclear Cardiology",
       year: 2016,
       volume: "23(5)",
-      pages: "991-996",
+      pages: "991–996",
       fullText:
-        "Acampa W, Assante R, Zampella E. The role of treadmill exercise testing. J Nucl Cardiol. 2016 Oct;23(5):991-996. [PubMed]",
+        "Acampa W, Assante R, Zampella E. The role of treadmill exercise testing. J Nucl Cardiol. 2016 Oct;23(5):991–996."
     },
     {
       author:
-        "Qureshi, W.T., Alirhayim, Z., Blaha, M.J., Juraschek, S.P., Keteyian, S.J., Brawner, C.A., Al-Mallah, M.H.",
+        "Qureshi, W. T., Alirhayim, Z., Blaha, M. J., Juraschek, S. P., Keteyian, S. J., Brawner, C. A., Al-Mallah, M. H.",
       title:
         "Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project",
       journal: "Circulation",
       year: 2015,
       volume: "131(21)",
-      pages: "1827-34",
+      pages: "1827–1834",
       fullText:
-        "Qureshi WT, Alirhayim Z, Blaha MJ, Juraschek SP, Keteyian SJ, Brawner CA, Al-Mallah MH. Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project. Circulation. 2015 May 26;131(21):1827-34. [PubMed]",
+        "Qureshi WT, Alirhayim Z, Blaha MJ, Juraschek SP, Keteyian SJ, Brawner CA, Al-Mallah MH. Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project. Circulation. 2015 May 26;131(21):1827–1834."
     },
     {
-      author: "Gorman, M.W., Feigl, E.O.",
+      author: "Gorman, M. W., Feigl, E. O.",
       title: "Control of coronary blood flow during exercise",
-      journal: "Exerc Sport Sci Rev",
+      journal: "Exercise and Sport Sciences Reviews",
       year: 2012,
       volume: "40(1)",
-      pages: "37-42",
+      pages: "37–42",
       fullText:
-        "Gorman MW, Feigl EO. Control of coronary blood flow during exercise. Exerc Sport Sci Rev. 2012 Jan;40(1):37-42. [PubMed]",
-    },
+        "Gorman MW, Feigl EO. Control of coronary blood flow during exercise. Exerc Sport Sci Rev. 2012 Jan;40(1):37–42."
+    }
   ],
 
-  // mCAFT Test
   mcaft: [
     {
       author:
-        "Emily Wolfe Phillips, Deepa P. Rao, Leonard A. Kaminsky, Grant R. Tomkinson, Robert Ross, and Justin J. Lang",
+        "Phillips, E. W., Rao, D. P., Kaminsky, L. A., Tomkinson, G. R., Ross, R., Lang, J. J.",
       title:
         "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey",
       journal: "Applied Physiology, Nutrition, and Metabolism",
       year: 2020,
+      volume: "45(6)",
+      pages: "667–676",
       fullText:
-        "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey: Emily Wolfe Phillips, Deepa P. Rao, Leonard A. Kaminsky, Grant R. Tomkinson, Robert Ross, and Justin J. Lang : Applied Physiology, Nutrition, and Metabolism 26 March 2020",
+        "Phillips EW, Rao DP, Kaminsky LA, Tomkinson GR, Ross R, Lang JJ. Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey. Appl Physiol Nutr Metab. 2020;45(6):667–676."
     },
     {
       author: "Statistics Canada",
       title: "Normative-referenced percentile values for physical fitness",
       journal: "Health Reports",
       year: 2019,
+      volume: "30(10)",
+      pages: "14–22",
       fullText:
-        "Health Reports, Vol. 30, no. 10, pp. 14-22, October 2019 • Statistics Canada, Catalogue no. 82-003-X: Normative-referenced percentile values for physical fitness",
-    },
+        "Statistics Canada. Normative-referenced percentile values for physical fitness. Health Reports. 2019;30(10):14–22. Catalogue no. 82-003-X."
+    }
   ],
 
-  // Kasch Step Test
   kasch: [
     {
       author:
-        "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., & Boyer, J. L.",
+        "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., Boyer, J. L.",
       title:
         "A comparison of maximal oxygen uptake by treadmill and step-test procedures",
       journal: "Journal of Applied Physiology",
@@ -883,16 +887,16 @@ const testReferences = {
       volume: "21(4)",
       pages: "1387–1389",
       fullText:
-        "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., & Boyer, J. L. (1966). A comparison of maximal oxygen uptake by treadmill and step-test procedures. Journal of Applied Physiology, 21(4), 1387–1389. This article, available through the American Physiological Society Journal, is a primary source for the test's validation.",
+        "Kasch FW, Phillips WH, Ross WD, Carter JE, Boyer JL. A comparison of maximal oxygen uptake by treadmill and step-test procedures. J Appl Physiol. 1966;21(4):1387–1389."
     },
     {
-      author: "Kasch, F. W., & Boyer, J. L.",
+      author: "Kasch, F. W., Boyer, J. L.",
       title: "Adult fitness: Principles and practices",
-      publisher: "KASCH",
+      publisher: "KASCH Publications",
       year: 1968,
       fullText:
-        "Kasch, F. W., & Boyer, J. L. (1968). Adult fitness: Principles and practices. KASCH. This work established the use of the recovery heart rate for fitness classification.",
-    },
+        "Kasch FW, Boyer JL. Adult fitness: Principles and practices. KASCH Publications; 1968."
+    }
   ],
 
   // YMCA Step Test
