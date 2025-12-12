@@ -738,8 +738,8 @@ export default function Dashboard() {
           <p className="text-sm font-medium text-gray-800 mb-2 italic">
             *Downloadable forms for FCE preparation and balance tests
           </p>
-          <Tabs defaultValue="fce-prep" className="w-full border-2 border-gray-300 rounded-lg p-4 bg-white">
-            <TabsList className="grid w-full grid-cols-2 mb-4">
+          <Tabs defaultValue="fce-prep" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 mb-4 border-2 border-gray-300 rounded-lg p-2 bg-white">
               <TabsTrigger value="fce-prep">FCE Preparation</TabsTrigger>
               <TabsTrigger value="balance-tests">
                 Additional Balance Tests
