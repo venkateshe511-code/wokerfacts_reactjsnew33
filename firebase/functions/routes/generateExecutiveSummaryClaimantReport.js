@@ -1088,6 +1088,11 @@ const getReferencesForTest = (testId) => {
 };
 
 function formatReference(reference) {
+  // If fullText is provided, use it directly
+  if (reference.fullText) {
+    return reference.fullText;
+  }
+
   let formatted = `${reference.title}, ${reference.author}`;
 
   if (reference.journal) formatted += `, ${reference.journal}`;
