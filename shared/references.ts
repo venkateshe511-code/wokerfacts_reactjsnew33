@@ -262,44 +262,91 @@ export const testReferences: TestCategoryReferences = {
   // Bruce Treadmill Test
   "bruce-treadmill": [
     {
-      author: "Bruce AM, Lawson D, Wasser TE, Raber-Baer D",
+      author: "Bruce, R. A., et al.",
       title:
-        "Comparison of Bruce treadmill exercise test protocols: Is ramped Bruce equal or superior to standard bruce in producing clinically valid studies for patients presenting for evaluation of cardiac ischemia or arrhythmia with body mass index equal to or greater than 30?",
-      journal: "J Nucl Med Technol",
-      year: 2013,
-      volume: "41(4)",
-      pages: "274-8",
+        "Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease",
+      journal: "Am Heart J",
+      year: 1973,
+      fullText:
+        'Bruce, R. A., et al. "Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease." Am Heart J (1973).',
     },
     {
-      author: "Poehlman CP, Llewellyn TL",
+      author: "Acampa, W., Assante, R., Zampella, E.",
+      title: "The role of treadmill exercise testing",
+      journal: "J Nucl Cardiol",
+      year: 2016,
+      volume: "23(5)",
+      pages: "991-996",
+      fullText:
+        "Acampa W, Assante R, Zampella E. The role of treadmill exercise testing. J Nucl Cardiol. 2016 Oct;23(5):991-996. [PubMed]",
+    },
+    {
+      author:
+        "Qureshi, W.T., Alirhayim, Z., Blaha, M.J., Juraschek, S.P., Keteyian, S.J., Brawner, C.A., Al-Mallah, M.H.",
       title:
-        "The Effects of Submaximal and Maximal Exercise on Heart Rate Variability",
-      journal: "Int J Exerc Sci",
-      year: 2019,
-      volume: "12(9)",
-      pages: "9-14",
+        "Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project",
+      journal: "Circulation",
+      year: 2015,
+      volume: "131(21)",
+      pages: "1827-34",
+      fullText:
+        "Qureshi WT, Alirhayim Z, Blaha MJ, Juraschek SP, Keteyian SJ, Brawner CA, Al-Mallah MH. Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project. Circulation. 2015 May 26;131(21):1827-34. [PubMed]",
+    },
+    {
+      author: "Gorman, M.W., Feigl, E.O.",
+      title: "Control of coronary blood flow during exercise",
+      journal: "Exerc Sport Sci Rev",
+      year: 2012,
+      volume: "40(1)",
+      pages: "37-42",
+      fullText:
+        "Gorman MW, Feigl EO. Control of coronary blood flow during exercise. Exerc Sport Sci Rev. 2012 Jan;40(1):37-42. [PubMed]",
     },
   ],
 
   // mCAFT Test
   mcaft: [
     {
-      author: "Canadian Society for Exercise Physiology",
-      title: "mCAFT: modified Canadian Aerobic Fitness Test",
-      journal: "Health Canada",
-      year: 2003,
+      author:
+        "Emily Wolfe Phillips, Deepa P. Rao, Leonard A. Kaminsky, Grant R. Tomkinson, Robert Ross, and Justin J. Lang",
+      title:
+        "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey",
+      journal: "Applied Physiology, Nutrition, and Metabolism",
+      year: 2020,
+      fullText:
+        "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey: Emily Wolfe Phillips, Deepa P. Rao, Leonard A. Kaminsky, Grant R. Tomkinson, Robert Ross, and Justin J. Lang : Applied Physiology, Nutrition, and Metabolism 26 March 2020",
+    },
+    {
+      author: "Statistics Canada",
+      title: "Normative-referenced percentile values for physical fitness",
+      journal: "Health Reports",
+      year: 2019,
+      fullText:
+        "Health Reports, Vol. 30, no. 10, pp. 14-22, October 2019 • Statistics Canada, Catalogue no. 82-003-X: Normative-referenced percentile values for physical fitness",
     },
   ],
 
   // Kasch Step Test
   kasch: [
     {
-      author: "Davis JA, Wilmore JH",
+      author:
+        "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., & Boyer, J. L.",
       title:
-        "Validation of a bench stepping test for cardiorespiratory fitness classification of emergency service personnel",
-      journal: "Journal of Occupational Medicine",
-      year: 1979,
-      pages: "PMID: 5014456",
+        "A comparison of maximal oxygen uptake by treadmill and step-test procedures",
+      journal: "Journal of Applied Physiology",
+      year: 1966,
+      volume: "21(4)",
+      pages: "1387–1389",
+      fullText:
+        "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., & Boyer, J. L. (1966). A comparison of maximal oxygen uptake by treadmill and step-test procedures. Journal of Applied Physiology, 21(4), 1387–1389. This article, available through the American Physiological Society Journal, is a primary source for the test's validation.",
+    },
+    {
+      author: "Kasch, F. W., & Boyer, J. L.",
+      title: "Adult fitness: Principles and practices",
+      publisher: "KASCH",
+      year: 1968,
+      fullText:
+        "Kasch, F. W., & Boyer, J. L. (1968). Adult fitness: Principles and practices. KASCH. This work established the use of the recovery heart rate for fitness classification.",
     },
   ],
 };
@@ -442,7 +489,14 @@ export const getReferencesForTest = (testId: string): Reference[] => {
 };
 
 // Helper function to format a reference
-export const formatReference = (reference: Reference): string => {
+export const formatReference = (
+  reference: Reference & { fullText?: string },
+): string => {
+  // If fullText is provided, use it directly
+  if (reference.fullText) {
+    return reference.fullText;
+  }
+
   let formatted = `${reference.title}, ${reference.author}`;
 
   if (reference.journal) {

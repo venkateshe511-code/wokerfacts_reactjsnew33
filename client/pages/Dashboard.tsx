@@ -739,9 +739,17 @@ export default function Dashboard() {
             *Downloadable forms for FCE preparation and balance tests
           </p>
           <Tabs defaultValue="fce-prep" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-4">
-              <TabsTrigger value="fce-prep">FCE Preparation</TabsTrigger>
-              <TabsTrigger value="balance-tests">
+            <TabsList className="grid w-full grid-cols-2 mb-4 border-2 border-slate-400 rounded-lg p-1 bg-slate-100">
+              <TabsTrigger
+                value="fce-prep"
+                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700"
+              >
+                FCE Preparation
+              </TabsTrigger>
+              <TabsTrigger
+                value="balance-tests"
+                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700"
+              >
                 Additional Balance Tests
               </TabsTrigger>
             </TabsList>

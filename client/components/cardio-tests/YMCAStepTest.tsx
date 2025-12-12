@@ -249,28 +249,28 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
   return (
     <div className="space-y-6">
       <Card className="border-0 shadow-2xl overflow-hidden">
-        <CardHeader className="bg-gradient-to-br from-purple-600 via-pink-500 to-red-500 text-white relative">
+        <CardHeader className="bg-gradient-to-br from-green-600 via-emerald-500 to-cyan-500 text-white relative">
           <div className="absolute inset-0 bg-black/10"></div>
           <CardTitle className="text-2xl font-bold text-center relative z-10 drop-shadow-lg">
             🪜 YMCA 3-MINUTE STEP TEST
           </CardTitle>
-          <p className="text-center text-pink-100 text-sm relative z-10 font-medium mt-2">
+          <p className="text-center text-emerald-100 text-sm relative z-10 font-medium mt-2">
             Purpose: To assess cardiorespiratory fitness using a 12-inch step
             with metronome set to 96 beats per minute.
           </p>
         </CardHeader>
-        <CardContent className="space-y-6 bg-gradient-to-br from-purple-50 via-pink-50 to-red-50">
+        <CardContent className="space-y-6 bg-gradient-to-br from-green-50 via-emerald-50 to-cyan-50">
           {/* Test Information Section */}
-          <div className="bg-white rounded-lg p-6 border-2 border-purple-300 shadow-md space-y-4">
+          <div className="bg-white rounded-lg p-6 border-2 border-green-300 shadow-md space-y-4">
             <div className="space-y-3">
-              <h3 className="font-bold text-lg text-purple-900">Purpose</h3>
+              <h3 className="font-bold text-lg text-green-900">Purpose</h3>
               <p className="text-gray-700 leading-relaxed">
                 To assess cardiorespiratory fitness.
               </p>
             </div>
 
             <div className="space-y-3">
-              <h3 className="font-bold text-lg text-purple-900">Equipment</h3>
+              <h3 className="font-bold text-lg text-green-900">Equipment</h3>
               <ul className="text-gray-700 leading-relaxed space-y-1">
                 <li>• 12-inch (30cm) step</li>
                 <li>• Metronome</li>
@@ -279,7 +279,7 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
             </div>
 
             <div className="space-y-3">
-              <h3 className="font-bold text-lg text-purple-900">Procedure</h3>
+              <h3 className="font-bold text-lg text-green-900">Procedure</h3>
               <ul className="text-gray-700 leading-relaxed space-y-2">
                 <li>• A metronome is set to 96 beats per minute.</li>
                 <li>
@@ -302,32 +302,32 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
           {/* Ratings Tables */}
           <div className="space-y-6">
             <div className="space-y-3">
-              <h3 className="font-bold text-lg text-purple-900">
+              <h3 className="font-bold text-lg text-green-900">
                 Ratings for Men by Age
               </h3>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse bg-white rounded-lg shadow-md">
                   <thead>
-                    <tr className="bg-purple-200">
-                      <th className="border border-purple-300 px-3 py-2 text-left font-semibold">
+                    <tr className="bg-green-200">
+                      <th className="border border-green-300 px-3 py-2 text-left font-semibold">
                         Rating
                       </th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         18-25
                       </th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         26-35
                       </th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         36-45
                       </th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         46-55
                       </th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         56-65
                       </th>
-                      <th className="border border-purple-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         ≥65
                       </th>
                     </tr>
@@ -336,27 +336,27 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
                     {menTable.map((row, idx) => (
                       <tr
                         key={idx}
-                        className={idx % 2 === 0 ? "bg-purple-50" : "bg-white"}
+                        className={idx % 2 === 0 ? "bg-green-50" : "bg-white"}
                       >
-                        <td className="border border-purple-300 px-3 py-2 font-semibold text-purple-900">
+                        <td className="border border-green-300 px-3 py-2 font-semibold text-green-900">
                           {row.rating}
                         </td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">
+                        <td className="border border-green-300 px-3 py-2 text-center">
                           {row["18-25"]}
                         </td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">
+                        <td className="border border-green-300 px-3 py-2 text-center">
                           {row["26-35"]}
                         </td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">
+                        <td className="border border-green-300 px-3 py-2 text-center">
                           {row["36-45"]}
                         </td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">
+                        <td className="border border-green-300 px-3 py-2 text-center">
                           {row["46-55"]}
                         </td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">
+                        <td className="border border-green-300 px-3 py-2 text-center">
                           {row["56-65"]}
                         </td>
-                        <td className="border border-purple-300 px-3 py-2 text-center">
+                        <td className="border border-green-300 px-3 py-2 text-center">
                           {row["≥65"]}
                         </td>
                       </tr>
@@ -367,32 +367,32 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
             </div>
 
             <div className="space-y-3">
-              <h3 className="font-bold text-lg text-purple-900">
+              <h3 className="font-bold text-lg text-green-900">
                 Ratings for Women by Age
               </h3>
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse bg-white rounded-lg shadow-md">
                   <thead>
-                    <tr className="bg-pink-200">
-                      <th className="border border-pink-300 px-3 py-2 text-left font-semibold">
+                    <tr className="bg-green-200">
+                      <th className="border border-green-300 px-3 py-2 text-left font-semibold">
                         Rating
                       </th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         18-25
                       </th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         26-35
                       </th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         36-45
                       </th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         46-55
                       </th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         56-65
                       </th>
-                      <th className="border border-pink-300 px-3 py-2 text-center font-semibold">
+                      <th className="border border-green-300 px-3 py-2 text-center font-semibold">
                         ≥65
                       </th>
                     </tr>
@@ -401,9 +401,9 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
                     {womenTable.map((row, idx) => (
                       <tr
                         key={idx}
-                        className={idx % 2 === 0 ? "bg-pink-50" : "bg-white"}
+                        className={idx % 2 === 0 ? "bg-green-50" : "bg-white"}
                       >
-                        <td className="border border-pink-300 px-3 py-2 font-semibold text-pink-900">
+                        <td className="border border-green-300 px-3 py-2 font-semibold text-green-900">
                           {row.rating}
                         </td>
                         <td className="border border-pink-300 px-3 py-2 text-center">
@@ -433,15 +433,15 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
           </div>
 
           {/* Client Rating Selection */}
-          <div className="bg-white rounded-lg p-4 border-2 border-purple-200">
+          <div className="bg-white rounded-lg p-4 border-2 border-green-200">
             <Label
               htmlFor="clientRating"
-              className="text-sm font-semibold text-purple-900"
+              className="text-sm font-semibold text-green-900"
             >
               Client Rating Based on Test Completion:
             </Label>
             <Select value={clientRating} onValueChange={setClientRating}>
-              <SelectTrigger className="mt-2 border-2 border-purple-400 focus:border-purple-600 focus:ring-2 focus:ring-purple-200 bg-white shadow-sm">
+              <SelectTrigger className="mt-2 border-2 border-green-400 focus:border-green-600 focus:ring-2 focus:ring-green-200 bg-white shadow-sm">
                 <SelectValue placeholder="Select rating" />
               </SelectTrigger>
               <SelectContent>
@@ -462,7 +462,7 @@ export default function YMCAStepTest({ onSave, initialData }: Props) {
               <Button
                 onClick={handleAddImages}
                 variant="outline"
-                className="border-2 border-purple-400 hover:border-purple-600 hover:bg-purple-50 px-8 py-3 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 font-semibold text-purple-700"
+                className="border-2 border-green-400 hover:border-green-600 hover:bg-green-50 px-8 py-3 shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-200 font-semibold text-green-700"
               >
                 <Upload className="w-4 h-4 mr-2" />
                 ADD CLIENT IMAGES

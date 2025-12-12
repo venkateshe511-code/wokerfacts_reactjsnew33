@@ -163,7 +163,7 @@ const getImageBuffer = async (src) => {
       try {
         const tmpPath = path.join(os.tmpdir(), `docx_img_${Date.now()}.bin`);
         fs.writeFileSync(tmpPath, buffer);
-      } catch { }
+      } catch {}
     }
 
     return buffer;
@@ -807,44 +807,91 @@ const testReferences = {
   // Bruce Treadmill Test
   "bruce-treadmill": [
     {
-      author: "Bruce AM, Lawson D, Wasser TE, Raber-Baer D",
+      author: "Bruce, R. A., et al.",
       title:
-        "Comparison of Bruce treadmill exercise test protocols: Is ramped Bruce equal or superior to standard bruce in producing clinically valid studies for patients presenting for evaluation of cardiac ischemia or arrhythmia with body mass index equal to or greater than 30?",
-      journal: "J Nucl Med Technol",
-      year: 2013,
-      volume: "41(4)",
-      pages: "274-8",
+        "Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease",
+      journal: "Am Heart J",
+      year: 1973,
+      fullText:
+        'Bruce, R. A., et al. "Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease." Am Heart J (1973).',
     },
     {
-      author: "Poehlman CP, Llewellyn TL",
+      author: "Acampa, W., Assante, R., Zampella, E.",
+      title: "The role of treadmill exercise testing",
+      journal: "J Nucl Cardiol",
+      year: 2016,
+      volume: "23(5)",
+      pages: "991-996",
+      fullText:
+        "Acampa W, Assante R, Zampella E. The role of treadmill exercise testing. J Nucl Cardiol. 2016 Oct;23(5):991-996. [PubMed]",
+    },
+    {
+      author:
+        "Qureshi, W.T., Alirhayim, Z., Blaha, M.J., Juraschek, S.P., Keteyian, S.J., Brawner, C.A., Al-Mallah, M.H.",
       title:
-        "The Effects of Submaximal and Maximal Exercise on Heart Rate Variability",
-      journal: "Int J Exerc Sci",
-      year: 2019,
-      volume: "12(9)",
-      pages: "9-14",
+        "Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project",
+      journal: "Circulation",
+      year: 2015,
+      volume: "131(21)",
+      pages: "1827-34",
+      fullText:
+        "Qureshi WT, Alirhayim Z, Blaha MJ, Juraschek SP, Keteyian SJ, Brawner CA, Al-Mallah MH. Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project. Circulation. 2015 May 26;131(21):1827-34. [PubMed]",
+    },
+    {
+      author: "Gorman, M.W., Feigl, E.O.",
+      title: "Control of coronary blood flow during exercise",
+      journal: "Exerc Sport Sci Rev",
+      year: 2012,
+      volume: "40(1)",
+      pages: "37-42",
+      fullText:
+        "Gorman MW, Feigl EO. Control of coronary blood flow during exercise. Exerc Sport Sci Rev. 2012 Jan;40(1):37-42. [PubMed]",
     },
   ],
 
   // mCAFT Test
   mcaft: [
     {
-      author: "Canadian Society for Exercise Physiology",
-      title: "mCAFT: modified Canadian Aerobic Fitness Test",
-      journal: "Health Canada",
-      year: 2003,
+      author:
+        "Emily Wolfe Phillips, Deepa P. Rao, Leonard A. Kaminsky, Grant R. Tomkinson, Robert Ross, and Justin J. Lang",
+      title:
+        "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey",
+      journal: "Applied Physiology, Nutrition, and Metabolism",
+      year: 2020,
+      fullText:
+        "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey: Emily Wolfe Phillips, Deepa P. Rao, Leonard A. Kaminsky, Grant R. Tomkinson, Robert Ross, and Justin J. Lang : Applied Physiology, Nutrition, and Metabolism 26 March 2020",
+    },
+    {
+      author: "Statistics Canada",
+      title: "Normative-referenced percentile values for physical fitness",
+      journal: "Health Reports",
+      year: 2019,
+      fullText:
+        "Health Reports, Vol. 30, no. 10, pp. 14-22, October 2019 • Statistics Canada, Catalogue no. 82-003-X: Normative-referenced percentile values for physical fitness",
     },
   ],
 
   // Kasch Step Test
   kasch: [
     {
-      author: "Davis JA, Wilmore JH",
+      author:
+        "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., & Boyer, J. L.",
       title:
-        "Validation of a bench stepping test for cardiorespiratory fitness classification of emergency service personnel",
-      journal: "Journal of Occupational Medicine",
-      year: 1979,
-      pages: "PMID: 5014456",
+        "A comparison of maximal oxygen uptake by treadmill and step-test procedures",
+      journal: "Journal of Applied Physiology",
+      year: 1966,
+      volume: "21(4)",
+      pages: "1387–1389",
+      fullText:
+        "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., & Boyer, J. L. (1966). A comparison of maximal oxygen uptake by treadmill and step-test procedures. Journal of Applied Physiology, 21(4), 1387–1389. This article, available through the American Physiological Society Journal, is a primary source for the test's validation.",
+    },
+    {
+      author: "Kasch, F. W., & Boyer, J. L.",
+      title: "Adult fitness: Principles and practices",
+      publisher: "KASCH",
+      year: 1968,
+      fullText:
+        "Kasch, F. W., & Boyer, J. L. (1968). Adult fitness: Principles and practices. KASCH. This work established the use of the recovery heart rate for fitness classification.",
     },
   ],
 
@@ -854,13 +901,13 @@ const testReferences = {
       author: "YMCA of the USA",
       title: "YMCA Fitness Testing and Assessment Manual",
       publisher: "Human Kinetics Publishers",
-      year: 2000
+      year: 2000,
     },
     {
       author: "Golding LA, Myers CR, Sinning WE",
       title: "Y's Way to Physical Fitness",
       publisher: "YMCA of the USA",
-      year: 1989
+      year: 1989,
     },
     {
       author:
@@ -870,7 +917,7 @@ const testReferences = {
       journal: "Healthcare",
       year: 2020,
       pmcid: "PMC7171059",
-      pmid: "32328445"
+      pmid: "32328445",
     },
     {
       author: "Evan L. Matthews, Fiona M. Horvat, David A. Phillips",
@@ -879,18 +926,16 @@ const testReferences = {
       journal: "Measurement in Physical Education and Exercise Science",
       year: 2021,
       pages: "155–164",
-      doi: "10.1080/1091367X.2021.1964507"
-    }
-  ]
-  ,
-
+      doi: "10.1080/1091367X.2021.1964507",
+    },
+  ],
   // YMCA Submaximal Treadmill Test
   "ymca-submaximal-treadmill-test": [
     {
       author: "YMCA of the USA",
       title: "YMCA Fitness Testing and Assessment Manual",
       publisher: "Human Kinetics Publishers",
-      year: 2000
+      year: 2000,
     },
     {
       author: "Ebbeling CB, Ward A, Puleo EM, Widrick J, Rippe JM",
@@ -898,7 +943,7 @@ const testReferences = {
       journal: "Medicine & Science in Sports & Exercise",
       year: 1991,
       volume: "23(8)",
-      pages: "966–973"
+      pages: "966–973",
     },
     {
       author:
@@ -909,10 +954,9 @@ const testReferences = {
       year: 2007,
       volume: "11(2)",
       pages: "61–72",
-      doi: "10.1080/10913670701294047"
-    }
-  ]
-
+      doi: "10.1080/10913670701294047",
+    },
+  ],
 };
 // Map test IDs to reference categories
 const testToCategory = {
@@ -1054,6 +1098,11 @@ const getReferencesForTest = (testId) => {
 };
 
 function formatReference(reference) {
+  // If fullText is provided, use it directly
+  if (reference.fullText) {
+    return reference.fullText;
+  }
+
   let formatted = `${reference.title}, ${reference.author}`;
 
   if (reference.journal) formatted += `, ${reference.journal}`;
@@ -1192,13 +1241,13 @@ async function appendImageGrid(children, images, opts) {
             alignment: AlignmentType.START,
             children: data
               ? [
-                new ImageRun({
-                  data,
-                  transformation: { width: imageWidth, height: imageHeight },
-                }),
-                new TextRun({ text: "\n" }),
-                new TextRun({ text: name, size: 16, color: "6B7280" }),
-              ]
+                  new ImageRun({
+                    data,
+                    transformation: { width: imageWidth, height: imageHeight },
+                  }),
+                  new TextRun({ text: "\n" }),
+                  new TextRun({ text: name, size: 16, color: "6B7280" }),
+                ]
               : [new TextRun({ text: name })],
           }),
         ],
@@ -1220,12 +1269,12 @@ async function appendImageGrid(children, images, opts) {
       rows: rows.length
         ? rows
         : [
-          new TableRow({
-            children: [
-              new TableCell({ children: [new Paragraph("No images")] }),
-            ],
-          }),
-        ],
+            new TableRow({
+              children: [
+                new TableCell({ children: [new Paragraph("No images")] }),
+              ],
+            }),
+          ],
     }),
   );
 }
@@ -1288,13 +1337,13 @@ async function appendSampleIllustrationsForTest(children, test) {
 function appendHeartRateLine(children, test) {
   const pre = Number(
     test.leftMeasurements?.preHeartRate ||
-    test.rightMeasurements?.preHeartRate ||
-    0,
+      test.rightMeasurements?.preHeartRate ||
+      0,
   );
   const post = Number(
     test.leftMeasurements?.postHeartRate ||
-    test.rightMeasurements?.postHeartRate ||
-    0,
+      test.rightMeasurements?.postHeartRate ||
+      0,
   );
   if (!pre && !post) return;
 
@@ -2011,23 +2060,23 @@ function addKaschDocxContent(children, test) {
                 children: r.map((c, idx) =>
                   idx === 0
                     ? new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [
-                            new TextRun({ text: c, bold: true, size: 16 }),
-                          ],
-                        }),
-                      ],
-                    })
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [
+                              new TextRun({ text: c, bold: true, size: 16 }),
+                            ],
+                          }),
+                        ],
+                      })
                     : new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [new TextRun({ text: c, size: 16 })],
-                        }),
-                      ],
-                    }),
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: c, size: 16 })],
+                          }),
+                        ],
+                      }),
                 ),
               }),
           ),
@@ -2221,23 +2270,23 @@ async function addYMCAStepDocxContent(children, test) {
               children: r.map((c, idx) =>
                 idx === 0
                   ? new TableCell({
-                    children: [
-                      new Paragraph({
-                        alignment: AlignmentType.CENTER,
-                        children: [
-                          new TextRun({ text: c, bold: true, size: 16 }),
-                        ],
-                      }),
-                    ],
-                  })
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [
+                            new TextRun({ text: c, bold: true, size: 16 }),
+                          ],
+                        }),
+                      ],
+                    })
                   : new TableCell({
-                    children: [
-                      new Paragraph({
-                        alignment: AlignmentType.CENTER,
-                        children: [new TextRun({ text: c, size: 16 })],
-                      }),
-                    ],
-                  }),
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [new TextRun({ text: c, size: 16 })],
+                        }),
+                      ],
+                    }),
               ),
             }),
         ),
@@ -2332,23 +2381,23 @@ async function addYMCAStepDocxContent(children, test) {
               children: r.map((c, idx) =>
                 idx === 0
                   ? new TableCell({
-                    children: [
-                      new Paragraph({
-                        alignment: AlignmentType.CENTER,
-                        children: [
-                          new TextRun({ text: c, bold: true, size: 16 }),
-                        ],
-                      }),
-                    ],
-                  })
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [
+                            new TextRun({ text: c, bold: true, size: 16 }),
+                          ],
+                        }),
+                      ],
+                    })
                   : new TableCell({
-                    children: [
-                      new Paragraph({
-                        alignment: AlignmentType.CENTER,
-                        children: [new TextRun({ text: c, size: 16 })],
-                      }),
-                    ],
-                  }),
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [new TextRun({ text: c, size: 16 })],
+                        }),
+                      ],
+                    }),
               ),
             }),
         ),
@@ -2616,9 +2665,9 @@ async function addCardioDocxContent(children, test) {
                 children: [
                   imageBuffer
                     ? new ImageRun({
-                      data: imageBuffer,
-                      transformation: { width: 120, height: 120 },
-                    })
+                        data: imageBuffer,
+                        transformation: { width: 120, height: 120 },
+                      })
                     : new TextRun({ text: "[Image Missing]", size: 16 }),
                 ],
                 alignment: AlignmentType.LEFT,
@@ -3206,9 +3255,9 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
                   children: [
                     imageBuffer
                       ? new ImageRun({
-                        data: imageBuffer,
-                        transformation: { width: 120, height: 120 },
-                      })
+                          data: imageBuffer,
+                          transformation: { width: 120, height: 120 },
+                        })
                       : new TextRun({ text: "[Image Missing]", size: 16 }),
                   ],
                   alignment: AlignmentType.LEFT,
@@ -3480,20 +3529,20 @@ function computeCrosschecksFromUnifiedTests(
   // Hand grip MVE
   const gripMVEValid = gripTests.length
     ? gripTests.every((test) => {
-      const leftAvg = _calcAverage(test.leftMeasurements);
-      const rightAvg = _calcAverage(test.rightMeasurements);
-      const bilateralDiff = _bilateralDeficiency(leftAvg, rightAvg);
-      return bilateralDiff <= 20;
-    })
+        const leftAvg = _calcAverage(test.leftMeasurements);
+        const rightAvg = _calcAverage(test.rightMeasurements);
+        const bilateralDiff = _bilateralDeficiency(leftAvg, rightAvg);
+        return bilateralDiff <= 20;
+      })
     : null;
 
   // Pinch grip CV
   const pinchValid = pinchTests.length
     ? pinchTests.every((test) => {
-      const leftCV = _calcCV(test.leftMeasurements);
-      const rightCV = _calcCV(test.rightMeasurements);
-      return leftCV <= 15 && rightCV <= 15;
-    })
+        const leftCV = _calcCV(test.leftMeasurements);
+        const rightCV = _calcCV(test.rightMeasurements);
+        return leftCV <= 15 && rightCV <= 15;
+      })
     : null;
 
   // Dynamic lift HR fluctuation
@@ -3511,52 +3560,52 @@ function computeCrosschecksFromUnifiedTests(
 
   const hrConsistent = dynamicLifts.length
     ? dynamicLifts.some((test) => {
-      const preHR =
-        (test.leftMeasurements &&
-          Number(test.leftMeasurements.preHeartRate)) ||
-        (test.rightMeasurements &&
-          Number(test.rightMeasurements.preHeartRate)) ||
-        0;
-      const postHR =
-        (test.leftMeasurements &&
-          Number(test.leftMeasurements.postHeartRate)) ||
-        (test.rightMeasurements &&
-          Number(test.rightMeasurements.postHeartRate)) ||
-        0;
-      return postHR > preHR;
-    })
+        const preHR =
+          (test.leftMeasurements &&
+            Number(test.leftMeasurements.preHeartRate)) ||
+          (test.rightMeasurements &&
+            Number(test.rightMeasurements.preHeartRate)) ||
+          0;
+        const postHR =
+          (test.leftMeasurements &&
+            Number(test.leftMeasurements.postHeartRate)) ||
+          (test.rightMeasurements &&
+            Number(test.rightMeasurements.postHeartRate)) ||
+          0;
+        return postHR > preHR;
+      })
     : null;
 
   // ROM consistency
   const romValid = romTests.length
     ? romTests.every((test) => {
-      const leftTrials = _getTrialValues(test.leftMeasurements);
-      const rightTrials = _getTrialValues(test.rightMeasurements);
-      const all = [...leftTrials, ...rightTrials].filter((v) =>
-        Number.isFinite(v),
-      );
-      if (all.length < 6) return false;
+        const leftTrials = _getTrialValues(test.leftMeasurements);
+        const rightTrials = _getTrialValues(test.rightMeasurements);
+        const all = [...leftTrials, ...rightTrials].filter((v) =>
+          Number.isFinite(v),
+        );
+        if (all.length < 6) return false;
 
-      for (let i = 0; i <= all.length - 3; i++) {
-        const t1 = all[i],
-          t2 = all[i + 1],
-          t3 = all[i + 2];
-        const maxDiff = Math.max(
-          Math.abs(t1 - t2),
-          Math.abs(t2 - t3),
-          Math.abs(t1 - t3),
-        );
-        const avg = (t1 + t2 + t3) / 3;
-        const denom = avg === 0 ? 1 : avg;
-        const maxPerc = Math.max(
-          (Math.abs(t1 - avg) / denom) * 100,
-          (Math.abs(t2 - avg) / denom) * 100,
-          (Math.abs(t3 - avg) / denom) * 100,
-        );
-        if (maxDiff <= 5 && maxPerc <= 10) return true;
-      }
-      return false;
-    })
+        for (let i = 0; i <= all.length - 3; i++) {
+          const t1 = all[i],
+            t2 = all[i + 1],
+            t3 = all[i + 2];
+          const maxDiff = Math.max(
+            Math.abs(t1 - t2),
+            Math.abs(t2 - t3),
+            Math.abs(t1 - t3),
+          );
+          const avg = (t1 + t2 + t3) / 3;
+          const denom = avg === 0 ? 1 : avg;
+          const maxPerc = Math.max(
+            (Math.abs(t1 - avg) / denom) * 100,
+            (Math.abs(t2 - avg) / denom) * 100,
+            (Math.abs(t3 - avg) / denom) * 100,
+          );
+          if (maxDiff <= 5 && maxPerc <= 10) return true;
+        }
+        return false;
+      })
     : null;
 
   // Test/retest trial consistency
@@ -3591,12 +3640,12 @@ function computeCrosschecksFromUnifiedTests(
   // Dominant side monitoring
   const dominantSideValid = allTests.length
     ? allTests.every((test) => {
-      const l = _calcAverage(test.leftMeasurements);
-      const r = _calcAverage(test.rightMeasurements);
-      if (Math.min(l, r) === 0) return true; // avoid divide-by-zero
-      const ratio = Math.max(l, r) / Math.min(l, r);
-      return ratio <= 1.1; // ~10%
-    })
+        const l = _calcAverage(test.leftMeasurements);
+        const r = _calcAverage(test.rightMeasurements);
+        if (Math.min(l, r) === 0) return true; // avoid divide-by-zero
+        const ratio = Math.max(l, r) / Math.min(l, r);
+        return ratio <= 1.1; // ~10%
+      })
     : null;
 
   // Distraction test (6b) and diagnosis consistency (6c)
@@ -3694,25 +3743,25 @@ function computeCrosschecksFromUnifiedTests(
     ...(distractionPass === null
       ? []
       : [
-        {
-          name: "Distraction test consistency",
-          description:
-            "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
-          pass: distractionPass,
-          applicable: true,
-        },
-      ]),
+          {
+            name: "Distraction test consistency",
+            description:
+              "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
+            pass: distractionPass,
+            applicable: true,
+          },
+        ]),
     ...(diagnosisPass === null
       ? []
       : [
-        {
-          name: "Consistency with diagnosis",
-          description:
-            "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
-          pass: diagnosisPass,
-          applicable: true,
-        },
-      ]),
+          {
+            name: "Consistency with diagnosis",
+            description:
+              "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
+            pass: diagnosisPass,
+            applicable: true,
+          },
+        ]),
     {
       name: "Coefficient of Variation (CV)",
       description:
@@ -3968,8 +4017,9 @@ async function addCoverPage(children, body) {
   children.push(coverRow("Date of Evaluation(s)", displayEvalDate));
 
   // Return footer content so caller can place at page bottom
-  const phoneFax = `Phone: ${clinicPhone || ""}${clinicPhone && clinicFax ? "    " : ""
-    }${clinicPhone ? `Fax: ${clinicPhone}` : ""}`.trim();
+  const phoneFax = `Phone: ${clinicPhone || ""}${
+    clinicPhone && clinicFax ? "    " : ""
+  }${clinicPhone ? `Fax: ${clinicPhone}` : ""}`.trim();
 
   const footerChildren = [];
   footerChildren.push(
@@ -4166,14 +4216,14 @@ async function addClientInformation(children, body) {
   const dob = cd.dateOfBirth || "";
   const age = dob
     ? (() => {
-      try {
-        const d = new Date(dob);
-        const diff = Date.now() - d.getTime();
-        return Math.max(0, Math.floor(diff / (365.25 * 24 * 3600 * 1000)));
-      } catch {
-        return "";
-      }
-    })()
+        try {
+          const d = new Date(dob);
+          const diff = Date.now() - d.getTime();
+          return Math.max(0, Math.floor(diff / (365.25 * 24 * 3600 * 1000)));
+        } catch {
+          return "";
+        }
+      })()
     : "";
   const heightDisp = `${cd.height || ""} ${cd.heightUnit || ""}`.trim();
   const weightDisp = `${cd.weight || ""} ${cd.weightUnit || ""}`.trim();
@@ -4499,42 +4549,42 @@ async function addClientInformation(children, body) {
                 }),
                 sampleImageBuffer
                   ? new Paragraph({
-                    children: [
-                      new ImageRun({
-                        data: sampleImageBuffer,
-                        transformation: { width: 120, height: 120 },
-                      }),
-                    ],
-                    alignment: AlignmentType.CENTER,
-                    spacing: { after: 10 },
-                  })
+                      children: [
+                        new ImageRun({
+                          data: sampleImageBuffer,
+                          transformation: { width: 120, height: 120 },
+                        }),
+                      ],
+                      alignment: AlignmentType.CENTER,
+                      spacing: { after: 10 },
+                    })
                   : new Paragraph({
-                    text: "[Photo Placeholder]",
-                    alignment: AlignmentType.START,
-                    spacing: { after: 10 },
-                    border: {
-                      top: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
+                      text: "[Photo Placeholder]",
+                      alignment: AlignmentType.START,
+                      spacing: { after: 10 },
+                      border: {
+                        top: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
+                        bottom: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
+                        left: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
+                        right: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
                       },
-                      bottom: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
-                      },
-                      left: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
-                      },
-                      right: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
-                      },
-                    },
-                  }),
+                    }),
 
                 new Paragraph({
                   children: [
@@ -4737,11 +4787,11 @@ async function addClientInformation(children, body) {
             spacing: { before: 0, after: 0 },
             children: buf
               ? [
-                new ImageRun({
-                  data: buf,
-                  transformation: { width: 130, height: 200 },
-                }),
-              ]
+                  new ImageRun({
+                    data: buf,
+                    transformation: { width: 130, height: 200 },
+                  }),
+                ]
               : [new TextRun(`Image ${idx + 1} not available`)],
           }),
         ],
@@ -5655,7 +5705,6 @@ function tableRow(a, b, c) {
   });
 }
 
-
 async function addBlankenshipFCEContent(children, body) {
   // === Page Break ===
   children.push(new Paragraph({ children: [new PageBreak()] }));
@@ -5749,26 +5798,66 @@ async function addBlankenshipFCEContent(children, body) {
                 width: { size: 100, type: WidthType.PERCENTAGE },
                 borders: {
                   top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-                  bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  bottom: {
+                    style: BorderStyle.SINGLE,
+                    size: 1,
+                    color: "000000",
+                  },
                   left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-                  right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  right: {
+                    style: BorderStyle.SINGLE,
+                    size: 1,
+                    color: "000000",
+                  },
                   insideHorizontal: { style: BorderStyle.NONE },
-                  insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
+                  insideVertical: {
+                    style: BorderStyle.SINGLE,
+                    size: 1,
+                    color: "000000",
+                  },
                 },
                 rows: [
                   new TableRow({
                     children: [
-                      paddedCell("Variable/Score", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("100% Effort", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("50% Effort", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("Sensitivity (%)", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("Specificity (%)", { bold: true, size: 12, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Variable/Score", {
+                        bold: true,
+                        size: 12,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("100% Effort", {
+                        bold: true,
+                        size: 12,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("50% Effort", {
+                        bold: true,
+                        size: 12,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("Sensitivity (%)", {
+                        bold: true,
+                        size: 12,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("Specificity (%)", {
+                        bold: true,
+                        size: 12,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
                     ],
                   }),
                   // Overreaction for static
                   new TableRow({
                     children: [
-                      paddedCell("Overreaction for static", { size: 11, bold: true }),
+                      paddedCell("Overreaction for static", {
+                        size: 11,
+                        bold: true,
+                      }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -5805,7 +5894,10 @@ async function addBlankenshipFCEContent(children, body) {
                   // Do movement patterns match pain for static
                   new TableRow({
                     children: [
-                      paddedCell("Do movement patterns match pain for static", { size: 11, bold: true }),
+                      paddedCell("Do movement patterns match pain for static", {
+                        size: 11,
+                        bold: true,
+                      }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -5842,7 +5934,10 @@ async function addBlankenshipFCEContent(children, body) {
                   // Do movement patterns improve with distraction for static
                   new TableRow({
                     children: [
-                      paddedCell("Do movement patterns improve with distraction for static", { size: 11, bold: true }),
+                      paddedCell(
+                        "Do movement patterns improve with distraction for static",
+                        { size: 11, bold: true },
+                      ),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -5879,7 +5974,10 @@ async function addBlankenshipFCEContent(children, body) {
                   // OMH greater than high extrapolation for shoulder
                   new TableRow({
                     children: [
-                      paddedCell("OMH greater than high extrapolation for shoulder", { size: 11, bold: true }),
+                      paddedCell(
+                        "OMH greater than high extrapolation for shoulder",
+                        { size: 11, bold: true },
+                      ),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -5916,7 +6014,10 @@ async function addBlankenshipFCEContent(children, body) {
                   // OMH greater than high extrapolation for overhead
                   new TableRow({
                     children: [
-                      paddedCell("OMH greater than high extrapolation for overhead", { size: 11, bold: true }),
+                      paddedCell(
+                        "OMH greater than high extrapolation for overhead",
+                        { size: 11, bold: true },
+                      ),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -5953,7 +6054,10 @@ async function addBlankenshipFCEContent(children, body) {
                   // REG consistent right
                   new TableRow({
                     children: [
-                      paddedCell("REG consistent right", { size: 11, bold: true }),
+                      paddedCell("REG consistent right", {
+                        size: 11,
+                        bold: true,
+                      }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -5990,7 +6094,10 @@ async function addBlankenshipFCEContent(children, body) {
                   // REG consistent left
                   new TableRow({
                     children: [
-                      paddedCell("REG consistent left", { size: 11, bold: true }),
+                      paddedCell("REG consistent left", {
+                        size: 11,
+                        bold: true,
+                      }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -6064,7 +6171,10 @@ async function addBlankenshipFCEContent(children, body) {
                   // Movement pattern matches pain for HT
                   new TableRow({
                     children: [
-                      paddedCell("Movement pattern matches pain for HT", { size: 11, bold: true }),
+                      paddedCell("Movement pattern matches pain for HT", {
+                        size: 11,
+                        bold: true,
+                      }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -6101,7 +6211,10 @@ async function addBlankenshipFCEContent(children, body) {
                   // Movement patterns improve with distraction for HT
                   new TableRow({
                     children: [
-                      paddedCell("Movement patterns improve with distraction for HT", { size: 11, bold: true }),
+                      paddedCell(
+                        "Movement patterns improve with distraction for HT",
+                        { size: 11, bold: true },
+                      ),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -6138,7 +6251,10 @@ async function addBlankenshipFCEContent(children, body) {
                   // Overreaction (OMH)
                   new TableRow({
                     children: [
-                      paddedCell("Overreaction (OMH)", { size: 11, bold: true }),
+                      paddedCell("Overreaction (OMH)", {
+                        size: 11,
+                        bold: true,
+                      }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
                       paddedCell("", { size: 11 }),
@@ -6256,8 +6372,6 @@ async function addBlankenshipFCEContent(children, body) {
             ],
           }),
 
-
-
           // RIGHT COLUMN: TABLES 1, 2, 3
           new TableCell({
             width: { size: 50, type: WidthType.PERCENTAGE },
@@ -6297,14 +6411,29 @@ async function addBlankenshipFCEContent(children, body) {
                   insideVertical: { style: BorderStyle.SINGLE, size: 1 },
                 },
                 rows: [
-
                   // HEADER
                   new TableRow({
                     children: [
-                      paddedCell("Subject Characteristics", { bold: true, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("100% Effort", { bold: true, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("50% Effort", { bold: true, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("Significance Test", { bold: true, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Subject Characteristics", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("100% Effort", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("50% Effort", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("Significance Test", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
                     ],
                   }),
 
@@ -6383,9 +6512,21 @@ async function addBlankenshipFCEContent(children, body) {
                 rows: [
                   new TableRow({
                     children: [
-                      paddedCell("Cutoff Score", { bold: true, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("Sensitivity", { bold: true, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("Specificity", { bold: true, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Cutoff Score", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("Sensitivity", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("Specificity", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
                     ],
                   }),
 
@@ -6398,7 +6539,7 @@ async function addBlankenshipFCEContent(children, body) {
                 ],
               }),
 
-              new Paragraph({ text: "", spacing: { before: 100,after: 200 } }),
+              new Paragraph({ text: "", spacing: { before: 100, after: 200 } }),
 
               // TABLE 3: Variables With 70% Sensitivity
               new Paragraph({
@@ -6428,11 +6569,31 @@ async function addBlankenshipFCEContent(children, body) {
                   // Header
                   new TableRow({
                     children: [
-                      paddedCell("Variable/Score", { bold: true, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("100% Effort", { bold: true, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("50% Effort", { bold: true, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("Sensitivity (%)", { bold: true, fill: "404040", color: "FFFFFF" }),
-                      paddedCell("Specificity (%)", { bold: true, fill: "404040", color: "FFFFFF" }),
+                      paddedCell("Variable/Score", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("100% Effort", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("50% Effort", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("Sensitivity (%)", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
+                      paddedCell("Specificity (%)", {
+                        bold: true,
+                        fill: "404040",
+                        color: "FFFFFF",
+                      }),
                     ],
                   }),
 
@@ -6447,7 +6608,9 @@ async function addBlankenshipFCEContent(children, body) {
                   // -------------------------
                   // 2. OMH greater than leg test
                   // -------------------------
-                  paddedHeader("OMH greater than high extrapolation of the leg test"),
+                  paddedHeader(
+                    "OMH greater than high extrapolation of the leg test",
+                  ),
                   row("Invalid", 5, 22, 78.6, 72.2),
                   row("Equivocal", 0, 0),
                   row("Valid", 13, 6),
@@ -6475,7 +6638,6 @@ async function addBlankenshipFCEContent(children, body) {
                   row("Invalid", 10, 21, 72.4, 47.4),
                   row("Equivocal", 0, 0),
                   row("Valid", 8, 9),
-
 
                   // Abbreviations row
                   new TableRow({
@@ -6593,9 +6755,9 @@ async function addDigitalLibraryContent(children, body) {
                 children: [
                   imageBuffer
                     ? new ImageRun({
-                      data: imageBuffer,
-                      transformation: { width: 120, height: 120 },
-                    })
+                        data: imageBuffer,
+                        transformation: { width: 120, height: 120 },
+                      })
                     : new TextRun({ text: "[Image Missing]", size: 16 }),
                 ],
                 alignment: AlignmentType.CENTER,
@@ -9661,12 +9823,12 @@ async function addTestDataContent(children, body) {
 
             const titleNode = title
               ? new Paragraph({
-                alignment: AlignmentType.CENTER,
-                spacing: { after: 80 },
-                children: [
-                  new TextRun({ text: title, bold: true, size: 16 }),
-                ],
-              })
+                  alignment: AlignmentType.CENTER,
+                  spacing: { after: 80 },
+                  children: [
+                    new TextRun({ text: title, bold: true, size: 16 }),
+                  ],
+                })
               : null;
 
             return new TableCell({
@@ -9710,10 +9872,11 @@ async function addTestDataContent(children, body) {
                   spacing: { before: 80 },
                   children: [
                     new TextRun({
-                      text: `${averageLabel}: ${Number.isFinite(averageValue)
-                        ? averageValue.toFixed(1)
-                        : "n/a"
-                        }${unitLabel ? ` ${unitLabel}` : ""}`,
+                      text: `${averageLabel}: ${
+                        Number.isFinite(averageValue)
+                          ? averageValue.toFixed(1)
+                          : "n/a"
+                      }${unitLabel ? ` ${unitLabel}` : ""}`,
                       color: "444444",
                       size: 16,
                     }),
@@ -9790,7 +9953,7 @@ async function addTestDataContent(children, body) {
                   ChartJS.defaults.font.family = "Arial";
                   ChartJS.defaults.font.size = 12;
                   ChartJS.defaults.color = "#333";
-                } catch { }
+                } catch {}
               },
             });
             const labels = dataSeries.map((_, i) => `T${i + 1}`);
@@ -9889,11 +10052,11 @@ async function addTestDataContent(children, body) {
           if (!hasLeftSeries && !hasRightSeries) {
             singleSeries = extractTrialSeries(
               test.measurements ||
-              test.trials ||
-              test.series ||
-              test.results ||
-              test.data ||
-              [],
+                test.trials ||
+                test.series ||
+                test.results ||
+                test.data ||
+                [],
             );
           }
           // What do we actually have?
