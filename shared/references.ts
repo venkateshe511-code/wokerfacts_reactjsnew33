@@ -263,10 +263,10 @@ export const testReferences: TestCategoryReferences = {
   "bruce-treadmill": [
     {
       author: "Bruce, R. A., et al.",
-      title:
-        "Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease",
+      title: "Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease",
       journal: "Am Heart J",
       year: 1973,
+      fullText: "Bruce, R. A., et al. \"Maximal oxygen intake and nomographic assessment of functional aerobic impairment in cardiovascular disease.\" Am Heart J (1973).",
     },
     {
       author: "Acampa, W., Assante, R., Zampella, E.",
@@ -275,14 +275,16 @@ export const testReferences: TestCategoryReferences = {
       year: 2016,
       volume: "23(5)",
       pages: "991-996",
+      fullText: "Acampa W, Assante R, Zampella E. The role of treadmill exercise testing. J Nucl Cardiol. 2016 Oct;23(5):991-996. [PubMed]",
     },
     {
-      author: "Qureshi, W.T., Alirhayim, Z., Blaha, M.J., et al.",
+      author: "Qureshi, W.T., Alirhayim, Z., Blaha, M.J., Juraschek, S.P., Keteyian, S.J., Brawner, C.A., Al-Mallah, M.H.",
       title: "Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project",
       journal: "Circulation",
       year: 2015,
       volume: "131(21)",
       pages: "1827-34",
+      fullText: "Qureshi WT, Alirhayim Z, Blaha MJ, Juraschek SP, Keteyian SJ, Brawner CA, Al-Mallah MH. Cardiorespiratory Fitness and Risk of Incident Atrial Fibrillation: Results From the Henry Ford Exercise Testing (FIT) Project. Circulation. 2015 May 26;131(21):1827-34. [PubMed]",
     },
     {
       author: "Gorman, M.W., Feigl, E.O.",
@@ -291,6 +293,7 @@ export const testReferences: TestCategoryReferences = {
       year: 2012,
       volume: "40(1)",
       pages: "37-42",
+      fullText: "Gorman MW, Feigl EO. Control of coronary blood flow during exercise. Exerc Sport Sci Rev. 2012 Jan;40(1):37-42. [PubMed]",
     },
   ],
 
@@ -298,20 +301,17 @@ export const testReferences: TestCategoryReferences = {
   mcaft: [
     {
       author: "Emily Wolfe Phillips, Deepa P. Rao, Leonard A. Kaminsky, Grant R. Tomkinson, Robert Ross, and Justin J. Lang",
-      title:
-        "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey",
+      title: "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey",
       journal: "Applied Physiology, Nutrition, and Metabolism",
       year: 2020,
-      pages: "26 March 2020",
+      fullText: "Criterion-referenced mCAFT cut-points to identify metabolically healthy cardiorespiratory fitness among adults aged 18–69 years: an analysis of the Canadian Health Measures Survey: Emily Wolfe Phillips, Deepa P. Rao, Leonard A. Kaminsky, Grant R. Tomkinson, Robert Ross, and Justin J. Lang : Applied Physiology, Nutrition, and Metabolism 26 March 2020",
     },
     {
       author: "Statistics Canada",
       title: "Normative-referenced percentile values for physical fitness",
       journal: "Health Reports",
       year: 2019,
-      volume: "Vol. 30, no. 10",
-      pages: "pp. 14-22",
-      publisher: "Catalogue no. 82-003-X",
+      fullText: "Health Reports, Vol. 30, no. 10, pp. 14-22, October 2019 • Statistics Canada, Catalogue no. 82-003-X: Normative-referenced percentile values for physical fitness",
     },
   ],
 
@@ -319,18 +319,19 @@ export const testReferences: TestCategoryReferences = {
   kasch: [
     {
       author: "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., & Boyer, J. L.",
-      title:
-        "A comparison of maximal oxygen uptake by treadmill and step-test procedures",
+      title: "A comparison of maximal oxygen uptake by treadmill and step-test procedures",
       journal: "Journal of Applied Physiology",
       year: 1966,
       volume: "21(4)",
       pages: "1387–1389",
+      fullText: "Kasch, F. W., Phillips, W. H., Ross, W. D., Carter, J. E., & Boyer, J. L. (1966). A comparison of maximal oxygen uptake by treadmill and step-test procedures. Journal of Applied Physiology, 21(4), 1387–1389. This article, available through the American Physiological Society Journal, is a primary source for the test's validation.",
     },
     {
       author: "Kasch, F. W., & Boyer, J. L.",
       title: "Adult fitness: Principles and practices",
       publisher: "KASCH",
       year: 1968,
+      fullText: "Kasch, F. W., & Boyer, J. L. (1968). Adult fitness: Principles and practices. KASCH. This work established the use of the recovery heart rate for fitness classification.",
     },
   ],
 };
