@@ -6024,7 +6024,7 @@ async function addConclusionContent(children, body) {
         }),
       );
 
-      const rpdrCommentLines = conclusionData.rpdrComments.split("\n");
+      const rpdrCommentLines = (String(conclusionData.rpdrComments || "")).split("\n");
       for (const line of rpdrCommentLines) {
         children.push(
           new Paragraph({
