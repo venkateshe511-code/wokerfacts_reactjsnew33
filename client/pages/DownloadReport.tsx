@@ -2626,6 +2626,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 <ul style="margin: 0; padding-left: 20px; font-size: 11px; color: #374151; font-family: Arial, sans-serif;">
                   ${checked.map((behavior) => `<li style="margin: 4px 0;">${behavior}</li>`).join("")}
                 </ul>
+                ${referralQuestionsData?.conclusionData?.rpdrComments ? `<div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #d1d5db;"><p style="font-weight: bold; font-size: 10px; color: #374151; margin: 4px 0; font-family: Arial, sans-serif;">Comments:</p><p style="font-size: 11px; color: #374151; margin: 4px 0; white-space: pre-wrap; font-family: Arial, sans-serif;">${String(referralQuestionsData.conclusionData.rpdrComments).replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p></div>` : ""}
               </div>
             `;
           }
@@ -2647,6 +2648,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 <ul style="margin: 0; padding-left: 20px; font-size: 11px; color: #374151; font-family: Arial, sans-serif;">
                   ${checked.map((behavior) => `<li style="margin: 4px 0;">${behavior}</li>`).join("")}
                 </ul>
+                ${referralQuestionsData?.conclusionData?.ctpComments ? `<div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #d1d5db;"><p style="font-weight: bold; font-size: 10px; color: #374151; margin: 4px 0; font-family: Arial, sans-serif;">Comments:</p><p style="font-size: 11px; color: #374151; margin: 4px 0; white-space: pre-wrap; font-family: Arial, sans-serif;">${String(referralQuestionsData.conclusionData.ctpComments).replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p></div>` : ""}
               </div>
             `;
           }
