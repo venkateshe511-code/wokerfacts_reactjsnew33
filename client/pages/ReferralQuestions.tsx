@@ -226,6 +226,14 @@ export default function ReferralQuestions() {
         savedImageData: [],
       },
       {
+        id: "default-9b",
+        question:
+          "6e) Observable Signs of Effort / Competitive Testing Performance (CTP)",
+        answer: "",
+        images: [],
+        savedImageData: [],
+      },
+      {
         id: "default-10",
         question:
           "What would be the Physical Demand Classification (PDC) for this client?",
