@@ -1207,6 +1207,55 @@ export default function ReferralQuestions() {
                         </div>
                       </div>
                     </div>
+                  ) : question.question.includes("6e)") || question.question.includes("CTP") ? (
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                          Observable Signs of Effort / Competitive Testing
+                          Performance (CTP)
+                        </h3>
+                        <p className="text-xs text-gray-600 mb-4">
+                          Observable behaviors in which a person attempts to
+                          gain an advantage to improve scores.
+                        </p>
+                        <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-white">
+                          {CTP_BEHAVIORS.map((behavior) => (
+                            <div
+                              key={behavior}
+                              className="flex items-center space-x-3"
+                            >
+                              <Checkbox
+                                id={`ctp-${question.id}-${behavior}`}
+                                checked={
+                                  referralData.conclusionData?.ctpBehaviors[
+                                    behavior
+                                  ] || false
+                                }
+                                onCheckedChange={(checked) =>
+                                  setReferralData((prev) => ({
+                                    ...prev,
+                                    conclusionData: {
+                                      ...prev.conclusionData!,
+                                      ctpBehaviors: {
+                                        ...prev.conclusionData!
+                                          .ctpBehaviors,
+                                        [behavior]: checked,
+                                      },
+                                    },
+                                  }))
+                                }
+                              />
+                              <label
+                                htmlFor={`ctp-${question.id}-${behavior}`}
+                                className="text-sm text-gray-700 cursor-pointer flex-1"
+                              >
+                                {behavior}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   ) : question.question.includes("Conclusions?") ? (
                     <div className="space-y-6">
                       {/* Return to Work Status Section */}
