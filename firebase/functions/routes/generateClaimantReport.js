@@ -7432,6 +7432,225 @@ async function addReferralQuestionsContent(children, body) {
       }
     }
   }
+
+  // === RPDR and CTP Sections (from conclusionData) ===
+  const conclusionData = referralData.conclusionData || {};
+  const rpdrBehaviors = conclusionData.rpdrBehaviors || {};
+  const rpdrComments = conclusionData.rpdrComments || "";
+  const ctpBehaviors = conclusionData.ctpBehaviors || {};
+  const ctpComments = conclusionData.ctpComments || "";
+
+  // RPDR Section
+  if (Object.values(rpdrBehaviors).some((v) => v === true) || rpdrComments) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+            color: BRAND_COLOR,
+            bold: true,
+            size: 16,
+          }),
+        ],
+        spacing: { before: 300, after: 150 },
+      }),
+    );
+
+    // RPDR Behaviors
+    if (Object.values(rpdrBehaviors).some((v) => v === true)) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Observed Behaviors:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { before: 100, after: 100 },
+        }),
+      );
+
+      const behaviorRows = [];
+      for (const [behavior, checked] of Object.entries(rpdrBehaviors)) {
+        if (checked) {
+          behaviorRows.push(
+            new TableRow({
+              children: [
+                new TableCell({
+                  margins: { top: 50, bottom: 50, left: 100, right: 100 },
+                  children: [
+                    new Paragraph({
+                      children: [
+                        new TextRun({
+                          text: "✓ " + behavior,
+                          size: 16,
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          );
+        }
+      }
+
+      if (behaviorRows.length > 0) {
+        children.push(
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: behaviorRows,
+            borders: {
+              top: { style: BorderStyle.SINGLE, size: 1, color: "E5E7EB" },
+              bottom: { style: BorderStyle.SINGLE, size: 1, color: "E5E7EB" },
+              left: { style: BorderStyle.SINGLE, size: 1, color: "E5E7EB" },
+              right: { style: BorderStyle.SINGLE, size: 1, color: "E5E7EB" },
+              insideHorizontal: {
+                style: BorderStyle.SINGLE,
+                size: 1,
+                color: "E5E7EB",
+              },
+              insideVertical: {
+                style: BorderStyle.SINGLE,
+                size: 1,
+                color: "E5E7EB",
+              },
+            },
+          }),
+        );
+      }
+    }
+
+    // RPDR Comments
+    if (rpdrComments) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Comments:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { before: 100, after: 50 },
+        }),
+      );
+
+      children.push(
+        new Paragraph({
+          children: [new TextRun({ text: rpdrComments, size: 16 })],
+          spacing: { after: 150 },
+        }),
+      );
+    }
+  }
+
+  // CTP Section
+  if (Object.values(ctpBehaviors).some((v) => v === true) || ctpComments) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable Signs of Effort / Competitive Testing Performance (CTP)",
+            color: BRAND_COLOR,
+            bold: true,
+            size: 16,
+          }),
+        ],
+        spacing: { before: 300, after: 150 },
+      }),
+    );
+
+    // CTP Behaviors
+    if (Object.values(ctpBehaviors).some((v) => v === true)) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Observable Behaviors:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { before: 100, after: 100 },
+        }),
+      );
+
+      const behaviorRows = [];
+      for (const [behavior, checked] of Object.entries(ctpBehaviors)) {
+        if (checked) {
+          behaviorRows.push(
+            new TableRow({
+              children: [
+                new TableCell({
+                  margins: { top: 50, bottom: 50, left: 100, right: 100 },
+                  children: [
+                    new Paragraph({
+                      children: [
+                        new TextRun({
+                          text: "✓ " + behavior,
+                          size: 16,
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          );
+        }
+      }
+
+      if (behaviorRows.length > 0) {
+        children.push(
+          new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: behaviorRows,
+            borders: {
+              top: { style: BorderStyle.SINGLE, size: 1, color: "E5E7EB" },
+              bottom: { style: BorderStyle.SINGLE, size: 1, color: "E5E7EB" },
+              left: { style: BorderStyle.SINGLE, size: 1, color: "E5E7EB" },
+              right: { style: BorderStyle.SINGLE, size: 1, color: "E5E7EB" },
+              insideHorizontal: {
+                style: BorderStyle.SINGLE,
+                size: 1,
+                color: "E5E7EB",
+              },
+              insideVertical: {
+                style: BorderStyle.SINGLE,
+                size: 1,
+                color: "E5E7EB",
+              },
+            },
+          }),
+        );
+      }
+    }
+
+    // CTP Comments
+    if (ctpComments) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Comments:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { before: 100, after: 50 },
+        }),
+      );
+
+      children.push(
+        new Paragraph({
+          children: [new TextRun({ text: ctpComments, size: 16 })],
+          spacing: { after: 150 },
+        }),
+      );
+    }
+  }
 }
 
 async function addConclusionContent(children, body) {
