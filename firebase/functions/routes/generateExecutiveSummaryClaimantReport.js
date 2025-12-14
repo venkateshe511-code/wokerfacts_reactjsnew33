@@ -5301,6 +5301,33 @@ async function addReferralQuestionsContent(children, body) {
   const referralData = body.referralQuestionsData || {};
   const questions = referralData.questions || [];
 
+  // Ensure conclusionData is always properly structured (needed for RPDR/CTP sections below)
+  const conclusionDataRaw = referralData?.conclusionData || {};
+  const conclusionData = {
+    returnToWorkStatus: {
+      status: conclusionDataRaw?.returnToWorkStatus?.status || "",
+      comments: conclusionDataRaw?.returnToWorkStatus?.comments || "",
+    },
+    rpdrBehaviors:
+      typeof conclusionDataRaw?.rpdrBehaviors === "object" &&
+      conclusionDataRaw.rpdrBehaviors !== null
+        ? conclusionDataRaw.rpdrBehaviors
+        : {},
+    rpdrComments:
+      typeof conclusionDataRaw?.rpdrComments === "string"
+        ? conclusionDataRaw.rpdrComments
+        : "",
+    ctpBehaviors:
+      typeof conclusionDataRaw?.ctpBehaviors === "object" &&
+      conclusionDataRaw.ctpBehaviors !== null
+        ? conclusionDataRaw.ctpBehaviors
+        : {},
+    ctpComments:
+      typeof conclusionDataRaw?.ctpComments === "string"
+        ? conclusionDataRaw.ctpComments
+        : "",
+  };
+
   // Page break before section
   children.push(new Paragraph({ children: [new PageBreak()] }));
 
