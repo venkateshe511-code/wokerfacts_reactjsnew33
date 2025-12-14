@@ -1161,7 +1161,8 @@ export default function ReferralQuestions() {
                         />
                       </div>
                     </div>
-                  ) : question.question.includes("6d)") || question.question.includes("RPDR") ? (
+                  ) : question.question.includes("6d)") ||
+                    question.question.includes("RPDR") ? (
                     <div className="space-y-4">
                       <div>
                         <h3 className="text-sm font-semibold text-gray-900 mb-4">
@@ -1170,8 +1171,8 @@ export default function ReferralQuestions() {
                         </h3>
                         <p className="text-xs text-gray-600 mb-4">
                           Observable demonstrations of the patient that were
-                          consistent or inconsistent with the medical
-                          diagnosis and reported pain level.
+                          consistent or inconsistent with the medical diagnosis
+                          and reported pain level.
                         </p>
                         <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-white">
                           {RPDR_BEHAVIORS.map((behavior) => (
@@ -1192,8 +1193,7 @@ export default function ReferralQuestions() {
                                     conclusionData: {
                                       ...prev.conclusionData!,
                                       rpdrBehaviors: {
-                                        ...prev.conclusionData!
-                                          .rpdrBehaviors,
+                                        ...prev.conclusionData!.rpdrBehaviors,
                                         [behavior]: checked,
                                       },
                                     },
@@ -1232,7 +1232,8 @@ export default function ReferralQuestions() {
                         </div>
                       </div>
                     </div>
-                  ) : question.question.includes("6e)") || question.question.includes("CTP") ? (
+                  ) : question.question.includes("6e)") ||
+                    question.question.includes("CTP") ? (
                     <div className="space-y-4">
                       <div>
                         <h3 className="text-sm font-semibold text-gray-900 mb-4">
@@ -1262,8 +1263,7 @@ export default function ReferralQuestions() {
                                     conclusionData: {
                                       ...prev.conclusionData!,
                                       ctpBehaviors: {
-                                        ...prev.conclusionData!
-                                          .ctpBehaviors,
+                                        ...prev.conclusionData!.ctpBehaviors,
                                         [behavior]: checked,
                                       },
                                     },
@@ -1338,8 +1338,7 @@ export default function ReferralQuestions() {
                                 conclusionData: {
                                   ...prev.conclusionData!,
                                   returnToWorkStatus: {
-                                    ...prev.conclusionData!
-                                      .returnToWorkStatus,
+                                    ...prev.conclusionData!.returnToWorkStatus,
                                     comments: e.target.value,
                                   },
                                 },
@@ -1371,7 +1370,9 @@ export default function ReferralQuestions() {
                           Upload Evaluator Signature
                         </h3>
                         <p className="text-sm text-purple-700 mb-4">
-                        Upload your signature image to be inserted in the "Signature of Evaluator" section of all reports. If no image is uploaded, the section will remain blank.
+                          Upload your signature image to be inserted in the
+                          "Signature of Evaluator" section of all reports. If no
+                          image is uploaded, the section will remain blank.
                         </p>
                         <div className="space-y-4">
                           <div className="flex items-center space-x-4">
