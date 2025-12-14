@@ -2058,6 +2058,20 @@ export default function ReviewReport() {
                               </p>
                             ))}
                         </div>
+                        {reportData.referralQuestionsData?.conclusionData
+                          ?.ctpComments && (
+                          <div className="mt-3 pt-3 border-t border-gray-200">
+                            <p className="text-xs font-semibold text-gray-700 mb-1">
+                              Comments:
+                            </p>
+                            <p className="text-sm text-gray-700 whitespace-pre-line">
+                              {
+                                reportData.referralQuestionsData.conclusionData
+                                  .ctpComments
+                              }
+                            </p>
+                          </div>
+                        )}
                       </div>
                     )}
 
