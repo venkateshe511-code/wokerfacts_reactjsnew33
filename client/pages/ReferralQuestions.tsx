@@ -1092,203 +1092,73 @@ export default function ReferralQuestions() {
                     </div>
                   ) : question.question.includes("Conclusions?") ? (
                     <div className="space-y-6">
-                      {/* Tabbed Section - Return to Work Status, RPDR & CTP */}
-                      <Tabs defaultValue="return-to-work" className="w-full">
-                        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 gap-2 h-auto">
-                          <TabsTrigger
-                            value="return-to-work"
-                            className="text-xs sm:text-sm whitespace-normal"
-                          >
-                            Return to Work Status
-                          </TabsTrigger>
-                          <TabsTrigger
-                            value="rpdr"
-                            className="text-xs sm:text-sm whitespace-normal"
-                          >
-                            Observed Symptom Behavior (RPDR)
-                          </TabsTrigger>
-                          <TabsTrigger
-                            value="ctp"
-                            className="text-xs sm:text-sm whitespace-normal"
-                          >
-                            Observable Signs of Effort (CTP)
-                          </TabsTrigger>
-                        </TabsList>
-
-                        <TabsContent
-                          value="return-to-work"
-                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
-                        >
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-3">
-                              Select Return to Work Status
-                            </label>
-                            <select
-                              value={
-                                referralData.conclusionData?.returnToWorkStatus
-                                  .status || ""
-                              }
-                              onChange={(e) =>
-                                setReferralData((prev) => ({
-                                  ...prev,
-                                  conclusionData: {
-                                    ...prev.conclusionData!,
-                                    returnToWorkStatus: {
-                                      status: e.target.value,
-                                      comments:
-                                        RETURN_TO_WORK_OPTIONS[
-                                          e.target
-                                            .value as keyof typeof RETURN_TO_WORK_OPTIONS
-                                        ] || "",
-                                    },
+                      {/* Return to Work Status Section */}
+                      <div className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-3">
+                            Select Return to Work Status
+                          </label>
+                          <select
+                            value={
+                              referralData.conclusionData?.returnToWorkStatus
+                                .status || ""
+                            }
+                            onChange={(e) =>
+                              setReferralData((prev) => ({
+                                ...prev,
+                                conclusionData: {
+                                  ...prev.conclusionData!,
+                                  returnToWorkStatus: {
+                                    status: e.target.value,
+                                    comments:
+                                      RETURN_TO_WORK_OPTIONS[
+                                        e.target
+                                          .value as keyof typeof RETURN_TO_WORK_OPTIONS
+                                      ] || "",
                                   },
-                                }))
-                              }
-                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            >
-                              <option value="">-- Choose an option --</option>
-                              {Object.keys(RETURN_TO_WORK_OPTIONS).map(
-                                (option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ),
-                              )}
-                            </select>
-                          </div>
+                                },
+                              }))
+                            }
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          >
+                            <option value="">-- Choose an option --</option>
+                            {Object.keys(RETURN_TO_WORK_OPTIONS).map(
+                              (option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ),
+                            )}
+                          </select>
+                        </div>
 
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-3">
-                              Comments
-                            </label>
-                            <Textarea
-                              value={
-                                referralData.conclusionData?.returnToWorkStatus
-                                  .comments || ""
-                              }
-                              onChange={(e) =>
-                                setReferralData((prev) => ({
-                                  ...prev,
-                                  conclusionData: {
-                                    ...prev.conclusionData!,
-                                    returnToWorkStatus: {
-                                      ...prev.conclusionData!
-                                        .returnToWorkStatus,
-                                      comments: e.target.value,
-                                    },
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-3">
+                            Comments
+                          </label>
+                          <Textarea
+                            value={
+                              referralData.conclusionData?.returnToWorkStatus
+                                .comments || ""
+                            }
+                            onChange={(e) =>
+                              setReferralData((prev) => ({
+                                ...prev,
+                                conclusionData: {
+                                  ...prev.conclusionData!,
+                                  returnToWorkStatus: {
+                                    ...prev.conclusionData!
+                                      .returnToWorkStatus,
+                                    comments: e.target.value,
                                   },
-                                }))
-                              }
-                              placeholder="Comments will auto-populate based on your selection above..."
-                              className="min-h-[150px]"
-                            />
-                          </div>
-                        </TabsContent>
-
-                        <TabsContent
-                          value="rpdr"
-                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
-                        >
-                          <div>
-                            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-                              Observed Symptom Behavior / Reliability of Pain
-                              and Disability Reports (RPDR)
-                            </h3>
-                            <p className="text-xs text-gray-600 mb-4">
-                              Observable demonstrations of the patient that were
-                              consistent or inconsistent with the medical
-                              diagnosis and reported pain level.
-                            </p>
-                            <div className="space-y-3 max-h-[400px] overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white">
-                              {RPDR_BEHAVIORS.map((behavior) => (
-                                <div
-                                  key={behavior}
-                                  className="flex items-center space-x-3"
-                                >
-                                  <Checkbox
-                                    id={`rpdr-${behavior}`}
-                                    checked={
-                                      referralData.conclusionData
-                                        ?.rpdrBehaviors[behavior] || false
-                                    }
-                                    onCheckedChange={(checked) =>
-                                      setReferralData((prev) => ({
-                                        ...prev,
-                                        conclusionData: {
-                                          ...prev.conclusionData!,
-                                          rpdrBehaviors: {
-                                            ...prev.conclusionData!
-                                              .rpdrBehaviors,
-                                            [behavior]: checked,
-                                          },
-                                        },
-                                      }))
-                                    }
-                                  />
-                                  <label
-                                    htmlFor={`rpdr-${behavior}`}
-                                    className="text-sm text-gray-700 cursor-pointer flex-1"
-                                  >
-                                    {behavior}
-                                  </label>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </TabsContent>
-
-                        <TabsContent
-                          value="ctp"
-                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
-                        >
-                          <div>
-                            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-                              Observable Signs of Effort / Competitive Testing
-                              Performance (CTP)
-                            </h3>
-                            <p className="text-xs text-gray-600 mb-4">
-                              Observable behaviors in which a person attempts to
-                              gain an advantage to improve scores.
-                            </p>
-                            <div className="space-y-3 max-h-[400px] overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white">
-                              {CTP_BEHAVIORS.map((behavior) => (
-                                <div
-                                  key={behavior}
-                                  className="flex items-center space-x-3"
-                                >
-                                  <Checkbox
-                                    id={`ctp-${behavior}`}
-                                    checked={
-                                      referralData.conclusionData?.ctpBehaviors[
-                                        behavior
-                                      ] || false
-                                    }
-                                    onCheckedChange={(checked) =>
-                                      setReferralData((prev) => ({
-                                        ...prev,
-                                        conclusionData: {
-                                          ...prev.conclusionData!,
-                                          ctpBehaviors: {
-                                            ...prev.conclusionData!
-                                              .ctpBehaviors,
-                                            [behavior]: checked,
-                                          },
-                                        },
-                                      }))
-                                    }
-                                  />
-                                  <label
-                                    htmlFor={`ctp-${behavior}`}
-                                    className="text-sm text-gray-700 cursor-pointer flex-1"
-                                  >
-                                    {behavior}
-                                  </label>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </TabsContent>
-                      </Tabs>
+                                },
+                              }))
+                            }
+                            placeholder="Comments will auto-populate based on your selection above..."
+                            className="min-h-[150px]"
+                          />
+                        </div>
+                      </div>
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
