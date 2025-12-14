@@ -2299,7 +2299,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                           .includes("physical demand classification") &&
                         !qa.question.toLowerCase().includes("conclusion") &&
                         !qa.question.includes("6b)") &&
-                        !qa.question.includes("6c)"),
+                        !qa.question.includes("6c)") &&
+                        !qa.question.includes("6d)") &&
+                        !qa.question.includes("6e)"),
                     )
                     .map(
                       (qa: any, index: number) => `
@@ -2398,6 +2400,113 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     .join("")
                 : ""
             }
+        </div>
+
+        <!-- RPDR and CTP Questions (6d and 6e) -->
+        <div class="section">
+            <!-- RPDR Section (6d) -->
+            ${(() => {
+              const rpdrQuestion = referralQuestionsData?.questions?.find(
+                (qa: any) => qa.question?.includes("6d)"),
+              );
+              const rpdrBehaviors =
+                referralQuestionsData?.conclusionData?.rpdrBehaviors || {};
+              const rpdrComments =
+                referralQuestionsData?.conclusionData?.rpdrComments || "";
+
+              if (
+                !rpdrQuestion &&
+                !Object.values(rpdrBehaviors).some((v: any) => v === true) &&
+                !rpdrComments
+              ) {
+                return "";
+              }
+
+              return `
+                <div style="margin-bottom: 15px; page-break-inside: avoid;">
+                    <h4 style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)</h4>
+                    ${
+                      Object.keys(rpdrBehaviors).length > 0
+                        ? `
+                    <div style="margin-bottom: 8px;">
+                        <span style="font-weight: bold; font-size: 11px; font-family: Arial, sans-serif;">Observed Behaviors:</span>
+                        <div style="margin-top: 4px; padding: 6px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 3px; font-size: 10px; font-family: Arial, sans-serif;">
+                            ${Object.entries(rpdrBehaviors)
+                              .map(([behavior, checked]: any) =>
+                                checked
+                                  ? `<div style="margin: 2px 0;">✓ ${behavior}</div>`
+                                  : "",
+                              )
+                              .join("")}
+                        </div>
+                    </div>
+                        `
+                        : ""
+                    }
+                    ${
+                      rpdrComments
+                        ? `
+                    <div>
+                        <span style="font-weight: bold; font-size: 11px; font-family: Arial, sans-serif;">Comments: </span>
+                        <p style="font-size: 11px; line-height: 1.5; margin-top: 4px; font-family: Arial, sans-serif;">${rpdrComments}</p>
+                    </div>
+                        `
+                        : ""
+                    }
+                </div>`;
+            })()}
+
+            <!-- CTP Section (6e) -->
+            ${(() => {
+              const ctpQuestion = referralQuestionsData?.questions?.find(
+                (qa: any) => qa.question?.includes("6e)"),
+              );
+              const ctpBehaviors =
+                referralQuestionsData?.conclusionData?.ctpBehaviors || {};
+              const ctpComments =
+                referralQuestionsData?.conclusionData?.ctpComments || "";
+
+              if (
+                !ctpQuestion &&
+                !Object.values(ctpBehaviors).some((v: any) => v === true) &&
+                !ctpComments
+              ) {
+                return "";
+              }
+
+              return `
+                <div style="margin-bottom: 15px; page-break-inside: avoid;">
+                    <h4 style="font-weight: bold; margin-bottom: 8px; color: #1e40af; font-family: Arial, sans-serif;">Observable Signs of Effort / Competitive Testing Performance (CTP)</h4>
+                    ${
+                      Object.keys(ctpBehaviors).length > 0
+                        ? `
+                    <div style="margin-bottom: 8px;">
+                        <span style="font-weight: bold; font-size: 11px; font-family: Arial, sans-serif;">Observable Behaviors:</span>
+                        <div style="margin-top: 4px; padding: 6px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 3px; font-size: 10px; font-family: Arial, sans-serif;">
+                            ${Object.entries(ctpBehaviors)
+                              .map(([behavior, checked]: any) =>
+                                checked
+                                  ? `<div style="margin: 2px 0;">✓ ${behavior}</div>`
+                                  : "",
+                              )
+                              .join("")}
+                        </div>
+                    </div>
+                        `
+                        : ""
+                    }
+                    ${
+                      ctpComments
+                        ? `
+                    <div>
+                        <span style="font-weight: bold; font-size: 11px; font-family: Arial, sans-serif;">Comments: </span>
+                        <p style="font-size: 11px; line-height: 1.5; margin-top: 4px; font-family: Arial, sans-serif;">${ctpComments}</p>
+                    </div>
+                        `
+                        : ""
+                    }
+                </div>`;
+            })()}
         </div>
 
         <!-- Physical Demand Classification Question (moved to end) -->

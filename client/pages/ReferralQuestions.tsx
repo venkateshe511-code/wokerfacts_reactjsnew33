@@ -1165,19 +1165,6 @@ export default function ReferralQuestions() {
                     question.question.includes("RPDR") ? (
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Answer
-                        </label>
-                        <Textarea
-                          value={question.answer}
-                          onChange={(e) =>
-                            handleAnswerChange(question.id, e.target.value)
-                          }
-                          placeholder="Enter your answer for this question..."
-                          className="min-h-[100px] mb-4"
-                        />
-                      </div>
-                      <div>
                         <h3 className="text-sm font-semibold text-gray-900 mb-4">
                           Observed Symptom Behavior / Reliability of Pain and
                           Disability Reports (RPDR)
@@ -1248,19 +1235,6 @@ export default function ReferralQuestions() {
                   ) : question.question.includes("6e)") ||
                     question.question.includes("CTP") ? (
                     <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Answer
-                        </label>
-                        <Textarea
-                          value={question.answer}
-                          onChange={(e) =>
-                            handleAnswerChange(question.id, e.target.value)
-                          }
-                          placeholder="Enter your answer for this question..."
-                          className="min-h-[100px] mb-4"
-                        />
-                      </div>
                       <div>
                         <h3 className="text-sm font-semibold text-gray-900 mb-4">
                           Observable Signs of Effort / Competitive Testing
