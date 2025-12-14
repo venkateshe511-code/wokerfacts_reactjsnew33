@@ -1495,8 +1495,11 @@ export default function ReviewReport() {
                               "present lumbar range of motion",
                             ) &&
                             !qa.question.includes("Conclusions") &&
+                            !qa.question.includes("6a)") &&
                             !qa.question.includes("6b)") &&
-                            !qa.question.includes("6c)"),
+                            !qa.question.includes("6c)") &&
+                            !qa.question.includes("6d)") &&
+                            !qa.question.includes("6e)"),
                         )
                         .map((qa: any, index: number) => (
                           <div
@@ -1653,6 +1656,32 @@ export default function ReviewReport() {
                             </div>
                           );
                         })}
+                    </div>
+
+                    {/* 6d and 6e Questions */}
+                    <div className="space-y-6">
+                      {reportData.referralQuestionsData.questions
+                        ?.filter(
+                          (qa: any) =>
+                            qa.question &&
+                            (qa.question.includes("6d)") ||
+                              qa.question.includes("6e)")),
+                        )
+                        .map((qa: any, index: number) => (
+                          <div
+                            key={qa.id || index}
+                            className="border-b border-gray-200 pb-4 last:border-b-0"
+                          >
+                            <h4 className="font-semibold mb-3 text-blue-800">
+                              {qa.question.replace(/^6[de]\)\s*/, "")}
+                            </h4>
+                            {qa.answer && (
+                              <p className="text-sm text-gray-700 mb-4">
+                                {qa.answer}
+                              </p>
+                            )}
+                          </div>
+                        ))}
                     </div>
 
                     {/* Physical Demand Classification */}
@@ -1983,69 +2012,6 @@ export default function ReviewReport() {
                       </div>
                     </div>
                   )}
-
-                  {/* Observed Symptom Behavior (RPDR) Tab */}
-                  {reportData.referralQuestionsData?.conclusionData
-                    ?.rpdrBehaviors &&
-                    Object.values(
-                      reportData.referralQuestionsData.conclusionData
-                        .rpdrBehaviors,
-                    ).some((v: any) => v === true) && (
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                        <h4 className="font-semibold text-gray-900 mb-3">
-                          Observed Symptom Behavior / Reliability of Pain and
-                          Disability Reports (RPDR)
-                        </h4>
-                        <p className="text-xs text-gray-600 mb-3">
-                          Observable demonstrations of the patient that were
-                          consistent or inconsistent with the medical diagnosis
-                          and reported pain level.
-                        </p>
-                        <div className="space-y-1">
-                          {Object.entries(
-                            reportData.referralQuestionsData.conclusionData
-                              .rpdrBehaviors,
-                          )
-                            .filter(([_, checked]) => checked === true)
-                            .map(([behavior]) => (
-                              <p key={behavior} className="text-sm">
-                                • {behavior}
-                              </p>
-                            ))}
-                        </div>
-                      </div>
-                    )}
-
-                  {/* Observable Signs of Effort (CTP) Tab */}
-                  {reportData.referralQuestionsData?.conclusionData
-                    ?.ctpBehaviors &&
-                    Object.values(
-                      reportData.referralQuestionsData.conclusionData
-                        .ctpBehaviors,
-                    ).some((v: any) => v === true) && (
-                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                        <h4 className="font-semibold text-gray-900 mb-3">
-                          Observable Signs of Effort / Competitive Testing
-                          Performance (CTP)
-                        </h4>
-                        <p className="text-xs text-gray-600 mb-3">
-                          Observable behaviors in which a person attempts to
-                          gain an advantage to improve scores.
-                        </p>
-                        <div className="space-y-1">
-                          {Object.entries(
-                            reportData.referralQuestionsData.conclusionData
-                              .ctpBehaviors,
-                          )
-                            .filter(([_, checked]) => checked === true)
-                            .map(([behavior]) => (
-                              <p key={behavior} className="text-sm">
-                                • {behavior}
-                              </p>
-                            ))}
-                        </div>
-                      </div>
-                    )}
 
                   {/* Static Conclusion */}
                   {(() => {
