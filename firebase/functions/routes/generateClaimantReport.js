@@ -6999,12 +6999,8 @@ async function addReferralQuestionsContent(children, body) {
       }),
     );
 
-    // Handle “Physical Demand Classification” type answer (PDC:)
-    if (
-      question.toLowerCase().includes("physical demand classification") &&
-      answer.startsWith("PDC:")
-    ) {
-      // Output RPDR and CTP sections before PDC
+
+     // Output RPDR and CTP sections before PDC
       if (!rpdrCtpOutputted) {
         rpdrCtpOutputted = true;
         const conclusionData = referralData.conclusionData || {};
@@ -7225,6 +7221,13 @@ async function addReferralQuestionsContent(children, body) {
           }
         }
       }
+
+    // Handle “Physical Demand Classification” type answer (PDC:)
+    if (
+      question.toLowerCase().includes("physical demand classification") &&
+      answer.startsWith("PDC:")
+    ) {
+     
 
       const level = String(answer).split("|")[0].replace("PDC:", "").trim();
       const comments = String(answer).split("|")[1] || "";
