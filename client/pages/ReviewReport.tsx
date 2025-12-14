@@ -1664,7 +1664,7 @@ export default function ReviewReport() {
                       {reportData.referralQuestionsData.questions?.find((qa: any) => qa.question?.includes("6d)")) && (
                         <div className="border-b border-gray-200 pb-4">
                           <h4 className="font-semibold mb-3 text-blue-800">
-                            6d) Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)
+                            Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)
                           </h4>
 
                           {/* RPDR Answer */}
@@ -1716,7 +1716,7 @@ export default function ReviewReport() {
                       {reportData.referralQuestionsData.questions?.find((qa: any) => qa.question?.includes("6e)")) && (
                         <div className="border-b border-gray-200 pb-4">
                           <h4 className="font-semibold mb-3 text-blue-800">
-                            6e) Observable Signs of Effort / Competitive Testing Performance (CTP)
+                            Observable Signs of Effort / Competitive Testing Performance (CTP)
                           </h4>
 
                           {/* CTP Answer */}
