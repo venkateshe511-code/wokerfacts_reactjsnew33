@@ -347,6 +347,36 @@ export default function ReferralQuestions() {
         return question;
       });
 
+      // Migration: Add 6d question if it doesn't exist (insert before PDC question)
+      const has6dQuestion = updatedQuestions.some(
+        (q: any) => q.id === "default-9" || q.question?.includes("6d)"),
+      );
+
+      if (!has6dQuestion) {
+        // Find the PDC question index and insert 6d before it
+        const pdcIndex = updatedQuestions.findIndex((q: any) =>
+          q.question?.includes("Physical Demand Classification"),
+        );
+
+        if (pdcIndex !== -1) {
+          // Update IDs for questions after the insertion point
+          updatedQuestions.forEach((q: any) => {
+            if (q.id === "default-9") q.id = "default-10";
+            if (q.id === "default-10") q.id = "default-11";
+          });
+
+          // Insert 6d question
+          updatedQuestions.splice(pdcIndex, 0, {
+            id: "default-9",
+            question:
+              "6d) Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+            answer: "",
+            images: [],
+            savedImageData: [],
+          });
+        }
+      }
+
       // Update savedData with migrated questions
       savedData.questions = updatedQuestions;
 
