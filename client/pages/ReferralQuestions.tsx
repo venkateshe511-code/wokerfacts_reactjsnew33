@@ -356,13 +356,16 @@ export default function ReferralQuestions() {
         return question;
       });
 
-      // Migration: Add 6d question if it doesn't exist (insert before PDC question)
+      // Migration: Add 6d and 6e questions if they don't exist (insert before PDC question)
       const has6dQuestion = updatedQuestions.some(
         (q: any) => q.id === "default-9" || q.question?.includes("6d)"),
       );
+      const has6eQuestion = updatedQuestions.some(
+        (q: any) => q.id === "default-9b" || q.question?.includes("6e)"),
+      );
 
-      if (!has6dQuestion) {
-        // Find the PDC question index and insert 6d before it
+      if (!has6dQuestion || !has6eQuestion) {
+        // Find the PDC question index and insert 6d and 6e before it
         const pdcIndex = updatedQuestions.findIndex((q: any) =>
           q.question?.includes("Physical Demand Classification"),
         );
@@ -374,15 +377,28 @@ export default function ReferralQuestions() {
             if (q.id === "default-10") q.id = "default-11";
           });
 
-          // Insert 6d question
-          updatedQuestions.splice(pdcIndex, 0, {
-            id: "default-9",
-            question:
-              "6d) Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
-            answer: "",
-            images: [],
-            savedImageData: [],
-          });
+          // Insert 6d and 6e questions if they don't exist
+          if (!has6dQuestion) {
+            updatedQuestions.splice(pdcIndex, 0, {
+              id: "default-9",
+              question:
+                "6d) Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+              answer: "",
+              images: [],
+              savedImageData: [],
+            });
+          }
+
+          if (!has6eQuestion) {
+            updatedQuestions.splice(pdcIndex + 1, 0, {
+              id: "default-9b",
+              question:
+                "6e) Observable Signs of Effort / Competitive Testing Performance (CTP)",
+              answer: "",
+              images: [],
+              savedImageData: [],
+            });
+          }
         }
       }
 
