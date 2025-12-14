@@ -1495,8 +1495,11 @@ export default function ReviewReport() {
                               "present lumbar range of motion",
                             ) &&
                             !qa.question.includes("Conclusions") &&
+                            !qa.question.includes("6a)") &&
                             !qa.question.includes("6b)") &&
-                            !qa.question.includes("6c)"),
+                            !qa.question.includes("6c)") &&
+                            !qa.question.includes("6d)") &&
+                            !qa.question.includes("6e)"),
                         )
                         .map((qa: any, index: number) => (
                           <div
