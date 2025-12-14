@@ -6334,13 +6334,21 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             // Include conclusion data (Return to Work Status, RPDR, CTP behaviors)
             conclusionData: {
               returnToWorkStatus: {
-                status: referralQuestionsData?.conclusionData?.returnToWorkStatus?.status || "",
-                comments: referralQuestionsData?.conclusionData?.returnToWorkStatus?.comments || "",
+                status:
+                  referralQuestionsData?.conclusionData?.returnToWorkStatus
+                    ?.status || "",
+                comments:
+                  referralQuestionsData?.conclusionData?.returnToWorkStatus
+                    ?.comments || "",
               },
-              rpdrBehaviors: referralQuestionsData?.conclusionData?.rpdrBehaviors || {},
-              rpdrComments: referralQuestionsData?.conclusionData?.rpdrComments || "",
-              ctpBehaviors: referralQuestionsData?.conclusionData?.ctpBehaviors || {},
-              ctpComments: referralQuestionsData?.conclusionData?.ctpComments || "",
+              rpdrBehaviors:
+                referralQuestionsData?.conclusionData?.rpdrBehaviors || {},
+              rpdrComments:
+                referralQuestionsData?.conclusionData?.rpdrComments || "",
+              ctpBehaviors:
+                referralQuestionsData?.conclusionData?.ctpBehaviors || {},
+              ctpComments:
+                referralQuestionsData?.conclusionData?.ctpComments || "",
             },
           },
 
