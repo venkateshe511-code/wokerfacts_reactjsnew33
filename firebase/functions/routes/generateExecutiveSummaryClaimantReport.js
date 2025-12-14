@@ -8805,11 +8805,40 @@ router.post("/", async (req, res) => {
     // Contents of Report on current page; page break will be inserted after inside the function
     const contentsChildren = [];
     // await addContentsOfReport(contentsChildren);
-    await addClientInformation(restChildren, body);
-    await addReturnToWorkStatusContent(restChildren, body);
-    await addReferralQuestionsContent(restChildren, body);
-    await addConclusionContent(restChildren, body);
-    await addFunctionalAbilitiesDeterminationContent(restChildren, body);
+    try {
+      await addClientInformation(restChildren, body);
+    } catch (err) {
+      console.error("Error in addClientInformation:", err);
+      throw new Error(`Failed to add client information: ${err?.message || String(err)}`);
+    }
+
+    try {
+      await addReturnToWorkStatusContent(restChildren, body);
+    } catch (err) {
+      console.error("Error in addReturnToWorkStatusContent:", err);
+      throw new Error(`Failed to add return to work status: ${err?.message || String(err)}`);
+    }
+
+    try {
+      await addReferralQuestionsContent(restChildren, body);
+    } catch (err) {
+      console.error("Error in addReferralQuestionsContent:", err);
+      throw new Error(`Failed to add referral questions: ${err?.message || String(err)}`);
+    }
+
+    try {
+      await addConclusionContent(restChildren, body);
+    } catch (err) {
+      console.error("Error in addConclusionContent:", err);
+      throw new Error(`Failed to add conclusion content: ${err?.message || String(err)}`);
+    }
+
+    try {
+      await addFunctionalAbilitiesDeterminationContent(restChildren, body);
+    } catch (err) {
+      console.error("Error in addFunctionalAbilitiesDeterminationContent:", err);
+      throw new Error(`Failed to add functional abilities determination: ${err?.message || String(err)}`);
+    }
     // await addActivityRatingChart(restChildren, body);
     // await addTestDataContent(restChildren, body);
     // await addReferenceChartsContent(restChildren, body);
