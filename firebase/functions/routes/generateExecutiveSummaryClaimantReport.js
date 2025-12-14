@@ -6017,14 +6017,35 @@ async function addReferralQuestionsContent(children, body) {
 }
 
 async function addConclusionContent(children, body) {
-  const referralData = body.referralQuestionsData || {};
-  const questions = referralData.questions || [];
-  const conclusionData = referralData.conclusionData || {
-    returnToWorkStatus: { status: "", comments: "" },
-    rpdrBehaviors: {},
-    rpdrComments: "",
-    ctpBehaviors: {},
-    ctpComments: "",
+  // Safely extract referral data with complete defensive defaults
+  const referralData = body?.referralQuestionsData || {};
+  const questions = referralData?.questions || [];
+
+  // Ensure conclusionData is always properly structured
+  const conclusionDataRaw = referralData?.conclusionData || {};
+  const conclusionData = {
+    returnToWorkStatus: {
+      status: conclusionDataRaw?.returnToWorkStatus?.status || "",
+      comments: conclusionDataRaw?.returnToWorkStatus?.comments || "",
+    },
+    rpdrBehaviors:
+      typeof conclusionDataRaw?.rpdrBehaviors === "object" &&
+      conclusionDataRaw.rpdrBehaviors !== null
+        ? conclusionDataRaw.rpdrBehaviors
+        : {},
+    rpdrComments:
+      typeof conclusionDataRaw?.rpdrComments === "string"
+        ? conclusionDataRaw.rpdrComments
+        : "",
+    ctpBehaviors:
+      typeof conclusionDataRaw?.ctpBehaviors === "object" &&
+      conclusionDataRaw.ctpBehaviors !== null
+        ? conclusionDataRaw.ctpBehaviors
+        : {},
+    ctpComments:
+      typeof conclusionDataRaw?.ctpComments === "string"
+        ? conclusionDataRaw.ctpComments
+        : "",
   };
 
   children.push(
@@ -6115,6 +6136,192 @@ async function addConclusionContent(children, body) {
       // Split comments into paragraphs
       const commentLines = returnToWorkStatus.comments.split("\n");
       for (const line of commentLines) {
+        children.push(
+          new Paragraph({
+            spacing: { after: 40 },
+            children: [
+              new TextRun({
+                text: line,
+                size: 16,
+              }),
+            ],
+          }),
+        );
+      }
+    }
+
+    children.push(
+      new Paragraph({
+        children: [],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+  }
+
+  // === RPDR Behaviors (Observed Symptom Behavior) ===
+  const rpdrBehaviors = conclusionData.rpdrBehaviors || {};
+  const checkedRpdrBehaviors = Object.entries(rpdrBehaviors)
+    .filter(([_, checked]) => checked === true)
+    .map(([behavior]) => behavior);
+
+  if (checkedRpdrBehaviors.length > 0) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+            bold: true,
+            size: 16,
+            color: "1e40af",
+          }),
+        ],
+        spacing: { before: 100, after: 80 },
+      }),
+    );
+
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable demonstrations of the patient that were consistent or inconsistent with the medical diagnosis and reported pain level.",
+            size: 14,
+            italics: true,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+    );
+
+    for (const behavior of checkedRpdrBehaviors) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `• ${behavior}`,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 60 },
+        }),
+      );
+    }
+
+    if (conclusionData.rpdrComments) {
+      children.push(
+        new Paragraph({
+          children: [],
+        }),
+      );
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Comments:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 80 },
+        }),
+      );
+
+      const rpdrCommentLines = String(conclusionData.rpdrComments || "").split(
+        "\n",
+      );
+      for (const line of rpdrCommentLines) {
+        children.push(
+          new Paragraph({
+            spacing: { after: 40 },
+            children: [
+              new TextRun({
+                text: line,
+                size: 16,
+              }),
+            ],
+          }),
+        );
+      }
+    }
+
+    children.push(
+      new Paragraph({
+        children: [],
+        spacing: { before: 100, after: 100 },
+      }),
+    );
+  }
+
+  // === CTP Behaviors (Observable Signs of Effort) ===
+  const ctpBehaviors = conclusionData.ctpBehaviors || {};
+  const checkedCtpBehaviors = Object.entries(ctpBehaviors)
+    .filter(([_, checked]) => checked === true)
+    .map(([behavior]) => behavior);
+
+  if (checkedCtpBehaviors.length > 0) {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable Signs of Effort / Competitive Testing Performance (CTP)",
+            bold: true,
+            size: 16,
+            color: "1e40af",
+          }),
+        ],
+        spacing: { before: 100, after: 80 },
+      }),
+    );
+
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "Observable behaviors in which a person attempts to gain an advantage to improve scores.",
+            size: 14,
+            italics: true,
+          }),
+        ],
+        spacing: { after: 100 },
+      }),
+    );
+
+    for (const behavior of checkedCtpBehaviors) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `• ${behavior}`,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 60 },
+        }),
+      );
+    }
+
+    if (conclusionData.ctpComments) {
+      children.push(
+        new Paragraph({
+          children: [],
+        }),
+      );
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Comments:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 80 },
+        }),
+      );
+
+      const ctpCommentLines = String(conclusionData.ctpComments || "").split(
+        "\n",
+      );
+      for (const line of ctpCommentLines) {
         children.push(
           new Paragraph({
             spacing: { after: 40 },
@@ -8803,11 +9010,53 @@ router.post("/", async (req, res) => {
     // Contents of Report on current page; page break will be inserted after inside the function
     const contentsChildren = [];
     // await addContentsOfReport(contentsChildren);
-    await addClientInformation(restChildren, body);
-    await addReturnToWorkStatusContent(restChildren, body);
-    await addReferralQuestionsContent(restChildren, body);
-    await addConclusionContent(restChildren, body);
-    await addFunctionalAbilitiesDeterminationContent(restChildren, body);
+    try {
+      await addClientInformation(restChildren, body);
+    } catch (err) {
+      console.error("Error in addClientInformation:", err);
+      throw new Error(
+        `Failed to add client information: ${err?.message || String(err)}`,
+      );
+    }
+
+    try {
+      await addReturnToWorkStatusContent(restChildren, body);
+    } catch (err) {
+      console.error("Error in addReturnToWorkStatusContent:", err);
+      throw new Error(
+        `Failed to add return to work status: ${err?.message || String(err)}`,
+      );
+    }
+
+    try {
+      await addReferralQuestionsContent(restChildren, body);
+    } catch (err) {
+      console.error("Error in addReferralQuestionsContent:", err);
+      throw new Error(
+        `Failed to add referral questions: ${err?.message || String(err)}`,
+      );
+    }
+
+    try {
+      await addConclusionContent(restChildren, body);
+    } catch (err) {
+      console.error("Error in addConclusionContent:", err);
+      throw new Error(
+        `Failed to add conclusion content: ${err?.message || String(err)}`,
+      );
+    }
+
+    try {
+      await addFunctionalAbilitiesDeterminationContent(restChildren, body);
+    } catch (err) {
+      console.error(
+        "Error in addFunctionalAbilitiesDeterminationContent:",
+        err,
+      );
+      throw new Error(
+        `Failed to add functional abilities determination: ${err?.message || String(err)}`,
+      );
+    }
     // await addActivityRatingChart(restChildren, body);
     // await addTestDataContent(restChildren, body);
     // await addReferenceChartsContent(restChildren, body);

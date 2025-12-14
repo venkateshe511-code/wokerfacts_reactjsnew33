@@ -7660,9 +7660,36 @@ async function addReferralQuestionsContent(children, body) {
 }
 
 async function addConclusionContent(children, body) {
-  const referralData = body.referralQuestionsData || {};
-  const questions = referralData.questions || [];
-  const conclusionData = referralData.conclusionData || {};
+  // Safely extract referral data with complete defensive defaults
+  const referralData = body?.referralQuestionsData || {};
+  const questions = referralData?.questions || [];
+
+  // Ensure conclusionData is always properly structured
+  const conclusionDataRaw = referralData?.conclusionData || {};
+  const conclusionData = {
+    returnToWorkStatus: {
+      status: conclusionDataRaw?.returnToWorkStatus?.status || "",
+      comments: conclusionDataRaw?.returnToWorkStatus?.comments || "",
+    },
+    rpdrBehaviors:
+      typeof conclusionDataRaw?.rpdrBehaviors === "object" &&
+      conclusionDataRaw.rpdrBehaviors !== null
+        ? conclusionDataRaw.rpdrBehaviors
+        : {},
+    rpdrComments:
+      typeof conclusionDataRaw?.rpdrComments === "string"
+        ? conclusionDataRaw.rpdrComments
+        : "",
+    ctpBehaviors:
+      typeof conclusionDataRaw?.ctpBehaviors === "object" &&
+      conclusionDataRaw.ctpBehaviors !== null
+        ? conclusionDataRaw.ctpBehaviors
+        : {},
+    ctpComments:
+      typeof conclusionDataRaw?.ctpComments === "string"
+        ? conclusionDataRaw.ctpComments
+        : "",
+  };
 
   children.push(
     new Paragraph({
