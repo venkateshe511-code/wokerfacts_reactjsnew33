@@ -6019,7 +6019,13 @@ async function addReferralQuestionsContent(children, body) {
 async function addConclusionContent(children, body) {
   const referralData = body.referralQuestionsData || {};
   const questions = referralData.questions || [];
-  const conclusionData = referralData.conclusionData || {};
+  const conclusionData = referralData.conclusionData || {
+    returnToWorkStatus: { status: "", comments: "" },
+    rpdrBehaviors: {},
+    rpdrComments: "",
+    ctpBehaviors: {},
+    ctpComments: "",
+  };
 
   children.push(
     new Paragraph({
