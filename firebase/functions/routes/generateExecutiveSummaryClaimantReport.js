@@ -5296,7 +5296,6 @@ async function addReturnToWorkStatusContent(children, body) {
   }
 }
 
-
 async function addReferralQuestionsContent(children, body) {
   const referralData = body.referralQuestionsData || {};
   const questions = referralData.questions || [];
