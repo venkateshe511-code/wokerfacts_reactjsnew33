@@ -1209,6 +1209,27 @@ export default function ReferralQuestions() {
                             </div>
                           ))}
                         </div>
+                        <div className="mt-4">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Comments
+                          </label>
+                          <Textarea
+                            value={
+                              referralData.conclusionData?.rpdrComments || ""
+                            }
+                            onChange={(e) =>
+                              setReferralData((prev) => ({
+                                ...prev,
+                                conclusionData: {
+                                  ...prev.conclusionData!,
+                                  rpdrComments: e.target.value,
+                                },
+                              }))
+                            }
+                            placeholder="Enter any comments about observed symptom behaviors..."
+                            className="min-h-[100px]"
+                          />
+                        </div>
                       </div>
                     </div>
                   ) : question.question.includes("6e)") || question.question.includes("CTP") ? (
