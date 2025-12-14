@@ -1098,6 +1098,56 @@ export default function ReferralQuestions() {
                         />
                       </div>
                     </div>
+                  ) : question.question.includes("6d)") || question.question.includes("RPDR") ? (
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                          Observed Symptom Behavior / Reliability of Pain and
+                          Disability Reports (RPDR)
+                        </h3>
+                        <p className="text-xs text-gray-600 mb-4">
+                          Observable demonstrations of the patient that were
+                          consistent or inconsistent with the medical
+                          diagnosis and reported pain level.
+                        </p>
+                        <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-white">
+                          {RPDR_BEHAVIORS.map((behavior) => (
+                            <div
+                              key={behavior}
+                              className="flex items-center space-x-3"
+                            >
+                              <Checkbox
+                                id={`rpdr-${question.id}-${behavior}`}
+                                checked={
+                                  referralData.conclusionData?.rpdrBehaviors[
+                                    behavior
+                                  ] || false
+                                }
+                                onCheckedChange={(checked) =>
+                                  setReferralData((prev) => ({
+                                    ...prev,
+                                    conclusionData: {
+                                      ...prev.conclusionData!,
+                                      rpdrBehaviors: {
+                                        ...prev.conclusionData!
+                                          .rpdrBehaviors,
+                                        [behavior]: checked,
+                                      },
+                                    },
+                                  }))
+                                }
+                              />
+                              <label
+                                htmlFor={`rpdr-${question.id}-${behavior}`}
+                                className="text-sm text-gray-700 cursor-pointer flex-1"
+                              >
+                                {behavior}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   ) : question.question.includes("Conclusions?") ? (
                     <div className="space-y-6">
                       {/* Return to Work Status Section */}
