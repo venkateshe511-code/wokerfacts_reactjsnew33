@@ -6301,7 +6301,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
           // Enhanced referral questions data
           referralQuestionsData: {
             questions:
-              referralQuestionsData.questions &&
+              referralQuestionsData?.questions &&
               referralQuestionsData.questions.length > 0
                 ? referralQuestionsData.questions.map((q: any) => ({
                     question: q.question,
@@ -6332,13 +6332,15 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     },
                   ],
             // Include conclusion data (Return to Work Status, RPDR, CTP behaviors)
-            conclusionData: referralQuestionsData.conclusionData || {
+            conclusionData: {
               returnToWorkStatus: {
-                status: "",
-                comments: "",
+                status: referralQuestionsData?.conclusionData?.returnToWorkStatus?.status || "",
+                comments: referralQuestionsData?.conclusionData?.returnToWorkStatus?.comments || "",
               },
-              rpdrBehaviors: {},
-              ctpBehaviors: {},
+              rpdrBehaviors: referralQuestionsData?.conclusionData?.rpdrBehaviors || {},
+              rpdrComments: referralQuestionsData?.conclusionData?.rpdrComments || "",
+              ctpBehaviors: referralQuestionsData?.conclusionData?.ctpBehaviors || {},
+              ctpComments: referralQuestionsData?.conclusionData?.ctpComments || "",
             },
           },
 
