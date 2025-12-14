@@ -5841,10 +5841,24 @@ async function addConclusionContent(children, body) {
       status: conclusionDataRaw?.returnToWorkStatus?.status || "",
       comments: conclusionDataRaw?.returnToWorkStatus?.comments || "",
     },
-    rpdrBehaviors: typeof conclusionDataRaw?.rpdrBehaviors === 'object' && conclusionDataRaw.rpdrBehaviors !== null ? conclusionDataRaw.rpdrBehaviors : {},
-    rpdrComments: typeof conclusionDataRaw?.rpdrComments === 'string' ? conclusionDataRaw.rpdrComments : "",
-    ctpBehaviors: typeof conclusionDataRaw?.ctpBehaviors === 'object' && conclusionDataRaw.ctpBehaviors !== null ? conclusionDataRaw.ctpBehaviors : {},
-    ctpComments: typeof conclusionDataRaw?.ctpComments === 'string' ? conclusionDataRaw.ctpComments : "",
+    rpdrBehaviors:
+      typeof conclusionDataRaw?.rpdrBehaviors === "object" &&
+      conclusionDataRaw.rpdrBehaviors !== null
+        ? conclusionDataRaw.rpdrBehaviors
+        : {},
+    rpdrComments:
+      typeof conclusionDataRaw?.rpdrComments === "string"
+        ? conclusionDataRaw.rpdrComments
+        : "",
+    ctpBehaviors:
+      typeof conclusionDataRaw?.ctpBehaviors === "object" &&
+      conclusionDataRaw.ctpBehaviors !== null
+        ? conclusionDataRaw.ctpBehaviors
+        : {},
+    ctpComments:
+      typeof conclusionDataRaw?.ctpComments === "string"
+        ? conclusionDataRaw.ctpComments
+        : "",
   };
 
   children.push(
@@ -6024,7 +6038,9 @@ async function addConclusionContent(children, body) {
         }),
       );
 
-      const rpdrCommentLines = (String(conclusionData.rpdrComments || "")).split("\n");
+      const rpdrCommentLines = String(conclusionData.rpdrComments || "").split(
+        "\n",
+      );
       for (const line of rpdrCommentLines) {
         children.push(
           new Paragraph({
@@ -6115,7 +6131,9 @@ async function addConclusionContent(children, body) {
         }),
       );
 
-      const ctpCommentLines = (String(conclusionData.ctpComments || "")).split("\n");
+      const ctpCommentLines = String(conclusionData.ctpComments || "").split(
+        "\n",
+      );
       for (const line of ctpCommentLines) {
         children.push(
           new Paragraph({
@@ -8809,35 +8827,48 @@ router.post("/", async (req, res) => {
       await addClientInformation(restChildren, body);
     } catch (err) {
       console.error("Error in addClientInformation:", err);
-      throw new Error(`Failed to add client information: ${err?.message || String(err)}`);
+      throw new Error(
+        `Failed to add client information: ${err?.message || String(err)}`,
+      );
     }
 
     try {
       await addReturnToWorkStatusContent(restChildren, body);
     } catch (err) {
       console.error("Error in addReturnToWorkStatusContent:", err);
-      throw new Error(`Failed to add return to work status: ${err?.message || String(err)}`);
+      throw new Error(
+        `Failed to add return to work status: ${err?.message || String(err)}`,
+      );
     }
 
     try {
       await addReferralQuestionsContent(restChildren, body);
     } catch (err) {
       console.error("Error in addReferralQuestionsContent:", err);
-      throw new Error(`Failed to add referral questions: ${err?.message || String(err)}`);
+      throw new Error(
+        `Failed to add referral questions: ${err?.message || String(err)}`,
+      );
     }
 
     try {
       await addConclusionContent(restChildren, body);
     } catch (err) {
       console.error("Error in addConclusionContent:", err);
-      throw new Error(`Failed to add conclusion content: ${err?.message || String(err)}`);
+      throw new Error(
+        `Failed to add conclusion content: ${err?.message || String(err)}`,
+      );
     }
 
     try {
       await addFunctionalAbilitiesDeterminationContent(restChildren, body);
     } catch (err) {
-      console.error("Error in addFunctionalAbilitiesDeterminationContent:", err);
-      throw new Error(`Failed to add functional abilities determination: ${err?.message || String(err)}`);
+      console.error(
+        "Error in addFunctionalAbilitiesDeterminationContent:",
+        err,
+      );
+      throw new Error(
+        `Failed to add functional abilities determination: ${err?.message || String(err)}`,
+      );
     }
     // await addActivityRatingChart(restChildren, body);
     // await addTestDataContent(restChildren, body);

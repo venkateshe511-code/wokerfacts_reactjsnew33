@@ -7665,10 +7665,24 @@ async function addConclusionContent(children, body) {
       status: conclusionDataRaw?.returnToWorkStatus?.status || "",
       comments: conclusionDataRaw?.returnToWorkStatus?.comments || "",
     },
-    rpdrBehaviors: typeof conclusionDataRaw?.rpdrBehaviors === 'object' && conclusionDataRaw.rpdrBehaviors !== null ? conclusionDataRaw.rpdrBehaviors : {},
-    rpdrComments: typeof conclusionDataRaw?.rpdrComments === 'string' ? conclusionDataRaw.rpdrComments : "",
-    ctpBehaviors: typeof conclusionDataRaw?.ctpBehaviors === 'object' && conclusionDataRaw.ctpBehaviors !== null ? conclusionDataRaw.ctpBehaviors : {},
-    ctpComments: typeof conclusionDataRaw?.ctpComments === 'string' ? conclusionDataRaw.ctpComments : "",
+    rpdrBehaviors:
+      typeof conclusionDataRaw?.rpdrBehaviors === "object" &&
+      conclusionDataRaw.rpdrBehaviors !== null
+        ? conclusionDataRaw.rpdrBehaviors
+        : {},
+    rpdrComments:
+      typeof conclusionDataRaw?.rpdrComments === "string"
+        ? conclusionDataRaw.rpdrComments
+        : "",
+    ctpBehaviors:
+      typeof conclusionDataRaw?.ctpBehaviors === "object" &&
+      conclusionDataRaw.ctpBehaviors !== null
+        ? conclusionDataRaw.ctpBehaviors
+        : {},
+    ctpComments:
+      typeof conclusionDataRaw?.ctpComments === "string"
+        ? conclusionDataRaw.ctpComments
+        : "",
   };
 
   children.push(
