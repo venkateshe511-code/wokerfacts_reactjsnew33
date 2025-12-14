@@ -6977,8 +6977,9 @@ async function addReferralQuestionsContent(children, body) {
     // Clean up numbering like 6a), 6b), etc.
     question = cleanQuestion(question);
 
-    // Skip conclusion questions
+    // Skip conclusion questions and RPDR/CTP (6d/6e) - handled separately
     if (question.toLowerCase().includes("conclusion")) continue;
+    if (q.question?.includes("6d)") || q.question?.includes("6e)")) continue;
 
     // Question Title
     children.push(
