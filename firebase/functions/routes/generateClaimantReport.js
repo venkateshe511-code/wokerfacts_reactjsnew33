@@ -7686,6 +7686,41 @@ async function addConclusionContent(children, body) {
       );
     }
 
+    if (conclusionData.ctpComments) {
+      children.push(
+        new Paragraph({
+          children: []
+        }),
+      );
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Comments:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 80 },
+        }),
+      );
+
+      const ctpCommentLines = conclusionData.ctpComments.split("\n");
+      for (const line of ctpCommentLines) {
+        children.push(
+          new Paragraph({
+            spacing: { after: 40 },
+            children: [
+              new TextRun({
+                text: line,
+                size: 16,
+              }),
+            ],
+          }),
+        );
+      }
+    }
+
     children.push(
       new Paragraph({
         children: [],
