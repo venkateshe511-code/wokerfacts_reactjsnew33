@@ -98,6 +98,7 @@ const defaultQuestions = [
   "6b) Distraction test consistency - When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities. Pass/Fail determination:",
   "6c) Consistency with diagnosis - Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing. Pass/Fail determination:",
   "6d) Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+  "6e) Observable Signs of Effort / Competitive Testing Performance (CTP)",
   "What would be the Physical Demand Classification (PDC) for this client?",
   "Conclusions?",
 ];
