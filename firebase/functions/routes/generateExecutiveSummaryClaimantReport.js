@@ -6115,7 +6115,7 @@ async function addConclusionContent(children, body) {
         }),
       );
 
-      const ctpCommentLines = conclusionData.ctpComments.split("\n");
+      const ctpCommentLines = (String(conclusionData.ctpComments || "")).split("\n");
       for (const line of ctpCommentLines) {
         children.push(
           new Paragraph({
