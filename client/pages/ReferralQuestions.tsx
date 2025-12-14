@@ -218,13 +218,21 @@ export default function ReferralQuestions() {
       {
         id: "default-9",
         question:
+          "6d) Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+        answer: "",
+        images: [],
+        savedImageData: [],
+      },
+      {
+        id: "default-10",
+        question:
           "What would be the Physical Demand Classification (PDC) for this client?",
         answer: "PDC:Light|",
         images: [],
         savedImageData: [],
       },
       {
-        id: "default-10",
+        id: "default-11",
         question: "Conclusions?",
         answer:
           "Based on the comprehensive functional capacity evaluation, this client demonstrates light duty work capacity. Recommendations include occasional lifting up to 20lbs, frequent lifting up to 10lbs, with restrictions on prolonged static positioning. Return to work feasible with appropriate workplace accommodations and gradual progression.",
