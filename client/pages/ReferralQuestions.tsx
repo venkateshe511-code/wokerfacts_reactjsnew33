@@ -887,18 +887,19 @@ export default function ReferralQuestions() {
                           <div className="flex items-center space-x-2">
                             <span className="text-sm font-medium text-blue-600 whitespace-nowrap">
                               {(() => {
-                                // Handle special 6a, 6b, 6c, 6d questions
+                                // Handle special 6a, 6b, 6c, 6d, 6e questions
                                 if (
                                   question.question.startsWith("6a)") ||
                                   question.question.startsWith("6b)") ||
                                   question.question.startsWith("6c)") ||
-                                  question.question.startsWith("6d)")
+                                  question.question.startsWith("6d)") ||
+                                  question.question.startsWith("6e)")
                                 ) {
                                   return "";
                                 }
                                 // Regular numbering
                                 let questionNumber = index + 1;
-                                if (index >= 9) questionNumber = index - 1;
+                                if (index >= 10) questionNumber = index - 2;
                                 return `${questionNumber}.`;
                               })()}
                             </span>
@@ -927,18 +928,19 @@ export default function ReferralQuestions() {
                       ) : (
                         <p className="text-sm font-medium text-blue-600 mb-4">
                           {(() => {
-                            // Handle special 6a, 6b, 6c, 6d questions
+                            // Handle special 6a, 6b, 6c, 6d, 6e questions
                             if (
                               question.question.startsWith("6a)") ||
                               question.question.startsWith("6b)") ||
                               question.question.startsWith("6c)") ||
-                              question.question.startsWith("6d)")
+                              question.question.startsWith("6d)") ||
+                              question.question.startsWith("6e)")
                             ) {
                               return question.question;
                             }
-                            // Regular numbering: 1-5 for first 5, then 7-8 for questions after 6d
+                            // Regular numbering: 1-5 for first 5, then 7-8-9 for questions after 6e
                             let questionNumber = index + 1;
-                            if (index >= 9) questionNumber = index - 2; // Questions after 6d become 7, 8
+                            if (index >= 10) questionNumber = index - 3; // Questions after 6e become 7, 8, 9
                             return `${questionNumber}. ${question.question}`;
                           })()}
                         </p>
