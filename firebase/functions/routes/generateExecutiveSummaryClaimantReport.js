@@ -5992,6 +5992,41 @@ async function addConclusionContent(children, body) {
       );
     }
 
+    if (conclusionData.rpdrComments) {
+      children.push(
+        new Paragraph({
+          children: []
+        }),
+      );
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Comments:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 80 },
+        }),
+      );
+
+      const rpdrCommentLines = conclusionData.rpdrComments.split("\n");
+      for (const line of rpdrCommentLines) {
+        children.push(
+          new Paragraph({
+            spacing: { after: 40 },
+            children: [
+              new TextRun({
+                text: line,
+                size: 16,
+              }),
+            ],
+          }),
+        );
+      }
+    }
+
     children.push(
       new Paragraph({
         children: [],
@@ -6046,6 +6081,41 @@ async function addConclusionContent(children, body) {
           spacing: { after: 60 },
         }),
       );
+    }
+
+    if (conclusionData.ctpComments) {
+      children.push(
+        new Paragraph({
+          children: []
+        }),
+      );
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "Comments:",
+              bold: true,
+              size: 16,
+            }),
+          ],
+          spacing: { after: 80 },
+        }),
+      );
+
+      const ctpCommentLines = conclusionData.ctpComments.split("\n");
+      for (const line of ctpCommentLines) {
+        children.push(
+          new Paragraph({
+            spacing: { after: 40 },
+            children: [
+              new TextRun({
+                text: line,
+                size: 16,
+              }),
+            ],
+          }),
+        );
+      }
     }
 
     children.push(
