@@ -2406,11 +2406,19 @@ padding-top: 120px; align-items: center; min-height: 0; ">
         <div class="section">
             <!-- RPDR Section (6d) -->
             ${(() => {
-              const rpdrQuestion = referralQuestionsData?.questions?.find((qa: any) => qa.question?.includes("6d)"));
-              const rpdrBehaviors = referralQuestionsData?.conclusionData?.rpdrBehaviors || {};
-              const rpdrComments = referralQuestionsData?.conclusionData?.rpdrComments || "";
+              const rpdrQuestion = referralQuestionsData?.questions?.find(
+                (qa: any) => qa.question?.includes("6d)"),
+              );
+              const rpdrBehaviors =
+                referralQuestionsData?.conclusionData?.rpdrBehaviors || {};
+              const rpdrComments =
+                referralQuestionsData?.conclusionData?.rpdrComments || "";
 
-              if (!rpdrQuestion && !Object.values(rpdrBehaviors).some((v: any) => v === true) && !rpdrComments) {
+              if (
+                !rpdrQuestion &&
+                !Object.values(rpdrBehaviors).some((v: any) => v === true) &&
+                !rpdrComments
+              ) {
                 return "";
               }
 
@@ -2425,7 +2433,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                         <div style="margin-top: 4px; padding: 6px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 3px; font-size: 10px; font-family: Arial, sans-serif;">
                             ${Object.entries(rpdrBehaviors)
                               .map(([behavior, checked]: any) =>
-                                checked ? `<div style="margin: 2px 0;">✓ ${behavior}</div>` : ""
+                                checked
+                                  ? `<div style="margin: 2px 0;">✓ ${behavior}</div>`
+                                  : "",
                               )
                               .join("")}
                         </div>
@@ -2448,11 +2458,19 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
             <!-- CTP Section (6e) -->
             ${(() => {
-              const ctpQuestion = referralQuestionsData?.questions?.find((qa: any) => qa.question?.includes("6e)"));
-              const ctpBehaviors = referralQuestionsData?.conclusionData?.ctpBehaviors || {};
-              const ctpComments = referralQuestionsData?.conclusionData?.ctpComments || "";
+              const ctpQuestion = referralQuestionsData?.questions?.find(
+                (qa: any) => qa.question?.includes("6e)"),
+              );
+              const ctpBehaviors =
+                referralQuestionsData?.conclusionData?.ctpBehaviors || {};
+              const ctpComments =
+                referralQuestionsData?.conclusionData?.ctpComments || "";
 
-              if (!ctpQuestion && !Object.values(ctpBehaviors).some((v: any) => v === true) && !ctpComments) {
+              if (
+                !ctpQuestion &&
+                !Object.values(ctpBehaviors).some((v: any) => v === true) &&
+                !ctpComments
+              ) {
                 return "";
               }
 
@@ -2467,7 +2485,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                         <div style="margin-top: 4px; padding: 6px; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 3px; font-size: 10px; font-family: Arial, sans-serif;">
                             ${Object.entries(ctpBehaviors)
                               .map(([behavior, checked]: any) =>
-                                checked ? `<div style="margin: 2px 0;">✓ ${behavior}</div>` : ""
+                                checked
+                                  ? `<div style="margin: 2px 0;">✓ ${behavior}</div>`
+                                  : "",
                               )
                               .join("")}
                         </div>

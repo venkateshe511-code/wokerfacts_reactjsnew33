@@ -1661,51 +1661,85 @@ export default function ReviewReport() {
                     {/* 6d and 6e Questions - RPDR and CTP */}
                     <div className="space-y-6">
                       {/* RPDR Section (6d) */}
-                      {reportData.referralQuestionsData.questions?.find((qa: any) => qa.question?.includes("6d)")) && (
+                      {reportData.referralQuestionsData.questions?.find(
+                        (qa: any) => qa.question?.includes("6d)"),
+                      ) && (
                         <div className="border-b border-gray-200 pb-4">
                           <h4 className="font-semibold mb-3 text-blue-800">
-                            Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)
+                            Observed Symptom Behavior / Reliability of Pain and
+                            Disability Reports (RPDR)
                           </h4>
 
                           {/* RPDR Answer */}
-                          {reportData.referralQuestionsData.questions?.find((qa: any) => qa.question?.includes("6d)"))?.answer && (
+                          {reportData.referralQuestionsData.questions?.find(
+                            (qa: any) => qa.question?.includes("6d)"),
+                          )?.answer && (
                             <div className="mb-4">
-                              <p className="text-sm font-medium text-gray-700 mb-2">Answer:</p>
+                              <p className="text-sm font-medium text-gray-700 mb-2">
+                                Answer:
+                              </p>
                               <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded">
-                                {reportData.referralQuestionsData.questions?.find((qa: any) => qa.question?.includes("6d)"))?.answer}
+                                {
+                                  reportData.referralQuestionsData.questions?.find(
+                                    (qa: any) => qa.question?.includes("6d)"),
+                                  )?.answer
+                                }
                               </p>
                             </div>
                           )}
 
                           {/* RPDR Behaviors */}
-                          {reportData.referralQuestionsData?.conclusionData?.rpdrBehaviors && Object.keys(reportData.referralQuestionsData.conclusionData.rpdrBehaviors).length > 0 && (
-                            <div className="mb-4">
-                              <p className="text-sm font-medium text-gray-700 mb-2">Observed Behaviors:</p>
-                              <div className="bg-white border border-gray-200 rounded-lg p-3 space-y-2">
-                                {Object.entries(reportData.referralQuestionsData.conclusionData.rpdrBehaviors).map(([behavior, checked]: any) => (
-                                  <div key={behavior} className="flex items-start space-x-2">
-                                    <div className="mt-1">
-                                      {checked ? (
-                                        <div className="w-4 h-4 bg-green-500 rounded border border-green-600 flex items-center justify-center">
-                                          <span className="text-white text-xs font-bold">✓</span>
-                                        </div>
-                                      ) : (
-                                        <div className="w-4 h-4 border border-gray-300 rounded"></div>
-                                      )}
+                          {reportData.referralQuestionsData?.conclusionData
+                            ?.rpdrBehaviors &&
+                            Object.keys(
+                              reportData.referralQuestionsData.conclusionData
+                                .rpdrBehaviors,
+                            ).length > 0 && (
+                              <div className="mb-4">
+                                <p className="text-sm font-medium text-gray-700 mb-2">
+                                  Observed Behaviors:
+                                </p>
+                                <div className="bg-white border border-gray-200 rounded-lg p-3 space-y-2">
+                                  {Object.entries(
+                                    reportData.referralQuestionsData
+                                      .conclusionData.rpdrBehaviors,
+                                  ).map(([behavior, checked]: any) => (
+                                    <div
+                                      key={behavior}
+                                      className="flex items-start space-x-2"
+                                    >
+                                      <div className="mt-1">
+                                        {checked ? (
+                                          <div className="w-4 h-4 bg-green-500 rounded border border-green-600 flex items-center justify-center">
+                                            <span className="text-white text-xs font-bold">
+                                              ✓
+                                            </span>
+                                          </div>
+                                        ) : (
+                                          <div className="w-4 h-4 border border-gray-300 rounded"></div>
+                                        )}
+                                      </div>
+                                      <span className="text-sm text-gray-700">
+                                        {behavior}
+                                      </span>
                                     </div>
-                                    <span className="text-sm text-gray-700">{behavior}</span>
-                                  </div>
-                                ))}
+                                  ))}
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
 
                           {/* RPDR Comments */}
-                          {reportData.referralQuestionsData?.conclusionData?.rpdrComments && (
+                          {reportData.referralQuestionsData?.conclusionData
+                            ?.rpdrComments && (
                             <div className="mb-4">
-                              <p className="text-sm font-medium text-gray-700 mb-2">Comments:</p>
+                              <p className="text-sm font-medium text-gray-700 mb-2">
+                                Comments:
+                              </p>
                               <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded">
-                                {reportData.referralQuestionsData.conclusionData.rpdrComments}
+                                {
+                                  reportData.referralQuestionsData
+                                    .conclusionData.rpdrComments
+                                }
                               </p>
                             </div>
                           )}
@@ -1713,51 +1747,85 @@ export default function ReviewReport() {
                       )}
 
                       {/* CTP Section (6e) */}
-                      {reportData.referralQuestionsData.questions?.find((qa: any) => qa.question?.includes("6e)")) && (
+                      {reportData.referralQuestionsData.questions?.find(
+                        (qa: any) => qa.question?.includes("6e)"),
+                      ) && (
                         <div className="border-b border-gray-200 pb-4">
                           <h4 className="font-semibold mb-3 text-blue-800">
-                            Observable Signs of Effort / Competitive Testing Performance (CTP)
+                            Observable Signs of Effort / Competitive Testing
+                            Performance (CTP)
                           </h4>
 
                           {/* CTP Answer */}
-                          {reportData.referralQuestionsData.questions?.find((qa: any) => qa.question?.includes("6e)"))?.answer && (
+                          {reportData.referralQuestionsData.questions?.find(
+                            (qa: any) => qa.question?.includes("6e)"),
+                          )?.answer && (
                             <div className="mb-4">
-                              <p className="text-sm font-medium text-gray-700 mb-2">Answer:</p>
+                              <p className="text-sm font-medium text-gray-700 mb-2">
+                                Answer:
+                              </p>
                               <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded">
-                                {reportData.referralQuestionsData.questions?.find((qa: any) => qa.question?.includes("6e)"))?.answer}
+                                {
+                                  reportData.referralQuestionsData.questions?.find(
+                                    (qa: any) => qa.question?.includes("6e)"),
+                                  )?.answer
+                                }
                               </p>
                             </div>
                           )}
 
                           {/* CTP Behaviors */}
-                          {reportData.referralQuestionsData?.conclusionData?.ctpBehaviors && Object.keys(reportData.referralQuestionsData.conclusionData.ctpBehaviors).length > 0 && (
-                            <div className="mb-4">
-                              <p className="text-sm font-medium text-gray-700 mb-2">Observable Behaviors:</p>
-                              <div className="bg-white border border-gray-200 rounded-lg p-3 space-y-2">
-                                {Object.entries(reportData.referralQuestionsData.conclusionData.ctpBehaviors).map(([behavior, checked]: any) => (
-                                  <div key={behavior} className="flex items-start space-x-2">
-                                    <div className="mt-1">
-                                      {checked ? (
-                                        <div className="w-4 h-4 bg-green-500 rounded border border-green-600 flex items-center justify-center">
-                                          <span className="text-white text-xs font-bold">✓</span>
-                                        </div>
-                                      ) : (
-                                        <div className="w-4 h-4 border border-gray-300 rounded"></div>
-                                      )}
+                          {reportData.referralQuestionsData?.conclusionData
+                            ?.ctpBehaviors &&
+                            Object.keys(
+                              reportData.referralQuestionsData.conclusionData
+                                .ctpBehaviors,
+                            ).length > 0 && (
+                              <div className="mb-4">
+                                <p className="text-sm font-medium text-gray-700 mb-2">
+                                  Observable Behaviors:
+                                </p>
+                                <div className="bg-white border border-gray-200 rounded-lg p-3 space-y-2">
+                                  {Object.entries(
+                                    reportData.referralQuestionsData
+                                      .conclusionData.ctpBehaviors,
+                                  ).map(([behavior, checked]: any) => (
+                                    <div
+                                      key={behavior}
+                                      className="flex items-start space-x-2"
+                                    >
+                                      <div className="mt-1">
+                                        {checked ? (
+                                          <div className="w-4 h-4 bg-green-500 rounded border border-green-600 flex items-center justify-center">
+                                            <span className="text-white text-xs font-bold">
+                                              ✓
+                                            </span>
+                                          </div>
+                                        ) : (
+                                          <div className="w-4 h-4 border border-gray-300 rounded"></div>
+                                        )}
+                                      </div>
+                                      <span className="text-sm text-gray-700">
+                                        {behavior}
+                                      </span>
                                     </div>
-                                    <span className="text-sm text-gray-700">{behavior}</span>
-                                  </div>
-                                ))}
+                                  ))}
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
 
                           {/* CTP Comments */}
-                          {reportData.referralQuestionsData?.conclusionData?.ctpComments && (
+                          {reportData.referralQuestionsData?.conclusionData
+                            ?.ctpComments && (
                             <div className="mb-4">
-                              <p className="text-sm font-medium text-gray-700 mb-2">Comments:</p>
+                              <p className="text-sm font-medium text-gray-700 mb-2">
+                                Comments:
+                              </p>
                               <p className="text-sm text-gray-700 bg-gray-50 p-3 rounded">
-                                {reportData.referralQuestionsData.conclusionData.ctpComments}
+                                {
+                                  reportData.referralQuestionsData
+                                    .conclusionData.ctpComments
+                                }
                               </p>
                             </div>
                           )}

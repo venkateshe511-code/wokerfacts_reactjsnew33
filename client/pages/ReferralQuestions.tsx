@@ -1166,7 +1166,8 @@ export default function ReferralQuestions() {
                     <div className="space-y-4">
                       <div>
                         <h3 className="text-sm font-semibold text-gray-900 mb-4">
-                          Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)
+                          Observed Symptom Behavior / Reliability of Pain and
+                          Disability Reports (RPDR)
                         </h3>
                         <p className="text-xs text-gray-600 mb-4">
                           Observable demonstrations of the patient that were
@@ -1236,7 +1237,8 @@ export default function ReferralQuestions() {
                     <div className="space-y-4">
                       <div>
                         <h3 className="text-sm font-semibold text-gray-900 mb-4">
-                          Observable Signs of Effort / Competitive Testing Performance (CTP)
+                          Observable Signs of Effort / Competitive Testing
+                          Performance (CTP)
                         </h3>
                         <p className="text-xs text-gray-600 mb-4">
                           Observable behaviors in which a person attempts to
