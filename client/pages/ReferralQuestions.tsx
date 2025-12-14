@@ -12,7 +12,6 @@ import {
 import { ArrowLeft, Save, Edit, Check, Plus, Upload, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDemoMode } from "@/hooks/use-demo-mode";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/hooks/use-toast";
 
@@ -40,7 +39,9 @@ interface RPDRBehaviors {
 interface ConclusionData {
   returnToWorkStatus: ReturnToWorkStatus;
   rpdrBehaviors: RPDRBehaviors;
+  rpdrComments: string;
   ctpBehaviors: { [key: string]: boolean };
+  ctpComments: string;
 }
 
 interface ReferralData {
@@ -98,6 +99,8 @@ const defaultQuestions = [
   "6a) Was the client consistent and reliable in their efforts?",
   "6b) Distraction test consistency - When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities. Pass/Fail determination:",
   "6c) Consistency with diagnosis - Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing. Pass/Fail determination:",
+  "6d) Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+  "6e) Observable Signs of Effort / Competitive Testing Performance (CTP)",
   "What would be the Physical Demand Classification (PDC) for this client?",
   "Conclusions?",
 ];
@@ -127,10 +130,12 @@ export default function ReferralQuestions() {
         (acc, behavior) => ({ ...acc, [behavior]: false }),
         {},
       ),
+      rpdrComments: "",
       ctpBehaviors: CTP_BEHAVIORS.reduce(
         (acc, behavior) => ({ ...acc, [behavior]: false }),
         {},
       ),
+      ctpComments: "",
     },
   });
 
@@ -219,13 +224,29 @@ export default function ReferralQuestions() {
       {
         id: "default-9",
         question:
+          "6d) Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+        answer: "",
+        images: [],
+        savedImageData: [],
+      },
+      {
+        id: "default-9b",
+        question:
+          "6e) Observable Signs of Effort / Competitive Testing Performance (CTP)",
+        answer: "",
+        images: [],
+        savedImageData: [],
+      },
+      {
+        id: "default-10",
+        question:
           "What would be the Physical Demand Classification (PDC) for this client?",
         answer: "PDC:Light|",
         images: [],
         savedImageData: [],
       },
       {
-        id: "default-10",
+        id: "default-11",
         question: "Conclusions?",
         answer:
           "Based on the comprehensive functional capacity evaluation, this client demonstrates light duty work capacity. Recommendations include occasional lifting up to 20lbs, frequent lifting up to 10lbs, with restrictions on prolonged static positioning. Return to work feasible with appropriate workplace accommodations and gradual progression.",
@@ -338,6 +359,52 @@ export default function ReferralQuestions() {
         }
         return question;
       });
+
+      // Migration: Add 6d and 6e questions if they don't exist (insert before PDC question)
+      const has6dQuestion = updatedQuestions.some(
+        (q: any) => q.id === "default-9" || q.question?.includes("6d)"),
+      );
+      const has6eQuestion = updatedQuestions.some(
+        (q: any) => q.id === "default-9b" || q.question?.includes("6e)"),
+      );
+
+      if (!has6dQuestion || !has6eQuestion) {
+        // Find the PDC question index and insert 6d and 6e before it
+        const pdcIndex = updatedQuestions.findIndex((q: any) =>
+          q.question?.includes("Physical Demand Classification"),
+        );
+
+        if (pdcIndex !== -1) {
+          // Update IDs for questions after the insertion point
+          updatedQuestions.forEach((q: any) => {
+            if (q.id === "default-9") q.id = "default-10";
+            if (q.id === "default-10") q.id = "default-11";
+          });
+
+          // Insert 6d and 6e questions if they don't exist
+          if (!has6dQuestion) {
+            updatedQuestions.splice(pdcIndex, 0, {
+              id: "default-9",
+              question:
+                "6d) Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+              answer: "",
+              images: [],
+              savedImageData: [],
+            });
+          }
+
+          if (!has6eQuestion) {
+            updatedQuestions.splice(pdcIndex + 1, 0, {
+              id: "default-9b",
+              question:
+                "6e) Observable Signs of Effort / Competitive Testing Performance (CTP)",
+              answer: "",
+              images: [],
+              savedImageData: [],
+            });
+          }
+        }
+      }
 
       // Update savedData with migrated questions
       savedData.questions = updatedQuestions;
@@ -824,17 +891,19 @@ export default function ReferralQuestions() {
                           <div className="flex items-center space-x-2">
                             <span className="text-sm font-medium text-blue-600 whitespace-nowrap">
                               {(() => {
-                                // Handle special 6a, 6b, 6c questions
+                                // Handle special 6a, 6b, 6c, 6d, 6e questions
                                 if (
                                   question.question.startsWith("6a)") ||
                                   question.question.startsWith("6b)") ||
-                                  question.question.startsWith("6c)")
+                                  question.question.startsWith("6c)") ||
+                                  question.question.startsWith("6d)") ||
+                                  question.question.startsWith("6e)")
                                 ) {
                                   return "";
                                 }
                                 // Regular numbering
                                 let questionNumber = index + 1;
-                                if (index >= 8) questionNumber = index - 1;
+                                if (index >= 10) questionNumber = index - 2;
                                 return `${questionNumber}.`;
                               })()}
                             </span>
@@ -863,17 +932,19 @@ export default function ReferralQuestions() {
                       ) : (
                         <p className="text-sm font-medium text-blue-600 mb-4">
                           {(() => {
-                            // Handle special 6a, 6b, 6c questions
+                            // Handle special 6a, 6b, 6c, 6d, 6e questions
                             if (
                               question.question.startsWith("6a)") ||
                               question.question.startsWith("6b)") ||
-                              question.question.startsWith("6c)")
+                              question.question.startsWith("6c)") ||
+                              question.question.startsWith("6d)") ||
+                              question.question.startsWith("6e)")
                             ) {
                               return question.question;
                             }
-                            // Regular numbering: 1-5 for first 5, then 7-8 for questions after 6c
+                            // Regular numbering: 1-5 for first 5, then 7-8-9 for questions after 6e
                             let questionNumber = index + 1;
-                            if (index >= 8) questionNumber = index - 1; // Questions after 6c become 7, 8
+                            if (index >= 10) questionNumber = index - 3; // Questions after 6e become 7, 8, 9
                             return `${questionNumber}. ${question.question}`;
                           })()}
                         </p>
@@ -1090,205 +1161,194 @@ export default function ReferralQuestions() {
                         />
                       </div>
                     </div>
+                  ) : question.question.includes("6d)") ||
+                    question.question.includes("RPDR") ? (
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                          Observed Symptom Behavior / Reliability of Pain and
+                          Disability Reports (RPDR)
+                        </h3>
+                        <p className="text-xs text-gray-600 mb-4">
+                          Observable demonstrations of the patient that were
+                          consistent or inconsistent with the medical diagnosis
+                          and reported pain level.
+                        </p>
+                        <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-white">
+                          {RPDR_BEHAVIORS.map((behavior) => (
+                            <div
+                              key={behavior}
+                              className="flex items-center space-x-3"
+                            >
+                              <Checkbox
+                                id={`rpdr-${question.id}-${behavior}`}
+                                checked={
+                                  referralData.conclusionData?.rpdrBehaviors[
+                                    behavior
+                                  ] || false
+                                }
+                                onCheckedChange={(checked) =>
+                                  setReferralData((prev) => ({
+                                    ...prev,
+                                    conclusionData: {
+                                      ...prev.conclusionData!,
+                                      rpdrBehaviors: {
+                                        ...prev.conclusionData!.rpdrBehaviors,
+                                        [behavior]: checked,
+                                      },
+                                    },
+                                  }))
+                                }
+                              />
+                              <label
+                                htmlFor={`rpdr-${question.id}-${behavior}`}
+                                className="text-sm text-gray-700 cursor-pointer flex-1"
+                              >
+                                {behavior}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mt-4">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Comments
+                          </label>
+                          <Textarea
+                            value={
+                              referralData.conclusionData?.rpdrComments || ""
+                            }
+                            onChange={(e) =>
+                              setReferralData((prev) => ({
+                                ...prev,
+                                conclusionData: {
+                                  ...prev.conclusionData!,
+                                  rpdrComments: e.target.value,
+                                },
+                              }))
+                            }
+                            placeholder="Enter any comments about observed symptom behaviors..."
+                            className="min-h-[100px]"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ) : question.question.includes("6e)") ||
+                    question.question.includes("CTP") ? (
+                    <div className="space-y-4">
+                      <div>
+                        <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                          Observable Signs of Effort / Competitive Testing
+                          Performance (CTP)
+                        </h3>
+                        <p className="text-xs text-gray-600 mb-4">
+                          Observable behaviors in which a person attempts to
+                          gain an advantage to improve scores.
+                        </p>
+                        <div className="space-y-3 border border-gray-200 rounded-lg p-4 bg-white">
+                          {CTP_BEHAVIORS.map((behavior) => (
+                            <div
+                              key={behavior}
+                              className="flex items-center space-x-3"
+                            >
+                              <Checkbox
+                                id={`ctp-${question.id}-${behavior}`}
+                                checked={
+                                  referralData.conclusionData?.ctpBehaviors[
+                                    behavior
+                                  ] || false
+                                }
+                                onCheckedChange={(checked) =>
+                                  setReferralData((prev) => ({
+                                    ...prev,
+                                    conclusionData: {
+                                      ...prev.conclusionData!,
+                                      ctpBehaviors: {
+                                        ...prev.conclusionData!.ctpBehaviors,
+                                        [behavior]: checked,
+                                      },
+                                    },
+                                  }))
+                                }
+                              />
+                              <label
+                                htmlFor={`ctp-${question.id}-${behavior}`}
+                                className="text-sm text-gray-700 cursor-pointer flex-1"
+                              >
+                                {behavior}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
                   ) : question.question.includes("Conclusions?") ? (
                     <div className="space-y-6">
-                      {/* Tabbed Section - Return to Work Status, RPDR & CTP */}
-                      <Tabs defaultValue="return-to-work" className="w-full">
-                        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 gap-2 h-auto">
-                          <TabsTrigger
-                            value="return-to-work"
-                            className="text-xs sm:text-sm whitespace-normal"
-                          >
-                            Return to Work Status
-                          </TabsTrigger>
-                          <TabsTrigger
-                            value="rpdr"
-                            className="text-xs sm:text-sm whitespace-normal"
-                          >
-                            Observed Symptom Behavior (RPDR)
-                          </TabsTrigger>
-                          <TabsTrigger
-                            value="ctp"
-                            className="text-xs sm:text-sm whitespace-normal"
-                          >
-                            Observable Signs of Effort (CTP)
-                          </TabsTrigger>
-                        </TabsList>
-
-                        <TabsContent
-                          value="return-to-work"
-                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
-                        >
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-3">
-                              Select Return to Work Status
-                            </label>
-                            <select
-                              value={
-                                referralData.conclusionData?.returnToWorkStatus
-                                  .status || ""
-                              }
-                              onChange={(e) =>
-                                setReferralData((prev) => ({
-                                  ...prev,
-                                  conclusionData: {
-                                    ...prev.conclusionData!,
-                                    returnToWorkStatus: {
-                                      status: e.target.value,
-                                      comments:
-                                        RETURN_TO_WORK_OPTIONS[
-                                          e.target
-                                            .value as keyof typeof RETURN_TO_WORK_OPTIONS
-                                        ] || "",
-                                    },
+                      {/* Return to Work Status Section */}
+                      <div className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-3">
+                            Select Return to Work Status
+                          </label>
+                          <select
+                            value={
+                              referralData.conclusionData?.returnToWorkStatus
+                                .status || ""
+                            }
+                            onChange={(e) =>
+                              setReferralData((prev) => ({
+                                ...prev,
+                                conclusionData: {
+                                  ...prev.conclusionData!,
+                                  returnToWorkStatus: {
+                                    status: e.target.value,
+                                    comments:
+                                      RETURN_TO_WORK_OPTIONS[
+                                        e.target
+                                          .value as keyof typeof RETURN_TO_WORK_OPTIONS
+                                      ] || "",
                                   },
-                                }))
-                              }
-                              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            >
-                              <option value="">-- Choose an option --</option>
-                              {Object.keys(RETURN_TO_WORK_OPTIONS).map(
-                                (option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ),
-                              )}
-                            </select>
-                          </div>
+                                },
+                              }))
+                            }
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          >
+                            <option value="">-- Choose an option --</option>
+                            {Object.keys(RETURN_TO_WORK_OPTIONS).map(
+                              (option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ),
+                            )}
+                          </select>
+                        </div>
 
-                          <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-3">
-                              Comments
-                            </label>
-                            <Textarea
-                              value={
-                                referralData.conclusionData?.returnToWorkStatus
-                                  .comments || ""
-                              }
-                              onChange={(e) =>
-                                setReferralData((prev) => ({
-                                  ...prev,
-                                  conclusionData: {
-                                    ...prev.conclusionData!,
-                                    returnToWorkStatus: {
-                                      ...prev.conclusionData!
-                                        .returnToWorkStatus,
-                                      comments: e.target.value,
-                                    },
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-3">
+                            Comments
+                          </label>
+                          <Textarea
+                            value={
+                              referralData.conclusionData?.returnToWorkStatus
+                                .comments || ""
+                            }
+                            onChange={(e) =>
+                              setReferralData((prev) => ({
+                                ...prev,
+                                conclusionData: {
+                                  ...prev.conclusionData!,
+                                  returnToWorkStatus: {
+                                    ...prev.conclusionData!.returnToWorkStatus,
+                                    comments: e.target.value,
                                   },
-                                }))
-                              }
-                              placeholder="Comments will auto-populate based on your selection above..."
-                              className="min-h-[150px]"
-                            />
-                          </div>
-                        </TabsContent>
-
-                        <TabsContent
-                          value="rpdr"
-                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
-                        >
-                          <div>
-                            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-                              Observed Symptom Behavior / Reliability of Pain
-                              and Disability Reports (RPDR)
-                            </h3>
-                            <p className="text-xs text-gray-600 mb-4">
-                              Observable demonstrations of the patient that were
-                              consistent or inconsistent with the medical
-                              diagnosis and reported pain level.
-                            </p>
-                            <div className="space-y-3 max-h-[400px] overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white">
-                              {RPDR_BEHAVIORS.map((behavior) => (
-                                <div
-                                  key={behavior}
-                                  className="flex items-center space-x-3"
-                                >
-                                  <Checkbox
-                                    id={`rpdr-${behavior}`}
-                                    checked={
-                                      referralData.conclusionData
-                                        ?.rpdrBehaviors[behavior] || false
-                                    }
-                                    onCheckedChange={(checked) =>
-                                      setReferralData((prev) => ({
-                                        ...prev,
-                                        conclusionData: {
-                                          ...prev.conclusionData!,
-                                          rpdrBehaviors: {
-                                            ...prev.conclusionData!
-                                              .rpdrBehaviors,
-                                            [behavior]: checked,
-                                          },
-                                        },
-                                      }))
-                                    }
-                                  />
-                                  <label
-                                    htmlFor={`rpdr-${behavior}`}
-                                    className="text-sm text-gray-700 cursor-pointer flex-1"
-                                  >
-                                    {behavior}
-                                  </label>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </TabsContent>
-
-                        <TabsContent
-                          value="ctp"
-                          className="space-y-4 p-6 bg-blue-50 border border-blue-200 rounded-lg mt-4"
-                        >
-                          <div>
-                            <h3 className="text-sm font-semibold text-gray-900 mb-4">
-                              Observable Signs of Effort / Competitive Testing
-                              Performance (CTP)
-                            </h3>
-                            <p className="text-xs text-gray-600 mb-4">
-                              Observable behaviors in which a person attempts to
-                              gain an advantage to improve scores.
-                            </p>
-                            <div className="space-y-3 max-h-[400px] overflow-y-auto border border-gray-200 rounded-lg p-4 bg-white">
-                              {CTP_BEHAVIORS.map((behavior) => (
-                                <div
-                                  key={behavior}
-                                  className="flex items-center space-x-3"
-                                >
-                                  <Checkbox
-                                    id={`ctp-${behavior}`}
-                                    checked={
-                                      referralData.conclusionData?.ctpBehaviors[
-                                        behavior
-                                      ] || false
-                                    }
-                                    onCheckedChange={(checked) =>
-                                      setReferralData((prev) => ({
-                                        ...prev,
-                                        conclusionData: {
-                                          ...prev.conclusionData!,
-                                          ctpBehaviors: {
-                                            ...prev.conclusionData!
-                                              .ctpBehaviors,
-                                            [behavior]: checked,
-                                          },
-                                        },
-                                      }))
-                                    }
-                                  />
-                                  <label
-                                    htmlFor={`ctp-${behavior}`}
-                                    className="text-sm text-gray-700 cursor-pointer flex-1"
-                                  >
-                                    {behavior}
-                                  </label>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </TabsContent>
-                      </Tabs>
+                                },
+                              }))
+                            }
+                            placeholder="Comments will auto-populate based on your selection above..."
+                            className="min-h-[150px]"
+                          />
+                        </div>
+                      </div>
 
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -1310,7 +1370,9 @@ export default function ReferralQuestions() {
                           Upload Evaluator Signature
                         </h3>
                         <p className="text-sm text-purple-700 mb-4">
-                        Upload your signature image to be inserted in the "Signature of Evaluator" section of all reports. If no image is uploaded, the section will remain blank.
+                          Upload your signature image to be inserted in the
+                          "Signature of Evaluator" section of all reports. If no
+                          image is uploaded, the section will remain blank.
                         </p>
                         <div className="space-y-4">
                           <div className="flex items-center space-x-4">
@@ -1474,9 +1536,11 @@ export default function ReferralQuestions() {
                     />
                   )}
 
-                  {/* Hide image upload for 6b and 6c questions */}
+                  {/* Hide image upload for 6b, 6c, 6d, 6e, and Conclusions questions */}
                   {!question.question.includes("6b)") &&
                     !question.question.includes("6c)") &&
+                    !question.question.includes("6d)") &&
+                    !question.question.includes("6e)") &&
                     !question.question.includes("Conclusions?") && (
                       <div className="space-y-4">
                         <Button
