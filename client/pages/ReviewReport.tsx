@@ -1658,6 +1658,32 @@ export default function ReviewReport() {
                         })}
                     </div>
 
+                    {/* 6d and 6e Questions */}
+                    <div className="space-y-6">
+                      {reportData.referralQuestionsData.questions
+                        ?.filter(
+                          (qa: any) =>
+                            qa.question &&
+                            (qa.question.includes("6d)") ||
+                              qa.question.includes("6e)")),
+                        )
+                        .map((qa: any, index: number) => (
+                          <div
+                            key={qa.id || index}
+                            className="border-b border-gray-200 pb-4 last:border-b-0"
+                          >
+                            <h4 className="font-semibold mb-3 text-blue-800">
+                              {qa.question.replace(/^6[de]\)\s*/, "")}
+                            </h4>
+                            {qa.answer && (
+                              <p className="text-sm text-gray-700 mb-4">
+                                {qa.answer}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                    </div>
+
                     {/* Physical Demand Classification */}
                     <div className="mt-6">
                       <h4 className="font-semibold mb-3">
