@@ -1510,9 +1510,11 @@ export default function ReferralQuestions() {
                     />
                   )}
 
-                  {/* Hide image upload for 6b and 6c questions */}
+                  {/* Hide image upload for 6b, 6c, 6d, 6e, and Conclusions questions */}
                   {!question.question.includes("6b)") &&
                     !question.question.includes("6c)") &&
+                    !question.question.includes("6d)") &&
+                    !question.question.includes("6e)") &&
                     !question.question.includes("Conclusions?") && (
                       <div className="space-y-4">
                         <Button
