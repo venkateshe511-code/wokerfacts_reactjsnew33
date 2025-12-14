@@ -5364,6 +5364,9 @@ async function addReferralQuestionsContent(children, body) {
     },
   };
 
+  // Flag to track if RPDR/CTP sections have been output
+  let rpdrCtpOutputted = false;
+
   // Loop through all referral questions dynamically
   for (const [index, q] of questions.entries()) {
     let question = q.question || `Question ${index + 1}`;
@@ -5396,6 +5399,190 @@ async function addReferralQuestionsContent(children, body) {
       question.toLowerCase().includes("physical demand classification") &&
       answer.startsWith("PDC:")
     ) {
+      // Output RPDR and CTP sections before PDC
+      if (!rpdrCtpOutputted) {
+        rpdrCtpOutputted = true;
+        const rpdrBehaviors = conclusionData.rpdrBehaviors || {};
+        const checkedRpdrBehaviors = Object.entries(rpdrBehaviors)
+          .filter(([_, checked]) => checked === true)
+          .map(([behavior]) => behavior);
+
+        if (checkedRpdrBehaviors.length > 0) {
+          children.push(
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+                  bold: true,
+                  size: 16,
+                  color: "1e40af",
+                }),
+              ],
+              spacing: { before: 100, after: 80 },
+            }),
+          );
+
+          children.push(
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Observable demonstrations of the patient that were consistent or inconsistent with the medical diagnosis and reported pain level.",
+                  size: 14,
+                  italics: true,
+                }),
+              ],
+              spacing: { after: 100 },
+            }),
+          );
+
+          for (const behavior of checkedRpdrBehaviors) {
+            children.push(
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: `• ${behavior}`,
+                    size: 16,
+                  }),
+                ],
+                spacing: { after: 60 },
+              }),
+            );
+          }
+
+          if (conclusionData.rpdrComments) {
+            children.push(
+              new Paragraph({
+                children: [],
+              }),
+            );
+            children.push(
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Comments:",
+                    bold: true,
+                    size: 16,
+                  }),
+                ],
+                spacing: { after: 80 },
+              }),
+            );
+
+            const rpdrCommentLines = conclusionData.rpdrComments.split("\n");
+            for (const line of rpdrCommentLines) {
+              children.push(
+                new Paragraph({
+                  spacing: { after: 40 },
+                  children: [
+                    new TextRun({
+                      text: line,
+                      size: 16,
+                    }),
+                  ],
+                }),
+              );
+            }
+          }
+
+          children.push(
+            new Paragraph({
+              children: [],
+              spacing: { before: 100, after: 100 },
+            }),
+          );
+        }
+
+        const ctpBehaviors = conclusionData.ctpBehaviors || {};
+        const checkedCtpBehaviors = Object.entries(ctpBehaviors)
+          .filter(([_, checked]) => checked === true)
+          .map(([behavior]) => behavior);
+
+        if (checkedCtpBehaviors.length > 0) {
+          children.push(
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Observable Signs of Effort / Competitive Testing Performance (CTP)",
+                  bold: true,
+                  size: 16,
+                  color: "1e40af",
+                }),
+              ],
+              spacing: { before: 100, after: 80 },
+            }),
+          );
+
+          children.push(
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Observable behaviors in which a person attempts to gain an advantage to improve scores.",
+                  size: 14,
+                  italics: true,
+                }),
+              ],
+              spacing: { after: 100 },
+            }),
+          );
+
+          for (const behavior of checkedCtpBehaviors) {
+            children.push(
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: `• ${behavior}`,
+                    size: 16,
+                  }),
+                ],
+                spacing: { after: 60 },
+              }),
+            );
+          }
+
+          if (conclusionData.ctpComments) {
+            children.push(
+              new Paragraph({
+                children: [],
+              }),
+            );
+            children.push(
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Comments:",
+                    bold: true,
+                    size: 16,
+                  }),
+                ],
+                spacing: { after: 80 },
+              }),
+            );
+
+            const ctpCommentLines = conclusionData.ctpComments.split("\n");
+            for (const line of ctpCommentLines) {
+              children.push(
+                new Paragraph({
+                  spacing: { after: 40 },
+                  children: [
+                    new TextRun({
+                      text: line,
+                      size: 16,
+                    }),
+                  ],
+                }),
+              );
+            }
+          }
+
+          children.push(
+            new Paragraph({
+              children: [],
+              spacing: { before: 100, after: 100 },
+            }),
+          );
+        }
+      }
+
       const level = String(answer).split("|")[0].replace("PDC:", "").trim();
       const comments = String(answer).split("|")[1] || "";
       const info = map[level];
@@ -5922,188 +6109,6 @@ async function addConclusionContent(children, body) {
       // Split comments into paragraphs
       const commentLines = returnToWorkStatus.comments.split("\n");
       for (const line of commentLines) {
-        children.push(
-          new Paragraph({
-            spacing: { after: 40 },
-            children: [
-              new TextRun({
-                text: line,
-                size: 16,
-              }),
-            ],
-          }),
-        );
-      }
-    }
-
-    children.push(
-      new Paragraph({
-        children: [],
-        spacing: { before: 100, after: 100 },
-      }),
-    );
-  }
-
-  // === RPDR Behaviors (Observed Symptom Behavior) ===
-  const rpdrBehaviors = conclusionData.rpdrBehaviors || {};
-  const checkedRpdrBehaviors = Object.entries(rpdrBehaviors)
-    .filter(([_, checked]) => checked === true)
-    .map(([behavior]) => behavior);
-
-  if (checkedRpdrBehaviors.length > 0) {
-    children.push(
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: "Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
-            bold: true,
-            size: 16,
-            color: "1e40af",
-          }),
-        ],
-        spacing: { before: 100, after: 80 },
-      }),
-    );
-
-    children.push(
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: "Observable demonstrations of the patient that were consistent or inconsistent with the medical diagnosis and reported pain level.",
-            size: 14,
-            italics: true,
-          }),
-        ],
-        spacing: { after: 100 },
-      }),
-    );
-
-    for (const behavior of checkedRpdrBehaviors) {
-      children.push(
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: `• ${behavior}`,
-              size: 16,
-            }),
-          ],
-          spacing: { after: 60 },
-        }),
-      );
-    }
-
-    if (conclusionData.rpdrComments) {
-      children.push(
-        new Paragraph({
-          children: [],
-        }),
-      );
-      children.push(
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "Comments:",
-              bold: true,
-              size: 16,
-            }),
-          ],
-          spacing: { after: 80 },
-        }),
-      );
-
-      const rpdrCommentLines = conclusionData.rpdrComments.split("\n");
-      for (const line of rpdrCommentLines) {
-        children.push(
-          new Paragraph({
-            spacing: { after: 40 },
-            children: [
-              new TextRun({
-                text: line,
-                size: 16,
-              }),
-            ],
-          }),
-        );
-      }
-    }
-
-    children.push(
-      new Paragraph({
-        children: [],
-        spacing: { before: 100, after: 100 },
-      }),
-    );
-  }
-
-  // === CTP Behaviors (Observable Signs of Effort) ===
-  const ctpBehaviors = conclusionData.ctpBehaviors || {};
-  const checkedCtpBehaviors = Object.entries(ctpBehaviors)
-    .filter(([_, checked]) => checked === true)
-    .map(([behavior]) => behavior);
-
-  if (checkedCtpBehaviors.length > 0) {
-    children.push(
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: "Observable Signs of Effort / Competitive Testing Performance (CTP)",
-            bold: true,
-            size: 16,
-            color: "1e40af",
-          }),
-        ],
-        spacing: { before: 100, after: 80 },
-      }),
-    );
-
-    children.push(
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: "Observable behaviors in which a person attempts to gain an advantage to improve scores.",
-            size: 14,
-            italics: true,
-          }),
-        ],
-        spacing: { after: 100 },
-      }),
-    );
-
-    for (const behavior of checkedCtpBehaviors) {
-      children.push(
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: `• ${behavior}`,
-              size: 16,
-            }),
-          ],
-          spacing: { after: 60 },
-        }),
-      );
-    }
-
-    if (conclusionData.ctpComments) {
-      children.push(
-        new Paragraph({
-          children: [],
-        }),
-      );
-      children.push(
-        new Paragraph({
-          children: [
-            new TextRun({
-              text: "Comments:",
-              bold: true,
-              size: 16,
-            }),
-          ],
-          spacing: { after: 80 },
-        }),
-      );
-
-      const ctpCommentLines = conclusionData.ctpComments.split("\n");
-      for (const line of ctpCommentLines) {
         children.push(
           new Paragraph({
             spacing: { after: 40 },
