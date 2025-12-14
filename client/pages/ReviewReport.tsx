@@ -2013,7 +2013,6 @@ export default function ReviewReport() {
                     </div>
                   )}
 
-
                   {/* Static Conclusion */}
                   {(() => {
                     const conclusion =
