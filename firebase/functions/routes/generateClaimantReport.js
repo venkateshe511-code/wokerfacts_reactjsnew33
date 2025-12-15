@@ -962,6 +962,28 @@ const testReferences = {
     },
   ],
 };
+
+const resolveCardioTestId = (id = "") => {
+  const raw = id.toString().trim();
+
+  // Only touch known cardio tests
+  const map = {
+    "bruce treadmill": "bruce-treadmill",
+    "bruce treadmill test": "bruce-treadmill",
+    "bruce_treadmill": "bruce-treadmill",
+
+    "mcaft": "mcaft",
+    "mcaft test": "mcaft",
+
+    "kasch_step": "kasch",
+    "kasch step": "kasch",
+    "kasch step test": "kasch",
+  };
+
+  const key = raw.toLowerCase();
+  return map[key] || id; // fallback = original id
+};
+
 // Map test IDs to reference categories
 const testToCategory = {
   // Static Lift Tests
@@ -1082,6 +1104,9 @@ const testToCategory = {
   "reach-with-weight": "mtm",
 
   // Cardio Tests
+  "mcaft-step-test":"mcaft",
+  "bruce-treadmill-test":"bruce-treadmill",
+  "kasch-step-test":"kasch",
   "bruce-treadmill": "bruce-treadmill",
   "treadmill-test": "bruce-treadmill",
   "bruce-test": "bruce-treadmill",
@@ -1157,18 +1182,20 @@ function buildReferenceParagraphs(test, opts = {}) {
 
   if (refs.length === 0) {
     output.push(
-      createPara(
-        "Grip and Pinch Strength: Normative Data for Adults, V. Mathiowetz et al., Arch Pys Med Rehab, Vol. 66, pp. 69 (Feb 1985).",
-      ),
-      createPara(
-        "The Seriously Uninjured Hand-Weakness of Grip, H. Stokes, Journal of Occupational Medicine, pp. 683-684 (Sep 1983).",
-      ),
-      createPara(
-        "Grip Strength in a Disabled Sample: Reliability and Normative Standards, L. Matheson, et al., Industrial Rehabilitation Quarterly, Vol. 1, no. 3, Fall 1988.",
-      ),
-      createPara(
-        "Detection of Submaximal effort by use of the rapid exchange grip, Hildreth et al., Journal of Hand Surgery, pp. 742 (Jul 1989).",
-      ),
+      createPara("No references available for this test.")
+
+      // createPara(
+      //   "Grip and Pinch Strength: Normative Data for Adults, V. Mathiowetz et al., Arch Pys Med Rehab, Vol. 66, pp. 69 (Feb 1985).",
+      // ),
+      // createPara(
+      //   "The Seriously Uninjured Hand-Weakness of Grip, H. Stokes, Journal of Occupational Medicine, pp. 683-684 (Sep 1983).",
+      // ),
+      // createPara(
+      //   "Grip Strength in a Disabled Sample: Reliability and Normative Standards, L. Matheson, et al., Industrial Rehabilitation Quarterly, Vol. 1, no. 3, Fall 1988.",
+      // ),
+      // createPara(
+      //   "Detection of Submaximal effort by use of the rapid exchange grip, Hildreth et al., Journal of Hand Surgery, pp. 742 (Jul 1989).",
+      // ),
     );
   } else {
     refs.forEach((ref) => output.push(createPara(formatReference(ref))));
