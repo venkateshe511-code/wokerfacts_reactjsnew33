@@ -355,28 +355,15 @@ export default function EditProfile() {
                   <Label htmlFor="city" className="text-sm font-medium">
                     City
                   </Label>
-                  <Select
-                    onValueChange={(value) => handleInputChange("city", value)}
+                  <Input
+                    id="city"
+                    type="text"
                     value={formData.city}
+                    onChange={(e) => handleInputChange("city", e.target.value)}
+                    placeholder="Enter city name"
                     disabled={!formData.country}
-                  >
-                    <SelectTrigger>
-                      <SelectValue
-                        placeholder={
-                          formData.country
-                            ? "Select City"
-                            : "Select Country First"
-                        }
-                      />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {getAvailableCities().map((city) => (
-                        <SelectItem key={city} value={city}>
-                          {city}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    className="w-full"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="zipcode" className="text-sm font-medium">
