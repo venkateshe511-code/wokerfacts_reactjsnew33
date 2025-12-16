@@ -1169,11 +1169,11 @@ export default function ReferralQuestions() {
                     question.question.includes("RPDR") ? (
                     <div className="space-y-4">
                       <div>
-                        <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                        {/* <h3 className="text-sm font-semibold text-gray-900 mb-4">
                           Observed Symptom Behavior / Reliability of Pain and
                           Disability Reports (RPDR)
-                        </h3>
-                        <p className="text-xs text-gray-600 mb-4">
+                        </h3> */}
+                        <p className="text-sm text-gray-600 mb-4">
                           Observable demonstrations of the patient that were
                           consistent or inconsistent with the medical diagnosis
                           and reported pain level.
@@ -1240,11 +1240,11 @@ export default function ReferralQuestions() {
                     question.question.includes("CTP") ? (
                     <div className="space-y-4">
                       <div>
-                        <h3 className="text-sm font-semibold text-gray-900 mb-4">
+                        {/* <h3 className="text-sm font-semibold text-gray-900 mb-4">
                           Observable Signs of Effort / Competitive Testing
                           Performance (CTP)
-                        </h3>
-                        <p className="text-xs text-gray-600 mb-4">
+                        </h3> */}
+                        <p className="text-sm text-gray-600 mb-4">
                           Observable behaviors in which a person attempts to
                           gain an advantage to improve scores.
                         </p>
