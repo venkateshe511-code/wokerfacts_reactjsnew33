@@ -137,10 +137,6 @@ export default function EditProfile() {
     }
   };
 
-  const getAvailableCities = () => {
-    if (!formData.country) return [];
-    return Object.keys(countryData[formData.country] || {});
-  };
 
   const handleLogoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
