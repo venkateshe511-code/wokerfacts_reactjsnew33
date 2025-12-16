@@ -827,25 +827,17 @@ export default function ClaimantForm() {
                       <Label htmlFor="city" className="text-sm font-medium">
                         City
                       </Label>
-                      <Select
-                        key={`city-${formData.country}-${formData.city}`}
-                        onValueChange={(value) =>
-                          handleInputChange("city", value)
-                        }
+                      <Input
+                        id="city"
+                        type="text"
                         value={formData.city}
+                        onChange={(e) =>
+                          handleInputChange("city", e.target.value)
+                        }
+                        placeholder="Enter city name"
                         disabled={!formData.country}
-                      >
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {getAvailableCities(formData.country).map((city) => (
-                            <SelectItem key={city} value={city}>
-                              {city}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                        className="w-full"
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="zipcode" className="text-sm font-medium">
