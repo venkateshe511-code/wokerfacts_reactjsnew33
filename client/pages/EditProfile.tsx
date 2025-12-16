@@ -28,6 +28,11 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "@/hooks/use-auth";
 import { db } from "../firebase";
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+import {
+  countryData,
+  countries,
+  getAvailableCities,
+} from "@/lib/countryData";
 
 interface EvaluatorData {
   name: string;
