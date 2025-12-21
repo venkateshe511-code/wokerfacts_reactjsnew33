@@ -940,6 +940,65 @@ export default function Dashboard() {
                 </Button>
               </div>
             </TabsContent>
+
+            <TabsContent value="dexterity-tests">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    size="sm"
+                    onClick={downloadPurduePegboardManualPdf}
+                    className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                  >
+                    <Download className="mr-2 h-4 w-4 text-white" />
+                    Purdue Pegboard Test
+                  </Button>
+                  <span className="text-xs text-gray-600">Manual</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    size="sm"
+                    onClick={downloadPurduePegboardScoreSheetPdf}
+                    className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                  >
+                    <Download className="mr-2 h-4 w-4 text-white" />
+                    Purdue Pegboard Test
+                  </Button>
+                  <span className="text-xs text-gray-600">Score Sheet</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    size="sm"
+                    onClick={downloadMinnesotaDexterityManualPdf}
+                    className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                  >
+                    <Download className="mr-2 h-4 w-4 text-white" />
+                    Minnesota Dexterity Test
+                  </Button>
+                  <span className="text-xs text-gray-600">Manual</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    size="sm"
+                    onClick={downloadMinnesotaDexterityScoreSheetPdf}
+                    className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                  >
+                    <Download className="mr-2 h-4 w-4 text-white" />
+                    Minnesota Dexterity Test
+                  </Button>
+                  <span className="text-xs text-gray-600">Score Sheet</span>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t">
+                <Button
+                  size="sm"
+                  onClick={downloadAdditionalDexterityTestsPdf}
+                  className="w-full text-xs sm:text-sm bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  Additional Dexterity Tests (Overview)
+                </Button>
+              </div>
+            </TabsContent>
           </Tabs>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-8">
