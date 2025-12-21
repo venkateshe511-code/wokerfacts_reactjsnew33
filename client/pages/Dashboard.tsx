@@ -393,7 +393,7 @@ export default function Dashboard() {
   const confirmLogout = async () => {
     try {
       await signOut();
-    } catch {}
+    } catch { }
     // Complete data wipe - clear ALL stored data including profile
     const keysToRemove = [
       "evaluatorData",
@@ -699,29 +699,6 @@ export default function Dashboard() {
     }
   };
 
-  const downloadAdditionalDexterityTestsPdfUrl = "/Additional Dexterity Tests.pdf";
-
-  const downloadAdditionalDexterityTestsPdf = async () => {
-    try {
-      const res = await fetch(downloadAdditionalDexterityTestsPdfUrl, {
-        mode: "cors",
-      });
-      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
-      const blob = await res.blob();
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "Additional Dexterity Tests.pdf";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    } catch (e) {
-      console.error(e);
-      window.open(downloadAdditionalDexterityTestsPdfUrl, "_blank", "noopener,noreferrer");
-    }
-  };
-
   const confirmBackNavigation = () => {
     // Complete data wipe - clear ALL stored data including profile
     const keysToRemove = [
@@ -988,16 +965,10 @@ export default function Dashboard() {
                   <span className="text-xs text-gray-600">Score Sheet</span>
                 </div>
               </div>
-              <div className="mt-4 pt-4 border-t">
-                <Button
-                  size="sm"
-                  onClick={downloadAdditionalDexterityTestsPdf}
-                  className="w-full text-xs sm:text-sm bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
-                >
-                  <Download className="mr-2 h-4 w-4 text-white" />
-                  Additional Dexterity Tests (Overview)
-                </Button>
-              </div>
+              {/* Profile Sidebar 
+                         <div className="mt-4 pt-4 border-t">
+                
+              </div>*/}
             </TabsContent>
           </Tabs>
         </div>
@@ -1137,11 +1108,10 @@ export default function Dashboard() {
                     role="button"
                     aria-disabled={!isAvailable}
                     tabIndex={isAvailable ? 0 : -1}
-                    className={`border-2 transition-all duration-200 outline-none focus:ring-2 focus:ring-blue-400 ${
-                      isAvailable
+                    className={`border-2 transition-all duration-200 outline-none focus:ring-2 focus:ring-blue-400 ${isAvailable
                         ? `cursor-pointer ${getStatusColor(status)}`
                         : "cursor-not-allowed bg-gray-100 border-gray-200 opacity-50"
-                    }`}
+                      }`}
                     onClick={
                       isAvailable ? () => handleStepClick(step.id) : undefined
                     }
