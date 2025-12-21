@@ -854,18 +854,24 @@ export default function Dashboard() {
             *Downloadable forms for FCE preparation and balance tests
           </p>
           <Tabs defaultValue="fce-prep" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-4 border-2 border-slate-400 rounded-lg p-1 bg-slate-100">
+            <TabsList className="grid w-full grid-cols-3 mb-4 border-2 border-slate-400 rounded-lg p-1 bg-slate-100">
               <TabsTrigger
                 value="fce-prep"
-                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700"
+                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700 text-xs sm:text-sm"
               >
                 FCE Preparation
               </TabsTrigger>
               <TabsTrigger
                 value="balance-tests"
-                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700"
+                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700 text-xs sm:text-sm"
               >
                 Additional Balance Tests
+              </TabsTrigger>
+              <TabsTrigger
+                value="dexterity-tests"
+                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700 text-xs sm:text-sm"
+              >
+                Additional Dexterity Tests
               </TabsTrigger>
             </TabsList>
 
