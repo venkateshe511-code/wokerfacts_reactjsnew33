@@ -607,6 +607,121 @@ export default function Dashboard() {
     }
   };
 
+  const downloadPurduePegboardManualPdfUrl = "/Purdue Manual.pdf";
+
+  const downloadPurduePegboardManualPdf = async () => {
+    try {
+      const res = await fetch(downloadPurduePegboardManualPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Purdue Pegboard Test Manual.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadPurduePegboardManualPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadPurduePegboardScoreSheetPdfUrl = "/Purdue Data Collection Sheet.pdf";
+
+  const downloadPurduePegboardScoreSheetPdf = async () => {
+    try {
+      const res = await fetch(downloadPurduePegboardScoreSheetPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Purdue Pegboard Test Score Sheet.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadPurduePegboardScoreSheetPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadMinnesotaDexterityManualPdfUrl = "/Minnesota Dexterity Test Manual.pdf";
+
+  const downloadMinnesotaDexterityManualPdf = async () => {
+    try {
+      const res = await fetch(downloadMinnesotaDexterityManualPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Minnesota Dexterity Test Manual.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadMinnesotaDexterityManualPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadMinnesotaDexterityScoreSheetPdfUrl = "/Minnesota Manual Dexterity Score Sheet.pdf";
+
+  const downloadMinnesotaDexterityScoreSheetPdf = async () => {
+    try {
+      const res = await fetch(downloadMinnesotaDexterityScoreSheetPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Minnesota Dexterity Test Score Sheet.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadMinnesotaDexterityScoreSheetPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadAdditionalDexterityTestsPdfUrl = "/Additional Dexterity Tests.pdf";
+
+  const downloadAdditionalDexterityTestsPdf = async () => {
+    try {
+      const res = await fetch(downloadAdditionalDexterityTestsPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Additional Dexterity Tests.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadAdditionalDexterityTestsPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
   const confirmBackNavigation = () => {
     // Complete data wipe - clear ALL stored data including profile
     const keysToRemove = [
