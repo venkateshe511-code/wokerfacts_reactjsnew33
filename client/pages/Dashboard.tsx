@@ -607,6 +607,121 @@ export default function Dashboard() {
     }
   };
 
+  const downloadPurduePegboardManualPdfUrl = "/Purdue Manual.pdf";
+
+  const downloadPurduePegboardManualPdf = async () => {
+    try {
+      const res = await fetch(downloadPurduePegboardManualPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Purdue Pegboard Test Manual.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadPurduePegboardManualPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadPurduePegboardScoreSheetPdfUrl = "/Purdue Data Collection Sheet.pdf";
+
+  const downloadPurduePegboardScoreSheetPdf = async () => {
+    try {
+      const res = await fetch(downloadPurduePegboardScoreSheetPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Purdue Pegboard Test Score Sheet.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadPurduePegboardScoreSheetPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadMinnesotaDexterityManualPdfUrl = "/Minnesota Dexterity Test Manual.pdf";
+
+  const downloadMinnesotaDexterityManualPdf = async () => {
+    try {
+      const res = await fetch(downloadMinnesotaDexterityManualPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Minnesota Dexterity Test Manual.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadMinnesotaDexterityManualPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadMinnesotaDexterityScoreSheetPdfUrl = "/Minnesota Manual Dexterity Score Sheet.pdf";
+
+  const downloadMinnesotaDexterityScoreSheetPdf = async () => {
+    try {
+      const res = await fetch(downloadMinnesotaDexterityScoreSheetPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Minnesota Dexterity Test Score Sheet.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadMinnesotaDexterityScoreSheetPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const downloadAdditionalDexterityTestsPdfUrl = "/Additional Dexterity Tests.pdf";
+
+  const downloadAdditionalDexterityTestsPdf = async () => {
+    try {
+      const res = await fetch(downloadAdditionalDexterityTestsPdfUrl, {
+        mode: "cors",
+      });
+      if (!res.ok) throw new Error(`Failed to fetch PDF: ${res.status}`);
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Additional Dexterity Tests.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      console.error(e);
+      window.open(downloadAdditionalDexterityTestsPdfUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
   const confirmBackNavigation = () => {
     // Complete data wipe - clear ALL stored data including profile
     const keysToRemove = [
@@ -739,18 +854,24 @@ export default function Dashboard() {
             *Downloadable forms for FCE preparation and balance tests
           </p>
           <Tabs defaultValue="fce-prep" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-4 border-2 border-slate-400 rounded-lg p-1 bg-slate-100">
+            <TabsList className="grid w-full grid-cols-3 mb-4 border-2 border-slate-400 rounded-lg p-1 bg-slate-100">
               <TabsTrigger
                 value="fce-prep"
-                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700"
+                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700 text-xs sm:text-sm"
               >
                 FCE Preparation
               </TabsTrigger>
               <TabsTrigger
                 value="balance-tests"
-                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700"
+                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700 text-xs sm:text-sm"
               >
                 Additional Balance Tests
+              </TabsTrigger>
+              <TabsTrigger
+                value="dexterity-tests"
+                className="data-[state=active]:bg-slate-800 data-[state=active]:text-white data-[state=active]:shadow-md font-semibold text-gray-700 text-xs sm:text-sm"
+              >
+                Additional Dexterity Tests
               </TabsTrigger>
             </TabsList>
 
@@ -816,6 +937,65 @@ export default function Dashboard() {
                 >
                   <Download className="mr-2 h-4 w-4 text-white" />
                   TUG TEST
+                </Button>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="dexterity-tests">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    size="sm"
+                    onClick={downloadPurduePegboardManualPdf}
+                    className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                  >
+                    <Download className="mr-2 h-4 w-4 text-white" />
+                    Purdue Pegboard Test
+                  </Button>
+                  <span className="text-xs text-gray-600">Manual</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    size="sm"
+                    onClick={downloadPurduePegboardScoreSheetPdf}
+                    className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                  >
+                    <Download className="mr-2 h-4 w-4 text-white" />
+                    Purdue Pegboard Test
+                  </Button>
+                  <span className="text-xs text-gray-600">Score Sheet</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    size="sm"
+                    onClick={downloadMinnesotaDexterityManualPdf}
+                    className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                  >
+                    <Download className="mr-2 h-4 w-4 text-white" />
+                    Minnesota Dexterity Test
+                  </Button>
+                  <span className="text-xs text-gray-600">Manual</span>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Button
+                    size="sm"
+                    onClick={downloadMinnesotaDexterityScoreSheetPdf}
+                    className="w-full text-xs sm:text-sm min-w-[160px] bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                  >
+                    <Download className="mr-2 h-4 w-4 text-white" />
+                    Minnesota Dexterity Test
+                  </Button>
+                  <span className="text-xs text-gray-600">Score Sheet</span>
+                </div>
+              </div>
+              <div className="mt-4 pt-4 border-t">
+                <Button
+                  size="sm"
+                  onClick={downloadAdditionalDexterityTestsPdf}
+                  className="w-full text-xs sm:text-sm bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 text-white hover:from-blue-800 hover:via-blue-700 hover:to-blue-900 shadow-md whitespace-normal text-wrap break-words text-left leading-snug px-3 py-2"
+                >
+                  <Download className="mr-2 h-4 w-4 text-white" />
+                  Additional Dexterity Tests (Overview)
                 </Button>
               </div>
             </TabsContent>
