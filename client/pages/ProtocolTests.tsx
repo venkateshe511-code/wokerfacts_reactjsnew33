@@ -891,33 +891,33 @@ export default function ProtocolTests() {
                           </button>
                         </div>
 
-                      {expandedGroups[group.id] && (
-                        <div className="p-4 space-y-3">
-                          {group.tests.map((test) => (
-                            <div
-                              key={test.id}
-                              className="flex items-center space-x-3"
-                            >
-                              <Checkbox
-                                id={test.id}
-                                checked={protocolData.selectedTests.includes(
-                                  test.id,
-                                )}
-                                onCheckedChange={() =>
-                                  handleTestToggle(test.id)
-                                }
-                              />
-                              <label
-                                htmlFor={test.id}
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                        {expandedGroups[group.id] && (
+                          <div className="p-4 space-y-3">
+                            {group.tests.map((test) => (
+                              <div
+                                key={test.id}
+                                className="flex items-center space-x-3"
                               >
-                                {test.name}
-                              </label>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+                                <Checkbox
+                                  id={test.id}
+                                  checked={protocolData.selectedTests.includes(
+                                    test.id,
+                                  )}
+                                  onCheckedChange={() =>
+                                    handleTestToggle(test.id)
+                                  }
+                                />
+                                <label
+                                  htmlFor={test.id}
+                                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                                >
+                                  {test.name}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     );
                   })}
                 </div>
