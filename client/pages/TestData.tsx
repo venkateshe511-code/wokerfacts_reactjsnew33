@@ -970,7 +970,7 @@ export default function TestData() {
         // Keep existing test data for tests still in the protocol
         const updatedTests: TestData[] = selectedTests.map((testId: string) => {
           const existingTest = savedData.tests.find(
-            (t: TestData) => t.testId === testId
+            (t: TestData) => t.testId === testId,
           );
           return existingTest || createTestStub(testId);
         });
@@ -989,7 +989,7 @@ export default function TestData() {
         setIsEditMode(true);
       } else {
         const initialTests: TestData[] = selectedTests.map((testId: string) =>
-          createTestStub(testId)
+          createTestStub(testId),
         );
         setTestDataState({
           tests: initialTests,
