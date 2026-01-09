@@ -975,9 +975,16 @@ export default function TestData() {
           return existingTest || createTestStub(testId);
         });
 
+        // Ensure currentTestIndex is still valid after updating tests
+        const validCurrentIndex = Math.min(
+          savedData.currentTestIndex || 0,
+          updatedTests.length - 1,
+        );
+
         setTestDataState({
           ...savedData,
           tests: updatedTests,
+          currentTestIndex: validCurrentIndex,
         });
         setIsEditMode(true);
       } else {
