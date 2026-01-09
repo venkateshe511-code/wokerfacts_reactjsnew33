@@ -2969,6 +2969,11 @@ export default function ReviewReport() {
 
                   {/* Legend */}
                   <div className="mt-4 text-sm italic text-gray-600">
+                    <p style={{ marginBottom: "8px" }}>
+                      *The sit and stand timeframes are calculated throughout
+                      the exam with the individual tests and are not a measure
+                      of sustained effort.
+                    </p>
                     <p>
                       <strong>Legend:</strong> L=Left, R=Right, F=Flexion,
                       E=Extension, %IS=% Industrial Standard

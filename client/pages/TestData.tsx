@@ -919,7 +919,7 @@ export default function TestData() {
         // Add more mappings as needed
       };
 
-      const initialTests: TestData[] = selectedTests.map((testId: string) => ({
+      const createTestStub = (testId: string): TestData => ({
         testId,
         testName:
           testNames[testId] ||
@@ -959,15 +959,38 @@ export default function TestData() {
         valueToBeTestedNumber: "",
         valueToBeTestedUnit: "",
         unitMeasure: "",
-      }));
+      });
 
       // Check if we have existing test data (edit mode)
       const existingData = localStorage.getItem("testData");
       if (existingData) {
         const savedData = JSON.parse(existingData);
-        setTestDataState(savedData);
+
+        // Sync with updated protocol selection
+        // Keep existing test data for tests still in the protocol
+        const updatedTests: TestData[] = selectedTests.map((testId: string) => {
+          const existingTest = savedData.tests.find(
+            (t: TestData) => t.testId === testId,
+          );
+          return existingTest || createTestStub(testId);
+        });
+
+        // Ensure currentTestIndex is still valid after updating tests
+        const validCurrentIndex = Math.min(
+          savedData.currentTestIndex || 0,
+          updatedTests.length - 1,
+        );
+
+        setTestDataState({
+          ...savedData,
+          tests: updatedTests,
+          currentTestIndex: validCurrentIndex,
+        });
         setIsEditMode(true);
       } else {
+        const initialTests: TestData[] = selectedTests.map((testId: string) =>
+          createTestStub(testId),
+        );
         setTestDataState({
           tests: initialTests,
           currentTestIndex: 0,

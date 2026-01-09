@@ -3485,6 +3485,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             </tbody>
         </table>
 
+        <p style="font-size: 10px; margin: 10px 0; font-style: italic;">*The sit and stand timeframes are calculated throughout the exam with the individual tests and are not a measure of sustained effort.</p>
+
         <p style="font-size: 10px; margin: 10px 0;"><strong>Legend:</strong> L=Left, R=Right, F=Flexion, E=Extension, %IS=% Industrial Standard, HR=Heart Rate</p>
 
         <!-- Consistency Overview -->
