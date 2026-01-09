@@ -669,6 +669,60 @@ export default function ProtocolTests() {
     }));
   };
 
+  const selectAllInGroup = (groupId: string) => {
+    const categoryId = protocolData.activeTab;
+    const group = (
+      testGroups[categoryId as keyof typeof testGroups] || []
+    ).find((g) => g.id === groupId);
+
+    if (group) {
+      const testIdsInGroup = group.tests.map((test) => test.id);
+      const newSelectedTests = Array.from(
+        new Set([...protocolData.selectedTests, ...testIdsInGroup]),
+      );
+      setProtocolData((prev) => ({
+        ...prev,
+        selectedTests: newSelectedTests,
+      }));
+    }
+  };
+
+  const deselectAllInGroup = (groupId: string) => {
+    const categoryId = protocolData.activeTab;
+    const group = (
+      testGroups[categoryId as keyof typeof testGroups] || []
+    ).find((g) => g.id === groupId);
+
+    if (group) {
+      const testIdsInGroup = new Set(group.tests.map((test) => test.id));
+      const newSelectedTests = protocolData.selectedTests.filter(
+        (testId) => !testIdsInGroup.has(testId),
+      );
+      setProtocolData((prev) => ({
+        ...prev,
+        selectedTests: newSelectedTests,
+      }));
+    }
+  };
+
+  const getGroupSelectionState = (groupId: string): "all" | "some" | "none" => {
+    const categoryId = protocolData.activeTab;
+    const group = (
+      testGroups[categoryId as keyof typeof testGroups] || []
+    ).find((g) => g.id === groupId);
+
+    if (!group) return "none";
+
+    const testIdsInGroup = group.tests.map((test) => test.id);
+    const selectedInGroup = testIdsInGroup.filter((id) =>
+      protocolData.selectedTests.includes(id),
+    );
+
+    if (selectedInGroup.length === 0) return "none";
+    if (selectedInGroup.length === testIdsInGroup.length) return "all";
+    return "some";
+  };
+
   const getSelectedTestsByCategory = (categoryId: string) => {
     const categoryTests =
       testGroups[categoryId as keyof typeof testGroups] || [];
