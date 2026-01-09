@@ -669,6 +669,60 @@ export default function ProtocolTests() {
     }));
   };
 
+  const selectAllInGroup = (groupId: string) => {
+    const categoryId = protocolData.activeTab;
+    const group = (
+      testGroups[categoryId as keyof typeof testGroups] || []
+    ).find((g) => g.id === groupId);
+
+    if (group) {
+      const testIdsInGroup = group.tests.map((test) => test.id);
+      const newSelectedTests = Array.from(
+        new Set([...protocolData.selectedTests, ...testIdsInGroup]),
+      );
+      setProtocolData((prev) => ({
+        ...prev,
+        selectedTests: newSelectedTests,
+      }));
+    }
+  };
+
+  const deselectAllInGroup = (groupId: string) => {
+    const categoryId = protocolData.activeTab;
+    const group = (
+      testGroups[categoryId as keyof typeof testGroups] || []
+    ).find((g) => g.id === groupId);
+
+    if (group) {
+      const testIdsInGroup = new Set(group.tests.map((test) => test.id));
+      const newSelectedTests = protocolData.selectedTests.filter(
+        (testId) => !testIdsInGroup.has(testId),
+      );
+      setProtocolData((prev) => ({
+        ...prev,
+        selectedTests: newSelectedTests,
+      }));
+    }
+  };
+
+  const getGroupSelectionState = (groupId: string): "all" | "some" | "none" => {
+    const categoryId = protocolData.activeTab;
+    const group = (
+      testGroups[categoryId as keyof typeof testGroups] || []
+    ).find((g) => g.id === groupId);
+
+    if (!group) return "none";
+
+    const testIdsInGroup = group.tests.map((test) => test.id);
+    const selectedInGroup = testIdsInGroup.filter((id) =>
+      protocolData.selectedTests.includes(id),
+    );
+
+    if (selectedInGroup.length === 0) return "none";
+    if (selectedInGroup.length === testIdsInGroup.length) return "all";
+    return "some";
+  };
+
   const getSelectedTestsByCategory = (categoryId: string) => {
     const categoryTests =
       testGroups[categoryId as keyof typeof testGroups] || [];
@@ -801,51 +855,71 @@ export default function ProtocolTests() {
                     testGroups[
                       protocolData.activeTab as keyof typeof testGroups
                     ] || []
-                  ).map((group) => (
-                    <div
-                      key={group.id}
-                      className="border border-gray-200 rounded-lg"
-                    >
-                      <button
-                        onClick={() => toggleGroup(group.id)}
-                        className="w-full px-4 py-3 bg-blue-50 hover:bg-blue-100 flex items-center justify-between text-left font-medium text-blue-700 rounded-t-lg"
+                  ).map((group) => {
+                    const selectionState = getGroupSelectionState(group.id);
+                    const isAllSelected = selectionState === "all";
+                    return (
+                      <div
+                        key={group.id}
+                        className="border border-gray-200 rounded-lg"
                       >
-                        <span>{group.name}</span>
-                        {expandedGroups[group.id] ? (
-                          <ChevronUp className="h-4 w-4" />
-                        ) : (
-                          <ChevronDown className="h-4 w-4" />
-                        )}
-                      </button>
-
-                      {expandedGroups[group.id] && (
-                        <div className="p-4 space-y-3">
-                          {group.tests.map((test) => (
-                            <div
-                              key={test.id}
-                              className="flex items-center space-x-3"
-                            >
-                              <Checkbox
-                                id={test.id}
-                                checked={protocolData.selectedTests.includes(
-                                  test.id,
-                                )}
-                                onCheckedChange={() =>
-                                  handleTestToggle(test.id)
-                                }
-                              />
-                              <label
-                                htmlFor={test.id}
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                              >
-                                {test.name}
-                              </label>
-                            </div>
-                          ))}
+                        <div className="w-full px-4 py-3 bg-blue-50 hover:bg-blue-100 flex items-center justify-between text-left font-medium text-blue-700 rounded-t-lg">
+                          <button
+                            onClick={() => toggleGroup(group.id)}
+                            className="flex-1 flex items-center justify-between text-left"
+                          >
+                            <span>{group.name}</span>
+                            {expandedGroups[group.id] ? (
+                              <ChevronUp className="h-4 w-4" />
+                            ) : (
+                              <ChevronDown className="h-4 w-4" />
+                            )}
+                          </button>
+                          <button
+                            onClick={() =>
+                              isAllSelected
+                                ? deselectAllInGroup(group.id)
+                                : selectAllInGroup(group.id)
+                            }
+                            className={`ml-4 px-3 py-1 text-xs font-semibold rounded transition-colors ${
+                              isAllSelected
+                                ? "bg-blue-600 text-white hover:bg-blue-700"
+                                : "bg-white text-blue-600 border border-blue-600 hover:bg-blue-50"
+                            }`}
+                          >
+                            {isAllSelected ? "DESELECT ALL" : "SELECT ALL"}
+                          </button>
                         </div>
-                      )}
-                    </div>
-                  ))}
+
+                        {expandedGroups[group.id] && (
+                          <div className="p-4 space-y-3">
+                            {group.tests.map((test) => (
+                              <div
+                                key={test.id}
+                                className="flex items-center space-x-3"
+                              >
+                                <Checkbox
+                                  id={test.id}
+                                  checked={protocolData.selectedTests.includes(
+                                    test.id,
+                                  )}
+                                  onCheckedChange={() =>
+                                    handleTestToggle(test.id)
+                                  }
+                                />
+                                <label
+                                  htmlFor={test.id}
+                                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                                >
+                                  {test.name}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
