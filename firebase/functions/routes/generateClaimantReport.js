@@ -9752,7 +9752,10 @@ async function addTestDataContent(children, body) {
                           new Paragraph({
                             alignment: AlignmentType.CENTER,
                             children: [
-                              new TextRun({ text: `Left Side - ${safeName}`, size: 16 }),
+                              new TextRun({
+                                text: `Left Side - ${safeName}`,
+                                size: 16,
+                              }),
                             ],
                           }),
                         ],
@@ -9831,7 +9834,10 @@ async function addTestDataContent(children, body) {
                           new Paragraph({
                             alignment: AlignmentType.CENTER,
                             children: [
-                              new TextRun({ text: `Right Side - ${safeName}`, size: 16 }),
+                              new TextRun({
+                                text: `Right Side - ${safeName}`,
+                                size: 16,
+                              }),
                             ],
                           }),
                         ],

@@ -22,14 +22,11 @@ export interface ROMSideData {
  */
 export function isPairedROMTest(testId?: string): boolean {
   if (!testId) return false;
-  
+
   const id = testId.toLowerCase();
-  
+
   // Check if it's a ROM test with left/right suffix
-  return (
-    /\b(rom|range)\b/.test(id) &&
-    /(left|right)$/.test(id)
-  );
+  return /\b(rom|range)\b/.test(id) && /(left|right)$/.test(id);
 }
 
 /**
@@ -38,7 +35,7 @@ export function isPairedROMTest(testId?: string): boolean {
  */
 export function getBaseROMTestId(testId?: string): string {
   if (!testId) return "";
-  
+
   return testId.replace(/-(left|right)$/i, "");
 }
 
@@ -46,9 +43,11 @@ export function getBaseROMTestId(testId?: string): string {
  * Extracts the side from the test ID
  * "shoulder-rom-flexion-extension-left" -> "left"
  */
-export function extractSideFromTestId(testId?: string): "left" | "right" | null {
+export function extractSideFromTestId(
+  testId?: string,
+): "left" | "right" | null {
   if (!testId) return null;
-  
+
   const match = testId.match(/-(left|right)$/i);
   return match ? (match[1].toLowerCase() as "left" | "right") : null;
 }
@@ -60,10 +59,10 @@ export function extractSideFromTestId(testId?: string): "left" | "right" | null 
  */
 export function extractMovementsFromROMTest(testId?: string): string[] {
   if (!testId) return [];
-  
+
   const movements: string[] = [];
   const id = testId.toLowerCase();
-  
+
   // List of known ROM movements
   const knownMovements = [
     "flexion",
@@ -83,13 +82,13 @@ export function extractMovementsFromROMTest(testId?: string): string[] {
     "inversion",
     "eversion",
   ];
-  
+
   knownMovements.forEach((movement) => {
     if (id.includes(movement)) {
       movements.push(movement);
     }
   });
-  
+
   return movements;
 }
 
@@ -102,10 +101,10 @@ export function formatROMTestWithSide(
   side: "left" | "right" | "Left" | "Right",
 ): string {
   const sideName = side.charAt(0).toUpperCase() + side.slice(1).toLowerCase();
-  
+
   // Remove any existing side prefix to avoid duplication
   let cleanName = baseTestName.replace(/^(Left|Right)\s+Side\s*-\s*/i, "");
-  
+
   return `${sideName} Side - ${cleanName}`;
 }
 
@@ -118,11 +117,12 @@ export function createROMSideDisplayData(
   value: number,
   norm?: number,
 ): ROMSideData {
-  const sideName = side.charAt(0).toUpperCase() + side.slice(1).toLowerCase() as "Left" | "Right";
-  
+  const sideName = (side.charAt(0).toUpperCase() +
+    side.slice(1).toLowerCase()) as "Left" | "Right";
+
   // Remove any side prefix for clean label
   let cleanLabel = testName.replace(/^(Left|Right)\s+Side\s*-\s*/i, "");
-  
+
   return {
     side: sideName,
     label: `${sideName} Side - ${cleanLabel}`,

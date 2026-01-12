@@ -4145,8 +4145,7 @@ export default function ReviewReport() {
                                                 Left Side - {test.testName}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {leftAvg.toFixed(0)}{" "}
-                                                °
+                                                {leftAvg.toFixed(0)} °
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {test.demonstrated
@@ -4185,8 +4184,7 @@ export default function ReviewReport() {
                                                 Right Side - {test.testName}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {rightAvg.toFixed(0)}{" "}
-                                                °
+                                                {rightAvg.toFixed(0)} °
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {test.demonstrated
