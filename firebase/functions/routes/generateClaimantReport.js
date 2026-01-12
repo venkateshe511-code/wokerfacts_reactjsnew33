@@ -3125,8 +3125,64 @@ function format2(n) {
 function isFiniteNum(n) {
   return typeof n === "number" && Number.isFinite(n);
 }
-function capitalize(s) {
-  return (s || "").charAt(0).toUpperCase() + (s || "").slice(1);
+// Mapping of test IDs to friendly display names (matches client-side TestData.tsx)
+const testNames = {
+  // Left Side ROM tests
+  "wrist-rom-flexion-extension-left": "Left Side - Wrist Flexion/Extension",
+  "wrist-rom-radial-ulnar-deviation-left": "Left Side - Wrist Radial/Ulnar Deviation",
+  "wrist-rom-pronation-supination-left": "Left Side - Wrist Pronation/Supination",
+  "elbow-rom-flexion-extension-left": "Left Side - Elbow Flexion/Extension",
+  "shoulder-rom-flexion-extension-left": "Left Side - Shoulder Flexion/Extension",
+  "shoulder-rom-abduction-left": "Left Side - Shoulder Abduction",
+  "shoulder-rom-internal-external-rotation-left": "Left Side - Shoulder Internal/External Rotation",
+  "index-dip-flexion-extension-left": "Left Side - Index Finger DIP Flexion/Extension",
+  "index-pip-flexion-extension-left": "Left Side - Index Finger PIP Flexion/Extension",
+  "index-mp-flexion-extension-left": "Left Side - Index Finger MP Flexion/Extension",
+  "middle-dip-flexion-extension-left": "Left Side - Middle Finger DIP Flexion/Extension",
+  "middle-pip-flexion-extension-left": "Left Side - Middle Finger PIP Flexion/Extension",
+  "middle-mp-flexion-extension-left": "Left Side - Middle Finger MP Flexion/Extension",
+  "ring-dip-flexion-extension-left": "Left Side - Ring Finger DIP Flexion/Extension",
+  "ring-pip-flexion-extension-left": "Left Side - Ring Finger PIP Flexion/Extension",
+  "ring-mp-flexion-extension-left": "Left Side - Ring Finger MP Flexion/Extension",
+  "little-dip-flexion-extension-left": "Left Side - Little Finger DIP Flexion/Extension",
+  "little-pip-flexion-extension-left": "Left Side - Little Finger PIP Flexion/Extension",
+  "little-mp-flexion-extension-left": "Left Side - Little Finger MP Flexion/Extension",
+
+  // Right Side ROM tests
+  "wrist-rom-flexion-extension-right": "Right Side - Wrist Flexion/Extension",
+  "wrist-rom-radial-ulnar-deviation-right": "Right Side - Wrist Radial/Ulnar Deviation",
+  "wrist-rom-pronation-supination-right": "Right Side - Wrist Pronation/Supination",
+  "elbow-rom-flexion-extension-right": "Right Side - Elbow Flexion/Extension",
+  "shoulder-rom-flexion-extension-right": "Right Side - Shoulder Flexion/Extension",
+  "shoulder-rom-abduction-right": "Right Side - Shoulder Abduction",
+  "shoulder-rom-internal-external-rotation-right": "Right Side - Shoulder Internal/External Rotation",
+  "index-dip-flexion-extension-right": "Right Side - Index Finger DIP Flexion/Extension",
+  "index-pip-flexion-extension-right": "Right Side - Index Finger PIP Flexion/Extension",
+  "index-mp-flexion-extension-right": "Right Side - Index Finger MP Flexion/Extension",
+  "middle-dip-flexion-extension-right": "Right Side - Middle Finger DIP Flexion/Extension",
+  "middle-pip-flexion-extension-right": "Right Side - Middle Finger PIP Flexion/Extension",
+  "middle-mp-flexion-extension-right": "Right Side - Middle Finger MP Flexion/Extension",
+  "ring-dip-flexion-extension-right": "Right Side - Ring Finger DIP Flexion/Extension",
+  "ring-pip-flexion-extension-right": "Right Side - Ring Finger PIP Flexion/Extension",
+  "ring-mp-flexion-extension-right": "Right Side - Ring Finger MP Flexion/Extension",
+  "little-dip-flexion-extension-right": "Right Side - Little Finger DIP Flexion/Extension",
+  "little-pip-flexion-extension-right": "Right Side - Little Finger PIP Flexion/Extension",
+  "little-mp-flexion-extension-right": "Right Side - Little Finger MP Flexion/Extension",
+};
+
+function formatTestName(testId) {
+  // First check if we have a mapping for this exact ID
+  if (testNames[testId]) {
+    return testNames[testId];
+  }
+
+  // Fallback: convert hyphenated ID to proper title case with spaces
+  // This handles cases not in the mapping
+  if (!testId) return "";
+
+  return testId
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 async function generateMTMContentDocx(mtmData, mainTestData) {
