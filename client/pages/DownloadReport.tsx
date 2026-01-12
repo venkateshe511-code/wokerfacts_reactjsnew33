@@ -572,7 +572,10 @@ export default function DownloadReport() {
             };
 
             // Use unitMeasure if available, otherwise apply default based on valueToBeTestedUnit category
-            const unit = entry.unitMeasure || getDefaultUnit(entry.valueToBeTestedUnit) || "";
+            const unit =
+              entry.unitMeasure ||
+              getDefaultUnit(entry.valueToBeTestedUnit) ||
+              "";
 
             const leftAvg = calculateAverage(leftMeasurements);
             const rightAvg = calculateAverage(rightMeasurements);
@@ -3353,7 +3356,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                           const jobRequirements = (() => {
                             // Helper function to get default unit based on category
                             const getDefaultUnit = (category: string) => {
-                              const categoryLower = (category || "").toLowerCase();
+                              const categoryLower = (
+                                category || ""
+                              ).toLowerCase();
                               if (categoryLower === "weight") return "lbs";
                               if (categoryLower === "distance") return "ft";
                               if (categoryLower === "time") return "sec";
@@ -3371,7 +3376,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                             ) {
                               // Use unitMeasure for the actual unit abbreviation (lbs, kg, °, etc)
                               // Fall back to default unit based on valueToBeTestedUnit category if unitMeasure is not set
-                              const unit = test.unitMeasure || getDefaultUnit(test.valueToBeTestedUnit);
+                              const unit =
+                                test.unitMeasure ||
+                                getDefaultUnit(test.valueToBeTestedUnit);
 
                               // Format degrees with symbol (no space)
                               if (unit === "°") {

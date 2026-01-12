@@ -2906,15 +2906,26 @@ export default function ReviewReport() {
                                     <td className="p-2">
                                       {(() => {
                                         // Helper function to get default unit based on category
-                                        const getDefaultUnit = (category: string) => {
-                                          const categoryLower = (category || "").toLowerCase();
-                                          if (categoryLower === "weight") return "lbs";
-                                          if (categoryLower === "distance") return "ft";
-                                          if (categoryLower === "time") return "sec";
-                                          if (categoryLower === "force") return "lbs";
-                                          if (categoryLower === "angle") return "°";
-                                          if (categoryLower === "speed") return "mph";
-                                          if (categoryLower === "frequency") return "Hz";
+                                        const getDefaultUnit = (
+                                          category: string,
+                                        ) => {
+                                          const categoryLower = (
+                                            category || ""
+                                          ).toLowerCase();
+                                          if (categoryLower === "weight")
+                                            return "lbs";
+                                          if (categoryLower === "distance")
+                                            return "ft";
+                                          if (categoryLower === "time")
+                                            return "sec";
+                                          if (categoryLower === "force")
+                                            return "lbs";
+                                          if (categoryLower === "angle")
+                                            return "°";
+                                          if (categoryLower === "speed")
+                                            return "mph";
+                                          if (categoryLower === "frequency")
+                                            return "Hz";
                                           return "";
                                         };
 
@@ -2925,7 +2936,11 @@ export default function ReviewReport() {
                                         ) {
                                           // Use unitMeasure for the actual unit abbreviation (lbs, kg, °, etc)
                                           // Fall back to default unit based on valueToBeTestedUnit category if unitMeasure is not set
-                                          const unit = test.unitMeasure || getDefaultUnit(test.valueToBeTestedUnit);
+                                          const unit =
+                                            test.unitMeasure ||
+                                            getDefaultUnit(
+                                              test.valueToBeTestedUnit,
+                                            );
 
                                           // Format degrees with symbol (no space)
                                           if (unit === "°") {

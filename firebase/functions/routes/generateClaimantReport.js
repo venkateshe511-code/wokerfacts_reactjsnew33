@@ -8693,7 +8693,8 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
         if (test.normLevel === "no" && test.valueToBeTestedNumber) {
           // Use unitMeasure for the actual unit abbreviation (lbs, kg, °, etc)
           // Fall back to default unit based on valueToBeTestedUnit category if unitMeasure is not set
-          const unit = test.unitMeasure || getDefaultUnit(test.valueToBeTestedUnit);
+          const unit =
+            test.unitMeasure || getDefaultUnit(test.valueToBeTestedUnit);
 
           // Format degrees with symbol (no space)
           if (unit === "°") {
@@ -8713,8 +8714,7 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
 
         // Fallback: use the job requirements they entered or default to standard
         return (
-          test.jobRequirements ||
-          getJobRequirements(test.testName).requirement
+          test.jobRequirements || getJobRequirements(test.testName).requirement
         );
       })();
 
