@@ -3076,10 +3076,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     const jobReq = getJobRequirements(test.testName);
 
                     // Priority 1: Use user's explicit job match selection if provided
-                    if (test.jobMatch === "matched") {
+                    if (test.jobMatch === "yes") {
                       return true;
                     }
-                    if (test.jobMatch === "not_matched") {
+                    if (test.jobMatch === "no") {
                       return false;
                     }
 
@@ -3336,41 +3336,24 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
                           // Job requirements logic with industry standards
                           const jobRequirements = (() => {
-                            const jobReq = getJobRequirements(test.testName);
-
-                            // Show user's specific target only for weight-based tests
+                            // Priority 1: If normLevel is "no", show the value they entered to be tested
                             if (
-                              test.valueToBeTestedNumber &&
-                              jobReq.type === "weight"
+                              test.normLevel === "no" &&
+                              test.valueToBeTestedNumber
                             ) {
-                              return `Target: ${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || jobReq.unit}`;
+                              return `${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || ""}`.trim();
                             }
 
-                            // Show norm status if user indicated
+                            // Priority 2: If normLevel is "yes", show "Norm test"
                             if (test.normLevel === "yes") {
-                              return "Within Normal Limits";
-                            } else if (test.normLevel === "no") {
-                              return "Below Normal Limits";
+                              return "Norm test";
                             }
 
-                            // Show industry standards based on test type
-                            if (jobReq.type === "weight") {
-                              if (jobReq.lightWork && jobReq.mediumWork) {
-                                return `≥${jobReq.lightWork} ${jobReq.unit} (Light) / ≥${jobReq.mediumWork} ${jobReq.unit} (Medium)`;
-                              } else if (jobReq.norm) {
-                                return `≥${jobReq.norm} ${jobReq.unit}`;
-                              }
-                            }
-
-                            if (jobReq.type === "degrees") {
-                              if (jobReq.functionalMin && jobReq.norm) {
-                                return `≥${jobReq.functionalMin}° (Min) / ≥${jobReq.norm}° (Normal)`;
-                              } else if (jobReq.norm) {
-                                return `≥${jobReq.norm}°`;
-                              }
-                            }
-
-                            return "Functional Assessment";
+                            // Fallback: use the job requirements they entered
+                            return (
+                              test.jobRequirements ||
+                              getJobRequirements(test.testName).requirement
+                            );
                           })();
 
                           // Test results format logic like ReviewReport
@@ -4183,10 +4166,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                 }</td>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">
                                     ${
-                                      test.jobMatch === "matched"
-                                        ? '<span style="background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">✓</span>'
-                                        : test.jobMatch === "not_matched"
-                                          ? '<span style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Not Matched</span>'
+                                      test.jobMatch === "yes"
+                                        ? '<span style="background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Yes</span>'
+                                        : test.jobMatch === "no"
+                                          ? '<span style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">No</span>'
                                           : '<span style="color: #6c757d;">-</span>'
                                     }
                                 </td>

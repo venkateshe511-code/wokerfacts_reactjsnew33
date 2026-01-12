@@ -2538,10 +2538,10 @@ export default function ReviewReport() {
                           const jobReq = getJobRequirements(test.testName);
 
                           // Priority 1: Use user's explicit job match selection if provided
-                          if (test.jobMatch === "matched") {
+                          if (test.jobMatch === "yes") {
                             return true;
                           }
-                          if (test.jobMatch === "not_matched") {
+                          if (test.jobMatch === "no") {
                             return false;
                           }
 
@@ -2888,49 +2888,25 @@ export default function ReviewReport() {
                                     </td>
                                     <td className="p-2">
                                       {(() => {
-                                        const jobReq = getJobRequirements(
-                                          test.testName,
-                                        );
-
-                                        // Show user's specific target only for weight-based tests
+                                        // Priority 1: If normLevel is "no", show the value they entered to be tested
                                         if (
-                                          test.valueToBeTestedNumber &&
-                                          jobReq.type === "weight"
+                                          test.normLevel === "no" &&
+                                          test.valueToBeTestedNumber
                                         ) {
-                                          return `Target: ${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || jobReq.unit}`;
+                                          return `${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || ""}`.trim();
                                         }
 
-                                        // Show norm status if user indicated
+                                        // Priority 2: If normLevel is "yes", show "Norm test"
                                         if (test.normLevel === "yes") {
-                                          return "Within Normal Limits";
-                                        } else if (test.normLevel === "no") {
-                                          return "Below Normal Limits";
+                                          return "Norm test";
                                         }
 
-                                        // Show industry standards based on test type
-                                        if (jobReq.type === "weight") {
-                                          if (
-                                            jobReq.lightWork &&
-                                            jobReq.mediumWork
-                                          ) {
-                                            return `≥${jobReq.lightWork} ${jobReq.unit} (Light) / ≥${jobReq.mediumWork} ${jobReq.unit} (Medium)`;
-                                          } else if (jobReq.norm) {
-                                            return `≥${jobReq.norm} ${jobReq.unit}`;
-                                          }
-                                        }
-
-                                        if (jobReq.type === "degrees") {
-                                          if (
-                                            jobReq.functionalMin &&
-                                            jobReq.norm
-                                          ) {
-                                            return `≥${jobReq.functionalMin}° (Min) / ≥${jobReq.norm}° (Normal)`;
-                                          } else if (jobReq.norm) {
-                                            return `≥${jobReq.norm}°`;
-                                          }
-                                        }
-
-                                        return "Functional Assessment";
+                                        // Fallback: use the job requirements they entered or default to standard
+                                        return (
+                                          test.jobRequirements ||
+                                          getJobRequirements(test.testName)
+                                            .requirement
+                                        );
                                       })()}
                                     </td>
                                     <td className="p-2 text-center">
