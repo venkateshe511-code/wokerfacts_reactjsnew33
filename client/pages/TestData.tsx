@@ -1308,8 +1308,13 @@ export default function TestData() {
     const currentTest = testDataState.tests[testDataState.currentTestIndex];
 
     // Validate: if normLevel is "no", valueToBeTestedNumber is required
-    if (currentTest.normLevel === "no" && !currentTest.valueToBeTestedNumber?.trim()) {
-      setAlertMessage("Please enter a value for 'VALUE TO BE TESTED' before saving.");
+    if (
+      currentTest.normLevel === "no" &&
+      !currentTest.valueToBeTestedNumber?.trim()
+    ) {
+      setAlertMessage(
+        "Please enter a value for 'VALUE TO BE TESTED' before saving.",
+      );
       return;
     }
 
@@ -2467,7 +2472,11 @@ export default function TestData() {
                               }
                             >
                               <SelectTrigger className="w-24 h-10 border-2 border-blue-500 focus:border-blue-600 focus:ring-0">
-                                <SelectValue placeholder={currentTest.unitMeasure || "Unit"} />
+                                <SelectValue
+                                  placeholder={
+                                    currentTest.unitMeasure || "Unit"
+                                  }
+                                />
                               </SelectTrigger>
                               <SelectContent>
                                 {currentTest.valueToBeTestedUnit ===
@@ -2608,7 +2617,8 @@ export default function TestData() {
             onClick={handleSubmit}
             disabled={
               isSubmitting ||
-              (currentTest.normLevel === "no" && !currentTest.valueToBeTestedNumber?.trim())
+              (currentTest.normLevel === "no" &&
+                !currentTest.valueToBeTestedNumber?.trim())
             }
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
           >
