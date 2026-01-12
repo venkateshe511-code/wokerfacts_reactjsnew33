@@ -27,6 +27,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { getSampleIllustrations } from "@/lib/test-illustrations";
+import { groupTestsByCategory, getCategoriesInOrder, type TestCategory } from "@/lib/test-categorization";
 
 // IndexedDB utilities for loading digital library images
 const DB_NAME = "DigitalLibraryDB";
