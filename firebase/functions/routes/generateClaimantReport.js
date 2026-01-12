@@ -8203,8 +8203,8 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
     const rightAvg = calculateAverage(test.rightMeasurements);
 
     // Priority 1: explicit selection
-    if (test.jobMatch === "matched") return true;
-    if (test.jobMatch === "not_matched") return false;
+    if (test.jobMatch === "yes") return true;
+    if (test.jobMatch === "no") return false;
 
     // Priority 2: normLevel override
     if (test.normLevel === "yes") return true;
