@@ -371,12 +371,12 @@ export default function TestData() {
       "Construction work requiring consistent bilateral strength for tool operation and material manipulation. Safety-critical job function.",
     ];
 
-    const jobMatchOptions: ("matched" | "not_matched")[] = [
-      "matched",
-      "matched",
-      "not_matched",
-      "matched",
-      "matched",
+    const jobMatchOptions: ("yes" | "no")[] = [
+      "yes",
+      "yes",
+      "no",
+      "yes",
+      "yes",
     ]; // 80% matched
     const jobDemandsOptions: ("normal" | "other")[] = [
       "normal",
