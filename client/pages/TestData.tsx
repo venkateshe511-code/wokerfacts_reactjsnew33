@@ -2591,7 +2591,10 @@ export default function TestData() {
           </div>
           <Button
             onClick={handleSubmit}
-            disabled={isSubmitting}
+            disabled={
+              isSubmitting ||
+              (currentTest.normLevel === "no" && !currentTest.valueToBeTestedNumber?.trim())
+            }
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
           >
             {isSubmitting ? (
