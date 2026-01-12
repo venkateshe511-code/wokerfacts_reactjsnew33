@@ -342,62 +342,121 @@ const testGroups = {
       ],
     },
     {
-      name: "Extremity - Elbow",
-      id: "extremity-elbow",
+      name: "Extremity - Elbow (Left)",
+      id: "extremity-elbow-left",
       tests: [
-        { id: "elbow-rom-flexion-extension", name: "Flexion/Extension" },
-        { id: "elbow-rom-supination-pronation", name: "Supination/Pronation" },
+        { id: "elbow-rom-flexion-extension-left", name: "Flexion/Extension (Left)" },
+        { id: "elbow-rom-supination-pronation-left", name: "Supination/Pronation (Left)" },
       ],
     },
     {
-      name: "Extremity - Wrist",
-      id: "extremity-wrist",
+      name: "Extremity - Elbow (Right)",
+      id: "extremity-elbow-right",
       tests: [
-        { id: "wrist-rom-flexion-extension", name: "Flexion/Extension" },
+        { id: "elbow-rom-flexion-extension-right", name: "Flexion/Extension (Right)" },
+        { id: "elbow-rom-supination-pronation-right", name: "Supination/Pronation (Right)" },
+      ],
+    },
+    {
+      name: "Extremity - Wrist (Left)",
+      id: "extremity-wrist-left",
+      tests: [
+        { id: "wrist-rom-flexion-extension-left", name: "Flexion/Extension (Left)" },
         {
-          id: "wrist-rom-radial-ulnar-deviation",
-          name: "Radial/Ulnar Deviation",
+          id: "wrist-rom-radial-ulnar-deviation-left",
+          name: "Radial/Ulnar Deviation (Left)",
         },
       ],
     },
     {
-      name: "Extremity - Knee",
-      id: "extremity-knee",
-      tests: [{ id: "knee-rom-flexion-extension", name: "Flexion/Extension" }],
-    },
-    {
-      name: "Extremity - Shoulder",
-      id: "extremity-shoulder",
+      name: "Extremity - Wrist (Right)",
+      id: "extremity-wrist-right",
       tests: [
-        { id: "shoulder-rom-flexion-extension", name: "Flexion/Extension" },
+        { id: "wrist-rom-flexion-extension-right", name: "Flexion/Extension (Right)" },
         {
-          id: "shoulder-rom-internal-external-rotation",
-          name: "Internal/External Rotation",
+          id: "wrist-rom-radial-ulnar-deviation-right",
+          name: "Radial/Ulnar Deviation (Right)",
         },
-        { id: "shoulder-rom-abduction-adduction", name: "Abduction/Adduction" },
       ],
     },
     {
-      name: "Extremity - Hip",
-      id: "extremity-hip",
+      name: "Extremity - Knee (Left)",
+      id: "extremity-knee-left",
+      tests: [{ id: "knee-rom-flexion-extension-left", name: "Flexion/Extension (Left)" }],
+    },
+    {
+      name: "Extremity - Knee (Right)",
+      id: "extremity-knee-right",
+      tests: [{ id: "knee-rom-flexion-extension-right", name: "Flexion/Extension (Right)" }],
+    },
+    {
+      name: "Extremity - Shoulder (Left)",
+      id: "extremity-shoulder-left",
       tests: [
-        { id: "hip-rom-flexion-extension", name: "Flexion/Extension" },
+        { id: "shoulder-rom-flexion-extension-left", name: "Flexion/Extension (Left)" },
         {
-          id: "hip-rom-internal-external-rotation",
-          name: "Internal/External Rotation",
+          id: "shoulder-rom-internal-external-rotation-left",
+          name: "Internal/External Rotation (Left)",
         },
-        { id: "hip-rom-abduction-adduction", name: "Abduction/Adduction" },
+        { id: "shoulder-rom-abduction-adduction-left", name: "Abduction/Adduction (Left)" },
       ],
     },
     {
-      name: "Extremity - Ankle",
-      id: "extremity-ankle",
+      name: "Extremity - Shoulder (Right)",
+      id: "extremity-shoulder-right",
+      tests: [
+        { id: "shoulder-rom-flexion-extension-right", name: "Flexion/Extension (Right)" },
+        {
+          id: "shoulder-rom-internal-external-rotation-right",
+          name: "Internal/External Rotation (Right)",
+        },
+        { id: "shoulder-rom-abduction-adduction-right", name: "Abduction/Adduction (Right)" },
+      ],
+    },
+    {
+      name: "Extremity - Hip (Left)",
+      id: "extremity-hip-left",
+      tests: [
+        { id: "hip-rom-flexion-extension-left", name: "Flexion/Extension (Left)" },
+        {
+          id: "hip-rom-internal-external-rotation-left",
+          name: "Internal/External Rotation (Left)",
+        },
+        { id: "hip-rom-abduction-adduction-left", name: "Abduction/Adduction (Left)" },
+      ],
+    },
+    {
+      name: "Extremity - Hip (Right)",
+      id: "extremity-hip-right",
+      tests: [
+        { id: "hip-rom-flexion-extension-right", name: "Flexion/Extension (Right)" },
+        {
+          id: "hip-rom-internal-external-rotation-right",
+          name: "Internal/External Rotation (Right)",
+        },
+        { id: "hip-rom-abduction-adduction-right", name: "Abduction/Adduction (Right)" },
+      ],
+    },
+    {
+      name: "Extremity - Ankle (Left)",
+      id: "extremity-ankle-left",
       tests: [
         {
-          id: "ankle-rom-dorsi-plantar-flexion",
-          name: "Dorsi/Plantar Flexion",
+          id: "ankle-rom-dorsi-plantar-flexion-left",
+          name: "Dorsi/Plantar Flexion (Left)",
         },
-        { id: "ankle-rom-inversion-eversion", name: "Inversion/Eversion" },
+        { id: "ankle-rom-inversion-eversion-left", name: "Inversion/Eversion (Left)" },
+      ],
+    },
+    {
+      name: "Extremity - Ankle (Right)",
+      id: "extremity-ankle-right",
+      tests: [
+        {
+          id: "ankle-rom-dorsi-plantar-flexion-right",
+          name: "Dorsi/Plantar Flexion (Right)",
+        },
+        { id: "ankle-rom-inversion-eversion-right", name: "Inversion/Eversion (Right)" },
       ],
     },
   ],
