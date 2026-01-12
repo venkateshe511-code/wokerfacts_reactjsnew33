@@ -28,6 +28,7 @@ import {
 } from "@/lib/test-illustrations";
 import { doc, getDoc } from "firebase/firestore";
 import { getReferencesForTest, formatReference } from "@shared/references";
+import { categorizeTest, groupTestsByCategory, getCategoriesInOrder, type TestCategory } from "@/lib/test-categorization";
 
 // IndexedDB utilities for loading digital library images
 const DB_NAME = "DigitalLibraryDB";
