@@ -495,8 +495,8 @@ export default function TestData() {
       jobDescription,
       normLevel: "yes",
       valueToBeTestedNumber: "",
-      valueToBeTestedUnit: "",
-      unitMeasure: "",
+      valueToBeTestedUnit: "Weight",
+      unitMeasure: "lbs",
     };
   };
 
