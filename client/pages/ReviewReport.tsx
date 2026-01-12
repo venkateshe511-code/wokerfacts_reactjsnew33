@@ -403,6 +403,19 @@ export default function ReviewReport() {
       .toLowerCase();
     const testName = `${testEntry?.testName ?? ""}`.toLowerCase();
 
+    // Helper function to get default unit based on category
+    const getDefaultUnit = (category: string) => {
+      const categoryLower = (category || "").toLowerCase();
+      if (categoryLower === "weight") return "lbs";
+      if (categoryLower === "distance") return "ft";
+      if (categoryLower === "time") return "sec";
+      if (categoryLower === "force") return "lbs";
+      if (categoryLower === "angle") return "°";
+      if (categoryLower === "speed") return "mph";
+      if (categoryLower === "frequency") return "Hz";
+      return "";
+    };
+
     const isRangeOfMotion =
       testName.includes("flexion") ||
       testName.includes("extension") ||
@@ -437,13 +450,17 @@ export default function ReviewReport() {
     const convertToLbs =
       kgTokens.includes(measureUnit) || kgTokens.includes(targetUnit);
 
+    // Apply default unit if measureUnit is not set
+    const finalDisplayUnit = measureUnit || targetUnit || "";
+    const defaultUnit = getDefaultUnit(targetUnit);
+
     const displayUnit = convertToLbs
       ? "lbs"
       : lbTokens.includes(targetUnit)
         ? "lbs"
         : lbTokens.includes(measureUnit)
           ? "lbs"
-          : targetUnit || "lbs";
+          : measureUnit || defaultUnit || "lbs";
 
     return { convertToLbs, displayUnit };
   };
@@ -2888,17 +2905,57 @@ export default function ReviewReport() {
                                     </td>
                                     <td className="p-2">
                                       {(() => {
-                                        // Priority 1: If normLevel is "no", show the value they entered to be tested
+                                        // Helper function to get default unit based on category
+                                        const getDefaultUnit = (
+                                          category: string,
+                                        ) => {
+                                          const categoryLower = (
+                                            category || ""
+                                          ).toLowerCase();
+                                          if (categoryLower === "weight")
+                                            return "lbs";
+                                          if (categoryLower === "distance")
+                                            return "ft";
+                                          if (categoryLower === "time")
+                                            return "sec";
+                                          if (categoryLower === "force")
+                                            return "lbs";
+                                          if (categoryLower === "angle")
+                                            return "°";
+                                          if (categoryLower === "speed")
+                                            return "mph";
+                                          if (categoryLower === "frequency")
+                                            return "Hz";
+                                          return "";
+                                        };
+
+                                        // Priority 1: If normLevel is "no", show the value they entered to be tested with proper unit formatting
                                         if (
                                           test.normLevel === "no" &&
                                           test.valueToBeTestedNumber
                                         ) {
-                                          return `${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || ""}`.trim();
+                                          // Use unitMeasure for the actual unit abbreviation (lbs, kg, °, etc)
+                                          // Fall back to default unit based on valueToBeTestedUnit category if unitMeasure is not set
+                                          const unit =
+                                            test.unitMeasure ||
+                                            getDefaultUnit(
+                                              test.valueToBeTestedUnit,
+                                            );
+
+                                          // Format degrees with symbol (no space)
+                                          if (unit === "°") {
+                                            return `${test.valueToBeTestedNumber}°`;
+                                          }
+                                          // For other units, add space before unit abbreviation
+                                          if (unit) {
+                                            return `${test.valueToBeTestedNumber} ${unit}`;
+                                          }
+                                          return test.valueToBeTestedNumber;
                                         }
 
-                                        // Priority 2: If normLevel is "yes", show "Norm test"
+                                        // Priority 2: If normLevel is "yes", show "Norm"
                                         if (test.normLevel === "yes") {
-                                          return "Norm test";
+                                          return "Norm";
                                         }
 
                                         // Fallback: use the job requirements they entered or default to standard
