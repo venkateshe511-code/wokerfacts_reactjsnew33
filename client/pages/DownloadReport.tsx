@@ -4183,10 +4183,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                 }</td>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">
                                     ${
-                                      test.jobMatch === "matched"
-                                        ? '<span style="background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">✓</span>'
-                                        : test.jobMatch === "not_matched"
-                                          ? '<span style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Not Matched</span>'
+                                      test.jobMatch === "yes"
+                                        ? '<span style="background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Yes</span>'
+                                        : test.jobMatch === "no"
+                                          ? '<span style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">No</span>'
                                           : '<span style="color: #6c757d;">-</span>'
                                     }
                                 </td>
