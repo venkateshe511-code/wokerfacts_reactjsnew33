@@ -495,8 +495,8 @@ export default function TestData() {
       jobDescription,
       normLevel: "yes",
       valueToBeTestedNumber: "",
-      valueToBeTestedUnit: "",
-      unitMeasure: "",
+      valueToBeTestedUnit: "Weight",
+      unitMeasure: "lbs",
     };
   };
 
@@ -1305,6 +1305,19 @@ export default function TestData() {
   };
 
   const handleSubmit = async () => {
+    const currentTest = testDataState.tests[testDataState.currentTestIndex];
+
+    // Validate: if normLevel is "no", valueToBeTestedNumber is required
+    if (
+      currentTest.normLevel === "no" &&
+      !currentTest.valueToBeTestedNumber?.trim()
+    ) {
+      setAlertMessage(
+        "Please enter a value for 'VALUE TO BE TESTED' before saving.",
+      );
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Simulate API call
@@ -2356,6 +2369,9 @@ export default function TestData() {
                               onChange={(e) =>
                                 updateCurrentTest({
                                   normLevel: e.target.value as "yes" | "no",
+                                  valueToBeTestedNumber: "",
+                                  valueToBeTestedUnit: "",
+                                  unitMeasure: "",
                                 })
                               }
                               className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
@@ -2377,6 +2393,9 @@ export default function TestData() {
                               onChange={(e) =>
                                 updateCurrentTest({
                                   normLevel: e.target.value as "yes" | "no",
+                                  valueToBeTestedUnit: "Weight",
+                                  unitMeasure: "lbs",
+                                  valueToBeTestedNumber: "",
                                 })
                               }
                               className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
@@ -2413,9 +2432,18 @@ export default function TestData() {
                           <Select
                             value={currentTest.valueToBeTestedUnit || ""}
                             onValueChange={(value) => {
+                              const defaultUnitMap: Record<string, string> = {
+                                Weight: "lbs",
+                                Distance: "ft",
+                                Time: "sec",
+                                Force: "lbs",
+                                Angle: "°",
+                                Speed: "mph",
+                                Frequency: "Hz",
+                              };
                               updateCurrentTest({
                                 valueToBeTestedUnit: value,
-                                unitMeasure: value.split("-")[0], // Keep the main category for backward compatibility
+                                unitMeasure: defaultUnitMap[value] || "",
                               });
                             }}
                           >
@@ -2444,7 +2472,11 @@ export default function TestData() {
                               }
                             >
                               <SelectTrigger className="w-24 h-10 border-2 border-blue-500 focus:border-blue-600 focus:ring-0">
-                                <SelectValue placeholder="Unit" />
+                                <SelectValue
+                                  placeholder={
+                                    currentTest.unitMeasure || "Unit"
+                                  }
+                                />
                               </SelectTrigger>
                               <SelectContent>
                                 {currentTest.valueToBeTestedUnit ===
@@ -2583,7 +2615,11 @@ export default function TestData() {
           </div>
           <Button
             onClick={handleSubmit}
-            disabled={isSubmitting}
+            disabled={
+              isSubmitting ||
+              (currentTest.normLevel === "no" &&
+                !currentTest.valueToBeTestedNumber?.trim())
+            }
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
           >
             {isSubmitting ? (
