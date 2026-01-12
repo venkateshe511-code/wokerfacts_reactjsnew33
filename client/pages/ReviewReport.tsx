@@ -2538,10 +2538,10 @@ export default function ReviewReport() {
                           const jobReq = getJobRequirements(test.testName);
 
                           // Priority 1: Use user's explicit job match selection if provided
-                          if (test.jobMatch === "matched") {
+                          if (test.jobMatch === "yes") {
                             return true;
                           }
-                          if (test.jobMatch === "not_matched") {
+                          if (test.jobMatch === "no") {
                             return false;
                           }
 
