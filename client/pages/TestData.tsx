@@ -639,7 +639,7 @@ export default function TestData() {
       effort: "Maximal",
       observations: [],
       jobRequirements: "",
-      jobMatch: "",
+      jobMatch: "yes",
       jobDemands: "",
       jobDescription: "",
       normLevel: "yes",
