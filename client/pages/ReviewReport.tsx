@@ -160,8 +160,13 @@ export default function ReviewReport() {
     "palmar-pinch": "Palmar Pinch",
     "grip-strength": "Grip Strength",
     "cervical-flexion": "Cervical Flexion",
+    "cervical-extension": "Cervical Extension",
+    "lumbar-flexion": "Lumbar Flexion",
+    "lumbar-extension": "Lumbar Extension",
     "hip-abduction": "Hip Abduction",
+    "hip-flexion": "Hip Flexion",
     "shoulder-flexion": "Shoulder Flexion",
+    "shoulder-abduction": "Shoulder Abduction",
     "wrist-muscle-flexion": "Wrist Muscle-Palmar Flexion",
     "wrist-muscle-extension": "Wrist Muscle-Dorsiflexion",
     "shoulder-muscle-internal-rotation": "Shoulder Muscle Internal Rotation",
@@ -177,7 +182,10 @@ export default function ReviewReport() {
     "ymca-step-test": "YMCA 3-Minute Step Test",
     "ymca-submaximal-treadmill-test": "YMCA Submaximal Treadmill Test",
     "bruce-treadmill": "Bruce Treadmill Test",
+    "bruce-treadmill-test": "Bruce Treadmill Test",
+    "mcaft-step-test": "mCAFT Step Test",
     mcaft: "mCAFT Test",
+    "kasch-step-test": "KASCH Step Test",
     kasch: "Kasch Pulse Recovery Test",
 
     // ROM - Extremities (Left Side)
@@ -3973,7 +3981,7 @@ export default function ReviewReport() {
                             </div>
 
                             <h3 className="font-bold text-lg mb-4">
-                              {test.testName}
+                              {formatTestName(test.testId)}
                             </h3>
 
                             <div className="grid grid-cols-12 gap-6">
@@ -4142,7 +4150,10 @@ export default function ReviewReport() {
                                           <tbody>
                                             <tr>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                Left Side - {test.testName}
+                                                Left Side - {(() => {
+                                                  const formattedName = formatTestName(test.testId);
+                                                  return formattedName.split(" - ").slice(1).join(" - ");
+                                                })()}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {leftAvg.toFixed(0)} °
@@ -4181,7 +4192,10 @@ export default function ReviewReport() {
                                             </tr>
                                             <tr>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                Right Side - {test.testName}
+                                                Right Side - {(() => {
+                                                  const formattedName = formatTestName(test.testId);
+                                                  return formattedName.split(" - ").slice(1).join(" - ");
+                                                })()}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {rightAvg.toFixed(0)} °
