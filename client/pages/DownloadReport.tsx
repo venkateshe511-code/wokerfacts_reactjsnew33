@@ -3341,11 +3341,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                               test.normLevel === "no" &&
                               test.valueToBeTestedNumber
                             ) {
-                              const unit = test.valueToBeTestedUnit || "";
-                              const unitLower = unit.toLowerCase();
+                              // Use unitMeasure for the actual unit abbreviation (lbs, kg, °, etc)
+                              const unit = test.unitMeasure || "";
 
-                              // Format degrees with symbol
-                              if (unitLower.includes("degree")) {
+                              // Format degrees with symbol (no space)
+                              if (unit === "°") {
                                 return `${test.valueToBeTestedNumber}°`;
                               }
                               // For other units, add space before unit abbreviation
