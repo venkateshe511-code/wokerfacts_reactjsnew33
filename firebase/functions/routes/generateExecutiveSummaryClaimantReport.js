@@ -7047,11 +7047,11 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
       const jobRequirementsText = (() => {
         // Priority 1: If normLevel is "no", show the value they entered to be tested with proper unit formatting
         if (test.normLevel === "no" && test.valueToBeTestedNumber) {
-          const unit = test.valueToBeTestedUnit || "";
-          const unitLower = unit.toLowerCase();
+          // Use unitMeasure for the actual unit abbreviation (lbs, kg, °, etc)
+          const unit = test.unitMeasure || "";
 
-          // Format degrees with symbol
-          if (unitLower.includes("degree")) {
+          // Format degrees with symbol (no space)
+          if (unit === "°") {
             return `${test.valueToBeTestedNumber}°`;
           }
           // For other units, add space before unit abbreviation
