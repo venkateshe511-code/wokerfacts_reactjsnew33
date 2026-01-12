@@ -8676,10 +8676,24 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
 
       // Job requirements display (mirror client PDF logic exactly)
       const jobRequirementsText = (() => {
+        // Helper function to get default unit based on category
+        const getDefaultUnit = (category) => {
+          const categoryLower = (category || "").toLowerCase();
+          if (categoryLower === "weight") return "lbs";
+          if (categoryLower === "distance") return "ft";
+          if (categoryLower === "time") return "sec";
+          if (categoryLower === "force") return "lbs";
+          if (categoryLower === "angle") return "°";
+          if (categoryLower === "speed") return "mph";
+          if (categoryLower === "frequency") return "Hz";
+          return "";
+        };
+
         // Priority 1: If normLevel is "no", show the value they entered to be tested with proper unit formatting
         if (test.normLevel === "no" && test.valueToBeTestedNumber) {
           // Use unitMeasure for the actual unit abbreviation (lbs, kg, °, etc)
-          const unit = test.unitMeasure || "";
+          // Fall back to default unit based on valueToBeTestedUnit category if unitMeasure is not set
+          const unit = test.unitMeasure || getDefaultUnit(test.valueToBeTestedUnit);
 
           // Format degrees with symbol (no space)
           if (unit === "°") {
