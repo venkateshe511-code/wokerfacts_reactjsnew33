@@ -731,11 +731,15 @@ export default function ProtocolTests() {
       // ROM Spine
       "cervical-spine-flexion-extension",
       "lumbar-spine-flexion-extension",
-      "shoulder-rom-flexion-extension",
-      "hip-rom-flexion-extension",
+      "shoulder-rom-flexion-extension-left",
+      "shoulder-rom-flexion-extension-right",
+      "hip-rom-flexion-extension-left",
+      "hip-rom-flexion-extension-right",
       // ROM Hand
-      "thumb-ip-flexion-extension",
-      "index-dip-flexion-extension",
+      "thumb-ip-flexion-extension-left",
+      "thumb-ip-flexion-extension-right",
+      "index-dip-flexion-extension-left",
+      "index-dip-flexion-extension-right",
       // Occupational
       "fingering",
       "handling",
