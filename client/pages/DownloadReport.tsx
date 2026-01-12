@@ -398,45 +398,9 @@ export default function DownloadReport() {
       });
     }
 
-    const inferTestCategory = (test: any): string => {
-      const name = `${test?.testName || ""}`.toLowerCase();
-      const id = `${test?.testId || ""}`.toLowerCase();
-      const target = `${name} ${id}`;
-
-      if (
-        /(bruce|treadmill|cardio|mcaft|kasch|step|aerobic|heart|pulse|ymca|vo2)/.test(
-          target,
-        )
-      ) {
-        return "Cardio";
-      }
-
-      if (
-        /(fingering|handling|reach|balance|stoop|walk|push|pull|cart|crouch|carry|crawl|climb|kneel|ladder|occupational|task)/.test(
-          target,
-        )
-      ) {
-        return "Occupational Tasks";
-      }
-
-      if (
-        /(hand|foot|finger|thumb|wrist|ankle|digit)/.test(target) &&
-        /(flexion|extension|abduction|adduction|rotation|range|rom)/.test(
-          target,
-        )
-      ) {
-        return "ROM Hand/Foot";
-      }
-
-      if (
-        /(flexion|extension|rotation|spine|cervical|lumbar|shoulder|thoracic|range|motion|back)/.test(
-          target,
-        )
-      ) {
-        return "ROM Total Spine/Extremity";
-      }
-
-      return "Strength";
+    // Use the strict categorization utility instead of inline logic
+    const inferTestCategory = (test: any): TestCategory => {
+      return categorizeTest(test);
     };
 
     const normalizeMeasurements = (
