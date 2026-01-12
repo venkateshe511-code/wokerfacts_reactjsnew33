@@ -59,7 +59,7 @@ interface TestData {
   effort: string;
   observations: string[];
   jobRequirements: string;
-  jobMatch: "matched" | "not_matched" | "";
+  jobMatch: "yes" | "no" | "";
   jobDemands: "normal" | "other" | "";
   jobDescription: string;
   normLevel: "yes" | "no" | "";
