@@ -1305,6 +1305,14 @@ export default function TestData() {
   };
 
   const handleSubmit = async () => {
+    const currentTest = testDataState.tests[testDataState.currentTestIndex];
+
+    // Validate: if normLevel is "no", valueToBeTestedNumber is required
+    if (currentTest.normLevel === "no" && !currentTest.valueToBeTestedNumber?.trim()) {
+      setAlertMessage("Please enter a value for 'VALUE TO BE TESTED' before saving.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Simulate API call
