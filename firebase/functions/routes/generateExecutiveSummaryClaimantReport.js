@@ -7128,11 +7128,24 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
         }
 
         if ((test.testName || "").toLowerCase().includes("lift")) {
+          // Helper to get default unit
+          const getDefaultUnit = (category) => {
+            const categoryLower = (category || "").toLowerCase();
+            if (categoryLower === "weight") return "lbs";
+            if (categoryLower === "distance") return "ft";
+            if (categoryLower === "time") return "sec";
+            if (categoryLower === "force") return "lbs";
+            if (categoryLower === "angle") return "°";
+            if (categoryLower === "speed") return "mph";
+            if (categoryLower === "frequency") return "Hz";
+            return "";
+          };
+
           const unit = (
             test.unitMeasure ||
-            test.valueToBeTestedUnit ||
+            getDefaultUnit(test.valueToBeTestedUnit) ||
             jobReq.unit ||
-            ""
+            "lbs"
           ).toLowerCase();
           const baseAvg = leftAvg > 0 ? leftAvg : rightAvg;
           if (baseAvg > 0) {
