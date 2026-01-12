@@ -4142,14 +4142,10 @@ export default function ReviewReport() {
                                           <tbody>
                                             <tr>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {test.testName}
+                                                Left Side - {test.testName}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {Math.max(
-                                                  leftAvg,
-                                                  rightAvg,
-                                                ).toFixed(0)}{" "}
-                                                °
+                                                {leftAvg.toFixed(0)} °
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {test.demonstrated
@@ -4167,7 +4163,46 @@ export default function ReviewReport() {
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {Math.round(
-                                                  (Math.max(leftAvg, rightAvg) /
+                                                  (leftAvg /
+                                                    (testName.includes(
+                                                      "flexion",
+                                                    )
+                                                      ? 60
+                                                      : 25)) *
+                                                    100,
+                                                )}
+                                                %
+                                              </td>
+                                              <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                {currentDate}
+                                                <br />
+                                                10:20:36 AM
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                Right Side - {test.testName}
+                                              </td>
+                                              <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                {rightAvg.toFixed(0)} °
+                                              </td>
+                                              <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                {test.demonstrated
+                                                  ? "Pass"
+                                                  : "Fail"}
+                                              </td>
+                                              <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                {testName.includes("flexion")
+                                                  ? "60 °"
+                                                  : testName.includes(
+                                                        "extension",
+                                                      )
+                                                    ? "25 °"
+                                                    : "25 °"}
+                                              </td>
+                                              <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                {Math.round(
+                                                  (rightAvg /
                                                     (testName.includes(
                                                       "flexion",
                                                     )

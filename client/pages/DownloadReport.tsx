@@ -4675,13 +4675,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">Left Side - ${
                                                   test.testName
                                                 }</td>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${Math.max(
-                                                  leftAvg,
-                                                  rightAvg,
-                                                ).toFixed(0)} °</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${leftAvg.toFixed(0)} °</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
                                                   test.demonstrated
                                                     ? "Pass"
@@ -4697,7 +4694,37 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                                       : "25 °"
                                                 }</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${Math.round(
-                                                  (Math.max(leftAvg, rightAvg) /
+                                                  (leftAvg /
+                                                    (testName.includes(
+                                                      "flexion",
+                                                    )
+                                                      ? 60
+                                                      : 25)) *
+                                                    100,
+                                                )}%</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;text-align: center;">${currentDate}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">Right Side - ${
+                                                  test.testName
+                                                }</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${rightAvg.toFixed(0)} °</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
+                                                  test.demonstrated
+                                                    ? "Pass"
+                                                    : "Fail"
+                                                }</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
+                                                  testName.includes("flexion")
+                                                    ? "60 °"
+                                                    : testName.includes(
+                                                          "extension",
+                                                        )
+                                                      ? "25 °"
+                                                      : "25 °"
+                                                }</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${Math.round(
+                                                  (rightAvg /
                                                     (testName.includes(
                                                       "flexion",
                                                     )
