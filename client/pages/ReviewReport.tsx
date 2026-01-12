@@ -3973,7 +3973,7 @@ export default function ReviewReport() {
                             </div>
 
                             <h3 className="font-bold text-lg mb-4">
-                              {test.testName}
+                              {formatTestName(test.testId)}
                             </h3>
 
                             <div className="grid grid-cols-12 gap-6">
