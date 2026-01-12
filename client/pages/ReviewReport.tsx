@@ -182,79 +182,130 @@ export default function ReviewReport() {
 
     // ROM - Extremities (Left Side)
     "elbow-rom-flexion-extension-left": "Left Side - Elbow Flexion/Extension",
-    "elbow-rom-supination-pronation-left": "Left Side - Elbow Supination/Pronation",
+    "elbow-rom-supination-pronation-left":
+      "Left Side - Elbow Supination/Pronation",
     "wrist-rom-flexion-extension-left": "Left Side - Wrist Flexion/Extension",
-    "wrist-rom-radial-ulnar-deviation-left": "Left Side - Wrist Radial/Ulnar Deviation",
+    "wrist-rom-radial-ulnar-deviation-left":
+      "Left Side - Wrist Radial/Ulnar Deviation",
     "knee-rom-flexion-extension-left": "Left Side - Knee Flexion/Extension",
-    "shoulder-rom-flexion-extension-left": "Left Side - Shoulder Flexion/Extension",
-    "shoulder-rom-internal-external-rotation-left": "Left Side - Shoulder Internal/External Rotation",
-    "shoulder-rom-abduction-adduction-left": "Left Side - Shoulder Abduction/Adduction",
+    "shoulder-rom-flexion-extension-left":
+      "Left Side - Shoulder Flexion/Extension",
+    "shoulder-rom-internal-external-rotation-left":
+      "Left Side - Shoulder Internal/External Rotation",
+    "shoulder-rom-abduction-adduction-left":
+      "Left Side - Shoulder Abduction/Adduction",
     "hip-rom-flexion-extension-left": "Left Side - Hip Flexion/Extension",
-    "hip-rom-internal-external-rotation-left": "Left Side - Hip Internal/External Rotation",
+    "hip-rom-internal-external-rotation-left":
+      "Left Side - Hip Internal/External Rotation",
     "hip-rom-abduction-adduction-left": "Left Side - Hip Abduction/Adduction",
-    "ankle-rom-dorsi-plantar-flexion-left": "Left Side - Ankle Dorsi/Plantar Flexion",
+    "ankle-rom-dorsi-plantar-flexion-left":
+      "Left Side - Ankle Dorsi/Plantar Flexion",
     "ankle-rom-inversion-eversion-left": "Left Side - Ankle Inversion/Eversion",
 
     // ROM - Extremities (Right Side)
     "elbow-rom-flexion-extension-right": "Right Side - Elbow Flexion/Extension",
-    "elbow-rom-supination-pronation-right": "Right Side - Elbow Supination/Pronation",
+    "elbow-rom-supination-pronation-right":
+      "Right Side - Elbow Supination/Pronation",
     "wrist-rom-flexion-extension-right": "Right Side - Wrist Flexion/Extension",
-    "wrist-rom-radial-ulnar-deviation-right": "Right Side - Wrist Radial/Ulnar Deviation",
+    "wrist-rom-radial-ulnar-deviation-right":
+      "Right Side - Wrist Radial/Ulnar Deviation",
     "knee-rom-flexion-extension-right": "Right Side - Knee Flexion/Extension",
-    "shoulder-rom-flexion-extension-right": "Right Side - Shoulder Flexion/Extension",
-    "shoulder-rom-internal-external-rotation-right": "Right Side - Shoulder Internal/External Rotation",
-    "shoulder-rom-abduction-adduction-right": "Right Side - Shoulder Abduction/Adduction",
+    "shoulder-rom-flexion-extension-right":
+      "Right Side - Shoulder Flexion/Extension",
+    "shoulder-rom-internal-external-rotation-right":
+      "Right Side - Shoulder Internal/External Rotation",
+    "shoulder-rom-abduction-adduction-right":
+      "Right Side - Shoulder Abduction/Adduction",
     "hip-rom-flexion-extension-right": "Right Side - Hip Flexion/Extension",
-    "hip-rom-internal-external-rotation-right": "Right Side - Hip Internal/External Rotation",
+    "hip-rom-internal-external-rotation-right":
+      "Right Side - Hip Internal/External Rotation",
     "hip-rom-abduction-adduction-right": "Right Side - Hip Abduction/Adduction",
-    "ankle-rom-dorsi-plantar-flexion-right": "Right Side - Ankle Dorsi/Plantar Flexion",
-    "ankle-rom-inversion-eversion-right": "Right Side - Ankle Inversion/Eversion",
+    "ankle-rom-dorsi-plantar-flexion-right":
+      "Right Side - Ankle Dorsi/Plantar Flexion",
+    "ankle-rom-inversion-eversion-right":
+      "Right Side - Ankle Inversion/Eversion",
 
     // ROM - Hand/Foot (Left Side)
     "thumb-ip-flexion-extension-left": "Left Side - Thumb IP Flexion/Extension",
     "thumb-mp-flexion-extension-left": "Left Side - Thumb MP Flexion/Extension",
     "thumb-abduction-left": "Left Side - Thumb Abduction",
-    "index-dip-flexion-extension-left": "Left Side - Index Finger DIP Flexion/Extension",
-    "index-pip-flexion-extension-left": "Left Side - Index Finger PIP Flexion/Extension",
-    "index-mp-flexion-extension-left": "Left Side - Index Finger MP Flexion/Extension",
-    "middle-dip-flexion-extension-left": "Left Side - Middle Finger DIP Flexion/Extension",
-    "middle-pip-flexion-extension-left": "Left Side - Middle Finger PIP Flexion/Extension",
-    "middle-mp-flexion-extension-left": "Left Side - Middle Finger MP Flexion/Extension",
-    "ring-dip-flexion-extension-left": "Left Side - Ring Finger DIP Flexion/Extension",
-    "ring-pip-flexion-extension-left": "Left Side - Ring Finger PIP Flexion/Extension",
-    "ring-mp-flexion-extension-left": "Left Side - Ring Finger MP Flexion/Extension",
-    "little-dip-flexion-extension-left": "Left Side - Little Finger DIP Flexion/Extension",
-    "little-pip-flexion-extension-left": "Left Side - Little Finger PIP Flexion/Extension",
-    "little-mp-flexion-extension-left": "Left Side - Little Finger MP Flexion/Extension",
+    "index-dip-flexion-extension-left":
+      "Left Side - Index Finger DIP Flexion/Extension",
+    "index-pip-flexion-extension-left":
+      "Left Side - Index Finger PIP Flexion/Extension",
+    "index-mp-flexion-extension-left":
+      "Left Side - Index Finger MP Flexion/Extension",
+    "middle-dip-flexion-extension-left":
+      "Left Side - Middle Finger DIP Flexion/Extension",
+    "middle-pip-flexion-extension-left":
+      "Left Side - Middle Finger PIP Flexion/Extension",
+    "middle-mp-flexion-extension-left":
+      "Left Side - Middle Finger MP Flexion/Extension",
+    "ring-dip-flexion-extension-left":
+      "Left Side - Ring Finger DIP Flexion/Extension",
+    "ring-pip-flexion-extension-left":
+      "Left Side - Ring Finger PIP Flexion/Extension",
+    "ring-mp-flexion-extension-left":
+      "Left Side - Ring Finger MP Flexion/Extension",
+    "little-dip-flexion-extension-left":
+      "Left Side - Little Finger DIP Flexion/Extension",
+    "little-pip-flexion-extension-left":
+      "Left Side - Little Finger PIP Flexion/Extension",
+    "little-mp-flexion-extension-left":
+      "Left Side - Little Finger MP Flexion/Extension",
     "great-toe-ip-flexion-left": "Left Side - Great Toe IP Flexion",
-    "great-toe-mp-dorsi-plantar-flexion-left": "Left Side - Great Toe MP Dorsi/Plantar Flexion",
-    "2nd-toe-mp-dorsi-plantar-flexion-left": "Left Side - 2nd Toe MP Dorsi/Plantar Flexion",
-    "3rd-toe-mp-dorsi-plantar-flexion-left": "Left Side - 3rd Toe MP Dorsi/Plantar Flexion",
-    "4th-toe-mp-dorsi-plantar-flexion-left": "Left Side - 4th Toe MP Dorsi/Plantar Flexion",
-    "5th-toe-mp-dorsi-plantar-flexion-left": "Left Side - 5th Toe MP Dorsi/Plantar Flexion",
+    "great-toe-mp-dorsi-plantar-flexion-left":
+      "Left Side - Great Toe MP Dorsi/Plantar Flexion",
+    "2nd-toe-mp-dorsi-plantar-flexion-left":
+      "Left Side - 2nd Toe MP Dorsi/Plantar Flexion",
+    "3rd-toe-mp-dorsi-plantar-flexion-left":
+      "Left Side - 3rd Toe MP Dorsi/Plantar Flexion",
+    "4th-toe-mp-dorsi-plantar-flexion-left":
+      "Left Side - 4th Toe MP Dorsi/Plantar Flexion",
+    "5th-toe-mp-dorsi-plantar-flexion-left":
+      "Left Side - 5th Toe MP Dorsi/Plantar Flexion",
 
     // ROM - Hand/Foot (Right Side)
-    "thumb-ip-flexion-extension-right": "Right Side - Thumb IP Flexion/Extension",
-    "thumb-mp-flexion-extension-right": "Right Side - Thumb MP Flexion/Extension",
+    "thumb-ip-flexion-extension-right":
+      "Right Side - Thumb IP Flexion/Extension",
+    "thumb-mp-flexion-extension-right":
+      "Right Side - Thumb MP Flexion/Extension",
     "thumb-abduction-right": "Right Side - Thumb Abduction",
-    "index-dip-flexion-extension-right": "Right Side - Index Finger DIP Flexion/Extension",
-    "index-pip-flexion-extension-right": "Right Side - Index Finger PIP Flexion/Extension",
-    "index-mp-flexion-extension-right": "Right Side - Index Finger MP Flexion/Extension",
-    "middle-dip-flexion-extension-right": "Right Side - Middle Finger DIP Flexion/Extension",
-    "middle-pip-flexion-extension-right": "Right Side - Middle Finger PIP Flexion/Extension",
-    "middle-mp-flexion-extension-right": "Right Side - Middle Finger MP Flexion/Extension",
-    "ring-dip-flexion-extension-right": "Right Side - Ring Finger DIP Flexion/Extension",
-    "ring-pip-flexion-extension-right": "Right Side - Ring Finger PIP Flexion/Extension",
-    "ring-mp-flexion-extension-right": "Right Side - Ring Finger MP Flexion/Extension",
-    "little-dip-flexion-extension-right": "Right Side - Little Finger DIP Flexion/Extension",
-    "little-pip-flexion-extension-right": "Right Side - Little Finger PIP Flexion/Extension",
-    "little-mp-flexion-extension-right": "Right Side - Little Finger MP Flexion/Extension",
+    "index-dip-flexion-extension-right":
+      "Right Side - Index Finger DIP Flexion/Extension",
+    "index-pip-flexion-extension-right":
+      "Right Side - Index Finger PIP Flexion/Extension",
+    "index-mp-flexion-extension-right":
+      "Right Side - Index Finger MP Flexion/Extension",
+    "middle-dip-flexion-extension-right":
+      "Right Side - Middle Finger DIP Flexion/Extension",
+    "middle-pip-flexion-extension-right":
+      "Right Side - Middle Finger PIP Flexion/Extension",
+    "middle-mp-flexion-extension-right":
+      "Right Side - Middle Finger MP Flexion/Extension",
+    "ring-dip-flexion-extension-right":
+      "Right Side - Ring Finger DIP Flexion/Extension",
+    "ring-pip-flexion-extension-right":
+      "Right Side - Ring Finger PIP Flexion/Extension",
+    "ring-mp-flexion-extension-right":
+      "Right Side - Ring Finger MP Flexion/Extension",
+    "little-dip-flexion-extension-right":
+      "Right Side - Little Finger DIP Flexion/Extension",
+    "little-pip-flexion-extension-right":
+      "Right Side - Little Finger PIP Flexion/Extension",
+    "little-mp-flexion-extension-right":
+      "Right Side - Little Finger MP Flexion/Extension",
     "great-toe-ip-flexion-right": "Right Side - Great Toe IP Flexion",
-    "great-toe-mp-dorsi-plantar-flexion-right": "Right Side - Great Toe MP Dorsi/Plantar Flexion",
-    "2nd-toe-mp-dorsi-plantar-flexion-right": "Right Side - 2nd Toe MP Dorsi/Plantar Flexion",
-    "3rd-toe-mp-dorsi-plantar-flexion-right": "Right Side - 3rd Toe MP Dorsi/Plantar Flexion",
-    "4th-toe-mp-dorsi-plantar-flexion-right": "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
-    "5th-toe-mp-dorsi-plantar-flexion-right": "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
+    "great-toe-mp-dorsi-plantar-flexion-right":
+      "Right Side - Great Toe MP Dorsi/Plantar Flexion",
+    "2nd-toe-mp-dorsi-plantar-flexion-right":
+      "Right Side - 2nd Toe MP Dorsi/Plantar Flexion",
+    "3rd-toe-mp-dorsi-plantar-flexion-right":
+      "Right Side - 3rd Toe MP Dorsi/Plantar Flexion",
+    "4th-toe-mp-dorsi-plantar-flexion-right":
+      "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
+    "5th-toe-mp-dorsi-plantar-flexion-right":
+      "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
   };
 
   const formatTestName = (testId: string): string => {
@@ -267,9 +318,7 @@ export default function ReviewReport() {
     // This handles cases not in the mapping
     if (!testId) return "";
 
-    return testId
-      .replace(/-/g, " ")
-      .replace(/\b\w/g, (c) => c.toUpperCase());
+    return testId.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
   const navigate = useNavigate();
@@ -6690,8 +6739,7 @@ export default function ReviewReport() {
                               ) => {
                                 const trials = testData.trials || [];
                                 const testName =
-                                  testData.testName ||
-                                  formatTestName(testType);
+                                  testData.testName || formatTestName(testType);
 
                                 // Calculate averages from actual trial data
                                 const avgTime =
