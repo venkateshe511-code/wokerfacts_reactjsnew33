@@ -557,7 +557,25 @@ export default function DownloadReport() {
               entry.rightMeasurements,
             );
             const derivedCategory = inferTestCategory(entry);
-            const unit = entry.unitMeasure || entry.valueToBeTestedUnit || "";
+
+            // Helper function to get default unit based on category
+            const getDefaultUnit = (category: string) => {
+              const categoryLower = (category || "").toLowerCase();
+              if (categoryLower === "weight") return "lbs";
+              if (categoryLower === "distance") return "ft";
+              if (categoryLower === "time") return "sec";
+              if (categoryLower === "force") return "lbs";
+              if (categoryLower === "angle") return "°";
+              if (categoryLower === "speed") return "mph";
+              if (categoryLower === "frequency") return "Hz";
+              return "";
+            };
+
+            // Use unitMeasure if available, otherwise apply default based on valueToBeTestedUnit category
+            const unit =
+              entry.unitMeasure ||
+              getDefaultUnit(entry.valueToBeTestedUnit) ||
+              "";
 
             const leftAvg = calculateAverage(leftMeasurements);
             const rightAvg = calculateAverage(rightMeasurements);
@@ -3076,10 +3094,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     const jobReq = getJobRequirements(test.testName);
 
                     // Priority 1: Use user's explicit job match selection if provided
-                    if (test.jobMatch === "matched") {
+                    if (test.jobMatch === "yes") {
                       return true;
                     }
-                    if (test.jobMatch === "not_matched") {
+                    if (test.jobMatch === "no") {
                       return false;
                     }
 
@@ -3336,41 +3354,53 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
                           // Job requirements logic with industry standards
                           const jobRequirements = (() => {
-                            const jobReq = getJobRequirements(test.testName);
+                            // Helper function to get default unit based on category
+                            const getDefaultUnit = (category: string) => {
+                              const categoryLower = (
+                                category || ""
+                              ).toLowerCase();
+                              if (categoryLower === "weight") return "lbs";
+                              if (categoryLower === "distance") return "ft";
+                              if (categoryLower === "time") return "sec";
+                              if (categoryLower === "force") return "lbs";
+                              if (categoryLower === "angle") return "°";
+                              if (categoryLower === "speed") return "mph";
+                              if (categoryLower === "frequency") return "Hz";
+                              return "";
+                            };
 
-                            // Show user's specific target only for weight-based tests
+                            // Priority 1: If normLevel is "no", show the value they entered to be tested with proper unit formatting
                             if (
-                              test.valueToBeTestedNumber &&
-                              jobReq.type === "weight"
+                              test.normLevel === "no" &&
+                              test.valueToBeTestedNumber
                             ) {
-                              return `Target: ${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || jobReq.unit}`;
+                              // Use unitMeasure for the actual unit abbreviation (lbs, kg, °, etc)
+                              // Fall back to default unit based on valueToBeTestedUnit category if unitMeasure is not set
+                              const unit =
+                                test.unitMeasure ||
+                                getDefaultUnit(test.valueToBeTestedUnit);
+
+                              // Format degrees with symbol (no space)
+                              if (unit === "°") {
+                                return `${test.valueToBeTestedNumber}°`;
+                              }
+                              // For other units, add space before unit abbreviation
+                              if (unit) {
+                                return `${test.valueToBeTestedNumber} ${unit}`;
+                              }
+                              return test.valueToBeTestedNumber;
                             }
 
-                            // Show norm status if user indicated
+                            // Priority 2: If normLevel is "yes", show "Norm"
                             if (test.normLevel === "yes") {
-                              return "Within Normal Limits";
-                            } else if (test.normLevel === "no") {
-                              return "Below Normal Limits";
+                              return "Norm";
                             }
 
-                            // Show industry standards based on test type
-                            if (jobReq.type === "weight") {
-                              if (jobReq.lightWork && jobReq.mediumWork) {
-                                return `≥${jobReq.lightWork} ${jobReq.unit} (Light) / ≥${jobReq.mediumWork} ${jobReq.unit} (Medium)`;
-                              } else if (jobReq.norm) {
-                                return `≥${jobReq.norm} ${jobReq.unit}`;
-                              }
-                            }
-
-                            if (jobReq.type === "degrees") {
-                              if (jobReq.functionalMin && jobReq.norm) {
-                                return `≥${jobReq.functionalMin}° (Min) / ≥${jobReq.norm}° (Normal)`;
-                              } else if (jobReq.norm) {
-                                return `≥${jobReq.norm}°`;
-                              }
-                            }
-
-                            return "Functional Assessment";
+                            // Fallback: use the job requirements they entered
+                            return (
+                              test.jobRequirements ||
+                              getJobRequirements(test.testName).requirement
+                            );
                           })();
 
                           // Test results format logic like ReviewReport
@@ -3484,6 +3514,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 })()}
             </tbody>
         </table>
+
+        <p style="font-size: 10px; margin: 10px 0; font-style: italic;">*The sit and stand timeframes are calculated throughout the exam with the individual tests and are not a measure of sustained effort.</p>
 
         <p style="font-size: 10px; margin: 10px 0;"><strong>Legend:</strong> L=Left, R=Right, F=Flexion, E=Extension, %IS=% Industrial Standard, HR=Heart Rate</p>
 
@@ -4181,10 +4213,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                 }</td>
                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px; text-align: center;">
                                     ${
-                                      test.jobMatch === "matched"
-                                        ? '<span style="background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">✓</span>'
-                                        : test.jobMatch === "not_matched"
-                                          ? '<span style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Not Matched</span>'
+                                      test.jobMatch === "yes"
+                                        ? '<span style="background: #d4edda; color: #155724; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">Yes</span>'
+                                        : test.jobMatch === "no"
+                                          ? '<span style="background: #f8d7da; color: #721c24; padding: 4px 8px; border-radius: 4px; font-size: 10px; font-weight: bold;">No</span>'
                                           : '<span style="color: #6c757d;">-</span>'
                                     }
                                 </td>

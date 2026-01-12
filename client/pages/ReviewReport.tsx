@@ -403,6 +403,19 @@ export default function ReviewReport() {
       .toLowerCase();
     const testName = `${testEntry?.testName ?? ""}`.toLowerCase();
 
+    // Helper function to get default unit based on category
+    const getDefaultUnit = (category: string) => {
+      const categoryLower = (category || "").toLowerCase();
+      if (categoryLower === "weight") return "lbs";
+      if (categoryLower === "distance") return "ft";
+      if (categoryLower === "time") return "sec";
+      if (categoryLower === "force") return "lbs";
+      if (categoryLower === "angle") return "°";
+      if (categoryLower === "speed") return "mph";
+      if (categoryLower === "frequency") return "Hz";
+      return "";
+    };
+
     const isRangeOfMotion =
       testName.includes("flexion") ||
       testName.includes("extension") ||
@@ -437,13 +450,17 @@ export default function ReviewReport() {
     const convertToLbs =
       kgTokens.includes(measureUnit) || kgTokens.includes(targetUnit);
 
+    // Apply default unit if measureUnit is not set
+    const finalDisplayUnit = measureUnit || targetUnit || "";
+    const defaultUnit = getDefaultUnit(targetUnit);
+
     const displayUnit = convertToLbs
       ? "lbs"
       : lbTokens.includes(targetUnit)
         ? "lbs"
         : lbTokens.includes(measureUnit)
           ? "lbs"
-          : targetUnit || "lbs";
+          : measureUnit || defaultUnit || "lbs";
 
     return { convertToLbs, displayUnit };
   };
@@ -2538,10 +2555,10 @@ export default function ReviewReport() {
                           const jobReq = getJobRequirements(test.testName);
 
                           // Priority 1: Use user's explicit job match selection if provided
-                          if (test.jobMatch === "matched") {
+                          if (test.jobMatch === "yes") {
                             return true;
                           }
-                          if (test.jobMatch === "not_matched") {
+                          if (test.jobMatch === "no") {
                             return false;
                           }
 
@@ -2888,49 +2905,65 @@ export default function ReviewReport() {
                                     </td>
                                     <td className="p-2">
                                       {(() => {
-                                        const jobReq = getJobRequirements(
-                                          test.testName,
-                                        );
+                                        // Helper function to get default unit based on category
+                                        const getDefaultUnit = (
+                                          category: string,
+                                        ) => {
+                                          const categoryLower = (
+                                            category || ""
+                                          ).toLowerCase();
+                                          if (categoryLower === "weight")
+                                            return "lbs";
+                                          if (categoryLower === "distance")
+                                            return "ft";
+                                          if (categoryLower === "time")
+                                            return "sec";
+                                          if (categoryLower === "force")
+                                            return "lbs";
+                                          if (categoryLower === "angle")
+                                            return "°";
+                                          if (categoryLower === "speed")
+                                            return "mph";
+                                          if (categoryLower === "frequency")
+                                            return "Hz";
+                                          return "";
+                                        };
 
-                                        // Show user's specific target only for weight-based tests
+                                        // Priority 1: If normLevel is "no", show the value they entered to be tested with proper unit formatting
                                         if (
-                                          test.valueToBeTestedNumber &&
-                                          jobReq.type === "weight"
+                                          test.normLevel === "no" &&
+                                          test.valueToBeTestedNumber
                                         ) {
-                                          return `Target: ${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || jobReq.unit}`;
+                                          // Use unitMeasure for the actual unit abbreviation (lbs, kg, °, etc)
+                                          // Fall back to default unit based on valueToBeTestedUnit category if unitMeasure is not set
+                                          const unit =
+                                            test.unitMeasure ||
+                                            getDefaultUnit(
+                                              test.valueToBeTestedUnit,
+                                            );
+
+                                          // Format degrees with symbol (no space)
+                                          if (unit === "°") {
+                                            return `${test.valueToBeTestedNumber}°`;
+                                          }
+                                          // For other units, add space before unit abbreviation
+                                          if (unit) {
+                                            return `${test.valueToBeTestedNumber} ${unit}`;
+                                          }
+                                          return test.valueToBeTestedNumber;
                                         }
 
-                                        // Show norm status if user indicated
+                                        // Priority 2: If normLevel is "yes", show "Norm"
                                         if (test.normLevel === "yes") {
-                                          return "Within Normal Limits";
-                                        } else if (test.normLevel === "no") {
-                                          return "Below Normal Limits";
+                                          return "Norm";
                                         }
 
-                                        // Show industry standards based on test type
-                                        if (jobReq.type === "weight") {
-                                          if (
-                                            jobReq.lightWork &&
-                                            jobReq.mediumWork
-                                          ) {
-                                            return `≥${jobReq.lightWork} ${jobReq.unit} (Light) / ≥${jobReq.mediumWork} ${jobReq.unit} (Medium)`;
-                                          } else if (jobReq.norm) {
-                                            return `≥${jobReq.norm} ${jobReq.unit}`;
-                                          }
-                                        }
-
-                                        if (jobReq.type === "degrees") {
-                                          if (
-                                            jobReq.functionalMin &&
-                                            jobReq.norm
-                                          ) {
-                                            return `≥${jobReq.functionalMin}° (Min) / ≥${jobReq.norm}° (Normal)`;
-                                          } else if (jobReq.norm) {
-                                            return `≥${jobReq.norm}°`;
-                                          }
-                                        }
-
-                                        return "Functional Assessment";
+                                        // Fallback: use the job requirements they entered or default to standard
+                                        return (
+                                          test.jobRequirements ||
+                                          getJobRequirements(test.testName)
+                                            .requirement
+                                        );
                                       })()}
                                     </td>
                                     <td className="p-2 text-center">
@@ -2969,6 +3002,11 @@ export default function ReviewReport() {
 
                   {/* Legend */}
                   <div className="mt-4 text-sm italic text-gray-600">
+                    <p style={{ marginBottom: "8px" }}>
+                      *The sit and stand timeframes are calculated throughout
+                      the exam with the individual tests and are not a measure
+                      of sustained effort.
+                    </p>
                     <p>
                       <strong>Legend:</strong> L=Left, R=Right, F=Flexion,
                       E=Extension, %IS=% Industrial Standard

@@ -59,7 +59,7 @@ interface TestData {
   effort: string;
   observations: string[];
   jobRequirements: string;
-  jobMatch: "matched" | "not_matched" | "";
+  jobMatch: "yes" | "no" | "";
   jobDemands: "normal" | "other" | "";
   jobDescription: string;
   normLevel: "yes" | "no" | "";
@@ -371,12 +371,12 @@ export default function TestData() {
       "Construction work requiring consistent bilateral strength for tool operation and material manipulation. Safety-critical job function.",
     ];
 
-    const jobMatchOptions: ("matched" | "not_matched")[] = [
-      "matched",
-      "matched",
-      "not_matched",
-      "matched",
-      "matched",
+    const jobMatchOptions: ("yes" | "no")[] = [
+      "yes",
+      "yes",
+      "no",
+      "yes",
+      "yes",
     ]; // 80% matched
     const jobDemandsOptions: ("normal" | "other")[] = [
       "normal",
@@ -494,9 +494,9 @@ export default function TestData() {
       jobDemands,
       jobDescription,
       normLevel: "yes",
-      valueToBeTestedNumber: "25",
-      valueToBeTestedUnit: "lbs",
-      unitMeasure: "Weight",
+      valueToBeTestedNumber: "",
+      valueToBeTestedUnit: "Weight",
+      unitMeasure: "lbs",
     };
   };
 
@@ -605,7 +605,7 @@ export default function TestData() {
       effort: "Maximal",
       observations: [],
       jobRequirements: "",
-      jobMatch: "",
+      jobMatch: "yes",
       jobDemands: "",
       jobDescription: "",
       normLevel: "yes",
@@ -639,7 +639,7 @@ export default function TestData() {
       effort: "Maximal",
       observations: [],
       jobRequirements: "",
-      jobMatch: "",
+      jobMatch: "yes",
       jobDemands: "",
       jobDescription: "",
       normLevel: "yes",
@@ -919,7 +919,7 @@ export default function TestData() {
         // Add more mappings as needed
       };
 
-      const initialTests: TestData[] = selectedTests.map((testId: string) => ({
+      const createTestStub = (testId: string): TestData => ({
         testId,
         testName:
           testNames[testId] ||
@@ -952,22 +952,45 @@ export default function TestData() {
         effort: "",
         observations: [],
         jobRequirements: "",
-        jobMatch: "",
+        jobMatch: "yes",
         jobDemands: "",
         jobDescription: "",
         normLevel: "yes",
         valueToBeTestedNumber: "",
         valueToBeTestedUnit: "",
         unitMeasure: "",
-      }));
+      });
 
       // Check if we have existing test data (edit mode)
       const existingData = localStorage.getItem("testData");
       if (existingData) {
         const savedData = JSON.parse(existingData);
-        setTestDataState(savedData);
+
+        // Sync with updated protocol selection
+        // Keep existing test data for tests still in the protocol
+        const updatedTests: TestData[] = selectedTests.map((testId: string) => {
+          const existingTest = savedData.tests.find(
+            (t: TestData) => t.testId === testId,
+          );
+          return existingTest || createTestStub(testId);
+        });
+
+        // Ensure currentTestIndex is still valid after updating tests
+        const validCurrentIndex = Math.min(
+          savedData.currentTestIndex || 0,
+          updatedTests.length - 1,
+        );
+
+        setTestDataState({
+          ...savedData,
+          tests: updatedTests,
+          currentTestIndex: validCurrentIndex,
+        });
         setIsEditMode(true);
       } else {
+        const initialTests: TestData[] = selectedTests.map((testId: string) =>
+          createTestStub(testId),
+        );
         setTestDataState({
           tests: initialTests,
           currentTestIndex: 0,
@@ -1282,6 +1305,19 @@ export default function TestData() {
   };
 
   const handleSubmit = async () => {
+    const currentTest = testDataState.tests[testDataState.currentTestIndex];
+
+    // Validate: if normLevel is "no", valueToBeTestedNumber is required
+    if (
+      currentTest.normLevel === "no" &&
+      !currentTest.valueToBeTestedNumber?.trim()
+    ) {
+      setAlertMessage(
+        "Please enter a value for 'VALUE TO BE TESTED' before saving.",
+      );
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Simulate API call
@@ -2333,6 +2369,9 @@ export default function TestData() {
                               onChange={(e) =>
                                 updateCurrentTest({
                                   normLevel: e.target.value as "yes" | "no",
+                                  valueToBeTestedNumber: "",
+                                  valueToBeTestedUnit: "",
+                                  unitMeasure: "",
                                 })
                               }
                               className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
@@ -2354,6 +2393,9 @@ export default function TestData() {
                               onChange={(e) =>
                                 updateCurrentTest({
                                   normLevel: e.target.value as "yes" | "no",
+                                  valueToBeTestedUnit: "Weight",
+                                  unitMeasure: "lbs",
+                                  valueToBeTestedNumber: "",
                                 })
                               }
                               className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
@@ -2369,119 +2411,193 @@ export default function TestData() {
                       </div>
                     </div>
 
-                    {/* Value To Be Tested - Below NORM LEVEL */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-medium text-gray-900">
-                        VALUE TO BE TESTED:
-                      </Label>
-                      <div className="flex items-center space-x-3">
-                        <Input
-                          type="text"
-                          value={currentTest.valueToBeTestedNumber || ""}
-                          onChange={(e) =>
-                            updateCurrentTest({
-                              valueToBeTestedNumber: e.target.value,
-                            })
-                          }
-                          className="w-32 h-10 border-2 border-gray-300 focus:border-blue-500 focus:ring-0 text-center"
-                          placeholder=""
-                        />
-                        <Select
-                          value={currentTest.valueToBeTestedUnit || ""}
-                          onValueChange={(value) => {
-                            updateCurrentTest({
-                              valueToBeTestedUnit: value,
-                              unitMeasure: value.split("-")[0], // Keep the main category for backward compatibility
-                            });
-                          }}
-                        >
-                          <SelectTrigger className="w-48 h-10 border-2 border-gray-300 focus:border-blue-500 focus:ring-0">
-                            <SelectValue placeholder="Weight" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Weight">Weight</SelectItem>
-                            <SelectItem value="Distance">Distance</SelectItem>
-                            <SelectItem value="Time">Time</SelectItem>
-                            <SelectItem value="Force">Force</SelectItem>
-                            <SelectItem value="Angle">Angle</SelectItem>
-                            <SelectItem value="Speed">Speed</SelectItem>
-                            <SelectItem value="Frequency">Frequency</SelectItem>
-                          </SelectContent>
-                        </Select>
-
-                        {/* Dynamic Unit Dropdown */}
-                        {currentTest.valueToBeTestedUnit && (
-                          <Select
-                            value={currentTest.unitMeasure || ""}
-                            onValueChange={(value) =>
-                              updateCurrentTest({ unitMeasure: value })
+                    {/* Value To Be Tested - Only show if NORM LEVEL is "no" */}
+                    {currentTest.normLevel === "no" && (
+                      <div className="space-y-3">
+                        <Label className="text-sm font-medium text-gray-900">
+                          VALUE TO BE TESTED:
+                        </Label>
+                        <div className="flex items-center space-x-3">
+                          <Input
+                            type="text"
+                            value={currentTest.valueToBeTestedNumber || ""}
+                            onChange={(e) =>
+                              updateCurrentTest({
+                                valueToBeTestedNumber: e.target.value,
+                              })
                             }
+                            className="w-32 h-10 border-2 border-gray-300 focus:border-blue-500 focus:ring-0 text-center"
+                            placeholder=""
+                          />
+                          <Select
+                            value={currentTest.valueToBeTestedUnit || ""}
+                            onValueChange={(value) => {
+                              const defaultUnitMap: Record<string, string> = {
+                                Weight: "lbs",
+                                Distance: "ft",
+                                Time: "sec",
+                                Force: "lbs",
+                                Angle: "°",
+                                Speed: "mph",
+                                Frequency: "Hz",
+                              };
+                              updateCurrentTest({
+                                valueToBeTestedUnit: value,
+                                unitMeasure: defaultUnitMap[value] || "",
+                              });
+                            }}
                           >
-                            <SelectTrigger className="w-24 h-10 border-2 border-blue-500 focus:border-blue-600 focus:ring-0">
-                              <SelectValue placeholder="Unit" />
+                            <SelectTrigger className="w-48 h-10 border-2 border-gray-300 focus:border-blue-500 focus:ring-0">
+                              <SelectValue placeholder="Weight" />
                             </SelectTrigger>
                             <SelectContent>
-                              {currentTest.valueToBeTestedUnit === "Weight" && (
-                                <>
-                                  <SelectItem value="lbs">lbs</SelectItem>
-                                  <SelectItem value="kg">kg</SelectItem>
-                                  <SelectItem value="oz">oz</SelectItem>
-                                  <SelectItem value="g">g</SelectItem>
-                                </>
-                              )}
-                              {currentTest.valueToBeTestedUnit ===
-                                "Distance" && (
-                                <>
-                                  <SelectItem value="ft">ft</SelectItem>
-                                  <SelectItem value="m">m</SelectItem>
-                                  <SelectItem value="cm">cm</SelectItem>
-                                  <SelectItem value="in">in</SelectItem>
-                                  <SelectItem value="km">km</SelectItem>
-                                  <SelectItem value="mi">mi</SelectItem>
-                                </>
-                              )}
-                              {currentTest.valueToBeTestedUnit === "Time" && (
-                                <>
-                                  <SelectItem value="sec">sec</SelectItem>
-                                  <SelectItem value="min">min</SelectItem>
-                                  <SelectItem value="hr">hr</SelectItem>
-                                  <SelectItem value="ms">ms</SelectItem>
-                                </>
-                              )}
-                              {currentTest.valueToBeTestedUnit === "Force" && (
-                                <>
-                                  <SelectItem value="lbs">lbs</SelectItem>
-                                  <SelectItem value="kg">kg</SelectItem>
-                                  <SelectItem value="N">N</SelectItem>
-                                  <SelectItem value="kN">kN</SelectItem>
-                                </>
-                              )}
-                              {currentTest.valueToBeTestedUnit === "Angle" && (
-                                <>
-                                  <SelectItem value="°">°</SelectItem>
-                                  <SelectItem value="rad">rad</SelectItem>
-                                </>
-                              )}
-                              {currentTest.valueToBeTestedUnit === "Speed" && (
-                                <>
-                                  <SelectItem value="mph">mph</SelectItem>
-                                  <SelectItem value="km/h">km/h</SelectItem>
-                                  <SelectItem value="m/s">m/s</SelectItem>
-                                  <SelectItem value="ft/s">ft/s</SelectItem>
-                                </>
-                              )}
-                              {currentTest.valueToBeTestedUnit ===
-                                "Frequency" && (
-                                <>
-                                  <SelectItem value="Hz">Hz</SelectItem>
-                                  <SelectItem value="rpm">rpm</SelectItem>
-                                  <SelectItem value="bpm">bpm</SelectItem>
-                                  <SelectItem value="/min">/min</SelectItem>
-                                </>
-                              )}
+                              <SelectItem value="Weight">Weight</SelectItem>
+                              <SelectItem value="Distance">Distance</SelectItem>
+                              <SelectItem value="Time">Time</SelectItem>
+                              <SelectItem value="Force">Force</SelectItem>
+                              <SelectItem value="Angle">Angle</SelectItem>
+                              <SelectItem value="Speed">Speed</SelectItem>
+                              <SelectItem value="Frequency">
+                                Frequency
+                              </SelectItem>
                             </SelectContent>
                           </Select>
-                        )}
+
+                          {/* Dynamic Unit Dropdown */}
+                          {currentTest.valueToBeTestedUnit && (
+                            <Select
+                              value={currentTest.unitMeasure || ""}
+                              onValueChange={(value) =>
+                                updateCurrentTest({ unitMeasure: value })
+                              }
+                            >
+                              <SelectTrigger className="w-24 h-10 border-2 border-blue-500 focus:border-blue-600 focus:ring-0">
+                                <SelectValue
+                                  placeholder={
+                                    currentTest.unitMeasure || "Unit"
+                                  }
+                                />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Weight" && (
+                                  <>
+                                    <SelectItem value="lbs">lbs</SelectItem>
+                                    <SelectItem value="kg">kg</SelectItem>
+                                    <SelectItem value="oz">oz</SelectItem>
+                                    <SelectItem value="g">g</SelectItem>
+                                  </>
+                                )}
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Distance" && (
+                                  <>
+                                    <SelectItem value="ft">ft</SelectItem>
+                                    <SelectItem value="m">m</SelectItem>
+                                    <SelectItem value="cm">cm</SelectItem>
+                                    <SelectItem value="in">in</SelectItem>
+                                    <SelectItem value="km">km</SelectItem>
+                                    <SelectItem value="mi">mi</SelectItem>
+                                  </>
+                                )}
+                                {currentTest.valueToBeTestedUnit === "Time" && (
+                                  <>
+                                    <SelectItem value="sec">sec</SelectItem>
+                                    <SelectItem value="min">min</SelectItem>
+                                    <SelectItem value="hr">hr</SelectItem>
+                                    <SelectItem value="ms">ms</SelectItem>
+                                  </>
+                                )}
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Force" && (
+                                  <>
+                                    <SelectItem value="lbs">lbs</SelectItem>
+                                    <SelectItem value="kg">kg</SelectItem>
+                                    <SelectItem value="N">N</SelectItem>
+                                    <SelectItem value="kN">kN</SelectItem>
+                                  </>
+                                )}
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Angle" && (
+                                  <>
+                                    <SelectItem value="°">°</SelectItem>
+                                    <SelectItem value="rad">rad</SelectItem>
+                                  </>
+                                )}
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Speed" && (
+                                  <>
+                                    <SelectItem value="mph">mph</SelectItem>
+                                    <SelectItem value="km/h">km/h</SelectItem>
+                                    <SelectItem value="m/s">m/s</SelectItem>
+                                    <SelectItem value="ft/s">ft/s</SelectItem>
+                                  </>
+                                )}
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Frequency" && (
+                                  <>
+                                    <SelectItem value="Hz">Hz</SelectItem>
+                                    <SelectItem value="rpm">rpm</SelectItem>
+                                    <SelectItem value="bpm">bpm</SelectItem>
+                                    <SelectItem value="/min">/min</SelectItem>
+                                  </>
+                                )}
+                              </SelectContent>
+                            </Select>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Job Match - Below VALUE TO BE TESTED */}
+                    <div className="pt-4 border-t border-gray-200">
+                      <div className="flex items-center space-x-4">
+                        <Label className="text-sm font-medium text-blue-600 min-w-[100px]">
+                          Job Match:
+                        </Label>
+                        <div className="flex items-center space-x-6">
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="radio"
+                              id="job-match-yes"
+                              name="jobMatch"
+                              value="yes"
+                              checked={currentTest.jobMatch === "yes"}
+                              onChange={(e) =>
+                                updateCurrentTest({
+                                  jobMatch: e.target.value as "yes" | "no",
+                                })
+                              }
+                              className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                            />
+                            <label
+                              htmlFor="job-match-yes"
+                              className="text-sm font-medium text-gray-900"
+                            >
+                              YES
+                            </label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="radio"
+                              id="job-match-no"
+                              name="jobMatch"
+                              value="no"
+                              checked={currentTest.jobMatch === "no"}
+                              onChange={(e) =>
+                                updateCurrentTest({
+                                  jobMatch: e.target.value as "yes" | "no",
+                                })
+                              }
+                              className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                            />
+                            <label
+                              htmlFor="job-match-no"
+                              className="text-sm font-medium text-gray-900"
+                            >
+                              NO
+                            </label>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2499,7 +2615,11 @@ export default function TestData() {
           </div>
           <Button
             onClick={handleSubmit}
-            disabled={isSubmitting}
+            disabled={
+              isSubmitting ||
+              (currentTest.normLevel === "no" &&
+                !currentTest.valueToBeTestedNumber?.trim())
+            }
             className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
           >
             {isSubmitting ? (
