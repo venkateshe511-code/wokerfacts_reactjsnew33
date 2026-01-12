@@ -1046,7 +1046,14 @@ export default function TestData() {
           const existingTest = savedData.tests.find(
             (t: TestData) => t.testId === testId,
           );
-          return existingTest || createTestStub(testId);
+          if (existingTest) {
+            // Update test name if a new mapping exists
+            return {
+              ...existingTest,
+              testName: testNames[testId] || existingTest.testName,
+            };
+          }
+          return createTestStub(testId);
         });
 
         // Ensure currentTestIndex is still valid after updating tests
