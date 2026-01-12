@@ -4142,7 +4142,10 @@ export default function ReviewReport() {
                                           <tbody>
                                             <tr>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                Left Side - {test.testName}
+                                                Left Side - {(() => {
+                                                  const formattedName = formatTestName(test.testId);
+                                                  return formattedName.split(" - ").slice(1).join(" - ");
+                                                })()}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {leftAvg.toFixed(0)} °
@@ -4181,7 +4184,10 @@ export default function ReviewReport() {
                                             </tr>
                                             <tr>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                Right Side - {test.testName}
+                                                Right Side - {(() => {
+                                                  const formattedName = formatTestName(test.testId);
+                                                  return formattedName.split(" - ").slice(1).join(" - ");
+                                                })()}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {rightAvg.toFixed(0)} °
