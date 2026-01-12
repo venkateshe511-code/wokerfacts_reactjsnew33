@@ -2511,7 +2511,7 @@ export default function TestData() {
                     {/* Job Match - Below VALUE TO BE TESTED */}
                     <div className="pt-4 border-t border-gray-200">
                       <div className="flex items-center space-x-4">
-                        <Label className="text-sm font-medium text-gray-900 min-w-[100px]">
+                        <Label className="text-sm font-medium text-blue-600 min-w-[100px]">
                           JOB MATCH:
                         </Label>
                         <div className="flex items-center space-x-6">
