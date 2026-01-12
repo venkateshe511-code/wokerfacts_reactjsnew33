@@ -28,7 +28,12 @@ import {
 } from "@/lib/test-illustrations";
 import { doc, getDoc } from "firebase/firestore";
 import { getReferencesForTest, formatReference } from "@shared/references";
-import { categorizeTest, groupTestsByCategory, getCategoriesInOrder, type TestCategory } from "@/lib/test-categorization";
+import {
+  categorizeTest,
+  groupTestsByCategory,
+  getCategoriesInOrder,
+  type TestCategory,
+} from "@/lib/test-categorization";
 
 // IndexedDB utilities for loading digital library images
 const DB_NAME = "DigitalLibraryDB";
@@ -3148,7 +3153,9 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                   };
 
                   // Use strict categorization utility to group tests
-                  const testsByCategory = groupTestsByCategory(testData.tests || []);
+                  const testsByCategory = groupTestsByCategory(
+                    testData.tests || [],
+                  );
 
                   let rows = [];
                   let totalSitTime = 45; // Initial interview sit time

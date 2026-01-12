@@ -1,6 +1,6 @@
 /**
  * Test Categorization Utility for Firebase Functions
- * 
+ *
  * This utility provides strict categorization of tests matching the client-side logic.
  * Ensures tests are placed in the correct sections: Strength, ROM Total Spine/Extremity,
  * ROM Hand/Foot, Occupational Tasks, and Cardio.
@@ -21,7 +21,8 @@ function categorizeTest(test) {
 
   // PRIORITY 1: Exact category match (if provided by the system)
   if (test.category === "ROM Hand/Foot") return "ROM Hand/Foot";
-  if (test.category === "ROM Total Spine/Extremity") return "ROM Total Spine/Extremity";
+  if (test.category === "ROM Total Spine/Extremity")
+    return "ROM Total Spine/Extremity";
   if (test.category === "Occupational Tasks") return "Occupational Tasks";
   if (test.category === "Cardio") return "Cardio";
   if (test.category === "Strength") return "Strength";
@@ -29,7 +30,7 @@ function categorizeTest(test) {
   // PRIORITY 2: Cardio tests (highest specificity)
   if (
     /\b(bruce|treadmill|cardio|mcaft|kasch|step-test|aerobic|heart|pulse|ymca|vo2|cardiovascular)\b/.test(
-      searchTarget
+      searchTarget,
     )
   ) {
     return "Cardio";
@@ -40,7 +41,7 @@ function categorizeTest(test) {
   if (
     /\b(hand|foot|finger|thumb|wrist|ankle|digit|toe)\b/.test(testName) &&
     /\b(flexion|extension|abduction|adduction|rotation|range|rom|deviation)\b/.test(
-      testName
+      testName,
     )
   ) {
     return "ROM Hand/Foot";
@@ -59,7 +60,7 @@ function categorizeTest(test) {
   if (
     /\b(shoulder|hip|knee|elbow)\b/.test(testName) &&
     /\b(flexion|extension|abduction|adduction|rotation|range|motion|rom|dorsi|internal|external)\b/.test(
-      testName
+      testName,
     )
   ) {
     return "ROM Total Spine/Extremity";
@@ -76,13 +77,13 @@ function categorizeTest(test) {
   // PRIORITY 5: Occupational Tasks (MTM tests and functional activities)
   if (
     /\b(fingering|handling|reach|balance|stoop|walk|crouch|crawl|climb|kneel|ladder|cart|push|pull|carry|occupational|task)\b/.test(
-      searchTarget
+      searchTarget,
     )
   ) {
     // But exclude ROM-related keywords if they appear with occupational tasks
     if (
       !/\b(flexion|extension|abduction|adduction|rom|range|motion)\b/.test(
-        testName
+        testName,
       )
     ) {
       return "Occupational Tasks";
@@ -93,9 +94,7 @@ function categorizeTest(test) {
   // Strength tests: grip, pinch, lift, carry (when alone), push (when alone), pull (when alone), force
   if (
     /\b(grip|pinch|lift|strength|force|mvic|mve)\b/.test(searchTarget) ||
-    /\b(hand-strength|pinch-strength|static-lift|dynamic-lift)\b/.test(
-      testId
-    )
+    /\b(hand-strength|pinch-strength|static-lift|dynamic-lift)\b/.test(testId)
   ) {
     return "Strength";
   }

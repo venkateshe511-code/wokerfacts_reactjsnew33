@@ -1,13 +1,13 @@
 /**
  * Strict Test Categorization Utility (Shared)
- * 
+ *
  * This utility provides a single source of truth for categorizing tests
  * across both client and server. It ensures tests are placed in the correct
  * sections: Strength, ROM Total Spine/Extremity, ROM Hand/Foot,
  * Occupational Tasks, and Cardio.
  */
 
-export type TestCategory = 
+export type TestCategory =
   | "Strength"
   | "ROM Total Spine/Extremity"
   | "ROM Hand/Foot"
@@ -35,7 +35,8 @@ export function categorizeTest(test: TestInfo): TestCategory {
 
   // PRIORITY 1: Exact category match (if provided by the system)
   if (test.category === "ROM Hand/Foot") return "ROM Hand/Foot";
-  if (test.category === "ROM Total Spine/Extremity") return "ROM Total Spine/Extremity";
+  if (test.category === "ROM Total Spine/Extremity")
+    return "ROM Total Spine/Extremity";
   if (test.category === "Occupational Tasks") return "Occupational Tasks";
   if (test.category === "Cardio") return "Cardio";
   if (test.category === "Strength") return "Strength";
@@ -43,7 +44,7 @@ export function categorizeTest(test: TestInfo): TestCategory {
   // PRIORITY 2: Cardio tests (highest specificity)
   if (
     /\b(bruce|treadmill|cardio|mcaft|kasch|step-test|aerobic|heart|pulse|ymca|vo2|cardiovascular)\b/.test(
-      searchTarget
+      searchTarget,
     )
   ) {
     return "Cardio";
@@ -54,7 +55,7 @@ export function categorizeTest(test: TestInfo): TestCategory {
   if (
     /\b(hand|foot|finger|thumb|wrist|ankle|digit|toe)\b/.test(testName) &&
     /\b(flexion|extension|abduction|adduction|rotation|range|rom|deviation)\b/.test(
-      testName
+      testName,
     )
   ) {
     return "ROM Hand/Foot";
@@ -73,7 +74,7 @@ export function categorizeTest(test: TestInfo): TestCategory {
   if (
     /\b(shoulder|hip|knee|elbow)\b/.test(testName) &&
     /\b(flexion|extension|abduction|adduction|rotation|range|motion|rom|dorsi|internal|external)\b/.test(
-      testName
+      testName,
     )
   ) {
     return "ROM Total Spine/Extremity";
@@ -90,13 +91,13 @@ export function categorizeTest(test: TestInfo): TestCategory {
   // PRIORITY 5: Occupational Tasks (MTM tests and functional activities)
   if (
     /\b(fingering|handling|reach|balance|stoop|walk|crouch|crawl|climb|kneel|ladder|cart|push|pull|carry|occupational|task)\b/.test(
-      searchTarget
+      searchTarget,
     )
   ) {
     // But exclude ROM-related keywords if they appear with occupational tasks
     if (
       !/\b(flexion|extension|abduction|adduction|rom|range|motion)\b/.test(
-        testName
+        testName,
       )
     ) {
       return "Occupational Tasks";
@@ -107,9 +108,7 @@ export function categorizeTest(test: TestInfo): TestCategory {
   // Strength tests: grip, pinch, lift, carry (when alone), push (when alone), pull (when alone), force
   if (
     /\b(grip|pinch|lift|strength|force|mvic|mve)\b/.test(searchTarget) ||
-    /\b(hand-strength|pinch-strength|static-lift|dynamic-lift)\b/.test(
-      testId
-    )
+    /\b(hand-strength|pinch-strength|static-lift|dynamic-lift)\b/.test(testId)
   ) {
     return "Strength";
   }
@@ -122,7 +121,7 @@ export function categorizeTest(test: TestInfo): TestCategory {
  * Groups an array of tests by category
  */
 export function groupTestsByCategory(
-  tests: TestInfo[]
+  tests: TestInfo[],
 ): Record<TestCategory, TestInfo[]> {
   const grouped: Record<TestCategory, TestInfo[]> = {
     Strength: [],
