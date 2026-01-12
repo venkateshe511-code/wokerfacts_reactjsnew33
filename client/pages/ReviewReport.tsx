@@ -6632,8 +6632,7 @@ export default function ReviewReport() {
                                 const trials = testData.trials || [];
                                 const testName =
                                   testData.testName ||
-                                  testType.charAt(0).toUpperCase() +
-                                    testType.slice(1);
+                                  formatTestName(testType);
 
                                 // Calculate averages from actual trial data
                                 const avgTime =
