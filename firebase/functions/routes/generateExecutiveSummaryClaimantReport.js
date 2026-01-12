@@ -2639,8 +2639,169 @@ function format2(n) {
 function isFiniteNum(n) {
   return typeof n === "number" && Number.isFinite(n);
 }
-function capitalize(s) {
-  return (s || "").charAt(0).toUpperCase() + (s || "").slice(1);
+// Mapping of test IDs to friendly display names (matches client-side TestData.tsx)
+const testNames = {
+  "key-pinch": "Key Pinch",
+  "tip-pinch": "Tip Pinch",
+  "palmar-pinch": "Palmar Pinch",
+  "grip-strength": "Grip Strength",
+  "cervical-flexion": "Cervical Flexion",
+  "hip-abduction": "Hip Abduction",
+  "shoulder-flexion": "Shoulder Flexion",
+  "wrist-muscle-flexion": "Wrist Muscle-Palmar Flexion",
+  "wrist-muscle-extension": "Wrist Muscle-Dorsiflexion",
+  "shoulder-muscle-internal-rotation": "Shoulder Muscle Internal Rotation",
+  "dynamic-lift-low": "Dynamic Frequent Lift Low",
+  "dynamic-lift-mid": "Dynamic Frequent Lift Mid",
+  "dynamic-lift-high": "Dynamic Frequent Lift High",
+  "dynamic-lift-overhead": "Dynamic Frequent Lift Overhead",
+  "dynamic-lift-frequent": "Dynamic Frequent Lifts",
+  "dynamic-infrequent-lift-low": "Dynamic Infrequent Lift Low",
+  "dynamic-infrequent-lift-mid": "Dynamic Infrequent Lift Mid",
+  "dynamic-infrequent-lift-high": "Dynamic Infrequent Lift High",
+  "dynamic-infrequent-lift-overhead": "Dynamic Infrequent Lift Overhead",
+  "ymca-step-test": "YMCA 3-Minute Step Test",
+  "ymca-submaximal-treadmill-test": "YMCA Submaximal Treadmill Test",
+  "bruce-treadmill": "Bruce Treadmill Test",
+  mcaft: "mCAFT Test",
+  kasch: "Kasch Pulse Recovery Test",
+
+  // ROM - Extremities (Left Side)
+  "elbow-rom-flexion-extension-left": "Left Side - Elbow Flexion/Extension",
+  "elbow-rom-supination-pronation-left":
+    "Left Side - Elbow Supination/Pronation",
+  "wrist-rom-flexion-extension-left": "Left Side - Wrist Flexion/Extension",
+  "wrist-rom-radial-ulnar-deviation-left":
+    "Left Side - Wrist Radial/Ulnar Deviation",
+  "knee-rom-flexion-extension-left": "Left Side - Knee Flexion/Extension",
+  "shoulder-rom-flexion-extension-left":
+    "Left Side - Shoulder Flexion/Extension",
+  "shoulder-rom-internal-external-rotation-left":
+    "Left Side - Shoulder Internal/External Rotation",
+  "shoulder-rom-abduction-adduction-left":
+    "Left Side - Shoulder Abduction/Adduction",
+  "hip-rom-flexion-extension-left": "Left Side - Hip Flexion/Extension",
+  "hip-rom-internal-external-rotation-left":
+    "Left Side - Hip Internal/External Rotation",
+  "hip-rom-abduction-adduction-left": "Left Side - Hip Abduction/Adduction",
+  "ankle-rom-dorsi-plantar-flexion-left":
+    "Left Side - Ankle Dorsi/Plantar Flexion",
+  "ankle-rom-inversion-eversion-left": "Left Side - Ankle Inversion/Eversion",
+
+  // ROM - Extremities (Right Side)
+  "elbow-rom-flexion-extension-right": "Right Side - Elbow Flexion/Extension",
+  "elbow-rom-supination-pronation-right":
+    "Right Side - Elbow Supination/Pronation",
+  "wrist-rom-flexion-extension-right": "Right Side - Wrist Flexion/Extension",
+  "wrist-rom-radial-ulnar-deviation-right":
+    "Right Side - Wrist Radial/Ulnar Deviation",
+  "knee-rom-flexion-extension-right": "Right Side - Knee Flexion/Extension",
+  "shoulder-rom-flexion-extension-right":
+    "Right Side - Shoulder Flexion/Extension",
+  "shoulder-rom-internal-external-rotation-right":
+    "Right Side - Shoulder Internal/External Rotation",
+  "shoulder-rom-abduction-adduction-right":
+    "Right Side - Shoulder Abduction/Adduction",
+  "hip-rom-flexion-extension-right": "Right Side - Hip Flexion/Extension",
+  "hip-rom-internal-external-rotation-right":
+    "Right Side - Hip Internal/External Rotation",
+  "hip-rom-abduction-adduction-right": "Right Side - Hip Abduction/Adduction",
+  "ankle-rom-dorsi-plantar-flexion-right":
+    "Right Side - Ankle Dorsi/Plantar Flexion",
+  "ankle-rom-inversion-eversion-right": "Right Side - Ankle Inversion/Eversion",
+
+  // ROM - Hand/Foot (Left Side)
+  "thumb-ip-flexion-extension-left": "Left Side - Thumb IP Flexion/Extension",
+  "thumb-mp-flexion-extension-left": "Left Side - Thumb MP Flexion/Extension",
+  "thumb-abduction-left": "Left Side - Thumb Abduction",
+  "index-dip-flexion-extension-left":
+    "Left Side - Index Finger DIP Flexion/Extension",
+  "index-pip-flexion-extension-left":
+    "Left Side - Index Finger PIP Flexion/Extension",
+  "index-mp-flexion-extension-left":
+    "Left Side - Index Finger MP Flexion/Extension",
+  "middle-dip-flexion-extension-left":
+    "Left Side - Middle Finger DIP Flexion/Extension",
+  "middle-pip-flexion-extension-left":
+    "Left Side - Middle Finger PIP Flexion/Extension",
+  "middle-mp-flexion-extension-left":
+    "Left Side - Middle Finger MP Flexion/Extension",
+  "ring-dip-flexion-extension-left":
+    "Left Side - Ring Finger DIP Flexion/Extension",
+  "ring-pip-flexion-extension-left":
+    "Left Side - Ring Finger PIP Flexion/Extension",
+  "ring-mp-flexion-extension-left":
+    "Left Side - Ring Finger MP Flexion/Extension",
+  "little-dip-flexion-extension-left":
+    "Left Side - Little Finger DIP Flexion/Extension",
+  "little-pip-flexion-extension-left":
+    "Left Side - Little Finger PIP Flexion/Extension",
+  "little-mp-flexion-extension-left":
+    "Left Side - Little Finger MP Flexion/Extension",
+  "great-toe-ip-flexion-left": "Left Side - Great Toe IP Flexion",
+  "great-toe-mp-dorsi-plantar-flexion-left":
+    "Left Side - Great Toe MP Dorsi/Plantar Flexion",
+  "2nd-toe-mp-dorsi-plantar-flexion-left":
+    "Left Side - 2nd Toe MP Dorsi/Plantar Flexion",
+  "3rd-toe-mp-dorsi-plantar-flexion-left":
+    "Left Side - 3rd Toe MP Dorsi/Plantar Flexion",
+  "4th-toe-mp-dorsi-plantar-flexion-left":
+    "Left Side - 4th Toe MP Dorsi/Plantar Flexion",
+  "5th-toe-mp-dorsi-plantar-flexion-left":
+    "Left Side - 5th Toe MP Dorsi/Plantar Flexion",
+
+  // ROM - Hand/Foot (Right Side)
+  "thumb-ip-flexion-extension-right": "Right Side - Thumb IP Flexion/Extension",
+  "thumb-mp-flexion-extension-right": "Right Side - Thumb MP Flexion/Extension",
+  "thumb-abduction-right": "Right Side - Thumb Abduction",
+  "index-dip-flexion-extension-right":
+    "Right Side - Index Finger DIP Flexion/Extension",
+  "index-pip-flexion-extension-right":
+    "Right Side - Index Finger PIP Flexion/Extension",
+  "index-mp-flexion-extension-right":
+    "Right Side - Index Finger MP Flexion/Extension",
+  "middle-dip-flexion-extension-right":
+    "Right Side - Middle Finger DIP Flexion/Extension",
+  "middle-pip-flexion-extension-right":
+    "Right Side - Middle Finger PIP Flexion/Extension",
+  "middle-mp-flexion-extension-right":
+    "Right Side - Middle Finger MP Flexion/Extension",
+  "ring-dip-flexion-extension-right":
+    "Right Side - Ring Finger DIP Flexion/Extension",
+  "ring-pip-flexion-extension-right":
+    "Right Side - Ring Finger PIP Flexion/Extension",
+  "ring-mp-flexion-extension-right":
+    "Right Side - Ring Finger MP Flexion/Extension",
+  "little-dip-flexion-extension-right":
+    "Right Side - Little Finger DIP Flexion/Extension",
+  "little-pip-flexion-extension-right":
+    "Right Side - Little Finger PIP Flexion/Extension",
+  "little-mp-flexion-extension-right":
+    "Right Side - Little Finger MP Flexion/Extension",
+  "great-toe-ip-flexion-right": "Right Side - Great Toe IP Flexion",
+  "great-toe-mp-dorsi-plantar-flexion-right":
+    "Right Side - Great Toe MP Dorsi/Plantar Flexion",
+  "2nd-toe-mp-dorsi-plantar-flexion-right":
+    "Right Side - 2nd Toe MP Dorsi/Plantar Flexion",
+  "3rd-toe-mp-dorsi-plantar-flexion-right":
+    "Right Side - 3rd Toe MP Dorsi/Plantar Flexion",
+  "4th-toe-mp-dorsi-plantar-flexion-right":
+    "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
+  "5th-toe-mp-dorsi-plantar-flexion-right":
+    "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
+};
+
+function formatTestName(testId) {
+  // First check if we have a mapping for this exact ID
+  if (testNames[testId]) {
+    return testNames[testId];
+  }
+
+  // Fallback: convert hyphenated ID to proper title case with spaces
+  // This handles cases not in the mapping
+  if (!testId) return "";
+
+  return testId.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 async function generateMTMContentDocx(mtmData, mainTestData) {
@@ -2714,7 +2875,7 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
     // Add illustrations for each test
     await appendSampleIllustrationsForTest(leftCol, testData);
 
-    const testName = testData.testName || capitalize(testType);
+    const testName = testData.testName || formatTestName(testType);
     const trials = Array.isArray(testData.trials) ? testData.trials : [];
 
     const correspondingTest = mainTestData?.tests?.find((t) => {
