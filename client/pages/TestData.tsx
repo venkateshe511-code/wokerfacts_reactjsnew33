@@ -2509,52 +2509,54 @@ export default function TestData() {
                     </div>
 
                     {/* Job Match - Below VALUE TO BE TESTED */}
-                    <div className="space-y-3 pt-4 border-t border-gray-200">
-                      <Label className="text-sm font-medium text-gray-900">
-                        JOB MATCH:
-                      </Label>
-                      <div className="flex items-center space-x-6">
-                        <div className="flex items-center space-x-2">
-                          <input
-                            type="radio"
-                            id="job-match-yes"
-                            name="jobMatch"
-                            value="yes"
-                            checked={currentTest.jobMatch === "yes"}
-                            onChange={(e) =>
-                              updateCurrentTest({
-                                jobMatch: e.target.value as "yes" | "no",
-                              })
-                            }
-                            className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                          />
-                          <label
-                            htmlFor="job-match-yes"
-                            className="text-sm font-medium text-gray-900"
-                          >
-                            YES
-                          </label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <input
-                            type="radio"
-                            id="job-match-no"
-                            name="jobMatch"
-                            value="no"
-                            checked={currentTest.jobMatch === "no"}
-                            onChange={(e) =>
-                              updateCurrentTest({
-                                jobMatch: e.target.value as "yes" | "no",
-                              })
-                            }
-                            className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                          />
-                          <label
-                            htmlFor="job-match-no"
-                            className="text-sm font-medium text-gray-900"
-                          >
-                            NO
-                          </label>
+                    <div className="pt-4 border-t border-gray-200">
+                      <div className="flex items-center space-x-4">
+                        <Label className="text-sm font-medium text-gray-900 min-w-[100px]">
+                          JOB MATCH:
+                        </Label>
+                        <div className="flex items-center space-x-6">
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="radio"
+                              id="job-match-yes"
+                              name="jobMatch"
+                              value="yes"
+                              checked={currentTest.jobMatch === "yes"}
+                              onChange={(e) =>
+                                updateCurrentTest({
+                                  jobMatch: e.target.value as "yes" | "no",
+                                })
+                              }
+                              className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                            />
+                            <label
+                              htmlFor="job-match-yes"
+                              className="text-sm font-medium text-gray-900"
+                            >
+                              YES
+                            </label>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="radio"
+                              id="job-match-no"
+                              name="jobMatch"
+                              value="no"
+                              checked={currentTest.jobMatch === "no"}
+                              onChange={(e) =>
+                                updateCurrentTest({
+                                  jobMatch: e.target.value as "yes" | "no",
+                                })
+                              }
+                              className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                            />
+                            <label
+                              htmlFor="job-match-no"
+                              className="text-sm font-medium text-gray-900"
+                            >
+                              NO
+                            </label>
+                          </div>
                         </div>
                       </div>
                     </div>
