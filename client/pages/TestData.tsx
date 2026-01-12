@@ -2429,7 +2429,9 @@ export default function TestData() {
                               <SelectItem value="Force">Force</SelectItem>
                               <SelectItem value="Angle">Angle</SelectItem>
                               <SelectItem value="Speed">Speed</SelectItem>
-                              <SelectItem value="Frequency">Frequency</SelectItem>
+                              <SelectItem value="Frequency">
+                                Frequency
+                              </SelectItem>
                             </SelectContent>
                           </Select>
 
@@ -2445,7 +2447,8 @@ export default function TestData() {
                                 <SelectValue placeholder="Unit" />
                               </SelectTrigger>
                               <SelectContent>
-                                {currentTest.valueToBeTestedUnit === "Weight" && (
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Weight" && (
                                   <>
                                     <SelectItem value="lbs">lbs</SelectItem>
                                     <SelectItem value="kg">kg</SelectItem>
@@ -2472,7 +2475,8 @@ export default function TestData() {
                                     <SelectItem value="ms">ms</SelectItem>
                                   </>
                                 )}
-                                {currentTest.valueToBeTestedUnit === "Force" && (
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Force" && (
                                   <>
                                     <SelectItem value="lbs">lbs</SelectItem>
                                     <SelectItem value="kg">kg</SelectItem>
@@ -2480,13 +2484,15 @@ export default function TestData() {
                                     <SelectItem value="kN">kN</SelectItem>
                                   </>
                                 )}
-                                {currentTest.valueToBeTestedUnit === "Angle" && (
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Angle" && (
                                   <>
                                     <SelectItem value="°">°</SelectItem>
                                     <SelectItem value="rad">rad</SelectItem>
                                   </>
                                 )}
-                                {currentTest.valueToBeTestedUnit === "Speed" && (
+                                {currentTest.valueToBeTestedUnit ===
+                                  "Speed" && (
                                   <>
                                     <SelectItem value="mph">mph</SelectItem>
                                     <SelectItem value="km/h">km/h</SelectItem>

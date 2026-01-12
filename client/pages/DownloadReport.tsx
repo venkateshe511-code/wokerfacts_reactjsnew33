@@ -3337,7 +3337,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                           // Job requirements logic with industry standards
                           const jobRequirements = (() => {
                             // Priority 1: If normLevel is "no", show the value they entered to be tested
-                            if (test.normLevel === "no" && test.valueToBeTestedNumber) {
+                            if (
+                              test.normLevel === "no" &&
+                              test.valueToBeTestedNumber
+                            ) {
                               return `${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || ""}`.trim();
                             }
 

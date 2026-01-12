@@ -2889,7 +2889,10 @@ export default function ReviewReport() {
                                     <td className="p-2">
                                       {(() => {
                                         // Priority 1: If normLevel is "no", show the value they entered to be tested
-                                        if (test.normLevel === "no" && test.valueToBeTestedNumber) {
+                                        if (
+                                          test.normLevel === "no" &&
+                                          test.valueToBeTestedNumber
+                                        ) {
                                           return `${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || ""}`.trim();
                                         }
 
@@ -2901,7 +2904,8 @@ export default function ReviewReport() {
                                         // Fallback: use the job requirements they entered or default to standard
                                         return (
                                           test.jobRequirements ||
-                                          getJobRequirements(test.testName).requirement
+                                          getJobRequirements(test.testName)
+                                            .requirement
                                         );
                                       })()}
                                     </td>
