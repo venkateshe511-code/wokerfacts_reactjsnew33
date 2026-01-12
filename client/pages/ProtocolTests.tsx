@@ -403,98 +403,194 @@ const testGroups = {
   ],
   "rom-hand": [
     {
-      name: "Thumb",
-      id: "thumb-rom",
+      name: "Thumb (Left)",
+      id: "thumb-rom-left",
       tests: [
-        { id: "thumb-ip-flexion-extension", name: "IP Flexion/Extension" },
-        { id: "thumb-mp-flexion-extension", name: "MP Flexion/Extension" },
-        { id: "thumb-abduction", name: "Thumb Abduction" },
+        { id: "thumb-ip-flexion-extension-left", name: "IP Flexion/Extension (Left)" },
+        { id: "thumb-mp-flexion-extension-left", name: "MP Flexion/Extension (Left)" },
+        { id: "thumb-abduction-left", name: "Thumb Abduction (Left)" },
       ],
     },
     {
-      name: "Index Finger",
-      id: "index-finger-rom",
+      name: "Thumb (Right)",
+      id: "thumb-rom-right",
       tests: [
-        { id: "index-dip-flexion-extension", name: "DIP Flexion/Extension" },
-        { id: "index-pip-flexion-extension", name: "PIP Flexion/Extension" },
-        { id: "index-mp-flexion-extension", name: "MP Flexion/Extension" },
+        { id: "thumb-ip-flexion-extension-right", name: "IP Flexion/Extension (Right)" },
+        { id: "thumb-mp-flexion-extension-right", name: "MP Flexion/Extension (Right)" },
+        { id: "thumb-abduction-right", name: "Thumb Abduction (Right)" },
       ],
     },
     {
-      name: "Middle Finger",
-      id: "middle-finger-rom",
+      name: "Index Finger (Left)",
+      id: "index-finger-rom-left",
       tests: [
-        { id: "middle-dip-flexion-extension", name: "DIP Flexion/Extension" },
-        { id: "middle-pip-flexion-extension", name: "PIP Flexion/Extension" },
-        { id: "middle-mp-flexion-extension", name: "MP Flexion/Extension" },
+        { id: "index-dip-flexion-extension-left", name: "DIP Flexion/Extension (Left)" },
+        { id: "index-pip-flexion-extension-left", name: "PIP Flexion/Extension (Left)" },
+        { id: "index-mp-flexion-extension-left", name: "MP Flexion/Extension (Left)" },
       ],
     },
     {
-      name: "Ring Finger",
-      id: "ring-finger-rom",
+      name: "Index Finger (Right)",
+      id: "index-finger-rom-right",
       tests: [
-        { id: "ring-dip-flexion-extension", name: "DIP Flexion/Extension" },
-        { id: "ring-pip-flexion-extension", name: "PIP Flexion/Extension" },
-        { id: "ring-mp-flexion-extension", name: "MP Flexion/Extension" },
+        { id: "index-dip-flexion-extension-right", name: "DIP Flexion/Extension (Right)" },
+        { id: "index-pip-flexion-extension-right", name: "PIP Flexion/Extension (Right)" },
+        { id: "index-mp-flexion-extension-right", name: "MP Flexion/Extension (Right)" },
       ],
     },
     {
-      name: "Little Finger",
-      id: "little-finger-rom",
+      name: "Middle Finger (Left)",
+      id: "middle-finger-rom-left",
       tests: [
-        { id: "little-dip-flexion-extension", name: "DIP Flexion/Extension" },
-        { id: "little-pip-flexion-extension", name: "PIP Flexion/Extension" },
-        { id: "little-mp-flexion-extension", name: "MP Flexion/Extension" },
+        { id: "middle-dip-flexion-extension-left", name: "DIP Flexion/Extension (Left)" },
+        { id: "middle-pip-flexion-extension-left", name: "PIP Flexion/Extension (Left)" },
+        { id: "middle-mp-flexion-extension-left", name: "MP Flexion/Extension (Left)" },
       ],
     },
     {
-      name: "Extremity - Great Toe",
-      id: "extremity-great-toe",
+      name: "Middle Finger (Right)",
+      id: "middle-finger-rom-right",
       tests: [
-        { id: "great-toe-ip-flexion", name: "IP Flexion" },
+        { id: "middle-dip-flexion-extension-right", name: "DIP Flexion/Extension (Right)" },
+        { id: "middle-pip-flexion-extension-right", name: "PIP Flexion/Extension (Right)" },
+        { id: "middle-mp-flexion-extension-right", name: "MP Flexion/Extension (Right)" },
+      ],
+    },
+    {
+      name: "Ring Finger (Left)",
+      id: "ring-finger-rom-left",
+      tests: [
+        { id: "ring-dip-flexion-extension-left", name: "DIP Flexion/Extension (Left)" },
+        { id: "ring-pip-flexion-extension-left", name: "PIP Flexion/Extension (Left)" },
+        { id: "ring-mp-flexion-extension-left", name: "MP Flexion/Extension (Left)" },
+      ],
+    },
+    {
+      name: "Ring Finger (Right)",
+      id: "ring-finger-rom-right",
+      tests: [
+        { id: "ring-dip-flexion-extension-right", name: "DIP Flexion/Extension (Right)" },
+        { id: "ring-pip-flexion-extension-right", name: "PIP Flexion/Extension (Right)" },
+        { id: "ring-mp-flexion-extension-right", name: "MP Flexion/Extension (Right)" },
+      ],
+    },
+    {
+      name: "Little Finger (Left)",
+      id: "little-finger-rom-left",
+      tests: [
+        { id: "little-dip-flexion-extension-left", name: "DIP Flexion/Extension (Left)" },
+        { id: "little-pip-flexion-extension-left", name: "PIP Flexion/Extension (Left)" },
+        { id: "little-mp-flexion-extension-left", name: "MP Flexion/Extension (Left)" },
+      ],
+    },
+    {
+      name: "Little Finger (Right)",
+      id: "little-finger-rom-right",
+      tests: [
+        { id: "little-dip-flexion-extension-right", name: "DIP Flexion/Extension (Right)" },
+        { id: "little-pip-flexion-extension-right", name: "PIP Flexion/Extension (Right)" },
+        { id: "little-mp-flexion-extension-right", name: "MP Flexion/Extension (Right)" },
+      ],
+    },
+    {
+      name: "Extremity - Great Toe (Left)",
+      id: "extremity-great-toe-left",
+      tests: [
+        { id: "great-toe-ip-flexion-left", name: "IP Flexion (Left)" },
         {
-          id: "great-toe-mp-dorsi-plantar-flexion",
-          name: "MP Dorsi/Plantar Flexion",
+          id: "great-toe-mp-dorsi-plantar-flexion-left",
+          name: "MP Dorsi/Plantar Flexion (Left)",
         },
       ],
     },
     {
-      name: "Extremity - 2nd Toe",
-      id: "extremity-2nd-toe",
+      name: "Extremity - Great Toe (Right)",
+      id: "extremity-great-toe-right",
       tests: [
+        { id: "great-toe-ip-flexion-right", name: "IP Flexion (Right)" },
         {
-          id: "2nd-toe-mp-dorsi-plantar-flexion",
-          name: "MP Dorsi/Plantar Flexion",
+          id: "great-toe-mp-dorsi-plantar-flexion-right",
+          name: "MP Dorsi/Plantar Flexion (Right)",
         },
       ],
     },
     {
-      name: "Extremity - 3rd Toe",
-      id: "extremity-3rd-toe",
+      name: "Extremity - 2nd Toe (Left)",
+      id: "extremity-2nd-toe-left",
       tests: [
         {
-          id: "3rd-toe-mp-dorsi-plantar-flexion",
-          name: "MP Dorsi/Plantar Flexion",
+          id: "2nd-toe-mp-dorsi-plantar-flexion-left",
+          name: "MP Dorsi/Plantar Flexion (Left)",
         },
       ],
     },
     {
-      name: "Extremity - 4th Toe",
-      id: "extremity-4th-toe",
+      name: "Extremity - 2nd Toe (Right)",
+      id: "extremity-2nd-toe-right",
       tests: [
         {
-          id: "4th-toe-mp-dorsi-plantar-flexion",
-          name: "MP Dorsi/Plantar Flexion",
+          id: "2nd-toe-mp-dorsi-plantar-flexion-right",
+          name: "MP Dorsi/Plantar Flexion (Right)",
         },
       ],
     },
     {
-      name: "Extremity - 5th Toe",
-      id: "extremity-5th-toe",
+      name: "Extremity - 3rd Toe (Left)",
+      id: "extremity-3rd-toe-left",
       tests: [
         {
-          id: "5th-toe-mp-dorsi-plantar-flexion",
-          name: "MP Dorsi/Plantar Flexion",
+          id: "3rd-toe-mp-dorsi-plantar-flexion-left",
+          name: "MP Dorsi/Plantar Flexion (Left)",
+        },
+      ],
+    },
+    {
+      name: "Extremity - 3rd Toe (Right)",
+      id: "extremity-3rd-toe-right",
+      tests: [
+        {
+          id: "3rd-toe-mp-dorsi-plantar-flexion-right",
+          name: "MP Dorsi/Plantar Flexion (Right)",
+        },
+      ],
+    },
+    {
+      name: "Extremity - 4th Toe (Left)",
+      id: "extremity-4th-toe-left",
+      tests: [
+        {
+          id: "4th-toe-mp-dorsi-plantar-flexion-left",
+          name: "MP Dorsi/Plantar Flexion (Left)",
+        },
+      ],
+    },
+    {
+      name: "Extremity - 4th Toe (Right)",
+      id: "extremity-4th-toe-right",
+      tests: [
+        {
+          id: "4th-toe-mp-dorsi-plantar-flexion-right",
+          name: "MP Dorsi/Plantar Flexion (Right)",
+        },
+      ],
+    },
+    {
+      name: "Extremity - 5th Toe (Left)",
+      id: "extremity-5th-toe-left",
+      tests: [
+        {
+          id: "5th-toe-mp-dorsi-plantar-flexion-left",
+          name: "MP Dorsi/Plantar Flexion (Left)",
+        },
+      ],
+    },
+    {
+      name: "Extremity - 5th Toe (Right)",
+      id: "extremity-5th-toe-right",
+      tests: [
+        {
+          id: "5th-toe-mp-dorsi-plantar-flexion-right",
+          name: "MP Dorsi/Plantar Flexion (Right)",
         },
       ],
     },
