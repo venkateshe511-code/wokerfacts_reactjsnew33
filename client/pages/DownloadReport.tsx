@@ -28,6 +28,12 @@ import {
 } from "@/lib/test-illustrations";
 import { doc, getDoc } from "firebase/firestore";
 import { getReferencesForTest, formatReference } from "@shared/references";
+import {
+  categorizeTest,
+  groupTestsByCategory,
+  getCategoriesInOrder,
+  type TestCategory,
+} from "@/lib/test-categorization";
 
 // IndexedDB utilities for loading digital library images
 const DB_NAME = "DigitalLibraryDB";
@@ -397,45 +403,9 @@ export default function DownloadReport() {
       });
     }
 
-    const inferTestCategory = (test: any): string => {
-      const name = `${test?.testName || ""}`.toLowerCase();
-      const id = `${test?.testId || ""}`.toLowerCase();
-      const target = `${name} ${id}`;
-
-      if (
-        /(bruce|treadmill|cardio|mcaft|kasch|step|aerobic|heart|pulse|ymca|vo2)/.test(
-          target,
-        )
-      ) {
-        return "Cardio";
-      }
-
-      if (
-        /(fingering|handling|reach|balance|stoop|walk|push|pull|cart|crouch|carry|crawl|climb|kneel|ladder|occupational|task)/.test(
-          target,
-        )
-      ) {
-        return "Occupational Tasks";
-      }
-
-      if (
-        /(hand|foot|finger|thumb|wrist|ankle|digit)/.test(target) &&
-        /(flexion|extension|abduction|adduction|rotation|range|rom)/.test(
-          target,
-        )
-      ) {
-        return "ROM Hand/Foot";
-      }
-
-      if (
-        /(flexion|extension|rotation|spine|cervical|lumbar|shoulder|thoracic|range|motion|back)/.test(
-          target,
-        )
-      ) {
-        return "ROM Total Spine/Extremity";
-      }
-
-      return "Strength";
+    // Use the strict categorization utility instead of inline logic
+    const inferTestCategory = (test: any): TestCategory => {
+      return categorizeTest(test);
     };
 
     const normalizeMeasurements = (
@@ -3182,100 +3152,10 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                     return false;
                   };
 
-                  // Group tests by specific categories collected in software (same as ReviewReport)
-                  const testsByCategory = {
-                    Strength: [],
-                    "ROM Total Spine/Extremity": [],
-                    "ROM Hand/Foot": [],
-                    "Occupational Tasks": [],
-                    Cardio: [],
-                  };
-
-                  testData.tests?.forEach((test: any) => {
-                    const testName = test.testName.toLowerCase();
-                    const originalCategory =
-                      test.category || test.testType || "";
-                    const category = originalCategory.toLowerCase();
-
-                    // Use exact category match first, then fall back to pattern matching
-                    if (originalCategory === "ROM Hand/Foot") {
-                      testsByCategory["ROM Hand/Foot"].push(test);
-                    } else if (
-                      originalCategory === "ROM Total Spine/Extremity"
-                    ) {
-                      testsByCategory["ROM Total Spine/Extremity"].push(test);
-                    } else if (originalCategory === "Occupational Tasks") {
-                      testsByCategory["Occupational Tasks"].push(test);
-                    } else if (originalCategory === "Cardio") {
-                      testsByCategory["Cardio"].push(test);
-                    } else if (originalCategory === "Strength") {
-                      testsByCategory["Strength"].push(test);
-                    } else if (
-                      testName.includes("step-test") ||
-                      testName.includes("treadmill") ||
-                      testName.includes("mcaft") ||
-                      testName.includes("kasch") ||
-                      testName.includes("ymca") ||
-                      testName.includes("cardio") ||
-                      testName.includes("cardiovascular") ||
-                      testName.includes("aerobic") ||
-                      category.includes("cardio") ||
-                      category.includes("heart") ||
-                      category.includes("cardiovascular")
-                    ) {
-                      testsByCategory["Cardio"].push(test);
-                    } else if (
-                      testName.includes("fingering") ||
-                      testName.includes("handling") ||
-                      testName.includes("reach") ||
-                      testName.includes("climb") ||
-                      testName.includes("crawl") ||
-                      testName.includes("stoop") ||
-                      testName.includes("walk") ||
-                      testName.includes("push") ||
-                      testName.includes("pull") ||
-                      testName.includes("crouch") ||
-                      testName.includes("carry") ||
-                      testName.includes("kneel") ||
-                      testName.includes("ladder") ||
-                      testName.includes("balance") ||
-                      category.includes("occupational") ||
-                      category.includes("task")
-                    ) {
-                      testsByCategory["Occupational Tasks"].push(test);
-                    } else if (
-                      ((testName.includes("hand") ||
-                        testName.includes("foot") ||
-                        testName.includes("finger") ||
-                        testName.includes("wrist") ||
-                        testName.includes("ankle") ||
-                        testName.includes("thumb")) &&
-                        (testName.includes("flexion") ||
-                          testName.includes("extension") ||
-                          testName.includes("abduction") ||
-                          testName.includes("adduction"))) ||
-                      ((category.includes("hand") ||
-                        category.includes("foot")) &&
-                        (category.includes("range") ||
-                          category.includes("motion")))
-                    ) {
-                      testsByCategory["ROM Hand/Foot"].push(test);
-                    } else if (
-                      category.includes("range") ||
-                      category.includes("motion") ||
-                      testName.includes("flexion") ||
-                      testName.includes("extension") ||
-                      testName.includes("spine") ||
-                      testName.includes("cervical") ||
-                      testName.includes("back") ||
-                      testName.includes("shoulder")
-                    ) {
-                      testsByCategory["ROM Total Spine/Extremity"].push(test);
-                    } else {
-                      // Default to Strength for grip, pinch, muscle strength tests
-                      testsByCategory["Strength"].push(test);
-                    }
-                  });
+                  // Use strict categorization utility to group tests
+                  const testsByCategory = groupTestsByCategory(
+                    testData.tests || [],
+                  );
 
                   let rows = [];
                   let totalSitTime = 45; // Initial interview sit time

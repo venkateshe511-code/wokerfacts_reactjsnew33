@@ -27,6 +27,11 @@ import { useAuth } from "@/hooks/use-auth";
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { getSampleIllustrations } from "@/lib/test-illustrations";
+import {
+  groupTestsByCategory,
+  getCategoriesInOrder,
+  type TestCategory,
+} from "@/lib/test-categorization";
 
 // IndexedDB utilities for loading digital library images
 const DB_NAME = "DigitalLibraryDB";
@@ -2648,105 +2653,10 @@ export default function ReviewReport() {
                         };
 
                         // Group tests by specific categories collected in software
-                        const testsByCategory: { [key: string]: any[] } = {
-                          Strength: [],
-                          "ROM Total Spine/Extremity": [],
-                          "ROM Hand/Foot": [],
-                          "Occupational Tasks": [],
-                          Cardio: [],
-                        };
-
-                        reportData.testData.tests?.forEach((test: any) => {
-                          const testName = test.testName.toLowerCase();
-                          const originalCategory =
-                            test.category || test.testType || "";
-                          const category = originalCategory.toLowerCase();
-
-                          // Use exact category match first, then fall back to pattern matching
-                          if (originalCategory === "ROM Hand/Foot") {
-                            testsByCategory["ROM Hand/Foot"].push(test);
-                          } else if (
-                            originalCategory === "ROM Total Spine/Extremity"
-                          ) {
-                            testsByCategory["ROM Total Spine/Extremity"].push(
-                              test,
-                            );
-                          } else if (
-                            originalCategory === "Occupational Tasks"
-                          ) {
-                            testsByCategory["Occupational Tasks"].push(test);
-                          } else if (originalCategory === "Cardio") {
-                            testsByCategory["Cardio"].push(test);
-                          } else if (originalCategory === "Strength") {
-                            testsByCategory["Strength"].push(test);
-                          } else if (
-                            testName.includes("step-test") ||
-                            testName.includes("treadmill") ||
-                            testName.includes("mcaft") ||
-                            testName.includes("kasch") ||
-                            testName.includes("ymca") ||
-                            testName.includes("cardio") ||
-                            testName.includes("cardiovascular") ||
-                            testName.includes("aerobic") ||
-                            category.includes("cardio") ||
-                            category.includes("heart") ||
-                            category.includes("cardiovascular")
-                          ) {
-                            testsByCategory["Cardio"].push(test);
-                          } else if (
-                            testName.includes("fingering") ||
-                            testName.includes("handling") ||
-                            testName.includes("reach") ||
-                            testName.includes("climb") ||
-                            testName.includes("crawl") ||
-                            testName.includes("stoop") ||
-                            testName.includes("walk") ||
-                            testName.includes("push") ||
-                            testName.includes("pull") ||
-                            testName.includes("crouch") ||
-                            testName.includes("carry") ||
-                            testName.includes("kneel") ||
-                            testName.includes("ladder") ||
-                            testName.includes("balance") ||
-                            category.includes("occupational") ||
-                            category.includes("task")
-                          ) {
-                            testsByCategory["Occupational Tasks"].push(test);
-                          } else if (
-                            ((testName.includes("hand") ||
-                              testName.includes("foot") ||
-                              testName.includes("finger") ||
-                              testName.includes("wrist") ||
-                              testName.includes("ankle") ||
-                              testName.includes("thumb")) &&
-                              (testName.includes("flexion") ||
-                                testName.includes("extension") ||
-                                testName.includes("abduction") ||
-                                testName.includes("adduction"))) ||
-                            ((category.includes("hand") ||
-                              category.includes("foot")) &&
-                              (category.includes("range") ||
-                                category.includes("motion")))
-                          ) {
-                            testsByCategory["ROM Hand/Foot"].push(test);
-                          } else if (
-                            category.includes("range") ||
-                            category.includes("motion") ||
-                            testName.includes("flexion") ||
-                            testName.includes("extension") ||
-                            testName.includes("spine") ||
-                            testName.includes("cervical") ||
-                            testName.includes("back") ||
-                            testName.includes("shoulder")
-                          ) {
-                            testsByCategory["ROM Total Spine/Extremity"].push(
-                              test,
-                            );
-                          } else {
-                            // Default to Strength for grip, pinch, muscle strength tests
-                            testsByCategory["Strength"].push(test);
-                          }
-                        });
+                        // Use strict categorization utility to group tests
+                        const testsByCategory = groupTestsByCategory(
+                          reportData.testData.tests || [],
+                        );
 
                         const rows = [];
                         let totalSitTime = 45; // Initial interview sit time

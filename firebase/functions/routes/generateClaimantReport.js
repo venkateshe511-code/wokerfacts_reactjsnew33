@@ -30,6 +30,7 @@ const {
   getSampleIllustrations,
   illustrationsToHtml,
 } = require("../test-illustrations");
+const { groupTestsByCategory } = require("../test-categorization");
 const router = express.Router();
 const BRAND_COLOR = "1E3A8A";
 const NARROW_FONT = "Arial Narrow";
@@ -163,7 +164,7 @@ const getImageBuffer = async (src) => {
       try {
         const tmpPath = path.join(os.tmpdir(), `docx_img_${Date.now()}.bin`);
         fs.writeFileSync(tmpPath, buffer);
-      } catch { }
+      } catch {}
     }
 
     return buffer;
@@ -1272,13 +1273,13 @@ async function appendImageGrid(children, images, opts) {
             alignment: AlignmentType.START,
             children: data
               ? [
-                new ImageRun({
-                  data,
-                  transformation: { width: imageWidth, height: imageHeight },
-                }),
-                new TextRun({ text: "\n" }),
-                new TextRun({ text: name, size: 16, color: "6B7280" }),
-              ]
+                  new ImageRun({
+                    data,
+                    transformation: { width: imageWidth, height: imageHeight },
+                  }),
+                  new TextRun({ text: "\n" }),
+                  new TextRun({ text: name, size: 16, color: "6B7280" }),
+                ]
               : [new TextRun({ text: name })],
           }),
         ],
@@ -1300,12 +1301,12 @@ async function appendImageGrid(children, images, opts) {
       rows: rows.length
         ? rows
         : [
-          new TableRow({
-            children: [
-              new TableCell({ children: [new Paragraph("No images")] }),
-            ],
-          }),
-        ],
+            new TableRow({
+              children: [
+                new TableCell({ children: [new Paragraph("No images")] }),
+              ],
+            }),
+          ],
     }),
   );
 }
@@ -1368,13 +1369,13 @@ async function appendSampleIllustrationsForTest(children, test) {
 function appendHeartRateLine(children, test) {
   const pre = Number(
     test.leftMeasurements?.preHeartRate ||
-    test.rightMeasurements?.preHeartRate ||
-    0,
+      test.rightMeasurements?.preHeartRate ||
+      0,
   );
   const post = Number(
     test.leftMeasurements?.postHeartRate ||
-    test.rightMeasurements?.postHeartRate ||
-    0,
+      test.rightMeasurements?.postHeartRate ||
+      0,
   );
   if (!pre && !post) return;
 
@@ -2091,23 +2092,23 @@ function addKaschDocxContent(children, test) {
                 children: r.map((c, idx) =>
                   idx === 0
                     ? new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [
-                            new TextRun({ text: c, bold: true, size: 16 }),
-                          ],
-                        }),
-                      ],
-                    })
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [
+                              new TextRun({ text: c, bold: true, size: 16 }),
+                            ],
+                          }),
+                        ],
+                      })
                     : new TableCell({
-                      children: [
-                        new Paragraph({
-                          alignment: AlignmentType.CENTER,
-                          children: [new TextRun({ text: c, size: 16 })],
-                        }),
-                      ],
-                    }),
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [new TextRun({ text: c, size: 16 })],
+                          }),
+                        ],
+                      }),
                 ),
               }),
           ),
@@ -2301,23 +2302,23 @@ async function addYMCAStepDocxContent(children, test) {
               children: r.map((c, idx) =>
                 idx === 0
                   ? new TableCell({
-                    children: [
-                      new Paragraph({
-                        alignment: AlignmentType.CENTER,
-                        children: [
-                          new TextRun({ text: c, bold: true, size: 16 }),
-                        ],
-                      }),
-                    ],
-                  })
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [
+                            new TextRun({ text: c, bold: true, size: 16 }),
+                          ],
+                        }),
+                      ],
+                    })
                   : new TableCell({
-                    children: [
-                      new Paragraph({
-                        alignment: AlignmentType.CENTER,
-                        children: [new TextRun({ text: c, size: 16 })],
-                      }),
-                    ],
-                  }),
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [new TextRun({ text: c, size: 16 })],
+                        }),
+                      ],
+                    }),
               ),
             }),
         ),
@@ -2412,23 +2413,23 @@ async function addYMCAStepDocxContent(children, test) {
               children: r.map((c, idx) =>
                 idx === 0
                   ? new TableCell({
-                    children: [
-                      new Paragraph({
-                        alignment: AlignmentType.CENTER,
-                        children: [
-                          new TextRun({ text: c, bold: true, size: 16 }),
-                        ],
-                      }),
-                    ],
-                  })
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [
+                            new TextRun({ text: c, bold: true, size: 16 }),
+                          ],
+                        }),
+                      ],
+                    })
                   : new TableCell({
-                    children: [
-                      new Paragraph({
-                        alignment: AlignmentType.CENTER,
-                        children: [new TextRun({ text: c, size: 16 })],
-                      }),
-                    ],
-                  }),
+                      children: [
+                        new Paragraph({
+                          alignment: AlignmentType.CENTER,
+                          children: [new TextRun({ text: c, size: 16 })],
+                        }),
+                      ],
+                    }),
               ),
             }),
         ),
@@ -2696,9 +2697,9 @@ async function addCardioDocxContent(children, test) {
                 children: [
                   imageBuffer
                     ? new ImageRun({
-                      data: imageBuffer,
-                      transformation: { width: 120, height: 120 },
-                    })
+                        data: imageBuffer,
+                        transformation: { width: 120, height: 120 },
+                      })
                     : new TextRun({ text: "[Image Missing]", size: 16 }),
                 ],
                 alignment: AlignmentType.LEFT,
@@ -3286,9 +3287,9 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
                   children: [
                     imageBuffer
                       ? new ImageRun({
-                        data: imageBuffer,
-                        transformation: { width: 120, height: 120 },
-                      })
+                          data: imageBuffer,
+                          transformation: { width: 120, height: 120 },
+                        })
                       : new TextRun({ text: "[Image Missing]", size: 16 }),
                   ],
                   alignment: AlignmentType.LEFT,
@@ -3560,20 +3561,20 @@ function computeCrosschecksFromUnifiedTests(
   // Hand grip MVE
   const gripMVEValid = gripTests.length
     ? gripTests.every((test) => {
-      const leftAvg = _calcAverage(test.leftMeasurements);
-      const rightAvg = _calcAverage(test.rightMeasurements);
-      const bilateralDiff = _bilateralDeficiency(leftAvg, rightAvg);
-      return bilateralDiff <= 20;
-    })
+        const leftAvg = _calcAverage(test.leftMeasurements);
+        const rightAvg = _calcAverage(test.rightMeasurements);
+        const bilateralDiff = _bilateralDeficiency(leftAvg, rightAvg);
+        return bilateralDiff <= 20;
+      })
     : null;
 
   // Pinch grip CV
   const pinchValid = pinchTests.length
     ? pinchTests.every((test) => {
-      const leftCV = _calcCV(test.leftMeasurements);
-      const rightCV = _calcCV(test.rightMeasurements);
-      return leftCV <= 15 && rightCV <= 15;
-    })
+        const leftCV = _calcCV(test.leftMeasurements);
+        const rightCV = _calcCV(test.rightMeasurements);
+        return leftCV <= 15 && rightCV <= 15;
+      })
     : null;
 
   // Dynamic lift HR fluctuation
@@ -3591,52 +3592,52 @@ function computeCrosschecksFromUnifiedTests(
 
   const hrConsistent = dynamicLifts.length
     ? dynamicLifts.some((test) => {
-      const preHR =
-        (test.leftMeasurements &&
-          Number(test.leftMeasurements.preHeartRate)) ||
-        (test.rightMeasurements &&
-          Number(test.rightMeasurements.preHeartRate)) ||
-        0;
-      const postHR =
-        (test.leftMeasurements &&
-          Number(test.leftMeasurements.postHeartRate)) ||
-        (test.rightMeasurements &&
-          Number(test.rightMeasurements.postHeartRate)) ||
-        0;
-      return postHR > preHR;
-    })
+        const preHR =
+          (test.leftMeasurements &&
+            Number(test.leftMeasurements.preHeartRate)) ||
+          (test.rightMeasurements &&
+            Number(test.rightMeasurements.preHeartRate)) ||
+          0;
+        const postHR =
+          (test.leftMeasurements &&
+            Number(test.leftMeasurements.postHeartRate)) ||
+          (test.rightMeasurements &&
+            Number(test.rightMeasurements.postHeartRate)) ||
+          0;
+        return postHR > preHR;
+      })
     : null;
 
   // ROM consistency
   const romValid = romTests.length
     ? romTests.every((test) => {
-      const leftTrials = _getTrialValues(test.leftMeasurements);
-      const rightTrials = _getTrialValues(test.rightMeasurements);
-      const all = [...leftTrials, ...rightTrials].filter((v) =>
-        Number.isFinite(v),
-      );
-      if (all.length < 6) return false;
+        const leftTrials = _getTrialValues(test.leftMeasurements);
+        const rightTrials = _getTrialValues(test.rightMeasurements);
+        const all = [...leftTrials, ...rightTrials].filter((v) =>
+          Number.isFinite(v),
+        );
+        if (all.length < 6) return false;
 
-      for (let i = 0; i <= all.length - 3; i++) {
-        const t1 = all[i],
-          t2 = all[i + 1],
-          t3 = all[i + 2];
-        const maxDiff = Math.max(
-          Math.abs(t1 - t2),
-          Math.abs(t2 - t3),
-          Math.abs(t1 - t3),
-        );
-        const avg = (t1 + t2 + t3) / 3;
-        const denom = avg === 0 ? 1 : avg;
-        const maxPerc = Math.max(
-          (Math.abs(t1 - avg) / denom) * 100,
-          (Math.abs(t2 - avg) / denom) * 100,
-          (Math.abs(t3 - avg) / denom) * 100,
-        );
-        if (maxDiff <= 5 && maxPerc <= 10) return true;
-      }
-      return false;
-    })
+        for (let i = 0; i <= all.length - 3; i++) {
+          const t1 = all[i],
+            t2 = all[i + 1],
+            t3 = all[i + 2];
+          const maxDiff = Math.max(
+            Math.abs(t1 - t2),
+            Math.abs(t2 - t3),
+            Math.abs(t1 - t3),
+          );
+          const avg = (t1 + t2 + t3) / 3;
+          const denom = avg === 0 ? 1 : avg;
+          const maxPerc = Math.max(
+            (Math.abs(t1 - avg) / denom) * 100,
+            (Math.abs(t2 - avg) / denom) * 100,
+            (Math.abs(t3 - avg) / denom) * 100,
+          );
+          if (maxDiff <= 5 && maxPerc <= 10) return true;
+        }
+        return false;
+      })
     : null;
 
   // Test/retest trial consistency
@@ -3671,12 +3672,12 @@ function computeCrosschecksFromUnifiedTests(
   // Dominant side monitoring
   const dominantSideValid = allTests.length
     ? allTests.every((test) => {
-      const l = _calcAverage(test.leftMeasurements);
-      const r = _calcAverage(test.rightMeasurements);
-      if (Math.min(l, r) === 0) return true; // avoid divide-by-zero
-      const ratio = Math.max(l, r) / Math.min(l, r);
-      return ratio <= 1.1; // ~10%
-    })
+        const l = _calcAverage(test.leftMeasurements);
+        const r = _calcAverage(test.rightMeasurements);
+        if (Math.min(l, r) === 0) return true; // avoid divide-by-zero
+        const ratio = Math.max(l, r) / Math.min(l, r);
+        return ratio <= 1.1; // ~10%
+      })
     : null;
 
   // Distraction test (6b) and diagnosis consistency (6c)
@@ -3774,25 +3775,25 @@ function computeCrosschecksFromUnifiedTests(
     ...(distractionPass === null
       ? []
       : [
-        {
-          name: "Distraction test consistency",
-          description:
-            "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
-          pass: distractionPass,
-          applicable: true,
-        },
-      ]),
+          {
+            name: "Distraction test consistency",
+            description:
+              "When performing distraction tests for sustained posture the client should demonstrate similar limitations and or abilities.",
+            pass: distractionPass,
+            applicable: true,
+          },
+        ]),
     ...(diagnosisPass === null
       ? []
       : [
-        {
-          name: "Consistency with diagnosis",
-          description:
-            "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
-          pass: diagnosisPass,
-          applicable: true,
-        },
-      ]),
+          {
+            name: "Consistency with diagnosis",
+            description:
+              "Based on the diagnosis and complaints of the individual it is expected that those issues would relate to a similar function performance pattern during testing.",
+            pass: diagnosisPass,
+            applicable: true,
+          },
+        ]),
     {
       name: "Coefficient of Variation (CV)",
       description:
@@ -4048,8 +4049,9 @@ async function addCoverPage(children, body) {
   children.push(coverRow("Date of Evaluation(s)", displayEvalDate));
 
   // Return footer content so caller can place at page bottom
-  const phoneFax = `Phone: ${clinicPhone || ""}${clinicPhone && clinicFax ? "    " : ""
-    }${clinicPhone ? `Fax: ${clinicPhone}` : ""}`.trim();
+  const phoneFax = `Phone: ${clinicPhone || ""}${
+    clinicPhone && clinicFax ? "    " : ""
+  }${clinicPhone ? `Fax: ${clinicPhone}` : ""}`.trim();
 
   const footerChildren = [];
   footerChildren.push(
@@ -4246,14 +4248,14 @@ async function addClientInformation(children, body) {
   const dob = cd.dateOfBirth || "";
   const age = dob
     ? (() => {
-      try {
-        const d = new Date(dob);
-        const diff = Date.now() - d.getTime();
-        return Math.max(0, Math.floor(diff / (365.25 * 24 * 3600 * 1000)));
-      } catch {
-        return "";
-      }
-    })()
+        try {
+          const d = new Date(dob);
+          const diff = Date.now() - d.getTime();
+          return Math.max(0, Math.floor(diff / (365.25 * 24 * 3600 * 1000)));
+        } catch {
+          return "";
+        }
+      })()
     : "";
   const heightDisp = `${cd.height || ""} ${cd.heightUnit || ""}`.trim();
   const weightDisp = `${cd.weight || ""} ${cd.weightUnit || ""}`.trim();
@@ -4579,42 +4581,42 @@ async function addClientInformation(children, body) {
                 }),
                 sampleImageBuffer
                   ? new Paragraph({
-                    children: [
-                      new ImageRun({
-                        data: sampleImageBuffer,
-                        transformation: { width: 120, height: 120 },
-                      }),
-                    ],
-                    alignment: AlignmentType.CENTER,
-                    spacing: { after: 10 },
-                  })
+                      children: [
+                        new ImageRun({
+                          data: sampleImageBuffer,
+                          transformation: { width: 120, height: 120 },
+                        }),
+                      ],
+                      alignment: AlignmentType.CENTER,
+                      spacing: { after: 10 },
+                    })
                   : new Paragraph({
-                    text: "[Photo Placeholder]",
-                    alignment: AlignmentType.START,
-                    spacing: { after: 10 },
-                    border: {
-                      top: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
+                      text: "[Photo Placeholder]",
+                      alignment: AlignmentType.START,
+                      spacing: { after: 10 },
+                      border: {
+                        top: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
+                        bottom: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
+                        left: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
+                        right: {
+                          style: BorderStyle.SINGLE,
+                          size: 1,
+                          color: "CCCCCC",
+                        },
                       },
-                      bottom: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
-                      },
-                      left: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
-                      },
-                      right: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "CCCCCC",
-                      },
-                    },
-                  }),
+                    }),
 
                 new Paragraph({
                   children: [
@@ -4817,11 +4819,11 @@ async function addClientInformation(children, body) {
             spacing: { before: 0, after: 0 },
             children: buf
               ? [
-                new ImageRun({
-                  data: buf,
-                  transformation: { width: 130, height: 200 },
-                }),
-              ]
+                  new ImageRun({
+                    data: buf,
+                    transformation: { width: 130, height: 200 },
+                  }),
+                ]
               : [new TextRun(`Image ${idx + 1} not available`)],
           }),
         ],
@@ -6785,9 +6787,9 @@ async function addDigitalLibraryContent(children, body) {
                 children: [
                   imageBuffer
                     ? new ImageRun({
-                      data: imageBuffer,
-                      transformation: { width: 120, height: 120 },
-                    })
+                        data: imageBuffer,
+                        transformation: { width: 120, height: 120 },
+                      })
                     : new TextRun({ text: "[Image Missing]", size: 16 }),
                 ],
                 alignment: AlignmentType.CENTER,
@@ -7757,7 +7759,7 @@ async function addConclusionContent(children, body) {
     },
     rpdrBehaviors:
       typeof conclusionDataRaw?.rpdrBehaviors === "object" &&
-        conclusionDataRaw.rpdrBehaviors !== null
+      conclusionDataRaw.rpdrBehaviors !== null
         ? conclusionDataRaw.rpdrBehaviors
         : {},
     rpdrComments:
@@ -7766,7 +7768,7 @@ async function addConclusionContent(children, body) {
         : "",
     ctpBehaviors:
       typeof conclusionDataRaw?.ctpBehaviors === "object" &&
-        conclusionDataRaw.ctpBehaviors !== null
+      conclusionDataRaw.ctpBehaviors !== null
         ? conclusionDataRaw.ctpBehaviors
         : {},
     ctpComments:
@@ -8379,121 +8381,8 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
 
   const unifiedTests = gatherTests();
 
-  // Group tests by category (mirror client)
-  const categories = {
-    Strength: [],
-    "ROM Total Spine/Extremity": [],
-    "ROM Hand/Foot": [],
-    "Occupational Tasks": [],
-    Cardio: [],
-  };
-  for (const test of unifiedTests) {
-    const testName = (test.testName || "").toLowerCase();
-    const originalCategory = (test.category || test.testType || "")
-      .toLowerCase()
-      .trim();
-
-    // Prefer exact category names if provided by client
-    if (test.category === "ROM Hand/Foot") {
-      categories["ROM Hand/Foot"].push(test);
-      continue;
-    }
-    if (test.category === "ROM Total Spine/Extremity") {
-      categories["ROM Total Spine/Extremity"].push(test);
-      continue;
-    }
-    if (test.category === "Cardio") {
-      categories["Cardio"].push(test);
-      continue;
-    }
-    if (test.category === "Occupational Tasks") {
-      categories["Occupational Tasks"].push(test);
-      continue;
-    }
-
-    // Cardio detection (category or name patterns)
-    if (
-      originalCategory.includes("cardio") ||
-      originalCategory.includes("heart") ||
-      originalCategory.includes("aerobic") ||
-      testName.includes("step") ||
-      testName.includes("treadmill") ||
-      testName.includes("mcaft") ||
-      testName.includes("kasch") ||
-      testName.includes("bruce") ||
-      testName.includes("ymca") ||
-      testName.includes("cardio") ||
-      testName.includes("cardiovascular") ||
-      testName.includes("aerobic") ||
-      testName.includes("vo2") ||
-      testName.includes("heart rate")
-    ) {
-      categories["Cardio"].push(test);
-      continue;
-    }
-
-    // ROM Hand/Foot detection
-    if (
-      (originalCategory.includes("rom") &&
-        (originalCategory.includes("hand") ||
-          originalCategory.includes("foot"))) ||
-      ((testName.includes("hand") ||
-        testName.includes("foot") ||
-        testName.includes("finger") ||
-        testName.includes("wrist") ||
-        testName.includes("ankle") ||
-        testName.includes("thumb")) &&
-        (testName.includes("flexion") ||
-          testName.includes("extension") ||
-          testName.includes("abduction") ||
-          testName.includes("adduction")))
-    ) {
-      categories["ROM Hand/Foot"].push(test);
-      continue;
-    }
-
-    // ROM Total Spine/Extremity detection
-    if (
-      originalCategory.includes("rom") ||
-      originalCategory.includes("range") ||
-      originalCategory.includes("motion") ||
-      testName.includes("flexion") ||
-      testName.includes("extension") ||
-      testName.includes("spine") ||
-      testName.includes("cervical") ||
-      testName.includes("back") ||
-      testName.includes("shoulder")
-    ) {
-      categories["ROM Total Spine/Extremity"].push(test);
-      continue;
-    }
-
-    // Occupational tasks
-    if (
-      originalCategory.includes("occupational") ||
-      originalCategory.includes("task") ||
-      testName.includes("fingering") ||
-      testName.includes("handling") ||
-      testName.includes("reach") ||
-      testName.includes("climb") ||
-      testName.includes("crawl") ||
-      testName.includes("stoop") ||
-      testName.includes("walk") ||
-      testName.includes("push") ||
-      testName.includes("pull") ||
-      testName.includes("crouch") ||
-      testName.includes("carry") ||
-      testName.includes("kneel") ||
-      testName.includes("ladder") ||
-      testName.includes("balance")
-    ) {
-      categories["Occupational Tasks"].push(test);
-      continue;
-    }
-
-    // Default to Strength
-    categories["Strength"].push(test);
-  }
+  // Group tests by category using strict categorization utility
+  const categories = groupTestsByCategory(unifiedTests);
 
   // Section Header
   children.push(
@@ -10086,12 +9975,12 @@ async function addTestDataContent(children, body) {
 
             const titleNode = title
               ? new Paragraph({
-                alignment: AlignmentType.CENTER,
-                spacing: { after: 80 },
-                children: [
-                  new TextRun({ text: title, bold: true, size: 16 }),
-                ],
-              })
+                  alignment: AlignmentType.CENTER,
+                  spacing: { after: 80 },
+                  children: [
+                    new TextRun({ text: title, bold: true, size: 16 }),
+                  ],
+                })
               : null;
 
             return new TableCell({
@@ -10135,10 +10024,11 @@ async function addTestDataContent(children, body) {
                   spacing: { before: 80 },
                   children: [
                     new TextRun({
-                      text: `${averageLabel}: ${Number.isFinite(averageValue)
-                        ? averageValue.toFixed(1)
-                        : "n/a"
-                        }${unitLabel ? ` ${unitLabel}` : ""}`,
+                      text: `${averageLabel}: ${
+                        Number.isFinite(averageValue)
+                          ? averageValue.toFixed(1)
+                          : "n/a"
+                      }${unitLabel ? ` ${unitLabel}` : ""}`,
                       color: "444444",
                       size: 16,
                     }),
@@ -10215,7 +10105,7 @@ async function addTestDataContent(children, body) {
                   ChartJS.defaults.font.family = "Arial";
                   ChartJS.defaults.font.size = 12;
                   ChartJS.defaults.color = "#333";
-                } catch { }
+                } catch {}
               },
             });
             const labels = dataSeries.map((_, i) => `T${i + 1}`);
@@ -10314,11 +10204,11 @@ async function addTestDataContent(children, body) {
           if (!hasLeftSeries && !hasRightSeries) {
             singleSeries = extractTrialSeries(
               test.measurements ||
-              test.trials ||
-              test.series ||
-              test.results ||
-              test.data ||
-              [],
+                test.trials ||
+                test.series ||
+                test.results ||
+                test.data ||
+                [],
             );
           }
           // What do we actually have?
