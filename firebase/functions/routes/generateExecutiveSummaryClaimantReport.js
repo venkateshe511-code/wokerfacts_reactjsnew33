@@ -30,6 +30,9 @@ const {
   getSampleIllustrations,
   illustrationsToHtml,
 } = require("../test-illustrations");
+const {
+  groupTestsByCategory,
+} = require("../test-categorization");
 const router = express.Router();
 const BRAND_COLOR = "1E3A8A";
 const NARROW_FONT = "Arial Narrow";
