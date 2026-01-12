@@ -3336,17 +3336,28 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
                           // Job requirements logic with industry standards
                           const jobRequirements = (() => {
-                            // Priority 1: If normLevel is "no", show the value they entered to be tested
+                            // Priority 1: If normLevel is "no", show the value they entered to be tested with proper unit formatting
                             if (
                               test.normLevel === "no" &&
                               test.valueToBeTestedNumber
                             ) {
-                              return `${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || ""}`.trim();
+                              const unit = test.valueToBeTestedUnit || "";
+                              const unitLower = unit.toLowerCase();
+
+                              // Format degrees with symbol
+                              if (unitLower.includes("degree")) {
+                                return `${test.valueToBeTestedNumber}°`;
+                              }
+                              // For other units, add space before unit abbreviation
+                              if (unit) {
+                                return `${test.valueToBeTestedNumber} ${unit}`;
+                              }
+                              return test.valueToBeTestedNumber;
                             }
 
-                            // Priority 2: If normLevel is "yes", show "Norm test"
+                            // Priority 2: If normLevel is "yes", show "Norm"
                             if (test.normLevel === "yes") {
-                              return "Norm test";
+                              return "Norm";
                             }
 
                             // Fallback: use the job requirements they entered
