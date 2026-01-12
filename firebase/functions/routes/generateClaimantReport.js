@@ -8676,38 +8676,21 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
 
       // Job requirements display (mirror client PDF logic exactly)
       const jobRequirementsText = (() => {
-        const jobReq = getJobRequirements(test.testName);
-
-        // Show user's specific target only for weight-based tests
-        if (test.valueToBeTestedNumber && jobReq.type === "weight") {
-          return `Target: ${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || jobReq.unit}`;
+        // Priority 1: If normLevel is "no", show the value they entered to be tested
+        if (test.normLevel === "no" && test.valueToBeTestedNumber) {
+          return `${test.valueToBeTestedNumber} ${test.valueToBeTestedUnit || ""}`.trim();
         }
 
-        // Show norm status if user indicated
+        // Priority 2: If normLevel is "yes", show "Norm test"
         if (test.normLevel === "yes") {
-          return "Within Normal Limits";
-        } else if (test.normLevel === "no") {
-          return "Below Normal Limits";
+          return "Norm test";
         }
 
-        // Show industry standards based on test type
-        if (jobReq.type === "weight") {
-          if (jobReq.lightWork && jobReq.mediumWork) {
-            return `≥${jobReq.lightWork} ${jobReq.unit} (Light) / ≥${jobReq.mediumWork} ${jobReq.unit} (Medium)`;
-          } else if (jobReq.norm) {
-            return `≥${jobReq.norm} ${jobReq.unit}`;
-          }
-        }
-
-        if (jobReq.type === "degrees") {
-          if (jobReq.functionalMin && jobReq.norm) {
-            return `≥${jobReq.functionalMin}° (Min) / ≥${jobReq.norm}° (Normal)`;
-          } else if (jobReq.norm) {
-            return `≥${jobReq.norm}°`;
-          }
-        }
-
-        return "Functional Assessment";
+        // Fallback: use the job requirements they entered or default to standard
+        return (
+          test.jobRequirements ||
+          getJobRequirements(test.testName).requirement
+        );
       })();
 
       // Test results format logic like ReviewReport (mirror client PDF exactly)
