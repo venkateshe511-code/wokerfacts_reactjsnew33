@@ -2452,7 +2452,7 @@ export default function TestData() {
                               }
                             >
                               <SelectTrigger className="w-24 h-10 border-2 border-blue-500 focus:border-blue-600 focus:ring-0">
-                                <SelectValue placeholder="Unit" />
+                                <SelectValue placeholder={currentTest.unitMeasure || "Unit"} />
                               </SelectTrigger>
                               <SelectContent>
                                 {currentTest.valueToBeTestedUnit ===
