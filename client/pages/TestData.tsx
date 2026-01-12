@@ -952,7 +952,7 @@ export default function TestData() {
         effort: "",
         observations: [],
         jobRequirements: "",
-        jobMatch: "",
+        jobMatch: "yes",
         jobDemands: "",
         jobDescription: "",
         normLevel: "yes",
