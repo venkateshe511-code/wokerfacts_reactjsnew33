@@ -2770,7 +2770,7 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
     // Add illustrations for each test
     await appendSampleIllustrationsForTest(leftCol, testData);
 
-    const testName = testData.testName || capitalize(testType);
+    const testName = testData.testName || formatTestName(testType);
     const trials = Array.isArray(testData.trials) ? testData.trials : [];
 
     const correspondingTest = mainTestData?.tests?.find((t) => {
