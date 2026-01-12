@@ -403,6 +403,19 @@ export default function ReviewReport() {
       .toLowerCase();
     const testName = `${testEntry?.testName ?? ""}`.toLowerCase();
 
+    // Helper function to get default unit based on category
+    const getDefaultUnit = (category: string) => {
+      const categoryLower = (category || "").toLowerCase();
+      if (categoryLower === "weight") return "lbs";
+      if (categoryLower === "distance") return "ft";
+      if (categoryLower === "time") return "sec";
+      if (categoryLower === "force") return "lbs";
+      if (categoryLower === "angle") return "°";
+      if (categoryLower === "speed") return "mph";
+      if (categoryLower === "frequency") return "Hz";
+      return "";
+    };
+
     const isRangeOfMotion =
       testName.includes("flexion") ||
       testName.includes("extension") ||
@@ -437,13 +450,17 @@ export default function ReviewReport() {
     const convertToLbs =
       kgTokens.includes(measureUnit) || kgTokens.includes(targetUnit);
 
+    // Apply default unit if measureUnit is not set
+    const finalDisplayUnit = measureUnit || targetUnit || "";
+    const defaultUnit = getDefaultUnit(targetUnit);
+
     const displayUnit = convertToLbs
       ? "lbs"
       : lbTokens.includes(targetUnit)
         ? "lbs"
         : lbTokens.includes(measureUnit)
           ? "lbs"
-          : targetUnit || "lbs";
+          : measureUnit || defaultUnit || "lbs";
 
     return { convertToLbs, displayUnit };
   };
