@@ -8098,7 +8098,7 @@ async function addTestDataContent(children, body) {
                           new Paragraph({
                             alignment: AlignmentType.CENTER,
                             children: [
-                              new TextRun({ text: safeName, size: 16 }),
+                              new TextRun({ text: `Left Side - ${safeName}`, size: 16 }),
                             ],
                           }),
                         ],
@@ -8110,7 +8110,7 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `${Math.max(leftAvg, rightAvg).toFixed(0)} °`,
+                                text: `${leftAvg.toFixed(0)} °`,
                                 size: 16,
                               }),
                             ],
@@ -8149,7 +8149,86 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `${Math.round((Math.max(leftAvg, rightAvg) / romNorm) * 100)}%`,
+                                text: `${Math.round((leftAvg / romNorm) * 100)}%`,
+                                size: 16,
+                              }),
+                            ],
+                          }),
+                        ],
+                      }),
+                      new TableCell({
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [
+                              new TextRun({ text: currentDate, size: 16 }),
+                            ],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                  new TableRow({
+                    children: [
+                      new TableCell({
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [
+                              new TextRun({ text: `Right Side - ${safeName}`, size: 16 }),
+                            ],
+                          }),
+                        ],
+                      }),
+                      new TableCell({
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [
+                              new TextRun({
+                                text: `${rightAvg.toFixed(0)} °`,
+                                size: 16,
+                              }),
+                            ],
+                          }),
+                        ],
+                      }),
+                      new TableCell({
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [
+                              new TextRun({
+                                text: test.demonstrated ? "Pass" : "Fail",
+                                size: 16,
+                              }),
+                            ],
+                          }),
+                        ],
+                      }),
+                      new TableCell({
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [
+                              new TextRun({ text: `${romNorm} °`, size: 16 }),
+                            ],
+                          }),
+                        ],
+                      }),
+                      new TableCell({
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: [
+                          new Paragraph({
+                            alignment: AlignmentType.CENTER,
+                            children: [
+                              new TextRun({
+                                text: `${Math.round((rightAvg / romNorm) * 100)}%`,
                                 size: 16,
                               }),
                             ],
