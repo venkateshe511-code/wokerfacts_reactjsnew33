@@ -6418,7 +6418,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                       id: testType,
                       name:
                         testData.testName ||
-                        testType.charAt(0).toUpperCase() + testType.slice(1),
+                        formatTestName(testType),
                       trials: testData.trials || [],
                       parameters: {
                         numberOfTrials: testData.trials?.length || 3,
