@@ -2427,9 +2427,18 @@ export default function TestData() {
                           <Select
                             value={currentTest.valueToBeTestedUnit || ""}
                             onValueChange={(value) => {
+                              const defaultUnitMap: Record<string, string> = {
+                                Weight: "lbs",
+                                Distance: "ft",
+                                Time: "sec",
+                                Force: "lbs",
+                                Angle: "°",
+                                Speed: "mph",
+                                Frequency: "Hz",
+                              };
                               updateCurrentTest({
                                 valueToBeTestedUnit: value,
-                                unitMeasure: value.split("-")[0], // Keep the main category for backward compatibility
+                                unitMeasure: defaultUnitMap[value] || "",
                               });
                             }}
                           >
