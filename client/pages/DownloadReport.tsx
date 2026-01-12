@@ -557,7 +557,22 @@ export default function DownloadReport() {
               entry.rightMeasurements,
             );
             const derivedCategory = inferTestCategory(entry);
-            const unit = entry.unitMeasure || entry.valueToBeTestedUnit || "";
+
+            // Helper function to get default unit based on category
+            const getDefaultUnit = (category: string) => {
+              const categoryLower = (category || "").toLowerCase();
+              if (categoryLower === "weight") return "lbs";
+              if (categoryLower === "distance") return "ft";
+              if (categoryLower === "time") return "sec";
+              if (categoryLower === "force") return "lbs";
+              if (categoryLower === "angle") return "°";
+              if (categoryLower === "speed") return "mph";
+              if (categoryLower === "frequency") return "Hz";
+              return "";
+            };
+
+            // Use unitMeasure if available, otherwise apply default based on valueToBeTestedUnit category
+            const unit = entry.unitMeasure || getDefaultUnit(entry.valueToBeTestedUnit) || "";
 
             const leftAvg = calculateAverage(leftMeasurements);
             const rightAvg = calculateAverage(rightMeasurements);
