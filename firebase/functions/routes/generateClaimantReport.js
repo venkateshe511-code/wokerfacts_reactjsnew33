@@ -224,20 +224,20 @@ function createSideTrialTable(
   const isMuscleTest =
     testIdLower.includes("muscle-") ||
     (testIdLower.startsWith("cervical-") &&
-     (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
+      (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
   const isRangeOfMotion =
     !isMuscleTest &&
     (testNameLower.includes("flexion") ||
-    testNameLower.includes("extension") ||
-    testNameLower.includes("range") ||
-    testNameLower.includes("thumb") ||
-    testNameLower.includes("rotation") ||
-    testNameLower.includes("raise") ||
-    testNameLower.includes("supination") ||
-    testNameLower.includes("radial") ||
-    testNameLower.includes("abduction") ||
-    testNameLower.includes("inversion"));
+      testNameLower.includes("extension") ||
+      testNameLower.includes("range") ||
+      testNameLower.includes("thumb") ||
+      testNameLower.includes("rotation") ||
+      testNameLower.includes("raise") ||
+      testNameLower.includes("supination") ||
+      testNameLower.includes("radial") ||
+      testNameLower.includes("abduction") ||
+      testNameLower.includes("inversion"));
   const name = (test?.testName || "").toLowerCase();
   const rawUnit = String(
     measurementUnit || test.unitMeasure || "",
@@ -355,8 +355,8 @@ function createSideTrialTable(
   const averageLabel = isMuscleTest
     ? "Force/Level"
     : isRangeOfMotion
-    ? "Average (range of motion)"
-    : "Average (weight)";
+      ? "Average (range of motion)"
+      : "Average (weight)";
 
   const rows = [];
 
@@ -3524,12 +3524,12 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
 
   // === Finally add one combined table ===
   children.push(
-     new Table({
-            width: { size: 100, type: WidthType.PERCENTAGE },
-            layout: TableLayoutType.FIXED,
-            borders: noBorders,
-            columnWidths: [2000, 100, 6900],
-            rows: [
+    new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      layout: TableLayoutType.FIXED,
+      borders: noBorders,
+      columnWidths: [2000, 100, 6900],
+      rows: [
         new TableRow({
           children: [
             new TableCell({
@@ -3537,16 +3537,16 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
               borders: noBorders,
               children: leftCol,
             }),
-             new TableCell({
-                    borders: {
-                      left: {
-                        style: BorderStyle.SINGLE,
-                        size: 8,
-                        color: "CCCCCC",
-                      },
-                    },
-                    children: [],
-                  }),
+            new TableCell({
+              borders: {
+                left: {
+                  style: BorderStyle.SINGLE,
+                  size: 8,
+                  color: "CCCCCC",
+                },
+              },
+              children: [],
+            }),
             new TableCell({
               borders: noBorders,
               children: rightCol,
@@ -4798,10 +4798,16 @@ async function addClientInformation(children, body) {
             // RIGHT COLUMN — Contains Client Information and Mechanism sections
             new TableCell({
               verticalAlign: "top",
+              margins: {
+                left: 200,
+                right: 100,
+                top: 100,
+                bottom: 100,
+              },
               borders: {
                 top: { style: BorderStyle.SINGLE, size: 0, color: "FFFFFF" },
                 bottom: { style: BorderStyle.SINGLE, size: 0, color: "FFFFFF" },
-                left: { style: BorderStyle.SINGLE, size: 1, color: "CCCCCC" }, // vertical dividing line
+                left: { style: BorderStyle.SINGLE, size: 8, color: "CCCCCC" }, // vertical dividing line
                 right: { style: BorderStyle.SINGLE, size: 0, color: "FFFFFF" },
               },
 
@@ -7551,283 +7557,283 @@ async function addReferralQuestionsContent(children, body) {
     // if (question.toLowerCase().includes("lumbar range of motion")) {
     //   children.push(generateLumbarMotionTable());
     // } else {
-      // Default answer
-      children.push(
-        new Paragraph({
-          children: [new TextRun({ text: answer, size: 16 })],
-          spacing: { before: 100, after: 150 },
-        }),
-      );
+    // Default answer
+    children.push(
+      new Paragraph({
+        children: [new TextRun({ text: answer, size: 16 })],
+        spacing: { before: 100, after: 150 },
+      }),
+    );
 
-      if (isConsistencyWithDiagnosis(question)) {
-        if (!rpdrRendered) {
-          // renderRPDR(children, referralData.conclusionData || {});
-          // RPDR Section
-          if (
-            Object.values(rpdrBehaviors).some((v) => v === true) ||
-            rpdrComments
-          ) {
+    if (isConsistencyWithDiagnosis(question)) {
+      if (!rpdrRendered) {
+        // renderRPDR(children, referralData.conclusionData || {});
+        // RPDR Section
+        if (
+          Object.values(rpdrBehaviors).some((v) => v === true) ||
+          rpdrComments
+        ) {
+          children.push(
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
+                  color: BRAND_COLOR,
+                  bold: true,
+                  size: 16,
+                }),
+              ],
+              spacing: { before: 300, after: 150 },
+            }),
+          );
+
+          // RPDR Behaviors
+          if (Object.values(rpdrBehaviors).some((v) => v === true)) {
             children.push(
               new Paragraph({
                 children: [
                   new TextRun({
-                    text: "Observed Symptom Behavior / Reliability of Pain and Disability Reports (RPDR)",
-                    color: BRAND_COLOR,
+                    text: "Observed Behaviors:",
                     bold: true,
                     size: 16,
                   }),
                 ],
-                spacing: { before: 300, after: 150 },
+                spacing: { before: 100, after: 100 },
               }),
             );
 
-            // RPDR Behaviors
-            if (Object.values(rpdrBehaviors).some((v) => v === true)) {
-              children.push(
-                new Paragraph({
-                  children: [
-                    new TextRun({
-                      text: "Observed Behaviors:",
-                      bold: true,
-                      size: 16,
-                    }),
-                  ],
-                  spacing: { before: 100, after: 100 },
-                }),
-              );
-
-              const behaviorRows = [];
-              for (const [behavior, checked] of Object.entries(rpdrBehaviors)) {
-                if (checked) {
-                  behaviorRows.push(
-                    new TableRow({
-                      children: [
-                        new TableCell({
-                          margins: {
-                            top: 50,
-                            bottom: 50,
-                            left: 100,
-                            right: 100,
-                          },
-                          children: [
-                            new Paragraph({
-                              children: [
-                                new TextRun({
-                                  text: "✓ " + behavior,
-                                  size: 16,
-                                }),
-                              ],
-                            }),
-                          ],
-                        }),
-                      ],
-                    }),
-                  );
-                }
-              }
-
-              if (behaviorRows.length > 0) {
-                children.push(
-                  new Table({
-                    width: { size: 100, type: WidthType.PERCENTAGE },
-                    rows: behaviorRows,
-                    borders: {
-                      top: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      bottom: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      left: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      right: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      insideHorizontal: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      insideVertical: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                    },
+            const behaviorRows = [];
+            for (const [behavior, checked] of Object.entries(rpdrBehaviors)) {
+              if (checked) {
+                behaviorRows.push(
+                  new TableRow({
+                    children: [
+                      new TableCell({
+                        margins: {
+                          top: 50,
+                          bottom: 50,
+                          left: 100,
+                          right: 100,
+                        },
+                        children: [
+                          new Paragraph({
+                            children: [
+                              new TextRun({
+                                text: "✓ " + behavior,
+                                size: 16,
+                              }),
+                            ],
+                          }),
+                        ],
+                      }),
+                    ],
                   }),
                 );
               }
             }
 
-            // RPDR Comments
-            if (rpdrComments) {
+            if (behaviorRows.length > 0) {
               children.push(
-                new Paragraph({
-                  children: [
-                    new TextRun({
-                      text: "Comments:",
-                      bold: true,
-                      size: 16,
-                    }),
-                  ],
-                  spacing: { before: 100, after: 50 },
-                }),
-              );
-
-              children.push(
-                new Paragraph({
-                  children: [new TextRun({ text: rpdrComments, size: 16 })],
-                  spacing: { after: 150 },
+                new Table({
+                  width: { size: 100, type: WidthType.PERCENTAGE },
+                  rows: behaviorRows,
+                  borders: {
+                    top: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    bottom: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    left: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    right: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    insideHorizontal: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    insideVertical: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                  },
                 }),
               );
             }
           }
-          rpdrRendered = true;
-        }
 
-        if (!ctpRendered) {
-          // renderCTP(children, referralData.conclusionData || {});
-          // CTP Section
-          if (
-            Object.values(ctpBehaviors).some((v) => v === true) ||
-            ctpComments
-          ) {
+          // RPDR Comments
+          if (rpdrComments) {
             children.push(
               new Paragraph({
                 children: [
                   new TextRun({
-                    text: "Observable Signs of Effort / Competitive Testing Performance (CTP)",
-                    color: BRAND_COLOR,
+                    text: "Comments:",
                     bold: true,
                     size: 16,
                   }),
                 ],
-                spacing: { before: 300, after: 150 },
+                spacing: { before: 100, after: 50 },
               }),
             );
 
-            // CTP Behaviors
-            if (Object.values(ctpBehaviors).some((v) => v === true)) {
-              children.push(
-                new Paragraph({
-                  children: [
-                    new TextRun({
-                      text: "Observable Behaviors:",
-                      bold: true,
-                      size: 16,
-                    }),
-                  ],
-                  spacing: { before: 100, after: 100 },
-                }),
-              );
-
-              const behaviorRows = [];
-              for (const [behavior, checked] of Object.entries(ctpBehaviors)) {
-                if (checked) {
-                  behaviorRows.push(
-                    new TableRow({
-                      children: [
-                        new TableCell({
-                          margins: {
-                            top: 50,
-                            bottom: 50,
-                            left: 100,
-                            right: 100,
-                          },
-                          children: [
-                            new Paragraph({
-                              children: [
-                                new TextRun({
-                                  text: "✓ " + behavior,
-                                  size: 16,
-                                }),
-                              ],
-                            }),
-                          ],
-                        }),
-                      ],
-                    }),
-                  );
-                }
-              }
-
-              if (behaviorRows.length > 0) {
-                children.push(
-                  new Table({
-                    width: { size: 100, type: WidthType.PERCENTAGE },
-                    rows: behaviorRows,
-                    borders: {
-                      top: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      bottom: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      left: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      right: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      insideHorizontal: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                      insideVertical: {
-                        style: BorderStyle.SINGLE,
-                        size: 1,
-                        color: "E5E7EB",
-                      },
-                    },
-                  }),
-                );
-              }
-            }
-
-            // CTP Comments
-            if (ctpComments) {
-              children.push(
-                new Paragraph({
-                  children: [
-                    new TextRun({
-                      text: "Comments:",
-                      bold: true,
-                      size: 16,
-                    }),
-                  ],
-                  spacing: { before: 100, after: 50 },
-                }),
-              );
-
-              children.push(
-                new Paragraph({
-                  children: [new TextRun({ text: ctpComments, size: 16 })],
-                  spacing: { after: 150 },
-                }),
-              );
-            }
+            children.push(
+              new Paragraph({
+                children: [new TextRun({ text: rpdrComments, size: 16 })],
+                spacing: { after: 150 },
+              }),
+            );
           }
-          ctpRendered = true;
         }
+        rpdrRendered = true;
       }
+
+      if (!ctpRendered) {
+        // renderCTP(children, referralData.conclusionData || {});
+        // CTP Section
+        if (
+          Object.values(ctpBehaviors).some((v) => v === true) ||
+          ctpComments
+        ) {
+          children.push(
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: "Observable Signs of Effort / Competitive Testing Performance (CTP)",
+                  color: BRAND_COLOR,
+                  bold: true,
+                  size: 16,
+                }),
+              ],
+              spacing: { before: 300, after: 150 },
+            }),
+          );
+
+          // CTP Behaviors
+          if (Object.values(ctpBehaviors).some((v) => v === true)) {
+            children.push(
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Observable Behaviors:",
+                    bold: true,
+                    size: 16,
+                  }),
+                ],
+                spacing: { before: 100, after: 100 },
+              }),
+            );
+
+            const behaviorRows = [];
+            for (const [behavior, checked] of Object.entries(ctpBehaviors)) {
+              if (checked) {
+                behaviorRows.push(
+                  new TableRow({
+                    children: [
+                      new TableCell({
+                        margins: {
+                          top: 50,
+                          bottom: 50,
+                          left: 100,
+                          right: 100,
+                        },
+                        children: [
+                          new Paragraph({
+                            children: [
+                              new TextRun({
+                                text: "✓ " + behavior,
+                                size: 16,
+                              }),
+                            ],
+                          }),
+                        ],
+                      }),
+                    ],
+                  }),
+                );
+              }
+            }
+
+            if (behaviorRows.length > 0) {
+              children.push(
+                new Table({
+                  width: { size: 100, type: WidthType.PERCENTAGE },
+                  rows: behaviorRows,
+                  borders: {
+                    top: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    bottom: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    left: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    right: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    insideHorizontal: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                    insideVertical: {
+                      style: BorderStyle.SINGLE,
+                      size: 1,
+                      color: "E5E7EB",
+                    },
+                  },
+                }),
+              );
+            }
+          }
+
+          // CTP Comments
+          if (ctpComments) {
+            children.push(
+              new Paragraph({
+                children: [
+                  new TextRun({
+                    text: "Comments:",
+                    bold: true,
+                    size: 16,
+                  }),
+                ],
+                spacing: { before: 100, after: 50 },
+              }),
+            );
+
+            children.push(
+              new Paragraph({
+                children: [new TextRun({ text: ctpComments, size: 16 })],
+                spacing: { after: 150 },
+              }),
+            );
+          }
+        }
+        ctpRendered = true;
+      }
+    }
     // }
 
     // Add reference images (if any)
@@ -9498,7 +9504,7 @@ async function addTestDataContent(children, body) {
         const isMuscleTest =
           testIdLower.includes("muscle-") ||
           (testIdLower.startsWith("cervical-") &&
-           (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
+            (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
         let leftTrials = readTrials(test?.leftMeasurements);
         let rightTrials = readTrials(test?.rightMeasurements);
@@ -9513,23 +9519,23 @@ async function addTestDataContent(children, body) {
         const isRangeOfMotion =
           !isMuscleTest &&
           (testNameLower.includes("flexion") ||
-          testNameLower.includes("extension") ||
-          testNameLower.includes("range") ||
-          testNameLower.includes("thumb") ||
-          testNameLower.includes("rotation") ||
-          testNameLower.includes("raise") ||
-          testNameLower.includes("supination") ||
-          testNameLower.includes("radial") ||
-          testNameLower.includes("abduction") ||
-          testNameLower.includes("inversion"));
+            testNameLower.includes("extension") ||
+            testNameLower.includes("range") ||
+            testNameLower.includes("thumb") ||
+            testNameLower.includes("rotation") ||
+            testNameLower.includes("raise") ||
+            testNameLower.includes("supination") ||
+            testNameLower.includes("radial") ||
+            testNameLower.includes("abduction") ||
+            testNameLower.includes("inversion"));
         // testNameLower.includes("flexion") ||
         // testNameLower.includes("extension") ||
         // testNameLower.includes("range");
         const averageLabel = isMuscleTest
           ? "Force/Level"
           : isRangeOfMotion
-          ? "Average (range of motion)"
-          : "Average (weight)";
+            ? "Average (range of motion)"
+            : "Average (weight)";
         const isGripTest =
           testNameLower.includes("grip") || testNameLower.includes("pinch");
         const isLiftTest =
