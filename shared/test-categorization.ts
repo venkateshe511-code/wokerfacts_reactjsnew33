@@ -79,7 +79,7 @@ export function categorizeTest(test: TestInfo): TestCategory {
   }
 
   // PRIORITY 5: ROM Total Spine/Extremity
-  // Check for spine-related keywords with ROM movements
+  // Check for spine-related ROM (must have -spine- to distinguish from muscle tests)
   if (
     /\b(cervical-spine|lumbar-spine|thoracic-spine|spine.*flexion|spine.*extension|spine.*lateral|spine.*rotation)\b/.test(
       testId,
@@ -88,20 +88,12 @@ export function categorizeTest(test: TestInfo): TestCategory {
     return "ROM Total Spine/Extremity";
   }
 
-  // Check for extremity ROM (shoulder, hip, knee, elbow) - BUT NOT muscle tests
+  // Check for extremity ROM (shoulder, hip, knee, elbow) - must have -rom- to distinguish from muscle tests
   // Muscle tests go to Strength, ROM tests go here
   if (
-    !testId.includes("muscle-") &&
-    /\b(shoulder-rom|hip-rom|knee-rom|elbow-rom|extremity-)\b/.test(testId)
-  ) {
-    return "ROM Total Spine/Extremity";
-  }
-
-  // Check for cervical ROM (not muscle test cervical)
-  if (
-    testId.includes("cervical") &&
-    !testId.includes("muscle-") &&
-    /\b(rom|flexion|extension|lateral|rotation)\b/.test(testId)
+    /\b(shoulder-rom|hip-rom|knee-rom|elbow-rom|wrist-rom|ankle-rom|extremity-)\b/.test(
+      testId,
+    )
   ) {
     return "ROM Total Spine/Extremity";
   }
@@ -116,6 +108,26 @@ export function categorizeTest(test: TestInfo): TestCategory {
   if (
     testId.includes("muscle-") ||
     /\b(hand-strength|pinch-strength|grip|pinch|lift|strength|force|mvic|mve|static|dynamic)\b/.test(
+      testId,
+    )
+  ) {
+    return "Strength";
+  }
+
+  // Cervical muscle tests (without -spine- they are muscle tests, not ROM)
+  // Muscle test cervical has IDs like: cervical-flexion-extension, cervical-lateral-flexion, cervical-30-rotation
+  if (
+    testId.startsWith("cervical-") &&
+    !testId.includes("-spine-") &&
+    /\b(flexion|extension|lateral|rotation)\b/.test(testId)
+  ) {
+    return "Strength";
+  }
+
+  // Other muscle tests for extremities without "muscle-" in ID
+  // (hip, shoulder, wrist, elbow, knee, ankle muscle tests)
+  if (
+    /\b(hip-muscle|shoulder-muscle|wrist-muscle|elbow-muscle|knee-muscle|ankle-muscle)\b/.test(
       testId,
     )
   ) {
