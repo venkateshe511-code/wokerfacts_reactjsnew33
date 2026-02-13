@@ -206,16 +206,16 @@ export default function ClaimantForm() {
     }
 
     // Auto-fill zipcode when city changes
-    if (
-      field === "city" &&
-      formData.country &&
-      countryData[formData.country]?.[value]
-    ) {
-      setFormData((prev) => ({
-        ...prev,
-        zipcode: countryData[formData.country][value],
-      }));
-    }
+    // if (
+    //   field === "city" &&
+    //   formData.country &&
+    //   countryData[formData.country]?.[value]
+    // ) {
+    //   setFormData((prev) => ({
+    //     ...prev,
+    //     zipcode: countryData[formData.country][value],
+    //   }));
+    // }
   };
 
   const handlePhotoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -623,6 +623,8 @@ export default function ClaimantForm() {
                         <SelectContent>
                           <SelectItem value="cm">cm</SelectItem>
                           <SelectItem value="m">m</SelectItem>
+                          <SelectItem value="in">in</SelectItem>
+                          <SelectItem value="ft">ft</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -834,20 +836,24 @@ export default function ClaimantForm() {
                         onChange={(e) =>
                           handleInputChange("city", e.target.value)
                         }
-                        placeholder="Enter city name"
+                        placeholder="Enter city / town"
                         disabled={!formData.country}
                         className="w-full"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="zipcode" className="text-sm font-medium">
+                      {/* <Label htmlFor="zipcode" className="text-sm font-medium">
                         {getPostalLabel(formData.country)}{" "}
                         {formData.zipcode && (
                           <span className="text-green-600 text-xs">
                             (Auto-filled)
                           </span>
                         )}
+                      </Label> */}
+                      <Label htmlFor="zipcode" className="text-sm font-medium">
+                        Zip Code / Postal Code
                       </Label>
+
                       <Input
                         id="zipcode"
                         type="text"
@@ -855,8 +861,8 @@ export default function ClaimantForm() {
                         onChange={(e) =>
                           handleInputChange("zipcode", e.target.value)
                         }
+                        placeholder="Enter zip / postal code"
                         className="w-full"
-                        disabled={!formData.city && !formData.zipcode}
                       />
                     </div>
                   </div>

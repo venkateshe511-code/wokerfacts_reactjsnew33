@@ -1002,9 +1002,7 @@ export default function ReviewReport() {
                         />
                       ) : (
                         <div className="w-full h-full bg-gray-200 flex items-center justify-center text-xs text-gray-500">
-                          Claimant Photo
-                          <br />
-                          (If Available)
+                          No Photo
                         </div>
                       )}
                     </div>
@@ -1524,161 +1522,7 @@ export default function ReviewReport() {
                     </div>
 
                     {/* Range of Motion Example */}
-                    <div className="mb-6">
-                      <h4 className="font-semibold mb-3">
-                        What is the present lumbar range of motion noted for the
-                        client?
-                      </h4>
-
-                      <table className="w-full border border-gray-300 text-sm mb-4">
-                        <thead>
-                          <tr
-                            className="bg-gray-600 text-white"
-                            style={{ borderBottom: "1px solid #d1d5db" }}
-                          >
-                            <th className="p-2">Area Evaluated:</th>
-                            <th className="p-2">Data:</th>
-                            <th className="p-2">Valid?</th>
-                            <th className="p-2">Norm:</th>
-                            <th className="p-2">% of Norm:</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td className="p-2">Lumbar Flexion</td>
-                            <td className="p-2">49 °</td>
-                            <td className="p-2">Pass</td>
-                            <td className="p-2">60 °</td>
-                            <td className="p-2">82%</td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">Lumbar Extension</td>
-                            <td className="p-2">28 °</td>
-                            <td className="p-2">Pass</td>
-                            <td className="p-2">25 °</td>
-                            <td className="p-2">112%</td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">
-                              Lumbar Lateral Flexion - Left
-                            </td>
-                            <td className="p-2">27 °</td>
-                            <td className="p-2">Pass</td>
-                            <td className="p-2">25 °</td>
-                            <td className="p-2">108%</td>
-                          </tr>
-                          <tr>
-                            <td className="p-2">
-                              Lumbar Lateral Flexion - Right
-                            </td>
-                            <td className="p-2">25 °</td>
-                            <td className="p-2">Pass</td>
-                            <td className="p-2">25 °</td>
-                            <td className="p-2">116%</td>
-                          </tr>
-                        </tbody>
-                      </table>
-
-                      <p className="text-sm italic">
-                        *Slight decrease in flexion but not a limitation to
-                        return to duties.
-                      </p>
-
-                      {/* Range of Motion Supporting Photos */}
-                      {(() => {
-                        const rangeofMotionDemandQuestion =
-                          reportData.referralQuestionsData.questions?.find(
-                            (qa: any) =>
-                              qa.question &&
-                              qa.question.includes(
-                                "present lumbar range of motion",
-                              ),
-                          );
-
-                        if (
-                          rangeofMotionDemandQuestion?.savedImageData &&
-                          rangeofMotionDemandQuestion.savedImageData.length > 0
-                        ) {
-                          return (
-                            <div className="mt-6">
-                              <h5 className="font-medium text-sm mb-3 text-gray-800">
-                                Range of Motion Assessment Documentation:
-                              </h5>
-                              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                {rangeofMotionDemandQuestion.savedImageData.map(
-                                  (image: any, imgIndex: number) => (
-                                    <div
-                                      key={imgIndex}
-                                      className="relative group"
-                                    >
-                                      <div className="bg-white border border-gray-300 rounded-lg overflow-hidden shadow-sm">
-                                        {image.type &&
-                                        image.type.startsWith("image/") ? (
-                                          <>
-                                            <img
-                                              src={image.dataUrl}
-                                              alt={
-                                                image.name ||
-                                                `Physical Demand Assessment ${imgIndex + 1}`
-                                              }
-                                              className="w-full h-32 object-cover"
-                                            />
-                                            <div className="p-2">
-                                              <p
-                                                className="text-xs text-gray-600 truncate"
-                                                title={image.name}
-                                              >
-                                                {image.name ||
-                                                  `Assessment Image ${imgIndex + 1}`}
-                                              </p>
-                                            </div>
-                                          </>
-                                        ) : (
-                                          <div className="w-full h-32 bg-gray-100 flex items-center justify-center">
-                                            <div className="text-center">
-                                              <div className="text-2xl text-gray-400 mb-1">
-                                                📄
-                                              </div>
-                                              <p className="text-xs text-gray-600">
-                                                {image.name ||
-                                                  `Document ${imgIndex + 1}`}
-                                              </p>
-                                            </div>
-                                          </div>
-                                        )}
-                                      </div>
-
-                                      {/* Arrow indicator pointing to relevant assessment */}
-                                      <div className="absolute -top-2 -right-2 bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center">
-                                        <svg
-                                          width="12"
-                                          height="12"
-                                          viewBox="0 0 12 12"
-                                          fill="currentColor"
-                                        >
-                                          <path d="M2 2 L10 6 L2 10 L5 6 Z" />
-                                        </svg>
-                                      </div>
-                                    </div>
-                                  ),
-                                )}
-                              </div>
-
-                              {/* Reference note */}
-                              <div className="mt-3 p-2 bg-green-50 border border-green-200 rounded">
-                                <p className="text-xs text-green-800">
-                                  <strong>Documentation:</strong> The above
-                                  images provide visual evidence supporting the
-                                  physical demand level classification and work
-                                  capacity assessment.
-                                </p>
-                              </div>
-                            </div>
-                          );
-                        }
-                        return null;
-                      })()}
-                    </div>
+                 
 
                     {/* Other Referral Questions */}
                     <div className="space-y-6">
@@ -1689,9 +1533,6 @@ export default function ReviewReport() {
                             qa.question.trim() &&
                             !qa.question.includes(
                               "Physical Demand Classification",
-                            ) &&
-                            !qa.question.includes(
-                              "present lumbar range of motion",
                             ) &&
                             !qa.question.includes("Conclusions") &&
                             !qa.question.includes("6a)") &&
