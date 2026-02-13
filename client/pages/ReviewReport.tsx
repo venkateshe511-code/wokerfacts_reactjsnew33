@@ -2771,17 +2771,18 @@ export default function ReviewReport() {
                                     parseInt(standTime.replace(/\D/g, "")) || 0;
                                 }
 
-                                // Determine if this is a muscle test
-                                const testIdLower = (test.testId || "").toLowerCase();
+                                // Determine if this is a muscle test using the same logic as TestData.tsx
+                                const testId = test.testId || "";
                                 const isMuscleTest =
-                                  testIdLower.includes("muscle-") ||
-                                  (testIdLower.startsWith("cervical-") &&
-                                    category === "Extremity Strength") ||
-                                  category === "Extremity Strength";
+                                  testId.includes("muscle-") ||
+                                  (testId.startsWith("cervical-") &&
+                                    (testId.includes("flexion") ||
+                                      testId.includes("rotation") ||
+                                      testId.includes("lateral")));
 
                                 // Format test name with prefix if it's a muscle test
                                 const displayTestName = isMuscleTest
-                                  ? `Muscle Test - ${test.testName}`
+                                  ? `Muscle Test – ${test.testName}`
                                   : test.testName;
 
                                 rows.push(
