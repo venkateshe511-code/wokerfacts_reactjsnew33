@@ -3496,9 +3496,22 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                             ? "Yes"
                             : "No";
 
+                          // Determine if this is a muscle test
+                          const testIdLower = (test.testId || "").toLowerCase();
+                          const isMuscleTest =
+                            testIdLower.includes("muscle-") ||
+                            (testIdLower.startsWith("cervical-") &&
+                              category === "Extremity Strength") ||
+                            category === "Extremity Strength";
+
+                          // Format test name with prefix if it's a muscle test
+                          const displayTestName = isMuscleTest
+                            ? `Muscle Test - ${test.testName}`
+                            : test.testName;
+
                           rows.push(`
                                     <tr>
-                                        <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${test.testName}</td>
+                                        <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${displayTestName}</td>
                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${sitTime}</td>
                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${standTime}</td>
                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${testResults}</td>
