@@ -278,7 +278,7 @@ function createSideTrialTable(
   };
 
   const average = (arr) => {
-    const nums = arr.filter((v) => v != null);
+    const nums = arr.filter((v) => v != null && v > 0);
     return nums.length ? nums.reduce((a, b) => a + b, 0) / nums.length : null;
   };
 

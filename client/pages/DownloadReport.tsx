@@ -661,7 +661,7 @@ export default function DownloadReport() {
         measurements.trial4,
         measurements.trial5,
         measurements.trial6,
-      ].filter((value) => typeof value === "number" && !Number.isNaN(value));
+      ].filter((value) => typeof value === "number" && !Number.isNaN(value) && value > 0);
     };
 
     const computeBarHeight = (
