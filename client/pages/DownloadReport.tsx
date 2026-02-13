@@ -4511,6 +4511,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               rightCV = calculateCV(secondaryMeasurements);
             }
             const testName = test.testName.toLowerCase();
+            const testIdLower = (test.testId || "").toLowerCase();
+            const isMuscleTest =
+              testIdLower.includes("muscle-") ||
+              (testIdLower.startsWith("cervical-") &&
+               (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
             // Define unit at outer scope so it's accessible throughout the template
             // const unit = String(test.unitMeasure || "lbs").toLowerCase();
@@ -4519,7 +4524,8 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             //   testName.includes("extension") ||
             //   testName.includes("range");
             const isRangeOfMotion =
-              testName.includes("flexion") ||
+              !isMuscleTest &&
+              (testName.includes("flexion") ||
               testName.includes("extension") ||
               testName.includes("range") ||
               testName.includes("Thumb") ||
@@ -4528,7 +4534,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               testName.includes("supination") ||
               testName.includes("radial") ||
               testName.includes("abduction") ||
-              testName.includes("inversion");
+              testName.includes("inversion"));
             const isGripTest =
               testName.includes("grip") || testName.includes("pinch");
             const isLiftTest =

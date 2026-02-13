@@ -1237,8 +1237,17 @@ export default function TestData() {
 
   // Determine test type for dynamic form fields
   const testName = currentTest?.testName?.toLowerCase() || "";
+  const testId = currentTest?.testId?.toLowerCase() || "";
+
+  // Check if this is a muscle test (manual muscle testing)
+  const isMuscleTest =
+    testId.includes("muscle-") ||
+    (testId.startsWith("cervical-") &&
+     (testId.includes("flexion") || testId.includes("rotation") || testId.includes("lateral")));
+
   const isRangeOfMotionTest =
-    testName.includes("flexion") ||
+    !isMuscleTest &&
+    (testName.includes("flexion") ||
     testName.includes("extension") ||
     testName.includes("rotation") ||
     testName.includes("abduction") ||
@@ -1246,7 +1255,7 @@ export default function TestData() {
     testName.includes("supination") ||
     testName.includes("pronation") ||
     testName.includes("range") ||
-    testName.includes("motion");
+    testName.includes("motion"));
   const isGripTest = testName.includes("grip") || testName.includes("pinch");
   const isForceTest =
     testName.includes("force") || testName.includes("strength") || isGripTest;
@@ -1777,7 +1786,7 @@ export default function TestData() {
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center sm:text-left">
-                  {currentTest.testName}
+                  {isMuscleTest ? "Muscle Test – " : ""}{currentTest.testName}
                 </h1>
                 <Button
                   variant="outline"
@@ -1880,7 +1889,9 @@ export default function TestData() {
                     <div className="mt-4 space-y-4">
                       <div className="bg-blue-400 text-white p-3 rounded text-center">
                         <div className="text-sm">
-                          {isRangeOfMotionTest
+                          {isMuscleTest
+                            ? "Force/Level"
+                            : isRangeOfMotionTest
                             ? "Average Degrees"
                             : isCardioTest
                               ? "Average Heart Rate"
@@ -1924,7 +1935,8 @@ export default function TestData() {
                           </div>
                         </div>
                       )}
-                      {currentTest.normLevel === "yes" &&
+                      {!isMuscleTest &&
+                        currentTest.normLevel === "yes" &&
                         getNormForSide("left") > 0 && (
                           <>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
@@ -2325,7 +2337,9 @@ export default function TestData() {
                     <div className="mt-4 space-y-4">
                       <div className="bg-blue-400 text-white p-3 rounded text-center">
                         <div className="text-sm">
-                          {isRangeOfMotionTest
+                          {isMuscleTest
+                            ? "Force/Level"
+                            : isRangeOfMotionTest
                             ? "Average Degrees"
                             : isCardioTest
                               ? "Average Heart Rate"
@@ -2369,7 +2383,8 @@ export default function TestData() {
                           </div>
                         </div>
                       )}
-                      {currentTest.normLevel === "yes" &&
+                      {!isMuscleTest &&
+                        currentTest.normLevel === "yes" &&
                         getNormForSide("right") > 0 && (
                           <>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
