@@ -6346,6 +6346,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             claimantHistory:
               claimantData.claimantHistory ||
               "While working in assembly area, client noted pain and was subsequently diagnosed with work-related injury.",
+            profilePhoto: claimantData.profilePhoto,
           },
 
           // Enhanced pain illustration data - ensure this triggers the cloud function section
