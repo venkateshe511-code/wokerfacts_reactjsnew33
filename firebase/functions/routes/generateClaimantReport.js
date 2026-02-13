@@ -3340,7 +3340,7 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
   // 🖼️ Add "Sample Illustration:" heading only once
   leftCol.push(
     new Paragraph({
-      alignment: AlignmentType.LEFT,
+      alignment: AlignmentType.START,
       children: [
         new TextRun({ text: "Sample Illustration:", underline: {}, size: 16 }),
         new TextRun({ text: " " }),
@@ -3524,39 +3524,30 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
 
   // === Finally add one combined table ===
   children.push(
-    new Table({
-      width: { size: 100, type: WidthType.PERCENTAGE },
-      layout: TableLayoutType.FIXED,
-      borders: {
-        top: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-        bottom: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-        left: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-        right: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-        insideHorizontal: {
-          style: BorderStyle.SINGLE,
-          size: 1,
-          color: "000000",
-        },
-        insideVertical: { style: BorderStyle.SINGLE, size: 1, color: "000000" },
-      },
-      columnWidths: [2000, 100, 6900],
-      rows: [
+     new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            layout: TableLayoutType.FIXED,
+            borders: noBorders,
+            columnWidths: [2000, 100, 6900],
+            rows: [
         new TableRow({
           children: [
             new TableCell({
-              verticalAlign: VerticalAlign.CENTER,
+              verticalAlign: VerticalAlign.TOP,
               borders: noBorders,
               children: leftCol,
             }),
+             new TableCell({
+                    borders: {
+                      left: {
+                        style: BorderStyle.SINGLE,
+                        size: 8,
+                        color: "CCCCCC",
+                      },
+                    },
+                    children: [],
+                  }),
             new TableCell({
-              verticalAlign: VerticalAlign.CENTER,
-              borders: {
-                left: { style: BorderStyle.SINGLE, size: 8, color: "000000" },
-              },
-              children: [],
-            }),
-            new TableCell({
-              verticalAlign: VerticalAlign.CENTER,
               borders: noBorders,
               children: rightCol,
             }),
