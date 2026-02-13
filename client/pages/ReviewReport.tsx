@@ -598,8 +598,15 @@ export default function ReviewReport() {
       return "";
     };
 
+    const testIdLower = (testEntry?.testId || "").toLowerCase();
+    const isMuscleTest =
+      testIdLower.includes("muscle-") ||
+      (testIdLower.startsWith("cervical-") &&
+       (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
+
     const isRangeOfMotion =
-      testName.includes("flexion") ||
+      !isMuscleTest &&
+      (testName.includes("flexion") ||
       testName.includes("extension") ||
       testName.includes("range") ||
       testName.includes("lateral") ||
@@ -621,7 +628,7 @@ export default function ReviewReport() {
       (testName.includes("straight") &&
         testName.includes("leg") &&
         testName.includes("raise")) ||
-      testName.includes("slr");
+      testName.includes("slr"));
     // If it's a range of motion test → always show degrees
     if (isRangeOfMotion) {
       return { convertToLbs: false, displayUnit: "°" };
@@ -3730,8 +3737,15 @@ export default function ReviewReport() {
 
                         // Determine test category for appropriate illustrations and references
                         const testName = test.testName.toLowerCase();
+                        const testIdLower = (test.testId || "").toLowerCase();
+                        const isMuscleTest =
+                          testIdLower.includes("muscle-") ||
+                          (testIdLower.startsWith("cervical-") &&
+                           (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
+
                         const isRangeOfMotion =
-                          testName.includes("flexion") ||
+                          !isMuscleTest &&
+                          (testName.includes("flexion") ||
                           testName.includes("extension") ||
                           testName.includes("range") ||
                           testName.includes("lateral") ||
@@ -3753,7 +3767,7 @@ export default function ReviewReport() {
                           (testName.includes("straight") &&
                             testName.includes("leg") &&
                             testName.includes("raise")) ||
-                          testName.includes("slr");
+                          testName.includes("slr"));
                         const isGripTest =
                           testName.includes("grip") ||
                           testName.includes("pinch");

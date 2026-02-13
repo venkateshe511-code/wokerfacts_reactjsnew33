@@ -218,8 +218,17 @@ function createSideTrialTable(
 
   const safeName = test?.testName || "Test";
   const testNameLower = safeName.toLowerCase();
+  const testIdLower = (test?.testId || "").toLowerCase();
+
+  // Check if this is a muscle test (manual muscle testing)
+  const isMuscleTest =
+    testIdLower.includes("muscle-") ||
+    (testIdLower.startsWith("cervical-") &&
+     (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
+
   const isRangeOfMotion =
-    testNameLower.includes("flexion") ||
+    !isMuscleTest &&
+    (testNameLower.includes("flexion") ||
     testNameLower.includes("extension") ||
     testNameLower.includes("range") ||
     testNameLower.includes("thumb") ||
@@ -228,7 +237,7 @@ function createSideTrialTable(
     testNameLower.includes("supination") ||
     testNameLower.includes("radial") ||
     testNameLower.includes("abduction") ||
-    testNameLower.includes("inversion");
+    testNameLower.includes("inversion"));
   const name = (test?.testName || "").toLowerCase();
   const rawUnit = String(
     measurementUnit || test.unitMeasure || "",
@@ -343,7 +352,9 @@ function createSideTrialTable(
       ],
     });
 
-  const averageLabel = isRangeOfMotion
+  const averageLabel = isMuscleTest
+    ? "Force/Level"
+    : isRangeOfMotion
     ? "Average (range of motion)"
     : "Average (weight)";
 
@@ -9475,6 +9486,13 @@ async function addTestDataContent(children, body) {
 
         const safeName = test?.testName || "Test";
         const testNameLower = safeName.toLowerCase();
+        const testIdLower = (test?.testId || "").toLowerCase();
+
+        // Check if this is a muscle test (manual muscle testing)
+        const isMuscleTest =
+          testIdLower.includes("muscle-") ||
+          (testIdLower.startsWith("cervical-") &&
+           (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
         let leftTrials = readTrials(test?.leftMeasurements);
         let rightTrials = readTrials(test?.rightMeasurements);
@@ -9487,7 +9505,8 @@ async function addTestDataContent(children, body) {
         const bilateralDef = calculateBilateralDeficiency(leftAvg, rightAvg);
 
         const isRangeOfMotion =
-          testNameLower.includes("flexion") ||
+          !isMuscleTest &&
+          (testNameLower.includes("flexion") ||
           testNameLower.includes("extension") ||
           testNameLower.includes("range") ||
           testNameLower.includes("thumb") ||
@@ -9496,11 +9515,13 @@ async function addTestDataContent(children, body) {
           testNameLower.includes("supination") ||
           testNameLower.includes("radial") ||
           testNameLower.includes("abduction") ||
-          testNameLower.includes("inversion");
+          testNameLower.includes("inversion"));
         // testNameLower.includes("flexion") ||
         // testNameLower.includes("extension") ||
         // testNameLower.includes("range");
-        const averageLabel = isRangeOfMotion
+        const averageLabel = isMuscleTest
+          ? "Force/Level"
+          : isRangeOfMotion
           ? "Average (range of motion)"
           : "Average (weight)";
         const isGripTest =
@@ -9536,11 +9557,12 @@ async function addTestDataContent(children, body) {
         //   isRangeOfMotion ? "°" : "lbs",
         // );
         // Header
+        const displayName = isMuscleTest ? `Muscle Test – ${safeName}` : safeName;
         children.push(
           new Paragraph({
             children: [
               new TextRun({
-                text: safeName,
+                text: displayName,
                 bold: true,
                 color: BRAND_COLOR,
                 size: 16,
@@ -9558,7 +9580,10 @@ async function addTestDataContent(children, body) {
 
         let description =
           "The client was tested in our facility using standardized assessment protocols. The test results were compared to normative data when available.";
-        if (isRangeOfMotion) {
+        if (isMuscleTest) {
+          description =
+            "The client was tested using manual muscle testing. Muscle strength/force was assessed and recorded.";
+        } else if (isRangeOfMotion) {
           description =
             "The client was tested using range of motion inclinometers. Results were compared to normative data.";
         } else if (isGripTest) {
@@ -9703,8 +9728,75 @@ async function addTestDataContent(children, body) {
           );
           rightCol.push(...buildReferenceParagraphs(test));
         } else {
-          // ROM / LIFT / STRENGTH tables (unchanged)
-          if (isRangeOfMotion) {
+          // MUSCLE TEST / ROM / LIFT / STRENGTH tables
+          if (isMuscleTest) {
+            // Muscle Test Table - No Norms
+            const avgForce = Number.isFinite(leftAvg)
+              ? leftAvg.toFixed(1)
+              : Number.isFinite(rightAvg)
+                ? rightAvg.toFixed(1)
+                : "-";
+            const cvValue = Number.isFinite(leftCV)
+              ? `${leftCV.toFixed(0)}%`
+              : Number.isFinite(rightCV)
+                ? `${rightCV.toFixed(0)}%`
+                : "-";
+
+            // Helper to make bordered cell
+            const makeCell = (text, { bold = false, shaded = false } = {}) =>
+              new TableCell({
+                margins: { top: 100, bottom: 100, left: 150, right: 150 },
+                shading: shaded ? { fill: "FFFF99" } : undefined,
+                borders: {
+                  top: { style: BorderStyle.SINGLE, size: 2, color: "000000" },
+                  bottom: { style: BorderStyle.SINGLE, size: 2, color: "000000" },
+                  left: { style: BorderStyle.SINGLE, size: 2, color: "000000" },
+                  right: { style: BorderStyle.SINGLE, size: 2, color: "000000" },
+                },
+                children: [
+                  new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    children: [
+                      new TextRun({ text: text ?? "", bold, size: 16 }),
+                    ],
+                  }),
+                ],
+              });
+
+            // Build muscle test summary table (no norms)
+            rightCol.push(
+              new Table({
+                width: { size: 100, type: WidthType.PERCENTAGE },
+                rows: [
+                  // Header
+                  new TableRow({
+                    children: [
+                      makeCell("Test", { bold: true, shaded: true }),
+                      makeCell("Force/Level", { bold: true, shaded: true }),
+                      makeCell("CV%", { bold: true, shaded: true }),
+                      makeCell("Test Date", { bold: true, shaded: true }),
+                    ],
+                  }),
+                  // Data Row
+                  new TableRow({
+                    children: [
+                      makeCell(safeName),
+                      makeCell(avgForce),
+                      makeCell(cvValue),
+                      makeCell(currentDate),
+                    ],
+                  }),
+                ],
+              }),
+            );
+            rightCol.push(
+              new Paragraph({ spacing: { before: 100, after: 50 } }),
+            );
+            rightCol.push(createSideTrialTable(test, measurementUnit));
+            rightCol.push(
+              new Paragraph({ spacing: { before: 100, after: 50 } }),
+            );
+          } else if (isRangeOfMotion) {
             const romNorm = testNameLower.includes("flexion") ? 60 : 25;
             rightCol.push(
               new Table({
