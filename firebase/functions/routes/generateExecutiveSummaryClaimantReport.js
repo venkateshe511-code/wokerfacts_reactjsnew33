@@ -7208,8 +7208,22 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
         return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
       })();
 
+      // Determine if this is a muscle test using the same logic as TestData.tsx
+      const testId = test.testId || "";
+      const isMuscleTest =
+        testId.includes("muscle-") ||
+        (testId.startsWith("cervical-") &&
+          (testId.includes("flexion") ||
+            testId.includes("rotation") ||
+            testId.includes("lateral")));
+
+      // Format test name with prefix if it's a muscle test
+      const displayTestName = isMuscleTest
+        ? `Muscle Test – ${test.testName}`
+        : test.testName || "";
+
       const rowData = [
-        test.testName || "",
+        displayTestName,
         sitTime,
         standTime,
         testResultsText,

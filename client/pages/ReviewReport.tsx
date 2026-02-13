@@ -2771,9 +2771,23 @@ export default function ReviewReport() {
                                     parseInt(standTime.replace(/\D/g, "")) || 0;
                                 }
 
+                                // Determine if this is a muscle test using the same logic as TestData.tsx
+                                const testId = test.testId || "";
+                                const isMuscleTest =
+                                  testId.includes("muscle-") ||
+                                  (testId.startsWith("cervical-") &&
+                                    (testId.includes("flexion") ||
+                                      testId.includes("rotation") ||
+                                      testId.includes("lateral")));
+
+                                // Format test name with prefix if it's a muscle test
+                                const displayTestName = isMuscleTest
+                                  ? `Muscle Test – ${test.testName}`
+                                  : test.testName;
+
                                 rows.push(
                                   <tr key={`${category}-${index}`}>
-                                    <td className="p-2">{test.testName}</td>
+                                    <td className="p-2">{displayTestName}</td>
                                     <td className="p-2">{sitTime}</td>
                                     <td className="p-2">{standTime}</td>
                                     <td className="p-2">

@@ -3496,9 +3496,23 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                             ? "Yes"
                             : "No";
 
+                          // Determine if this is a muscle test using the same logic as TestData.tsx
+                          const testId = test.testId || "";
+                          const isMuscleTest =
+                            testId.includes("muscle-") ||
+                            (testId.startsWith("cervical-") &&
+                              (testId.includes("flexion") ||
+                                testId.includes("rotation") ||
+                                testId.includes("lateral")));
+
+                          // Format test name with prefix if it's a muscle test
+                          const displayTestName = isMuscleTest
+                            ? `Muscle Test – ${test.testName}`
+                            : test.testName;
+
                           rows.push(`
                                     <tr>
-                                        <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${test.testName}</td>
+                                        <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${displayTestName}</td>
                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${sitTime}</td>
                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${standTime}</td>
                                         <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;">${testResults}</td>
