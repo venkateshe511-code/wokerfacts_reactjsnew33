@@ -23,7 +23,12 @@ export interface TestInfo {
 
 /**
  * Categorizes a test strictly based on its name and properties
- * Priority order ensures proper categorization without overlap
+ * Uses a hierarchical approach matching ProtocolTests.tsx structure:
+ * - Strength: Hand strength, pinch strength, muscle tests, lifts
+ * - ROM Total Spine/Extremity: Spine ROM, extremity ROM (shoulder, hip, knee, elbow)
+ * - ROM Hand/Foot: Hand and foot ROM tests
+ * - Occupational Tasks: MTM tests (fingering, handling, reach, balance, etc.)
+ * - Cardio: Cardiovascular/aerobic tests
  */
 export function categorizeTest(test: TestInfo): TestCategory {
   if (!test) return "Strength";
@@ -41,7 +46,7 @@ export function categorizeTest(test: TestInfo): TestCategory {
   if (test.category === "Cardio") return "Cardio";
   if (test.category === "Strength") return "Strength";
 
-  // PRIORITY 2: Cardio tests (highest specificity)
+  // PRIORITY 2: Cardio tests (must be checked early to avoid ROM misclassification)
   if (
     /\b(bruce|treadmill|cardio|mcaft|kasch|step-test|aerobic|heart|pulse|ymca|vo2|cardiovascular)\b/.test(
       searchTarget,
@@ -50,65 +55,78 @@ export function categorizeTest(test: TestInfo): TestCategory {
     return "Cardio";
   }
 
-  // PRIORITY 3: ROM Hand/Foot (must have hand/foot/finger/wrist/ankle AND ROM keywords)
-  // This has higher priority than general ROM to avoid false positives
+  // PRIORITY 3: Occupational Tasks/MTM tests (check before ROM to avoid conflicts)
+  // These are functional movement tests, NOT range of motion tests
   if (
-    /\b(hand|foot|finger|thumb|wrist|ankle|digit|toe)\b/.test(testName) &&
-    /\b(flexion|extension|abduction|adduction|rotation|range|rom|deviation)\b/.test(
+    /\b(fingering|handling|reach-|balance|stoop|walk|crouch|crawl|climb|kneel|ladder|push-pull|cart|carry-|occupational|mtm)\b/.test(
+      testId,
+    )
+  ) {
+    return "Occupational Tasks";
+  }
+
+  // PRIORITY 4: ROM Hand/Foot (hand/foot/finger/wrist/ankle AND ROM keywords)
+  // Must check ID for hand/foot specifics
+  if (
+    /\b(hand|foot|finger|thumb|wrist|ankle|digit|toe|dip|pip|mp)\b/.test(
+      testName,
+    ) &&
+    /\b(flexion|extension|abduction|adduction|rotation|range|rom|deviation|dorsi|plantar|eversion|inversion)\b/.test(
       testName,
     )
   ) {
     return "ROM Hand/Foot";
   }
 
-  // PRIORITY 4: ROM Total Spine/Extremity (specific body parts + ROM movements)
+  // PRIORITY 5: ROM Total Spine/Extremity
   // Check for spine-related keywords with ROM movements
   if (
-    /\b(cervical|lumbar|thoracic|spine|back)\b/.test(testName) &&
-    /\b(flexion|extension|lateral|rotation|range|motion|rom)\b/.test(testName)
+    /\b(cervical-spine|lumbar-spine|thoracic-spine|spine.*flexion|spine.*extension|spine.*lateral|spine.*rotation)\b/.test(
+      testId,
+    )
   ) {
     return "ROM Total Spine/Extremity";
   }
 
-  // Check for shoulder, hip, elbow, knee ROM
+  // Check for extremity ROM (shoulder, hip, knee, elbow) - BUT NOT muscle tests
+  // Muscle tests go to Strength, ROM tests go here
   if (
-    /\b(shoulder|hip|knee|elbow)\b/.test(testName) &&
-    /\b(flexion|extension|abduction|adduction|rotation|range|motion|rom|dorsi|internal|external)\b/.test(
+    !testId.includes("muscle-") &&
+    /\b(shoulder-rom|hip-rom|knee-rom|elbow-rom|extremity-)\b/.test(testId)
+  ) {
+    return "ROM Total Spine/Extremity";
+  }
+
+  // Check for cervical ROM (not muscle test cervical)
+  if (
+    testId.includes("cervical") &&
+    !testId.includes("muscle-") &&
+    /\b(rom|flexion|extension|lateral|rotation)\b/.test(testId)
+  ) {
+    return "ROM Total Spine/Extremity";
+  }
+
+  // General ROM detection - check ID structure first
+  if (/\b(rom|goniometer|goniometric)\b/.test(testId)) {
+    return "ROM Total Spine/Extremity";
+  }
+
+  // PRIORITY 6: Strength tests
+  // Muscle tests take priority (manual muscle testing is strength testing)
+  if (
+    testId.includes("muscle-") ||
+    /\b(hand-strength|pinch-strength|grip|pinch|lift|strength|force|mvic|mve|static|dynamic)\b/.test(
+      testId,
+    )
+  ) {
+    return "Strength";
+  }
+
+  // Check by name patterns for strength
+  if (
+    /\b(grip|pinch|lift|strength|force|hand strength|pinch strength)\b/.test(
       testName,
     )
-  ) {
-    return "ROM Total Spine/Extremity";
-  }
-
-  // General ROM detection (range, motion, or specific ROM movements)
-  if (
-    /\b(range|motion|rom)\b/.test(category) ||
-    /\b(goniometer|goniometric)\b/.test(testName)
-  ) {
-    return "ROM Total Spine/Extremity";
-  }
-
-  // PRIORITY 5: Occupational Tasks (MTM tests and functional activities)
-  if (
-    /\b(fingering|handling|reach|balance|stoop|walk|crouch|crawl|climb|kneel|ladder|cart|push|pull|carry|occupational|task)\b/.test(
-      searchTarget,
-    )
-  ) {
-    // But exclude ROM-related keywords if they appear with occupational tasks
-    if (
-      !/\b(flexion|extension|abduction|adduction|rom|range|motion)\b/.test(
-        testName,
-      )
-    ) {
-      return "Occupational Tasks";
-    }
-  }
-
-  // PRIORITY 6: Strength tests (default, but can be detected by keywords)
-  // Strength tests: grip, pinch, lift, carry (when alone), push (when alone), pull (when alone), force
-  if (
-    /\b(grip|pinch|lift|strength|force|mvic|mve)\b/.test(searchTarget) ||
-    /\b(hand-strength|pinch-strength|static-lift|dynamic-lift)\b/.test(testId)
   ) {
     return "Strength";
   }
