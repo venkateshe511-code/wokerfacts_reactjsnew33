@@ -6838,6 +6838,7 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
       // Use the comprehensive test data from client
       body.testData.tests.forEach((test) => {
         list.push({
+          testId: test.testId || "",
           testName: test.testName || "",
           category: test.category || test.testType || "",
           leftMeasurements: test.leftMeasurements || {},
@@ -6999,7 +7000,7 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
         "Activity Overview",
         "",
         "5 min",
-        "//",
+        "Complete",
         "General activity overview and preparation",
         "Basic standing and mobility",
         "Yes",
