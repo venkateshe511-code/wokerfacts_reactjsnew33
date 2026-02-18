@@ -1034,56 +1034,56 @@ export default function TestData() {
 
         // ROM - Extremities (Left Side)
         "elbow-rom-flexion-extension-left":
-          "Left Side - Elbow Flexion/Extension",
+          "Left Side - Extremity Elbow Flexion/Extension",
         "elbow-rom-supination-pronation-left":
-          "Left Side - Elbow Supination/Pronation",
+          "Left Side - Extremity Elbow Supination/Pronation",
         "wrist-rom-flexion-extension-left":
-          "Left Side - Wrist Flexion/Extension",
+          "Left Side - Extremity Wrist Flexion/Extension",
         "wrist-rom-radial-ulnar-deviation-left":
-          "Left Side - Wrist Radial/Ulnar Deviation",
-        "knee-rom-flexion-extension-left": "Left Side - Knee Flexion/Extension",
+          "Left Side - Extremity Wrist Radial/Ulnar Deviation",
+        "knee-rom-flexion-extension-left": "Left Side - Extremity Knee Flexion/Extension",
         "shoulder-rom-flexion-extension-left":
-          "Left Side - Shoulder Flexion/Extension",
+          "Left Side - Extremity Shoulder Flexion/Extension",
         "shoulder-rom-internal-external-rotation-left":
-          "Left Side - Shoulder Internal/External Rotation",
+          "Left Side - Extremity Shoulder Internal/External Rotation",
         "shoulder-rom-abduction-adduction-left":
-          "Left Side - Shoulder Abduction/Adduction",
-        "hip-rom-flexion-extension-left": "Left Side - Hip Flexion/Extension",
+          "Left Side - Extremity Shoulder Abduction/Adduction",
+        "hip-rom-flexion-extension-left": "Left Side - Extremity Hip Flexion/Extension",
         "hip-rom-internal-external-rotation-left":
-          "Left Side - Hip Internal/External Rotation",
+          "Left Side - Extremity Hip Internal/External Rotation",
         "hip-rom-abduction-adduction-left":
-          "Left Side - Hip Abduction/Adduction",
+          "Left Side - Extremity Hip Abduction/Adduction",
         "ankle-rom-dorsi-plantar-flexion-left":
-          "Left Side - Ankle Dorsi/Plantar Flexion",
+          "Left Side - Extremity Ankle Dorsi/Plantar Flexion",
         "ankle-rom-inversion-eversion-left":
-          "Left Side - Ankle Inversion/Eversion",
+          "Left Side - Extremity Ankle Inversion/Eversion",
 
         // ROM - Extremities (Right Side)
         "elbow-rom-flexion-extension-right":
-          "Right Side - Elbow Flexion/Extension",
+          "Right Side - Extremity Elbow Flexion/Extension",
         "elbow-rom-supination-pronation-right":
-          "Right Side - Elbow Supination/Pronation",
+          "Right Side - Extremity Elbow Supination/Pronation",
         "wrist-rom-flexion-extension-right":
-          "Right Side - Wrist Flexion/Extension",
+          "Right Side - Extremity Wrist Flexion/Extension",
         "wrist-rom-radial-ulnar-deviation-right":
-          "Right Side - Wrist Radial/Ulnar Deviation",
+          "Right Side - Extremity Wrist Radial/Ulnar Deviation",
         "knee-rom-flexion-extension-right":
-          "Right Side - Knee Flexion/Extension",
+          "Right Side - Extremity Knee Flexion/Extension",
         "shoulder-rom-flexion-extension-right":
-          "Right Side - Shoulder Flexion/Extension",
+          "Right Side - Extremity Shoulder Flexion/Extension",
         "shoulder-rom-internal-external-rotation-right":
-          "Right Side - Shoulder Internal/External Rotation",
+          "Right Side - Extremity Shoulder Internal/External Rotation",
         "shoulder-rom-abduction-adduction-right":
-          "Right Side - Shoulder Abduction/Adduction",
-        "hip-rom-flexion-extension-right": "Right Side - Hip Flexion/Extension",
+          "Right Side - Extremity Shoulder Abduction/Adduction",
+        "hip-rom-flexion-extension-right": "Right Side - Extremity Hip Flexion/Extension",
         "hip-rom-internal-external-rotation-right":
-          "Right Side - Hip Internal/External Rotation",
+          "Right Side - Extremity Hip Internal/External Rotation",
         "hip-rom-abduction-adduction-right":
-          "Right Side - Hip Abduction/Adduction",
+          "Right Side - Extremity Hip Abduction/Adduction",
         "ankle-rom-dorsi-plantar-flexion-right":
-          "Right Side - Ankle Dorsi/Plantar Flexion",
+          "Right Side - Extremity Ankle Dorsi/Plantar Flexion",
         "ankle-rom-inversion-eversion-right":
-          "Right Side - Ankle Inversion/Eversion",
+          "Right Side - Extremity Ankle Inversion/Eversion",
 
         // ROM - Hand/Foot (Left Side)
         "thumb-ip-flexion-extension-left":
@@ -1444,6 +1444,9 @@ export default function TestData() {
   };
 
   const romPair = getRomPairLabels();
+
+  // Check if this is any type of ROM test (includes both Extremity ROM and Total Spine ROM)
+  const isAnyRomTest = isRangeOfMotionTest || isTotalSpineRomTest;
 
   const updateCurrentTest = (updates: Partial<TestData>) => {
     setTestDataState((prev) => ({
@@ -2015,7 +2018,7 @@ export default function TestData() {
                 <Card className="shadow-lg">
                   <CardHeader className="bg-blue-400 text-white">
                     <CardTitle>
-                      {isRangeOfMotionTest
+                      {isAnyRomTest
                         ? romPair?.[0] || "Left"
                         : isBalanceTest
                           ? "Trial 1"
@@ -2032,7 +2035,7 @@ export default function TestData() {
                         <div className="text-sm">
                           {isMuscleTest
                             ? "Force/Level"
-                            : isRangeOfMotionTest
+                            : isAnyRomTest
                             ? "Average Degrees"
                             : isCardioTest
                               ? "Average Heart Rate"
@@ -2042,7 +2045,7 @@ export default function TestData() {
                         </div>
                         <div className="text-xl font-bold">
                           {calculateAverage(currentTest.leftMeasurements)}
-                          {isRangeOfMotionTest
+                          {isAnyRomTest
                             ? "°"
                             : isCardioTest
                               ? " bpm"
@@ -2060,11 +2063,11 @@ export default function TestData() {
                           %
                         </div>
                       </div>
-                      {(isForceTest || isRangeOfMotionTest) && (
+                      {(isForceTest || isAnyRomTest) && (
                         <div className="bg-blue-400 text-white p-3 rounded text-center">
                           <div className="text-sm">
-                            {isRangeOfMotionTest
-                              ? "Left to Right Difference"
+                            {isAnyRomTest
+                              ? `${romPair?.[0] || "Left"} to ${romPair?.[1] || "Right"} Difference`
                               : "Left to Right Deficiency"}
                           </div>
                           <div className="text-xl font-bold">
@@ -2082,8 +2085,8 @@ export default function TestData() {
                           <>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isRangeOfMotionTest
-                                  ? "Left Norm"
+                                {isAnyRomTest
+                                  ? `${romPair?.[0] || "Left"} Norm`
                                   : "Left Norm"}
                               </div>
                               <div className="text-xl font-bold">
@@ -2092,8 +2095,8 @@ export default function TestData() {
                             </div>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isRangeOfMotionTest
-                                  ? "Left % of Norm"
+                                {isAnyRomTest
+                                  ? `${romPair?.[0] || "Left"} % of Norm`
                                   : "Left % of Norm"}
                               </div>
                               <div className="text-xl font-bold">
@@ -2364,14 +2367,14 @@ export default function TestData() {
                     <div className="grid grid-cols-2 gap-2 sm:gap-4 items-start text-xs sm:text-sm">
                       <div className="space-y-2">
                         <div className="text-center font-bold text-sm py-2 text-blue-700">
-                          {isRangeOfMotionTest
-                            ? romPair?.[0] || "Left"
-                            : isBalanceTest
-                              ? "Trial 1"
-                              : isCardioTest
-                                ? "Pre-Test"
-                                : "Left"}
-                        </div>
+                        {isAnyRomTest
+                          ? romPair?.[0] || "Left"
+                          : isBalanceTest
+                            ? "Trial 1"
+                            : isCardioTest
+                              ? "Pre-Test"
+                              : "Left"}
+                      </div>
                         {[1, 2, 3, 4, 5, 6].map((trialNum) => {
                           const key =
                             `trial${trialNum}` as keyof TestMeasurement;
@@ -2406,7 +2409,7 @@ export default function TestData() {
 
                       <div className="space-y-2">
                         <div className="text-center font-bold text-sm py-2 text-green-700">
-                          {isRangeOfMotionTest
+                          {isAnyRomTest
                             ? romPair?.[1] || "Right"
                             : isBalanceTest
                               ? "Trial 2"
@@ -2463,7 +2466,7 @@ export default function TestData() {
                 <Card className="shadow-lg">
                   <CardHeader className="bg-blue-400 text-white">
                     <CardTitle>
-                      {isRangeOfMotionTest
+                      {isAnyRomTest
                         ? romPair?.[1] || "Right"
                         : isBalanceTest
                           ? "Trial 2"
@@ -2480,7 +2483,7 @@ export default function TestData() {
                         <div className="text-sm">
                           {isMuscleTest
                             ? "Force/Level"
-                            : isRangeOfMotionTest
+                            : isAnyRomTest
                             ? "Average Degrees"
                             : isCardioTest
                               ? "Average Heart Rate"
@@ -2490,7 +2493,7 @@ export default function TestData() {
                         </div>
                         <div className="text-xl font-bold">
                           {calculateAverage(currentTest.rightMeasurements)}
-                          {isRangeOfMotionTest
+                          {isAnyRomTest
                             ? "°"
                             : isCardioTest
                               ? " bpm"
@@ -2508,11 +2511,11 @@ export default function TestData() {
                           %
                         </div>
                       </div>
-                      {(isForceTest || isRangeOfMotionTest) && (
+                      {(isForceTest || isAnyRomTest) && (
                         <div className="bg-blue-400 text-white p-3 rounded text-center">
                           <div className="text-sm">
-                            {isRangeOfMotionTest
-                              ? "Right to Left Difference"
+                            {isAnyRomTest
+                              ? `${romPair?.[1] || "Right"} to ${romPair?.[0] || "Left"} Difference`
                               : "Right to Left Deficiency"}
                           </div>
                           <div className="text-xl font-bold">
@@ -2530,8 +2533,8 @@ export default function TestData() {
                           <>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isRangeOfMotionTest
-                                  ? "Right Norm"
+                                {isAnyRomTest
+                                  ? `${romPair?.[1] || "Right"} Norm`
                                   : "Right Norm"}
                               </div>
                               <div className="text-xl font-bold">
@@ -2540,8 +2543,8 @@ export default function TestData() {
                             </div>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isRangeOfMotionTest
-                                  ? "Right % of Norm"
+                                {isAnyRomTest
+                                  ? `${romPair?.[1] || "Right"} % of Norm`
                                   : "Right % of Norm"}
                               </div>
                               <div className="text-xl font-bold">

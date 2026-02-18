@@ -315,12 +315,12 @@ export default function DownloadReport() {
   // Helper function to format test name with (Muscle Test), (Total Spine ROM), or (ROM) suffix
   const formatTestName = (name: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean): string => {
     if (isMusc) {
-      // For muscle tests: "Cervical Flexion" -> "Cervical (Muscle Test) - Flexion"
+      // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
       const parts = name.split(/\s+/);
       if (parts.length > 1) {
         const bodyPart = parts[0];
         const testType = parts.slice(1).join(" ");
-        return `${bodyPart} (Muscle Test) - ${testType}`;
+        return `${bodyPart} - ${testType} (Muscle Test)`;
       }
       return name;
     }
@@ -4712,10 +4712,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             const needsPageBreak = testIndex === 0;
 
             const illos = getSampleIllustrations(test.testId || testName);
+            const formattedTestName = formatTestName(test.testName, isMuscleTest, isRangeOfMotion, isTotalSpineRom);
             return `
                 <div class="test-section ${isPinchTest ? "pinch-test" : ""}" style="page-break-before: always; padding: 20px 0; position: relative;">
                     <h4 class="test-header" style="font-weight: bold; margin-bottom: 16px; color: #4472C4;">${
-                      test.testName
+                      formattedTestName
                     }</h4>
 
                     <!-- Full height vertical line starting below the heading (moved left to match occupational test) -->
