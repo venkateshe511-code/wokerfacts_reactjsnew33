@@ -699,11 +699,11 @@ const testGroups = {
       tests: [
         {
           id: "great-toe-ip-flexion-left",
-          name: "Great Toe IP Flexion",
+          name: "Extremity Great Toe IP Flexion",
         },
         {
           id: "great-toe-mp-dorsi-plantar-flexion-left",
-          name: "Great Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity Great Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -713,11 +713,11 @@ const testGroups = {
       tests: [
         {
           id: "great-toe-ip-flexion-right",
-          name: "Great Toe IP Flexion",
+          name: "Extremity Great Toe IP Flexion",
         },
         {
           id: "great-toe-mp-dorsi-plantar-flexion-right",
-          name: "Great Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity Great Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -727,7 +727,7 @@ const testGroups = {
       tests: [
         {
           id: "2nd-toe-mp-dorsi-plantar-flexion-left",
-          name: "2nd Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity 2nd Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -737,7 +737,7 @@ const testGroups = {
       tests: [
         {
           id: "2nd-toe-mp-dorsi-plantar-flexion-right",
-          name: "2nd Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity 2nd Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -747,7 +747,7 @@ const testGroups = {
       tests: [
         {
           id: "3rd-toe-mp-dorsi-plantar-flexion-left",
-          name: "3rd Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity 3rd Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -757,7 +757,7 @@ const testGroups = {
       tests: [
         {
           id: "3rd-toe-mp-dorsi-plantar-flexion-right",
-          name: "3rd Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity 3rd Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -767,7 +767,7 @@ const testGroups = {
       tests: [
         {
           id: "4th-toe-mp-dorsi-plantar-flexion-left",
-          name: "4th Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity 4th Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -777,7 +777,7 @@ const testGroups = {
       tests: [
         {
           id: "4th-toe-mp-dorsi-plantar-flexion-right",
-          name: "4th Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity 4th Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -787,7 +787,7 @@ const testGroups = {
       tests: [
         {
           id: "5th-toe-mp-dorsi-plantar-flexion-left",
-          name: "5th Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity 5th Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -797,7 +797,7 @@ const testGroups = {
       tests: [
         {
           id: "5th-toe-mp-dorsi-plantar-flexion-right",
-          name: "5th Toe MP Dorsi/Plantar Flexion",
+          name: "Extremity 5th Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
