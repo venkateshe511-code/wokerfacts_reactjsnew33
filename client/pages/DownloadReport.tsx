@@ -287,6 +287,16 @@ export default function DownloadReport() {
       "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
     "5th-toe-mp-dorsi-plantar-flexion-right":
       "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
+
+    // Total Spine ROM Tests
+    "cervical-spine-flexion-extension": "Cervical Flexion/Extension",
+    "cervical-spine-lateral-flexion": "Cervical Lateral Flexion",
+    "cervical-spine-rotation": "Cervical Rotation",
+    "lumbar-spine-flexion-extension": "Lumbar Flexion/Extension",
+    "lumbar-spine-lateral-flexion": "Lumbar Lateral Flexion",
+    "lumbar-spine-straight-leg-raise": "Lumbar Straight Leg Raise",
+    "thoracic-spine-flexion": "Thoracic Flexion",
+    "thoracic-spine-rotation": "Thoracic Rotation",
   };
 
   const getTestNameFromId = (testId: string): string => {
@@ -302,8 +312,8 @@ export default function DownloadReport() {
     return testId.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
-  // Helper function to format test name with (Muscle Test) or (ROM) suffix
-  const formatTestName = (name: string, isMusc: boolean, isROM: boolean): string => {
+  // Helper function to format test name with (Muscle Test), (Total Spine ROM), or (ROM) suffix
+  const formatTestName = (name: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean): string => {
     if (isMusc) {
       // For muscle tests: "Cervical Flexion" -> "Cervical (Muscle Test) - Flexion"
       const parts = name.split(/\s+/);
@@ -314,16 +324,25 @@ export default function DownloadReport() {
       }
       return name;
     }
+    if (isTotalSpine) {
+      // For Total Spine ROM: "Cervical Flexion/Extension" -> "Cervical - Flexion/Extension (Total Spine ROM)"
+      const parts = name.split(/\s+/);
+      if (parts.length > 1) {
+        const bodyPart = parts[0];
+        const testType = parts.slice(1).join(" ");
+        return `${bodyPart} - ${testType} (Total Spine ROM)`;
+      }
+      return `${name} (Total Spine ROM)`;
+    }
     if (isROM) {
-      // For ROM tests: "Left Side - Shoulder Flexion/Extension" -> "Left Side - Shoulder (ROM) - Flexion/Extension"
-      if (name.includes("Side -")) {
-        const sideMatch = name.match(/^(Left Side|Right Side) - (.+?)(\s+Flexion|\s+Extension|\s+Rotation|\s+Abduction|\s+Adduction|\s+Pronation|\s+Supination)/i);
-        if (sideMatch) {
-          const side = sideMatch[1];
-          const bodyPart = sideMatch[2];
-          const motion = sideMatch[3].trim();
-          return `${side} - ${bodyPart} (ROM) - ${motion}`;
-        }
+      // For ROM tests: Handle "Right Side - Extremity Elbow Flexion/Extension" -> "Right Side - Extremity Elbow Flexion/Extension (ROM)"
+      if (name.includes("Right Side") || name.includes("Left Side")) {
+        return `${name} (ROM)`;
+      }
+
+      // For extremity tests without "Side" prefix: "Extremity Elbow Flexion/Extension" needs to stay as is
+      if (name.toLowerCase().includes("extremity")) {
+        return `${name} (ROM)`;
       }
 
       // For simple cases like "Cervical Flexion/Extension"
@@ -3539,16 +3558,25 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
                           // Determine if this is a muscle test using the same logic as TestData.tsx
                           const testId = test.testId || "";
+                          const testIdLower = testId.toLowerCase();
                           const isMuscleTest =
-                            testId.includes("muscle-") ||
-                            (testId.startsWith("cervical-") &&
-                              (testId.includes("flexion") ||
-                                testId.includes("rotation") ||
-                                testId.includes("lateral")));
+                            testIdLower.includes("muscle-") ||
+                            (testIdLower.startsWith("cervical-") &&
+                              !testIdLower.includes("spine-") &&
+                              (testIdLower.includes("flexion") ||
+                                testIdLower.includes("rotation") ||
+                                testIdLower.includes("lateral")));
+
+                          // Check if it's a Total Spine ROM test
+                          const isTotalSpineRom =
+                            !isMuscleTest &&
+                            testIdLower.includes("spine-") &&
+                            (testIdLower.includes("cervical-spine") || testIdLower.includes("lumbar-spine") || testIdLower.includes("thoracic-spine"));
 
                           // Check if it's a ROM test
                           const isRomTest =
                             !isMuscleTest &&
+                            !isTotalSpineRom &&
                             (test.testName.toLowerCase().includes("flexion") ||
                               test.testName.toLowerCase().includes("extension") ||
                               test.testName.toLowerCase().includes("rotation") ||
@@ -3560,7 +3588,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                               category === "ROM Total Spine/Extremity");
 
                           // Format test name with proper labels
-                          const displayTestName = formatTestName(test.testName, isMuscleTest, isRomTest);
+                          const displayTestName = formatTestName(test.testName, isMuscleTest, isRomTest, isTotalSpineRom);
 
                           rows.push(`
                                     <tr>
@@ -4581,7 +4609,13 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             const isMuscleTest =
               testIdLower.includes("muscle-") ||
               (testIdLower.startsWith("cervical-") &&
+               !testIdLower.includes("spine-") &&
                (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
+
+            const isTotalSpineRom =
+              !isMuscleTest &&
+              testIdLower.includes("spine-") &&
+              (testIdLower.includes("cervical-spine") || testIdLower.includes("lumbar-spine") || testIdLower.includes("thoracic-spine"));
 
             // Define unit at outer scope so it's accessible throughout the template
             // const unit = String(test.unitMeasure || "lbs").toLowerCase();
@@ -4591,6 +4625,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             //   testName.includes("range");
             const isRangeOfMotion =
               !isMuscleTest &&
+              !isTotalSpineRom &&
               (testName.includes("flexion") ||
               testName.includes("extension") ||
               testName.includes("range") ||

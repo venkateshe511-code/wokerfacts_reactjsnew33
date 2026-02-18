@@ -614,6 +614,46 @@ export default function TestData() {
       "4th-toe-mp-dorsi-plantar-flexion-right": "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
       "5th-toe-mp-dorsi-plantar-flexion-right": "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
 
+      // Total Spine ROM Tests
+      "cervical-spine-flexion-extension": "Cervical Flexion/Extension",
+      "cervical-spine-lateral-flexion": "Cervical Lateral Flexion",
+      "cervical-spine-rotation": "Cervical Rotation",
+      "lumbar-spine-flexion-extension": "Lumbar Flexion/Extension",
+      "lumbar-spine-lateral-flexion": "Lumbar Lateral Flexion",
+      "lumbar-spine-straight-leg-raise": "Lumbar Straight Leg Raise",
+      "thoracic-spine-flexion": "Thoracic Flexion",
+      "thoracic-spine-rotation": "Thoracic Rotation",
+
+      // Muscle Tests
+      "cervical-flexion-extension": "Cervical Flexion/Extension",
+      "cervical-lateral-flexion": "Cervical Lateral Flexion",
+      "cervical-30-rotation": "Cervical 30° Rotation",
+      "cervical-60-rotation": "Cervical 60° Rotation",
+      "hip-muscle-flexion": "Hip Flexion",
+      "hip-muscle-extension": "Hip Extension",
+      "hip-muscle-abduction": "Hip Abduction",
+      "hip-muscle-adduction": "Hip Adduction",
+      "hip-muscle-external-rotation": "Hip External Rotation",
+      "hip-muscle-internal-rotation": "Hip Internal Rotation",
+      "shoulder-muscle-flexion": "Shoulder Flexion",
+      "shoulder-muscle-extension": "Shoulder Extension",
+      "shoulder-muscle-abduction": "Shoulder Abduction",
+      "shoulder-muscle-adduction": "Shoulder Adduction",
+      "shoulder-muscle-internal-rotation": "Shoulder Internal Rotation",
+      "shoulder-muscle-external-rotation": "Shoulder External Rotation",
+      "wrist-muscle-flexion": "Wrist Palmar Flexion",
+      "wrist-muscle-extension": "Wrist Dorsiflexion",
+      "wrist-muscle-radial-deviation": "Wrist Radial Deviation",
+      "wrist-muscle-ulnar-deviation": "Wrist Ulnar Deviation",
+      "ankle-muscle-dorsiflexion": "Ankle Dorsiflexion",
+      "ankle-muscle-plantar-flexion": "Ankle Plantar Flexion",
+      "ankle-muscle-eversion": "Ankle Eversion",
+      "ankle-muscle-inversion": "Ankle Inversion",
+      "knee-muscle-flexion": "Knee Flexion",
+      "knee-muscle-extension": "Knee Extension",
+      "elbow-muscle-flexion": "Elbow Flexion",
+      "elbow-muscle-extension": "Elbow Extension",
+
       // MTM Test Names
       fingering: "Fingering",
       "bi-manual-fingering": "Bi-manual Fingering",
@@ -1128,6 +1168,46 @@ export default function TestData() {
           "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
         "5th-toe-mp-dorsi-plantar-flexion-right":
           "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
+
+        // Total Spine ROM Tests
+        "cervical-spine-flexion-extension": "Cervical Flexion/Extension",
+        "cervical-spine-lateral-flexion": "Cervical Lateral Flexion",
+        "cervical-spine-rotation": "Cervical Rotation",
+        "lumbar-spine-flexion-extension": "Lumbar Flexion/Extension",
+        "lumbar-spine-lateral-flexion": "Lumbar Lateral Flexion",
+        "lumbar-spine-straight-leg-raise": "Lumbar Straight Leg Raise",
+        "thoracic-spine-flexion": "Thoracic Flexion",
+        "thoracic-spine-rotation": "Thoracic Rotation",
+
+        // Muscle Tests
+        "cervical-flexion-extension": "Cervical Flexion/Extension",
+        "cervical-lateral-flexion": "Cervical Lateral Flexion",
+        "cervical-30-rotation": "Cervical 30° Rotation",
+        "cervical-60-rotation": "Cervical 60° Rotation",
+        "hip-muscle-flexion": "Hip Flexion",
+        "hip-muscle-extension": "Hip Extension",
+        "hip-muscle-abduction": "Hip Abduction",
+        "hip-muscle-adduction": "Hip Adduction",
+        "hip-muscle-external-rotation": "Hip External Rotation",
+        "hip-muscle-internal-rotation": "Hip Internal Rotation",
+        "shoulder-muscle-flexion": "Shoulder Flexion",
+        "shoulder-muscle-extension": "Shoulder Extension",
+        "shoulder-muscle-abduction": "Shoulder Abduction",
+        "shoulder-muscle-adduction": "Shoulder Adduction",
+        "shoulder-muscle-internal-rotation": "Shoulder Internal Rotation",
+        "shoulder-muscle-external-rotation": "Shoulder External Rotation",
+        "wrist-muscle-flexion": "Wrist Palmar Flexion",
+        "wrist-muscle-extension": "Wrist Dorsiflexion",
+        "wrist-muscle-radial-deviation": "Wrist Radial Deviation",
+        "wrist-muscle-ulnar-deviation": "Wrist Ulnar Deviation",
+        "ankle-muscle-dorsiflexion": "Ankle Dorsiflexion",
+        "ankle-muscle-plantar-flexion": "Ankle Plantar Flexion",
+        "ankle-muscle-eversion": "Ankle Eversion",
+        "ankle-muscle-inversion": "Ankle Inversion",
+        "knee-muscle-flexion": "Knee Flexion",
+        "knee-muscle-extension": "Knee Extension",
+        "elbow-muscle-flexion": "Elbow Flexion",
+        "elbow-muscle-extension": "Elbow Extension",
       };
 
       const createTestStub = (testId: string): TestData => ({
@@ -1243,11 +1323,17 @@ export default function TestData() {
   const isMuscleTest =
     testId.includes("muscle-") ||
     (testId.startsWith("cervical-") &&
-     (testId.includes("flexion") || testId.includes("rotation") || testId.includes("lateral")) &&
-     !testId.includes("flexion-extension"));
+     !testId.includes("spine-") &&
+     (testId.includes("flexion") || testId.includes("rotation") || testId.includes("lateral")));
+
+  const isTotalSpineRomTest =
+    !isMuscleTest &&
+    testId.includes("spine-") &&
+    (testId.includes("cervical-spine") || testId.includes("lumbar-spine") || testId.includes("thoracic-spine"));
 
   const isRangeOfMotionTest =
     !isMuscleTest &&
+    !isTotalSpineRomTest &&
     (testName.includes("flexion") ||
     testName.includes("extension") ||
     testName.includes("rotation") ||
@@ -1269,8 +1355,8 @@ export default function TestData() {
   const isLiftTest = testName.includes("lift") || testName.includes("carry");
   const liftUnit = normalizeWeightUnit(currentTest?.unitMeasure);
 
-  // Helper function to format test name with (Muscle Test) or (ROM) suffix
-  const formatTestName = (name: string, testId: string, isMusc: boolean, isROM: boolean): string => {
+  // Helper function to format test name with (Muscle Test), (Total Spine ROM), or (ROM) suffix
+  const formatTestName = (name: string, testId: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean): string => {
     if (isMusc) {
       // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
       const parts = name.split(/\s+/);
@@ -1280,6 +1366,16 @@ export default function TestData() {
         return `${bodyPart} - ${testType} (Muscle Test)`;
       }
       return name;
+    }
+    if (isTotalSpine) {
+      // For Total Spine ROM tests: "Cervical Flexion/Extension" -> "Cervical - Flexion/Extension (Total Spine ROM)"
+      const parts = name.split(/\s+/);
+      if (parts.length > 1) {
+        const bodyPart = parts[0];
+        const testType = parts.slice(1).join(" ");
+        return `${bodyPart} - ${testType} (Total Spine ROM)`;
+      }
+      return `${name} (Total Spine ROM)`;
     }
     if (isROM) {
       // For ROM tests: append (ROM) at the end
@@ -1831,7 +1927,7 @@ export default function TestData() {
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center sm:text-left">
-                  {formatTestName(currentTest.testName, currentTest.testId, isMuscleTest, isRangeOfMotionTest)}
+                  {formatTestName(currentTest.testName, currentTest.testId, isMuscleTest, isRangeOfMotionTest, isTotalSpineRomTest)}
                 </h1>
                 <Button
                   variant="outline"
