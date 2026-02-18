@@ -1303,8 +1303,8 @@ export default function TestData() {
   const isMuscleTest =
     testId.includes("muscle-") ||
     (testId.startsWith("cervical-") &&
-     (testId.includes("flexion") || testId.includes("rotation") || testId.includes("lateral")) &&
-     !testId.includes("flexion-extension"));
+     !testId.includes("spine-") &&
+     (testId.includes("flexion") || testId.includes("rotation") || testId.includes("lateral")));
 
   const isRangeOfMotionTest =
     !isMuscleTest &&
