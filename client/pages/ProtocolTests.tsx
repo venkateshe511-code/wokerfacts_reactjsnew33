@@ -316,7 +316,7 @@ const testGroups = {
   ],
   "rom-spine": [
     {
-      name: "Cervical (Total Spine)",
+      name: "Cervical (Total Spine) (ROM)",
       id: "cervical-total-spine",
       tests: [
         { id: "cervical-spine-flexion-extension", name: "Flexion/Extension" },
@@ -325,7 +325,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Lumbar (Total Spine)",
+      name: "Lumbar (Total Spine) (ROM)",
       id: "lumbar-total-spine",
       tests: [
         { id: "lumbar-spine-flexion-extension", name: "Flexion/Extension" },
@@ -334,7 +334,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Thoracic (Total Spine)",
+      name: "Thoracic (Total Spine) (ROM)",
       id: "thoracic-total-spine",
       tests: [
         { id: "thoracic-spine-flexion", name: "Flexion" },
@@ -342,7 +342,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity Elbow",
+      name: "Left Side - Extremity Elbow (ROM)",
       id: "extremity-elbow-left",
       tests: [
         {
@@ -356,7 +356,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity Elbow",
+      name: "Right Side - Extremity Elbow (ROM)",
       id: "extremity-elbow-right",
       tests: [
         {
@@ -370,7 +370,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity Wrist",
+      name: "Left Side - Extremity Wrist (ROM)",
       id: "extremity-wrist-left",
       tests: [
         {
@@ -384,7 +384,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity Wrist",
+      name: "Right Side - Extremity Wrist (ROM)",
       id: "extremity-wrist-right",
       tests: [
         {
@@ -398,7 +398,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity Knee",
+      name: "Left Side - Extremity Knee (ROM)",
       id: "extremity-knee-left",
       tests: [
         {
@@ -408,7 +408,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity Knee",
+      name: "Right Side - Extremity Knee (ROM)",
       id: "extremity-knee-right",
       tests: [
         {
@@ -418,7 +418,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity Shoulder",
+      name: "Left Side - Extremity Shoulder (ROM)",
       id: "extremity-shoulder-left",
       tests: [
         {
@@ -436,7 +436,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity Shoulder",
+      name: "Right Side - Extremity Shoulder (ROM)",
       id: "extremity-shoulder-right",
       tests: [
         {
@@ -454,7 +454,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity Hip",
+      name: "Left Side - Extremity Hip (ROM)",
       id: "extremity-hip-left",
       tests: [
         {
@@ -472,7 +472,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity Hip",
+      name: "Right Side - Extremity Hip (ROM)",
       id: "extremity-hip-right",
       tests: [
         {
@@ -490,7 +490,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity Ankle",
+      name: "Left Side - Extremity Ankle (ROM)",
       id: "extremity-ankle-left",
       tests: [
         {
@@ -504,7 +504,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity Ankle",
+      name: "Right Side - Extremity Ankle (ROM)",
       id: "extremity-ankle-right",
       tests: [
         {
@@ -520,7 +520,7 @@ const testGroups = {
   ],
   "rom-hand": [
     {
-      name: "Left Side - Thumb",
+      name: "Left Side - Thumb (ROM)",
       id: "thumb-rom-left",
       tests: [
         {
@@ -535,7 +535,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Thumb",
+      name: "Right Side - Thumb (ROM)",
       id: "thumb-rom-right",
       tests: [
         {
@@ -550,7 +550,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Index Finger",
+      name: "Left Side - Index Finger (ROM)",
       id: "index-finger-rom-left",
       tests: [
         {
@@ -568,7 +568,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Index Finger",
+      name: "Right Side - Index Finger (ROM)",
       id: "index-finger-rom-right",
       tests: [
         {
@@ -586,7 +586,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Middle Finger",
+      name: "Left Side - Middle Finger (ROM)",
       id: "middle-finger-rom-left",
       tests: [
         {
@@ -604,7 +604,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Middle Finger",
+      name: "Right Side - Middle Finger (ROM)",
       id: "middle-finger-rom-right",
       tests: [
         {
@@ -622,7 +622,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Ring Finger",
+      name: "Left Side - Ring Finger (ROM)",
       id: "ring-finger-rom-left",
       tests: [
         {
@@ -640,7 +640,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Ring Finger",
+      name: "Right Side - Ring Finger (ROM)",
       id: "ring-finger-rom-right",
       tests: [
         {
@@ -658,7 +658,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Little Finger",
+      name: "Left Side - Little Finger (ROM)",
       id: "little-finger-rom-left",
       tests: [
         {
@@ -676,7 +676,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Little Finger",
+      name: "Right Side - Little Finger (ROM)",
       id: "little-finger-rom-right",
       tests: [
         {
@@ -694,7 +694,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity Great Toe",
+      name: "Left Side - Extremity Great Toe (ROM)",
       id: "extremity-great-toe-left",
       tests: [
         {
@@ -708,7 +708,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity Great Toe",
+      name: "Right Side - Extremity Great Toe (ROM)",
       id: "extremity-great-toe-right",
       tests: [
         {
@@ -722,7 +722,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity 2nd Toe",
+      name: "Left Side - Extremity 2nd Toe (ROM)",
       id: "extremity-2nd-toe-left",
       tests: [
         {
@@ -732,7 +732,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity 2nd Toe",
+      name: "Right Side - Extremity 2nd Toe (ROM)",
       id: "extremity-2nd-toe-right",
       tests: [
         {
@@ -742,7 +742,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity 3rd Toe",
+      name: "Left Side - Extremity 3rd Toe (ROM)",
       id: "extremity-3rd-toe-left",
       tests: [
         {
@@ -752,7 +752,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity 3rd Toe",
+      name: "Right Side - Extremity 3rd Toe (ROM)",
       id: "extremity-3rd-toe-right",
       tests: [
         {
@@ -762,7 +762,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity 4th Toe",
+      name: "Left Side - Extremity 4th Toe (ROM)",
       id: "extremity-4th-toe-left",
       tests: [
         {
@@ -772,7 +772,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity 4th Toe",
+      name: "Right Side - Extremity 4th Toe (ROM)",
       id: "extremity-4th-toe-right",
       tests: [
         {
@@ -782,7 +782,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Left Side - Extremity 5th Toe",
+      name: "Left Side - Extremity 5th Toe (ROM)",
       id: "extremity-5th-toe-left",
       tests: [
         {
@@ -792,7 +792,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Right Side - Extremity 5th Toe",
+      name: "Right Side - Extremity 5th Toe (ROM)",
       id: "extremity-5th-toe-right",
       tests: [
         {
