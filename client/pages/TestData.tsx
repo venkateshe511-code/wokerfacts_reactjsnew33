@@ -1341,6 +1341,10 @@ export default function TestData() {
     testName.includes("adduction") ||
     testName.includes("supination") ||
     testName.includes("pronation") ||
+    testName.includes("inversion") ||
+    testName.includes("eversion") ||
+    testName.includes("radial") ||
+    testName.includes("ulnar") ||
     testName.includes("range") ||
     testName.includes("motion"));
   const isGripTest = testName.includes("grip") || testName.includes("pinch");
