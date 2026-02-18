@@ -1311,6 +1311,19 @@ export default function TestData() {
       return ["Flexion", "Extension"];
     }
     if (
+      hay.includes("dorsi-plantar") ||
+      hay.includes("dorsi/plantar") ||
+      hay.includes("dorsiplantar")
+    ) {
+      return ["Dorsi Flexion", "Plantar Flexion"];
+    }
+    if (
+      hay.includes("inversion-eversion") ||
+      hay.includes("inversion/eversion")
+    ) {
+      return ["Inversion", "Eversion"];
+    }
+    if (
       hay.includes("supination-pronation") ||
       hay.includes("supination/pronation")
     ) {
