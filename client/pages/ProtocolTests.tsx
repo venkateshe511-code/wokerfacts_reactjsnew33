@@ -215,7 +215,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Muscle Test - Cervical",
+      name: "Cervical (Muscle Test)",
       id: "muscle-test-cervical",
       tests: [
         { id: "cervical-flexion-extension", name: "Flexion/Extension" },
