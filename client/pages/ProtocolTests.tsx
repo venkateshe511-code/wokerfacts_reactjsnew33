@@ -347,11 +347,11 @@ const testGroups = {
       tests: [
         {
           id: "elbow-rom-flexion-extension-left",
-          name: "Left Side - Elbow Flexion/Extension",
+          name: "Extremity Elbow Flexion/Extension",
         },
         {
           id: "elbow-rom-supination-pronation-left",
-          name: "Left Side - Elbow Supination/Pronation",
+          name: "Extremity Elbow Supination/Pronation",
         },
       ],
     },
@@ -361,11 +361,11 @@ const testGroups = {
       tests: [
         {
           id: "elbow-rom-flexion-extension-right",
-          name: "Right Side - Elbow Flexion/Extension",
+          name: "Extremity Elbow Flexion/Extension",
         },
         {
           id: "elbow-rom-supination-pronation-right",
-          name: "Right Side - Elbow Supination/Pronation",
+          name: "Extremity Elbow Supination/Pronation",
         },
       ],
     },
@@ -375,11 +375,11 @@ const testGroups = {
       tests: [
         {
           id: "wrist-rom-flexion-extension-left",
-          name: "Left Side - Wrist Flexion/Extension",
+          name: "Extremity Wrist Flexion/Extension",
         },
         {
           id: "wrist-rom-radial-ulnar-deviation-left",
-          name: "Left Side - Wrist Radial/Ulnar Deviation",
+          name: "Extremity Wrist Radial/Ulnar Deviation",
         },
       ],
     },
@@ -389,11 +389,11 @@ const testGroups = {
       tests: [
         {
           id: "wrist-rom-flexion-extension-right",
-          name: "Right Side - Wrist Flexion/Extension",
+          name: "Extremity Wrist Flexion/Extension",
         },
         {
           id: "wrist-rom-radial-ulnar-deviation-right",
-          name: "Right Side - Wrist Radial/Ulnar Deviation",
+          name: "Extremity Wrist Radial/Ulnar Deviation",
         },
       ],
     },
@@ -403,7 +403,7 @@ const testGroups = {
       tests: [
         {
           id: "knee-rom-flexion-extension-left",
-          name: "Left Side - Knee Flexion/Extension",
+          name: "Extremity Knee Flexion/Extension",
         },
       ],
     },
@@ -413,7 +413,7 @@ const testGroups = {
       tests: [
         {
           id: "knee-rom-flexion-extension-right",
-          name: "Right Side - Knee Flexion/Extension",
+          name: "Extremity Knee Flexion/Extension",
         },
       ],
     },
@@ -423,15 +423,15 @@ const testGroups = {
       tests: [
         {
           id: "shoulder-rom-flexion-extension-left",
-          name: "Left Side - Shoulder Flexion/Extension",
+          name: "Extremity Shoulder Flexion/Extension",
         },
         {
           id: "shoulder-rom-internal-external-rotation-left",
-          name: "Left Side - Shoulder Internal/External Rotation",
+          name: "Extremity Shoulder Internal/External Rotation",
         },
         {
           id: "shoulder-rom-abduction-adduction-left",
-          name: "Left Side - Shoulder Abduction/Adduction",
+          name: "Extremity Shoulder Abduction/Adduction",
         },
       ],
     },
@@ -441,15 +441,15 @@ const testGroups = {
       tests: [
         {
           id: "shoulder-rom-flexion-extension-right",
-          name: "Right Side - Shoulder Flexion/Extension",
+          name: "Extremity Shoulder Flexion/Extension",
         },
         {
           id: "shoulder-rom-internal-external-rotation-right",
-          name: "Right Side - Shoulder Internal/External Rotation",
+          name: "Extremity Shoulder Internal/External Rotation",
         },
         {
           id: "shoulder-rom-abduction-adduction-right",
-          name: "Right Side - Shoulder Abduction/Adduction",
+          name: "Extremity Shoulder Abduction/Adduction",
         },
       ],
     },
@@ -459,15 +459,15 @@ const testGroups = {
       tests: [
         {
           id: "hip-rom-flexion-extension-left",
-          name: "Left Side - Hip Flexion/Extension",
+          name: "Extremity Hip Flexion/Extension",
         },
         {
           id: "hip-rom-internal-external-rotation-left",
-          name: "Left Side - Hip Internal/External Rotation",
+          name: "Extremity Hip Internal/External Rotation",
         },
         {
           id: "hip-rom-abduction-adduction-left",
-          name: "Left Side - Hip Abduction/Adduction",
+          name: "Extremity Hip Abduction/Adduction",
         },
       ],
     },
@@ -477,15 +477,15 @@ const testGroups = {
       tests: [
         {
           id: "hip-rom-flexion-extension-right",
-          name: "Right Side - Hip Flexion/Extension",
+          name: "Extremity Hip Flexion/Extension",
         },
         {
           id: "hip-rom-internal-external-rotation-right",
-          name: "Right Side - Hip Internal/External Rotation",
+          name: "Extremity Hip Internal/External Rotation",
         },
         {
           id: "hip-rom-abduction-adduction-right",
-          name: "Right Side - Hip Abduction/Adduction",
+          name: "Extremity Hip Abduction/Adduction",
         },
       ],
     },
@@ -495,11 +495,11 @@ const testGroups = {
       tests: [
         {
           id: "ankle-rom-dorsi-plantar-flexion-left",
-          name: "Left Side - Ankle Dorsi/Plantar Flexion",
+          name: "Extremity Ankle Dorsi/Plantar Flexion",
         },
         {
           id: "ankle-rom-inversion-eversion-left",
-          name: "Left Side - Ankle Inversion/Eversion",
+          name: "Extremity Ankle Inversion/Eversion",
         },
       ],
     },
@@ -509,11 +509,11 @@ const testGroups = {
       tests: [
         {
           id: "ankle-rom-dorsi-plantar-flexion-right",
-          name: "Right Side - Ankle Dorsi/Plantar Flexion",
+          name: "Extremity Ankle Dorsi/Plantar Flexion",
         },
         {
           id: "ankle-rom-inversion-eversion-right",
-          name: "Right Side - Ankle Inversion/Eversion",
+          name: "Extremity Ankle Inversion/Eversion",
         },
       ],
     },

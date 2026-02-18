@@ -162,49 +162,49 @@ export default function DownloadReport() {
     kasch: "Kasch Pulse Recovery Test",
 
     // ROM - Extremities (Left Side)
-    "elbow-rom-flexion-extension-left": "Left Side - Elbow Flexion/Extension",
+    "elbow-rom-flexion-extension-left": "Extremity Elbow Flexion/Extension",
     "elbow-rom-supination-pronation-left":
-      "Left Side - Elbow Supination/Pronation",
-    "wrist-rom-flexion-extension-left": "Left Side - Wrist Flexion/Extension",
+      "Extremity Elbow Supination/Pronation",
+    "wrist-rom-flexion-extension-left": "Extremity Wrist Flexion/Extension",
     "wrist-rom-radial-ulnar-deviation-left":
-      "Left Side - Wrist Radial/Ulnar Deviation",
-    "knee-rom-flexion-extension-left": "Left Side - Knee Flexion/Extension",
+      "Extremity Wrist Radial/Ulnar Deviation",
+    "knee-rom-flexion-extension-left": "Extremity Knee Flexion/Extension",
     "shoulder-rom-flexion-extension-left":
-      "Left Side - Shoulder Flexion/Extension",
+      "Extremity Shoulder Flexion/Extension",
     "shoulder-rom-internal-external-rotation-left":
-      "Left Side - Shoulder Internal/External Rotation",
+      "Extremity Shoulder Internal/External Rotation",
     "shoulder-rom-abduction-adduction-left":
-      "Left Side - Shoulder Abduction/Adduction",
-    "hip-rom-flexion-extension-left": "Left Side - Hip Flexion/Extension",
+      "Extremity Shoulder Abduction/Adduction",
+    "hip-rom-flexion-extension-left": "Extremity Hip Flexion/Extension",
     "hip-rom-internal-external-rotation-left":
-      "Left Side - Hip Internal/External Rotation",
-    "hip-rom-abduction-adduction-left": "Left Side - Hip Abduction/Adduction",
+      "Extremity Hip Internal/External Rotation",
+    "hip-rom-abduction-adduction-left": "Extremity Hip Abduction/Adduction",
     "ankle-rom-dorsi-plantar-flexion-left":
-      "Left Side - Ankle Dorsi/Plantar Flexion",
-    "ankle-rom-inversion-eversion-left": "Left Side - Ankle Inversion/Eversion",
+      "Extremity Ankle Dorsi/Plantar Flexion",
+    "ankle-rom-inversion-eversion-left": "Extremity Ankle Inversion/Eversion",
 
     // ROM - Extremities (Right Side)
-    "elbow-rom-flexion-extension-right": "Right Side - Elbow Flexion/Extension",
+    "elbow-rom-flexion-extension-right": "Extremity Elbow Flexion/Extension",
     "elbow-rom-supination-pronation-right":
-      "Right Side - Elbow Supination/Pronation",
-    "wrist-rom-flexion-extension-right": "Right Side - Wrist Flexion/Extension",
+      "Extremity Elbow Supination/Pronation",
+    "wrist-rom-flexion-extension-right": "Extremity Wrist Flexion/Extension",
     "wrist-rom-radial-ulnar-deviation-right":
-      "Right Side - Wrist Radial/Ulnar Deviation",
-    "knee-rom-flexion-extension-right": "Right Side - Knee Flexion/Extension",
+      "Extremity Wrist Radial/Ulnar Deviation",
+    "knee-rom-flexion-extension-right": "Extremity Knee Flexion/Extension",
     "shoulder-rom-flexion-extension-right":
-      "Right Side - Shoulder Flexion/Extension",
+      "Extremity Shoulder Flexion/Extension",
     "shoulder-rom-internal-external-rotation-right":
-      "Right Side - Shoulder Internal/External Rotation",
+      "Extremity Shoulder Internal/External Rotation",
     "shoulder-rom-abduction-adduction-right":
-      "Right Side - Shoulder Abduction/Adduction",
-    "hip-rom-flexion-extension-right": "Right Side - Hip Flexion/Extension",
+      "Extremity Shoulder Abduction/Adduction",
+    "hip-rom-flexion-extension-right": "Extremity Hip Flexion/Extension",
     "hip-rom-internal-external-rotation-right":
-      "Right Side - Hip Internal/External Rotation",
-    "hip-rom-abduction-adduction-right": "Right Side - Hip Abduction/Adduction",
+      "Extremity Hip Internal/External Rotation",
+    "hip-rom-abduction-adduction-right": "Extremity Hip Abduction/Adduction",
     "ankle-rom-dorsi-plantar-flexion-right":
-      "Right Side - Ankle Dorsi/Plantar Flexion",
+      "Extremity Ankle Dorsi/Plantar Flexion",
     "ankle-rom-inversion-eversion-right":
-      "Right Side - Ankle Inversion/Eversion",
+      "Extremity Ankle Inversion/Eversion",
 
     // ROM - Hand/Foot (Left Side)
     "thumb-ip-flexion-extension-left": "Left Side - Thumb IP Flexion/Extension",
