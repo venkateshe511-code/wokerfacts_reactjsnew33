@@ -162,49 +162,49 @@ export default function DownloadReport() {
     kasch: "Kasch Pulse Recovery Test",
 
     // ROM - Extremities (Left Side)
-    "elbow-rom-flexion-extension-left": "Left Side - Elbow Flexion/Extension",
+    "elbow-rom-flexion-extension-left": "Extremity Elbow Flexion/Extension",
     "elbow-rom-supination-pronation-left":
-      "Left Side - Elbow Supination/Pronation",
-    "wrist-rom-flexion-extension-left": "Left Side - Wrist Flexion/Extension",
+      "Extremity Elbow Supination/Pronation",
+    "wrist-rom-flexion-extension-left": "Extremity Wrist Flexion/Extension",
     "wrist-rom-radial-ulnar-deviation-left":
-      "Left Side - Wrist Radial/Ulnar Deviation",
-    "knee-rom-flexion-extension-left": "Left Side - Knee Flexion/Extension",
+      "Extremity Wrist Radial/Ulnar Deviation",
+    "knee-rom-flexion-extension-left": "Extremity Knee Flexion/Extension",
     "shoulder-rom-flexion-extension-left":
-      "Left Side - Shoulder Flexion/Extension",
+      "Extremity Shoulder Flexion/Extension",
     "shoulder-rom-internal-external-rotation-left":
-      "Left Side - Shoulder Internal/External Rotation",
+      "Extremity Shoulder Internal/External Rotation",
     "shoulder-rom-abduction-adduction-left":
-      "Left Side - Shoulder Abduction/Adduction",
-    "hip-rom-flexion-extension-left": "Left Side - Hip Flexion/Extension",
+      "Extremity Shoulder Abduction/Adduction",
+    "hip-rom-flexion-extension-left": "Extremity Hip Flexion/Extension",
     "hip-rom-internal-external-rotation-left":
-      "Left Side - Hip Internal/External Rotation",
-    "hip-rom-abduction-adduction-left": "Left Side - Hip Abduction/Adduction",
+      "Extremity Hip Internal/External Rotation",
+    "hip-rom-abduction-adduction-left": "Extremity Hip Abduction/Adduction",
     "ankle-rom-dorsi-plantar-flexion-left":
-      "Left Side - Ankle Dorsi/Plantar Flexion",
-    "ankle-rom-inversion-eversion-left": "Left Side - Ankle Inversion/Eversion",
+      "Extremity Ankle Dorsi/Plantar Flexion",
+    "ankle-rom-inversion-eversion-left": "Extremity Ankle Inversion/Eversion",
 
     // ROM - Extremities (Right Side)
-    "elbow-rom-flexion-extension-right": "Right Side - Elbow Flexion/Extension",
+    "elbow-rom-flexion-extension-right": "Extremity Elbow Flexion/Extension",
     "elbow-rom-supination-pronation-right":
-      "Right Side - Elbow Supination/Pronation",
-    "wrist-rom-flexion-extension-right": "Right Side - Wrist Flexion/Extension",
+      "Extremity Elbow Supination/Pronation",
+    "wrist-rom-flexion-extension-right": "Extremity Wrist Flexion/Extension",
     "wrist-rom-radial-ulnar-deviation-right":
-      "Right Side - Wrist Radial/Ulnar Deviation",
-    "knee-rom-flexion-extension-right": "Right Side - Knee Flexion/Extension",
+      "Extremity Wrist Radial/Ulnar Deviation",
+    "knee-rom-flexion-extension-right": "Extremity Knee Flexion/Extension",
     "shoulder-rom-flexion-extension-right":
-      "Right Side - Shoulder Flexion/Extension",
+      "Extremity Shoulder Flexion/Extension",
     "shoulder-rom-internal-external-rotation-right":
-      "Right Side - Shoulder Internal/External Rotation",
+      "Extremity Shoulder Internal/External Rotation",
     "shoulder-rom-abduction-adduction-right":
-      "Right Side - Shoulder Abduction/Adduction",
-    "hip-rom-flexion-extension-right": "Right Side - Hip Flexion/Extension",
+      "Extremity Shoulder Abduction/Adduction",
+    "hip-rom-flexion-extension-right": "Extremity Hip Flexion/Extension",
     "hip-rom-internal-external-rotation-right":
-      "Right Side - Hip Internal/External Rotation",
-    "hip-rom-abduction-adduction-right": "Right Side - Hip Abduction/Adduction",
+      "Extremity Hip Internal/External Rotation",
+    "hip-rom-abduction-adduction-right": "Extremity Hip Abduction/Adduction",
     "ankle-rom-dorsi-plantar-flexion-right":
-      "Right Side - Ankle Dorsi/Plantar Flexion",
+      "Extremity Ankle Dorsi/Plantar Flexion",
     "ankle-rom-inversion-eversion-right":
-      "Right Side - Ankle Inversion/Eversion",
+      "Extremity Ankle Inversion/Eversion",
 
     // ROM - Hand/Foot (Left Side)
     "thumb-ip-flexion-extension-left": "Left Side - Thumb IP Flexion/Extension",
@@ -289,7 +289,7 @@ export default function DownloadReport() {
       "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
   };
 
-  const formatTestName = (testId: string): string => {
+  const getTestNameFromId = (testId: string): string => {
     // First check if we have a mapping for this exact ID
     if (testNames[testId]) {
       return testNames[testId];
@@ -300,6 +300,47 @@ export default function DownloadReport() {
     if (!testId) return "";
 
     return testId.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  };
+
+  // Helper function to format test name with (Muscle Test) or (ROM) suffix
+  const formatTestName = (name: string, isMusc: boolean, isROM: boolean): string => {
+    if (isMusc) {
+      // For muscle tests: "Cervical Flexion" -> "Cervical (Muscle Test) - Flexion"
+      const parts = name.split(/\s+/);
+      if (parts.length > 1) {
+        const bodyPart = parts[0];
+        const testType = parts.slice(1).join(" ");
+        return `${bodyPart} (Muscle Test) - ${testType}`;
+      }
+      return name;
+    }
+    if (isROM) {
+      // For ROM tests: "Left Side - Shoulder Flexion/Extension" -> "Left Side - Shoulder (ROM) - Flexion/Extension"
+      if (name.includes("Side -")) {
+        const sideMatch = name.match(/^(Left Side|Right Side) - (.+?)(\s+Flexion|\s+Extension|\s+Rotation|\s+Abduction|\s+Adduction|\s+Pronation|\s+Supination)/i);
+        if (sideMatch) {
+          const side = sideMatch[1];
+          const bodyPart = sideMatch[2];
+          const motion = sideMatch[3].trim();
+          return `${side} - ${bodyPart} (ROM) - ${motion}`;
+        }
+      }
+
+      // For simple cases like "Cervical Flexion/Extension"
+      const motionKeywords = ["flexion", "extension", "rotation", "abduction", "adduction", "pronation", "supination"];
+      const nameLower = name.toLowerCase();
+      for (const keyword of motionKeywords) {
+        if (nameLower.includes(keyword)) {
+          const motionIndex = nameLower.indexOf(keyword);
+          const bodyPart = name.substring(0, motionIndex).trim();
+          const motion = name.substring(motionIndex).trim();
+          if (bodyPart) {
+            return `${bodyPart} (ROM) - ${motion}`;
+          }
+        }
+      }
+    }
+    return name;
   };
 
   const navigate = useNavigate();
@@ -3505,10 +3546,21 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                 testId.includes("rotation") ||
                                 testId.includes("lateral")));
 
-                          // Format test name with prefix if it's a muscle test
-                          const displayTestName = isMuscleTest
-                            ? `Muscle Test – ${test.testName}`
-                            : test.testName;
+                          // Check if it's a ROM test
+                          const isRomTest =
+                            !isMuscleTest &&
+                            (test.testName.toLowerCase().includes("flexion") ||
+                              test.testName.toLowerCase().includes("extension") ||
+                              test.testName.toLowerCase().includes("rotation") ||
+                              test.testName.toLowerCase().includes("abduction") ||
+                              test.testName.toLowerCase().includes("adduction") ||
+                              test.testName.toLowerCase().includes("supination") ||
+                              test.testName.toLowerCase().includes("pronation") ||
+                              category === "ROM Hand/Foot" ||
+                              category === "ROM Total Spine/Extremity");
+
+                          // Format test name with proper labels
+                          const displayTestName = formatTestName(test.testName, isMuscleTest, isRomTest);
 
                           rows.push(`
                                     <tr>
@@ -6513,7 +6565,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 ? Object.entries(mtmTestData).map(
                     ([testType, testData]: [string, any]) => ({
                       id: testType,
-                      name: testData.testName || formatTestName(testType),
+                      name: testData.testName || getTestNameFromId(testType),
                       trials: testData.trials || [],
                       parameters: {
                         numberOfTrials: testData.trials?.length || 3,
