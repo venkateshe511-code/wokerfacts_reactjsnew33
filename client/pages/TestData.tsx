@@ -539,34 +539,34 @@ export default function TestData() {
       "ymca-submaximal-treadmill-test": "YMCA Submaximal Treadmill Test",
 
       // ROM - Extremities (Left Side)
-      "elbow-rom-flexion-extension-left": "Left Side - Elbow Flexion/Extension",
-      "elbow-rom-supination-pronation-left": "Left Side - Elbow Supination/Pronation",
-      "wrist-rom-flexion-extension-left": "Left Side - Wrist Flexion/Extension",
-      "wrist-rom-radial-ulnar-deviation-left": "Left Side - Wrist Radial/Ulnar Deviation",
-      "knee-rom-flexion-extension-left": "Left Side - Knee Flexion/Extension",
-      "shoulder-rom-flexion-extension-left": "Left Side - Shoulder Flexion/Extension",
-      "shoulder-rom-internal-external-rotation-left": "Left Side - Shoulder Internal/External Rotation",
-      "shoulder-rom-abduction-adduction-left": "Left Side - Shoulder Abduction/Adduction",
-      "hip-rom-flexion-extension-left": "Left Side - Hip Flexion/Extension",
-      "hip-rom-internal-external-rotation-left": "Left Side - Hip Internal/External Rotation",
-      "hip-rom-abduction-adduction-left": "Left Side - Hip Abduction/Adduction",
-      "ankle-rom-dorsi-plantar-flexion-left": "Left Side - Ankle Dorsi/Plantar Flexion",
-      "ankle-rom-inversion-eversion-left": "Left Side - Ankle Inversion/Eversion",
+      "elbow-rom-flexion-extension-left": "Extremity Elbow Flexion/Extension",
+      "elbow-rom-supination-pronation-left": "Extremity Elbow Supination/Pronation",
+      "wrist-rom-flexion-extension-left": "Extremity Wrist Flexion/Extension",
+      "wrist-rom-radial-ulnar-deviation-left": "Extremity Wrist Radial/Ulnar Deviation",
+      "knee-rom-flexion-extension-left": "Extremity Knee Flexion/Extension",
+      "shoulder-rom-flexion-extension-left": "Extremity Shoulder Flexion/Extension",
+      "shoulder-rom-internal-external-rotation-left": "Extremity Shoulder Internal/External Rotation",
+      "shoulder-rom-abduction-adduction-left": "Extremity Shoulder Abduction/Adduction",
+      "hip-rom-flexion-extension-left": "Extremity Hip Flexion/Extension",
+      "hip-rom-internal-external-rotation-left": "Extremity Hip Internal/External Rotation",
+      "hip-rom-abduction-adduction-left": "Extremity Hip Abduction/Adduction",
+      "ankle-rom-dorsi-plantar-flexion-left": "Extremity Ankle Dorsi/Plantar Flexion",
+      "ankle-rom-inversion-eversion-left": "Extremity Ankle Inversion/Eversion",
 
       // ROM - Extremities (Right Side)
-      "elbow-rom-flexion-extension-right": "Right Side - Elbow Flexion/Extension",
-      "elbow-rom-supination-pronation-right": "Right Side - Elbow Supination/Pronation",
-      "wrist-rom-flexion-extension-right": "Right Side - Wrist Flexion/Extension",
-      "wrist-rom-radial-ulnar-deviation-right": "Right Side - Wrist Radial/Ulnar Deviation",
-      "knee-rom-flexion-extension-right": "Right Side - Knee Flexion/Extension",
-      "shoulder-rom-flexion-extension-right": "Right Side - Shoulder Flexion/Extension",
-      "shoulder-rom-internal-external-rotation-right": "Right Side - Shoulder Internal/External Rotation",
-      "shoulder-rom-abduction-adduction-right": "Right Side - Shoulder Abduction/Adduction",
-      "hip-rom-flexion-extension-right": "Right Side - Hip Flexion/Extension",
-      "hip-rom-internal-external-rotation-right": "Right Side - Hip Internal/External Rotation",
-      "hip-rom-abduction-adduction-right": "Right Side - Hip Abduction/Adduction",
-      "ankle-rom-dorsi-plantar-flexion-right": "Right Side - Ankle Dorsi/Plantar Flexion",
-      "ankle-rom-inversion-eversion-right": "Right Side - Ankle Inversion/Eversion",
+      "elbow-rom-flexion-extension-right": "Extremity Elbow Flexion/Extension",
+      "elbow-rom-supination-pronation-right": "Extremity Elbow Supination/Pronation",
+      "wrist-rom-flexion-extension-right": "Extremity Wrist Flexion/Extension",
+      "wrist-rom-radial-ulnar-deviation-right": "Extremity Wrist Radial/Ulnar Deviation",
+      "knee-rom-flexion-extension-right": "Extremity Knee Flexion/Extension",
+      "shoulder-rom-flexion-extension-right": "Extremity Shoulder Flexion/Extension",
+      "shoulder-rom-internal-external-rotation-right": "Extremity Shoulder Internal/External Rotation",
+      "shoulder-rom-abduction-adduction-right": "Extremity Shoulder Abduction/Adduction",
+      "hip-rom-flexion-extension-right": "Extremity Hip Flexion/Extension",
+      "hip-rom-internal-external-rotation-right": "Extremity Hip Internal/External Rotation",
+      "hip-rom-abduction-adduction-right": "Extremity Hip Abduction/Adduction",
+      "ankle-rom-dorsi-plantar-flexion-right": "Extremity Ankle Dorsi/Plantar Flexion",
+      "ankle-rom-inversion-eversion-right": "Extremity Ankle Inversion/Eversion",
 
       // ROM - Hand/Foot (Left Side)
       "thumb-ip-flexion-extension-left": "Left Side - Thumb IP Flexion/Extension",
@@ -613,6 +613,46 @@ export default function TestData() {
       "3rd-toe-mp-dorsi-plantar-flexion-right": "Right Side - 3rd Toe MP Dorsi/Plantar Flexion",
       "4th-toe-mp-dorsi-plantar-flexion-right": "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
       "5th-toe-mp-dorsi-plantar-flexion-right": "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
+
+      // Total Spine ROM Tests
+      "cervical-spine-flexion-extension": "Cervical Flexion/Extension",
+      "cervical-spine-lateral-flexion": "Cervical Lateral Flexion",
+      "cervical-spine-rotation": "Cervical Rotation",
+      "lumbar-spine-flexion-extension": "Lumbar Flexion/Extension",
+      "lumbar-spine-lateral-flexion": "Lumbar Lateral Flexion",
+      "lumbar-spine-straight-leg-raise": "Lumbar Straight Leg Raise",
+      "thoracic-spine-flexion": "Thoracic Flexion",
+      "thoracic-spine-rotation": "Thoracic Rotation",
+
+      // Muscle Tests
+      "cervical-flexion-extension": "Cervical Flexion/Extension",
+      "cervical-lateral-flexion": "Cervical Lateral Flexion",
+      "cervical-30-rotation": "Cervical 30° Rotation",
+      "cervical-60-rotation": "Cervical 60° Rotation",
+      "hip-muscle-flexion": "Hip Flexion",
+      "hip-muscle-extension": "Hip Extension",
+      "hip-muscle-abduction": "Hip Abduction",
+      "hip-muscle-adduction": "Hip Adduction",
+      "hip-muscle-external-rotation": "Hip External Rotation",
+      "hip-muscle-internal-rotation": "Hip Internal Rotation",
+      "shoulder-muscle-flexion": "Shoulder Flexion",
+      "shoulder-muscle-extension": "Shoulder Extension",
+      "shoulder-muscle-abduction": "Shoulder Abduction",
+      "shoulder-muscle-adduction": "Shoulder Adduction",
+      "shoulder-muscle-internal-rotation": "Shoulder Internal Rotation",
+      "shoulder-muscle-external-rotation": "Shoulder External Rotation",
+      "wrist-muscle-flexion": "Wrist Palmar Flexion",
+      "wrist-muscle-extension": "Wrist Dorsiflexion",
+      "wrist-muscle-radial-deviation": "Wrist Radial Deviation",
+      "wrist-muscle-ulnar-deviation": "Wrist Ulnar Deviation",
+      "ankle-muscle-dorsiflexion": "Ankle Dorsiflexion",
+      "ankle-muscle-plantar-flexion": "Ankle Plantar Flexion",
+      "ankle-muscle-eversion": "Ankle Eversion",
+      "ankle-muscle-inversion": "Ankle Inversion",
+      "knee-muscle-flexion": "Knee Flexion",
+      "knee-muscle-extension": "Knee Extension",
+      "elbow-muscle-flexion": "Elbow Flexion",
+      "elbow-muscle-extension": "Elbow Extension",
 
       // MTM Test Names
       fingering: "Fingering",
@@ -994,56 +1034,56 @@ export default function TestData() {
 
         // ROM - Extremities (Left Side)
         "elbow-rom-flexion-extension-left":
-          "Left Side - Elbow Flexion/Extension",
+          "Left Side - Extremity Elbow Flexion/Extension",
         "elbow-rom-supination-pronation-left":
-          "Left Side - Elbow Supination/Pronation",
+          "Left Side - Extremity Elbow Supination/Pronation",
         "wrist-rom-flexion-extension-left":
-          "Left Side - Wrist Flexion/Extension",
+          "Left Side - Extremity Wrist Flexion/Extension",
         "wrist-rom-radial-ulnar-deviation-left":
-          "Left Side - Wrist Radial/Ulnar Deviation",
-        "knee-rom-flexion-extension-left": "Left Side - Knee Flexion/Extension",
+          "Left Side - Extremity Wrist Radial/Ulnar Deviation",
+        "knee-rom-flexion-extension-left": "Left Side - Extremity Knee Flexion/Extension",
         "shoulder-rom-flexion-extension-left":
-          "Left Side - Shoulder Flexion/Extension",
+          "Left Side - Extremity Shoulder Flexion/Extension",
         "shoulder-rom-internal-external-rotation-left":
-          "Left Side - Shoulder Internal/External Rotation",
+          "Left Side - Extremity Shoulder Internal/External Rotation",
         "shoulder-rom-abduction-adduction-left":
-          "Left Side - Shoulder Abduction/Adduction",
-        "hip-rom-flexion-extension-left": "Left Side - Hip Flexion/Extension",
+          "Left Side - Extremity Shoulder Abduction/Adduction",
+        "hip-rom-flexion-extension-left": "Left Side - Extremity Hip Flexion/Extension",
         "hip-rom-internal-external-rotation-left":
-          "Left Side - Hip Internal/External Rotation",
+          "Left Side - Extremity Hip Internal/External Rotation",
         "hip-rom-abduction-adduction-left":
-          "Left Side - Hip Abduction/Adduction",
+          "Left Side - Extremity Hip Abduction/Adduction",
         "ankle-rom-dorsi-plantar-flexion-left":
-          "Left Side - Ankle Dorsi/Plantar Flexion",
+          "Left Side - Extremity Ankle Dorsi/Plantar Flexion",
         "ankle-rom-inversion-eversion-left":
-          "Left Side - Ankle Inversion/Eversion",
+          "Left Side - Extremity Ankle Inversion/Eversion",
 
         // ROM - Extremities (Right Side)
         "elbow-rom-flexion-extension-right":
-          "Right Side - Elbow Flexion/Extension",
+          "Right Side - Extremity Elbow Flexion/Extension",
         "elbow-rom-supination-pronation-right":
-          "Right Side - Elbow Supination/Pronation",
+          "Right Side - Extremity Elbow Supination/Pronation",
         "wrist-rom-flexion-extension-right":
-          "Right Side - Wrist Flexion/Extension",
+          "Right Side - Extremity Wrist Flexion/Extension",
         "wrist-rom-radial-ulnar-deviation-right":
-          "Right Side - Wrist Radial/Ulnar Deviation",
+          "Right Side - Extremity Wrist Radial/Ulnar Deviation",
         "knee-rom-flexion-extension-right":
-          "Right Side - Knee Flexion/Extension",
+          "Right Side - Extremity Knee Flexion/Extension",
         "shoulder-rom-flexion-extension-right":
-          "Right Side - Shoulder Flexion/Extension",
+          "Right Side - Extremity Shoulder Flexion/Extension",
         "shoulder-rom-internal-external-rotation-right":
-          "Right Side - Shoulder Internal/External Rotation",
+          "Right Side - Extremity Shoulder Internal/External Rotation",
         "shoulder-rom-abduction-adduction-right":
-          "Right Side - Shoulder Abduction/Adduction",
-        "hip-rom-flexion-extension-right": "Right Side - Hip Flexion/Extension",
+          "Right Side - Extremity Shoulder Abduction/Adduction",
+        "hip-rom-flexion-extension-right": "Right Side - Extremity Hip Flexion/Extension",
         "hip-rom-internal-external-rotation-right":
-          "Right Side - Hip Internal/External Rotation",
+          "Right Side - Extremity Hip Internal/External Rotation",
         "hip-rom-abduction-adduction-right":
-          "Right Side - Hip Abduction/Adduction",
+          "Right Side - Extremity Hip Abduction/Adduction",
         "ankle-rom-dorsi-plantar-flexion-right":
-          "Right Side - Ankle Dorsi/Plantar Flexion",
+          "Right Side - Extremity Ankle Dorsi/Plantar Flexion",
         "ankle-rom-inversion-eversion-right":
-          "Right Side - Ankle Inversion/Eversion",
+          "Right Side - Extremity Ankle Inversion/Eversion",
 
         // ROM - Hand/Foot (Left Side)
         "thumb-ip-flexion-extension-left":
@@ -1128,6 +1168,46 @@ export default function TestData() {
           "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
         "5th-toe-mp-dorsi-plantar-flexion-right":
           "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
+
+        // Total Spine ROM Tests
+        "cervical-spine-flexion-extension": "Cervical Flexion/Extension",
+        "cervical-spine-lateral-flexion": "Cervical Lateral Flexion",
+        "cervical-spine-rotation": "Cervical Rotation",
+        "lumbar-spine-flexion-extension": "Lumbar Flexion/Extension",
+        "lumbar-spine-lateral-flexion": "Lumbar Lateral Flexion",
+        "lumbar-spine-straight-leg-raise": "Lumbar Straight Leg Raise",
+        "thoracic-spine-flexion": "Thoracic Flexion",
+        "thoracic-spine-rotation": "Thoracic Rotation",
+
+        // Muscle Tests
+        "cervical-flexion-extension": "Cervical Flexion/Extension",
+        "cervical-lateral-flexion": "Cervical Lateral Flexion",
+        "cervical-30-rotation": "Cervical 30° Rotation",
+        "cervical-60-rotation": "Cervical 60° Rotation",
+        "hip-muscle-flexion": "Hip Flexion",
+        "hip-muscle-extension": "Hip Extension",
+        "hip-muscle-abduction": "Hip Abduction",
+        "hip-muscle-adduction": "Hip Adduction",
+        "hip-muscle-external-rotation": "Hip External Rotation",
+        "hip-muscle-internal-rotation": "Hip Internal Rotation",
+        "shoulder-muscle-flexion": "Shoulder Flexion",
+        "shoulder-muscle-extension": "Shoulder Extension",
+        "shoulder-muscle-abduction": "Shoulder Abduction",
+        "shoulder-muscle-adduction": "Shoulder Adduction",
+        "shoulder-muscle-internal-rotation": "Shoulder Internal Rotation",
+        "shoulder-muscle-external-rotation": "Shoulder External Rotation",
+        "wrist-muscle-flexion": "Wrist Palmar Flexion",
+        "wrist-muscle-extension": "Wrist Dorsiflexion",
+        "wrist-muscle-radial-deviation": "Wrist Radial Deviation",
+        "wrist-muscle-ulnar-deviation": "Wrist Ulnar Deviation",
+        "ankle-muscle-dorsiflexion": "Ankle Dorsiflexion",
+        "ankle-muscle-plantar-flexion": "Ankle Plantar Flexion",
+        "ankle-muscle-eversion": "Ankle Eversion",
+        "ankle-muscle-inversion": "Ankle Inversion",
+        "knee-muscle-flexion": "Knee Flexion",
+        "knee-muscle-extension": "Knee Extension",
+        "elbow-muscle-flexion": "Elbow Flexion",
+        "elbow-muscle-extension": "Elbow Extension",
       };
 
       const createTestStub = (testId: string): TestData => ({
@@ -1243,10 +1323,17 @@ export default function TestData() {
   const isMuscleTest =
     testId.includes("muscle-") ||
     (testId.startsWith("cervical-") &&
+     !testId.includes("spine-") &&
      (testId.includes("flexion") || testId.includes("rotation") || testId.includes("lateral")));
+
+  const isTotalSpineRomTest =
+    !isMuscleTest &&
+    testId.includes("spine-") &&
+    (testId.includes("cervical-spine") || testId.includes("lumbar-spine") || testId.includes("thoracic-spine"));
 
   const isRangeOfMotionTest =
     !isMuscleTest &&
+    !isTotalSpineRomTest &&
     (testName.includes("flexion") ||
     testName.includes("extension") ||
     testName.includes("rotation") ||
@@ -1254,6 +1341,10 @@ export default function TestData() {
     testName.includes("adduction") ||
     testName.includes("supination") ||
     testName.includes("pronation") ||
+    testName.includes("inversion") ||
+    testName.includes("eversion") ||
+    testName.includes("radial") ||
+    testName.includes("ulnar") ||
     testName.includes("range") ||
     testName.includes("motion"));
   const isGripTest = testName.includes("grip") || testName.includes("pinch");
@@ -1268,23 +1359,87 @@ export default function TestData() {
   const isLiftTest = testName.includes("lift") || testName.includes("carry");
   const liftUnit = normalizeWeightUnit(currentTest?.unitMeasure);
 
+  // Helper function to format test name with (Muscle Test), (Total Spine ROM), or (ROM) suffix
+  const formatTestName = (name: string, testId: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean): string => {
+    if (isMusc) {
+      // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
+      const parts = name.split(/\s+/);
+      if (parts.length > 1) {
+        const bodyPart = parts[0];
+        const testType = parts.slice(1).join(" ");
+        return `${bodyPart} - ${testType} (Muscle Test)`;
+      }
+      return name;
+    }
+    if (isTotalSpine) {
+      // For Total Spine ROM tests: "Cervical Flexion/Extension" -> "Cervical - Flexion/Extension (Total Spine ROM)"
+      const parts = name.split(/\s+/);
+      if (parts.length > 1) {
+        const bodyPart = parts[0];
+        const testType = parts.slice(1).join(" ");
+        return `${bodyPart} - ${testType} (Total Spine ROM)`;
+      }
+      return `${name} (Total Spine ROM)`;
+    }
+    if (isROM) {
+      // For ROM tests: append (ROM) at the end
+      // Handle "Left Side - X" or "Right Side - X" format
+      if (name.includes("Side -")) {
+        return `${name} (ROM)`;
+      }
+
+      // For tests without side (Extremity tests), add side from testId
+      const side = testId.endsWith("-left") ? "Left Side" : testId.endsWith("-right") ? "Right Side" : null;
+      if (side) {
+        return `${side} - ${name} (ROM)`;
+      }
+
+      // Fallback: just append (ROM)
+      return `${name} (ROM)`;
+    }
+    return name;
+  };
+
   // Determine ROM paired labels (e.g., Flexion/Extension) if applicable
   const getRomPairLabels = (): [string, string] | null => {
     const id = (currentTest?.testId || "").toLowerCase();
     const nameLower = (currentTest?.testName || "").toLowerCase();
     const hay = `${id} ${nameLower}`;
+
+    // Check for flexion-extension pattern
     if (
       hay.includes("flexion-extension") ||
       hay.includes("flexion/extension")
     ) {
       return ["Flexion", "Extension"];
     }
+
+    // Check for dorsi-plantar pattern
+    if (
+      hay.includes("dorsi-plantar") ||
+      hay.includes("dorsi/plantar") ||
+      hay.includes("dorsiplantar")
+    ) {
+      return ["Dorsi Flexion", "Plantar Flexion"];
+    }
+
+    // Check for inversion-eversion pattern
+    if (
+      hay.includes("inversion-eversion") ||
+      hay.includes("inversion/eversion")
+    ) {
+      return ["Inversion", "Eversion"];
+    }
+
+    // Check for supination-pronation pattern
     if (
       hay.includes("supination-pronation") ||
       hay.includes("supination/pronation")
     ) {
       return ["Supination", "Pronation"];
     }
+
+    // Check for internal-external rotation pattern
     if (
       hay.includes("internal-external-rotation") ||
       hay.includes("internal/external rotation") ||
@@ -1293,16 +1448,25 @@ export default function TestData() {
     ) {
       return ["Internal Rotation", "External Rotation"];
     }
+
+    // Check for abduction-adduction pattern
     if (
       hay.includes("abduction-adduction") ||
       hay.includes("abduction/adduction")
     ) {
       return ["Abduction", "Adduction"];
     }
+
     return null;
   };
 
   const romPair = getRomPairLabels();
+
+  // Check if this is any type of ROM test (includes both Extremity ROM and Total Spine ROM)
+  const isAnyRomTest = isRangeOfMotionTest || isTotalSpineRomTest;
+
+  // Check if we should display movement pair labels (for ROM tests or muscle tests with compound movements)
+  const shouldDisplayMovementPairs = isAnyRomTest || (isMuscleTest && romPair);
 
   const updateCurrentTest = (updates: Partial<TestData>) => {
     setTestDataState((prev) => ({
@@ -1786,7 +1950,7 @@ export default function TestData() {
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center sm:text-left">
-                  {isMuscleTest ? "Muscle Test – " : ""}{currentTest.testName}
+                  {formatTestName(currentTest.testName, currentTest.testId, isMuscleTest, isRangeOfMotionTest, isTotalSpineRomTest)}
                 </h1>
                 <Button
                   variant="outline"
@@ -1874,7 +2038,7 @@ export default function TestData() {
                 <Card className="shadow-lg">
                   <CardHeader className="bg-blue-400 text-white">
                     <CardTitle>
-                      {isRangeOfMotionTest
+                      {shouldDisplayMovementPairs
                         ? romPair?.[0] || "Left"
                         : isBalanceTest
                           ? "Trial 1"
@@ -1891,7 +2055,7 @@ export default function TestData() {
                         <div className="text-sm">
                           {isMuscleTest
                             ? "Force/Level"
-                            : isRangeOfMotionTest
+                            : isAnyRomTest
                             ? "Average Degrees"
                             : isCardioTest
                               ? "Average Heart Rate"
@@ -1901,7 +2065,7 @@ export default function TestData() {
                         </div>
                         <div className="text-xl font-bold">
                           {calculateAverage(currentTest.leftMeasurements)}
-                          {isRangeOfMotionTest
+                          {isAnyRomTest
                             ? "°"
                             : isCardioTest
                               ? " bpm"
@@ -1919,11 +2083,11 @@ export default function TestData() {
                           %
                         </div>
                       </div>
-                      {(isForceTest || isRangeOfMotionTest) && (
+                      {(isForceTest || shouldDisplayMovementPairs) && (
                         <div className="bg-blue-400 text-white p-3 rounded text-center">
                           <div className="text-sm">
-                            {isRangeOfMotionTest
-                              ? "Left to Right Difference"
+                            {shouldDisplayMovementPairs
+                              ? `${romPair?.[0] || "Left"} to ${romPair?.[1] || "Right"} Difference`
                               : "Left to Right Deficiency"}
                           </div>
                           <div className="text-xl font-bold">
@@ -1941,8 +2105,8 @@ export default function TestData() {
                           <>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isRangeOfMotionTest
-                                  ? "Left Norm"
+                                {shouldDisplayMovementPairs
+                                  ? `${romPair?.[0] || "Left"} Norm`
                                   : "Left Norm"}
                               </div>
                               <div className="text-xl font-bold">
@@ -1951,8 +2115,8 @@ export default function TestData() {
                             </div>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isRangeOfMotionTest
-                                  ? "Left % of Norm"
+                                {shouldDisplayMovementPairs
+                                  ? `${romPair?.[0] || "Left"} % of Norm`
                                   : "Left % of Norm"}
                               </div>
                               <div className="text-xl font-bold">
@@ -2223,14 +2387,14 @@ export default function TestData() {
                     <div className="grid grid-cols-2 gap-2 sm:gap-4 items-start text-xs sm:text-sm">
                       <div className="space-y-2">
                         <div className="text-center font-bold text-sm py-2 text-blue-700">
-                          {isRangeOfMotionTest
-                            ? romPair?.[0] || "Left"
-                            : isBalanceTest
-                              ? "Trial 1"
-                              : isCardioTest
-                                ? "Pre-Test"
-                                : "Left"}
-                        </div>
+                        {shouldDisplayMovementPairs
+                          ? romPair?.[0] || "Left"
+                          : isBalanceTest
+                            ? "Trial 1"
+                            : isCardioTest
+                              ? "Pre-Test"
+                              : "Left"}
+                      </div>
                         {[1, 2, 3, 4, 5, 6].map((trialNum) => {
                           const key =
                             `trial${trialNum}` as keyof TestMeasurement;
@@ -2265,7 +2429,7 @@ export default function TestData() {
 
                       <div className="space-y-2">
                         <div className="text-center font-bold text-sm py-2 text-green-700">
-                          {isRangeOfMotionTest
+                          {shouldDisplayMovementPairs
                             ? romPair?.[1] || "Right"
                             : isBalanceTest
                               ? "Trial 2"
@@ -2322,7 +2486,7 @@ export default function TestData() {
                 <Card className="shadow-lg">
                   <CardHeader className="bg-blue-400 text-white">
                     <CardTitle>
-                      {isRangeOfMotionTest
+                      {shouldDisplayMovementPairs
                         ? romPair?.[1] || "Right"
                         : isBalanceTest
                           ? "Trial 2"
@@ -2339,7 +2503,7 @@ export default function TestData() {
                         <div className="text-sm">
                           {isMuscleTest
                             ? "Force/Level"
-                            : isRangeOfMotionTest
+                            : isAnyRomTest
                             ? "Average Degrees"
                             : isCardioTest
                               ? "Average Heart Rate"
@@ -2349,7 +2513,7 @@ export default function TestData() {
                         </div>
                         <div className="text-xl font-bold">
                           {calculateAverage(currentTest.rightMeasurements)}
-                          {isRangeOfMotionTest
+                          {isAnyRomTest
                             ? "°"
                             : isCardioTest
                               ? " bpm"
@@ -2367,11 +2531,11 @@ export default function TestData() {
                           %
                         </div>
                       </div>
-                      {(isForceTest || isRangeOfMotionTest) && (
+                      {(isForceTest || shouldDisplayMovementPairs) && (
                         <div className="bg-blue-400 text-white p-3 rounded text-center">
                           <div className="text-sm">
-                            {isRangeOfMotionTest
-                              ? "Right to Left Difference"
+                            {shouldDisplayMovementPairs
+                              ? `${romPair?.[1] || "Right"} to ${romPair?.[0] || "Left"} Difference`
                               : "Right to Left Deficiency"}
                           </div>
                           <div className="text-xl font-bold">
@@ -2389,8 +2553,8 @@ export default function TestData() {
                           <>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isRangeOfMotionTest
-                                  ? "Right Norm"
+                                {shouldDisplayMovementPairs
+                                  ? `${romPair?.[1] || "Right"} Norm`
                                   : "Right Norm"}
                               </div>
                               <div className="text-xl font-bold">
@@ -2399,8 +2563,8 @@ export default function TestData() {
                             </div>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isRangeOfMotionTest
-                                  ? "Right % of Norm"
+                                {shouldDisplayMovementPairs
+                                  ? `${romPair?.[1] || "Right"} % of Norm`
                                   : "Right % of Norm"}
                               </div>
                               <div className="text-xl font-bold">
