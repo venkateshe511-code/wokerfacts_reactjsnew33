@@ -1269,45 +1269,32 @@ export default function TestData() {
   const liftUnit = normalizeWeightUnit(currentTest?.unitMeasure);
 
   // Helper function to format test name with (Muscle Test) or (ROM) suffix
-  const formatTestName = (name: string, isMusc: boolean, isROM: boolean): string => {
+  const formatTestName = (name: string, testId: string, isMusc: boolean, isROM: boolean): string => {
     if (isMusc) {
-      // For muscle tests: "Cervical Flexion" -> "Cervical (Muscle Test) - Flexion"
+      // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
       const parts = name.split(/\s+/);
       if (parts.length > 1) {
         const bodyPart = parts[0];
         const testType = parts.slice(1).join(" ");
-        return `${bodyPart} (Muscle Test) - ${testType}`;
+        return `${bodyPart} - ${testType} (Muscle Test)`;
       }
       return name;
     }
     if (isROM) {
-      // For ROM tests: "Left Side - Shoulder Flexion/Extension" -> "Left Side - Shoulder (ROM) - Flexion/Extension"
-      // Find the body part (the word before the last motion descriptor)
-      const motionKeywords = ["flexion", "extension", "rotation", "abduction", "adduction", "pronation", "supination"];
-      const nameLower = name.toLowerCase();
-
+      // For ROM tests: append (ROM) at the end
       // Handle "Left Side - X" or "Right Side - X" format
       if (name.includes("Side -")) {
-        const sideMatch = name.match(/^(Left Side|Right Side) - (.+?)(\s+Flexion|\s+Extension|\s+Rotation|\s+Abduction|\s+Adduction|\s+Pronation|\s+Supination)/i);
-        if (sideMatch) {
-          const side = sideMatch[1];
-          const bodyPart = sideMatch[2];
-          const motion = sideMatch[3].trim();
-          return `${side} - ${bodyPart} (ROM) - ${motion}`;
-        }
+        return `${name} (ROM)`;
       }
 
-      // For simple cases like "Cervical Flexion/Extension"
-      for (const keyword of motionKeywords) {
-        if (nameLower.includes(keyword)) {
-          const motionIndex = nameLower.indexOf(keyword);
-          const bodyPart = name.substring(0, motionIndex).trim();
-          const motion = name.substring(motionIndex).trim();
-          if (bodyPart) {
-            return `${bodyPart} (ROM) - ${motion}`;
-          }
-        }
+      // For tests without side (Extremity tests), add side from testId
+      const side = testId.endsWith("-left") ? "Left Side" : testId.endsWith("-right") ? "Right Side" : null;
+      if (side) {
+        return `${side} - ${name} (ROM)`;
       }
+
+      // Fallback: just append (ROM)
+      return `${name} (ROM)`;
     }
     return name;
   };
@@ -1322,6 +1309,19 @@ export default function TestData() {
       hay.includes("flexion/extension")
     ) {
       return ["Flexion", "Extension"];
+    }
+    if (
+      hay.includes("dorsi-plantar") ||
+      hay.includes("dorsi/plantar") ||
+      hay.includes("dorsiplantar")
+    ) {
+      return ["Dorsi Flexion", "Plantar Flexion"];
+    }
+    if (
+      hay.includes("inversion-eversion") ||
+      hay.includes("inversion/eversion")
+    ) {
+      return ["Inversion", "Eversion"];
     }
     if (
       hay.includes("supination-pronation") ||
@@ -1830,7 +1830,7 @@ export default function TestData() {
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center sm:text-left">
-                  {formatTestName(currentTest.testName, isMuscleTest, isRangeOfMotionTest)}
+                  {formatTestName(currentTest.testName, currentTest.testId, isMuscleTest, isRangeOfMotionTest)}
                 </h1>
                 <Button
                   variant="outline"
