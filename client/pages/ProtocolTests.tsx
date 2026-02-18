@@ -316,7 +316,7 @@ const testGroups = {
   ],
   "rom-spine": [
     {
-      name: "Cervical (Total Spine) (ROM)",
+      name: "Cervical (Total Spine ROM)",
       id: "cervical-total-spine",
       tests: [
         { id: "cervical-spine-flexion-extension", name: "Flexion/Extension" },
@@ -325,7 +325,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Lumbar (Total Spine) (ROM)",
+      name: "Lumbar (Total Spine ROM)",
       id: "lumbar-total-spine",
       tests: [
         { id: "lumbar-spine-flexion-extension", name: "Flexion/Extension" },
@@ -334,7 +334,7 @@ const testGroups = {
       ],
     },
     {
-      name: "Thoracic (Total Spine) (ROM)",
+      name: "Thoracic (Total Spine ROM)",
       id: "thoracic-total-spine",
       tests: [
         { id: "thoracic-spine-flexion", name: "Flexion" },
