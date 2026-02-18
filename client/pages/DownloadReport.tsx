@@ -4712,10 +4712,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
             const needsPageBreak = testIndex === 0;
 
             const illos = getSampleIllustrations(test.testId || testName);
+            const formattedTestName = formatTestName(test.testName, isMuscleTest, isRangeOfMotion, isTotalSpineRom);
             return `
                 <div class="test-section ${isPinchTest ? "pinch-test" : ""}" style="page-break-before: always; padding: 20px 0; position: relative;">
                     <h4 class="test-header" style="font-weight: bold; margin-bottom: 16px; color: #4472C4;">${
-                      test.testName
+                      formattedTestName
                     }</h4>
 
                     <!-- Full height vertical line starting below the heading (moved left to match occupational test) -->
