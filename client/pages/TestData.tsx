@@ -1401,12 +1401,16 @@ export default function TestData() {
     const id = (currentTest?.testId || "").toLowerCase();
     const nameLower = (currentTest?.testName || "").toLowerCase();
     const hay = `${id} ${nameLower}`;
+
+    // Check for flexion-extension pattern
     if (
       hay.includes("flexion-extension") ||
       hay.includes("flexion/extension")
     ) {
       return ["Flexion", "Extension"];
     }
+
+    // Check for dorsi-plantar pattern
     if (
       hay.includes("dorsi-plantar") ||
       hay.includes("dorsi/plantar") ||
@@ -1414,18 +1418,24 @@ export default function TestData() {
     ) {
       return ["Dorsi Flexion", "Plantar Flexion"];
     }
+
+    // Check for inversion-eversion pattern
     if (
       hay.includes("inversion-eversion") ||
       hay.includes("inversion/eversion")
     ) {
       return ["Inversion", "Eversion"];
     }
+
+    // Check for supination-pronation pattern
     if (
       hay.includes("supination-pronation") ||
       hay.includes("supination/pronation")
     ) {
       return ["Supination", "Pronation"];
     }
+
+    // Check for internal-external rotation pattern
     if (
       hay.includes("internal-external-rotation") ||
       hay.includes("internal/external rotation") ||
@@ -1434,12 +1444,15 @@ export default function TestData() {
     ) {
       return ["Internal Rotation", "External Rotation"];
     }
+
+    // Check for abduction-adduction pattern
     if (
       hay.includes("abduction-adduction") ||
       hay.includes("abduction/adduction")
     ) {
       return ["Abduction", "Adduction"];
     }
+
     return null;
   };
 
@@ -1447,6 +1460,9 @@ export default function TestData() {
 
   // Check if this is any type of ROM test (includes both Extremity ROM and Total Spine ROM)
   const isAnyRomTest = isRangeOfMotionTest || isTotalSpineRomTest;
+
+  // Check if we should display movement pair labels (for ROM tests or muscle tests with compound movements)
+  const shouldDisplayMovementPairs = isAnyRomTest || (isMuscleTest && romPair);
 
   const updateCurrentTest = (updates: Partial<TestData>) => {
     setTestDataState((prev) => ({
@@ -2018,7 +2034,7 @@ export default function TestData() {
                 <Card className="shadow-lg">
                   <CardHeader className="bg-blue-400 text-white">
                     <CardTitle>
-                      {isAnyRomTest
+                      {shouldDisplayMovementPairs
                         ? romPair?.[0] || "Left"
                         : isBalanceTest
                           ? "Trial 1"
@@ -2063,10 +2079,10 @@ export default function TestData() {
                           %
                         </div>
                       </div>
-                      {(isForceTest || isAnyRomTest) && (
+                      {(isForceTest || shouldDisplayMovementPairs) && (
                         <div className="bg-blue-400 text-white p-3 rounded text-center">
                           <div className="text-sm">
-                            {isAnyRomTest
+                            {shouldDisplayMovementPairs
                               ? `${romPair?.[0] || "Left"} to ${romPair?.[1] || "Right"} Difference`
                               : "Left to Right Deficiency"}
                           </div>
@@ -2085,7 +2101,7 @@ export default function TestData() {
                           <>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isAnyRomTest
+                                {shouldDisplayMovementPairs
                                   ? `${romPair?.[0] || "Left"} Norm`
                                   : "Left Norm"}
                               </div>
@@ -2095,7 +2111,7 @@ export default function TestData() {
                             </div>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isAnyRomTest
+                                {shouldDisplayMovementPairs
                                   ? `${romPair?.[0] || "Left"} % of Norm`
                                   : "Left % of Norm"}
                               </div>
@@ -2367,7 +2383,7 @@ export default function TestData() {
                     <div className="grid grid-cols-2 gap-2 sm:gap-4 items-start text-xs sm:text-sm">
                       <div className="space-y-2">
                         <div className="text-center font-bold text-sm py-2 text-blue-700">
-                        {isAnyRomTest
+                        {shouldDisplayMovementPairs
                           ? romPair?.[0] || "Left"
                           : isBalanceTest
                             ? "Trial 1"
@@ -2409,7 +2425,7 @@ export default function TestData() {
 
                       <div className="space-y-2">
                         <div className="text-center font-bold text-sm py-2 text-green-700">
-                          {isAnyRomTest
+                          {shouldDisplayMovementPairs
                             ? romPair?.[1] || "Right"
                             : isBalanceTest
                               ? "Trial 2"
@@ -2466,7 +2482,7 @@ export default function TestData() {
                 <Card className="shadow-lg">
                   <CardHeader className="bg-blue-400 text-white">
                     <CardTitle>
-                      {isAnyRomTest
+                      {shouldDisplayMovementPairs
                         ? romPair?.[1] || "Right"
                         : isBalanceTest
                           ? "Trial 2"
@@ -2511,10 +2527,10 @@ export default function TestData() {
                           %
                         </div>
                       </div>
-                      {(isForceTest || isAnyRomTest) && (
+                      {(isForceTest || shouldDisplayMovementPairs) && (
                         <div className="bg-blue-400 text-white p-3 rounded text-center">
                           <div className="text-sm">
-                            {isAnyRomTest
+                            {shouldDisplayMovementPairs
                               ? `${romPair?.[1] || "Right"} to ${romPair?.[0] || "Left"} Difference`
                               : "Right to Left Deficiency"}
                           </div>
@@ -2533,7 +2549,7 @@ export default function TestData() {
                           <>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isAnyRomTest
+                                {shouldDisplayMovementPairs
                                   ? `${romPair?.[1] || "Right"} Norm`
                                   : "Right Norm"}
                               </div>
@@ -2543,7 +2559,7 @@ export default function TestData() {
                             </div>
                             <div className="bg-blue-400 text-white p-3 rounded text-center">
                               <div className="text-sm">
-                                {isAnyRomTest
+                                {shouldDisplayMovementPairs
                                   ? `${romPair?.[1] || "Right"} % of Norm`
                                   : "Right % of Norm"}
                               </div>
