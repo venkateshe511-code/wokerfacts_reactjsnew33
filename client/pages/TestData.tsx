@@ -1268,6 +1268,50 @@ export default function TestData() {
   const isLiftTest = testName.includes("lift") || testName.includes("carry");
   const liftUnit = normalizeWeightUnit(currentTest?.unitMeasure);
 
+  // Helper function to format test name with (Muscle Test) or (ROM) suffix
+  const formatTestName = (name: string, isMusc: boolean, isROM: boolean): string => {
+    if (isMusc) {
+      // For muscle tests: "Cervical Flexion" -> "Cervical (Muscle Test) - Flexion"
+      const parts = name.split(/\s+/);
+      if (parts.length > 1) {
+        const bodyPart = parts[0];
+        const testType = parts.slice(1).join(" ");
+        return `${bodyPart} (Muscle Test) - ${testType}`;
+      }
+      return name;
+    }
+    if (isROM) {
+      // For ROM tests: "Left Side - Shoulder Flexion/Extension" -> "Left Side - Shoulder (ROM) - Flexion/Extension"
+      // Find the body part (the word before the last motion descriptor)
+      const motionKeywords = ["flexion", "extension", "rotation", "abduction", "adduction", "pronation", "supination"];
+      const nameLower = name.toLowerCase();
+
+      // Handle "Left Side - X" or "Right Side - X" format
+      if (name.includes("Side -")) {
+        const sideMatch = name.match(/^(Left Side|Right Side) - (.+?)(\s+Flexion|\s+Extension|\s+Rotation|\s+Abduction|\s+Adduction|\s+Pronation|\s+Supination)/i);
+        if (sideMatch) {
+          const side = sideMatch[1];
+          const bodyPart = sideMatch[2];
+          const motion = sideMatch[3].trim();
+          return `${side} - ${bodyPart} (ROM) - ${motion}`;
+        }
+      }
+
+      // For simple cases like "Cervical Flexion/Extension"
+      for (const keyword of motionKeywords) {
+        if (nameLower.includes(keyword)) {
+          const motionIndex = nameLower.indexOf(keyword);
+          const bodyPart = name.substring(0, motionIndex).trim();
+          const motion = name.substring(motionIndex).trim();
+          if (bodyPart) {
+            return `${bodyPart} (ROM) - ${motion}`;
+          }
+        }
+      }
+    }
+    return name;
+  };
+
   // Determine ROM paired labels (e.g., Flexion/Extension) if applicable
   const getRomPairLabels = (): [string, string] | null => {
     const id = (currentTest?.testId || "").toLowerCase();
@@ -1786,7 +1830,7 @@ export default function TestData() {
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center sm:text-left">
-                  {isMuscleTest ? "Muscle Test – " : ""}{currentTest.testName}
+                  {formatTestName(currentTest.testName, isMuscleTest, isRangeOfMotionTest)}
                 </h1>
                 <Button
                   variant="outline"
