@@ -614,6 +614,16 @@ export default function TestData() {
       "4th-toe-mp-dorsi-plantar-flexion-right": "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
       "5th-toe-mp-dorsi-plantar-flexion-right": "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
 
+      // Total Spine ROM Tests
+      "cervical-spine-flexion-extension": "Cervical Flexion/Extension",
+      "cervical-spine-lateral-flexion": "Cervical Lateral Flexion",
+      "cervical-spine-rotation": "Cervical Rotation",
+      "lumbar-spine-flexion-extension": "Lumbar Flexion/Extension",
+      "lumbar-spine-lateral-flexion": "Lumbar Lateral Flexion",
+      "lumbar-spine-straight-leg-raise": "Lumbar Straight Leg Raise",
+      "thoracic-spine-flexion": "Thoracic Flexion",
+      "thoracic-spine-rotation": "Thoracic Rotation",
+
       // Muscle Tests
       "cervical-flexion-extension": "Cervical Flexion/Extension",
       "cervical-lateral-flexion": "Cervical Lateral Flexion",
@@ -1159,6 +1169,16 @@ export default function TestData() {
         "5th-toe-mp-dorsi-plantar-flexion-right":
           "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
 
+        // Total Spine ROM Tests
+        "cervical-spine-flexion-extension": "Cervical Flexion/Extension",
+        "cervical-spine-lateral-flexion": "Cervical Lateral Flexion",
+        "cervical-spine-rotation": "Cervical Rotation",
+        "lumbar-spine-flexion-extension": "Lumbar Flexion/Extension",
+        "lumbar-spine-lateral-flexion": "Lumbar Lateral Flexion",
+        "lumbar-spine-straight-leg-raise": "Lumbar Straight Leg Raise",
+        "thoracic-spine-flexion": "Thoracic Flexion",
+        "thoracic-spine-rotation": "Thoracic Rotation",
+
         // Muscle Tests
         "cervical-flexion-extension": "Cervical Flexion/Extension",
         "cervical-lateral-flexion": "Cervical Lateral Flexion",
@@ -1306,8 +1326,14 @@ export default function TestData() {
      !testId.includes("spine-") &&
      (testId.includes("flexion") || testId.includes("rotation") || testId.includes("lateral")));
 
+  const isTotalSpineRomTest =
+    !isMuscleTest &&
+    testId.includes("spine-") &&
+    (testId.includes("cervical-spine") || testId.includes("lumbar-spine") || testId.includes("thoracic-spine"));
+
   const isRangeOfMotionTest =
     !isMuscleTest &&
+    !isTotalSpineRomTest &&
     (testName.includes("flexion") ||
     testName.includes("extension") ||
     testName.includes("rotation") ||
@@ -1329,8 +1355,8 @@ export default function TestData() {
   const isLiftTest = testName.includes("lift") || testName.includes("carry");
   const liftUnit = normalizeWeightUnit(currentTest?.unitMeasure);
 
-  // Helper function to format test name with (Muscle Test) or (ROM) suffix
-  const formatTestName = (name: string, testId: string, isMusc: boolean, isROM: boolean): string => {
+  // Helper function to format test name with (Muscle Test), (Total Spine ROM), or (ROM) suffix
+  const formatTestName = (name: string, testId: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean): string => {
     if (isMusc) {
       // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
       const parts = name.split(/\s+/);
@@ -1340,6 +1366,16 @@ export default function TestData() {
         return `${bodyPart} - ${testType} (Muscle Test)`;
       }
       return name;
+    }
+    if (isTotalSpine) {
+      // For Total Spine ROM tests: "Cervical Flexion/Extension" -> "Cervical - Flexion/Extension (Total Spine ROM)"
+      const parts = name.split(/\s+/);
+      if (parts.length > 1) {
+        const bodyPart = parts[0];
+        const testType = parts.slice(1).join(" ");
+        return `${bodyPart} - ${testType} (Total Spine ROM)`;
+      }
+      return `${name} (Total Spine ROM)`;
     }
     if (isROM) {
       // For ROM tests: append (ROM) at the end
@@ -1891,7 +1927,7 @@ export default function TestData() {
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
                 <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center sm:text-left">
-                  {formatTestName(currentTest.testName, currentTest.testId, isMuscleTest, isRangeOfMotionTest)}
+                  {formatTestName(currentTest.testName, currentTest.testId, isMuscleTest, isRangeOfMotionTest, isTotalSpineRomTest)}
                 </h1>
                 <Button
                   variant="outline"
