@@ -525,13 +525,13 @@ const testGroups = {
       tests: [
         {
           id: "thumb-ip-flexion-extension-left",
-          name: "Left Side - Thumb IP Flexion/Extension",
+          name: "Thumb IP Flexion/Extension",
         },
         {
           id: "thumb-mp-flexion-extension-left",
-          name: "Left Side - Thumb MP Flexion/Extension",
+          name: "Thumb MP Flexion/Extension",
         },
-        { id: "thumb-abduction-left", name: "Left Side - Thumb Abduction" },
+        { id: "thumb-abduction-left", name: "Thumb Abduction" },
       ],
     },
     {
@@ -540,13 +540,13 @@ const testGroups = {
       tests: [
         {
           id: "thumb-ip-flexion-extension-right",
-          name: "Right Side - Thumb IP Flexion/Extension",
+          name: "Thumb IP Flexion/Extension",
         },
         {
           id: "thumb-mp-flexion-extension-right",
-          name: "Right Side - Thumb MP Flexion/Extension",
+          name: "Thumb MP Flexion/Extension",
         },
-        { id: "thumb-abduction-right", name: "Right Side - Thumb Abduction" },
+        { id: "thumb-abduction-right", name: "Thumb Abduction" },
       ],
     },
     {
@@ -555,15 +555,15 @@ const testGroups = {
       tests: [
         {
           id: "index-dip-flexion-extension-left",
-          name: "Left Side - Index Finger DIP Flexion/Extension",
+          name: "Index Finger DIP Flexion/Extension",
         },
         {
           id: "index-pip-flexion-extension-left",
-          name: "Left Side - Index Finger PIP Flexion/Extension",
+          name: "Index Finger PIP Flexion/Extension",
         },
         {
           id: "index-mp-flexion-extension-left",
-          name: "Left Side - Index Finger MP Flexion/Extension",
+          name: "Index Finger MP Flexion/Extension",
         },
       ],
     },
@@ -573,15 +573,15 @@ const testGroups = {
       tests: [
         {
           id: "index-dip-flexion-extension-right",
-          name: "Right Side - Index Finger DIP Flexion/Extension",
+          name: "Index Finger DIP Flexion/Extension",
         },
         {
           id: "index-pip-flexion-extension-right",
-          name: "Right Side - Index Finger PIP Flexion/Extension",
+          name: "Index Finger PIP Flexion/Extension",
         },
         {
           id: "index-mp-flexion-extension-right",
-          name: "Right Side - Index Finger MP Flexion/Extension",
+          name: "Index Finger MP Flexion/Extension",
         },
       ],
     },
@@ -591,15 +591,15 @@ const testGroups = {
       tests: [
         {
           id: "middle-dip-flexion-extension-left",
-          name: "Left Side - Middle Finger DIP Flexion/Extension",
+          name: "Middle Finger DIP Flexion/Extension",
         },
         {
           id: "middle-pip-flexion-extension-left",
-          name: "Left Side - Middle Finger PIP Flexion/Extension",
+          name: "Middle Finger PIP Flexion/Extension",
         },
         {
           id: "middle-mp-flexion-extension-left",
-          name: "Left Side - Middle Finger MP Flexion/Extension",
+          name: "Middle Finger MP Flexion/Extension",
         },
       ],
     },
@@ -609,15 +609,15 @@ const testGroups = {
       tests: [
         {
           id: "middle-dip-flexion-extension-right",
-          name: "Right Side - Middle Finger DIP Flexion/Extension",
+          name: "Middle Finger DIP Flexion/Extension",
         },
         {
           id: "middle-pip-flexion-extension-right",
-          name: "Right Side - Middle Finger PIP Flexion/Extension",
+          name: "Middle Finger PIP Flexion/Extension",
         },
         {
           id: "middle-mp-flexion-extension-right",
-          name: "Right Side - Middle Finger MP Flexion/Extension",
+          name: "Middle Finger MP Flexion/Extension",
         },
       ],
     },
@@ -627,15 +627,15 @@ const testGroups = {
       tests: [
         {
           id: "ring-dip-flexion-extension-left",
-          name: "Left Side - Ring Finger DIP Flexion/Extension",
+          name: "Ring Finger DIP Flexion/Extension",
         },
         {
           id: "ring-pip-flexion-extension-left",
-          name: "Left Side - Ring Finger PIP Flexion/Extension",
+          name: "Ring Finger PIP Flexion/Extension",
         },
         {
           id: "ring-mp-flexion-extension-left",
-          name: "Left Side - Ring Finger MP Flexion/Extension",
+          name: "Ring Finger MP Flexion/Extension",
         },
       ],
     },
@@ -645,15 +645,15 @@ const testGroups = {
       tests: [
         {
           id: "ring-dip-flexion-extension-right",
-          name: "Right Side - Ring Finger DIP Flexion/Extension",
+          name: "Ring Finger DIP Flexion/Extension",
         },
         {
           id: "ring-pip-flexion-extension-right",
-          name: "Right Side - Ring Finger PIP Flexion/Extension",
+          name: "Ring Finger PIP Flexion/Extension",
         },
         {
           id: "ring-mp-flexion-extension-right",
-          name: "Right Side - Ring Finger MP Flexion/Extension",
+          name: "Ring Finger MP Flexion/Extension",
         },
       ],
     },
@@ -663,15 +663,15 @@ const testGroups = {
       tests: [
         {
           id: "little-dip-flexion-extension-left",
-          name: "Left Side - Little Finger DIP Flexion/Extension",
+          name: "Little Finger DIP Flexion/Extension",
         },
         {
           id: "little-pip-flexion-extension-left",
-          name: "Left Side - Little Finger PIP Flexion/Extension",
+          name: "Little Finger PIP Flexion/Extension",
         },
         {
           id: "little-mp-flexion-extension-left",
-          name: "Left Side - Little Finger MP Flexion/Extension",
+          name: "Little Finger MP Flexion/Extension",
         },
       ],
     },
@@ -681,15 +681,15 @@ const testGroups = {
       tests: [
         {
           id: "little-dip-flexion-extension-right",
-          name: "Right Side - Little Finger DIP Flexion/Extension",
+          name: "Little Finger DIP Flexion/Extension",
         },
         {
           id: "little-pip-flexion-extension-right",
-          name: "Right Side - Little Finger PIP Flexion/Extension",
+          name: "Little Finger PIP Flexion/Extension",
         },
         {
           id: "little-mp-flexion-extension-right",
-          name: "Right Side - Little Finger MP Flexion/Extension",
+          name: "Little Finger MP Flexion/Extension",
         },
       ],
     },
@@ -699,11 +699,11 @@ const testGroups = {
       tests: [
         {
           id: "great-toe-ip-flexion-left",
-          name: "Left Side - Great Toe IP Flexion",
+          name: "Great Toe IP Flexion",
         },
         {
           id: "great-toe-mp-dorsi-plantar-flexion-left",
-          name: "Left Side - Great Toe MP Dorsi/Plantar Flexion",
+          name: "Great Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -713,11 +713,11 @@ const testGroups = {
       tests: [
         {
           id: "great-toe-ip-flexion-right",
-          name: "Right Side - Great Toe IP Flexion",
+          name: "Great Toe IP Flexion",
         },
         {
           id: "great-toe-mp-dorsi-plantar-flexion-right",
-          name: "Right Side - Great Toe MP Dorsi/Plantar Flexion",
+          name: "Great Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -727,7 +727,7 @@ const testGroups = {
       tests: [
         {
           id: "2nd-toe-mp-dorsi-plantar-flexion-left",
-          name: "Left Side - 2nd Toe MP Dorsi/Plantar Flexion",
+          name: "2nd Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -737,7 +737,7 @@ const testGroups = {
       tests: [
         {
           id: "2nd-toe-mp-dorsi-plantar-flexion-right",
-          name: "Right Side - 2nd Toe MP Dorsi/Plantar Flexion",
+          name: "2nd Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -747,7 +747,7 @@ const testGroups = {
       tests: [
         {
           id: "3rd-toe-mp-dorsi-plantar-flexion-left",
-          name: "Left Side - 3rd Toe MP Dorsi/Plantar Flexion",
+          name: "3rd Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -757,7 +757,7 @@ const testGroups = {
       tests: [
         {
           id: "3rd-toe-mp-dorsi-plantar-flexion-right",
-          name: "Right Side - 3rd Toe MP Dorsi/Plantar Flexion",
+          name: "3rd Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -767,7 +767,7 @@ const testGroups = {
       tests: [
         {
           id: "4th-toe-mp-dorsi-plantar-flexion-left",
-          name: "Left Side - 4th Toe MP Dorsi/Plantar Flexion",
+          name: "4th Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -777,7 +777,7 @@ const testGroups = {
       tests: [
         {
           id: "4th-toe-mp-dorsi-plantar-flexion-right",
-          name: "Right Side - 4th Toe MP Dorsi/Plantar Flexion",
+          name: "4th Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -787,7 +787,7 @@ const testGroups = {
       tests: [
         {
           id: "5th-toe-mp-dorsi-plantar-flexion-left",
-          name: "Left Side - 5th Toe MP Dorsi/Plantar Flexion",
+          name: "5th Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
@@ -797,7 +797,7 @@ const testGroups = {
       tests: [
         {
           id: "5th-toe-mp-dorsi-plantar-flexion-right",
-          name: "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
+          name: "5th Toe MP Dorsi/Plantar Flexion",
         },
       ],
     },
