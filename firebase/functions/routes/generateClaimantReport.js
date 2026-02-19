@@ -3332,7 +3332,7 @@ const testNames = {
     "Right Side - 5th Toe MP Dorsi/Plantar Flexion",
 };
 
-function formatTestName(testId) {
+function formatTestNameFromId(testId) {
   // First check if we have a mapping for this exact ID
   if (testNames[testId]) {
     return testNames[testId];
@@ -3343,6 +3343,82 @@ function formatTestName(testId) {
   if (!testId) return "";
 
   return testId.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+// Format test name with proper labels and suffixes (Muscle Test, ROM, Total Spine ROM)
+// This mirrors ReviewReport.tsx logic
+function formatTestName(name, isMuscleTest, isROM, isTotalSpineRom, testId) {
+  if (isMuscleTest) {
+    // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
+    const parts = name.split(/\s+/);
+    if (parts.length > 1) {
+      const bodyPart = parts[0];
+      const testType = parts.slice(1).join(" ");
+      return `${bodyPart} - ${testType} (Muscle Test)`;
+    }
+    return `${name} (Muscle Test)`;
+  }
+
+  if (isTotalSpineRom) {
+    // For Total Spine ROM: "Cervical Flexion/Extension" -> "Cervical - Flexion/Extension (Total Spine ROM)"
+    const parts = name.split(/\s+/);
+    if (parts.length > 1) {
+      const bodyPart = parts[0];
+      const testType = parts.slice(1).join(" ");
+      return `${bodyPart} - ${testType} (Total Spine ROM)`;
+    }
+    return `${name} (Total Spine ROM)`;
+  }
+
+  if (isROM) {
+    // For ROM tests with side already in name: "Left Side - Elbow Flexion/Extension" -> add (ROM)
+    if (name.includes("Left Side") || name.includes("Right Side")) {
+      if (!name.includes("(ROM)")) {
+        return `${name} (ROM)`;
+      }
+      return name;
+    }
+
+    // Check if this is an extremity ROM test
+    const testIdLower = testId ? testId.toLowerCase() : "";
+    const isExtremityRom = /\b(shoulder-rom|hip-rom|knee-rom|elbow-rom|wrist-rom|ankle-rom)\b/.test(testIdLower);
+
+    // For extremity tests with left/right in testId
+    if (isExtremityRom) {
+      let sideLabel = "";
+      if (testIdLower.includes("-left")) {
+        sideLabel = "Left Side - ";
+      } else if (testIdLower.includes("-right")) {
+        sideLabel = "Right Side - ";
+      }
+      if (sideLabel && !name.includes("Left Side") && !name.includes("Right Side")) {
+        return `${sideLabel}${name} (ROM)`;
+      }
+    }
+
+    // For simple ROM tests: "Cervical Flexion/Extension" -> "Cervical (ROM) - Flexion/Extension"
+    const motionKeywords = ["flexion", "extension", "rotation", "abduction", "adduction", "pronation", "supination", "dorsi", "plantar", "inversion", "eversion", "radial", "ulnar", "internal", "external"];
+    const nameLower = name.toLowerCase();
+    for (const keyword of motionKeywords) {
+      if (nameLower.includes(keyword)) {
+        const motionIndex = nameLower.indexOf(keyword);
+        const bodyPart = name.substring(0, motionIndex).trim();
+        const motion = name.substring(motionIndex).trim();
+        if (bodyPart && !name.includes("(ROM)")) {
+          return `${bodyPart} (ROM) - ${motion}`;
+        }
+      }
+    }
+
+    // Fallback for ROM with no motion keywords
+    if (!name.includes("(ROM)")) {
+      return `${name} (ROM)`;
+    }
+    return name;
+  }
+
+  // No special formatting
+  return name;
 }
 
 async function generateMTMContentDocx(mtmData, mainTestData) {
@@ -8509,77 +8585,6 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
     return false;
   };
 
-  // Format test name with proper labels (mirrors ReviewReport.tsx logic)
-  const formatTestName = (name, isMusc, isROM, isTotalSpine, testId) => {
-    if (isMusc) {
-      // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
-      const parts = name.split(/\s+/);
-      if (parts.length > 1) {
-        const bodyPart = parts[0];
-        const testType = parts.slice(1).join(" ");
-        return `${bodyPart} - ${testType} (Muscle Test)`;
-      }
-      return name;
-    }
-    if (isTotalSpine) {
-      // For Total Spine ROM: "Cervical Flexion/Extension" -> "Cervical - Flexion/Extension (Total Spine ROM)"
-      const parts = name.split(/\s+/);
-      if (parts.length > 1) {
-        const bodyPart = parts[0];
-        const testType = parts.slice(1).join(" ");
-        return `${bodyPart} - ${testType} (Total Spine ROM)`;
-      }
-      return `${name} (Total Spine ROM)`;
-    }
-    if (isROM) {
-      // For ROM tests: Handle "Right Side - Extremity Elbow Flexion/Extension" -> "Right Side - Extremity Elbow Flexion/Extension (ROM)"
-      if (name.includes("Right Side") || name.includes("Left Side")) {
-        return `${name} (ROM)`;
-      }
-
-      // Check if this is an extremity ROM test (based on testId keywords: shoulder-rom, hip-rom, knee-rom, etc.)
-      const testIdLower = testId ? testId.toLowerCase() : "";
-      const isExtremityRom = /\b(shoulder-rom|hip-rom|knee-rom|elbow-rom|wrist-rom|ankle-rom|extremity-)\b/.test(testIdLower);
-
-      // For extremity tests: Extract side from testId and include it in the name
-      if (isExtremityRom || name.toLowerCase().includes("extremity")) {
-        let sideLabel = "";
-        if (testId) {
-          const testIdLower = testId.toLowerCase();
-          // Check if testId contains -left or -right suffix
-          if (testIdLower.includes("-left")) {
-            sideLabel = "Left Side - ";
-          } else if (testIdLower.includes("-right")) {
-            sideLabel = "Right Side - ";
-          } else {
-            // Default to "Left Side -" if no explicit side found but it's an extremity test
-            sideLabel = "Left Side - ";
-          }
-        } else {
-          // Default to "Left Side -" if no testId provided
-          sideLabel = "Left Side - ";
-        }
-        // Add "Extremity" prefix if not already in the name
-        const extremityName = name.toLowerCase().includes("extremity") ? name : `Extremity ${name}`;
-        return `${sideLabel}${extremityName} (ROM)`;
-      }
-
-      // For simple cases like "Cervical Flexion/Extension"
-      const motionKeywords = ["flexion", "extension", "rotation", "abduction", "adduction", "pronation", "supination"];
-      const nameLower = name.toLowerCase();
-      for (const keyword of motionKeywords) {
-        if (nameLower.includes(keyword)) {
-          const motionIndex = nameLower.indexOf(keyword);
-          const bodyPart = name.substring(0, motionIndex).trim();
-          const motion = name.substring(motionIndex).trim();
-          if (bodyPart) {
-            return `${bodyPart} (ROM) - ${motion}`;
-          }
-        }
-      }
-    }
-    return name;
-  };
 
   // Build unified test list from multiple sources
   const normalizeNumber = (v) => {
