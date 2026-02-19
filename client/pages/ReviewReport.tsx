@@ -330,7 +330,7 @@ export default function ReviewReport() {
   };
 
   // Helper function to format test name with (Muscle Test) or (ROM) suffix
-  const formatTestName = (name: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean): string => {
+  const formatTestName = (name: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean, testId?: string): string => {
     if (isMusc) {
       // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
       const parts = name.split(/\s+/);
@@ -357,9 +357,17 @@ export default function ReviewReport() {
         return `${name} (ROM)`;
       }
 
-      // For extremity tests without "Side" prefix: "Extremity Elbow Flexion/Extension" needs to stay as is
+      // For extremity tests: Extract side from testId and include it in the name
       if (name.toLowerCase().includes("extremity")) {
-        return `${name} (ROM)`;
+        let sideLabel = "";
+        if (testId) {
+          if (testId.toLowerCase().endsWith("-left")) {
+            sideLabel = "Left Side - ";
+          } else if (testId.toLowerCase().endsWith("-right")) {
+            sideLabel = "Right Side - ";
+          }
+        }
+        return `${sideLabel}${name} (ROM)`;
       }
 
       // For simple cases like "Cervical Flexion/Extension"
@@ -2860,7 +2868,7 @@ export default function ReviewReport() {
                                     category === "ROM Total Spine/Extremity");
 
                                 // Format test name with proper labels
-                                const displayTestName = formatTestName(test.testName, isMuscleTest, isRomTest, isTotalSpineRom);
+                                const displayTestName = formatTestName(test.testName, isMuscleTest, isRomTest, isTotalSpineRom, test.testId);
 
                                 rows.push(
                                   <tr key={`${category}-${index}`}>
