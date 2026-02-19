@@ -6875,6 +6875,78 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
     return false;
   };
 
+  // Format test name with proper labels (mirrors ReviewReport.tsx logic)
+  const formatTestName = (name, isMusc, isROM, isTotalSpine, testId) => {
+    if (isMusc) {
+      // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
+      const parts = name.split(/\s+/);
+      if (parts.length > 1) {
+        const bodyPart = parts[0];
+        const testType = parts.slice(1).join(" ");
+        return `${bodyPart} - ${testType} (Muscle Test)`;
+      }
+      return name;
+    }
+    if (isTotalSpine) {
+      // For Total Spine ROM: "Cervical Flexion/Extension" -> "Cervical - Flexion/Extension (Total Spine ROM)"
+      const parts = name.split(/\s+/);
+      if (parts.length > 1) {
+        const bodyPart = parts[0];
+        const testType = parts.slice(1).join(" ");
+        return `${bodyPart} - ${testType} (Total Spine ROM)`;
+      }
+      return `${name} (Total Spine ROM)`;
+    }
+    if (isROM) {
+      // For ROM tests: Handle "Right Side - Extremity Elbow Flexion/Extension" -> "Right Side - Extremity Elbow Flexion/Extension (ROM)"
+      if (name.includes("Right Side") || name.includes("Left Side")) {
+        return `${name} (ROM)`;
+      }
+
+      // Check if this is an extremity ROM test (based on testId keywords: shoulder-rom, hip-rom, knee-rom, etc.)
+      const testIdLower = testId ? testId.toLowerCase() : "";
+      const isExtremityRom = /\b(shoulder-rom|hip-rom|knee-rom|elbow-rom|wrist-rom|ankle-rom|extremity-)\b/.test(testIdLower);
+
+      // For extremity tests: Extract side from testId and include it in the name
+      if (isExtremityRom || name.toLowerCase().includes("extremity")) {
+        let sideLabel = "";
+        if (testId) {
+          const testIdLower = testId.toLowerCase();
+          // Check if testId contains -left or -right suffix
+          if (testIdLower.includes("-left")) {
+            sideLabel = "Left Side - ";
+          } else if (testIdLower.includes("-right")) {
+            sideLabel = "Right Side - ";
+          } else {
+            // Default to "Left Side -" if no explicit side found but it's an extremity test
+            sideLabel = "Left Side - ";
+          }
+        } else {
+          // Default to "Left Side -" if no testId provided
+          sideLabel = "Left Side - ";
+        }
+        // Add "Extremity" prefix if not already in the name
+        const extremityName = name.toLowerCase().includes("extremity") ? name : `Extremity ${name}`;
+        return `${sideLabel}${extremityName} (ROM)`;
+      }
+
+      // For simple cases like "Cervical Flexion/Extension"
+      const motionKeywords = ["flexion", "extension", "rotation", "abduction", "adduction", "pronation", "supination"];
+      const nameLower = name.toLowerCase();
+      for (const keyword of motionKeywords) {
+        if (nameLower.includes(keyword)) {
+          const motionIndex = nameLower.indexOf(keyword);
+          const bodyPart = name.substring(0, motionIndex).trim();
+          const motion = name.substring(motionIndex).trim();
+          if (bodyPart) {
+            return `${bodyPart} (ROM) - ${motion}`;
+          }
+        }
+      }
+    }
+    return name;
+  };
+
   // Build unified test list from multiple sources
   const normalizeNumber = (v) => {
     const n = Number(v);
@@ -7259,19 +7331,39 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
         return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
       })();
 
-      // Determine if this is a muscle test using the same logic as TestData.tsx
+      // Determine if this is a muscle test using the same logic as ReviewReport
       const testId = test.testId || "";
+      const testIdLower = testId.toLowerCase();
       const isMuscleTest =
-        testId.includes("muscle-") ||
-        (testId.startsWith("cervical-") &&
-          (testId.includes("flexion") ||
-            testId.includes("rotation") ||
-            testId.includes("lateral")));
+        testIdLower.includes("muscle-") ||
+        (testIdLower.startsWith("cervical-") &&
+          !testIdLower.includes("spine-") &&
+          (testIdLower.includes("flexion") ||
+            testIdLower.includes("rotation") ||
+            testIdLower.includes("lateral")));
 
-      // Format test name with prefix if it's a muscle test
-      const displayTestName = isMuscleTest
-        ? `Muscle Test – ${test.testName}`
-        : test.testName || "";
+      // Check if it's a Total Spine ROM test
+      const isTotalSpineRom =
+        !isMuscleTest &&
+        testIdLower.includes("spine-") &&
+        (testIdLower.includes("cervical-spine") || testIdLower.includes("lumbar-spine") || testIdLower.includes("thoracic-spine"));
+
+      // Check if it's a ROM test
+      const isRomTest =
+        !isMuscleTest &&
+        !isTotalSpineRom &&
+        (test.testName.toLowerCase().includes("flexion") ||
+          test.testName.toLowerCase().includes("extension") ||
+          test.testName.toLowerCase().includes("rotation") ||
+          test.testName.toLowerCase().includes("abduction") ||
+          test.testName.toLowerCase().includes("adduction") ||
+          test.testName.toLowerCase().includes("supination") ||
+          test.testName.toLowerCase().includes("pronation") ||
+          category === "ROM Hand/Foot" ||
+          category === "ROM Total Spine/Extremity");
+
+      // Format test name with proper labels (same as ReviewReport)
+      const displayTestName = formatTestName(test.testName, isMuscleTest, isRomTest, isTotalSpineRom, test.testId);
 
       const rowData = [
         displayTestName,
@@ -7908,6 +8000,35 @@ async function addTestDataContent(children, body) {
 
         const safeName = test?.testName || "Test";
         const testNameLower = safeName.toLowerCase();
+        const testIdLower = (test?.testId || "").toLowerCase();
+
+        // Check if this is a muscle test (manual muscle testing)
+        const isMuscleTest =
+          testIdLower.includes("muscle-") ||
+          (testIdLower.startsWith("cervical-") &&
+            !testIdLower.includes("spine-") &&
+            (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
+
+        // Check if it's a Total Spine ROM test
+        const isTotalSpineRom =
+          !isMuscleTest &&
+          testIdLower.includes("spine-") &&
+          (testIdLower.includes("cervical-spine") || testIdLower.includes("lumbar-spine") || testIdLower.includes("thoracic-spine"));
+
+        // Check if it's a ROM test
+        const isRomTest =
+          !isMuscleTest &&
+          !isTotalSpineRom &&
+          (testNameLower.includes("flexion") ||
+            testNameLower.includes("extension") ||
+            testNameLower.includes("range") ||
+            testNameLower.includes("thumb") ||
+            testNameLower.includes("rotation") ||
+            testNameLower.includes("raise") ||
+            testNameLower.includes("supination") ||
+            testNameLower.includes("radial") ||
+            testNameLower.includes("abduction") ||
+            testNameLower.includes("inversion"));
 
         let leftTrials = readTrials(test?.leftMeasurements);
         let rightTrials = readTrials(test?.rightMeasurements);
@@ -7919,20 +8040,7 @@ async function addTestDataContent(children, body) {
         const rightCV = calculateCV(test.rightMeasurements);
         const bilateralDef = calculateBilateralDeficiency(leftAvg, rightAvg);
 
-        const isRangeOfMotion =
-          testNameLower.includes("flexion") ||
-          testNameLower.includes("extension") ||
-          testNameLower.includes("range") ||
-          testNameLower.includes("thumb") ||
-          testNameLower.includes("rotation") ||
-          testNameLower.includes("raise") ||
-          testNameLower.includes("supination") ||
-          testNameLower.includes("radial") ||
-          testNameLower.includes("abduction") ||
-          testNameLower.includes("inversion");
-        // testNameLower.includes("flexion") ||
-        // testNameLower.includes("extension") ||
-        // testNameLower.includes("range");
+        const isRangeOfMotion = isRomTest || isTotalSpineRom;
         const averageLabel = isRangeOfMotion
           ? "Average (range of motion)"
           : "Average (weight)";
@@ -7968,12 +8076,13 @@ async function addTestDataContent(children, body) {
         //   (isRangeOfMotion ? "°" : "lbs"),
         //   isRangeOfMotion ? "°" : "lbs",
         // );
-        // Header
+        // Header - use formatTestName for consistent formatting
+        const displayName = formatTestName(safeName, isMuscleTest, isRomTest, isTotalSpineRom, test.testId);
         children.push(
           new Paragraph({
             children: [
               new TextRun({
-                text: safeName,
+                text: displayName,
                 bold: true,
                 color: BRAND_COLOR,
                 size: 16,
