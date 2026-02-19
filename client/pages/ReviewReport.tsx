@@ -2877,19 +2877,29 @@ export default function ReviewReport() {
                                     <td className="p-2">{standTime}</td>
                                     <td className="p-2">
                                       {(() => {
+                                        const testNameLower = test.testName.toLowerCase();
+
                                         if (category === "Occupational Tasks") {
                                           // Calculate percentage for occupational tasks
                                           const avgResult =
                                             (leftAvg + rightAvg) / 2;
                                           return `%IS=${avgResult.toFixed(1)}`;
-                                        } else if (
-                                          category === "ROM Hand/Foot" ||
-                                          category ===
-                                            "ROM Total Spine/Extremity"
-                                        ) {
-                                          // ROM tests: intelligently determine if it's flexion/extension or left/right
-                                          const testNameLower =
-                                            test.testName.toLowerCase();
+                                        } else if (testNameLower.includes("lift")) {
+                                          // Lift tests: show average weight with selected metric
+                                          const unit = (
+                                            (test.unitMeasure as any) || "lbs"
+                                          ).toLowerCase();
+                                          const baseAvg =
+                                            leftAvg > 0 ? leftAvg : rightAvg;
+                                          const avgValue =
+                                            unit === "kg"
+                                              ? Math.round(
+                                                  baseAvg * 2.20462 * 10,
+                                                ) / 10
+                                              : Math.round(baseAvg * 10) / 10;
+                                          return `${avgValue.toFixed(1)} ${unit}`;
+                                        } else {
+                                          // Intelligently determine if it's flexion/extension or left/right for all other tests
 
                                           // Check if test explicitly measures flexion AND extension as paired measurements
                                           const isFE =
@@ -2914,30 +2924,9 @@ export default function ReviewReport() {
                                           } else if (isLeftRight) {
                                             return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
                                           } else {
-                                            // Default to left/right for bilateral extremity tests
-                                            return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
+                                            // Default to left/right for bilateral tests (grip, pinch, cardio, etc.)
+                                            return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
                                           }
-                                        } else if (
-                                          test.testName
-                                            ?.toLowerCase()
-                                            .includes("lift")
-                                        ) {
-                                          // Lift tests: show average weight with selected metric
-                                          const unit = (
-                                            (test.unitMeasure as any) || "lbs"
-                                          ).toLowerCase();
-                                          const baseAvg =
-                                            leftAvg > 0 ? leftAvg : rightAvg;
-                                          const avgValue =
-                                            unit === "kg"
-                                              ? Math.round(
-                                                  baseAvg * 2.20462 * 10,
-                                                ) / 10
-                                              : Math.round(baseAvg * 10) / 10;
-                                          return `${avgValue.toFixed(1)} ${unit}`;
-                                        } else {
-                                          // Default format for strength and cardio tests
-                                          return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
                                         }
                                       })()}
                                     </td>
