@@ -6368,14 +6368,17 @@ export default function ReviewReport() {
                                             </div>
                                           </div>
                                           <p className="text-center text-xs mt-2">
-                                            <strong>Flexion</strong>
-                                            <br />
-                                            Left{" "}
-                                            {testName.includes("flexion")
-                                              ? "Flexion"
-                                              : testName.includes("extension")
-                                                ? "Extension"
-                                                : "Side"}
+                                            <strong>
+                                              {(() => {
+                                                const pairedLabels = getPairedMotionLabels(
+                                                  test.testId,
+                                                  test.testName,
+                                                );
+                                                return pairedLabels
+                                                  ? pairedLabels[0]
+                                                  : "Left";
+                                              })()}
+                                            </strong>
                                             <br />
                                             {currentDate} 10:20:36 AM
                                           </p>
@@ -6452,14 +6455,17 @@ export default function ReviewReport() {
                                             </div>
                                           </div>
                                           <p className="text-center text-xs mt-2">
-                                            <strong>Extension</strong>
-                                            <br />
-                                            Right{" "}
-                                            {testName.includes("flexion")
-                                              ? "Flexion"
-                                              : testName.includes("extension")
-                                                ? "Extension"
-                                                : "Side"}
+                                            <strong>
+                                              {(() => {
+                                                const pairedLabels = getPairedMotionLabels(
+                                                  test.testId,
+                                                  test.testName,
+                                                );
+                                                return pairedLabels
+                                                  ? pairedLabels[1]
+                                                  : "Right";
+                                              })()}
+                                            </strong>
                                             <br />
                                             {currentDate} 10:20:36 AM
                                           </p>
