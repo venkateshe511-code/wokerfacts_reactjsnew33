@@ -226,17 +226,17 @@ export function extractSidePrefix(testName?: string, testId?: string): string | 
     const side = sideSuffixMatch[1] === "left" ? "Left" : "Right";
     // Remove existing side prefix if present to avoid duplication
     let cleanName = name.replace(/^(Left|Right)\s+Side\s*-\s*/i, "");
-    // Remove the motion part from test name
-    const withoutMotion = cleanName.replace(/\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise|IP|MP|DIP|PIP).*$/i, "");
+    // Remove the motion part from test name (but keep joint descriptors like DIP, IP, MP, PIP)
+    const withoutMotion = cleanName.replace(/\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*$/i, "");
     return `${side} Side - ${withoutMotion}`;
   }
 
   // Fallback: Check if name starts with "Left Side -" or "Right Side -"
-  const sidePrefixMatch = name.match(/^(Left|Right)\s+Side\s*-\s*(.+?)(?:\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise|IP|MP|DIP|PIP).*)?$/i);
+  const sidePrefixMatch = name.match(/^(Left|Right)\s+Side\s*-\s*(.+?)(?:\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*)?$/i);
   if (sidePrefixMatch) {
     const sidePrefix = sidePrefixMatch[1];
     const rest = sidePrefixMatch[2];
-    // Remove the motion part and return the side prefix with body part info
+    // Remove the motion part and return the side prefix with body part info (keeping joint descriptors)
     const withoutMotion = rest.replace(/\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*$/i, "");
     return `${sidePrefix} Side - ${withoutMotion}`;
   }
