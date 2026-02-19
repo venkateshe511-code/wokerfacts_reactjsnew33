@@ -28,7 +28,7 @@ import {
 } from "@/lib/test-illustrations";
 import { doc, getDoc } from "firebase/firestore";
 import { getReferencesForTest, formatReference } from "@shared/references";
-import { getPairedMotionLabels } from "@shared/rom-utils";
+import { getPairedMotionLabels, getAreaEvaluatedLabels } from "@shared/rom-utils";
 import {
   categorizeTest,
   groupTestsByCategory,
@@ -4794,8 +4794,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">Left Side - ${
-                                                  test.testName
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
+                                                  (() => {
+                                                    const labels = getAreaEvaluatedLabels(test.testName, test.testId);
+                                                    return labels ? labels[0] : test.testName;
+                                                  })()
                                                 }</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${leftAvg.toFixed(0)} °</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
@@ -4824,8 +4827,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;text-align: center;">${currentDate}</td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">Right Side - ${
-                                                  test.testName
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
+                                                  (() => {
+                                                    const labels = getAreaEvaluatedLabels(test.testName, test.testId);
+                                                    return labels ? labels[1] : test.testName;
+                                                  })()
                                                 }</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${rightAvg.toFixed(0)} °</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${

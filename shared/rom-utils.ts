@@ -204,3 +204,69 @@ export function getPairedMotionLabels(
 
   return null;
 }
+
+/**
+ * Extracts the body part name from a test name
+ * Examples:
+ * "Lumbar - Flexion/Extension" -> "Lumbar"
+ * "Cervical Flexion/Extension" -> "Cervical"
+ * "Left Side - Extremity Shoulder Flexion/Extension" -> "Shoulder"
+ */
+export function extractBodyPart(testName?: string): string | null {
+  if (!testName) return null;
+
+  const name = testName.trim();
+
+  // For "Left Side -" or "Right Side -" format, extract what comes after and return the body part
+  const sidePrefixMatch = name.match(/^(Left|Right)\s+Side\s*-\s*(.+?)(?:\s+(Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*)?$/i);
+  if (sidePrefixMatch) {
+    const restOfName = sidePrefixMatch[2];
+    // Extract body part from "Extremity Shoulder" -> "Shoulder", or "Thumb", etc.
+    const bodyPartMatch = restOfName.match(/(?:Extremity\s+)?([A-Z][a-zA-Z\s]+?)(?:\s+(?:IP|MP|DIP|PIP|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*)?$/);
+    if (bodyPartMatch) {
+      return bodyPartMatch[1].trim();
+    }
+  }
+
+  // For simple format like "Lumbar - Flexion/Extension"
+  const simpleMatch = name.match(/^([A-Z][a-zA-Z\s]+?)\s*(?:-|:)\s*(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise)/i);
+  if (simpleMatch) {
+    return simpleMatch[1].trim();
+  }
+
+  // For format like "Cervical Flexion/Extension"
+  const basicMatch = name.match(/^([A-Z][a-zA-Z\s]+?)\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise)/i);
+  if (basicMatch) {
+    return basicMatch[1].trim();
+  }
+
+  return null;
+}
+
+/**
+ * Gets the area evaluated labels for the left and right rows
+ * Based on body part and paired motions
+ * Examples:
+ * "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
+ * "Left Side - Extremity Shoulder Flexion/Extension" -> ["Shoulder - Flexion", "Shoulder - Extension"]
+ */
+export function getAreaEvaluatedLabels(
+  testName?: string,
+  testId?: string,
+): [string, string] | null {
+  if (!testName) return null;
+
+  // Get paired motions
+  const motionLabels = getPairedMotionLabels(testId, testName);
+  if (!motionLabels) return null;
+
+  // Extract body part
+  const bodyPart = extractBodyPart(testName);
+  if (!bodyPart) return null;
+
+  // Combine body part with motions
+  return [
+    `${bodyPart} - ${motionLabels[0]}`,
+    `${bodyPart} - ${motionLabels[1]}`,
+  ];
+}
