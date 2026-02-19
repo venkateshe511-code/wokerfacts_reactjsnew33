@@ -206,6 +206,31 @@ export function getPairedMotionLabels(
 }
 
 /**
+ * Extracts the side prefix (Left/Right) from a test name if present
+ * Examples:
+ * "Left Side - Extremity Shoulder Flexion/Extension" -> "Left Side - Extremity Shoulder"
+ * "Right Side - Thumb IP Flexion/Extension" -> "Right Side - Thumb"
+ * "Lumbar Flexion/Extension" -> null
+ */
+export function extractSidePrefix(testName?: string): string | null {
+  if (!testName) return null;
+
+  const name = testName.trim();
+
+  // Check if name starts with "Left Side -" or "Right Side -"
+  const sidePrefixMatch = name.match(/^(Left|Right)\s+Side\s*-\s*(.+?)(?:\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise|IP|MP|DIP|PIP).*)?$/i);
+  if (sidePrefixMatch) {
+    const sidePrefix = sidePrefixMatch[1];
+    const rest = sidePrefixMatch[2];
+    // Remove the motion part and return the side prefix with body part info
+    const withoutMotion = rest.replace(/\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*$/i, "");
+    return `${sidePrefix} Side - ${withoutMotion}`;
+  }
+
+  return null;
+}
+
+/**
  * Extracts the body part name from a test name
  * Examples:
  * "Lumbar - Flexion/Extension" -> "Lumbar"
@@ -248,7 +273,7 @@ export function extractBodyPart(testName?: string): string | null {
  * Based on body part and paired motions
  * Examples:
  * "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
- * "Left Side - Extremity Shoulder Flexion/Extension" -> ["Shoulder - Flexion", "Shoulder - Extension"]
+ * "Left Side - Extremity Shoulder Flexion/Extension" -> ["Left Side - Extremity Shoulder - Flexion", "Left Side - Extremity Shoulder - Extension"]
  */
 export function getAreaEvaluatedLabels(
   testName?: string,
@@ -260,7 +285,18 @@ export function getAreaEvaluatedLabels(
   const motionLabels = getPairedMotionLabels(testId, testName);
   if (!motionLabels) return null;
 
-  // Extract body part
+  // Check if this test has a "Left Side -" or "Right Side -" prefix
+  const sidePrefix = extractSidePrefix(testName);
+
+  if (sidePrefix) {
+    // For side-prefixed tests, preserve the full prefix
+    return [
+      `${sidePrefix} - ${motionLabels[0]}`,
+      `${sidePrefix} - ${motionLabels[1]}`,
+    ];
+  }
+
+  // Extract body part for non-side-prefixed tests
   const bodyPart = extractBodyPart(testName);
   if (!bodyPart) return null;
 
