@@ -28,6 +28,7 @@ import {
 } from "@/lib/test-illustrations";
 import { doc, getDoc } from "firebase/firestore";
 import { getReferencesForTest, formatReference } from "@shared/references";
+import { getPairedMotionLabels, getAreaEvaluatedLabels } from "@shared/rom-utils";
 import {
   categorizeTest,
   groupTestsByCategory,
@@ -4677,21 +4678,31 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               String(test.testId || testName)
                 .toLowerCase()
                 .includes("static-lift") || testName.includes("static");
+            const pairedMotionLabels = getPairedMotionLabels(
+              test.testId,
+              test.testName,
+            );
             const leftChartTitle = (() => {
               if (isLiftTest) {
                 return "";
               }
               if (hasSeparateSides) {
-                return "Left Side";
+                return pairedMotionLabels
+                  ? pairedMotionLabels[0]
+                  : "Left Side";
               }
               if (useSingleMeasurementSet) {
                 return "";
               }
               if (hasLeftTrials) {
-                return "Left Side";
+                return pairedMotionLabels
+                  ? pairedMotionLabels[0]
+                  : "Left Side";
               }
               if (hasRightTrials) {
-                return "Right Side";
+                return pairedMotionLabels
+                  ? pairedMotionLabels[1]
+                  : "Right Side";
               }
               return "";
             })();
@@ -4783,8 +4794,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">Left Side - ${
-                                                  test.testName
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
+                                                  (() => {
+                                                    const labels = getAreaEvaluatedLabels(test.testName, test.testId);
+                                                    return labels ? labels[0] : test.testName;
+                                                  })()
                                                 }</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${leftAvg.toFixed(0)} °</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
@@ -4813,8 +4827,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 1px;text-align: center;">${currentDate}</td>
                                             </tr>
                                             <tr>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">Right Side - ${
-                                                  test.testName
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
+                                                  (() => {
+                                                    const labels = getAreaEvaluatedLabels(test.testName, test.testId);
+                                                    return labels ? labels[1] : test.testName;
+                                                  })()
                                                 }</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${rightAvg.toFixed(0)} °</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
@@ -5097,6 +5114,50 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
                                             const headerLabel = "Side";
 
+                                            const getMotionLabel = (side: string) => {
+                                              // Helper function to get motion label for left/right based on test name
+                                              const testNameLower = testName.toLowerCase();
+                                              if (side === "left") {
+                                                // For paired motions like "Flexion/Extension", show the left-side motion
+                                                if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+                                                  return "Flexion";
+                                                } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+                                                  return "Abduction";
+                                                } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+                                                  return "Supination";
+                                                } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+                                                  return "Inversion";
+                                                } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+                                                  return "Dorsiflexion";
+                                                } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+                                                  return "Radial Deviation";
+                                                } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+                                                  return "Internal Rotation";
+                                                }
+                                                // Fallback to "Left" for non-paired tests or unknown tests
+                                                return "Left";
+                                              } else {
+                                                // For paired motions like "Flexion/Extension", show the right-side motion
+                                                if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+                                                  return "Extension";
+                                                } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+                                                  return "Adduction";
+                                                } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+                                                  return "Pronation";
+                                                } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+                                                  return "Eversion";
+                                                } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+                                                  return "Plantarflexion";
+                                                } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+                                                  return "Ulnar Deviation";
+                                                } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+                                                  return "External Rotation";
+                                                }
+                                                // Fallback to "Right" for non-paired tests or unknown tests
+                                                return "Right";
+                                              }
+                                            };
+
                                             const buildRow = (
                                               label: string,
                                               source: Record<string, number>,
@@ -5118,7 +5179,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             if (hasLeftTrials) {
                                               rows.push(
                                                 buildRow(
-                                                  "Left",
+                                                  getMotionLabel("left"),
                                                   primaryMeasurements,
                                                   leftAvg,
                                                 ),
@@ -5130,7 +5191,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             ) {
                                               rows.push(
                                                 buildRow(
-                                                  "Right",
+                                                  getMotionLabel("right"),
                                                   secondaryMeasurements,
                                                   rightAvg,
                                                 ),
@@ -5244,7 +5305,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             ? `
                                         <!-- Right Side Chart -->
                                         <div style="background: #ffffff; border: 2px solid #10b981; border-radius: 8px; padding: 12px; page-break-inside: avoid; flex: 1; min-width: 250px;">
-                                            <div style="background: #10b981; color: white; padding: 1px; margin: -12px -12px 12px -12px; font-weight: bold; text-align: center; font-size: 12px;">Right Side</div>
+                                            <div style="background: #10b981; color: white; padding: 1px; margin: -12px -12px 12px -12px; font-weight: bold; text-align: center; font-size: 12px;">${
+                                              pairedMotionLabels
+                                                ? pairedMotionLabels[1]
+                                                : "Right Side"
+                                            }</div>
                                             <div style="display: flex; align-items: end; justify-content: space-between; height: 120px; padding: 3px 0; position: relative; background: #f8fafc; border-radius: 4px;">
                                                 ${(() => {
                                                   const maxValue =

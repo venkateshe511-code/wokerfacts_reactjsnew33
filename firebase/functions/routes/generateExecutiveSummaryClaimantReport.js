@@ -31,6 +31,7 @@ const {
   illustrationsToHtml,
 } = require("../test-illustrations");
 const { groupTestsByCategory } = require("../test-categorization");
+const { getAreaEvaluatedLabels } = require("../rom-utils");
 const router = express.Router();
 const BRAND_COLOR = "1E3A8A";
 const NARROW_FONT = "Arial Narrow";
@@ -358,6 +359,49 @@ function createSideTrialTable(
     makeCell(averageLabel, { bold: true, shading: true }),
   ];
   rows.push(new TableRow({ children: headerCells }));
+  const getMotionLabel = (side) => {
+    // Helper function to get motion label for left/right based on test name
+    if (side === "left") {
+      // For paired motions like "Flexion/Extension", show the left-side motion
+      if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+        return "Flexion";
+      } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+        return "Abduction";
+      } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+        return "Supination";
+      } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+        return "Inversion";
+      } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+        return "Dorsiflexion";
+      } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+        return "Radial Deviation";
+      } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+        return "Internal Rotation";
+      }
+      // Fallback to "Left" for non-paired tests or unknown tests
+      return "Left";
+    } else {
+      // For paired motions like "Flexion/Extension", show the right-side motion
+      if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+        return "Extension";
+      } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+        return "Adduction";
+      } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+        return "Pronation";
+      } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+        return "Eversion";
+      } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+        return "Plantarflexion";
+      } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+        return "Ulnar Deviation";
+      } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+        return "External Rotation";
+      }
+      // Fallback to "Right" for non-paired tests or unknown tests
+      return "Right";
+    }
+  };
+
   // --- Detect type ---
   const isSideBased =
     !forceSingleRowOnly && (leftTrials.length || rightTrials.length);
@@ -366,7 +410,7 @@ function createSideTrialTable(
     rows.push(
       new TableRow({
         children: [
-          makeCell("Left", { bold: true }),
+          makeCell(getMotionLabel("left"), { bold: true }),
           ...trialHeaders.map((_, i) =>
             makeCell(
               leftTrials[i] != null ? `${formatVal(leftTrials[i])}` : "",
@@ -383,7 +427,7 @@ function createSideTrialTable(
     rows.push(
       new TableRow({
         children: [
-          makeCell("Right", { bold: true }),
+          makeCell(getMotionLabel("right"), { bold: true }),
           ...trialHeaders.map((_, i) =>
             makeCell(
               rightTrials[i] != null ? `${formatVal(rightTrials[i])}` : "",
@@ -8119,7 +8163,10 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `Left Side - ${safeName}`,
+                                text: (() => {
+                                  const labels = getAreaEvaluatedLabels(safeName, test.testId);
+                                  return labels ? labels[0] : `Left Side - ${safeName}`;
+                                })(),
                                 size: 16,
                               }),
                             ],
@@ -8201,7 +8248,10 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `Right Side - ${safeName}`,
+                                text: (() => {
+                                  const labels = getAreaEvaluatedLabels(safeName, test.testId);
+                                  return labels ? labels[1] : `Right Side - ${safeName}`;
+                                })(),
                                 size: 16,
                               }),
                             ],
