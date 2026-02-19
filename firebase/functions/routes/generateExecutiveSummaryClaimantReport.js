@@ -31,6 +31,7 @@ const {
   illustrationsToHtml,
 } = require("../test-illustrations");
 const { groupTestsByCategory } = require("../test-categorization");
+const { getAreaEvaluatedLabels } = require("../rom-utils");
 const router = express.Router();
 const BRAND_COLOR = "1E3A8A";
 const NARROW_FONT = "Arial Narrow";
@@ -8162,7 +8163,10 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `Left Side - ${safeName}`,
+                                text: (() => {
+                                  const labels = getAreaEvaluatedLabels(safeName, test.testId);
+                                  return labels ? labels[0] : `Left Side - ${safeName}`;
+                                })(),
                                 size: 16,
                               }),
                             ],
@@ -8244,7 +8248,10 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `Right Side - ${safeName}`,
+                                text: (() => {
+                                  const labels = getAreaEvaluatedLabels(safeName, test.testId);
+                                  return labels ? labels[1] : `Right Side - ${safeName}`;
+                                })(),
                                 size: 16,
                               }),
                             ],
