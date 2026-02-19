@@ -6206,7 +6206,13 @@ export default function ReviewReport() {
                                               <tbody>
                                                 <tr>
                                                   <td className="border border-black px-2 py-1 font-bold text-left">
-                                                    Left
+                                                    {(() => {
+                                                      const pairedLabels = getPairedMotionLabels(
+                                                        test.testId,
+                                                        test.testName,
+                                                      );
+                                                      return pairedLabels ? pairedLabels[0] : "Left";
+                                                    })()}
                                                   </td>
                                                   {leftTrialCells.map(
                                                     (value, index) => (
@@ -6224,7 +6230,13 @@ export default function ReviewReport() {
                                                 </tr>
                                                 <tr>
                                                   <td className="border border-black px-2 py-1 font-bold text-left">
-                                                    Right
+                                                    {(() => {
+                                                      const pairedLabels = getPairedMotionLabels(
+                                                        test.testId,
+                                                        test.testName,
+                                                      );
+                                                      return pairedLabels ? pairedLabels[1] : "Right";
+                                                    })()}
                                                   </td>
                                                   {rightTrialCells.map(
                                                     (value, index) => (
