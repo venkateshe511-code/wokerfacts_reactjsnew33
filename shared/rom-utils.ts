@@ -224,8 +224,10 @@ export function extractSidePrefix(testName?: string, testId?: string): string | 
   const sideSuffixMatch = id.match(/-(left|right)$/);
   if (sideSuffixMatch) {
     const side = sideSuffixMatch[1] === "left" ? "Left" : "Right";
+    // Remove existing side prefix if present to avoid duplication
+    let cleanName = name.replace(/^(Left|Right)\s+Side\s*-\s*/i, "");
     // Remove the motion part from test name
-    const withoutMotion = name.replace(/\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise|IP|MP|DIP|PIP).*$/i, "");
+    const withoutMotion = cleanName.replace(/\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise|IP|MP|DIP|PIP).*$/i, "");
     return `${side} Side - ${withoutMotion}`;
   }
 
@@ -301,10 +303,10 @@ export function getAreaEvaluatedLabels(
   const sidePrefix = extractSidePrefix(testName, testId);
 
   if (sidePrefix) {
-    // For side-prefixed tests, preserve the full prefix
+    // For side-prefixed tests, don't add another dash before the motion
     return [
-      `${sidePrefix} - ${motionLabels[0]}`,
-      `${sidePrefix} - ${motionLabels[1]}`,
+      `${sidePrefix} ${motionLabels[0]}`,
+      `${sidePrefix} ${motionLabels[1]}`,
     ];
   }
 
