@@ -2887,20 +2887,35 @@ export default function ReviewReport() {
                                           category ===
                                             "ROM Total Spine/Extremity"
                                         ) {
-                                          // ROM tests: check if it's flexion/extension or left/right
+                                          // ROM tests: intelligently determine if it's flexion/extension or left/right
                                           const testNameLower =
                                             test.testName.toLowerCase();
-                                          if (
+
+                                          // Check if test explicitly measures flexion AND extension as paired measurements
+                                          const isFE =
                                             testNameLower.includes("flexion") &&
-                                            testNameLower.includes("extension")
-                                          ) {
+                                            testNameLower.includes("extension");
+
+                                          // Check if test measures other bilateral motions (left/right sides)
+                                          const isLeftRight =
+                                            testNameLower.includes("abduction") ||
+                                            testNameLower.includes("adduction") ||
+                                            testNameLower.includes("rotation") ||
+                                            testNameLower.includes("supination") ||
+                                            testNameLower.includes("pronation") ||
+                                            testNameLower.includes("lateral") ||
+                                            testNameLower.includes("inversion") ||
+                                            testNameLower.includes("eversion") ||
+                                            testNameLower.includes("dorsi") ||
+                                            testNameLower.includes("plantar");
+
+                                          if (isFE) {
                                             return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
-                                          } else if (
-                                            testNameLower.includes("lateral")
-                                          ) {
+                                          } else if (isLeftRight) {
                                             return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
                                           } else {
-                                            return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
+                                            // Default to left/right for bilateral extremity tests
+                                            return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
                                           }
                                         } else if (
                                           test.testName
