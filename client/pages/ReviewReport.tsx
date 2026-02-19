@@ -189,49 +189,49 @@ export default function ReviewReport() {
     kasch: "Kasch Pulse Recovery Test",
 
     // ROM - Extremities (Left Side)
-    "elbow-rom-flexion-extension-left": "Extremity Elbow Flexion/Extension",
+    "elbow-rom-flexion-extension-left": "Left Side - Extremity Elbow Flexion/Extension",
     "elbow-rom-supination-pronation-left":
-      "Extremity Elbow Supination/Pronation",
-    "wrist-rom-flexion-extension-left": "Extremity Wrist Flexion/Extension",
+      "Left Side - Extremity Elbow Supination/Pronation",
+    "wrist-rom-flexion-extension-left": "Left Side - Extremity Wrist Flexion/Extension",
     "wrist-rom-radial-ulnar-deviation-left":
-      "Extremity Wrist Radial/Ulnar Deviation",
-    "knee-rom-flexion-extension-left": "Extremity Knee Flexion/Extension",
+      "Left Side - Extremity Wrist Radial/Ulnar Deviation",
+    "knee-rom-flexion-extension-left": "Left Side - Extremity Knee Flexion/Extension",
     "shoulder-rom-flexion-extension-left":
-      "Extremity Shoulder Flexion/Extension",
+      "Left Side - Extremity Shoulder Flexion/Extension",
     "shoulder-rom-internal-external-rotation-left":
-      "Extremity Shoulder Internal/External Rotation",
+      "Left Side - Extremity Shoulder Internal/External Rotation",
     "shoulder-rom-abduction-adduction-left":
-      "Extremity Shoulder Abduction/Adduction",
-    "hip-rom-flexion-extension-left": "Extremity Hip Flexion/Extension",
+      "Left Side - Extremity Shoulder Abduction/Adduction",
+    "hip-rom-flexion-extension-left": "Left Side - Extremity Hip Flexion/Extension",
     "hip-rom-internal-external-rotation-left":
-      "Extremity Hip Internal/External Rotation",
-    "hip-rom-abduction-adduction-left": "Extremity Hip Abduction/Adduction",
+      "Left Side - Extremity Hip Internal/External Rotation",
+    "hip-rom-abduction-adduction-left": "Left Side - Extremity Hip Abduction/Adduction",
     "ankle-rom-dorsi-plantar-flexion-left":
-      "Extremity Ankle Dorsi/Plantar Flexion",
-    "ankle-rom-inversion-eversion-left": "Extremity Ankle Inversion/Eversion",
+      "Left Side - Extremity Ankle Dorsi/Plantar Flexion",
+    "ankle-rom-inversion-eversion-left": "Left Side - Extremity Ankle Inversion/Eversion",
 
     // ROM - Extremities (Right Side)
-    "elbow-rom-flexion-extension-right": "Extremity Elbow Flexion/Extension",
+    "elbow-rom-flexion-extension-right": "Right Side - Extremity Elbow Flexion/Extension",
     "elbow-rom-supination-pronation-right":
-      "Extremity Elbow Supination/Pronation",
-    "wrist-rom-flexion-extension-right": "Extremity Wrist Flexion/Extension",
+      "Right Side - Extremity Elbow Supination/Pronation",
+    "wrist-rom-flexion-extension-right": "Right Side - Extremity Wrist Flexion/Extension",
     "wrist-rom-radial-ulnar-deviation-right":
-      "Extremity Wrist Radial/Ulnar Deviation",
-    "knee-rom-flexion-extension-right": "Extremity Knee Flexion/Extension",
+      "Right Side - Extremity Wrist Radial/Ulnar Deviation",
+    "knee-rom-flexion-extension-right": "Right Side - Extremity Knee Flexion/Extension",
     "shoulder-rom-flexion-extension-right":
-      "Extremity Shoulder Flexion/Extension",
+      "Right Side - Extremity Shoulder Flexion/Extension",
     "shoulder-rom-internal-external-rotation-right":
-      "Extremity Shoulder Internal/External Rotation",
+      "Right Side - Extremity Shoulder Internal/External Rotation",
     "shoulder-rom-abduction-adduction-right":
-      "Extremity Shoulder Abduction/Adduction",
-    "hip-rom-flexion-extension-right": "Extremity Hip Flexion/Extension",
+      "Right Side - Extremity Shoulder Abduction/Adduction",
+    "hip-rom-flexion-extension-right": "Right Side - Extremity Hip Flexion/Extension",
     "hip-rom-internal-external-rotation-right":
-      "Extremity Hip Internal/External Rotation",
-    "hip-rom-abduction-adduction-right": "Extremity Hip Abduction/Adduction",
+      "Right Side - Extremity Hip Internal/External Rotation",
+    "hip-rom-abduction-adduction-right": "Right Side - Extremity Hip Abduction/Adduction",
     "ankle-rom-dorsi-plantar-flexion-right":
-      "Extremity Ankle Dorsi/Plantar Flexion",
+      "Right Side - Extremity Ankle Dorsi/Plantar Flexion",
     "ankle-rom-inversion-eversion-right":
-      "Extremity Ankle Inversion/Eversion",
+      "Right Side - Extremity Ankle Inversion/Eversion",
 
     // ROM - Hand/Foot (Left Side)
     "thumb-ip-flexion-extension-left": "Left Side - Thumb IP Flexion/Extension",
@@ -330,7 +330,7 @@ export default function ReviewReport() {
   };
 
   // Helper function to format test name with (Muscle Test) or (ROM) suffix
-  const formatTestName = (name: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean): string => {
+  const formatTestName = (name: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean, testId?: string): string => {
     if (isMusc) {
       // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
       const parts = name.split(/\s+/);
@@ -357,9 +357,17 @@ export default function ReviewReport() {
         return `${name} (ROM)`;
       }
 
-      // For extremity tests without "Side" prefix: "Extremity Elbow Flexion/Extension" needs to stay as is
+      // For extremity tests: Extract side from testId and include it in the name
       if (name.toLowerCase().includes("extremity")) {
-        return `${name} (ROM)`;
+        let sideLabel = "";
+        if (testId) {
+          if (testId.toLowerCase().endsWith("-left")) {
+            sideLabel = "Left Side - ";
+          } else if (testId.toLowerCase().endsWith("-right")) {
+            sideLabel = "Right Side - ";
+          }
+        }
+        return `${sideLabel}${name} (ROM)`;
       }
 
       // For simple cases like "Cervical Flexion/Extension"
@@ -2860,7 +2868,7 @@ export default function ReviewReport() {
                                     category === "ROM Total Spine/Extremity");
 
                                 // Format test name with proper labels
-                                const displayTestName = formatTestName(test.testName, isMuscleTest, isRomTest, isTotalSpineRom);
+                                const displayTestName = formatTestName(test.testName, isMuscleTest, isRomTest, isTotalSpineRom, test.testId);
 
                                 rows.push(
                                   <tr key={`${category}-${index}`}>
@@ -2869,36 +2877,14 @@ export default function ReviewReport() {
                                     <td className="p-2">{standTime}</td>
                                     <td className="p-2">
                                       {(() => {
+                                        const testNameLower = test.testName.toLowerCase();
+
                                         if (category === "Occupational Tasks") {
                                           // Calculate percentage for occupational tasks
                                           const avgResult =
                                             (leftAvg + rightAvg) / 2;
                                           return `%IS=${avgResult.toFixed(1)}`;
-                                        } else if (
-                                          category === "ROM Hand/Foot" ||
-                                          category ===
-                                            "ROM Total Spine/Extremity"
-                                        ) {
-                                          // ROM tests: check if it's flexion/extension or left/right
-                                          const testNameLower =
-                                            test.testName.toLowerCase();
-                                          if (
-                                            testNameLower.includes("flexion") &&
-                                            testNameLower.includes("extension")
-                                          ) {
-                                            return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
-                                          } else if (
-                                            testNameLower.includes("lateral")
-                                          ) {
-                                            return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
-                                          } else {
-                                            return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
-                                          }
-                                        } else if (
-                                          test.testName
-                                            ?.toLowerCase()
-                                            .includes("lift")
-                                        ) {
+                                        } else if (testNameLower.includes("lift")) {
                                           // Lift tests: show average weight with selected metric
                                           const unit = (
                                             (test.unitMeasure as any) || "lbs"
@@ -2913,8 +2899,34 @@ export default function ReviewReport() {
                                               : Math.round(baseAvg * 10) / 10;
                                           return `${avgValue.toFixed(1)} ${unit}`;
                                         } else {
-                                          // Default format for strength and cardio tests
-                                          return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
+                                          // Intelligently determine if it's flexion/extension or left/right for all other tests
+
+                                          // Check if test explicitly measures flexion AND extension as paired measurements
+                                          const isFE =
+                                            testNameLower.includes("flexion") &&
+                                            testNameLower.includes("extension");
+
+                                          // Check if test measures other bilateral motions (left/right sides)
+                                          const isLeftRight =
+                                            testNameLower.includes("abduction") ||
+                                            testNameLower.includes("adduction") ||
+                                            testNameLower.includes("rotation") ||
+                                            testNameLower.includes("supination") ||
+                                            testNameLower.includes("pronation") ||
+                                            testNameLower.includes("lateral") ||
+                                            testNameLower.includes("inversion") ||
+                                            testNameLower.includes("eversion") ||
+                                            testNameLower.includes("dorsi") ||
+                                            testNameLower.includes("plantar");
+
+                                          if (isFE) {
+                                            return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
+                                          } else if (isLeftRight) {
+                                            return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
+                                          } else {
+                                            // Default to left/right for bilateral tests (grip, pinch, cardio, etc.)
+                                            return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
+                                          }
                                         }
                                       })()}
                                     </td>
@@ -4097,7 +4109,27 @@ export default function ReviewReport() {
                                             <tr>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 Left Side - {(() => {
-                                                  // Extract motion type from test name (e.g., "Extremity Elbow Flexion/Extension" -> "Flexion/Extension")
+                                                  // Extract motion type and properly split paired motions
+                                                  const testNameLower = test.testName?.toLowerCase() || "";
+
+                                                  // For paired motions like "Flexion/Extension", show only the left-side motion
+                                                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+                                                    return "Flexion";
+                                                  } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+                                                    return "Abduction";
+                                                  } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+                                                    return "Supination";
+                                                  } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+                                                    return "Inversion";
+                                                  } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+                                                    return "Dorsiflexion";
+                                                  } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+                                                    return "Radial Deviation";
+                                                  } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+                                                    return "Internal Rotation";
+                                                  }
+
+                                                  // Fallback to extracting motion type
                                                   const motionMatch = test.testName?.match(/(Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*$/i);
                                                   return motionMatch ? motionMatch[0] : test.testName;
                                                 })()}
@@ -4111,22 +4143,25 @@ export default function ReviewReport() {
                                                   : "Fail"}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {testName.includes("flexion")
+                                                {/* Left side is typically flexion or the first motion */}
+                                                {testName.includes("flexion") && testName.includes("extension")
                                                   ? "60 °"
-                                                  : testName.includes(
-                                                        "extension",
-                                                      )
-                                                    ? "25 °"
-                                                    : "25 °"}
+                                                  : testName.includes("abduction") && testName.includes("adduction")
+                                                    ? "45 °"
+                                                    : testName.includes("supination") && testName.includes("pronation")
+                                                      ? "80 °"
+                                                      : "45 °"}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {Math.round(
                                                   (leftAvg /
-                                                    (testName.includes(
-                                                      "flexion",
-                                                    )
+                                                    (testName.includes("flexion") && testName.includes("extension")
                                                       ? 60
-                                                      : 25)) *
+                                                      : testName.includes("abduction") && testName.includes("adduction")
+                                                        ? 45
+                                                        : testName.includes("supination") && testName.includes("pronation")
+                                                          ? 80
+                                                          : 45)) *
                                                     100,
                                                 )}
                                                 %
@@ -4140,7 +4175,27 @@ export default function ReviewReport() {
                                             <tr>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 Right Side - {(() => {
-                                                  // Extract motion type from test name (e.g., "Extremity Elbow Flexion/Extension" -> "Flexion/Extension")
+                                                  // Extract motion type and properly split paired motions
+                                                  const testNameLower = test.testName?.toLowerCase() || "";
+
+                                                  // For paired motions, show only the right-side motion
+                                                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+                                                    return "Extension";
+                                                  } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+                                                    return "Adduction";
+                                                  } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+                                                    return "Pronation";
+                                                  } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+                                                    return "Eversion";
+                                                  } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+                                                    return "Plantar Flexion";
+                                                  } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+                                                    return "Ulnar Deviation";
+                                                  } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+                                                    return "External Rotation";
+                                                  }
+
+                                                  // Fallback to extracting motion type
                                                   const motionMatch = test.testName?.match(/(Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*$/i);
                                                   return motionMatch ? motionMatch[0] : test.testName;
                                                 })()}
@@ -4154,22 +4209,25 @@ export default function ReviewReport() {
                                                   : "Fail"}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {testName.includes("flexion")
-                                                  ? "60 °"
-                                                  : testName.includes(
-                                                        "extension",
-                                                      )
-                                                    ? "25 °"
-                                                    : "25 °"}
+                                                {/* Right side is typically extension or the second motion */}
+                                                {testName.includes("flexion") && testName.includes("extension")
+                                                  ? "25 °"
+                                                  : testName.includes("abduction") && testName.includes("adduction")
+                                                    ? "35 °"
+                                                    : testName.includes("supination") && testName.includes("pronation")
+                                                      ? "80 °"
+                                                      : "25 °"}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {Math.round(
                                                   (rightAvg /
-                                                    (testName.includes(
-                                                      "flexion",
-                                                    )
-                                                      ? 60
-                                                      : 25)) *
+                                                    (testName.includes("flexion") && testName.includes("extension")
+                                                      ? 25
+                                                      : testName.includes("abduction") && testName.includes("adduction")
+                                                        ? 35
+                                                        : testName.includes("supination") && testName.includes("pronation")
+                                                          ? 80
+                                                          : 25)) *
                                                     100,
                                                 )}
                                                 %
