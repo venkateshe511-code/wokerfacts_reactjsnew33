@@ -5097,6 +5097,50 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
                                             const headerLabel = "Side";
 
+                                            const getMotionLabel = (side: string) => {
+                                              // Helper function to get motion label for left/right based on test name
+                                              const testNameLower = testName.toLowerCase();
+                                              if (side === "left") {
+                                                // For paired motions like "Flexion/Extension", show the left-side motion
+                                                if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+                                                  return "Flexion";
+                                                } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+                                                  return "Abduction";
+                                                } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+                                                  return "Supination";
+                                                } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+                                                  return "Inversion";
+                                                } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+                                                  return "Dorsiflexion";
+                                                } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+                                                  return "Radial Deviation";
+                                                } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+                                                  return "Internal Rotation";
+                                                }
+                                                // Fallback to "Left" for non-paired tests or unknown tests
+                                                return "Left";
+                                              } else {
+                                                // For paired motions like "Flexion/Extension", show the right-side motion
+                                                if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+                                                  return "Extension";
+                                                } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+                                                  return "Adduction";
+                                                } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+                                                  return "Pronation";
+                                                } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+                                                  return "Eversion";
+                                                } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+                                                  return "Plantarflexion";
+                                                } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+                                                  return "Ulnar Deviation";
+                                                } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+                                                  return "External Rotation";
+                                                }
+                                                // Fallback to "Right" for non-paired tests or unknown tests
+                                                return "Right";
+                                              }
+                                            };
+
                                             const buildRow = (
                                               label: string,
                                               source: Record<string, number>,
@@ -5118,7 +5162,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             if (hasLeftTrials) {
                                               rows.push(
                                                 buildRow(
-                                                  "Left",
+                                                  getMotionLabel("left"),
                                                   primaryMeasurements,
                                                   leftAvg,
                                                 ),
@@ -5130,7 +5174,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             ) {
                                               rows.push(
                                                 buildRow(
-                                                  "Right",
+                                                  getMotionLabel("right"),
                                                   secondaryMeasurements,
                                                   rightAvg,
                                                 ),
