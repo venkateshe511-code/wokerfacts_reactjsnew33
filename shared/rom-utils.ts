@@ -206,18 +206,30 @@ export function getPairedMotionLabels(
 }
 
 /**
- * Extracts the side prefix (Left/Right) from a test name if present
+ * Extracts the side prefix (Left/Right) from a test ID or test name
+ * If testId has -left or -right suffix, use that
+ * Otherwise check if testName starts with "Left Side -" or "Right Side -"
  * Examples:
- * "Left Side - Extremity Shoulder Flexion/Extension" -> "Left Side - Extremity Shoulder"
- * "Right Side - Thumb IP Flexion/Extension" -> "Right Side - Thumb"
- * "Lumbar Flexion/Extension" -> null
+ * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> "Left Side - Extremity Shoulder"
+ * testId: "elbow-rom-flexion-extension-right", testName: "Extremity Elbow Flexion/Extension" -> "Right Side - Extremity Elbow"
+ * testId: "lumbar-spine-flexion-extension", testName: "Lumbar Flexion/Extension" -> null
  */
-export function extractSidePrefix(testName?: string): string | null {
+export function extractSidePrefix(testName?: string, testId?: string): string | null {
   if (!testName) return null;
 
   const name = testName.trim();
+  const id = (testId || "").toLowerCase();
 
-  // Check if name starts with "Left Side -" or "Right Side -"
+  // Check if testId has -left or -right suffix
+  const sideSuffixMatch = id.match(/-(left|right)$/);
+  if (sideSuffixMatch) {
+    const side = sideSuffixMatch[1] === "left" ? "Left" : "Right";
+    // Remove the motion part from test name
+    const withoutMotion = name.replace(/\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise|IP|MP|DIP|PIP).*$/i, "");
+    return `${side} Side - ${withoutMotion}`;
+  }
+
+  // Fallback: Check if name starts with "Left Side -" or "Right Side -"
   const sidePrefixMatch = name.match(/^(Left|Right)\s+Side\s*-\s*(.+?)(?:\s+(?:Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise|IP|MP|DIP|PIP).*)?$/i);
   if (sidePrefixMatch) {
     const sidePrefix = sidePrefixMatch[1];
@@ -272,8 +284,8 @@ export function extractBodyPart(testName?: string): string | null {
  * Gets the area evaluated labels for the left and right rows
  * Based on body part and paired motions
  * Examples:
- * "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
- * "Left Side - Extremity Shoulder Flexion/Extension" -> ["Left Side - Extremity Shoulder - Flexion", "Left Side - Extremity Shoulder - Extension"]
+ * testName: "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
+ * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Left Side - Extremity Shoulder - Flexion", "Left Side - Extremity Shoulder - Extension"]
  */
 export function getAreaEvaluatedLabels(
   testName?: string,
@@ -285,8 +297,8 @@ export function getAreaEvaluatedLabels(
   const motionLabels = getPairedMotionLabels(testId, testName);
   if (!motionLabels) return null;
 
-  // Check if this test has a "Left Side -" or "Right Side -" prefix
-  const sidePrefix = extractSidePrefix(testName);
+  // Check if this test has a "Left Side -" or "Right Side -" prefix (from testId or testName)
+  const sidePrefix = extractSidePrefix(testName, testId);
 
   if (sidePrefix) {
     // For side-prefixed tests, preserve the full prefix
