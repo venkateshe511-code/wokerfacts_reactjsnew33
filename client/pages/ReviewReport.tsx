@@ -689,7 +689,6 @@ export default function ReviewReport() {
       testName.includes("eversion") ||
       testName.includes("dorsi") ||
       testName.includes("dorsiflexion") ||
-      testName.includes("palmar") ||
       testName.includes("straight-leg") ||
       (testName.includes("straight") &&
         testName.includes("leg") &&
@@ -3887,7 +3886,6 @@ export default function ReviewReport() {
                           testName.includes("eversion") ||
                           testName.includes("dorsi") ||
                           testName.includes("dorsiflexion") ||
-                          testName.includes("palmar") ||
                           testName.includes("straight-leg") ||
                           (testName.includes("straight") &&
                             testName.includes("leg") &&
