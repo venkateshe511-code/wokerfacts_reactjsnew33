@@ -3846,6 +3846,27 @@ export default function ReviewReport() {
                           (testIdLower.startsWith("cervical-") &&
                            (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
+                        const isTotalSpineRom =
+                          !isMuscleTest &&
+                          testIdLower.includes("spine-") &&
+                          (testIdLower.includes("cervical-spine") || testIdLower.includes("lumbar-spine") || testIdLower.includes("thoracic-spine"));
+
+                        const isRomTest =
+                          !isMuscleTest &&
+                          !isTotalSpineRom &&
+                          (testName.includes("flexion") ||
+                          testName.includes("extension") ||
+                          testName.includes("rotation") ||
+                          testName.includes("abduction") ||
+                          testName.includes("adduction") ||
+                          testName.includes("supination") ||
+                          testName.includes("pronation") ||
+                          testName.includes("inversion") ||
+                          testName.includes("eversion") ||
+                          testName.includes("dorsi") ||
+                          testName.includes("radial") ||
+                          testName.includes("ulnar"));
+
                         const isRangeOfMotion =
                           !isMuscleTest &&
                           (testName.includes("flexion") ||
@@ -3939,7 +3960,7 @@ export default function ReviewReport() {
                             </div>
 
                             <h3 className="font-bold text-lg mb-4">
-                              {getTestNameFromId(test.testId)}
+                              {formatTestName(test.testName, isMuscleTest, isRomTest, isTotalSpineRom, test.testId)}
                             </h3>
 
                             <div className="grid grid-cols-12 gap-6">
