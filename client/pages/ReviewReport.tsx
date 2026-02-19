@@ -4273,7 +4273,30 @@ export default function ReviewReport() {
                                           <tbody>
                                             <tr>
                                               <td className="border border-black px-2 py-1 font-bold text-left">
-                                                Left
+                                                {(() => {
+                                                  // Extract motion type and properly split paired motions
+                                                  const testNameLower = test.testName?.toLowerCase() || "";
+
+                                                  // For paired motions like "Flexion/Extension", show the left-side motion
+                                                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+                                                    return "Flexion";
+                                                  } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+                                                    return "Abduction";
+                                                  } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+                                                    return "Supination";
+                                                  } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+                                                    return "Inversion";
+                                                  } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+                                                    return "Dorsiflexion";
+                                                  } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+                                                    return "Radial Deviation";
+                                                  } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+                                                    return "Internal Rotation";
+                                                  }
+
+                                                  // Fallback to "Left" for non-paired tests or unknown tests
+                                                  return "Left";
+                                                })()}
                                               </td>
                                               {leftTrialCells.map(
                                                 (value, index) => (
@@ -4291,7 +4314,30 @@ export default function ReviewReport() {
                                             </tr>
                                             <tr>
                                               <td className="border border-black px-2 py-1 font-bold text-left">
-                                                Right
+                                                {(() => {
+                                                  // Extract motion type and properly split paired motions
+                                                  const testNameLower = test.testName?.toLowerCase() || "";
+
+                                                  // For paired motions like "Flexion/Extension", show the right-side motion
+                                                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
+                                                    return "Extension";
+                                                  } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
+                                                    return "Adduction";
+                                                  } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
+                                                    return "Pronation";
+                                                  } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
+                                                    return "Eversion";
+                                                  } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
+                                                    return "Plantarflexion";
+                                                  } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
+                                                    return "Ulnar Deviation";
+                                                  } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
+                                                    return "External Rotation";
+                                                  }
+
+                                                  // Fallback to "Right" for non-paired tests or unknown tests
+                                                  return "Right";
+                                                })()}
                                               </td>
                                               {rightTrialCells.map(
                                                 (value, index) => (
