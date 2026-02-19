@@ -32,6 +32,7 @@ import {
   getCategoriesInOrder,
   type TestCategory,
 } from "@/lib/test-categorization";
+import { getPairedMotionLabels } from "@shared/rom-utils";
 
 // IndexedDB utilities for loading digital library images
 const DB_NAME = "DigitalLibraryDB";
@@ -4295,28 +4296,11 @@ export default function ReviewReport() {
                                             <tr>
                                               <td className="border border-black px-2 py-1 font-bold text-left">
                                                 {(() => {
-                                                  // Extract motion type and properly split paired motions
-                                                  const testNameLower = test.testName?.toLowerCase() || "";
-
-                                                  // For paired motions like "Flexion/Extension", show the left-side motion
-                                                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
-                                                    return "Flexion";
-                                                  } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
-                                                    return "Abduction";
-                                                  } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
-                                                    return "Supination";
-                                                  } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
-                                                    return "Inversion";
-                                                  } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
-                                                    return "Dorsiflexion";
-                                                  } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
-                                                    return "Radial Deviation";
-                                                  } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
-                                                    return "Internal Rotation";
-                                                  }
-
-                                                  // Fallback to "Left" for non-paired tests or unknown tests
-                                                  return "Left";
+                                                  const pairedLabels = getPairedMotionLabels(
+                                                    test.testId,
+                                                    test.testName,
+                                                  );
+                                                  return pairedLabels ? pairedLabels[0] : "Left";
                                                 })()}
                                               </td>
                                               {leftTrialCells.map(
@@ -4336,28 +4320,11 @@ export default function ReviewReport() {
                                             <tr>
                                               <td className="border border-black px-2 py-1 font-bold text-left">
                                                 {(() => {
-                                                  // Extract motion type and properly split paired motions
-                                                  const testNameLower = test.testName?.toLowerCase() || "";
-
-                                                  // For paired motions like "Flexion/Extension", show the right-side motion
-                                                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
-                                                    return "Extension";
-                                                  } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
-                                                    return "Adduction";
-                                                  } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
-                                                    return "Pronation";
-                                                  } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
-                                                    return "Eversion";
-                                                  } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
-                                                    return "Plantarflexion";
-                                                  } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
-                                                    return "Ulnar Deviation";
-                                                  } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
-                                                    return "External Rotation";
-                                                  }
-
-                                                  // Fallback to "Right" for non-paired tests or unknown tests
-                                                  return "Right";
+                                                  const pairedLabels = getPairedMotionLabels(
+                                                    test.testId,
+                                                    test.testName,
+                                                  );
+                                                  return pairedLabels ? pairedLabels[1] : "Right";
                                                 })()}
                                               </td>
                                               {rightTrialCells.map(

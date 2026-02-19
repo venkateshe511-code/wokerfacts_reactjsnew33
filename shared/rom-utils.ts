@@ -137,3 +137,70 @@ export function createROMSideDisplayData(
 export function shouldDisplaySeparateSideRows(testId?: string): boolean {
   return isPairedROMTest(testId);
 }
+
+/**
+ * Gets the paired motion labels for tests like Flexion/Extension
+ * Returns [firstMotion, secondMotion] or null if not a paired motion test
+ * Example: "cervical-flexion-extension" -> ["Flexion", "Extension"]
+ */
+export function getPairedMotionLabels(
+  testId?: string,
+  testName?: string,
+): [string, string] | null {
+  const id = (testId || "").toLowerCase();
+  const name = (testName || "").toLowerCase();
+  const combined = `${id} ${name}`;
+
+  // Check for flexion-extension pattern
+  if (
+    combined.includes("flexion-extension") ||
+    combined.includes("flexion/extension")
+  ) {
+    return ["Flexion", "Extension"];
+  }
+
+  // Check for dorsi-plantar pattern
+  if (
+    combined.includes("dorsi-plantar") ||
+    combined.includes("dorsi/plantar") ||
+    combined.includes("dorsiplantar")
+  ) {
+    return ["Dorsi Flexion", "Plantar Flexion"];
+  }
+
+  // Check for inversion-eversion pattern
+  if (
+    combined.includes("inversion-eversion") ||
+    combined.includes("inversion/eversion")
+  ) {
+    return ["Inversion", "Eversion"];
+  }
+
+  // Check for supination-pronation pattern
+  if (
+    combined.includes("supination-pronation") ||
+    combined.includes("supination/pronation")
+  ) {
+    return ["Supination", "Pronation"];
+  }
+
+  // Check for internal-external rotation pattern
+  if (
+    combined.includes("internal-external-rotation") ||
+    combined.includes("internal/external rotation") ||
+    combined.includes("internal/external-rotation") ||
+    combined.includes("internal external rotation")
+  ) {
+    return ["Internal Rotation", "External Rotation"];
+  }
+
+  // Check for abduction-adduction pattern
+  if (
+    combined.includes("abduction-adduction") ||
+    combined.includes("abduction/adduction")
+  ) {
+    return ["Abduction", "Adduction"];
+  }
+
+  return null;
+}
