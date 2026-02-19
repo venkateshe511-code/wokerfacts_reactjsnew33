@@ -35,6 +35,7 @@ import CardioTestRouter, {
   CardioTestData,
 } from "@/components/cardio-tests/CardioTestRouter";
 import { calculatePercentISByTest } from "@shared/mtm-standards";
+import { getPairedMotionLabels } from "@shared/rom-utils";
 import { inferNormsForTest } from "@/lib/norms";
 
 interface TestMeasurement {
@@ -1401,66 +1402,7 @@ export default function TestData() {
   };
 
   // Determine ROM paired labels (e.g., Flexion/Extension) if applicable
-  const getRomPairLabels = (): [string, string] | null => {
-    const id = (currentTest?.testId || "").toLowerCase();
-    const nameLower = (currentTest?.testName || "").toLowerCase();
-    const hay = `${id} ${nameLower}`;
-
-    // Check for flexion-extension pattern
-    if (
-      hay.includes("flexion-extension") ||
-      hay.includes("flexion/extension")
-    ) {
-      return ["Flexion", "Extension"];
-    }
-
-    // Check for dorsi-plantar pattern
-    if (
-      hay.includes("dorsi-plantar") ||
-      hay.includes("dorsi/plantar") ||
-      hay.includes("dorsiplantar")
-    ) {
-      return ["Dorsi Flexion", "Plantar Flexion"];
-    }
-
-    // Check for inversion-eversion pattern
-    if (
-      hay.includes("inversion-eversion") ||
-      hay.includes("inversion/eversion")
-    ) {
-      return ["Inversion", "Eversion"];
-    }
-
-    // Check for supination-pronation pattern
-    if (
-      hay.includes("supination-pronation") ||
-      hay.includes("supination/pronation")
-    ) {
-      return ["Supination", "Pronation"];
-    }
-
-    // Check for internal-external rotation pattern
-    if (
-      hay.includes("internal-external-rotation") ||
-      hay.includes("internal/external rotation") ||
-      hay.includes("internal/external-rotation") ||
-      hay.includes("internal external rotation")
-    ) {
-      return ["Internal Rotation", "External Rotation"];
-    }
-
-    // Check for abduction-adduction pattern
-    if (
-      hay.includes("abduction-adduction") ||
-      hay.includes("abduction/adduction")
-    ) {
-      return ["Abduction", "Adduction"];
-    }
-
-    return null;
-  };
-
-  const romPair = getRomPairLabels();
+  const romPair = getPairedMotionLabels(currentTest?.testId, currentTest?.testName);
 
   // Check if this is any type of ROM test (includes both Extremity ROM and Total Spine ROM)
   const isAnyRomTest = isRangeOfMotionTest || isTotalSpineRomTest;

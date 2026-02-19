@@ -28,6 +28,7 @@ import {
 } from "@/lib/test-illustrations";
 import { doc, getDoc } from "firebase/firestore";
 import { getReferencesForTest, formatReference } from "@shared/references";
+import { getPairedMotionLabels } from "@shared/rom-utils";
 import {
   categorizeTest,
   groupTestsByCategory,
@@ -4677,21 +4678,31 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               String(test.testId || testName)
                 .toLowerCase()
                 .includes("static-lift") || testName.includes("static");
+            const pairedMotionLabels = getPairedMotionLabels(
+              test.testId,
+              test.testName,
+            );
             const leftChartTitle = (() => {
               if (isLiftTest) {
                 return "";
               }
               if (hasSeparateSides) {
-                return "Left Side";
+                return pairedMotionLabels
+                  ? pairedMotionLabels[0]
+                  : "Left Side";
               }
               if (useSingleMeasurementSet) {
                 return "";
               }
               if (hasLeftTrials) {
-                return "Left Side";
+                return pairedMotionLabels
+                  ? pairedMotionLabels[0]
+                  : "Left Side";
               }
               if (hasRightTrials) {
-                return "Right Side";
+                return pairedMotionLabels
+                  ? pairedMotionLabels[1]
+                  : "Right Side";
               }
               return "";
             })();
@@ -5288,7 +5299,11 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             ? `
                                         <!-- Right Side Chart -->
                                         <div style="background: #ffffff; border: 2px solid #10b981; border-radius: 8px; padding: 12px; page-break-inside: avoid; flex: 1; min-width: 250px;">
-                                            <div style="background: #10b981; color: white; padding: 1px; margin: -12px -12px 12px -12px; font-weight: bold; text-align: center; font-size: 12px;">Right Side</div>
+                                            <div style="background: #10b981; color: white; padding: 1px; margin: -12px -12px 12px -12px; font-weight: bold; text-align: center; font-size: 12px;">${
+                                              pairedMotionLabels
+                                                ? pairedMotionLabels[1]
+                                                : "Right Side"
+                                            }</div>
                                             <div style="display: flex; align-items: end; justify-content: space-between; height: 120px; padding: 3px 0; position: relative; background: #f8fafc; border-radius: 4px;">
                                                 ${(() => {
                                                   const maxValue =
