@@ -9912,18 +9912,7 @@ async function addTestDataContent(children, body) {
         } else {
           // MUSCLE TEST / ROM / LIFT / STRENGTH tables
           if (isMuscleTest) {
-            // Muscle Test Table - No Norms
-            const avgForce = Number.isFinite(leftAvg)
-              ? leftAvg.toFixed(1)
-              : Number.isFinite(rightAvg)
-                ? rightAvg.toFixed(1)
-                : "-";
-            const cvValue = Number.isFinite(leftCV)
-              ? `${leftCV.toFixed(0)}%`
-              : Number.isFinite(rightCV)
-                ? `${rightCV.toFixed(0)}%`
-                : "-";
-
+            // Muscle Test Table - No Norms (matches ReviewReport format)
             // Helper to make bordered cell
             const makeCell = (text, { bold = false, shaded = false } = {}) =>
               new TableCell({
@@ -9945,26 +9934,38 @@ async function addTestDataContent(children, body) {
                 ],
               });
 
-            // Build muscle test summary table (no norms)
+            // Get paired motion labels for left/right labels (e.g., "Flexion | Extension" or "Left | Right")
+            const pairedLabels = getAreaEvaluatedLabels(safeName, test.testId) || ["Left", "Right"];
+
+            // Build muscle test summary table (no norms) - matching ReviewReport format
             rightCol.push(
               new Table({
                 width: { size: 100, type: WidthType.PERCENTAGE },
                 rows: [
-                  // Header
+                  // Header Row
                   new TableRow({
                     children: [
-                      makeCell("Test", { bold: true, shaded: true }),
-                      makeCell("Force/Level", { bold: true, shaded: true }),
-                      makeCell("CV%", { bold: true, shaded: true }),
+                      makeCell("Demonstrated Activity", { bold: true, shaded: true }),
+                      makeCell("Avg. Force (lb)", { bold: true, shaded: true }),
+                      makeCell("% age CV", { bold: true, shaded: true }),
                       makeCell("Test Date", { bold: true, shaded: true }),
+                    ],
+                  }),
+                  // Column Label Row (Left | Right)
+                  new TableRow({
+                    children: [
+                      makeCell(""),
+                      makeCell(`${pairedLabels[0]} | ${pairedLabels[1]}`),
+                      makeCell(`${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`),
+                      makeCell(""),
                     ],
                   }),
                   // Data Row
                   new TableRow({
                     children: [
                       makeCell(safeName),
-                      makeCell(avgForce),
-                      makeCell(cvValue),
+                      makeCell(`${leftAvg.toFixed(1)} | ${rightAvg.toFixed(1)}`),
+                      makeCell(`${leftCV.toFixed(0)}% | ${rightCV.toFixed(0)}%`),
                       makeCell(currentDate),
                     ],
                   }),
@@ -9979,7 +9980,10 @@ async function addTestDataContent(children, body) {
               new Paragraph({ spacing: { before: 100, after: 50 } }),
             );
           } else if (isRangeOfMotion) {
-            const romNorm = testNameLower.includes("flexion") ? 60 : 25;
+            // Use the correct norm values already retrieved from inferNormsForTest
+            const displayLeftNorm = normLeft ?? 45; // fallback to 45 if not found
+            const displayRightNorm = normRight ?? 25; // fallback to 25 if not found
+
             rightCol.push(
               new Table({
                 width: { size: 100, type: WidthType.PERCENTAGE },
@@ -10071,7 +10075,7 @@ async function addTestDataContent(children, body) {
                           new Paragraph({
                             alignment: AlignmentType.CENTER,
                             children: [
-                              new TextRun({ text: `${romNorm} °`, size: 16 }),
+                              new TextRun({ text: `${displayLeftNorm} °`, size: 16 }),
                             ],
                           }),
                         ],
@@ -10083,7 +10087,7 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `${Math.round((leftAvg / romNorm) * 100)}%`,
+                                text: `${Math.round((leftAvg / displayLeftNorm) * 100)}%`,
                                 size: 16,
                               }),
                             ],
@@ -10156,7 +10160,7 @@ async function addTestDataContent(children, body) {
                           new Paragraph({
                             alignment: AlignmentType.CENTER,
                             children: [
-                              new TextRun({ text: `${romNorm} °`, size: 16 }),
+                              new TextRun({ text: `${displayRightNorm} °`, size: 16 }),
                             ],
                           }),
                         ],
@@ -10168,7 +10172,7 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `${Math.round((rightAvg / romNorm) * 100)}%`,
+                                text: `${Math.round((rightAvg / displayRightNorm) * 100)}%`,
                                 size: 16,
                               }),
                             ],
@@ -10332,8 +10336,9 @@ async function addTestDataContent(children, body) {
                             children: [
                               new TextRun({
                                 text: (() => {
-                                  const leftVal = Number.isFinite(normLeft) ? normLeft : 85.0;
-                                  const rightVal = Number.isFinite(normRight) ? normRight : 90.0;
+                                  // Match client fallback logic: grip tests have different norms than other strength tests
+                                  const leftVal = Number.isFinite(normLeft) ? normLeft : (isGripTest ? 110.5 : 85.0);
+                                  const rightVal = Number.isFinite(normRight) ? normRight : (isGripTest ? 120.8 : 90.0);
                                   return `${leftVal.toFixed(1)} | ${rightVal.toFixed(1)}`;
                                 })(),
                                 size: 16,
@@ -10350,8 +10355,9 @@ async function addTestDataContent(children, body) {
                             children: [
                               new TextRun({
                                 text: (() => {
-                                  const leftVal = Number.isFinite(normLeft) ? normLeft : 85.0;
-                                  const rightVal = Number.isFinite(normRight) ? normRight : 90.0;
+                                  // Match client fallback logic: grip tests have different norms than other strength tests
+                                  const leftVal = Number.isFinite(normLeft) ? normLeft : (isGripTest ? 110.5 : 85.0);
+                                  const rightVal = Number.isFinite(normRight) ? normRight : (isGripTest ? 120.8 : 90.0);
                                   const leftPct = Number.isFinite(leftAvg) && leftVal ? Math.round((leftAvg / leftVal) * 100) : "-";
                                   const rightPct = Number.isFinite(rightAvg) && rightVal ? Math.round((rightAvg / rightVal) * 100) : "-";
                                   return `${leftPct}% | ${rightPct}%`;
@@ -10808,6 +10814,30 @@ async function addTestDataContent(children, body) {
                 );
               }
             } else {
+
+                // Helper to get motion label for chart titles
+              const getChartMotionLabel = (side) => {
+                const testNameLower = safeName.toLowerCase();
+                if (side === "left") {
+                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) return "Flexion";
+                  if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) return "Abduction";
+                  if (testNameLower.includes("supination") && testNameLower.includes("pronation")) return "Supination";
+                  if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) return "Inversion";
+                  if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) return "Dorsiflexion";
+                  if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) return "Radial Deviation";
+                  if (testNameLower.includes("internal") && testNameLower.includes("external")) return "Internal Rotation";
+                  return "Left";
+                } else {
+                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) return "Extension";
+                  if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) return "Adduction";
+                  if (testNameLower.includes("supination") && testNameLower.includes("pronation")) return "Pronation";
+                  if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) return "Eversion";
+                  if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) return "Plantarflexion";
+                  if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) return "Ulnar Deviation";
+                  if (testNameLower.includes("internal") && testNameLower.includes("external")) return "External Rotation";
+                  return "Right";
+                }
+              };
               if (hasLeftSeries) {
                 const img = await createTrialChartBuffer(
                   "Left",
@@ -10819,7 +10849,7 @@ async function addTestDataContent(children, body) {
                   const trialValues = leftSeries;
                   chartCells.push(
                     createTrialChartCell({
-                      title: showSideTitles ? "Left Side" : "",
+                      title: showSideTitles ? getChartMotionLabel("left") : "", // hide when only 1 chart
                       chartImage: img,
                       averageValue: leftAvg,
                       unitLabel: measurementUnit,
@@ -10842,7 +10872,7 @@ async function addTestDataContent(children, body) {
 
                   chartCells.push(
                     createTrialChartCell({
-                      title: showSideTitles ? "Right Side" : "", // hide when only 1 chart
+                      title: showSideTitles ? getChartMotionLabel("right") : "", // hide when only 1 chart
                       chartImage: img,
                       averageValue: rightAvg,
                       unitLabel: measurementUnit,

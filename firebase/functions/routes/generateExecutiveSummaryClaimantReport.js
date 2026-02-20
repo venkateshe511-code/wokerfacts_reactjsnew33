@@ -9079,6 +9079,30 @@ async function addTestDataContent(children, body) {
                 );
               }
             } else {
+              // Helper to get motion label for chart titles
+              const getChartMotionLabel = (side) => {
+                const testNameLower = safeName.toLowerCase();
+                if (side === "left") {
+                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) return "Flexion";
+                  if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) return "Abduction";
+                  if (testNameLower.includes("supination") && testNameLower.includes("pronation")) return "Supination";
+                  if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) return "Inversion";
+                  if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) return "Dorsiflexion";
+                  if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) return "Radial Deviation";
+                  if (testNameLower.includes("internal") && testNameLower.includes("external")) return "Internal Rotation";
+                  return "Left";
+                } else {
+                  if (testNameLower.includes("flexion") && testNameLower.includes("extension")) return "Extension";
+                  if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) return "Adduction";
+                  if (testNameLower.includes("supination") && testNameLower.includes("pronation")) return "Pronation";
+                  if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) return "Eversion";
+                  if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) return "Plantarflexion";
+                  if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) return "Ulnar Deviation";
+                  if (testNameLower.includes("internal") && testNameLower.includes("external")) return "External Rotation";
+                  return "Right";
+                }
+              };
+
               if (hasLeftSeries) {
                 const img = await createTrialChartBuffer(
                   "Left",
@@ -9090,7 +9114,7 @@ async function addTestDataContent(children, body) {
                   const trialValues = leftSeries;
                   chartCells.push(
                     createTrialChartCell({
-                      title: showSideTitles ? "Left Side" : "",
+                      title: showSideTitles ? getChartMotionLabel("left") : "",
                       chartImage: img,
                       averageValue: leftAvg,
                       unitLabel: measurementUnit,
@@ -9113,7 +9137,7 @@ async function addTestDataContent(children, body) {
 
                   chartCells.push(
                     createTrialChartCell({
-                      title: showSideTitles ? "Right Side" : "", // hide when only 1 chart
+                      title: showSideTitles ? getChartMotionLabel("right") : "", // hide when only 1 chart
                       chartImage: img,
                       averageValue: rightAvg,
                       unitLabel: measurementUnit,
