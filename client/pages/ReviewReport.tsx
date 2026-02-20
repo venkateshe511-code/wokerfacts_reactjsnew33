@@ -6060,9 +6060,11 @@ export default function ReviewReport() {
                                                   <th className="border border-gray-400 border-r-gray-400 p-2">
                                                     % age CV
                                                   </th>
-                                                  <th className="border border-gray-400 border-r-gray-400 p-2">
-                                                    Difference
-                                                  </th>
+                                                  {!isMuscleTest && (
+                                                    <th className="border border-gray-400 border-r-gray-400 p-2">
+                                                      Difference
+                                                    </th>
+                                                  )}
                                                   <th className="border border-gray-400 border-r-gray-400 p-2">
                                                     Test Date
                                                   </th>
@@ -6109,9 +6111,11 @@ export default function ReviewReport() {
                                                       return "L | R";
                                                     })()}
                                                   </td>
-                                                  <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                    Prev | Total
-                                                  </td>
+                                                  {!isMuscleTest && (
+                                                    <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                      Prev | Total
+                                                    </td>
+                                                  )}
                                                   <td className="border border-gray-400 border-r-gray-400 p-2"></td>
                                                 </tr>
                                                 <tr>
@@ -6152,9 +6156,11 @@ export default function ReviewReport() {
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     {leftCV}% | {rightCV}%
                                                   </td>
-                                                  <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                    {bilateralDef.toFixed(1)}%
-                                                  </td>
+                                                  {!isMuscleTest && (
+                                                    <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                      {bilateralDef.toFixed(1)}%
+                                                    </td>
+                                                  )}
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     {currentDate}
                                                     <br />
