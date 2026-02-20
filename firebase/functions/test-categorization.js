@@ -54,7 +54,9 @@ function categorizeTest(test) {
 
   // PRIORITY 4: ROM Hand/Foot (hand/foot/finger/wrist/ankle AND ROM keywords)
   // Must check ID for hand/foot specifics
+  // BUT: explicitly exclude muscle tests (they belong in Strength)
   if (
+    !testId.includes("muscle-") &&
     /\b(hand|foot|finger|thumb|wrist|ankle|digit|toe|dip|pip|mp)\b/.test(
       testName,
     ) &&
