@@ -575,6 +575,442 @@ const map = {
     },
   ],
 
+  // ROM - Extremities (Side-Specific)
+  "elbow-rom-flexion-extension-left": [
+    {
+      src: `${BASE}/Extremity_Elbow_Flexion_Extension.jpg`,
+      label: "Elbow Flex/Ext",
+    },
+  ],
+  "elbow-rom-flexion-extension-right": [
+    {
+      src: `${BASE}/Extremity_Elbow_Flexion_Extension.jpg`,
+      label: "Elbow Flex/Ext",
+    },
+  ],
+  "elbow-rom-supination-pronation-left": [
+    {
+      src: `${BASE}/Extremity_Elbow_Supination_Pronation.jpg`,
+      label: "Elbow Supination/Pronation",
+    },
+  ],
+  "elbow-rom-supination-pronation-right": [
+    {
+      src: `${BASE}/Extremity_Elbow_Supination_Pronation.jpg`,
+      label: "Elbow Supination/Pronation",
+    },
+  ],
+  "wrist-rom-flexion-extension-left": [
+    {
+      src: `${BASE}/Extremity_Wrist_Flexion_Extension.jpg`,
+      label: "Wrist Flex/Ext",
+    },
+  ],
+  "wrist-rom-flexion-extension-right": [
+    {
+      src: `${BASE}/Extremity_Wrist_Flexion_Extension.jpg`,
+      label: "Wrist Flex/Ext",
+    },
+  ],
+  "wrist-rom-radial-ulnar-deviation-left": [
+    {
+      src: `${BASE}/Extremity_Wrist_Radial_Ulunar_Deviation.jpg`,
+      label: "Wrist Radial/Ulnar Deviation",
+    },
+  ],
+  "wrist-rom-radial-ulnar-deviation-right": [
+    {
+      src: `${BASE}/Extremity_Wrist_Radial_Ulunar_Deviation.jpg`,
+      label: "Wrist Radial/Ulnar Deviation",
+    },
+  ],
+  "knee-rom-flexion-extension-left": [
+    {
+      src: `${BASE}/Extremity_ Knee_Flexion_Extension.jpg`,
+      label: "Knee Flex/Ext",
+    },
+  ],
+  "knee-rom-flexion-extension-right": [
+    {
+      src: `${BASE}/Extremity_ Knee_Flexion_Extension.jpg`,
+      label: "Knee Flex/Ext",
+    },
+  ],
+  "shoulder-rom-flexion-extension-left": [
+    {
+      src: `${BASE}/Extremity_Shoulder_Flexion_Extension.jpg`,
+      label: "Shoulder Flex/Ext",
+    },
+  ],
+  "shoulder-rom-flexion-extension-right": [
+    {
+      src: `${BASE}/Extremity_Shoulder_Flexion_Extension.jpg`,
+      label: "Shoulder Flex/Ext",
+    },
+  ],
+  "shoulder-rom-internal-external-rotation-left": [
+    {
+      src: `${BASE}/Extremity_Shoulder_Internal_External_Rotation.jpg`,
+      label: "Shoulder Int/Ext Rotation",
+    },
+  ],
+  "shoulder-rom-internal-external-rotation-right": [
+    {
+      src: `${BASE}/Extremity_Shoulder_Internal_External_Rotation.jpg`,
+      label: "Shoulder Int/Ext Rotation",
+    },
+  ],
+  "shoulder-rom-abduction-adduction-left": [
+    {
+      src: `${BASE}/Extremity_Shoulder_Abduction_Adduction.jpg`,
+      label: "Shoulder Abd/Add",
+    },
+  ],
+  "shoulder-rom-abduction-adduction-right": [
+    {
+      src: `${BASE}/Extremity_Shoulder_Abduction_Adduction.jpg`,
+      label: "Shoulder Abd/Add",
+    },
+  ],
+  "hip-rom-flexion-extension-left": [
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_1.jpg`,
+      label: "Hip ROM (1)",
+    },
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_2.jpg`,
+      label: "Hip ROM (2)",
+    },
+  ],
+  "hip-rom-flexion-extension-right": [
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_1.jpg`,
+      label: "Hip ROM (1)",
+    },
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_2.jpg`,
+      label: "Hip ROM (2)",
+    },
+  ],
+  "hip-rom-internal-external-rotation-left": [
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_1.jpg`,
+      label: "Hip ROM (1)",
+    },
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_2.jpg`,
+      label: "Hip ROM (2)",
+    },
+  ],
+  "hip-rom-internal-external-rotation-right": [
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_1.jpg`,
+      label: "Hip ROM (1)",
+    },
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_2.jpg`,
+      label: "Hip ROM (2)",
+    },
+  ],
+  "hip-rom-abduction-adduction-left": [
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_1.jpg`,
+      label: "Hip ROM (1)",
+    },
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_2.jpg`,
+      label: "Hip ROM (2)",
+    },
+  ],
+  "hip-rom-abduction-adduction-right": [
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_1.jpg`,
+      label: "Hip ROM (1)",
+    },
+    {
+      src: `${BASE}/Extremity_Hip_Flexion_Extension_Internal_External_Rotation_Abduction_Adduction_2.jpg`,
+      label: "Hip ROM (2)",
+    },
+  ],
+  "ankle-rom-dorsi-plantar-flexion-left": [
+    {
+      src: `${BASE}/Extremity_Ankle_Dorsi_Plantar_Flexion.jpg`,
+      label: "Ankle Dorsi/Plantar",
+    },
+  ],
+  "ankle-rom-dorsi-plantar-flexion-right": [
+    {
+      src: `${BASE}/Extremity_Ankle_Dorsi_Plantar_Flexion.jpg`,
+      label: "Ankle Dorsi/Plantar",
+    },
+  ],
+  "ankle-rom-inversion-eversion-left": [
+    {
+      src: `${BASE}/Extremity_Ankle_Inversion_Eversion.jpg`,
+      label: "Ankle Inversion/Eversion",
+    },
+  ],
+  "ankle-rom-inversion-eversion-right": [
+    {
+      src: `${BASE}/Extremity_Ankle_Inversion_Eversion.jpg`,
+      label: "Ankle Inversion/Eversion",
+    },
+  ],
+
+  // ROM - Hand/Foot (Side-Specific)
+  "thumb-ip-flexion-extension-left": [
+    {
+      src: `${BASE}/Thumb_IP_Flexion_Extension.jpg`,
+      label: "Thumb IP Flex/Ext",
+    },
+  ],
+  "thumb-ip-flexion-extension-right": [
+    {
+      src: `${BASE}/Thumb_IP_Flexion_Extension.jpg`,
+      label: "Thumb IP Flex/Ext",
+    },
+  ],
+  "thumb-mp-flexion-extension-left": [
+    {
+      src: `${BASE}/Thumb_MP_Flexion_Extension.jpg`,
+      label: "Thumb MP Flex/Ext",
+    },
+  ],
+  "thumb-mp-flexion-extension-right": [
+    {
+      src: `${BASE}/Thumb_MP_Flexion_Extension.jpg`,
+      label: "Thumb MP Flex/Ext",
+    },
+  ],
+  "thumb-abduction-left": [
+    { src: `${BASE}/Thumb_Thumb_Abduction.jpg`, label: "Thumb Abduction" },
+  ],
+  "thumb-abduction-right": [
+    { src: `${BASE}/Thumb_Thumb_Abduction.jpg`, label: "Thumb Abduction" },
+  ],
+
+  "index-dip-flexion-extension-left": [
+    {
+      src: `${BASE}/Index_Finger_DIP_Flexion_Extension.jpg`,
+      label: "Index DIP Flex/Ext",
+    },
+  ],
+  "index-dip-flexion-extension-right": [
+    {
+      src: `${BASE}/Index_Finger_DIP_Flexion_Extension.jpg`,
+      label: "Index DIP Flex/Ext",
+    },
+  ],
+  "index-pip-flexion-extension-left": [
+    {
+      src: `${BASE}/Index_Finger_PIP_Flexion_Extension.jpg`,
+      label: "Index PIP Flex/Ext",
+    },
+  ],
+  "index-pip-flexion-extension-right": [
+    {
+      src: `${BASE}/Index_Finger_PIP_Flexion_Extension.jpg`,
+      label: "Index PIP Flex/Ext",
+    },
+  ],
+  "index-mp-flexion-extension-left": [
+    {
+      src: `${BASE}/Index_Finger_MP_Flexion_Extension.jpg`,
+      label: "Index MP Flex/Ext",
+    },
+  ],
+  "index-mp-flexion-extension-right": [
+    {
+      src: `${BASE}/Index_Finger_MP_Flexion_Extension.jpg`,
+      label: "Index MP Flex/Ext",
+    },
+  ],
+
+  "middle-dip-flexion-extension-left": [
+    {
+      src: `${BASE}/Middle_Finger_DIP_Flexion_Extension.jpg`,
+      label: "Middle DIP Flex/Ext",
+    },
+  ],
+  "middle-dip-flexion-extension-right": [
+    {
+      src: `${BASE}/Middle_Finger_DIP_Flexion_Extension.jpg`,
+      label: "Middle DIP Flex/Ext",
+    },
+  ],
+  "middle-pip-flexion-extension-left": [
+    {
+      src: `${BASE}/Middle_Finger_PIP_Flexion_Extension.jpg`,
+      label: "Middle PIP Flex/Ext",
+    },
+  ],
+  "middle-pip-flexion-extension-right": [
+    {
+      src: `${BASE}/Middle_Finger_PIP_Flexion_Extension.jpg`,
+      label: "Middle PIP Flex/Ext",
+    },
+  ],
+  "middle-mp-flexion-extension-left": [
+    {
+      src: `${BASE}/Middle_Finger_MP_Flexion_Extension.jpg`,
+      label: "Middle MP Flex/Ext",
+    },
+  ],
+  "middle-mp-flexion-extension-right": [
+    {
+      src: `${BASE}/Middle_Finger_MP_Flexion_Extension.jpg`,
+      label: "Middle MP Flex/Ext",
+    },
+  ],
+
+  "ring-dip-flexion-extension-left": [
+    {
+      src: `${BASE}/Ring_Finger_DIP_Flexion_Extension.jpg`,
+      label: "Ring DIP Flex/Ext",
+    },
+  ],
+  "ring-dip-flexion-extension-right": [
+    {
+      src: `${BASE}/Ring_Finger_DIP_Flexion_Extension.jpg`,
+      label: "Ring DIP Flex/Ext",
+    },
+  ],
+  "ring-pip-flexion-extension-left": [
+    {
+      src: `${BASE}/Ring_Finger_PIP_Flexion_Extension.jpg`,
+      label: "Ring PIP Flex/Ext",
+    },
+  ],
+  "ring-pip-flexion-extension-right": [
+    {
+      src: `${BASE}/Ring_Finger_PIP_Flexion_Extension.jpg`,
+      label: "Ring PIP Flex/Ext",
+    },
+  ],
+  "ring-mp-flexion-extension-left": [
+    {
+      src: `${BASE}/Ring_Finger_MP_Flexion_Extension.jpg`,
+      label: "Ring MP Flex/Ext",
+    },
+  ],
+  "ring-mp-flexion-extension-right": [
+    {
+      src: `${BASE}/Ring_Finger_MP_Flexion_Extension.jpg`,
+      label: "Ring MP Flex/Ext",
+    },
+  ],
+
+  "little-dip-flexion-extension-left": [
+    {
+      src: `${BASE}/Little_Finger_DIP_Flexion_Extension_PIP_Flexion_Extension_MP_Flexion_Extension.jpg`,
+      label: "Little Finger ROM",
+    },
+  ],
+  "little-dip-flexion-extension-right": [
+    {
+      src: `${BASE}/Little_Finger_DIP_Flexion_Extension_PIP_Flexion_Extension_MP_Flexion_Extension.jpg`,
+      label: "Little Finger ROM",
+    },
+  ],
+  "little-pip-flexion-extension-left": [
+    {
+      src: `${BASE}/Little_Finger_DIP_Flexion_Extension_PIP_Flexion_Extension_MP_Flexion_Extension.jpg`,
+      label: "Little Finger ROM",
+    },
+  ],
+  "little-pip-flexion-extension-right": [
+    {
+      src: `${BASE}/Little_Finger_DIP_Flexion_Extension_PIP_Flexion_Extension_MP_Flexion_Extension.jpg`,
+      label: "Little Finger ROM",
+    },
+  ],
+  "little-mp-flexion-extension-left": [
+    {
+      src: `${BASE}/Little_Finger_DIP_Flexion_Extension_PIP_Flexion_Extension_MP_Flexion_Extension.jpg`,
+      label: "Little Finger ROM",
+    },
+  ],
+  "little-mp-flexion-extension-right": [
+    {
+      src: `${BASE}/Little_Finger_DIP_Flexion_Extension_PIP_Flexion_Extension_MP_Flexion_Extension.jpg`,
+      label: "Little Finger ROM",
+    },
+  ],
+
+  "great-toe-ip-flexion-left": [
+    {
+      src: `${BASE}/Extremity_Great_Toe_IP_Flexion_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "Great Toe IP Flexion",
+    },
+  ],
+  "great-toe-ip-flexion-right": [
+    {
+      src: `${BASE}/Extremity_Great_Toe_IP_Flexion_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "Great Toe IP Flexion",
+    },
+  ],
+  "great-toe-mp-dorsi-plantar-flexion-left": [
+    {
+      src: `${BASE}/Extremity_Great_Toe_IP_Flexion_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "Great Toe MP Dorsi/Plantar",
+    },
+  ],
+  "great-toe-mp-dorsi-plantar-flexion-right": [
+    {
+      src: `${BASE}/Extremity_Great_Toe_IP_Flexion_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "Great Toe MP Dorsi/Plantar",
+    },
+  ],
+
+  "2nd-toe-mp-dorsi-plantar-flexion-left": [
+    {
+      src: `${BASE}/Extremity_2nd_Toe_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "2nd Toe MP Dorsi/Plantar",
+    },
+  ],
+  "2nd-toe-mp-dorsi-plantar-flexion-right": [
+    {
+      src: `${BASE}/Extremity_2nd_Toe_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "2nd Toe MP Dorsi/Plantar",
+    },
+  ],
+  "3rd-toe-mp-dorsi-plantar-flexion-left": [
+    {
+      src: `${BASE}/Extremity_3rd_Toe_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "3rd Toe MP Dorsi/Plantar",
+    },
+  ],
+  "3rd-toe-mp-dorsi-plantar-flexion-right": [
+    {
+      src: `${BASE}/Extremity_3rd_Toe_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "3rd Toe MP Dorsi/Plantar",
+    },
+  ],
+  "4th-toe-mp-dorsi-plantar-flexion-left": [
+    {
+      src: `${BASE}/Extremity_4th_Toe_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "4th Toe MP Dorsi/Plantar",
+    },
+  ],
+  "4th-toe-mp-dorsi-plantar-flexion-right": [
+    {
+      src: `${BASE}/Extremity_4th_Toe_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "4th Toe MP Dorsi/Plantar",
+    },
+  ],
+  "5th-toe-mp-dorsi-plantar-flexion-left": [
+    {
+      src: `${BASE}/Extremity_5th_Toe_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "5th Toe MP Dorsi/Plantar",
+    },
+  ],
+  "5th-toe-mp-dorsi-plantar-flexion-right": [
+    {
+      src: `${BASE}/Extremity_5th_Toe_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "5th Toe MP Dorsi/Plantar",
+    },
+  ],
+
   // Occupational (MTM)
   fingering: [
     { src: `${BASE}/MTM_Test_Battery_Fingering.jpg`, label: "Fingering" },
