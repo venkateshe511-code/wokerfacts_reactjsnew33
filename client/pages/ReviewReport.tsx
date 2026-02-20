@@ -33,6 +33,7 @@ import {
   type TestCategory,
 } from "@/lib/test-categorization";
 import { getPairedMotionLabels, getAreaEvaluatedLabels } from "@shared/rom-utils";
+import { inferNormsForTest } from "@/lib/norms";
 
 // IndexedDB utilities for loading digital library images
 const DB_NAME = "DigitalLibraryDB";
@@ -4142,27 +4143,22 @@ export default function ReviewReport() {
                                                   : "Fail"}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {/* Left side is typically flexion or the first motion */}
-                                                {testName.includes("flexion") && testName.includes("extension")
-                                                  ? "60 °"
-                                                  : testName.includes("abduction") && testName.includes("adduction")
-                                                    ? "45 °"
-                                                    : testName.includes("supination") && testName.includes("pronation")
-                                                      ? "80 °"
-                                                      : "45 °"}
+                                                {(() => {
+                                                  const norms = inferNormsForTest(
+                                                    `${test.testId || ""} ${test.testName || ""}`
+                                                  );
+                                                  const leftNorm = norms.left ?? 45;
+                                                  return `${leftNorm} °`;
+                                                })()}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {Math.round(
-                                                  (leftAvg /
-                                                    (testName.includes("flexion") && testName.includes("extension")
-                                                      ? 60
-                                                      : testName.includes("abduction") && testName.includes("adduction")
-                                                        ? 45
-                                                        : testName.includes("supination") && testName.includes("pronation")
-                                                          ? 80
-                                                          : 45)) *
-                                                    100,
-                                                )}
+                                                {(() => {
+                                                  const norms = inferNormsForTest(
+                                                    `${test.testId || ""} ${test.testName || ""}`
+                                                  );
+                                                  const leftNorm = norms.left ?? 45;
+                                                  return Math.round((leftAvg / leftNorm) * 100);
+                                                })()}
                                                 %
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
@@ -4187,27 +4183,22 @@ export default function ReviewReport() {
                                                   : "Fail"}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {/* Right side is typically extension or the second motion */}
-                                                {testName.includes("flexion") && testName.includes("extension")
-                                                  ? "25 °"
-                                                  : testName.includes("abduction") && testName.includes("adduction")
-                                                    ? "35 °"
-                                                    : testName.includes("supination") && testName.includes("pronation")
-                                                      ? "80 °"
-                                                      : "25 °"}
+                                                {(() => {
+                                                  const norms = inferNormsForTest(
+                                                    `${test.testId || ""} ${test.testName || ""}`
+                                                  );
+                                                  const rightNorm = norms.right ?? 25;
+                                                  return `${rightNorm} °`;
+                                                })()}
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                {Math.round(
-                                                  (rightAvg /
-                                                    (testName.includes("flexion") && testName.includes("extension")
-                                                      ? 25
-                                                      : testName.includes("abduction") && testName.includes("adduction")
-                                                        ? 35
-                                                        : testName.includes("supination") && testName.includes("pronation")
-                                                          ? 80
-                                                          : 25)) *
-                                                    100,
-                                                )}
+                                                {(() => {
+                                                  const norms = inferNormsForTest(
+                                                    `${test.testId || ""} ${test.testName || ""}`
+                                                  );
+                                                  const rightNorm = norms.right ?? 25;
+                                                  return Math.round((rightAvg / rightNorm) * 100);
+                                                })()}
                                                 %
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
@@ -6129,27 +6120,29 @@ export default function ReviewReport() {
                                                   {!isMuscleTest && (
                                                     <>
                                                       <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                        {isGripTest
-                                                          ? "110.5 | 120.8"
-                                                          : "85.0 | 90.0"}
+                                                        {(() => {
+                                                          const norms = inferNormsForTest(
+                                                            `${test.testId || ""} ${test.testName || ""}`
+                                                          );
+                                                          const leftNorm = norms.left ?? (isGripTest ? 110.5 : 85.0);
+                                                          const rightNorm = norms.right ?? (isGripTest ? 120.8 : 90.0);
+                                                          return `${leftNorm.toFixed(1)} | ${rightNorm.toFixed(1)}`;
+                                                        })()}
                                                       </td>
                                                       <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                        {Math.round(
-                                                          (leftAvg /
-                                                            (isGripTest
-                                                              ? 110.5
-                                                              : 85.0)) *
-                                                            100,
-                                                        )}
-                                                        % |{" "}
-                                                        {Math.round(
-                                                          (rightAvg /
-                                                            (isGripTest
-                                                              ? 120.8
-                                                              : 90.0)) *
-                                                            100,
-                                                        )}
-                                                        %
+                                                        {(() => {
+                                                          const norms = inferNormsForTest(
+                                                            `${test.testId || ""} ${test.testName || ""}`
+                                                          );
+                                                          const leftNorm = norms.left ?? (isGripTest ? 110.5 : 85.0);
+                                                          const rightNorm = norms.right ?? (isGripTest ? 120.8 : 90.0);
+                                                          return (
+                                                            <>
+                                                              {Math.round((leftAvg / leftNorm) * 100)}% |{" "}
+                                                              {Math.round((rightAvg / rightNorm) * 100)}%
+                                                            </>
+                                                          );
+                                                        })()}
                                                       </td>
                                                     </>
                                                   )}
