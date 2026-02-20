@@ -32,6 +32,7 @@ const {
 } = require("../test-illustrations");
 const { groupTestsByCategory } = require("../test-categorization");
 const { getAreaEvaluatedLabels } = require("../rom-utils");
+const { inferNormsForTest } = require("../norms");
 const router = express.Router();
 const BRAND_COLOR = "1E3A8A";
 const NARROW_FONT = "Arial Narrow";
@@ -8049,6 +8050,26 @@ async function addTestDataContent(children, body) {
         const averageLabel = isRangeOfMotion
           ? "Average (range of motion)"
           : "Average (weight)";
+
+        // Get norm values: priority to test data > user-entered > standardized
+        let normLeft, normRight;
+
+        // Check if test has user-entered norm values
+        if (test.normLevel === "no" && test.valueToBeTestedNumber) {
+          // User-entered single norm value
+          normLeft = parseFloat(test.valueToBeTestedNumber);
+          normRight = parseFloat(test.valueToBeTestedNumber);
+        } else if (test.normLevel === "no" && (test.valueToBeTestedNumberLeft || test.valueToBeTestedNumberRight)) {
+          // User-entered bilateral norm values
+          normLeft = test.valueToBeTestedNumberLeft ? parseFloat(test.valueToBeTestedNumberLeft) : null;
+          normRight = test.valueToBeTestedNumberRight ? parseFloat(test.valueToBeTestedNumberRight) : null;
+        } else {
+          // Use standardized norms
+          const norms = inferNormsForTest(`${test.testId || ""} ${safeName}`);
+          normLeft = norms.left;
+          normRight = norms.right;
+        }
+
         const isGripTest =
           testNameLower.includes("grip") || testNameLower.includes("pinch");
         const isLiftTest =
@@ -8581,9 +8602,11 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: isGripTest
-                                  ? "110.5 | 120.8"
-                                  : "85.0 | 90.0",
+                                text: (() => {
+                                  const leftVal = Number.isFinite(normLeft) ? normLeft : 85.0;
+                                  const rightVal = Number.isFinite(normRight) ? normRight : 90.0;
+                                  return `${leftVal.toFixed(1)} | ${rightVal.toFixed(1)}`;
+                                })(),
                                 size: 16,
                               }),
                             ],
@@ -8597,7 +8620,13 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `${Math.round((leftAvg / (isGripTest ? 110.5 : 85)) * 100)}% | ${Math.round((rightAvg / (isGripTest ? 120.8 : 90)) * 100)}%`,
+                                text: (() => {
+                                  const leftVal = Number.isFinite(normLeft) ? normLeft : 85.0;
+                                  const rightVal = Number.isFinite(normRight) ? normRight : 90.0;
+                                  const leftPct = Number.isFinite(leftAvg) && leftVal ? Math.round((leftAvg / leftVal) * 100) : "-";
+                                  const rightPct = Number.isFinite(rightAvg) && rightVal ? Math.round((rightAvg / rightVal) * 100) : "-";
+                                  return `${leftPct}% | ${rightPct}%`;
+                                })(),
                                 size: 16,
                               }),
                             ],
