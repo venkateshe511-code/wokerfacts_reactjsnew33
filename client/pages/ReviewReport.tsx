@@ -6072,7 +6072,18 @@ export default function ReviewReport() {
                                                 <tr>
                                                   <td className="border border-gray-400 border-r-gray-400 p-2"></td>
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                    Left | Right
+                                                    {(() => {
+                                                      if (isMuscleTest) {
+                                                        const pairedLabels = getPairedMotionLabels(
+                                                          test.testId,
+                                                          test.testName,
+                                                        );
+                                                        return pairedLabels
+                                                          ? `${pairedLabels[0]} | ${pairedLabels[1]}`
+                                                          : "Left | Right";
+                                                      }
+                                                      return "Left | Right";
+                                                    })()}
                                                   </td>
                                                   {!isMuscleTest && (
                                                     <>
@@ -6085,7 +6096,18 @@ export default function ReviewReport() {
                                                     </>
                                                   )}
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                    L | R
+                                                    {(() => {
+                                                      if (isMuscleTest) {
+                                                        const pairedLabels = getPairedMotionLabels(
+                                                          test.testId,
+                                                          test.testName,
+                                                        );
+                                                        return pairedLabels
+                                                          ? `${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`
+                                                          : "L | R";
+                                                      }
+                                                      return "L | R";
+                                                    })()}
                                                   </td>
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     Prev | Total
