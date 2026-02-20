@@ -928,20 +928,28 @@ export default function ProtocolTests() {
   };
 
   useEffect(() => {
+    // Build a set of all valid test IDs from testGroups
+    const validTestIds = new Set<string>();
+    Object.values(testGroups).forEach((groups) => {
+      groups.forEach((group) => {
+        group.tests.forEach((test) => {
+          validTestIds.add(test.id);
+        });
+      });
+    });
+
     // Check if we have existing protocol data (edit mode)
     const existingData = localStorage.getItem("protocolTestsData");
     if (existingData) {
       const savedData = JSON.parse(existingData);
 
-      // Clean up any old mcafi test IDs (replace with mcaft)
+      // Clean up old test IDs and validate against current valid test IDs
       const cleanedSelectedTests = savedData.selectedTests
         .filter((testId: string) => !testId.includes("mcafi")) // Remove old mcafi tests
         .filter((testId: string) => testId !== "cervical-anterior-obliques")
         .filter((testId: string) => testId !== "dynamic-lift-frequent")
-        .map((testId: string) => {
-          // This shouldn't be needed since we're filtering above, but just in case
-          return testId.replace("mcafi", "mcaft");
-        });
+        .map((testId: string) => testId.replace("mcafi", "mcaft"))
+        .filter((testId: string) => validTestIds.has(testId)); // Only keep valid test IDs
 
       setProtocolData({
         ...savedData,
