@@ -97,12 +97,8 @@ export function inferNormsForTest(testName: string): NormInfo {
     return { unit: "bpm", left: null, right: null, category: "cardio" };
   }
 
-  if (isROM(name)) {
-    const rn = romNorm(name).value;
-    return { unit: "deg", left: rn, right: rn, category: "rom" };
-  }
-
   // Strength/Grip defaults used in Review/Download tables
+  // Check these BEFORE isROM to avoid misclassifying "Pinch Strength Palmar"
   if (isGrip(name)) {
     // Grip norms displayed in reports as 110.5 (L) | 120.8 (R) lb
     return { unit: "lb", left: 110.5, right: 120.8, category: "strength" };
@@ -110,6 +106,11 @@ export function inferNormsForTest(testName: string): NormInfo {
   if (isPinch(name)) {
     // Use generic strength fallback in lbs for display table
     return { unit: "lb", left: 85.0, right: 90.0, category: "strength" };
+  }
+
+  if (isROM(name)) {
+    const rn = romNorm(name).value;
+    return { unit: "deg", left: rn, right: rn, category: "rom" };
   }
 
   // Generic strength fallback
