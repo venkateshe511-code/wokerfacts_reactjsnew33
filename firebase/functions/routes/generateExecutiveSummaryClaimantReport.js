@@ -2664,7 +2664,7 @@ const readTrials = (src) => {
 };
 
 function average(arr) {
-  const vals = arr.filter((v) => typeof v === "number" && Number.isFinite(v));
+  const vals = arr.filter((v) => typeof v === "number" && Number.isFinite(v) && v > 0);
   if (vals.length === 0) return NaN;
   return vals.reduce((a, b) => a + b, 0) / vals.length;
 }
