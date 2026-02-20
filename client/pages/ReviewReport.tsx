@@ -6047,12 +6047,16 @@ export default function ReviewReport() {
                                                   <th className="border border-gray-400 border-r-gray-400 p-2">
                                                     Avg. Force (lb)
                                                   </th>
-                                                  <th className="border border-gray-400 border-r-gray-400 p-2">
-                                                    Norm (lb)
-                                                  </th>
-                                                  <th className="border border-gray-400 border-r-gray-400 p-2">
-                                                    % age Norm
-                                                  </th>
+                                                  {!isMuscleTest && (
+                                                    <>
+                                                      <th className="border border-gray-400 border-r-gray-400 p-2">
+                                                        Norm (lb)
+                                                      </th>
+                                                      <th className="border border-gray-400 border-r-gray-400 p-2">
+                                                        % age Norm
+                                                      </th>
+                                                    </>
+                                                  )}
                                                   <th className="border border-gray-400 border-r-gray-400 p-2">
                                                     % age CV
                                                   </th>
@@ -6070,12 +6074,16 @@ export default function ReviewReport() {
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     Left | Right
                                                   </td>
-                                                  <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                    L | R
-                                                  </td>
-                                                  <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                    L | R
-                                                  </td>
+                                                  {!isMuscleTest && (
+                                                    <>
+                                                      <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                        L | R
+                                                      </td>
+                                                      <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                        L | R
+                                                      </td>
+                                                    </>
+                                                  )}
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     L | R
                                                   </td>
@@ -6092,29 +6100,33 @@ export default function ReviewReport() {
                                                     {leftAvg.toFixed(1)} |{" "}
                                                     {rightAvg.toFixed(1)}
                                                   </td>
-                                                  <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                    {isGripTest
-                                                      ? "110.5 | 120.8"
-                                                      : "85.0 | 90.0"}
-                                                  </td>
-                                                  <td className="border border-gray-400 border-r-gray-400 p-2">
-                                                    {Math.round(
-                                                      (leftAvg /
-                                                        (isGripTest
-                                                          ? 110.5
-                                                          : 85.0)) *
-                                                        100,
-                                                    )}
-                                                    % |{" "}
-                                                    {Math.round(
-                                                      (rightAvg /
-                                                        (isGripTest
-                                                          ? 120.8
-                                                          : 90.0)) *
-                                                        100,
-                                                    )}
-                                                    %
-                                                  </td>
+                                                  {!isMuscleTest && (
+                                                    <>
+                                                      <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                        {isGripTest
+                                                          ? "110.5 | 120.8"
+                                                          : "85.0 | 90.0"}
+                                                      </td>
+                                                      <td className="border border-gray-400 border-r-gray-400 p-2">
+                                                        {Math.round(
+                                                          (leftAvg /
+                                                            (isGripTest
+                                                              ? 110.5
+                                                              : 85.0)) *
+                                                            100,
+                                                        )}
+                                                        % |{" "}
+                                                        {Math.round(
+                                                          (rightAvg /
+                                                            (isGripTest
+                                                              ? 120.8
+                                                              : 90.0)) *
+                                                            100,
+                                                        )}
+                                                        %
+                                                      </td>
+                                                    </>
+                                                  )}
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     {leftCV}% | {rightCV}%
                                                   </td>
