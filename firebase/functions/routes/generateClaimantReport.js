@@ -32,6 +32,7 @@ const {
 } = require("../test-illustrations");
 const { groupTestsByCategory } = require("../test-categorization");
 const { getAreaEvaluatedLabels } = require("../rom-utils");
+const { inferNormsForTest } = require("../norms");
 const router = express.Router();
 const BRAND_COLOR = "1E3A8A";
 const NARROW_FONT = "Arial Narrow";
@@ -9685,6 +9686,10 @@ async function addTestDataContent(children, body) {
           : isRangeOfMotion
             ? "Average (range of motion)"
             : "Average (weight)";
+
+        // Get norm values for the test
+        const norms = inferNormsForTest(`${test.testId || ""} ${safeName}`);
+
         const isGripTest =
           testNameLower.includes("grip") || testNameLower.includes("pinch");
         const isLiftTest =
@@ -10310,9 +10315,11 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: isGripTest
-                                  ? "110.5 | 120.8"
-                                  : "85.0 | 90.0",
+                                text: (() => {
+                                  const leftNorm = norms.left ?? 85.0;
+                                  const rightNorm = norms.right ?? 90.0;
+                                  return `${leftNorm.toFixed(1)} | ${rightNorm.toFixed(1)}`;
+                                })(),
                                 size: 16,
                               }),
                             ],
@@ -10326,7 +10333,13 @@ async function addTestDataContent(children, body) {
                             alignment: AlignmentType.CENTER,
                             children: [
                               new TextRun({
-                                text: `${Math.round((leftAvg / (isGripTest ? 110.5 : 85)) * 100)}% | ${Math.round((rightAvg / (isGripTest ? 120.8 : 90)) * 100)}%`,
+                                text: (() => {
+                                  const leftNorm = norms.left ?? 85.0;
+                                  const rightNorm = norms.right ?? 90.0;
+                                  const leftPct = Number.isFinite(leftAvg) && leftNorm ? Math.round((leftAvg / leftNorm) * 100) : "-";
+                                  const rightPct = Number.isFinite(rightAvg) && rightNorm ? Math.round((rightAvg / rightNorm) * 100) : "-";
+                                  return `${leftPct}% | ${rightPct}%`;
+                                })(),
                                 size: 16,
                               }),
                             ],
