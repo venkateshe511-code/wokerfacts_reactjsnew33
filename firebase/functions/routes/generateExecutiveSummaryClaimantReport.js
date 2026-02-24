@@ -8347,7 +8347,7 @@ async function addTestDataContent(children, body) {
                               new TextRun({
                                 text: (() => {
                                   const labels = getAreaEvaluatedLabels(safeName, test.testId);
-                                  return labels ? labels[0] : `Left Side - ${safeName}`;
+                                  return labels ? labels[0] : safeName;
                                 })(),
                                 size: 16,
                               }),
@@ -8432,7 +8432,7 @@ async function addTestDataContent(children, body) {
                               new TextRun({
                                 text: (() => {
                                   const labels = getAreaEvaluatedLabels(safeName, test.testId);
-                                  return labels ? labels[1] : `Right Side - ${safeName}`;
+                                  return labels ? labels[1] : safeName;
                                 })(),
                                 size: 16,
                               }),
