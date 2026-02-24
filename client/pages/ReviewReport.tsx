@@ -2920,27 +2920,27 @@ export default function ReviewReport() {
                                             // Bruce Treadmill Test
                                             if (testNameLower.includes("bruce") ||
                                                 (testNameLower.includes("treadmill") && !testNameLower.includes("ymca"))) {
-                                              if (test.vo2MaxScore) cardioValues.push(`VO2: ${test.vo2MaxScore}`);
-                                              if (test.classification) cardioValues.push(`Class: ${test.classification}`);
+                                              if (test.vo2MaxScore) cardioValues.push(`VO2=${test.vo2MaxScore}`);
+                                              if (test.classification) cardioValues.push(`Cls=${test.classification}`);
                                             }
                                             // mCAFT Test
                                             else if (testNameLower.includes("mcaft")) {
-                                              if (test.predictedVo2Max) cardioValues.push(`Predicted VO2: ${test.predictedVo2Max}`);
-                                              if (test.hbr) cardioValues.push(`HBR: ${test.hbr}`);
+                                              if (test.predictedVo2Max) cardioValues.push(`PVO2=${test.predictedVo2Max}`);
+                                              if (test.hbr) cardioValues.push(`HBR=${test.hbr}`);
                                             }
                                             // KASCH Step Test
                                             else if (testNameLower.includes("kasch")) {
-                                              if (test.aerobicFitnessScore) cardioValues.push(`Aerobic Score: ${test.aerobicFitnessScore}`);
+                                              if (test.aerobicFitnessScore) cardioValues.push(`AFS=${test.aerobicFitnessScore}`);
                                             }
                                             // YMCA 3-Minute Step Test
                                             else if (testNameLower.includes("ymca") && testNameLower.includes("step")) {
-                                              if (test.clientRating) cardioValues.push(`Rating: ${test.clientRating}`);
-                                              if (test.heartRate) cardioValues.push(`HR: ${test.heartRate} bpm`);
+                                              if (test.clientRating) cardioValues.push(`Rtg=${test.clientRating}`);
+                                              if (test.heartRate) cardioValues.push(`HR=${test.heartRate}`);
                                             }
                                             // YMCA Submaximal Treadmill Test
                                             else if (testNameLower.includes("ymca") && testNameLower.includes("submaximal")) {
-                                              if (test.vo2Max) cardioValues.push(`VO2: ${test.vo2Max}`);
-                                              if (test.heartRate) cardioValues.push(`HR: ${test.heartRate} bpm`);
+                                              if (test.vo2Max) cardioValues.push(`VO2=${test.vo2Max}`);
+                                              if (test.heartRate) cardioValues.push(`HR=${test.heartRate}`);
                                             }
 
                                             if (cardioValues.length > 0) {
@@ -3081,7 +3081,7 @@ export default function ReviewReport() {
                     </p>
                     <p>
                       <strong>Legend:</strong> L=Left, R=Right, F=Flexion,
-                      E=Extension, S=Supination, P=Pronation, I=Internal, ABD=Abduction, ADD=Adduction, %IS=% Industrial Standard
+                      E=Extension, S=Supination, P=Pronation, I=Internal, ABD=Abduction, ADD=Adduction, %IS=% Industrial Standard, VO2=Oxygen Uptake, PVO2=Predicted VO2, HBR=Heart Beat Reserve, HR=Heart Rate, Cls=Classification, AFS=Aerobic Fitness Score, Rtg=Rating
                     </p>
                   </div>
 
