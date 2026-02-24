@@ -7575,7 +7575,7 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
           size: 16,
         }),
         new TextRun({
-          text: "L=Left, R=Right, F=Flexion, E=Extension, %IS=% Industrial Standard, HR=Heart Rate",
+          text: "L=Left, R=Right, F=Flexion, E=Extension, S=Supination, P=Pronation, I=Internal, ABD=Abduction, ADD=Adduction, %IS=% Industrial Standard, VO2=Oxygen Uptake, PVO2=Predicted VO2, HBR=Heart Beat Reserve, HR=Heart Rate, Cls=Classification, AFS=Aerobic Fitness Score, Rtg=Rating",
           size: 16,
         }),
       ],
