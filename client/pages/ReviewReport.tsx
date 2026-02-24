@@ -2900,7 +2900,7 @@ export default function ReviewReport() {
                                               : Math.round(baseAvg * 10) / 10;
                                           return `${avgValue.toFixed(1)} ${unit}`;
                                         } else {
-                                          // Use getPairedMotionLabels to get correct abbreviations
+                                          // Use getPairedMotionLabels to get abbreviations for summary table
                                           const pairedLabels = getPairedMotionLabels(
                                             test.testId,
                                             test.testName
@@ -6182,7 +6182,7 @@ export default function ReviewReport() {
                                                 <tr>
                                                   <td className="border border-black px-2 py-1 font-bold text-left">
                                                     {(() => {
-                                                      const pairedLabels = getPairedMotionLabels(
+                                                      const pairedLabels = getPairedMotionLabelsFullNames(
                                                         test.testId,
                                                         test.testName,
                                                       );
@@ -6206,7 +6206,7 @@ export default function ReviewReport() {
                                                 <tr>
                                                   <td className="border border-black px-2 py-1 font-bold text-left">
                                                     {(() => {
-                                                      const pairedLabels = getPairedMotionLabels(
+                                                      const pairedLabels = getPairedMotionLabelsFullNames(
                                                         test.testId,
                                                         test.testName,
                                                       );
@@ -6347,7 +6347,7 @@ export default function ReviewReport() {
                                           <p className="text-center text-xs mt-2">
                                             <strong>
                                               {(() => {
-                                                const pairedLabels = getPairedMotionLabels(
+                                                const pairedLabels = getPairedMotionLabelsFullNames(
                                                   test.testId,
                                                   test.testName,
                                                 );
@@ -6434,7 +6434,7 @@ export default function ReviewReport() {
                                           <p className="text-center text-xs mt-2">
                                             <strong>
                                               {(() => {
-                                                const pairedLabels = getPairedMotionLabels(
+                                                const pairedLabels = getPairedMotionLabelsFullNames(
                                                   test.testId,
                                                   test.testName,
                                                 );

@@ -35,7 +35,7 @@ import CardioTestRouter, {
   CardioTestData,
 } from "@/components/cardio-tests/CardioTestRouter";
 import { calculatePercentISByTest } from "@shared/mtm-standards";
-import { getPairedMotionLabels } from "@shared/rom-utils";
+import { getFullMotionLabels } from "@shared/rom-utils";
 import { inferNormsForTest } from "@/lib/norms";
 
 interface TestMeasurement {
@@ -1402,7 +1402,7 @@ export default function TestData() {
   };
 
   // Determine ROM paired labels (e.g., Flexion/Extension) if applicable
-  const romPair = getPairedMotionLabels(currentTest?.testId, currentTest?.testName);
+  const romPair = getFullMotionLabels(currentTest?.testId, currentTest?.testName);
 
   // Check if this is any type of ROM test (includes both Extremity ROM and Total Spine ROM)
   const isAnyRomTest = isRangeOfMotionTest || isTotalSpineRomTest;
