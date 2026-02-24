@@ -4678,7 +4678,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
               String(test.testId || testName)
                 .toLowerCase()
                 .includes("static-lift") || testName.includes("static");
-            const pairedMotionLabels = getPairedMotionLabels(
+            const pairedMotionLabels = getPairedMotionLabelsFullNames(
               test.testId,
               test.testName,
             );

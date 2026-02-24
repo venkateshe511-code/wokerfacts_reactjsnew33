@@ -2900,8 +2900,8 @@ export default function ReviewReport() {
                                               : Math.round(baseAvg * 10) / 10;
                                           return `${avgValue.toFixed(1)} ${unit}`;
                                         } else {
-                                          // Use getPairedMotionLabels to get correct abbreviations
-                                          const pairedLabels = getPairedMotionLabels(
+                                          // Use getPairedMotionLabelsFullNames to get full text labels
+                                          const pairedLabels = getPairedMotionLabelsFullNames(
                                             test.testId,
                                             test.testName
                                           );
@@ -6347,7 +6347,7 @@ export default function ReviewReport() {
                                           <p className="text-center text-xs mt-2">
                                             <strong>
                                               {(() => {
-                                                const pairedLabels = getPairedMotionLabels(
+                                                const pairedLabels = getPairedMotionLabelsFullNames(
                                                   test.testId,
                                                   test.testName,
                                                 );
@@ -6434,7 +6434,7 @@ export default function ReviewReport() {
                                           <p className="text-center text-xs mt-2">
                                             <strong>
                                               {(() => {
-                                                const pairedLabels = getPairedMotionLabels(
+                                                const pairedLabels = getPairedMotionLabelsFullNames(
                                                   test.testId,
                                                   test.testName,
                                                 );
