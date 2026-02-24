@@ -2892,9 +2892,19 @@ export default function ReviewReport() {
                                             return `%IS=${avgPercentIS.toFixed(1)}`;
                                           }
 
-                                          // Fallback to calculated average if no trials available
-                                          const avgResult = (leftAvg + rightAvg) / 2;
-                                          return `%IS=${avgResult.toFixed(1)}`;
+                                          // Fallback: Look up MTM test data for this test
+                                          const testId = test.testId || "";
+                                          const mtmTestData = reportData.mtmTestData || {};
+                                          if (mtmTestData[testId]) {
+                                            const trials = mtmTestData[testId].trials || [];
+                                            if (trials.length > 0) {
+                                              const avgPercentIS = trials.reduce((sum: number, t: any) => sum + (t.percentIS || 0), 0) / trials.length;
+                                              return `%IS=${avgPercentIS.toFixed(1)}`;
+                                            }
+                                          }
+
+                                          // No data available
+                                          return "";
                                         } else if (testNameLower.includes("lift")) {
                                           // Lift tests: show average weight with selected metric
                                           const unit = (
