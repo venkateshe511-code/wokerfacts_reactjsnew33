@@ -3032,7 +3032,7 @@ export default function ReviewReport() {
                     </p>
                     <p>
                       <strong>Legend:</strong> L=Left, R=Right, F=Flexion,
-                      E=Extension, %IS=% Industrial Standard
+                      E=Extension, S=Supination, P=Pronation, I=Internal, ABD=Abduction, ADD=Adduction, %IS=% Industrial Standard
                     </p>
                   </div>
 

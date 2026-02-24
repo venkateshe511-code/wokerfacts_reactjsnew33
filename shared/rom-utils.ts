@@ -263,7 +263,7 @@ export function getPairedMotionLabels(
     combined.includes("supination-pronation") ||
     combined.includes("supination/pronation")
   ) {
-    return ["Supination", "Pronation"];
+    return ["S", "P"];
   }
 
   // Check for internal-external rotation pattern
