@@ -28,7 +28,7 @@ import {
 } from "@/lib/test-illustrations";
 import { doc, getDoc } from "firebase/firestore";
 import { getReferencesForTest, formatReference } from "@shared/references";
-import { getPairedMotionLabels, getPairedMotionLabelsFullNames, getAreaEvaluatedLabels, isSpineROMTest } from "@shared/rom-utils";
+import { getPairedMotionLabels, getPairedMotionLabelsFullNames, getAreaEvaluatedLabels, getFullAreaEvaluatedLabels, isSpineROMTest } from "@shared/rom-utils";
 import {
   categorizeTest,
   groupTestsByCategory,
@@ -4881,7 +4881,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             <tr>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
                                                   (() => {
-                                                    const labels = getAreaEvaluatedLabels(test.testName, test.testId);
+                                                    const labels = getFullAreaEvaluatedLabels(test.testName, test.testId);
                                                     return labels ? labels[0] : test.testName;
                                                   })()
                                                 }</td>
@@ -4914,7 +4914,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             <tr>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">${
                                                   (() => {
-                                                    const labels = getAreaEvaluatedLabels(test.testName, test.testId);
+                                                    const labels = getFullAreaEvaluatedLabels(test.testName, test.testId);
                                                     return labels ? labels[1] : test.testName;
                                                   })()
                                                 }</td>
