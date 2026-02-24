@@ -4225,7 +4225,7 @@ export default function ReviewReport() {
                                           </thead>
                                           <tbody>
                                             <tr>
-                                              <td className="border border-black px-2 py-1 font-bold text-left">
+                                              <td className="border border-black px-2 py-1 font-bold text-left whitespace-nowrap">
                                                 {(() => {
                                                   const pairedLabels = getPairedMotionLabelsFullNames(
                                                     test.testId,
@@ -4249,7 +4249,7 @@ export default function ReviewReport() {
                                               </td>
                                             </tr>
                                             <tr>
-                                              <td className="border border-black px-2 py-1 font-bold text-left">
+                                              <td className="border border-black px-2 py-1 font-bold text-left whitespace-nowrap">
                                                 {(() => {
                                                   const pairedLabels = getPairedMotionLabelsFullNames(
                                                     test.testId,
@@ -6174,68 +6174,68 @@ export default function ReviewReport() {
                                                     Trial 6
                                                   </th>
                                                   <th className="border border-black px-2 py-1 font-bold">
-                                                    Average (weight)
-                                                  </th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                <tr>
-                                                  <td className="border border-black px-2 py-1 font-bold text-left">
-                                                    {(() => {
-                                                      const pairedLabels = getPairedMotionLabelsFullNames(
-                                                        test.testId,
-                                                        test.testName,
-                                                      );
-                                                      return pairedLabels ? pairedLabels[0] : "Left";
-                                                    })()}
+                                                Average (weight)
+                                              </th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td className="border border-black px-2 py-1 font-bold text-left whitespace-nowrap">
+                                                {(() => {
+                                                  const pairedLabels = getPairedMotionLabelsFullNames(
+                                                    test.testId,
+                                                    test.testName,
+                                                  );
+                                                  return pairedLabels ? pairedLabels[0] : "Left";
+                                                })()}
+                                              </td>
+                                              {leftTrialCells.map(
+                                                (value, index) => (
+                                                  <td
+                                                    key={`left-trial-${index}`}
+                                                    className="border border-black px-2 py-1"
+                                                  >
+                                                    {value}
                                                   </td>
-                                                  {leftTrialCells.map(
-                                                    (value, index) => (
-                                                      <td
-                                                        key={`left-trial-${index}`}
-                                                        className="border border-black px-2 py-1"
-                                                      >
-                                                        {value}
-                                                      </td>
-                                                    ),
-                                                  )}
-                                                  <td className="border border-black px-2 py-1 font-bold">
-                                                    {leftAverageDisplay}
+                                                ),
+                                              )}
+                                              <td className="border border-black px-2 py-1 font-bold">
+                                                {leftAverageDisplay}
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <td className="border border-black px-2 py-1 font-bold text-left whitespace-nowrap">
+                                                {(() => {
+                                                  const pairedLabels = getPairedMotionLabelsFullNames(
+                                                    test.testId,
+                                                    test.testName,
+                                                  );
+                                                  return pairedLabels ? pairedLabels[1] : "Right";
+                                                })()}
+                                              </td>
+                                              {rightTrialCells.map(
+                                                (value, index) => (
+                                                  <td
+                                                    key={`right-trial-${index}`}
+                                                    className="border border-black px-2 py-1"
+                                                  >
+                                                    {value}
                                                   </td>
-                                                </tr>
-                                                <tr>
-                                                  <td className="border border-black px-2 py-1 font-bold text-left">
-                                                    {(() => {
-                                                      const pairedLabels = getPairedMotionLabelsFullNames(
-                                                        test.testId,
-                                                        test.testName,
-                                                      );
-                                                      return pairedLabels ? pairedLabels[1] : "Right";
-                                                    })()}
-                                                  </td>
-                                                  {rightTrialCells.map(
-                                                    (value, index) => (
-                                                      <td
-                                                        key={`right-trial-${index}`}
-                                                        className="border border-black px-2 py-1"
-                                                      >
-                                                        {value}
-                                                      </td>
-                                                    ),
-                                                  )}
-                                                  <td className="border border-black px-2 py-1 font-bold">
-                                                    {rightAverageDisplay}
-                                                  </td>
-                                                </tr>
-                                              </tbody>
-                                            </table>
-                                          </>
-                                        );
-                                      })()
-                                    )}
+                                                ),
+                                              )}
+                                              <td className="border border-black px-2 py-1 font-bold">
+                                                {rightAverageDisplay}
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </>
+                                    );
+                                  })()
+                                )}
 
-                                    {/* Additional test information */}
-                                    {test.effort && (
+                                {/* Additional test information */}
+                                {test.effort && (
                                       <p className="text-sm mb-4">
                                         *Rating of Perceived Effort ={" "}
                                         {test.perceived || test.effort}
