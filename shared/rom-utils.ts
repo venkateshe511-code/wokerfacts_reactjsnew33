@@ -483,7 +483,7 @@ export function extractBodyPart(testName?: string): string | null {
  * Based on body part and paired motions
  * Examples:
  * testName: "Lumbar Flexion/Extension" -> ["Lumbar - F", "Lumbar - E"]
- * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Left Side - Extremity Shoulder F", "Left Side - Extremity Shoulder E"]
+ * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Extremity Shoulder F", "Extremity Shoulder E"]
  */
 export function getAreaEvaluatedLabels(
   testName?: string,
@@ -499,10 +499,13 @@ export function getAreaEvaluatedLabels(
   const sidePrefix = extractSidePrefix(testName, testId);
 
   if (sidePrefix) {
-    // For side-prefixed tests, don't add another dash before the motion
+    // For side-prefixed tests, extract the body part (everything after "Left Side - " or "Right Side - ")
+    const bodyPartMatch = sidePrefix.match(/^(?:Left|Right)\s+Side\s*-\s*(.+)$/);
+    const bodyPart = bodyPartMatch ? bodyPartMatch[1] : sidePrefix;
+    // Combine body part with motions (no dash for abbreviated format)
     return [
-      `${sidePrefix} ${motionLabels[0]}`,
-      `${sidePrefix} ${motionLabels[1]}`,
+      `${bodyPart} ${motionLabels[0]}`,
+      `${bodyPart} ${motionLabels[1]}`,
     ];
   }
 
@@ -523,7 +526,7 @@ export function getAreaEvaluatedLabels(
  * Based on body part and paired motions
  * Examples:
  * testName: "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
- * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Left Side - Extremity Shoulder Flexion", "Left Side - Extremity Shoulder Extension"]
+ * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Extremity Shoulder Flexion", "Extremity Shoulder Extension"]
  */
 export function getFullAreaEvaluatedLabels(
   testName?: string,
@@ -539,10 +542,13 @@ export function getFullAreaEvaluatedLabels(
   const sidePrefix = extractSidePrefix(testName, testId);
 
   if (sidePrefix) {
-    // For side-prefixed tests, don't add another dash before the motion
+    // For side-prefixed tests, extract the body part (everything after "Left Side - " or "Right Side - ")
+    const bodyPartMatch = sidePrefix.match(/^(?:Left|Right)\s+Side\s*-\s*(.+)$/);
+    const bodyPart = bodyPartMatch ? bodyPartMatch[1] : sidePrefix;
+    // Combine body part with motions (space, not dash, for consistency with side-prefixed format)
     return [
-      `${sidePrefix} ${motionLabels[0]}`,
-      `${sidePrefix} ${motionLabels[1]}`,
+      `${bodyPart} ${motionLabels[0]}`,
+      `${bodyPart} ${motionLabels[1]}`,
     ];
   }
 
