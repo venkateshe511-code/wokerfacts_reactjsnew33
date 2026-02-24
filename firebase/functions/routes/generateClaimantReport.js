@@ -289,7 +289,10 @@ function createSideTrialTable(
   };
 
   const average = (arr) => {
-    const nums = arr.filter((v) => v != null && v > 0);
+    // Ensure we have an array and filter out null, undefined, NaN, and zero or negative values
+    const nums = Array.isArray(arr)
+      ? arr.filter((v) => v != null && typeof v === "number" && Number.isFinite(v) && v > 0)
+      : [];
     return nums.length ? nums.reduce((a, b) => a + b, 0) / nums.length : null;
   };
 
@@ -3140,7 +3143,10 @@ const readTrials = (src) => {
 };
 
 function average(arr) {
-  const vals = arr.filter((v) => typeof v === "number" && Number.isFinite(v) && v > 0);
+  // Ensure array input, filter to valid positive numbers only
+  const vals = Array.isArray(arr)
+    ? arr.filter((v) => typeof v === "number" && Number.isFinite(v) && v > 0)
+    : [];
   if (vals.length === 0) return NaN;
   return vals.reduce((a, b) => a + b, 0) / vals.length;
 }
