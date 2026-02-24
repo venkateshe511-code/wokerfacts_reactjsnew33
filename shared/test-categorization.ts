@@ -58,7 +58,7 @@ export function categorizeTest(test: TestInfo): TestCategory {
   // PRIORITY 3: Occupational Tasks/MTM tests (check before ROM to avoid conflicts)
   // These are functional movement tests, NOT range of motion tests
   if (
-    /\b(fingering|handling|reach-|balance|stoop|walk|crouch|crawl|climb|kneel|ladder|push-pull|cart|carry-|occupational|mtm)\b/.test(
+    /\b(fingering|handling|reach-|balance|stoop|walk|crouch|crawl|climb|kneel|ladder|push-pull|cart|carry|occupational|mtm)\b/.test(
       testId,
     )
   ) {
