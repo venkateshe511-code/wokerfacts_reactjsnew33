@@ -509,10 +509,20 @@ const currentDate = new Date().toLocaleDateString("en-US", {
 // Helper: calculate average of L/R readings
 const calculateAverage = (measurements) => {
   if (!measurements || typeof measurements !== "object") return 0;
-  const values = Object.values(measurements).filter(
-    (v) => typeof v === "number" && !isNaN(v) && v > 0,
-  );
-  return values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0;
+  const values = [
+    measurements.trial1,
+    measurements.trial2,
+    measurements.trial3,
+    measurements.trial4,
+    measurements.trial5,
+    measurements.trial6,
+  ].filter((val) => val > 0);
+
+  if (values.length === 0) return 0;
+  // Round to 2 decimal places for consistency
+  return Math.round(
+    (values.reduce((sum, val) => sum + val, 0) / values.length) * 100,
+  ) / 100;
 };
 
 //  Define all reference texts grouped by category
