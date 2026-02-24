@@ -422,18 +422,19 @@ export function extractSidePrefix(testName?: string, testId?: string): string | 
     const side = sideSuffixMatch[1] === "left" ? "Left" : "Right";
     // Remove existing side prefix if present to avoid duplication
     let cleanName = name.replace(/^(Left|Right)\s+Side\s*-\s*/i, "");
-    // Remove the motion part from test name (but keep joint descriptors like DIP, IP, MP, PIP)
-    const withoutMotion = cleanName.replace(/\s+(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*$/i, "");
+    // Remove motion keywords and everything after them
+    // Match patterns like "Internal/External Rotation", "Flexion/Extension", etc.
+    const withoutMotion = cleanName.replace(/\s+[A-Za-z\/]*(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise)[A-Za-z\/\s]*.*$/i, "");
     return `${side} Side - ${withoutMotion}`;
   }
 
   // Fallback: Check if name starts with "Left Side -" or "Right Side -"
-  const sidePrefixMatch = name.match(/^(Left|Right)\s+Side\s*-\s*(.+?)(?:\s+(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*)?$/i);
+  const sidePrefixMatch = name.match(/^(Left|Right)\s+Side\s*-\s*(.+)$/i);
   if (sidePrefixMatch) {
     const sidePrefix = sidePrefixMatch[1];
     const rest = sidePrefixMatch[2];
-    // Remove the motion part and return the side prefix with body part info (keeping joint descriptors)
-    const withoutMotion = rest.replace(/\s+(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*$/i, "");
+    // Remove motion keywords and everything after them from the rest of the name
+    const withoutMotion = rest.replace(/\s+[A-Za-z\/]*(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise)[A-Za-z\/\s]*.*$/i, "");
     return `${sidePrefix} Side - ${withoutMotion}`;
   }
 
@@ -453,24 +454,26 @@ export function extractBodyPart(testName?: string): string | null {
   const name = testName.trim();
 
   // For "Left Side -" or "Right Side -" format, extract what comes after and return the body part
-  const sidePrefixMatch = name.match(/^(Left|Right)\s+Side\s*-\s*(.+?)(?:\s+(Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*)?$/i);
+  const sidePrefixMatch = name.match(/^(Left|Right)\s+Side\s*-\s*(.+)$/i);
   if (sidePrefixMatch) {
     const restOfName = sidePrefixMatch[2];
-    // Extract body part from "Extremity Shoulder" -> "Shoulder", or "Thumb", etc.
-    const bodyPartMatch = restOfName.match(/(?:Extremity\s+)?([A-Z][a-zA-Z\s]+?)(?:\s+(?:IP|MP|DIP|PIP|Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise).*)?$/);
+    // Extract body part by removing motion keywords - keep everything up to the first motion keyword
+    const bodyPartMatch = restOfName.match(/^(.+?)\s+[A-Za-z\/]*(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise)/i);
     if (bodyPartMatch) {
       return bodyPartMatch[1].trim();
     }
+    // Fallback if no motion keyword found
+    return restOfName;
   }
 
   // For simple format like "Lumbar - Flexion/Extension"
-  const simpleMatch = name.match(/^([A-Z][a-zA-Z\s]+?)\s*(?:-|:)\s*(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise)/i);
+  const simpleMatch = name.match(/^([A-Z][a-zA-Z\s]+?)\s*(?:-|:)\s*[A-Za-z\/]*(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise)/i);
   if (simpleMatch) {
     return simpleMatch[1].trim();
   }
 
-  // For format like "Cervical Flexion/Extension"
-  const basicMatch = name.match(/^([A-Z][a-zA-Z\s]+?)\s+(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise)/i);
+  // For format like "Cervical Flexion/Extension" or "Extremity Shoulder Internal/External Rotation"
+  const basicMatch = name.match(/^(.+?)\s+[A-Za-z\/]*(?:Internal|External|Flexion|Extension|Rotation|Abduction|Adduction|Supination|Pronation|Dorsi|Plantar|Inversion|Eversion|Radial|Ulnar|Deviation|Raise)/i);
   if (basicMatch) {
     return basicMatch[1].trim();
   }
