@@ -5023,7 +5023,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                         <tbody>
                                             <tr>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;"></td>
-                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">Left | Right</td>
+                                                <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">L | R</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">L | R</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">L | R</td>
                                                 <td style="border: 1px solid #333; border-right: 1px solid #333; padding: 6px;text-align: center;">L | R</td>
