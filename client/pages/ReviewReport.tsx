@@ -32,7 +32,7 @@ import {
   getCategoriesInOrder,
   type TestCategory,
 } from "@/lib/test-categorization";
-import { getPairedMotionLabels, getPairedMotionLabelsFullNames, getAreaEvaluatedLabels, getFullAreaEvaluatedLabels } from "@shared/rom-utils";
+import { getPairedMotionLabels, getPairedMotionLabelsFullNames, getAreaEvaluatedLabels, getFullAreaEvaluatedLabels, isSpineROMTest } from "@shared/rom-utils";
 import { inferNormsForTest } from "@/lib/norms";
 
 // IndexedDB utilities for loading digital library images
@@ -3365,87 +3365,116 @@ export default function ReviewReport() {
                           applicable: dynamicLifts.length > 0,
                         });
 
-                        // ROM consistency check
-                        const romValid =
-                          romTests.length > 0
-                            ? romTests.every((test: any) => {
-                                // Extract trial values from measurement objects
-                                const leftTrials = test.leftMeasurements
-                                  ? [
-                                      test.leftMeasurements.trial1,
-                                      test.leftMeasurements.trial2,
-                                      test.leftMeasurements.trial3,
-                                      test.leftMeasurements.trial4,
-                                      test.leftMeasurements.trial5,
-                                      test.leftMeasurements.trial6,
-                                    ].filter(
-                                      (val) => val != null && !isNaN(val),
-                                    )
-                                  : [];
+                        // Separate spine ROM tests from extremity ROM tests
+                        const spineROMTests = romTests.filter((test: any) =>
+                          isSpineROMTest(test.testId, test.testName)
+                        );
+                        const extremityROMTests = romTests.filter(
+                          (test: any) => !isSpineROMTest(test.testId, test.testName)
+                        );
 
-                                const rightTrials = test.rightMeasurements
-                                  ? [
-                                      test.rightMeasurements.trial1,
-                                      test.rightMeasurements.trial2,
-                                      test.rightMeasurements.trial3,
-                                      test.rightMeasurements.trial4,
-                                      test.rightMeasurements.trial5,
-                                      test.rightMeasurements.trial6,
-                                    ].filter(
-                                      (val) => val != null && !isNaN(val),
-                                    )
-                                  : [];
+                        // Helper function to validate ROM test using consecutive trials logic
+                        const validateROMTest = (test: any): boolean => {
+                          // Extract trial values from measurement objects
+                          const leftTrials = test.leftMeasurements
+                            ? [
+                                test.leftMeasurements.trial1,
+                                test.leftMeasurements.trial2,
+                                test.leftMeasurements.trial3,
+                                test.leftMeasurements.trial4,
+                                test.leftMeasurements.trial5,
+                                test.leftMeasurements.trial6,
+                              ].filter(
+                                (val) => val != null && !isNaN(val),
+                              )
+                            : [];
 
-                                const allMeasurements = [
-                                  ...leftTrials,
-                                  ...rightTrials,
-                                ];
-                                if (allMeasurements.length < 6) return false;
+                          const rightTrials = test.rightMeasurements
+                            ? [
+                                test.rightMeasurements.trial1,
+                                test.rightMeasurements.trial2,
+                                test.rightMeasurements.trial3,
+                                test.rightMeasurements.trial4,
+                                test.rightMeasurements.trial5,
+                                test.rightMeasurements.trial6,
+                              ].filter(
+                                (val) => val != null && !isNaN(val),
+                              )
+                            : [];
 
-                                // Find three consecutive trials within 5 degrees and 10% of each other
-                                for (
-                                  let i = 0;
-                                  i <= allMeasurements.length - 3;
-                                  i++
-                                ) {
-                                  const trial1 = allMeasurements[i];
-                                  const trial2 = allMeasurements[i + 1];
-                                  const trial3 = allMeasurements[i + 2];
+                          const allMeasurements = [
+                            ...leftTrials,
+                            ...rightTrials,
+                          ];
+                          if (allMeasurements.length < 6) return false;
 
-                                  // Check if three consecutive trials are within 5 degrees of each other
-                                  const maxDiff = Math.max(
-                                    Math.abs(trial1 - trial2),
-                                    Math.abs(trial2 - trial3),
-                                    Math.abs(trial1 - trial3),
-                                  );
+                          // Find three consecutive trials within 5 degrees and 10% of each other
+                          for (
+                            let i = 0;
+                            i <= allMeasurements.length - 3;
+                            i++
+                          ) {
+                            const trial1 = allMeasurements[i];
+                            const trial2 = allMeasurements[i + 1];
+                            const trial3 = allMeasurements[i + 2];
 
-                                  // Check if within 10% of each other
-                                  const avgValue =
-                                    (trial1 + trial2 + trial3) / 3;
-                                  const maxPercDiff = Math.max(
-                                    (Math.abs(trial1 - avgValue) / avgValue) *
-                                      100,
-                                    (Math.abs(trial2 - avgValue) / avgValue) *
-                                      100,
-                                    (Math.abs(trial3 - avgValue) / avgValue) *
-                                      100,
-                                  );
+                            // Check if three consecutive trials are within 5 degrees of each other
+                            const maxDiff = Math.max(
+                              Math.abs(trial1 - trial2),
+                              Math.abs(trial2 - trial3),
+                              Math.abs(trial1 - trial3),
+                            );
 
-                                  if (maxDiff <= 5 && maxPercDiff <= 10) {
-                                    return true; // Found valid consecutive trials
-                                  }
-                                }
-                                return false;
-                              })
+                            // Check if within 10% of each other
+                            const avgValue =
+                              (trial1 + trial2 + trial3) / 3;
+                            const maxPercDiff = Math.max(
+                              (Math.abs(trial1 - avgValue) / avgValue) *
+                                100,
+                              (Math.abs(trial2 - avgValue) / avgValue) *
+                                100,
+                              (Math.abs(trial3 - avgValue) / avgValue) *
+                                100,
+                            );
+
+                            if (maxDiff <= 5 && maxPercDiff <= 10) {
+                              return true; // Found valid consecutive trials
+                            }
+                          }
+                          return false;
+                        };
+
+                        // ROM consistency check for total spine tests
+                        const spineROMValid =
+                          spineROMTests.length > 0
+                            ? spineROMTests.every(validateROMTest)
                             : null;
 
-                        crosschecks.push({
-                          name: "ROM consistency check",
-                          description:
-                            "During total spine ROM, the client provided three consecutive trials between 5 degrees and 10% of each other in a six-trial session.",
-                          pass: romValid,
-                          applicable: romTests.length > 0,
-                        });
+                        if (spineROMValid !== null) {
+                          crosschecks.push({
+                            name: "Total spine ROM consistency check",
+                            description:
+                              "During total spine ROM (cervical, lumbar, or thoracic), the client provided three consecutive trials between 5 degrees and 10% of each other in a six-trial session.",
+                            pass: spineROMValid,
+                            applicable: spineROMTests.length > 0,
+                          });
+                        }
+
+                        // ROM consistency check for extremity tests
+                        const extremityROMValid =
+                          extremityROMTests.length > 0
+                            ? extremityROMTests.every(validateROMTest)
+                            : null;
+
+                        if (extremityROMValid !== null) {
+                          crosschecks.push({
+                            name: "Extremity ROM consistency check",
+                            description:
+                              "During extremity ROM testing, the client provided three consecutive trials between 5 degrees and 10% of each other in a six-trial session.",
+                            pass: extremityROMValid,
+                            applicable: extremityROMTests.length > 0,
+                          });
+                        }
 
                         // Overall test/retest consistency
                         if (allTests.length > 0) {

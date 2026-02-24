@@ -30,6 +30,24 @@ export function isPairedROMTest(testId?: string): boolean {
 }
 
 /**
+ * Determines if a test is a total spine ROM test (cervical, lumbar, or thoracic spine)
+ * These tests follow the consecutive trials criteria: 3 consecutive measurements
+ * between 5 degrees and 10% of each other = PASS
+ * Examples: "cervical-spine-flexion-extension", "lumbar-spine-flexion", "thoracic-spine-rotation"
+ */
+export function isSpineROMTest(testId?: string, testName?: string): boolean {
+  if (!testId && !testName) return false;
+
+  const id = (testId || "").toLowerCase();
+  const name = (testName || "").toLowerCase();
+  const combined = `${id} ${name}`;
+
+  // Check for spine ROM indicators
+  return /\b(cervical|lumbar|thoracic)\b/.test(combined) &&
+         /\b(spine|range|motion|flexion|extension)\b/.test(combined);
+}
+
+/**
  * Extracts the base test name without the left/right suffix
  * "shoulder-rom-flexion-extension-left" -> "shoulder-rom-flexion-extension"
  */
