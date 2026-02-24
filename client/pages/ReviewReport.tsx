@@ -2881,9 +2881,19 @@ export default function ReviewReport() {
                                         const testNameLower = test.testName.toLowerCase();
 
                                         if (category === "Occupational Tasks") {
-                                          // Calculate percentage for occupational tasks
-                                          const avgResult =
-                                            (leftAvg + rightAvg) / 2;
+                                          // Calculate average %IS from individual trials
+                                          const allTrials = [
+                                            ...(test.leftMeasurements?.trials || []),
+                                            ...(test.rightMeasurements?.trials || []),
+                                          ];
+
+                                          if (allTrials.length > 0) {
+                                            const avgPercentIS = allTrials.reduce((sum: number, t: any) => sum + (t.percentIS || 0), 0) / allTrials.length;
+                                            return `%IS=${avgPercentIS.toFixed(1)}`;
+                                          }
+
+                                          // Fallback to calculated average if no trials available
+                                          const avgResult = (leftAvg + rightAvg) / 2;
                                           return `%IS=${avgResult.toFixed(1)}`;
                                         } else if (testNameLower.includes("lift")) {
                                           // Lift tests: show average weight with selected metric
@@ -2900,17 +2910,66 @@ export default function ReviewReport() {
                                               : Math.round(baseAvg * 10) / 10;
                                           return `${avgValue.toFixed(1)} ${unit}`;
                                         } else {
-                                          // Use getPairedMotionLabels to get abbreviations for summary table
-                                          const pairedLabels = getPairedMotionLabels(
-                                            test.testId,
-                                            test.testName
-                                          );
+                                          // Check if this is a cardio test
+                                          const testNameLower = test.testName.toLowerCase();
+                                          const testIdLower = test.testId.toLowerCase();
+                                          const isCardioTest =
+                                            testNameLower.includes("step") ||
+                                            testNameLower.includes("treadmill") ||
+                                            testNameLower.includes("cardio") ||
+                                            testNameLower.includes("mcaft") ||
+                                            testNameLower.includes("kasch") ||
+                                            testNameLower.includes("bruce") ||
+                                            testNameLower.includes("cardiovascular") ||
+                                            testNameLower.includes("aerobic");
 
-                                          if (pairedLabels) {
-                                            return `${pairedLabels[0]}=${leftAvg.toFixed(2)} ${pairedLabels[1]}=${rightAvg.toFixed(2)}`;
+                                          if (isCardioTest) {
+                                            // Display cardio-specific values instead of L/R
+                                            const cardioValues = [];
+
+                                            // Bruce Treadmill Test
+                                            if (testNameLower.includes("bruce") ||
+                                                (testNameLower.includes("treadmill") && !testNameLower.includes("ymca"))) {
+                                              if (test.vo2MaxScore) cardioValues.push(`VO2=${test.vo2MaxScore}`);
+                                              if (test.classification) cardioValues.push(`Cls=${test.classification}`);
+                                            }
+                                            // mCAFT Test
+                                            else if (testNameLower.includes("mcaft")) {
+                                              if (test.predictedVo2Max) cardioValues.push(`PVO2=${test.predictedVo2Max}`);
+                                              if (test.hbr) cardioValues.push(`HBR=${test.hbr}`);
+                                            }
+                                            // KASCH Step Test
+                                            else if (testNameLower.includes("kasch")) {
+                                              if (test.aerobicFitnessScore) cardioValues.push(`AFS=${test.aerobicFitnessScore}`);
+                                            }
+                                            // YMCA 3-Minute Step Test
+                                            else if (testNameLower.includes("ymca") && testNameLower.includes("step")) {
+                                              if (test.clientRating) cardioValues.push(`Rtg=${test.clientRating}`);
+                                              if (test.heartRate) cardioValues.push(`HR=${test.heartRate}`);
+                                            }
+                                            // YMCA Submaximal Treadmill Test
+                                            else if (testNameLower.includes("ymca") && testNameLower.includes("submaximal")) {
+                                              if (test.vo2Max) cardioValues.push(`VO2=${test.vo2Max}`);
+                                              if (test.heartRate) cardioValues.push(`HR=${test.heartRate}`);
+                                            }
+
+                                            if (cardioValues.length > 0) {
+                                              return cardioValues.join(", ");
+                                            }
+                                            return "No data";
                                           } else {
-                                            // Default to left/right for bilateral tests (grip, pinch, cardio, etc.)
-                                            return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
+                                            // Use getPairedMotionLabels to get abbreviations for summary table
+                                            const pairedLabels = getPairedMotionLabels(
+                                              test.testId,
+                                              test.testName
+                                            );
+
+                                            if (pairedLabels) {
+                                              return `${pairedLabels[0]}=${leftAvg.toFixed(2)} ${pairedLabels[1]}=${rightAvg.toFixed(2)}`;
+                                            } else {
+                                              // Default to left/right for bilateral tests (grip, pinch, etc.)
+                                              return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
+                                            }
                                           }
                                         }
                                       })()}
@@ -3032,7 +3091,7 @@ export default function ReviewReport() {
                     </p>
                     <p>
                       <strong>Legend:</strong> L=Left, R=Right, F=Flexion,
-                      E=Extension, S=Supination, P=Pronation, I=Internal, ABD=Abduction, ADD=Adduction, %IS=% Industrial Standard
+                      E=Extension, S=Supination, P=Pronation, I=Internal, ABD=Abduction, ADD=Adduction, %IS=% Industrial Standard, VO2=Oxygen Uptake, PVO2=Predicted VO2, HBR=Heart Beat Reserve, HR=Heart Rate, Cls=Classification, AFS=Aerobic Fitness Score, Rtg=Rating
                     </p>
                   </div>
 

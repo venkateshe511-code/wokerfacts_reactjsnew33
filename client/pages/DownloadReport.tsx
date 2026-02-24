@@ -3515,7 +3515,18 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                           // Test results format logic like ReviewReport
                           const testResults = (() => {
                             if (category === "Occupational Tasks") {
-                              // Calculate percentage for occupational tasks
+                              // Calculate average %IS from individual trials
+                              const allTrials = [
+                                ...(test.leftMeasurements?.trials || []),
+                                ...(test.rightMeasurements?.trials || []),
+                              ];
+
+                              if (allTrials.length > 0) {
+                                const avgPercentIS = allTrials.reduce((sum, t) => sum + (t.percentIS || 0), 0) / allTrials.length;
+                                return `%IS=${avgPercentIS.toFixed(1)}`;
+                              }
+
+                              // Fallback to calculated average if no trials available
                               const avgResult = (leftAvg + rightAvg) / 2;
                               return `%IS=${avgResult.toFixed(1)}`;
                             } else if (
@@ -3548,7 +3559,55 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                   : Math.round(baseAvg * 10) / 10;
                               return `${avgValue.toFixed(1)} ${unit}`;
                             } else {
-                              // Default format for strength and cardio tests
+                              // Check if this is a cardio test
+                              const testNameLower = test.testName?.toLowerCase() || "";
+                              const testIdLower = test.testId?.toLowerCase() || "";
+                              const isCardioTest =
+                                testNameLower.includes("step") ||
+                                testNameLower.includes("treadmill") ||
+                                testNameLower.includes("cardio") ||
+                                testNameLower.includes("mcaft") ||
+                                testNameLower.includes("kasch") ||
+                                testNameLower.includes("bruce") ||
+                                testNameLower.includes("cardiovascular") ||
+                                testNameLower.includes("aerobic");
+
+                              if (isCardioTest) {
+                                // Display cardio-specific values instead of L/R
+                                const cardioValues = [];
+
+                                // Bruce Treadmill Test
+                                if (testNameLower.includes("bruce") ||
+                                    (testNameLower.includes("treadmill") && !testNameLower.includes("ymca"))) {
+                                  if (test.vo2MaxScore) cardioValues.push(`VO2=${test.vo2MaxScore}`);
+                                  if (test.classification) cardioValues.push(`Cls=${test.classification}`);
+                                }
+                                // mCAFT Test
+                                else if (testNameLower.includes("mcaft")) {
+                                  if (test.predictedVo2Max) cardioValues.push(`PVO2=${test.predictedVo2Max}`);
+                                  if (test.hbr) cardioValues.push(`HBR=${test.hbr}`);
+                                }
+                                // KASCH Step Test
+                                else if (testNameLower.includes("kasch")) {
+                                  if (test.aerobicFitnessScore) cardioValues.push(`AFS=${test.aerobicFitnessScore}`);
+                                }
+                                // YMCA 3-Minute Step Test
+                                else if (testNameLower.includes("ymca") && testNameLower.includes("step")) {
+                                  if (test.clientRating) cardioValues.push(`Rtg=${test.clientRating}`);
+                                  if (test.heartRate) cardioValues.push(`HR=${test.heartRate}`);
+                                }
+                                // YMCA Submaximal Treadmill Test
+                                else if (testNameLower.includes("ymca") && testNameLower.includes("submaximal")) {
+                                  if (test.vo2Max) cardioValues.push(`VO2=${test.vo2Max}`);
+                                  if (test.heartRate) cardioValues.push(`HR=${test.heartRate}`);
+                                }
+
+                                if (cardioValues.length > 0) {
+                                  return cardioValues.join(", ");
+                                }
+                                return "No data";
+                              }
+                              // Default format for strength tests
                               return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
                             }
                           })();
@@ -3660,7 +3719,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
 
         <p style="font-size: 10px; margin: 10px 0; font-style: italic;">*The sit and stand timeframes are calculated throughout the exam with the individual tests and are not a measure of sustained effort.</p>
 
-        <p style="font-size: 10px; margin: 10px 0;"><strong>Legend:</strong> L=Left, R=Right, F=Flexion, E=Extension, %IS=% Industrial Standard, HR=Heart Rate</p>
+        <p style="font-size: 10px; margin: 10px 0;"><strong>Legend:</strong> L=Left, R=Right, F=Flexion, E=Extension, %IS=% Industrial Standard, VO2=Oxygen Uptake, PVO2=Predicted VO2, HBR=Heart Beat Reserve, HR=Heart Rate, Cls=Classification, AFS=Aerobic Fitness Score, Rtg=Rating</p>
 
         <!-- Consistency Overview -->
         <div style="margin-top: 12px;">
