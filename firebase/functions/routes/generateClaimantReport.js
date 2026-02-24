@@ -9946,10 +9946,10 @@ async function addTestDataContent(children, body) {
                       makeCell("Test Date", { bold: true, shaded: true }),
                     ],
                   }),
-                  // Column Label Row (Left | Right)
+                  // MUSCLE TEST Row (with paired labels)
                   new TableRow({
                     children: [
-                      makeCell(""),
+                      makeCell("MUSCLE TEST"),
                       makeCell(`${pairedLabels[0]} | ${pairedLabels[1]}`),
                       makeCell(`${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`),
                       makeCell(""),
