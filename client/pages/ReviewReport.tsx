@@ -6063,7 +6063,7 @@ export default function ReviewReport() {
                                               </thead>
                                               <tbody>
                                                 <tr>
-                                                  <td className="border border-gray-400 border-r-gray-400 p-2"></td>
+                                                  <td className="border border-gray-400 border-r-gray-400 p-2">MUSCLE TEST</td>
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     {(() => {
                                                       if (isMuscleTest) {

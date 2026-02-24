@@ -141,7 +141,7 @@ export function shouldDisplaySeparateSideRows(testId?: string): boolean {
 /**
  * Gets the paired motion labels for tests like Flexion/Extension
  * Returns [firstMotion, secondMotion] or null if not a paired motion test
- * Example: "cervical-flexion-extension" -> ["Flexion", "Extension"]
+ * Example: "cervical-flexion-extension" -> ["F", "E"]
  */
 export function getPairedMotionLabels(
   testId?: string,
@@ -156,7 +156,7 @@ export function getPairedMotionLabels(
     combined.includes("flexion-extension") ||
     combined.includes("flexion/extension")
   ) {
-    return ["Flexion", "Extension"];
+    return ["F", "E"];
   }
 
   // Check for dorsi-plantar pattern
@@ -165,7 +165,7 @@ export function getPairedMotionLabels(
     combined.includes("dorsi/plantar") ||
     combined.includes("dorsiplantar")
   ) {
-    return ["Dorsi Flexion", "Plantar Flexion"];
+    return ["DF", "PF"];
   }
 
   // Check for inversion-eversion pattern
@@ -173,7 +173,7 @@ export function getPairedMotionLabels(
     combined.includes("inversion-eversion") ||
     combined.includes("inversion/eversion")
   ) {
-    return ["Inversion", "Eversion"];
+    return ["I", "E"];
   }
 
   // Check for supination-pronation pattern
@@ -191,7 +191,7 @@ export function getPairedMotionLabels(
     combined.includes("internal/external-rotation") ||
     combined.includes("internal external rotation")
   ) {
-    return ["Internal Rotation", "External Rotation"];
+    return ["I", "E"];
   }
 
   // Check for abduction-adduction pattern
@@ -199,7 +199,21 @@ export function getPairedMotionLabels(
     combined.includes("abduction-adduction") ||
     combined.includes("abduction/adduction")
   ) {
-    return ["Abduction", "Adduction"];
+    return ["ABD", "ADD"];
+  }
+
+  // Check for radial-ulnar deviation pattern
+  if (
+    combined.includes("radial-ulnar") ||
+    combined.includes("radial/ulnar") ||
+    combined.includes("radial ulnar")
+  ) {
+    return ["R", "U"];
+  }
+
+  // Check for straight leg raise pattern
+  if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
+    return ["L", "R"];
   }
 
   return null;
