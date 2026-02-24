@@ -7334,23 +7334,6 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
           return "";
         }
 
-        if (
-          category === "ROM Hand/Foot" ||
-          category === "ROM Total Spine/Extremity"
-        ) {
-          const testNameLower = test.testName.toLowerCase();
-          if (
-            testNameLower.includes("flexion") &&
-            testNameLower.includes("extension")
-          ) {
-            return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
-          }
-          if (testNameLower.includes("lateral")) {
-            return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
-          }
-          return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
-        }
-
         if ((test.testName || "").toLowerCase().includes("lift")) {
           // Helper to get default unit
           const getDefaultUnit = (category) => {
@@ -7381,6 +7364,13 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
           }
         }
 
+        // Use getPairedMotionLabels to get proper abbreviations based on test name
+        const pairedLabels = getPairedMotionLabels(test.testId, test.testName);
+        if (pairedLabels) {
+          return `${pairedLabels[0]}=${leftAvg.toFixed(2)} ${pairedLabels[1]}=${rightAvg.toFixed(2)}`;
+        }
+
+        // Default fallback
         return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
       })();
 
@@ -8347,7 +8337,7 @@ async function addTestDataContent(children, body) {
                               new TextRun({
                                 text: (() => {
                                   const labels = getAreaEvaluatedLabels(safeName, test.testId);
-                                  return labels ? labels[0] : `Left Side - ${safeName}`;
+                                  return labels ? labels[0] : safeName;
                                 })(),
                                 size: 16,
                               }),
@@ -8432,7 +8422,7 @@ async function addTestDataContent(children, body) {
                               new TextRun({
                                 text: (() => {
                                   const labels = getAreaEvaluatedLabels(safeName, test.testId);
-                                  return labels ? labels[1] : `Right Side - ${safeName}`;
+                                  return labels ? labels[1] : safeName;
                                 })(),
                                 size: 16,
                               }),

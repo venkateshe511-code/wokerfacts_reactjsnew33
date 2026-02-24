@@ -6156,10 +6156,10 @@ export default function ReviewReport() {
                                                           test.testName,
                                                         );
                                                         return pairedLabels
-                                                          ? `${pairedLabels[0]} | ${pairedLabels[1]}`
-                                                          : "Left | Right";
+                                                          ? `${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`
+                                                          : "L | R";
                                                       }
-                                                      return "Left | Right";
+                                                      return "L | R";
                                                     })()}
                                                   </td>
                                                   {!isMuscleTest && (
