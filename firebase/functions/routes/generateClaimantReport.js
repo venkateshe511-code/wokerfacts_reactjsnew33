@@ -226,6 +226,7 @@ function createSideTrialTable(
   const isMuscleTest =
     testIdLower.includes("muscle-") ||
     (testIdLower.startsWith("cervical-") &&
+      !testNameLower.includes("rom") &&
       (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
   const isRangeOfMotion =
@@ -1107,7 +1108,87 @@ const testToCategory = {
   "4th-toe-mp-dorsi-plantar-flexion": "goniometers",
   "5th-toe-mp-dorsi-plantar-flexion": "goniometers",
 
+  // Side-specific extremity ROM tests (with -left and -right suffixes)
+  "elbow-rom-flexion-extension-left": "range-of-motion",
+  "elbow-rom-flexion-extension-right": "range-of-motion",
+  "elbow-rom-supination-pronation-left": "range-of-motion",
+  "elbow-rom-supination-pronation-right": "range-of-motion",
+  "wrist-rom-flexion-extension-left": "range-of-motion",
+  "wrist-rom-flexion-extension-right": "range-of-motion",
+  "wrist-rom-radial-ulnar-deviation-left": "range-of-motion",
+  "wrist-rom-radial-ulnar-deviation-right": "range-of-motion",
+  "knee-rom-flexion-extension-left": "range-of-motion",
+  "knee-rom-flexion-extension-right": "range-of-motion",
+  "shoulder-rom-flexion-extension-left": "range-of-motion",
+  "shoulder-rom-flexion-extension-right": "range-of-motion",
+  "shoulder-rom-internal-external-rotation-left": "range-of-motion",
+  "shoulder-rom-internal-external-rotation-right": "range-of-motion",
+  "shoulder-rom-abduction-adduction-left": "range-of-motion",
+  "shoulder-rom-abduction-adduction-right": "range-of-motion",
+  "hip-rom-flexion-extension-left": "range-of-motion",
+  "hip-rom-flexion-extension-right": "range-of-motion",
+  "hip-rom-internal-external-rotation-left": "range-of-motion",
+  "hip-rom-internal-external-rotation-right": "range-of-motion",
+  "hip-rom-abduction-adduction-left": "range-of-motion",
+  "hip-rom-abduction-adduction-right": "range-of-motion",
+  "ankle-rom-dorsi-plantar-flexion-left": "range-of-motion",
+  "ankle-rom-dorsi-plantar-flexion-right": "range-of-motion",
+  "ankle-rom-inversion-eversion-left": "range-of-motion",
+  "ankle-rom-inversion-eversion-right": "range-of-motion",
+
+  // Side-specific hand/foot ROM tests (with -left and -right suffixes)
+  "thumb-ip-flexion-extension-left": "goniometers",
+  "thumb-ip-flexion-extension-right": "goniometers",
+  "thumb-mp-flexion-extension-left": "goniometers",
+  "thumb-mp-flexion-extension-right": "goniometers",
+  "thumb-abduction-left": "goniometers",
+  "thumb-abduction-right": "goniometers",
+  "index-dip-flexion-extension-left": "goniometers",
+  "index-dip-flexion-extension-right": "goniometers",
+  "index-pip-flexion-extension-left": "goniometers",
+  "index-pip-flexion-extension-right": "goniometers",
+  "index-mp-flexion-extension-left": "goniometers",
+  "index-mp-flexion-extension-right": "goniometers",
+  "middle-dip-flexion-extension-left": "goniometers",
+  "middle-dip-flexion-extension-right": "goniometers",
+  "middle-pip-flexion-extension-left": "goniometers",
+  "middle-pip-flexion-extension-right": "goniometers",
+  "middle-mp-flexion-extension-left": "goniometers",
+  "middle-mp-flexion-extension-right": "goniometers",
+  "ring-dip-flexion-extension-left": "goniometers",
+  "ring-dip-flexion-extension-right": "goniometers",
+  "ring-pip-flexion-extension-left": "goniometers",
+  "ring-pip-flexion-extension-right": "goniometers",
+  "ring-mp-flexion-extension-left": "goniometers",
+  "ring-mp-flexion-extension-right": "goniometers",
+  "little-dip-flexion-extension-left": "goniometers",
+  "little-dip-flexion-extension-right": "goniometers",
+  "little-pip-flexion-extension-left": "goniometers",
+  "little-pip-flexion-extension-right": "goniometers",
+  "little-mp-flexion-extension-left": "goniometers",
+  "little-mp-flexion-extension-right": "goniometers",
+  "great-toe-ip-flexion-left": "goniometers",
+  "great-toe-ip-flexion-right": "goniometers",
+  "great-toe-mp-dorsi-plantar-flexion-left": "goniometers",
+  "great-toe-mp-dorsi-plantar-flexion-right": "goniometers",
+  "2nd-toe-mp-dorsi-plantar-flexion-left": "goniometers",
+  "2nd-toe-mp-dorsi-plantar-flexion-right": "goniometers",
+  "3rd-toe-mp-dorsi-plantar-flexion-left": "goniometers",
+  "3rd-toe-mp-dorsi-plantar-flexion-right": "goniometers",
+  "4th-toe-mp-dorsi-plantar-flexion-left": "goniometers",
+  "4th-toe-mp-dorsi-plantar-flexion-right": "goniometers",
+  "5th-toe-mp-dorsi-plantar-flexion-left": "goniometers",
+  "5th-toe-mp-dorsi-plantar-flexion-right": "goniometers",
+
   // Muscle Tests
+  // Cervical Muscle Tests (without spine- prefix)
+  "cervical-flexion": "muscle-test",
+  "cervical-extension": "muscle-test",
+  "cervical-lateral-flexion": "muscle-test",
+  "cervical-rotation": "muscle-test",
+  "cervical-30-rotation": "muscle-test",
+  "cervical-60-rotation": "muscle-test",
+
   "hip-muscle-flexion": "muscle-test",
   "hip-muscle-extension": "muscle-test",
   "hip-muscle-abduction": "muscle-test",
@@ -9032,6 +9113,7 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
         testIdLower.includes("muscle-") ||
         (testIdLower.startsWith("cervical-") &&
           !testIdLower.includes("spine-") &&
+          !testNameLower.includes("rom") &&
           (testIdLower.includes("flexion") ||
             testIdLower.includes("rotation") ||
             testIdLower.includes("lateral")));
@@ -9701,6 +9783,7 @@ async function addTestDataContent(children, body) {
           testIdLower.includes("muscle-") ||
           (testIdLower.startsWith("cervical-") &&
             !testIdLower.includes("spine-") &&
+            !testNameLower.includes("rom") &&
             (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
         // Check if it's a Total Spine ROM test
