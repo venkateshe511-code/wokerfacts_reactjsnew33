@@ -32,7 +32,7 @@ import {
   getCategoriesInOrder,
   type TestCategory,
 } from "@/lib/test-categorization";
-import { getPairedMotionLabels, getAreaEvaluatedLabels } from "@shared/rom-utils";
+import { getPairedMotionLabels, getAreaEvaluatedLabels, getFullAreaEvaluatedLabels } from "@shared/rom-utils";
 import { inferNormsForTest } from "@/lib/norms";
 
 // IndexedDB utilities for loading digital library images
@@ -4114,7 +4114,7 @@ export default function ReviewReport() {
                                             <tr>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {(() => {
-                                                  const labels = getAreaEvaluatedLabels(test.testName, test.testId);
+                                                  const labels = getFullAreaEvaluatedLabels(test.testName, test.testId);
                                                   return labels ? labels[0] : test.testName;
                                                 })()}
                                               </td>
@@ -4154,7 +4154,7 @@ export default function ReviewReport() {
                                             <tr>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {(() => {
-                                                  const labels = getAreaEvaluatedLabels(test.testName, test.testId);
+                                                  const labels = getFullAreaEvaluatedLabels(test.testName, test.testId);
                                                   return labels ? labels[1] : test.testName;
                                                 })()}
                                               </td>

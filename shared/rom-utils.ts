@@ -139,6 +139,88 @@ export function shouldDisplaySeparateSideRows(testId?: string): boolean {
 }
 
 /**
+ * Gets the full motion labels for display (e.g., "Flexion", "Extension")
+ * Used in detailed individual test results
+ * Returns [firstMotion, secondMotion] or null if not a paired motion test
+ * Example: "cervical-flexion-extension" -> ["Flexion", "Extension"]
+ */
+export function getFullMotionLabels(
+  testId?: string,
+  testName?: string,
+): [string, string] | null {
+  const id = (testId || "").toLowerCase();
+  const name = (testName || "").toLowerCase();
+  const combined = `${id} ${name}`;
+
+  // Check for flexion-extension pattern
+  if (
+    combined.includes("flexion-extension") ||
+    combined.includes("flexion/extension")
+  ) {
+    return ["Flexion", "Extension"];
+  }
+
+  // Check for dorsi-plantar pattern
+  if (
+    combined.includes("dorsi-plantar") ||
+    combined.includes("dorsi/plantar") ||
+    combined.includes("dorsiplantar")
+  ) {
+    return ["Dorsi Flexion", "Plantar Flexion"];
+  }
+
+  // Check for inversion-eversion pattern
+  if (
+    combined.includes("inversion-eversion") ||
+    combined.includes("inversion/eversion")
+  ) {
+    return ["Inversion", "Eversion"];
+  }
+
+  // Check for supination-pronation pattern
+  if (
+    combined.includes("supination-pronation") ||
+    combined.includes("supination/pronation")
+  ) {
+    return ["Supination", "Pronation"];
+  }
+
+  // Check for internal-external rotation pattern
+  if (
+    combined.includes("internal-external-rotation") ||
+    combined.includes("internal/external rotation") ||
+    combined.includes("internal/external-rotation") ||
+    combined.includes("internal external rotation")
+  ) {
+    return ["Internal Rotation", "External Rotation"];
+  }
+
+  // Check for abduction-adduction pattern
+  if (
+    combined.includes("abduction-adduction") ||
+    combined.includes("abduction/adduction")
+  ) {
+    return ["Abduction", "Adduction"];
+  }
+
+  // Check for radial-ulnar deviation pattern
+  if (
+    combined.includes("radial-ulnar") ||
+    combined.includes("radial/ulnar") ||
+    combined.includes("radial ulnar")
+  ) {
+    return ["Radial Deviation", "Ulnar Deviation"];
+  }
+
+  // Check for straight leg raise pattern
+  if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
+    return ["Left", "Right"];
+  }
+
+  return null;
+}
+
+/**
  * Gets the paired motion labels for tests like Flexion/Extension
  * Returns [firstMotion, secondMotion] or null if not a paired motion test
  * Example: "cervical-flexion-extension" -> ["F", "E"]
@@ -297,11 +379,11 @@ export function extractBodyPart(testName?: string): string | null {
 }
 
 /**
- * Gets the area evaluated labels for the left and right rows
+ * Gets the area evaluated labels for the left and right rows using abbreviated motion names
  * Based on body part and paired motions
  * Examples:
- * testName: "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
- * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Left Side - Extremity Shoulder - Flexion", "Left Side - Extremity Shoulder - Extension"]
+ * testName: "Lumbar Flexion/Extension" -> ["Lumbar - F", "Lumbar - E"]
+ * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Left Side - Extremity Shoulder F", "Left Side - Extremity Shoulder E"]
  */
 export function getAreaEvaluatedLabels(
   testName?: string,
@@ -309,8 +391,48 @@ export function getAreaEvaluatedLabels(
 ): [string, string] | null {
   if (!testName) return null;
 
-  // Get paired motions
+  // Get paired motions (abbreviated)
   const motionLabels = getPairedMotionLabels(testId, testName);
+  if (!motionLabels) return null;
+
+  // Check if this test has a "Left Side -" or "Right Side -" prefix (from testId or testName)
+  const sidePrefix = extractSidePrefix(testName, testId);
+
+  if (sidePrefix) {
+    // For side-prefixed tests, don't add another dash before the motion
+    return [
+      `${sidePrefix} ${motionLabels[0]}`,
+      `${sidePrefix} ${motionLabels[1]}`,
+    ];
+  }
+
+  // Extract body part for non-side-prefixed tests
+  const bodyPart = extractBodyPart(testName);
+  if (!bodyPart) return null;
+
+  // Combine body part with motions
+  return [
+    `${bodyPart} - ${motionLabels[0]}`,
+    `${bodyPart} - ${motionLabels[1]}`,
+  ];
+}
+
+/**
+ * Gets the area evaluated labels for the left and right rows using full motion names
+ * Used in detailed individual test results display
+ * Based on body part and paired motions
+ * Examples:
+ * testName: "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
+ * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Left Side - Extremity Shoulder Flexion", "Left Side - Extremity Shoulder Extension"]
+ */
+export function getFullAreaEvaluatedLabels(
+  testName?: string,
+  testId?: string,
+): [string, string] | null {
+  if (!testName) return null;
+
+  // Get paired motions (full names)
+  const motionLabels = getFullMotionLabels(testId, testName);
   if (!motionLabels) return null;
 
   // Check if this test has a "Left Side -" or "Right Side -" prefix (from testId or testName)
