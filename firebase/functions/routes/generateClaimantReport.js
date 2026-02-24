@@ -521,11 +521,10 @@ const currentDate = new Date().toLocaleDateString("en-US", {
 const calculateAverage = (measurements) => {
   if (!measurements || typeof measurements !== "object") return 0;
   const values = Object.values(measurements).filter(
-    (v) => typeof v === "number" && !isNaN(v),
+    (v) => typeof v === "number" && !isNaN(v) && v > 0,
   );
   return values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0;
 };
-
 //  Define all reference texts grouped by category
 // const testReferences = {
 //   "static-lift": [
@@ -9999,7 +9998,7 @@ async function addTestDataContent(children, body) {
                   new TableRow({
                     children: [
                       makeCell("MUSCLE TEST"),
-                      makeCell(`${pairedLabels[0]} | ${pairedLabels[1]}`),
+                      makeCell(`${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`),
                       makeCell(`${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`),
                       makeCell(""),
                     ],

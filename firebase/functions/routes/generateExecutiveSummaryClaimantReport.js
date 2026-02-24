@@ -510,7 +510,7 @@ const currentDate = new Date().toLocaleDateString("en-US", {
 const calculateAverage = (measurements) => {
   if (!measurements || typeof measurements !== "object") return 0;
   const values = Object.values(measurements).filter(
-    (v) => typeof v === "number" && !isNaN(v),
+    (v) => typeof v === "number" && !isNaN(v) && v > 0,
   );
   return values.length ? values.reduce((a, b) => a + b, 0) / values.length : 0;
 };
