@@ -31,7 +31,7 @@ const {
   illustrationsToHtml,
 } = require("../test-illustrations");
 const { groupTestsByCategory } = require("../test-categorization");
-const { getAreaEvaluatedLabels, getPairedMotionLabels, getPairedMotionLabelsFullNames } = require("../rom-utils");
+const { getAreaEvaluatedLabels, getFullAreaEvaluatedLabels, getPairedMotionLabels, getPairedMotionLabelsFullNames } = require("../rom-utils");
 const { inferNormsForTest } = require("../norms");
 const router = express.Router();
 const BRAND_COLOR = "1E3A8A";
@@ -10070,7 +10070,7 @@ async function addTestDataContent(children, body) {
                             children: [
                               new TextRun({
                                 text: (() => {
-                                  const labels = getAreaEvaluatedLabels(safeName, test.testId);
+                                  const labels = getFullAreaEvaluatedLabels(safeName, test.testId);
                                   return labels ? labels[0] : safeName;
                                 })(),
                                 size: 16,
@@ -10155,7 +10155,7 @@ async function addTestDataContent(children, body) {
                             children: [
                               new TextRun({
                                 text: (() => {
-                                  const labels = getAreaEvaluatedLabels(safeName, test.testId);
+                                  const labels = getFullAreaEvaluatedLabels(safeName, test.testId);
                                   return labels ? labels[1] : safeName;
                                 })(),
                                 size: 16,
