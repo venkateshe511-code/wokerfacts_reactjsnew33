@@ -1182,6 +1182,7 @@ const testToCategory = {
 
   // Muscle Tests
   // Cervical Muscle Tests (without spine- prefix)
+  "cervical-flexion-extension": "muscle-test",
   "cervical-flexion": "muscle-test",
   "cervical-extension": "muscle-test",
   "cervical-lateral-flexion": "muscle-test",
@@ -3845,7 +3846,7 @@ function computeCrosschecksFromUnifiedTests(
     const name = (testName || "").toLowerCase();
     const combined = `${id} ${name}`;
     return /\b(cervical|lumbar|thoracic)\b/.test(combined) &&
-           /\b(spine|range|motion|flexion|extension)\b/.test(combined);
+      /\b(spine|range|motion|flexion|extension)\b/.test(combined);
   };
 
   const romTests = allTests.filter((t) => {
@@ -9012,7 +9013,7 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
 
           // Bruce Treadmill Test
           if (testNameLower.includes("bruce") ||
-              (testNameLower.includes("treadmill") && !testNameLower.includes("ymca"))) {
+            (testNameLower.includes("treadmill") && !testNameLower.includes("ymca"))) {
             if (test.vo2MaxScore) cardioValues.push(`VO2=${test.vo2MaxScore}`);
             if (test.classification) cardioValues.push(`Cls=${test.classification}`);
           }
@@ -9109,6 +9110,8 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
       // Determine if this is a muscle test using the same logic as ReviewReport
       const testId = test.testId || "";
       const testIdLower = testId.toLowerCase();
+      const safeName = test?.testName || "Test";
+      const testNameLower = safeName.toLowerCase();
       const isMuscleTest =
         testIdLower.includes("muscle-") ||
         (testIdLower.startsWith("cervical-") &&
@@ -9779,7 +9782,7 @@ async function addTestDataContent(children, body) {
         const testIdLower = (test?.testId || "").toLowerCase();
 
         // Check if this is a muscle test (manual muscle testing)
-        const  isMuscleTest =
+        const isMuscleTest =
           testIdLower.includes("muscle-") ||
           (testIdLower.startsWith("cervical-") &&
             !testIdLower.includes("spine-") &&
@@ -10952,7 +10955,7 @@ async function addTestDataContent(children, body) {
               }
             } else {
 
-                // Helper to get motion label for chart titles
+              // Helper to get motion label for chart titles
               const getChartMotionLabel = (side) => {
                 const testNameLower = safeName.toLowerCase();
                 if (side === "left") {
