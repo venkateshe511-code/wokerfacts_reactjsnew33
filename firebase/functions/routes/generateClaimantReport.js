@@ -31,7 +31,7 @@ const {
   illustrationsToHtml,
 } = require("../test-illustrations");
 const { groupTestsByCategory } = require("../test-categorization");
-const { getAreaEvaluatedLabels, getPairedMotionLabels } = require("../rom-utils");
+const { getAreaEvaluatedLabels, getPairedMotionLabels, getPairedMotionLabelsFullNames } = require("../rom-utils");
 const { inferNormsForTest } = require("../norms");
 const router = express.Router();
 const BRAND_COLOR = "1E3A8A";
@@ -361,8 +361,8 @@ function createSideTrialTable(
       : "Average (weight)";
 
   const getMotionLabel = (side) => {
-    // Use getPairedMotionLabels to get the correct abbreviations
-    const pairedLabels = getPairedMotionLabels(test?.testId, test?.testName);
+    // Use getPairedMotionLabelsFullNames to get the full motion names for the side table
+    const pairedLabels = getPairedMotionLabelsFullNames(test?.testId, test?.testName);
 
     if (pairedLabels) {
       return side === "left" ? pairedLabels[0] : pairedLabels[1];

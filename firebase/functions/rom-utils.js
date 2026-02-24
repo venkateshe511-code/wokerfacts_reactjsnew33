@@ -83,6 +83,85 @@ function getPairedMotionLabels(testId, testName) {
 }
 
 /**
+ * Gets paired motion labels for the side table (full names instead of abbreviations)
+ * Returns [firstMotion, secondMotion] or null if not a paired motion test
+ * Example: "cervical-flexion-extension" -> ["Flexion", "Extension"]
+ * Used in side-by-trial tables in reports
+ */
+function getPairedMotionLabelsFullNames(testId, testName) {
+  const id = (testId || "").toLowerCase();
+  const name = (testName || "").toLowerCase();
+  const combined = `${id} ${name}`;
+
+  // Check for flexion-extension pattern
+  if (
+    combined.includes("flexion-extension") ||
+    combined.includes("flexion/extension")
+  ) {
+    return ["Flexion", "Extension"];
+  }
+
+  // Check for dorsi-plantar pattern
+  if (
+    combined.includes("dorsi-plantar") ||
+    combined.includes("dorsi/plantar") ||
+    combined.includes("dorsiplantar")
+  ) {
+    return ["Dorsi Flexion", "Plantar Flexion"];
+  }
+
+  // Check for inversion-eversion pattern
+  if (
+    combined.includes("inversion-eversion") ||
+    combined.includes("inversion/eversion")
+  ) {
+    return ["Inversion", "Eversion"];
+  }
+
+  // Check for supination-pronation pattern
+  if (
+    combined.includes("supination-pronation") ||
+    combined.includes("supination/pronation")
+  ) {
+    return ["Supination", "Pronation"];
+  }
+
+  // Check for internal-external rotation pattern
+  if (
+    combined.includes("internal-external-rotation") ||
+    combined.includes("internal/external rotation") ||
+    combined.includes("internal/external-rotation") ||
+    combined.includes("internal external rotation")
+  ) {
+    return ["Internal Rotation", "External Rotation"];
+  }
+
+  // Check for abduction-adduction pattern
+  if (
+    combined.includes("abduction-adduction") ||
+    combined.includes("abduction/adduction")
+  ) {
+    return ["Abduction", "Adduction"];
+  }
+
+  // Check for radial-ulnar deviation pattern
+  if (
+    combined.includes("radial-ulnar") ||
+    combined.includes("radial/ulnar") ||
+    combined.includes("radial ulnar")
+  ) {
+    return ["Radial Deviation", "Ulnar Deviation"];
+  }
+
+  // Check for straight leg raise pattern
+  if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
+    return ["Left", "Right"];
+  }
+
+  return null;
+}
+
+/**
  * Extracts the side prefix (Left/Right) from a test ID or test name
  * If testId has -left or -right suffix, use that
  * Otherwise check if testName starts with "Left Side -" or "Right Side -"
@@ -213,6 +292,7 @@ function getAreaEvaluatedLabels(testName, testId) {
 
 module.exports = {
   getPairedMotionLabels,
+  getPairedMotionLabelsFullNames,
   extractSidePrefix,
   extractBodyPart,
   getAreaEvaluatedLabels,
