@@ -7319,9 +7319,19 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
             return `%IS=${avgPercentIS.toFixed(1)}`;
           }
 
-          // Fallback to calculated average if no trials available
-          const avgResult = (leftAvg + rightAvg) / 2;
-          return `%IS=${avgResult.toFixed(1)}`;
+          // Fallback: Look up MTM test data for this test
+          const testId = test.testId || "";
+          const mtmTestData = body.mtmTestData || {};
+          if (mtmTestData[testId]) {
+            const trials = mtmTestData[testId].trials || [];
+            if (trials.length > 0) {
+              const avgPercentIS = trials.reduce((sum, t) => sum + (t.percentIS || 0), 0) / trials.length;
+              return `%IS=${avgPercentIS.toFixed(1)}`;
+            }
+          }
+
+          // No data available
+          return "";
         }
 
         if (
