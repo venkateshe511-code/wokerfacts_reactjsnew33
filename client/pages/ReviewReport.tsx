@@ -6053,7 +6053,7 @@ export default function ReviewReport() {
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     {(() => {
                                                       if (isMuscleTest) {
-                                                        const pairedLabels = getPairedMotionLabels(
+                                                        const pairedLabels = getPairedMotionLabelsFullNames(
                                                           test.testId,
                                                           test.testName,
                                                         );
@@ -6077,7 +6077,7 @@ export default function ReviewReport() {
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     {(() => {
                                                       if (isMuscleTest) {
-                                                        const pairedLabels = getPairedMotionLabels(
+                                                        const pairedLabels = getPairedMotionLabelsFullNames(
                                                           test.testId,
                                                           test.testName,
                                                         );
@@ -6182,7 +6182,7 @@ export default function ReviewReport() {
                                                 <tr>
                                                   <td className="border border-black px-2 py-1 font-bold text-left">
                                                     {(() => {
-                                                      const pairedLabels = getPairedMotionLabels(
+                                                      const pairedLabels = getPairedMotionLabelsFullNames(
                                                         test.testId,
                                                         test.testName,
                                                       );
@@ -6206,7 +6206,7 @@ export default function ReviewReport() {
                                                 <tr>
                                                   <td className="border border-black px-2 py-1 font-bold text-left">
                                                     {(() => {
-                                                      const pairedLabels = getPairedMotionLabels(
+                                                      const pairedLabels = getPairedMotionLabelsFullNames(
                                                         test.testId,
                                                         test.testName,
                                                       );
