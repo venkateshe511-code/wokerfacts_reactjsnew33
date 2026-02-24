@@ -2900,8 +2900,8 @@ export default function ReviewReport() {
                                               : Math.round(baseAvg * 10) / 10;
                                           return `${avgValue.toFixed(1)} ${unit}`;
                                         } else {
-                                          // Use getPairedMotionLabelsFullNames to get full text labels
-                                          const pairedLabels = getPairedMotionLabelsFullNames(
+                                          // Use getPairedMotionLabels to get abbreviations for summary table
+                                          const pairedLabels = getPairedMotionLabels(
                                             test.testId,
                                             test.testName
                                           );
@@ -6053,7 +6053,7 @@ export default function ReviewReport() {
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     {(() => {
                                                       if (isMuscleTest) {
-                                                        const pairedLabels = getPairedMotionLabelsFullNames(
+                                                        const pairedLabels = getPairedMotionLabels(
                                                           test.testId,
                                                           test.testName,
                                                         );
@@ -6077,7 +6077,7 @@ export default function ReviewReport() {
                                                   <td className="border border-gray-400 border-r-gray-400 p-2">
                                                     {(() => {
                                                       if (isMuscleTest) {
-                                                        const pairedLabels = getPairedMotionLabelsFullNames(
+                                                        const pairedLabels = getPairedMotionLabels(
                                                           test.testId,
                                                           test.testName,
                                                         );
