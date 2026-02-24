@@ -484,12 +484,23 @@ export function extractBodyPart(testName?: string): string | null {
  * Examples:
  * testName: "Lumbar Flexion/Extension" -> ["Lumbar - F", "Lumbar - E"]
  * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Extremity Shoulder F", "Extremity Shoulder E"]
+ * For straight leg raise tests: testName: "Lumbar Straight Leg Raise" -> ["Lumbar Straight Leg Raise", "Lumbar Straight Leg Raise"] (no L/R suffix)
  */
 export function getAreaEvaluatedLabels(
   testName?: string,
   testId?: string,
 ): [string, string] | null {
   if (!testName) return null;
+
+  // Special case: for straight leg raise tests, don't append Left/Right motion labels
+  const id = (testId || "").toLowerCase();
+  const name = (testName || "").toLowerCase();
+  const combined = `${id} ${name}`;
+
+  if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
+    // For straight leg raise, just return the base test name twice (Left/Right distinction comes from row context)
+    return [testName, testName];
+  }
 
   // Get paired motions (abbreviated)
   const motionLabels = getPairedMotionLabels(testId, testName);
@@ -527,12 +538,23 @@ export function getAreaEvaluatedLabels(
  * Examples:
  * testName: "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
  * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Extremity Shoulder Flexion", "Extremity Shoulder Extension"]
+ * For straight leg raise tests: testName: "Lumbar Straight Leg Raise" -> ["Lumbar Straight Leg Raise", "Lumbar Straight Leg Raise"] (no Left/Right suffix)
  */
 export function getFullAreaEvaluatedLabels(
   testName?: string,
   testId?: string,
 ): [string, string] | null {
   if (!testName) return null;
+
+  // Special case: for straight leg raise tests, don't append Left/Right motion labels
+  const id = (testId || "").toLowerCase();
+  const name = (testName || "").toLowerCase();
+  const combined = `${id} ${name}`;
+
+  if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
+    // For straight leg raise, just return the base test name twice (Left/Right distinction comes from row context)
+    return [testName, testName];
+  }
 
   // Get paired motions (full names)
   const motionLabels = getFullMotionLabels(testId, testName);
