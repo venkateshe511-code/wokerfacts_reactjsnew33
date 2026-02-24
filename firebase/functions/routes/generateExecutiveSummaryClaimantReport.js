@@ -3244,6 +3244,14 @@ function computeCrosschecksFromUnifiedTests(
   const liftTests = allTests.filter((t) =>
     normalize(t.testName).includes("lift"),
   );
+  const isSpineROMTest = (testId, testName) => {
+    const id = (testId || "").toLowerCase();
+    const name = (testName || "").toLowerCase();
+    const combined = `${id} ${name}`;
+    return /\b(cervical|lumbar|thoracic)\b/.test(combined) &&
+           /\b(spine|range|motion|flexion|extension)\b/.test(combined);
+  };
+
   const romTests = allTests.filter((t) => {
     const n = normalize(t.testName);
     return (
@@ -3253,6 +3261,9 @@ function computeCrosschecksFromUnifiedTests(
       n.includes("extension")
     );
   });
+
+  const spineROMTests = romTests.filter((t) => isSpineROMTest(t.testId, t.testName));
+  const extremityROMTests = romTests.filter((t) => !isSpineROMTest(t.testId, t.testName));
 
   // Hand grip rapid exchange
   const rapidExchangeValid = (() => {
@@ -3372,36 +3383,44 @@ function computeCrosschecksFromUnifiedTests(
     })
     : null;
 
-  // ROM consistency
-  const romValid = romTests.length
-    ? romTests.every((test) => {
-      const leftTrials = _getTrialValues(test.leftMeasurements);
-      const rightTrials = _getTrialValues(test.rightMeasurements);
-      const all = [...leftTrials, ...rightTrials].filter((v) =>
-        Number.isFinite(v),
-      );
-      if (all.length < 6) return false;
+  // Helper function to validate ROM test using consecutive trials logic
+  const validateROMTest = (test) => {
+    const leftTrials = _getTrialValues(test.leftMeasurements);
+    const rightTrials = _getTrialValues(test.rightMeasurements);
+    const all = [...leftTrials, ...rightTrials].filter((v) =>
+      Number.isFinite(v),
+    );
+    if (all.length < 6) return false;
 
-      for (let i = 0; i <= all.length - 3; i++) {
-        const t1 = all[i],
-          t2 = all[i + 1],
-          t3 = all[i + 2];
-        const maxDiff = Math.max(
-          Math.abs(t1 - t2),
-          Math.abs(t2 - t3),
-          Math.abs(t1 - t3),
-        );
-        const avg = (t1 + t2 + t3) / 3;
-        const denom = avg === 0 ? 1 : avg;
-        const maxPerc = Math.max(
-          (Math.abs(t1 - avg) / denom) * 100,
-          (Math.abs(t2 - avg) / denom) * 100,
-          (Math.abs(t3 - avg) / denom) * 100,
-        );
-        if (maxDiff <= 5 && maxPerc <= 10) return true;
-      }
-      return false;
-    })
+    for (let i = 0; i <= all.length - 3; i++) {
+      const t1 = all[i],
+        t2 = all[i + 1],
+        t3 = all[i + 2];
+      const maxDiff = Math.max(
+        Math.abs(t1 - t2),
+        Math.abs(t2 - t3),
+        Math.abs(t1 - t3),
+      );
+      const avg = (t1 + t2 + t3) / 3;
+      const denom = avg === 0 ? 1 : avg;
+      const maxPerc = Math.max(
+        (Math.abs(t1 - avg) / denom) * 100,
+        (Math.abs(t2 - avg) / denom) * 100,
+        (Math.abs(t3 - avg) / denom) * 100,
+      );
+      if (maxDiff <= 5 && maxPerc <= 10) return true;
+    }
+    return false;
+  };
+
+  // ROM consistency for total spine tests
+  const spineROMValid = spineROMTests.length
+    ? spineROMTests.every(validateROMTest)
+    : null;
+
+  // ROM consistency for extremity tests
+  const extremityROMValid = extremityROMTests.length
+    ? extremityROMTests.every(validateROMTest)
     : null;
 
   // Test/retest trial consistency
@@ -3514,13 +3533,20 @@ function computeCrosschecksFromUnifiedTests(
       pass: hrConsistent,
       applicable: dynamicLifts.length > 0,
     },
-    {
-      name: "ROM consistency check",
+    ...(spineROMValid !== null ? [{
+      name: "Total spine ROM consistency check",
       description:
-        "During total spine ROM, the client provided three consecutive trials between 5 degrees and 10% of each other in a six-trial session.",
-      pass: romValid,
-      applicable: romTests.length > 0,
-    },
+        "During total spine ROM (cervical, lumbar, or thoracic), the client provided three consecutive trials between 5 degrees and 10% of each other in a six-trial session.",
+      pass: spineROMValid,
+      applicable: spineROMTests.length > 0,
+    }] : []),
+    ...(extremityROMValid !== null ? [{
+      name: "Extremity ROM consistency check",
+      description:
+        "During extremity ROM testing, the client provided three consecutive trials between 5 degrees and 10% of each other in a six-trial session.",
+      pass: extremityROMValid,
+      applicable: extremityROMTests.length > 0,
+    }] : []),
     {
       name: "Test/retest trial consistency",
       description:
