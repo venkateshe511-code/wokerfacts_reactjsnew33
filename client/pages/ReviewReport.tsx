@@ -2900,30 +2900,14 @@ export default function ReviewReport() {
                                               : Math.round(baseAvg * 10) / 10;
                                           return `${avgValue.toFixed(1)} ${unit}`;
                                         } else {
-                                          // Intelligently determine if it's flexion/extension or left/right for all other tests
+                                          // Use getPairedMotionLabels to get correct abbreviations
+                                          const pairedLabels = getPairedMotionLabels(
+                                            test.testId,
+                                            test.testName
+                                          );
 
-                                          // Check if test explicitly measures flexion AND extension as paired measurements
-                                          const isFE =
-                                            testNameLower.includes("flexion") &&
-                                            testNameLower.includes("extension");
-
-                                          // Check if test measures other bilateral motions (left/right sides)
-                                          const isLeftRight =
-                                            testNameLower.includes("abduction") ||
-                                            testNameLower.includes("adduction") ||
-                                            testNameLower.includes("rotation") ||
-                                            testNameLower.includes("supination") ||
-                                            testNameLower.includes("pronation") ||
-                                            testNameLower.includes("lateral") ||
-                                            testNameLower.includes("inversion") ||
-                                            testNameLower.includes("eversion") ||
-                                            testNameLower.includes("dorsi") ||
-                                            testNameLower.includes("plantar");
-
-                                          if (isFE) {
-                                            return `F=${leftAvg.toFixed(2)} E=${rightAvg.toFixed(2)}`;
-                                          } else if (isLeftRight) {
-                                            return `L=${leftAvg.toFixed(2)} R=${rightAvg.toFixed(2)}`;
+                                          if (pairedLabels) {
+                                            return `${pairedLabels[0]}=${leftAvg.toFixed(2)} ${pairedLabels[1]}=${rightAvg.toFixed(2)}`;
                                           } else {
                                             // Default to left/right for bilateral tests (grip, pinch, cardio, etc.)
                                             return `L=${leftAvg.toFixed(1)} R=${rightAvg.toFixed(1)}`;
