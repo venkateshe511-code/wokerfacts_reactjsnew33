@@ -3515,7 +3515,18 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                           // Test results format logic like ReviewReport
                           const testResults = (() => {
                             if (category === "Occupational Tasks") {
-                              // Calculate percentage for occupational tasks
+                              // Calculate average %IS from individual trials
+                              const allTrials = [
+                                ...(test.leftMeasurements?.trials || []),
+                                ...(test.rightMeasurements?.trials || []),
+                              ];
+
+                              if (allTrials.length > 0) {
+                                const avgPercentIS = allTrials.reduce((sum, t) => sum + (t.percentIS || 0), 0) / allTrials.length;
+                                return `%IS=${avgPercentIS.toFixed(1)}`;
+                              }
+
+                              // Fallback to calculated average if no trials available
                               const avgResult = (leftAvg + rightAvg) / 2;
                               return `%IS=${avgResult.toFixed(1)}`;
                             } else if (

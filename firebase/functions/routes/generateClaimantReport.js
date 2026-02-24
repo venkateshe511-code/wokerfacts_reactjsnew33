@@ -6658,7 +6658,7 @@ async function addBlankenshipFCEContent(children, body) {
                           new Paragraph({
                             children: [
                               new TextRun({
-                                text: "Abbreviations: HT, hand test; OMH, occupational-material-handling test; REG, rapid-exchange grip test; SST, static-strength test.",
+                                text: "Abbreviations: HT, hand test; OMH, occupational-material-handling test; REG, rapid-exchange grip test; SST, static-strength test; VO2, oxygen uptake; PVO2, predicted VO2; HBR, heart beat reserve; HR, heart rate; Cls, classification; AFS, aerobic fitness score; Rtg, rating.",
                                 size: 10,
                                 color: "666666",
                               }),
@@ -6972,7 +6972,7 @@ async function addBlankenshipFCEContent(children, body) {
                           new Paragraph({
                             children: [
                               new TextRun({
-                                text: "Abbreviations: OMH, occasional-material-handling test; REG, rapid-exchange grip test; SST, static-strength test.",
+                                text: "Abbreviations: OMH, occasional-material-handling test; REG, rapid-exchange grip test; SST, static-strength test; VO2, oxygen uptake; PVO2, predicted VO2; HBR, heart beat reserve; HR, heart rate; Cls, classification; AFS, aerobic fitness score; Rtg, rating.",
                                 size: 10,
                                 color: "666666",
                               }),
@@ -8899,19 +8899,52 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
 
         // Cardio matches PDF: show HR pre//post if available, else Norm
         if (category === "Cardio") {
-          const leftPreHR = test.leftMeasurements?.preHeartRate || 0;
-          const leftPostHR = test.leftMeasurements?.postHeartRate || 0;
-          const rightPreHR = test.rightMeasurements?.preHeartRate || 0;
-          const rightPostHR = test.rightMeasurements?.postHeartRate || 0;
+          // Display cardio-specific values instead of L/R
+          const testNameLower = (test.testName || "").toLowerCase();
+          const cardioValues = [];
 
-          const hrData =
-            leftPreHR > 0 || leftPostHR > 0 || rightPreHR > 0 || rightPostHR > 0
-              ? `${Math.max(leftPreHR, rightPreHR)}//${Math.max(leftPostHR, rightPostHR)}`
-              : "Norm";
-          return hrData;
+          // Bruce Treadmill Test
+          if (testNameLower.includes("bruce") ||
+              (testNameLower.includes("treadmill") && !testNameLower.includes("ymca"))) {
+            if (test.vo2MaxScore) cardioValues.push(`VO2=${test.vo2MaxScore}`);
+            if (test.classification) cardioValues.push(`Cls=${test.classification}`);
+          }
+          // mCAFT Test
+          else if (testNameLower.includes("mcaft")) {
+            if (test.predictedVo2Max) cardioValues.push(`PVO2=${test.predictedVo2Max}`);
+            if (test.hbr) cardioValues.push(`HBR=${test.hbr}`);
+          }
+          // KASCH Step Test
+          else if (testNameLower.includes("kasch")) {
+            if (test.aerobicFitnessScore) cardioValues.push(`AFS=${test.aerobicFitnessScore}`);
+          }
+          // YMCA 3-Minute Step Test
+          else if (testNameLower.includes("ymca") && testNameLower.includes("step")) {
+            if (test.clientRating) cardioValues.push(`Rtg=${test.clientRating}`);
+            if (test.heartRate) cardioValues.push(`HR=${test.heartRate}`);
+          }
+          // YMCA Submaximal Treadmill Test
+          else if (testNameLower.includes("ymca") && testNameLower.includes("submaximal")) {
+            if (test.vo2Max) cardioValues.push(`VO2=${test.vo2Max}`);
+            if (test.heartRate) cardioValues.push(`HR=${test.heartRate}`);
+          }
+
+          return cardioValues.length > 0 ? cardioValues.join(", ") : "No data";
         }
 
         if (category === "Occupational Tasks") {
+          // Calculate average %IS from individual trials
+          const allTrials = [
+            ...(test.leftMeasurements?.trials || []),
+            ...(test.rightMeasurements?.trials || []),
+          ];
+
+          if (allTrials.length > 0) {
+            const avgPercentIS = allTrials.reduce((sum, t) => sum + (t.percentIS || 0), 0) / allTrials.length;
+            return `%IS=${avgPercentIS.toFixed(1)}`;
+          }
+
+          // Fallback to calculated average if no trials available
           const avgResult = (leftAvg + rightAvg) / 2;
           return `%IS=${avgResult.toFixed(1)}`;
         }

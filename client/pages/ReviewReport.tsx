@@ -2881,9 +2881,19 @@ export default function ReviewReport() {
                                         const testNameLower = test.testName.toLowerCase();
 
                                         if (category === "Occupational Tasks") {
-                                          // Calculate percentage for occupational tasks
-                                          const avgResult =
-                                            (leftAvg + rightAvg) / 2;
+                                          // Calculate average %IS from individual trials
+                                          const allTrials = [
+                                            ...(test.leftMeasurements?.trials || []),
+                                            ...(test.rightMeasurements?.trials || []),
+                                          ];
+
+                                          if (allTrials.length > 0) {
+                                            const avgPercentIS = allTrials.reduce((sum: number, t: any) => sum + (t.percentIS || 0), 0) / allTrials.length;
+                                            return `%IS=${avgPercentIS.toFixed(1)}`;
+                                          }
+
+                                          // Fallback to calculated average if no trials available
+                                          const avgResult = (leftAvg + rightAvg) / 2;
                                           return `%IS=${avgResult.toFixed(1)}`;
                                         } else if (testNameLower.includes("lift")) {
                                           // Lift tests: show average weight with selected metric
