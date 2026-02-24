@@ -28,7 +28,7 @@ import {
 } from "@/lib/test-illustrations";
 import { doc, getDoc } from "firebase/firestore";
 import { getReferencesForTest, formatReference } from "@shared/references";
-import { getPairedMotionLabels, getAreaEvaluatedLabels } from "@shared/rom-utils";
+import { getPairedMotionLabels, getPairedMotionLabelsFullNames, getAreaEvaluatedLabels } from "@shared/rom-utils";
 import {
   categorizeTest,
   groupTestsByCategory,
@@ -5115,47 +5115,13 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                             const headerLabel = "Side";
 
                                             const getMotionLabel = (side: string) => {
-                                              // Helper function to get motion label for left/right based on test name
-                                              const testNameLower = testName.toLowerCase();
-                                              if (side === "left") {
-                                                // For paired motions like "Flexion/Extension", show the left-side motion
-                                                if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
-                                                  return "Flexion";
-                                                } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
-                                                  return "Abduction";
-                                                } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
-                                                  return "Supination";
-                                                } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
-                                                  return "Inversion";
-                                                } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
-                                                  return "Dorsiflexion";
-                                                } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
-                                                  return "Radial Deviation";
-                                                } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
-                                                  return "Internal Rotation";
-                                                }
-                                                // Fallback to "Left" for non-paired tests or unknown tests
-                                                return "Left";
-                                              } else {
-                                                // For paired motions like "Flexion/Extension", show the right-side motion
-                                                if (testNameLower.includes("flexion") && testNameLower.includes("extension")) {
-                                                  return "Extension";
-                                                } else if (testNameLower.includes("abduction") && testNameLower.includes("adduction")) {
-                                                  return "Adduction";
-                                                } else if (testNameLower.includes("supination") && testNameLower.includes("pronation")) {
-                                                  return "Pronation";
-                                                } else if (testNameLower.includes("inversion") && testNameLower.includes("eversion")) {
-                                                  return "Eversion";
-                                                } else if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) {
-                                                  return "Plantarflexion";
-                                                } else if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) {
-                                                  return "Ulnar Deviation";
-                                                } else if (testNameLower.includes("internal") && testNameLower.includes("external")) {
-                                                  return "External Rotation";
-                                                }
-                                                // Fallback to "Right" for non-paired tests or unknown tests
-                                                return "Right";
+                                              // Use the shared getPairedMotionLabelsFullNames utility for consistency
+                                              const pairedLabels = getPairedMotionLabelsFullNames(test.testId, test.testName);
+                                              if (pairedLabels) {
+                                                return side === "left" ? pairedLabels[0] : pairedLabels[1];
                                               }
+                                              // Fallback to "Left" or "Right" for non-paired tests
+                                              return side === "left" ? "Left" : "Right";
                                             };
 
                                             const buildRow = (
