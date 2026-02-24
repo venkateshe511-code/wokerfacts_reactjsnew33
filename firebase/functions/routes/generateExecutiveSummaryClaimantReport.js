@@ -1095,6 +1095,16 @@ const testToCategory = {
   "reach-immediate": "mtm",
   "reach-overhead": "mtm",
   "reach-with-weight": "mtm",
+  stoop: "mtm",
+  walk: "mtm",
+  "push-pull-cart": "mtm",
+  crouch: "mtm",
+  carry: "mtm",
+  crawl: "mtm",
+  "climb-stairs": "mtm",
+  balance: "mtm",
+  kneel: "mtm",
+  "climb-ladder": "mtm",
 
   // Cardio Tests
   "bruce-treadmill": "bruce-treadmill",
