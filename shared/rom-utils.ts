@@ -585,6 +585,22 @@ export function getFullAreaEvaluatedLabels(
     return [testName, testName];
   }
 
+  // Special case: for thumb IP flexion, use custom side labels
+  if (id.includes("thumb-ip-flexion") && !id.includes("extension") && !id.includes("-left") && !id.includes("-right")) {
+    return [
+      "Left Side Thumb IP Flexion",
+      "Right Side Thumb IP Flexion",
+    ];
+  }
+
+  // Special case: for great toe IP flexion, use custom side labels
+  if (id.includes("great-toe-ip-flexion") && !id.includes("mp") && !id.includes("-left") && !id.includes("-right")) {
+    return [
+      "Left Side Toe IP Flexion",
+      "Right Side Toe IP Flexion",
+    ];
+  }
+
   // Special case: for thumb abduction, use full motion names in a specific format
   if (combined.includes("thumb-abduction") || combined.includes("thumb abduction")) {
     const fullMotionLabels = getFullMotionLabels(testId, testName);
