@@ -575,7 +575,7 @@ export function getAreaEvaluatedLabels(
  * Examples:
  * testName: "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
  * testId: "shoulder-rom-flexion-extension-left", testName: "Extremity Shoulder Flexion/Extension" -> ["Extremity Shoulder Flexion", "Extremity Shoulder Extension"]
- * For straight leg raise tests: testName: "Lumbar Straight Leg Raise" -> ["Lumbar Straight Leg Raise", "Lumbar Straight Leg Raise"] (no Left/Right suffix)
+ * For straight leg raise tests: testName: "Lumbar Straight Leg Raise" -> ["Left Side-Lumbar Straight Leg Raise", "Right Side-Lumbar Straight Leg Raise"]
  */
 export function getFullAreaEvaluatedLabels(
   testName?: string,
@@ -583,15 +583,9 @@ export function getFullAreaEvaluatedLabels(
 ): [string, string] | null {
   if (!testName) return null;
 
-  // Special case: for straight leg raise tests, don't append Left/Right motion labels
   const id = (testId || "").toLowerCase();
   const name = (testName || "").toLowerCase();
   const combined = `${id} ${name}`;
-
-  if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
-    // For straight leg raise, just return the base test name twice (Left/Right distinction comes from row context)
-    return [testName, testName];
-  }
 
   // Special case: for thumb IP flexion, use custom side labels
   if (id.includes("thumb-ip-flexion") && !id.includes("extension") && !id.includes("-left") && !id.includes("-right")) {

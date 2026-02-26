@@ -340,20 +340,14 @@ function getFullMotionLabels(testId, testName) {
  * Based on body part and paired motions
  * Examples:
  * testName: "Lumbar Flexion/Extension" -> ["Lumbar - F", "Lumbar - E"]
- * For straight leg raise tests: testName: "Lumbar Straight Leg Raise" -> ["Lumbar Straight Leg Raise", "Lumbar Straight Leg Raise"] (no L/R suffix)
+ * For straight leg raise tests: testName: "Lumbar Straight Leg Raise" -> ["Lumbar - L", "Lumbar - R"]
  */
 function getAreaEvaluatedLabels(testName, testId) {
   if (!testName) return null;
 
-  // Special case: for straight leg raise tests, don't append Left/Right motion labels
   const id = (testId || "").toLowerCase();
   const name = (testName || "").toLowerCase();
   const combined = `${id} ${name}`;
-
-  if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
-    // For straight leg raise, just return the base test name twice (Left/Right distinction comes from row context)
-    return [testName, testName];
-  }
 
   // Special case: for cervical spine rotation, use custom side labels
   if (id.includes("cervical-spine-rotation") && !id.includes("-left") && !id.includes("-right")) {
@@ -409,49 +403,43 @@ function getAreaEvaluatedLabels(testName, testId) {
  * Based on body part and paired motions
  * Examples:
  * testName: "Lumbar Flexion/Extension" -> ["Lumbar - Flexion", "Lumbar - Extension"]
- * For straight leg raise tests: testName: "Lumbar Straight Leg Raise" -> ["Lumbar Straight Leg Raise", "Lumbar Straight Leg Raise"] (no Left/Right suffix)
+ * For straight leg raise tests: testName: "Lumbar Straight Leg Raise" -> ["Left Side-Lumbar Straight Leg Raise", "Right Side-Lumbar Straight Leg Raise"]
  */
 function getFullAreaEvaluatedLabels(testName, testId) {
   if (!testName) return null;
 
-  // Special case: for straight leg raise tests, don't append Left/Right motion labels
   const id = (testId || "").toLowerCase();
   const name = (testName || "").toLowerCase();
   const combined = `${id} ${name}`;
 
-  if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
-    // For straight leg raise, just return the base test name twice (Left/Right distinction comes from row context)
-    return [testName, testName];
-  }
-
   // Special case: for thumb IP flexion, use custom side labels
   if (id.includes("thumb-ip-flexion") && !id.includes("extension") && !id.includes("-left") && !id.includes("-right")) {
     return [
-      "Left Side-Thumb IP Flexion",
-      "Right Side-Thumb IP Flexion",
+      "Left Side Thumb IP Flexion",
+      "Right Side Thumb IP Flexion",
     ];
   }
 
   // Special case: for cervical spine rotation, use custom side labels
   if (id.includes("cervical-spine-rotation") && !id.includes("-left") && !id.includes("-right")) {
     return [
-      "Left Side-Cervical Rotation",
-      "Right Side-Cervical Rotation",
+      "Left Side Cervical Rotation",
+      "Right Side Cervical Rotation",
     ];
   }
       // Special case: for cervical spine rotation, use custom side labels
   if (id.includes("cervical-spine-lateral-flexion") && !id.includes("-left") && !id.includes("-right")) {
     return [
-      "Left Side-Cervical Lateral Flexion",
-      "Right Side-Cervical Lateral Flexion",
+      "Left Side Cervical Lateral Flexion",
+      "Right Side Cervical Lateral Flexion",
     ];
   }
 
    // Special case: for cervical spine rotation, use custom side labels
   if (id.includes("lumbar-spine-lateral-flexion") && !id.includes("-left") && !id.includes("-right")) {
     return [
-      "Left Side-Lumbar Lateral Flexion",
-      "Right Side-Lumbar Lateral Flexion",
+      "Left Side Lumbar Lateral Flexion",
+      "Right Side Lumbar Lateral Flexion",
     ];
   }
   
@@ -459,32 +447,32 @@ function getFullAreaEvaluatedLabels(testName, testId) {
     // Special case: for cervical spine rotation, use custom side labels
   if (id.includes("lumbar-spine-straight-leg-raise") && !id.includes("-left") && !id.includes("-right")) {
     return [
-      "Left Side-Lumbar Straight Leg Raise",
-      "Right Side-Lumbar Straight Leg Raise",
+      "Left Side Lumbar Straight Leg Raise",
+      "Right Side Lumbar Straight Leg Raise",
     ];
   }
 
      // Special case: for cervical spine rotation, use custom side labels
   if (id.includes("thoracic-spine-flexion") && !id.includes("-left") && !id.includes("-right")) {
     return [
-      "Left Side-Thoracic Flexion",
-      "Right Side-Thoracic Flexion",
+      "Left Side Thoracic Flexion",
+      "Right Side Thoracic Flexion",
     ];
   }
 
        // Special case: for cervical spine rotation, use custom side labels
   if (id.includes("thoracic-spine-rotation") && !id.includes("-left") && !id.includes("-right")) {
     return [
-      "Left Side-Thoracic Rotation",
-      "Right Side-Thoracic Rotation",
+      "Left Side Thoracic Rotation",
+      "Right Side Thoracic Rotation",
     ];
   }
 
   // Special case: for great toe IP flexion, use custom side labels
   if (id.includes("great-toe-ip-flexion") && !id.includes("mp") && !id.includes("-left") && !id.includes("-right")) {
     return [
-      "Left Side-Toe IP Flexion",
-      "Right Side-Toe IP Flexion",
+      "Left Side Toe IP Flexion",
+      "Right Side Toe IP Flexion",
     ];
   }
 
