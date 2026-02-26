@@ -235,6 +235,11 @@ export function getFullMotionLabels(
     return ["Left", "Right"];
   }
 
+  // Check for thumb abduction pattern
+  if (combined.includes("thumb-abduction") || combined.includes("thumb abduction")) {
+    return ["Palmar", "Radial"];
+  }
+
   return null;
 }
 
@@ -314,6 +319,11 @@ export function getPairedMotionLabels(
   // Check for straight leg raise pattern
   if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
     return ["L", "R"];
+  }
+
+  // Check for thumb abduction pattern
+  if (combined.includes("thumb-abduction") || combined.includes("thumb abduction")) {
+    return ["P", "R"];
   }
 
   return null;
@@ -396,6 +406,11 @@ export function getPairedMotionLabelsFullNames(
   // Check for straight leg raise pattern
   if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
     return ["Left", "Right"];
+  }
+
+  // Check for thumb abduction pattern
+  if (combined.includes("thumb-abduction") || combined.includes("thumb abduction")) {
+    return ["Palmar", "Radial"];
   }
 
   return null;
@@ -505,6 +520,17 @@ export function getAreaEvaluatedLabels(
     return [testName, testName];
   }
 
+  // Special case: for thumb abduction, use full motion names in a specific format
+  if (combined.includes("thumb-abduction") || combined.includes("thumb abduction")) {
+    const fullMotionLabels = getFullMotionLabels(testId, testName);
+    if (fullMotionLabels) {
+      return [
+        `${fullMotionLabels[0]} Thumb Abduction`,
+        `${fullMotionLabels[1]} Thumb Abduction`,
+      ];
+    }
+  }
+
   // Get paired motions (abbreviated)
   const motionLabels = getPairedMotionLabels(testId, testName);
   if (!motionLabels) return null;
@@ -557,6 +583,17 @@ export function getFullAreaEvaluatedLabels(
   if (combined.includes("straight-leg-raise") || combined.includes("straight leg raise")) {
     // For straight leg raise, just return the base test name twice (Left/Right distinction comes from row context)
     return [testName, testName];
+  }
+
+  // Special case: for thumb abduction, use full motion names in a specific format
+  if (combined.includes("thumb-abduction") || combined.includes("thumb abduction")) {
+    const fullMotionLabels = getFullMotionLabels(testId, testName);
+    if (fullMotionLabels) {
+      return [
+        `${fullMotionLabels[0]} Thumb Abduction`,
+        `${fullMotionLabels[1]} Thumb Abduction`,
+      ];
+    }
   }
 
   // Get paired motions (full names)

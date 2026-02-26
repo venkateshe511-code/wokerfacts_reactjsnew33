@@ -226,7 +226,7 @@ function createSideTrialTable(
   const isMuscleTest =
     testIdLower.includes("muscle-") ||
     (testIdLower.startsWith("cervical-") &&
-    !testIdLower.includes("spine-") &&
+      !testIdLower.includes("spine-") &&
       !testNameLower.includes("rom") &&
       (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
@@ -10076,7 +10076,8 @@ async function addTestDataContent(children, body) {
               });
 
             // Get paired motion labels for left/right labels (e.g., "Flexion | Extension" or "Left | Right")
-            const pairedLabels = getAreaEvaluatedLabels(safeName, test.testId) || ["Left", "Right"];
+            // const pairedLabels = getAreaEvaluatedLabels(safeName, test.testId) || ["Left", "Right"];
+            const pairedLabels = getPairedMotionLabels(test.testId, safeName) || ["L", "R"];
 
             // Build muscle test summary table (no norms) - matching ReviewReport format
             rightCol.push(
@@ -10096,8 +10097,10 @@ async function addTestDataContent(children, body) {
                   new TableRow({
                     children: [
                       makeCell("MUSCLE TEST"),
-                      makeCell(`${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`),
-                      makeCell(`${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`),
+                      // makeCell(`${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`),
+                      // makeCell(`${pairedLabels[0]?.charAt(0)} | ${pairedLabels[1]?.charAt(0)}`),
+                      makeCell(`${pairedLabels[0]} | ${pairedLabels[1]}`),
+                      makeCell(`${pairedLabels[0]} | ${pairedLabels[1]}`),
                       makeCell(""),
                     ],
                   }),
