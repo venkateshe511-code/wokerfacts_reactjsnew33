@@ -8777,6 +8777,28 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
 
   const unifiedTests = gatherTests();
 
+  // Merge cardio test data into unified tests BEFORE building the summary table
+  const cardioTestData = body.cardioTestData || {};
+  if (Object.keys(cardioTestData).length > 0) {
+    unifiedTests.forEach((test) => {
+      const cardioData = cardioTestData[test.testId] || cardioTestData[test.testName];
+      if (cardioData) {
+        // Map cardio field names to expected field names (same as client-side mapping)
+        test.vo2Max = cardioData.vo2MaxScore || cardioData.vo2Max || "";
+        test.predictedVo2Max = cardioData.predictedVO2Max || cardioData.predictedVo2Max || "";
+        test.classification = cardioData.classification || "";
+        test.hbr = cardioData.hbr || "";
+        test.aerobicFitnessScore = cardioData.aerobicFitnessScore || "";
+        test.clientRating = cardioData.clientRating || "";
+        test.heartRate = cardioData.heartRate || "";
+        test.bloodPressure = cardioData.bloodPressure || "";
+        test.rpe = cardioData.rpe || "";
+        test.clientImages = cardioData.clientImages || [];
+        test.serializedImages = cardioData.serializedImages || [];
+      }
+    });
+  }
+
   // Group tests by category using strict categorization utility
   const categories = groupTestsByCategory(unifiedTests);
 
