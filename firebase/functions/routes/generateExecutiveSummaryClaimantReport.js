@@ -2750,6 +2750,10 @@ const testNames = {
     "Right Side - Ankle Dorsi/Plantar Flexion",
   "ankle-rom-inversion-eversion-right": "Right Side - Ankle Inversion/Eversion",
 
+  // ROM - Hand/Foot (Non-Side-Specific)
+  "thumb-ip-flexion": "Thumb IP Flexion",
+  "great-toe-ip-flexion": "Extremity Great Toe IP Flexion",
+
   // ROM - Hand/Foot (Left Side)
   "thumb-ip-flexion-extension-left": "Left Side - Thumb IP Flexion/Extension",
   "thumb-mp-flexion-extension-left": "Left Side - Thumb MP Flexion/Extension",
