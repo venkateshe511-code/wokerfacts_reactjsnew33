@@ -226,6 +226,7 @@ function createSideTrialTable(
   const isMuscleTest =
     testIdLower.includes("muscle-") ||
     (testIdLower.startsWith("cervical-") &&
+    !testIdLower.includes("spine-") &&
       !testNameLower.includes("rom") &&
       (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
