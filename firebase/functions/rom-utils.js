@@ -355,6 +355,14 @@ function getAreaEvaluatedLabels(testName, testId) {
     return [testName, testName];
   }
 
+  // Special case: for cervical spine rotation, use custom side labels
+  if (id.includes("cervical-spine-rotation") && !id.includes("-left") && !id.includes("-right")) {
+    return [
+      "Left Side Cervical Rotation",
+      "Right Side Cervical Rotation",
+    ];
+  }
+
   // Special case: for thumb abduction, use full motion names in a specific format
   if (combined.includes("thumb-abduction") || combined.includes("thumb abduction")) {
     const fullMotionLabels = getFullMotionLabels(testId, testName);
@@ -421,6 +429,14 @@ function getFullAreaEvaluatedLabels(testName, testId) {
     return [
       "Left Side Thumb IP Flexion",
       "Right Side Thumb IP Flexion",
+    ];
+  }
+
+  // Special case: for cervical spine rotation, use custom side labels
+  if (id.includes("cervical-spine-rotation") && !id.includes("-left") && !id.includes("-right")) {
+    return [
+      "Left Side Cervical Rotation",
+      "Right Side Cervical Rotation",
     ];
   }
 
