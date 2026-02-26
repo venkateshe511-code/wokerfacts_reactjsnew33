@@ -337,6 +337,11 @@ export default function ReviewReport() {
 
   // Helper function to format test name with (Muscle Test) or (ROM) suffix
   const formatTestName = (name: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean, testId?: string): string => {
+    // If name already ends with (ROM), return it as-is
+    if (name.endsWith("(ROM)")) {
+      return name;
+    }
+
     if (isMusc) {
       // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
       const parts = name.split(/\s+/);
