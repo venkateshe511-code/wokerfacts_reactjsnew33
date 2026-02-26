@@ -3936,6 +3936,7 @@ export default function ReviewReport() {
                         const isMuscleTest =
                           testIdLower.includes("muscle-") ||
                           (testIdLower.startsWith("cervical-") &&
+                          !testIdLower.includes("spine-") &&
                            (testIdLower.includes("flexion") || testIdLower.includes("rotation") || testIdLower.includes("lateral")));
 
                         const isTotalSpineRom =
