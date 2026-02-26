@@ -235,6 +235,10 @@ export default function ReviewReport() {
     "ankle-rom-inversion-eversion-right":
       "Right Side - Extremity Ankle Inversion/Eversion",
 
+    // ROM - Hand/Foot (Non-Side-Specific)
+    "thumb-ip-flexion": "Thumb IP Flexion (ROM)",
+    "great-toe-ip-flexion": "Extremity Great Toe IP Flexion (ROM)",
+
     // ROM - Hand/Foot (Left Side)
     "thumb-ip-flexion-extension-left": "Left Side - Thumb IP Flexion/Extension",
     "thumb-mp-flexion-extension-left": "Left Side - Thumb MP Flexion/Extension",
@@ -333,6 +337,11 @@ export default function ReviewReport() {
 
   // Helper function to format test name with (Muscle Test) or (ROM) suffix
   const formatTestName = (name: string, isMusc: boolean, isROM: boolean, isTotalSpine: boolean, testId?: string): string => {
+    // If name already ends with (ROM), return it as-is
+    if (name.endsWith("(ROM)")) {
+      return name;
+    }
+
     if (isMusc) {
       // For muscle tests: "Cervical Flexion" -> "Cervical - Flexion (Muscle Test)"
       const parts = name.split(/\s+/);

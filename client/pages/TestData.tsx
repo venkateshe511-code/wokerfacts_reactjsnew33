@@ -569,6 +569,10 @@ export default function TestData() {
       "ankle-rom-dorsi-plantar-flexion-right": "Extremity Ankle Dorsi/Plantar Flexion",
       "ankle-rom-inversion-eversion-right": "Extremity Ankle Inversion/Eversion",
 
+      // ROM - Hand/Foot (Non-Side-Specific)
+      "thumb-ip-flexion": "Thumb IP Flexion (ROM)",
+      "great-toe-ip-flexion": "Extremity Great Toe IP Flexion (ROM)",
+
       // ROM - Hand/Foot (Left Side)
       "thumb-ip-flexion-extension-left": "Left Side - Thumb IP Flexion/Extension",
       "thumb-mp-flexion-extension-left": "Left Side - Thumb MP Flexion/Extension",
@@ -1085,6 +1089,10 @@ export default function TestData() {
           "Right Side - Extremity Ankle Dorsi/Plantar Flexion",
         "ankle-rom-inversion-eversion-right":
           "Right Side - Extremity Ankle Inversion/Eversion",
+
+        // ROM - Hand/Foot (Non-Side-Specific)
+        "thumb-ip-flexion": "Thumb IP Flexion (ROM)",
+      "great-toe-ip-flexion": "Extremity Great Toe IP Flexion (ROM)",
 
         // ROM - Hand/Foot (Left Side)
         "thumb-ip-flexion-extension-left":

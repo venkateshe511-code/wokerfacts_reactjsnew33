@@ -764,6 +764,12 @@ const map = {
   ],
 
   // ROM - Hand/Foot (Side-Specific)
+  "thumb-ip-flexion": [
+    {
+      src: `${BASE}/Thumb_IP_Flexion_Extension.jpg`,
+      label: "Thumb IP Flexion",
+    },
+  ],
   "thumb-ip-flexion-extension-left": [
     {
       src: `${BASE}/Thumb_IP_Flexion_Extension.jpg`,
@@ -943,6 +949,12 @@ const map = {
     },
   ],
 
+  "great-toe-ip-flexion": [
+    {
+      src: `${BASE}/Extremity_Great_Toe_IP_Flexion_MP_Dorsi_Plantar_Flexion.jpg`,
+      label: "Great Toe IP Flexion",
+    },
+  ],
   "great-toe-ip-flexion-left": [
     {
       src: `${BASE}/Extremity_Great_Toe_IP_Flexion_MP_Dorsi_Plantar_Flexion.jpg`,

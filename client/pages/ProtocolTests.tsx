@@ -520,13 +520,19 @@ const testGroups = {
   ],
   "rom-hand": [
     {
+      name: "Thumb IP Flexion",
+      id: "thumb-ip-flexion",
+      tests: [
+        {
+          id: "thumb-ip-flexion",
+          name: "Thumb IP Flexion",
+        },
+      ],
+    },
+    {
       name: "Left Side - Thumb (ROM)",
       id: "thumb-rom-left",
       tests: [
-        {
-          id: "thumb-ip-flexion-extension-left",
-          name: "Thumb IP Flexion/Extension",
-        },
         {
           id: "thumb-mp-flexion-extension-left",
           name: "Thumb MP Flexion/Extension",
@@ -538,10 +544,6 @@ const testGroups = {
       name: "Right Side - Thumb (ROM)",
       id: "thumb-rom-right",
       tests: [
-        {
-          id: "thumb-ip-flexion-extension-right",
-          name: "Thumb IP Flexion/Extension",
-        },
         {
           id: "thumb-mp-flexion-extension-right",
           name: "Thumb MP Flexion/Extension",
@@ -694,13 +696,19 @@ const testGroups = {
       ],
     },
     {
+      name: "Extremity Great Toe IP Flexion",
+      id: "extremity-great-toe-ip-flexion",
+      tests: [
+        {
+          id: "great-toe-ip-flexion",
+          name: "Extremity Great Toe IP Flexion",
+        },
+      ],
+    },
+    {
       name: "Left Side - Extremity Great Toe (ROM)",
       id: "extremity-great-toe-left",
       tests: [
-        {
-          id: "great-toe-ip-flexion-left",
-          name: "Extremity Great Toe IP Flexion",
-        },
         {
           id: "great-toe-mp-dorsi-plantar-flexion-left",
           name: "Extremity Great Toe MP Dorsi/Plantar Flexion",
@@ -711,10 +719,6 @@ const testGroups = {
       name: "Right Side - Extremity Great Toe (ROM)",
       id: "extremity-great-toe-right",
       tests: [
-        {
-          id: "great-toe-ip-flexion-right",
-          name: "Extremity Great Toe IP Flexion",
-        },
         {
           id: "great-toe-mp-dorsi-plantar-flexion-right",
           name: "Extremity Great Toe MP Dorsi/Plantar Flexion",
@@ -884,8 +888,7 @@ export default function ProtocolTests() {
       "hip-rom-flexion-extension-left",
       "hip-rom-flexion-extension-right",
       // ROM Hand
-      "thumb-ip-flexion-extension-left",
-      "thumb-ip-flexion-extension-right",
+      "thumb-ip-flexion",
       "index-dip-flexion-extension-left",
       "index-dip-flexion-extension-right",
       // Occupational
