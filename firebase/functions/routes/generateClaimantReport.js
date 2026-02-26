@@ -10970,6 +10970,7 @@ async function addTestDataContent(children, body) {
                   if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) return "Dorsiflexion";
                   if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) return "Radial Deviation";
                   if (testNameLower.includes("internal") && testNameLower.includes("external")) return "Internal Rotation";
+                  if (testNameLower.includes("thumb-abduction") || testNameLower.includes("thumb abduction")) return "Palmar";
                   return "Left";
                 } else {
                   if (testNameLower.includes("flexion") && testNameLower.includes("extension")) return "Extension";
@@ -10979,6 +10980,7 @@ async function addTestDataContent(children, body) {
                   if (testNameLower.includes("dorsi") && testNameLower.includes("plantar")) return "Plantarflexion";
                   if (testNameLower.includes("radial") && testNameLower.includes("ulnar")) return "Ulnar Deviation";
                   if (testNameLower.includes("internal") && testNameLower.includes("external")) return "External Rotation";
+                  if (testNameLower.includes("thumb-abduction") || testNameLower.includes("thumb abduction")) return "Radial";
                   return "Right";
                 }
               };
