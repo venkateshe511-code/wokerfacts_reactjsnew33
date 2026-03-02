@@ -1,115 +1,149 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3" />
-    <link rel="icon" type="image/png" href="/workerfacts-logo.png?v=3" />
-    <link rel="apple-touch-icon" href="/workerfacts-logo.png?v=3" />
-    <link rel="shortcut icon" href="/favicon.ico?v=3" />
-    <link rel="manifest" href="/manifest.json" />
-    <meta
-      name="description"
-      content="The industry's most advanced web-based platform for clinical abilities determination"
-    />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="WorkerFacts" />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: light)"
-      content="#7dacdb"
-    />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="#7dacdb"
-    />
-    <meta
-      property="og:title"
-      content="Functional Capacity Evaluation Software"
-    />
-    <meta
-      property="og:description"
-      content="The industry's most advanced web-based platform for clinical abilities determination"
-    />
-    <meta
-      name="twitter:title"
-      content="Functional Capacity Evaluation Software"
-    />
-    <meta
-      name="twitter:description"
-      content="The industry's most advanced web-based platform for clinical abilities determination"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>WorkerFacts</title>
-  </head>
 
-  <body>
-    <div id="root"></div>
+<head>
+  <!-- Basic -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="content-language" content="en" />
+  
+  <!-- Title (VERY IMPORTANT) -->
+  <title>WorkerFacts | Functional Capacity Evaluation (FCE) Software</title>
 
-    <script type="module" src="/client/App.tsx"></script>
+  <!-- SEO -->
+  <meta name="description"
+    content="WorkerFacts is an advanced web-based Functional Capacity Evaluation (FCE) software platform for clinical abilities determination." />
+  <meta name="keywords"
+    content="functional capacity evaluation software, fce software, clinical evaluation platform, workerfacts" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.workerfacts.com/" />
 
-    <!-- Service Worker Registration -->
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/sw.js")
-            .then((registration) => {
-              console.log(
-                "[ServiceWorker] Registration successful:",
-                registration.scope,
-              );
+  <!-- Icons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=3" />
+  <link rel="icon" type="image/png" href="/workerfacts-logo.png?v=3" />
+  <link rel="apple-touch-icon" href="/workerfacts-logo.png?v=3" />
+  <link rel="shortcut icon" href="/favicon.ico?v=3" />
 
-              // Check for updates
-              registration.addEventListener("updatefound", () => {
-                const newWorker = registration.installing;
-                if (newWorker) {
-                  newWorker.addEventListener("statechange", () => {
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#7dacdb" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#7dacdb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="WorkerFacts" />
+
+  <!-- Open Graph (Facebook / LinkedIn) -->
+  <meta property="og:title" content="WorkerFacts | Functional Capacity Evaluation Software" />
+  <meta property="og:description"
+    content="Advanced web-based platform for clinical abilities and functional capacity evaluation." />
+  <meta property="og:image" content="https://www.workerfacts.com/og-image.png" />
+  <meta property="og:url" content="https://www.workerfacts.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WorkerFacts | Functional Capacity Evaluation Software" />
+  <meta name="twitter:description" content="Advanced web-based platform for clinical abilities determination." />
+  <meta name="twitter:image" content="https://www.workerfacts.com/og-image.png" />
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "WorkerFacts",
+    "operatingSystem": "Web",
+    "applicationCategory": "BusinessApplication",
+    "description": "Advanced web-based platform for clinical abilities and functional capacity evaluation.",
+    "url": "https://www.workerfacts.com",
+    "publisher": {
+      "@type": "Organization",
+      "name": "WorkerFacts"
+    }
+  }
+  </script>
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J9FR1LKMLZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-J9FR1LKMLZ');
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="module" src="/client/App.tsx"></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((registration) => {
+            console.log(
+              "[ServiceWorker] Registration successful:",
+              registration.scope,
+            );
+
+            // Check for updates
+            registration.addEventListener("updatefound", () => {
+              const newWorker = registration.installing;
+              if (newWorker) {
+                newWorker.addEventListener("statechange", () => {
+                  if (
+                    newWorker.state === "installed" &&
+                    navigator.serviceWorker.controller
+                  ) {
+                    // New content is available, show update notification
+                    console.log(
+                      "[ServiceWorker] New content available, please refresh.",
+                    );
                     if (
-                      newWorker.state === "installed" &&
-                      navigator.serviceWorker.controller
+                      confirm(
+                        "New version available. Refresh page to update?",
+                      )
                     ) {
-                      // New content is available, show update notification
-                      console.log(
-                        "[ServiceWorker] New content available, please refresh.",
-                      );
-                      if (
-                        confirm(
-                          "New version available. Refresh page to update?",
-                        )
-                      ) {
-                        window.location.reload();
-                      }
+                      window.location.reload();
                     }
-                  });
-                }
-              });
-            })
-            .catch((error) => {
-              console.log("[ServiceWorker] Registration failed:", error);
+                  }
+                });
+              }
             });
-        });
+          })
+          .catch((error) => {
+            console.log("[ServiceWorker] Registration failed:", error);
+          });
+      });
 
-        // Listen for service worker messages
-        navigator.serviceWorker.addEventListener("message", (event) => {
-          if (event.data && event.data.type === "CACHE_STATUS") {
-            console.log("[ServiceWorker] Cache status:", event.data);
-          }
-        });
+      // Listen for service worker messages
+      navigator.serviceWorker.addEventListener("message", (event) => {
+        if (event.data && event.data.type === "CACHE_STATUS") {
+          console.log("[ServiceWorker] Cache status:", event.data);
+        }
+      });
 
-        // Handle offline/online events
-        window.addEventListener("online", () => {
-          console.log("[Network] Back online");
-          document.body.classList.remove("offline");
-        });
+      // Handle offline/online events
+      window.addEventListener("online", () => {
+        console.log("[Network] Back online");
+        document.body.classList.remove("offline");
+      });
 
-        window.addEventListener("offline", () => {
-          console.log("[Network] Gone offline");
-          document.body.classList.add("offline");
-        });
-      }
-    </script>
-  </body>
+      window.addEventListener("offline", () => {
+        console.log("[Network] Gone offline");
+        document.body.classList.add("offline");
+      });
+    }
+  </script>
+</body>
+
 </html>
