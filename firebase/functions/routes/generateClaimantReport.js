@@ -10589,10 +10589,7 @@ async function addTestDataContent(children, body) {
               new Paragraph({ spacing: { before: 100, after: 50 } }),
             );
             rightCol.push(createSideTrialTable(test, measurementUnit));
-            rightCol.push(
-              new Paragraph({ spacing: { before: 100, after: 50 } }),
-            );
-              // Add note for Hand Strength MVE/MMVE tests
+            // Add note for Hand Strength MVE/MMVE tests
             if (testNameLower.includes("mve") || testNameLower.includes("mmve")) {
               rightCol.push(
                 new Paragraph({
@@ -10602,10 +10599,12 @@ async function addTestDataContent(children, body) {
                       size: 16,
                     }),
                   ],
-                  spacing: { before: 0, after: 50 },
                 }),
               );
             }
+            rightCol.push(
+              new Paragraph({ spacing: { before: 100, after: 50 } }),
+            );
           }
 
           // ==== CHARTS SECTION (robust, single or dual bar charts) ====

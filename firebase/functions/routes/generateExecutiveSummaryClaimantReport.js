@@ -3279,7 +3279,7 @@ function computeCrosschecksFromUnifiedTests(
     const name = (testName || "").toLowerCase();
     const combined = `${id} ${name}`;
     return /\b(cervical|lumbar|thoracic)\b/.test(combined) &&
-           /\b(spine|range|motion|flexion|extension)\b/.test(combined);
+      /\b(spine|range|motion|flexion|extension)\b/.test(combined);
   };
 
   const romTests = allTests.filter((t) => {
@@ -7322,7 +7322,7 @@ async function addFunctionalAbilitiesDeterminationContent(children, body) {
 
           // Bruce Treadmill Test
           if (testNameLower.includes("bruce") ||
-              (testNameLower.includes("treadmill") && !testNameLower.includes("ymca"))) {
+            (testNameLower.includes("treadmill") && !testNameLower.includes("ymca"))) {
             if (test.vo2MaxScore) cardioValues.push(`VO2=${test.vo2MaxScore}`);
             if (test.classification) cardioValues.push(`Cls=${test.classification}`);
           }
@@ -8761,10 +8761,7 @@ async function addTestDataContent(children, body) {
               new Paragraph({ spacing: { before: 100, after: 50 } }),
             );
             rightCol.push(createSideTrialTable(test, measurementUnit));
-            rightCol.push(
-              new Paragraph({ spacing: { before: 100, after: 50 } }),
-            );
-              // Add note for Hand Strength MVE/MMVE tests
+            // Add note for Hand Strength MVE/MMVE tests
             if (testNameLower.includes("mve") || testNameLower.includes("mmve")) {
               rightCol.push(
                 new Paragraph({
@@ -8774,10 +8771,12 @@ async function addTestDataContent(children, body) {
                       size: 16,
                     }),
                   ],
-                  spacing: { before: 0, after: 50 },
                 }),
               );
             }
+            rightCol.push(
+              new Paragraph({ spacing: { before: 100, after: 50 } }),
+            );
           }
 
           // ==== CHARTS SECTION (robust, single or dual bar charts) ====
