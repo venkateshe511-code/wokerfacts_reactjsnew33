@@ -8764,6 +8764,20 @@ async function addTestDataContent(children, body) {
             rightCol.push(
               new Paragraph({ spacing: { before: 100, after: 50 } }),
             );
+              // Add note for Hand Strength MVE/MMVE tests
+            if (testNameLower.includes("mve") || testNameLower.includes("mmve")) {
+              rightCol.push(
+                new Paragraph({
+                  children: [
+                    new TextRun({
+                      text: "Each Trial represents a position 1 through 5 for the hand grip device",
+                      size: 16,
+                    }),
+                  ],
+                  spacing: { before: 0, after: 50 },
+                }),
+              );
+            }
           }
 
           // ==== CHARTS SECTION (robust, single or dual bar charts) ====

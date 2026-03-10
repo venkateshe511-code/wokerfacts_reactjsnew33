@@ -6337,6 +6337,11 @@ export default function ReviewReport() {
                                             </tr>
                                           </tbody>
                                         </table>
+                                        {(testName.includes("mve") || testName.includes("mmve")) && (
+                                          <p className="text-xs mt-2 mb-4">
+                                            Each Trial represents a position 1 through 5 for the hand grip device
+                                          </p>
+                                        )}
                                       </>
                                     );
                                   })()

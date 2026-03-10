@@ -5275,6 +5275,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                                                     ${rows.join("")}
                                                 </tbody>
                                             </table>
+                                            ${(testName.includes("mve") || testName.includes("mmve")) ? `<p style="font-size: 10px; margin: 4px 0 10px 0;">Each Trial represents a position 1 through 5 for the hand grip device</p>` : ""}
                                         `;
                                           })()
                                         : ""
