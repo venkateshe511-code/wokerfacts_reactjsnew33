@@ -19,7 +19,7 @@ function getStripe() {
 
 // Stripe requires the raw body to verify the signature
 router.post(
-  "/webhook",
+  "/",
   express.raw({ type: "application/json" }),
   async (req, res) => {
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -31,14 +31,20 @@ router.post(
     const sig = req.headers["stripe-signature"];
     let event;
     try {
-      event = getStripe().webhooks.constructEvent(req.body, sig, webhookSecret);
+      // event = getStripe().webhooks.constructEvent(req.body, sig, webhookSecret);
+       event = getStripe().webhooks.constructEvent(
+        req.rawBody,
+        sig,
+        webhookSecret
+      );
     } catch (err) {
       console.error("Webhook signature verification failed", err);
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
 
     try {
-      const obj = event.data && event.data.object ? event.data.object : {};
+      // const obj = event.data && event.data.object ? event.data.object : {};
+      const obj = event?.data?.object || {};
       const type = event.type;
 
       const meta = obj.metadata || {};
