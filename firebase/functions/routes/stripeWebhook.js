@@ -58,6 +58,13 @@ router.post(
           type === "payment_intent.succeeded") &&
         reportId
       ) {
+        // Extract amount and currency from Stripe event
+        let amountInCents = obj.amount_total || obj.amount || null;
+        let currency = obj.currency || null;
+
+        // Convert cents to dollars
+        let amountInDollars = amountInCents ? amountInCents / 100 : null;
+
         await db
           .collection("reports")
           .doc(String(reportId))
@@ -71,12 +78,14 @@ router.post(
               evaluatorId: meta.evaluatorId || meta.evaluator_id || null,
               claimantId: meta.claimantId || meta.claimant_id || null,
               claimantName: meta.claimantName || meta.claimant_name || null,
+              amount: amountInDollars,
+              currency: currency ? currency.toUpperCase() : null,
               updatedAt: admin.firestore.FieldValue.serverTimestamp(),
               source: "stripe-webhook",
             },
             { merge: true },
           );
-        console.log(`Report ${reportId} marked as paid.`);
+        console.log(`Report ${reportId} marked as paid. Amount: ${amountInDollars} ${currency}`);
       }
 
       return res.json({ received: true });

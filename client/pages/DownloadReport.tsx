@@ -131,6 +131,7 @@ interface ReportSummary {
   totalTests: number;
   totalImages: number;
   paymentAmount: number;
+  paymentCurrency: string;
   reportId: string;
 }
 
@@ -470,6 +471,30 @@ export default function DownloadReport() {
           localStorage.getItem("referralQuestionsData") || "{}",
         );
 
+        // Get payment amount and currency from localStorage first, fallback to Firestore
+        let paymentAmount = paymentData.amount || 0;
+        let paymentCurrency = paymentData.currency || "USD";
+
+        // Try to fetch from Firestore if amount is missing
+        if (!paymentAmount) {
+          const reportId = localStorage.getItem("currentReportId");
+          if (reportId) {
+            try {
+              const reportDoc = await getDoc(doc(db, "reports", reportId));
+              if (reportDoc.exists()) {
+                if (reportDoc.data().amount) {
+                  paymentAmount = reportDoc.data().amount;
+                }
+                if (reportDoc.data().currency) {
+                  paymentCurrency = reportDoc.data().currency;
+                }
+              }
+            } catch (error) {
+              console.error("Error fetching payment details from Firestore:", error);
+            }
+          }
+        }
+
         // Handle digital library data loading (IndexedDB or localStorage)
         let digitalLibraryData: any = {};
         if (digitalLibraryRawData) {
@@ -532,7 +557,8 @@ export default function DownloadReport() {
           completedSteps: completedSteps.length,
           totalTests: protocolTestsData.selectedTests?.length || 0,
           totalImages: totalImages,
-          paymentAmount: paymentData.amount || 0,
+          paymentAmount: paymentAmount,
+          paymentCurrency: paymentCurrency,
           reportId: `FCE-${Date.now()}`,
         });
       } catch (error) {
@@ -6843,6 +6869,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
           // Additional data for comprehensive report
           paymentData: {
             amount: reportSummary.paymentAmount || 0,
+            currency: reportSummary.paymentCurrency || "USD",
           },
 
           reportSummary: {
@@ -7286,7 +7313,7 @@ padding-top: 120px; align-items: center; min-height: 0; ">
                 <p className="text-lg">
                   <strong>Total Paid:</strong>{" "}
                   <span className="text-green-600">
-                    ${reportSummary.paymentAmount}
+                    ${Number(reportSummary.paymentAmount).toFixed(2)} {reportSummary.paymentCurrency}
                   </span>
                 </p>
               </div>
