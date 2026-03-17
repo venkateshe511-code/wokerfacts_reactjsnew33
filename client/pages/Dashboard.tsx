@@ -218,8 +218,10 @@ export default function Dashboard() {
     }
 
     // Restore Stripe payment success state
+    // Check both the flag and if step 8 is already completed as a fallback
     const savedStripe = localStorage.getItem("stripePaymentSuccess") === "1";
-    if (savedStripe) setStripePaid(true);
+    const step8Completed = completedStepsArray.includes(8);
+    if (savedStripe || step8Completed) setStripePaid(true);
 
     // If returned from Stripe success, mark payment step as completed and persist flag
     const params = new URLSearchParams(window.location.search);

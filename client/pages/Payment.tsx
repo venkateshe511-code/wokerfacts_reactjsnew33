@@ -158,6 +158,9 @@ export default function Payment() {
       localStorage.setItem("completedSteps", JSON.stringify(completedSteps));
     }
 
+    // Set Stripe payment success flag to persist payment state across page reloads
+    localStorage.setItem("stripePaymentSuccess", "1");
+
     setIsProcessing(false);
     setShowSuccessDialog(true);
   };
