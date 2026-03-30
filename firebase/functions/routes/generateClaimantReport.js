@@ -9732,7 +9732,7 @@ async function addActivityRatingChart(children, body) {
   );
 }
 
-async function addTestDataContent(children, body) {
+async function addTestDataContent(children, body, gender, age) {
   const mtmData = body?.mtmTestData || body?.mtmData || {};
   const mainTestData = body?.testData || {};
   const hasMTM = mtmData && Object.keys(mtmData).length > 0;
@@ -9869,8 +9869,8 @@ async function addTestDataContent(children, body) {
           normLeft = test.valueToBeTestedNumberLeft ? parseFloat(test.valueToBeTestedNumberLeft) : null;
           normRight = test.valueToBeTestedNumberRight ? parseFloat(test.valueToBeTestedNumberRight) : null;
         } else {
-          // Use standardized norms
-          const norms = inferNormsForTest(`${test.testId || ""} ${safeName}`);
+          // Use standardized norms with gender and age for accurate lookup
+          const norms = inferNormsForTest(`${test.testId || ""} ${safeName}`, gender, age);
           normLeft = norms.left;
           normRight = norms.right;
         }
@@ -11248,12 +11248,28 @@ router.post("/", async (req, res) => {
     const contentsChildren = [];
     await addContentsOfReport(contentsChildren);
     await addClientInformation(restChildren, body);
+    // Extract gender and age for norm calculations
+    const cd = body?.claimantData || {};
+    const dob = cd.dateOfBirth || "";
+    const age = dob
+      ? (() => {
+        try {
+          const d = new Date(dob);
+          const diff = Date.now() - d.getTime();
+          return Math.max(0, Math.floor(diff / (365.25 * 24 * 3600 * 1000)));
+        } catch {
+          return undefined;
+        }
+      })()
+      : undefined;
+    const gender = cd.gender || undefined;
+
     await addReturnToWorkStatusContent(restChildren, body);
     await addReferralQuestionsContent(restChildren, body);
     await addConclusionContent(restChildren, body);
     await addFunctionalAbilitiesDeterminationContent(restChildren, body);
     await addActivityRatingChart(restChildren, body);
-    await addTestDataContent(restChildren, body);
+    await addTestDataContent(restChildren, body, gender, age);
     await addReferenceChartsContent(restChildren, body);
     await addBlankenshipFCEContent(restChildren, body);
     await addDigitalLibraryContent(restChildren, body);
