@@ -66,56 +66,160 @@ const handStrengthStandardNorms: AgeGenderNorm[] = [
   { test: "Hand Strength Standard", gender: "Female", age_range: "75+", side: "Left", mean: 37.6 },
 ];
 
-// Pinch Strength norms (applies to Key, Tip, and Palmar pinch tests)
-const pinchStrengthNorms: AgeGenderNorm[] = [
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "20-24", side: "Right", mean: 18.0 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "20-24", side: "Left", mean: 17.0 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "25-29", side: "Right", mean: 18.3 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "25-29", side: "Left", mean: 17.5 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "30-34", side: "Right", mean: 17.6 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "30-34", side: "Left", mean: 17.6 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "35-39", side: "Right", mean: 18.0 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "35-39", side: "Left", mean: 17.7 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "40-44", side: "Right", mean: 17.8 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "40-44", side: "Left", mean: 17.7 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "45-49", side: "Right", mean: 18.7 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "45-49", side: "Left", mean: 17.6 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "50-54", side: "Right", mean: 18.3 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "50-54", side: "Left", mean: 17.8 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "55-59", side: "Right", mean: 16.6 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "55-59", side: "Left", mean: 15.0 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "60-64", side: "Right", mean: 15.8 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "60-64", side: "Left", mean: 15.3 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "65-69", side: "Right", mean: 17.0 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "65-69", side: "Left", mean: 15.4 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "70-74", side: "Right", mean: 13.8 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "70-74", side: "Left", mean: 13.3 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "75+", side: "Right", mean: 14.0 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Male", age_range: "75+", side: "Left", mean: 13.9 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "20-24", side: "Right", mean: 11.1 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "20-24", side: "Left", mean: 10.5 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "25-29", side: "Right", mean: 11.9 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "25-29", side: "Left", mean: 10.5 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "30-34", side: "Right", mean: 12.6 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "30-34", side: "Left", mean: 11.7 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "35-39", side: "Right", mean: 11.9 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "35-39", side: "Left", mean: 11.2 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "40-44", side: "Right", mean: 11.5 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "40-44", side: "Left", mean: 11.1 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "45-49", side: "Right", mean: 13.2 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "45-49", side: "Left", mean: 12.1 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "50-54", side: "Right", mean: 12.5 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "50-54", side: "Left", mean: 11.4 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "55-59", side: "Right", mean: 11.7 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "55-59", side: "Left", mean: 10.4 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "60-64", side: "Right", mean: 10.1 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "60-64", side: "Left", mean: 9.9 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "65-69", side: "Right", mean: 10.6 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "65-69", side: "Left", mean: 10.5 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "70-74", side: "Right", mean: 10.1 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "70-74", side: "Left", mean: 9.8 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "75+", side: "Right", mean: 9.6 },
-  { test: "Pinch Strength (Tip/Palmar/Key)", gender: "Female", age_range: "75+", side: "Left", mean: 9.3 },
+// Pinch Strength (Tip) norms
+const pinchStrengthTipNorms: AgeGenderNorm[] = [
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "20-24", side: "Right", mean: 18.0 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "20-24", side: "Left", mean: 17.0 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "25-29", side: "Right", mean: 18.3 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "25-29", side: "Left", mean: 17.5 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "30-34", side: "Right", mean: 17.6 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "30-34", side: "Left", mean: 17.6 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "35-39", side: "Right", mean: 18.0 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "35-39", side: "Left", mean: 17.7 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "40-44", side: "Right", mean: 17.8 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "40-44", side: "Left", mean: 17.7 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "45-49", side: "Right", mean: 18.7 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "45-49", side: "Left", mean: 17.6 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "50-54", side: "Right", mean: 18.3 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "50-54", side: "Left", mean: 17.8 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "55-59", side: "Right", mean: 16.6 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "55-59", side: "Left", mean: 15.0 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "60-64", side: "Right", mean: 15.8 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "60-64", side: "Left", mean: 15.3 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "65-69", side: "Right", mean: 17.0 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "65-69", side: "Left", mean: 15.4 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "70-74", side: "Right", mean: 13.8 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "70-74", side: "Left", mean: 13.3 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "75+", side: "Right", mean: 14.0 },
+  { test: "Pinch Strength (Tip)", gender: "Male", age_range: "75+", side: "Left", mean: 13.9 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "20-24", side: "Right", mean: 11.1 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "20-24", side: "Left", mean: 10.5 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "25-29", side: "Right", mean: 11.9 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "25-29", side: "Left", mean: 11.3 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "30-34", side: "Right", mean: 12.6 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "30-34", side: "Left", mean: 11.7 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "35-39", side: "Right", mean: 11.6 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "35-39", side: "Left", mean: 11.9 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "40-44", side: "Right", mean: 11.5 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "40-44", side: "Left", mean: 11.1 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "45-49", side: "Right", mean: 13.2 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "45-49", side: "Left", mean: 12.1 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "50-54", side: "Right", mean: 12.5 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "50-54", side: "Left", mean: 11.4 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "55-59", side: "Right", mean: 11.7 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "55-59", side: "Left", mean: 10.4 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "60-64", side: "Right", mean: 10.1 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "60-64", side: "Left", mean: 9.9 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "65-69", side: "Right", mean: 10.6 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "65-69", side: "Left", mean: 10.5 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "70-74", side: "Right", mean: 10.1 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "70-74", side: "Left", mean: 9.8 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "75+", side: "Right", mean: 9.6 },
+  { test: "Pinch Strength (Tip)", gender: "Female", age_range: "75+", side: "Left", mean: 9.3 },
+];
+
+// Pinch Strength (Key) norms
+const pinchStrengthKeyNorms: AgeGenderNorm[] = [
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "20-24", side: "Right", mean: 26.0 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "20-24", side: "Left", mean: 24.8 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "25-29", side: "Right", mean: 26.7 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "25-29", side: "Left", mean: 25.0 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "30-34", side: "Right", mean: 26.4 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "30-34", side: "Left", mean: 26.2 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "35-39", side: "Right", mean: 26.1 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "35-39", side: "Left", mean: 25.6 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "40-44", side: "Right", mean: 25.6 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "40-44", side: "Left", mean: 25.1 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "45-49", side: "Right", mean: 25.8 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "45-49", side: "Left", mean: 24.8 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "50-54", side: "Right", mean: 26.7 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "50-54", side: "Left", mean: 26.1 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "55-59", side: "Right", mean: 24.2 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "55-59", side: "Left", mean: 23.0 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "60-64", side: "Right", mean: 23.2 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "60-64", side: "Left", mean: 22.2 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "65-69", side: "Right", mean: 23.4 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "65-69", side: "Left", mean: 22.0 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "70-74", side: "Right", mean: 19.3 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "70-74", side: "Left", mean: 19.2 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "75+", side: "Right", mean: 20.5 },
+  { test: "Pinch Strength (Key)", gender: "Male", age_range: "75+", side: "Left", mean: 19.1 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "20-24", side: "Right", mean: 17.6 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "20-24", side: "Left", mean: 16.2 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "25-29", side: "Right", mean: 17.7 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "25-29", side: "Left", mean: 16.6 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "30-34", side: "Right", mean: 18.7 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "30-34", side: "Left", mean: 17.8 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "35-39", side: "Right", mean: 16.6 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "35-39", side: "Left", mean: 16.0 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "40-44", side: "Right", mean: 16.7 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "40-44", side: "Left", mean: 15.8 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "45-49", side: "Right", mean: 17.6 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "45-49", side: "Left", mean: 16.6 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "50-54", side: "Right", mean: 16.7 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "50-54", side: "Left", mean: 16.1 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "55-59", side: "Right", mean: 15.7 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "55-59", side: "Left", mean: 14.7 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "60-64", side: "Right", mean: 15.5 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "60-64", side: "Left", mean: 14.1 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "65-69", side: "Right", mean: 15.0 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "65-69", side: "Left", mean: 14.3 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "70-74", side: "Right", mean: 14.5 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "70-74", side: "Left", mean: 13.8 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "75+", side: "Right", mean: 12.6 },
+  { test: "Pinch Strength (Key)", gender: "Female", age_range: "75+", side: "Left", mean: 11.4 },
+];
+
+// Pinch Strength (Palmar) norms
+const pinchStrengthPalmarNorms: AgeGenderNorm[] = [
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "20-24", side: "Right", mean: 26.6 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "20-24", side: "Left", mean: 25.7 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "25-29", side: "Right", mean: 26.0 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "25-29", side: "Left", mean: 25.1 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "30-34", side: "Right", mean: 24.7 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "30-34", side: "Left", mean: 25.4 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "35-39", side: "Right", mean: 26.2 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "35-39", side: "Left", mean: 25.9 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "40-44", side: "Right", mean: 24.5 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "40-44", side: "Left", mean: 24.8 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "45-49", side: "Right", mean: 24.0 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "45-49", side: "Left", mean: 23.7 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "50-54", side: "Right", mean: 23.8 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "50-54", side: "Left", mean: 24.0 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "55-59", side: "Right", mean: 23.7 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "55-59", side: "Left", mean: 21.3 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "60-64", side: "Right", mean: 21.8 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "60-64", side: "Left", mean: 21.2 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "65-69", side: "Right", mean: 21.4 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "65-69", side: "Left", mean: 21.2 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "70-74", side: "Right", mean: 18.1 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "70-74", side: "Left", mean: 18.8 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "75+", side: "Right", mean: 18.7 },
+  { test: "Pinch Strength (Palmar)", gender: "Male", age_range: "75+", side: "Left", mean: 18.3 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "20-24", side: "Right", mean: 17.2 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "20-24", side: "Left", mean: 16.3 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "25-29", side: "Right", mean: 17.7 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "25-29", side: "Left", mean: 17.0 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "30-34", side: "Right", mean: 19.3 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "30-34", side: "Left", mean: 18.1 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "35-39", side: "Right", mean: 17.5 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "35-39", side: "Left", mean: 17.1 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "40-44", side: "Right", mean: 17.0 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "40-44", side: "Left", mean: 16.6 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "45-49", side: "Right", mean: 17.9 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "45-49", side: "Left", mean: 17.5 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "50-54", side: "Right", mean: 17.3 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "50-54", side: "Left", mean: 16.4 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "55-59", side: "Right", mean: 16.0 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "55-59", side: "Left", mean: 15.4 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "60-64", side: "Right", mean: 14.8 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "60-64", side: "Left", mean: 14.3 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "65-69", side: "Right", mean: 14.2 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "65-69", side: "Left", mean: 13.7 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "70-74", side: "Right", mean: 14.4 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "70-74", side: "Left", mean: 14.0 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "75+", side: "Right", mean: 12.0 },
+  { test: "Pinch Strength (Palmar)", gender: "Female", age_range: "75+", side: "Left", mean: 11.5 },
 ];
 
 // Get age range from numeric age
@@ -144,14 +248,19 @@ function normalizeTestName(testName: string): string {
     return "Hand Strength Standard";
   }
 
-  // All three pinch strength types (Key, Tip, Palmar) use the same norms
+  // Pinch strength types - distinguish between Key, Tip, and Palmar
   if (n.includes("pinch")) {
-    // Match any pinch strength test: key, tip, or palmar
-    if (n.includes("key") || n.includes("tip") || n.includes("palmar")) {
-      return "Pinch Strength (Tip/Palmar/Key)";
+    if (n.includes("key")) {
+      return "Pinch Strength (Key)";
     }
-    // Generic pinch match
-    return "Pinch Strength (Tip/Palmar/Key)";
+    if (n.includes("tip")) {
+      return "Pinch Strength (Tip)";
+    }
+    if (n.includes("palmar")) {
+      return "Pinch Strength (Palmar)";
+    }
+    // Default to Tip if no specific type specified
+    return "Pinch Strength (Tip)";
   }
 
   return "";
@@ -174,7 +283,7 @@ export function lookupAgeGenderNorm(
   const normalizedSide = side.charAt(0).toUpperCase() + side.slice(1).toLowerCase();
 
   // Combine all norms for searching
-  const allNorms = [...handStrengthStandardNorms, ...pinchStrengthNorms];
+  const allNorms = [...handStrengthStandardNorms, ...pinchStrengthTipNorms, ...pinchStrengthKeyNorms, ...pinchStrengthPalmarNorms];
 
   const matching = allNorms.find(
     (norm) =>
