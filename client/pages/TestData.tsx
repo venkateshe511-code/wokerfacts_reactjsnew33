@@ -2310,19 +2310,42 @@ export default function TestData() {
                               <label className="text-xs font-semibold text-gray-600 mb-1 text-center">
                                 Trial {trialNum}
                               </label>
-                              {/* <Input
-                                type="number"
-                                value={val || ""}
-                                onChange={(e) =>
-                                  updateMeasurement(
-                                    "left",
-                                    key,
-                                    parseFloat(e.target.value) || 0,
-                                  )
-                                }
-                                className={`text-center border-2 ${val > 250 ? "border-red-600" : "border-blue-300"} focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
-                              /> */}
                               <Input
+                                type="number"
+                                min={0}
+                                max={250}
+                                value={val ?? ""}
+                                onChange={(e) => {
+                                  const raw = e.target.value;
+
+                                  // Allow empty input
+                                  if (raw === "") {
+                                    updateMeasurement("left", key, "");
+                                    return;
+                                  }
+
+                                  const value = parseFloat(raw);
+
+                                  // ❌ Block if invalid
+                                  if (isNaN(value) || value < 0 || value > 250) {
+                                    return; // do nothing
+                                  }
+
+                                  // ✅ Only valid values update
+                                  updateMeasurement("left", key, value);
+                                }}
+                                onKeyDown={(e) => {
+                                  // Prevent invalid characters like e, +, -
+                                  if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                  }
+                                }}
+                                className={`text-center border-2 ${val > 250 || val < 0
+                                  ? "border-red-600"
+                                  : "border-blue-300"
+                                  } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
+                              />
+                              {/* <Input
                                 type="number"
                                 min={0}
                                 value={val ?? ""}
@@ -2344,7 +2367,7 @@ export default function TestData() {
                                 }}
                                 className={`text-center border-2 ${val > 250 ? "border-red-600" : "border-blue-300"
                                   } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
-                              />
+                              /> */}
                               {val > 250 && (
                                 <div className="text-red-700 text-xs mt-1">
                                   Value exceeds maximum of 250
@@ -2377,19 +2400,41 @@ export default function TestData() {
                               <label className="text-xs font-semibold text-gray-600 mb-1 text-center">
                                 Trial {trialNum}
                               </label>
-                              {/* <Input
-                                type="number"
-                                value={leftVal || ""}
-                                onChange={(e) =>
-                                  updateMeasurement(
-                                    "left",
-                                    key,
-                                    parseFloat(e.target.value) || 0,
-                                  )
-                                }
-                                className={`text-center border-2 ${leftVal > 250 ? "border-red-600" : "border-blue-300"} focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
-                              /> */}
                               <Input
+                                type="number"
+                                min={0}
+                                max={250}
+                                value={leftVal ?? ""} onChange={(e) => {
+                                  const raw = e.target.value;
+
+                                  // Allow empty input
+                                  if (raw === "") {
+                                    updateMeasurement("left", key, "");
+                                    return;
+                                  }
+
+                                  const value = parseFloat(raw);
+
+                                  // ❌ Block if invalid
+                                  if (isNaN(value) || value < 0 || value > 250) {
+                                    return; // do nothing
+                                  }
+
+                                  // ✅ Only valid values update
+                                  updateMeasurement("left", key, value);
+                                }}
+                                onKeyDown={(e) => {
+                                  // Prevent invalid characters like e, +, -
+                                  if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                  }
+                                }}
+                                className={`text-center border-2 ${leftVal > 250 || leftVal < 0
+                                  ? "border-red-600"
+                                  : "border-blue-300"
+                                  } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
+                              />
+                              {/* <Input
                                 type="number"
                                 min={0}
                                 value={leftVal ?? ""}
@@ -2411,7 +2456,7 @@ export default function TestData() {
                                 }}
                                 className={`text-center border-2 ${leftVal > 250 ? "border-red-600" : "border-blue-300"
                                   } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
-                              />
+                              /> */}
                               {leftVal > 250 && (
                                 <div className="text-red-700 text-xs mt-1">
                                   Value exceeds maximum of 250
@@ -2442,19 +2487,42 @@ export default function TestData() {
                               <label className="text-xs font-semibold text-gray-600 mb-1 text-center">
                                 Trial {trialNum}
                               </label>
-                              {/* <Input
-                                type="number"
-                                value={rightVal || ""}
-                                onChange={(e) =>
-                                  updateMeasurement(
-                                    "right",
-                                    key,
-                                    parseFloat(e.target.value) || 0,
-                                  )
-                                }
-                                className={`text-center border-2 ${rightVal > 250 ? "border-red-600" : "border-green-300"} focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-green-50 font-medium`}
-                              /> */}
+
                               <Input
+                                type="number"
+                                min={0}
+                                max={250}
+                                value={rightVal ?? ""} onChange={(e) => {
+                                  const raw = e.target.value;
+
+                                  // Allow empty input
+                                  if (raw === "") {
+                                    updateMeasurement("right", key, "");
+                                    return;
+                                  }
+
+                                  const value = parseFloat(raw);
+
+                                  // ❌ Block if invalid
+                                  if (isNaN(value) || value < 0 || value > 250) {
+                                    return; // do nothing
+                                  }
+
+                                  // ✅ Only valid values update
+                                  updateMeasurement("right", key, value);
+                                }}
+                                onKeyDown={(e) => {
+                                  // Prevent invalid characters like e, +, -
+                                  if (["e", "E", "+", "-"].includes(e.key)) {
+                                    e.preventDefault();
+                                  }
+                                }}
+                                className={`text-center border-2 ${rightVal > 250 || rightVal < 0
+                                  ? "border-red-600"
+                                  : "border-blue-300"
+                                  } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
+                              />
+                              {/* <Input
                                 type="number"
                                 min={0}
                                 value={rightVal ?? ""}
@@ -2476,7 +2544,7 @@ export default function TestData() {
                                 }}
                                 className={`text-center border-2 ${rightVal > 250 ? "border-red-600" : "border-green-300"
                                   } focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-green-50 font-medium`}
-                              />
+                              /> */}
                               {rightVal > 250 && (
                                 <div className="text-red-700 text-xs mt-1">
                                   Value exceeds maximum of 250
