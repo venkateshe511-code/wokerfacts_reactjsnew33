@@ -1583,24 +1583,11 @@ export default function TestData() {
   const getNormForSide = (side: "left" | "right"): number => {
     // Prefer standardized norms used by Review/Download reports
     const age = claimantData?.dateOfBirth ? calculateAge(claimantData.dateOfBirth) : undefined;
-    const testNameStr = `${currentTest?.testId || ""} ${currentTest?.testName || ""}`;
     const norm = inferNormsForTest(
-      testNameStr,
+      `${currentTest?.testId || ""} ${currentTest?.testName || ""}`,
       claimantData?.gender,
       age,
     );
-
-    // Debug logging
-    console.log("getNormForSide Debug:", {
-      testId: currentTest?.testId,
-      testName: currentTest?.testName,
-      testNameStr,
-      gender: claimantData?.gender,
-      age,
-      norm,
-      side,
-    });
-
     const v = side === "left" ? norm.left : norm.right;
     if (typeof v === "number" && v > 0) return v;
     // Fallback to user-entered target if no standardized norm exists
