@@ -192,6 +192,11 @@ function isGrip(name: string) {
   return n.includes("grip");
 }
 
+function isHandStrength(name: string) {
+  const n = name.toLowerCase();
+  return n.includes("hand-strength") || (n.includes("hand") && n.includes("strength"));
+}
+
 function isPinch(name: string) {
   const n = name.toLowerCase();
   return n.includes("pinch");
@@ -328,6 +333,20 @@ export function inferNormsForTest(
       }
     }
     // Fallback to generic grip norms
+    return { unit: "lb", left: 110.5, right: 120.8, category: "strength" };
+  }
+
+  // Hand Strength - Try age/gender specific norms first
+  if (isHandStrength(name)) {
+    if (gender && age !== undefined) {
+      const leftNorm = lookupAgeGenderNorm(testName, gender, age, "left");
+      const rightNorm = lookupAgeGenderNorm(testName, gender, age, "right");
+
+      if (leftNorm !== null && rightNorm !== null) {
+        return { unit: "lb", left: leftNorm, right: rightNorm, category: "strength" };
+      }
+    }
+    // Fallback to generic hand strength norms
     return { unit: "lb", left: 110.5, right: 120.8, category: "strength" };
   }
 
