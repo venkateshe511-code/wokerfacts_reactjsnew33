@@ -4236,8 +4236,11 @@ export default function ReviewReport() {
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {(() => {
+                                                  const age = calculateAge(reportData.claimantData?.dateOfBirth || "");
                                                   const norms = inferNormsForTest(
-                                                    `${test.testId || ""} ${test.testName || ""}`
+                                                    `${test.testId || ""} ${test.testName || ""}`,
+                                                    reportData.claimantData?.gender,
+                                                    age
                                                   );
                                                   const leftNorm = norms.left ?? 45;
                                                   return `${leftNorm} °`;
@@ -4245,8 +4248,11 @@ export default function ReviewReport() {
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {(() => {
+                                                  const age = calculateAge(reportData.claimantData?.dateOfBirth || "");
                                                   const norms = inferNormsForTest(
-                                                    `${test.testId || ""} ${test.testName || ""}`
+                                                    `${test.testId || ""} ${test.testName || ""}`,
+                                                    reportData.claimantData?.gender,
+                                                    age
                                                   );
                                                   const leftNorm = norms.left ?? 45;
                                                   return Math.round((leftAvg / leftNorm) * 100);
@@ -4276,8 +4282,11 @@ export default function ReviewReport() {
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {(() => {
+                                                  const age = calculateAge(reportData.claimantData?.dateOfBirth || "");
                                                   const norms = inferNormsForTest(
-                                                    `${test.testId || ""} ${test.testName || ""}`
+                                                    `${test.testId || ""} ${test.testName || ""}`,
+                                                    reportData.claimantData?.gender,
+                                                    age
                                                   );
                                                   const rightNorm = norms.right ?? 25;
                                                   return `${rightNorm} °`;
@@ -4285,8 +4294,11 @@ export default function ReviewReport() {
                                               </td>
                                               <td className="border border-gray-400 border-r-gray-400 p-2">
                                                 {(() => {
+                                                  const age = calculateAge(reportData.claimantData?.dateOfBirth || "");
                                                   const norms = inferNormsForTest(
-                                                    `${test.testId || ""} ${test.testName || ""}`
+                                                    `${test.testId || ""} ${test.testName || ""}`,
+                                                    reportData.claimantData?.gender,
+                                                    age
                                                   );
                                                   const rightNorm = norms.right ?? 25;
                                                   return Math.round((rightAvg / rightNorm) * 100);
@@ -6215,8 +6227,11 @@ export default function ReviewReport() {
                                                     <>
                                                       <td className="border border-gray-400 border-r-gray-400 p-2">
                                                         {(() => {
+                                                          const age = calculateAge(reportData.claimantData?.dateOfBirth || "");
                                                           const norms = inferNormsForTest(
-                                                            `${test.testId || ""} ${test.testName || ""}`
+                                                            `${test.testId || ""} ${test.testName || ""}`,
+                                                            reportData.claimantData?.gender,
+                                                            age
                                                           );
                                                           const leftNorm = norms.left ?? (isGripTest ? 110.5 : 85.0);
                                                           const rightNorm = norms.right ?? (isGripTest ? 120.8 : 90.0);
@@ -6225,8 +6240,11 @@ export default function ReviewReport() {
                                                       </td>
                                                       <td className="border border-gray-400 border-r-gray-400 p-2">
                                                         {(() => {
+                                                          const age = calculateAge(reportData.claimantData?.dateOfBirth || "");
                                                           const norms = inferNormsForTest(
-                                                            `${test.testId || ""} ${test.testName || ""}`
+                                                            `${test.testId || ""} ${test.testName || ""}`,
+                                                            reportData.claimantData?.gender,
+                                                            age
                                                           );
                                                           const leftNorm = norms.left ?? (isGripTest ? 110.5 : 85.0);
                                                           const rightNorm = norms.right ?? (isGripTest ? 120.8 : 90.0);

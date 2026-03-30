@@ -306,8 +306,32 @@ export default function TestData() {
     Record<string, CardioTestData>
   >({});
 
+  // Claimant data state
+  const [claimantData, setClaimantData] = useState<{
+    firstName?: string;
+    lastName?: string;
+    dateOfBirth?: string;
+    gender?: string;
+  } | null>(null);
+
   // Alert state for threshold violations
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
+
+  // Function to calculate age from date of birth
+  const calculateAge = (birthDate: string): number => {
+    if (!birthDate) return 0;
+    const today = new Date();
+    const birth = new Date(birthDate);
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    if (
+      monthDiff < 0 ||
+      (monthDiff === 0 && today.getDate() < birth.getDate())
+    ) {
+      age--;
+    }
+    return age;
+  };
 
   // Disable scroll-based input value changes for number inputs
   React.useEffect(() => {
@@ -992,6 +1016,12 @@ export default function TestData() {
   };
 
   useEffect(() => {
+    // Load claimant data from localStorage
+    const savedClaimantData = localStorage.getItem("claimantData");
+    if (savedClaimantData) {
+      setClaimantData(JSON.parse(savedClaimantData));
+    }
+
     // Load MTM test data from localStorage
     const savedMtmData = localStorage.getItem("mtmTestData");
     if (savedMtmData) {
@@ -1552,8 +1582,11 @@ export default function TestData() {
 
   const getNormForSide = (side: "left" | "right"): number => {
     // Prefer standardized norms used by Review/Download reports
+    const age = claimantData?.dateOfBirth ? calculateAge(claimantData.dateOfBirth) : undefined;
     const norm = inferNormsForTest(
       `${currentTest?.testId || ""} ${currentTest?.testName || ""}`,
+      claimantData?.gender,
+      age,
     );
     const v = side === "left" ? norm.left : norm.right;
     if (typeof v === "number" && v > 0) return v;
@@ -1567,8 +1600,11 @@ export default function TestData() {
   };
 
   const getUnitSuffix = (): string => {
+    const age = claimantData?.dateOfBirth ? calculateAge(claimantData.dateOfBirth) : undefined;
     const norm = inferNormsForTest(
       `${currentTest?.testId || ""} ${currentTest?.testName || ""}`,
+      claimantData?.gender,
+      age,
     );
     if (norm.unit) return norm.unit;
     // Prefer the specific unitMeasure when available (e.g., lbs, kg, deg, sec)
@@ -1920,6 +1956,26 @@ export default function TestData() {
                   Test {testDataState.currentTestIndex + 1} of{" "}
                   {testDataState.tests.length}
                 </div>
+
+                {/* Claimant Info */}
+                {claimantData && (
+                  <div className="text-xs opacity-90 mt-2">
+                    <div className="font-semibold">
+                      {claimantData.firstName} {claimantData.lastName}
+                    </div>
+                    <div>
+                      {claimantData.gender && (
+                        <span>Gender: {claimantData.gender}</span>
+                      )}
+                      {claimantData.dateOfBirth && (
+                        <span>
+                          {claimantData.gender ? " | " : ""}Age:{" "}
+                          {calculateAge(claimantData.dateOfBirth)}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                )}
 
                 {/* Sample Test Data Button - Only show in demo mode */}
                 {isDemoMode && (
