@@ -136,14 +136,35 @@ export function lookupAgeGenderNorm(
   age: number | undefined,
   side: "left" | "right"
 ): number | null {
-  if (!testName || !gender || age === undefined) return null;
+  if (!testName || !gender || age === undefined) {
+    console.log("lookupAgeGenderNorm early return:", { testName, gender, age });
+    return null;
+  }
 
   const normalizedTest = normalizeTestName(testName);
-  if (!normalizedTest) return null;
+  console.log("lookupAgeGenderNorm:", {
+    testName,
+    normalizedTest,
+    gender,
+    age,
+    side,
+  });
+
+  if (!normalizedTest) {
+    console.log("No normalized test found");
+    return null;
+  }
 
   const ageRange = getAgeRange(age);
   const normalizedGender = gender.charAt(0).toUpperCase() + gender.slice(1).toLowerCase();
   const normalizedSide = side.charAt(0).toUpperCase() + side.slice(1).toLowerCase();
+
+  console.log("Lookup criteria:", {
+    normalizedTest,
+    normalizedGender,
+    ageRange,
+    normalizedSide,
+  });
 
   // Combine all norms for searching
   const allNorms = [...handStrengthStandardNorms, ...pinchStrengthNorms];
@@ -155,6 +176,8 @@ export function lookupAgeGenderNorm(
       norm.age_range === ageRange &&
       norm.side === normalizedSide
   );
+
+  console.log("Matching norm result:", matching);
 
   return matching ? matching.mean : null;
 }
