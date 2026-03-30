@@ -1582,8 +1582,11 @@ export default function TestData() {
 
   const getNormForSide = (side: "left" | "right"): number => {
     // Prefer standardized norms used by Review/Download reports
+    const age = claimantData?.dateOfBirth ? calculateAge(claimantData.dateOfBirth) : undefined;
     const norm = inferNormsForTest(
       `${currentTest?.testId || ""} ${currentTest?.testName || ""}`,
+      claimantData?.gender,
+      age,
     );
     const v = side === "left" ? norm.left : norm.right;
     if (typeof v === "number" && v > 0) return v;
@@ -1597,8 +1600,11 @@ export default function TestData() {
   };
 
   const getUnitSuffix = (): string => {
+    const age = claimantData?.dateOfBirth ? calculateAge(claimantData.dateOfBirth) : undefined;
     const norm = inferNormsForTest(
       `${currentTest?.testId || ""} ${currentTest?.testName || ""}`,
+      claimantData?.gender,
+      age,
     );
     if (norm.unit) return norm.unit;
     // Prefer the specific unitMeasure when available (e.g., lbs, kg, deg, sec)
