@@ -1619,8 +1619,8 @@ export default function TestData() {
       measurements.trial4,
       measurements.trial5,
       measurements.trial6,
-    ];
-    return Math.max(...values);
+    ].filter((v) => v !== undefined && v !== null);
+    return values.length > 0 ? Math.max(...values) : 0;
   };
 
   const BarChart = ({

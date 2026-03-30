@@ -8009,7 +8009,7 @@ async function addActivityRatingChart(children, body) {
   );
 }
 
-async function addTestDataContent(children, body) {
+async function addTestDataContent(children, body, gender, age) {
   const mtmData = body?.mtmTestData || body?.mtmData || {};
   const mainTestData = body?.testData || {};
   const hasMTM = mtmData && Object.keys(mtmData).length > 0;
@@ -8143,8 +8143,8 @@ async function addTestDataContent(children, body) {
           normLeft = test.valueToBeTestedNumberLeft ? parseFloat(test.valueToBeTestedNumberLeft) : null;
           normRight = test.valueToBeTestedNumberRight ? parseFloat(test.valueToBeTestedNumberRight) : null;
         } else {
-          // Use standardized norms
-          const norms = inferNormsForTest(`${test.testId || ""} ${safeName}`);
+          // Use standardized norms with gender and age for accurate lookup
+          const norms = inferNormsForTest(`${test.testId || ""} ${safeName}`, gender, age);
           normLeft = norms.left;
           normRight = norms.right;
         }
