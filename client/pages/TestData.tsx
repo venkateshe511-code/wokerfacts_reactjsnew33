@@ -1958,7 +1958,7 @@ export default function TestData() {
                 </div>
 
                 {/* Claimant Info */}
-                {claimantData && (
+                {/* {claimantData && (
                   <div className="text-xs opacity-90 mt-2">
                     <div className="font-semibold">
                       {claimantData.firstName} {claimantData.lastName}
@@ -1975,7 +1975,7 @@ export default function TestData() {
                       )}
                     </div>
                   </div>
-                )}
+                )} */}
 
                 {/* Sample Test Data Button - Only show in demo mode */}
                 {isDemoMode && (
