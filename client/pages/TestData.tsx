@@ -692,10 +692,10 @@ export default function TestData() {
       generateSampleTestData(
         testId,
         cardioTestNames[testId] ||
-          testNames[testId] ||
-          testId
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, (l: string) => l.toUpperCase()),
+        testNames[testId] ||
+        testId
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (l: string) => l.toUpperCase()),
       ),
     );
 
@@ -1092,7 +1092,7 @@ export default function TestData() {
 
         // ROM - Hand/Foot (Non-Side-Specific)
         "thumb-ip-flexion": "Thumb IP Flexion (ROM)",
-      "great-toe-ip-flexion": "Extremity Great Toe IP Flexion (ROM)",
+        "great-toe-ip-flexion": "Extremity Great Toe IP Flexion (ROM)",
 
         // ROM - Hand/Foot (Left Side)
         "thumb-ip-flexion-extension-left":
@@ -1227,24 +1227,24 @@ export default function TestData() {
             .replace(/-/g, " ")
             .replace(/\b\w/g, (l: string) => l.toUpperCase()),
         leftMeasurements: {
-          trial1: 0,
-          trial2: 0,
-          trial3: 0,
-          trial4: 0,
-          trial5: 0,
-          trial6: 0,
-          preHeartRate: 0,
-          postHeartRate: 0,
+          trial1: undefined,
+          trial2: undefined,
+          trial3: undefined,
+          trial4: undefined,
+          trial5: undefined,
+          trial6: undefined,
+          preHeartRate: undefined,
+          postHeartRate: undefined,
         },
         rightMeasurements: {
-          trial1: 0,
-          trial2: 0,
-          trial3: 0,
-          trial4: 0,
-          trial5: 0,
-          trial6: 0,
-          preHeartRate: 0,
-          postHeartRate: 0,
+          trial1: undefined,
+          trial2: undefined,
+          trial3: undefined,
+          trial4: undefined,
+          trial5: undefined,
+          trial6: undefined,
+          preHeartRate: undefined,
+          postHeartRate: undefined,
         },
         comments: "",
         demonstrated: false,
@@ -1332,8 +1332,8 @@ export default function TestData() {
   const isMuscleTest =
     testId.includes("muscle-") ||
     (testId.startsWith("cervical-") &&
-     !testId.includes("spine-") &&
-     (testId.includes("flexion") || testId.includes("rotation") || testId.includes("lateral")));
+      !testId.includes("spine-") &&
+      (testId.includes("flexion") || testId.includes("rotation") || testId.includes("lateral")));
 
   const isTotalSpineRomTest =
     !isMuscleTest &&
@@ -1344,18 +1344,18 @@ export default function TestData() {
     !isMuscleTest &&
     !isTotalSpineRomTest &&
     (testName.includes("flexion") ||
-    testName.includes("extension") ||
-    testName.includes("rotation") ||
-    testName.includes("abduction") ||
-    testName.includes("adduction") ||
-    testName.includes("supination") ||
-    testName.includes("pronation") ||
-    testName.includes("inversion") ||
-    testName.includes("eversion") ||
-    testName.includes("radial") ||
-    testName.includes("ulnar") ||
-    testName.includes("range") ||
-    testName.includes("motion"));
+      testName.includes("extension") ||
+      testName.includes("rotation") ||
+      testName.includes("abduction") ||
+      testName.includes("adduction") ||
+      testName.includes("supination") ||
+      testName.includes("pronation") ||
+      testName.includes("inversion") ||
+      testName.includes("eversion") ||
+      testName.includes("radial") ||
+      testName.includes("ulnar") ||
+      testName.includes("range") ||
+      testName.includes("motion"));
   const isGripTest = testName.includes("grip") || testName.includes("pinch");
   const isForceTest =
     testName.includes("force") || testName.includes("strength") || isGripTest;
@@ -1953,7 +1953,7 @@ export default function TestData() {
               key={`mtm-${currentTest.testId}-${mtmTestData[currentTest.testId]?.trials?.length || 0}`}
               testType={currentTest.testId}
               onSave={(data) => handleMTMTestSave(currentTest.testId, data)}
-              onBack={() => {}}
+              onBack={() => { }}
               embeddedMode
             />
           </div>
@@ -2006,12 +2006,12 @@ export default function TestData() {
                           {isMuscleTest
                             ? "Force/Level"
                             : isAnyRomTest
-                            ? "Average Degrees"
-                            : isCardioTest
-                              ? "Average Heart Rate"
-                              : isBalanceTest
-                                ? "Average Time"
-                                : "Average Peak Force"}
+                              ? "Average Degrees"
+                              : isCardioTest
+                                ? "Average Heart Rate"
+                                : isBalanceTest
+                                  ? "Average Time"
+                                  : "Average Peak Force"}
                         </div>
                         <div className="text-xl font-bold">
                           {calculateAverage(currentTest.leftMeasurements)}
@@ -2235,11 +2235,10 @@ export default function TestData() {
                           ].map((opt) => (
                             <label
                               key={opt.key}
-                              className={`flex items-start space-x-2 p-3 rounded border cursor-pointer hover:bg-blue-50 ${
-                                currentTest.dynamicEndpointType === opt.key
-                                  ? "border-blue-600"
-                                  : "border-gray-300"
-                              }`}
+                              className={`flex items-start space-x-2 p-3 rounded border cursor-pointer hover:bg-blue-50 ${currentTest.dynamicEndpointType === opt.key
+                                ? "border-blue-600"
+                                : "border-gray-300"
+                                }`}
                               title={opt.desc}
                             >
                               <input
@@ -2311,7 +2310,7 @@ export default function TestData() {
                               <label className="text-xs font-semibold text-gray-600 mb-1 text-center">
                                 Trial {trialNum}
                               </label>
-                              <Input
+                              {/* <Input
                                 type="number"
                                 value={val || ""}
                                 onChange={(e) =>
@@ -2322,6 +2321,29 @@ export default function TestData() {
                                   )
                                 }
                                 className={`text-center border-2 ${val > 250 ? "border-red-600" : "border-blue-300"} focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
+                              /> */}
+                              <Input
+                                type="number"
+                                min={0}
+                                value={val ?? ""}
+                                onChange={(e) => {
+                                  const inputVal = e.target.value;
+
+                                  // Allow empty input
+                                  if (inputVal === "") {
+                                    updateMeasurement("left", key, undefined);
+                                    return;
+                                  }
+
+                                  const num = parseFloat(inputVal);
+
+                                  // Block negative numbers
+                                  if (num < 0) return;
+
+                                  updateMeasurement("left", key, num);
+                                }}
+                                className={`text-center border-2 ${val > 250 ? "border-red-600" : "border-blue-300"
+                                  } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
                               />
                               {val > 250 && (
                                 <div className="text-red-700 text-xs mt-1">
@@ -2337,14 +2359,14 @@ export default function TestData() {
                     <div className="grid grid-cols-2 gap-2 sm:gap-4 items-start text-xs sm:text-sm">
                       <div className="space-y-2">
                         <div className="text-center font-bold text-sm py-2 text-blue-700">
-                        {shouldDisplayMovementPairs
-                          ? romPair?.[0] || "Left"
-                          : isBalanceTest
-                            ? "Trial 1"
-                            : isCardioTest
-                              ? "Pre-Test"
-                              : "Left"}
-                      </div>
+                          {shouldDisplayMovementPairs
+                            ? romPair?.[0] || "Left"
+                            : isBalanceTest
+                              ? "Trial 1"
+                              : isCardioTest
+                                ? "Pre-Test"
+                                : "Left"}
+                        </div>
                         {[1, 2, 3, 4, 5, 6].map((trialNum) => {
                           const key =
                             `trial${trialNum}` as keyof TestMeasurement;
@@ -2355,7 +2377,7 @@ export default function TestData() {
                               <label className="text-xs font-semibold text-gray-600 mb-1 text-center">
                                 Trial {trialNum}
                               </label>
-                              <Input
+                              {/* <Input
                                 type="number"
                                 value={leftVal || ""}
                                 onChange={(e) =>
@@ -2366,6 +2388,29 @@ export default function TestData() {
                                   )
                                 }
                                 className={`text-center border-2 ${leftVal > 250 ? "border-red-600" : "border-blue-300"} focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
+                              /> */}
+                              <Input
+                                type="number"
+                                min={0}
+                                value={leftVal ?? ""}
+                                onChange={(e) => {
+                                  const val = e.target.value;
+
+                                  // Allow empty input
+                                  if (val === "") {
+                                    updateMeasurement("left", key, undefined);
+                                    return;
+                                  }
+
+                                  const num = parseFloat(val);
+
+                                  // Block negative numbers
+                                  if (num < 0) return;
+
+                                  updateMeasurement("left", key, num);
+                                }}
+                                className={`text-center border-2 ${leftVal > 250 ? "border-red-600" : "border-blue-300"
+                                  } focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-blue-50 font-medium`}
                               />
                               {leftVal > 250 && (
                                 <div className="text-red-700 text-xs mt-1">
@@ -2397,7 +2442,7 @@ export default function TestData() {
                               <label className="text-xs font-semibold text-gray-600 mb-1 text-center">
                                 Trial {trialNum}
                               </label>
-                              <Input
+                              {/* <Input
                                 type="number"
                                 value={rightVal || ""}
                                 onChange={(e) =>
@@ -2408,6 +2453,29 @@ export default function TestData() {
                                   )
                                 }
                                 className={`text-center border-2 ${rightVal > 250 ? "border-red-600" : "border-green-300"} focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-green-50 font-medium`}
+                              /> */}
+                              <Input
+                                type="number"
+                                min={0}
+                                value={rightVal ?? ""}
+                                onChange={(e) => {
+                                  const val = e.target.value;
+
+                                  // Allow empty input
+                                  if (val === "") {
+                                    updateMeasurement("right", key, undefined);
+                                    return;
+                                  }
+
+                                  const num = parseFloat(val);
+
+                                  // Block negative numbers
+                                  if (num < 0) return;
+
+                                  updateMeasurement("right", key, num);
+                                }}
+                                className={`text-center border-2 ${rightVal > 250 ? "border-red-600" : "border-green-300"
+                                  } focus:border-green-500 focus:ring-2 focus:ring-green-200 focus:outline-none text-xs sm:text-sm h-8 sm:h-10 bg-green-50 font-medium`}
                               />
                               {rightVal > 250 && (
                                 <div className="text-red-700 text-xs mt-1">
@@ -2454,12 +2522,12 @@ export default function TestData() {
                           {isMuscleTest
                             ? "Force/Level"
                             : isAnyRomTest
-                            ? "Average Degrees"
-                            : isCardioTest
-                              ? "Average Heart Rate"
-                              : isBalanceTest
-                                ? "Average Time"
-                                : "Average Peak Force"}
+                              ? "Average Degrees"
+                              : isCardioTest
+                                ? "Average Heart Rate"
+                                : isBalanceTest
+                                  ? "Average Time"
+                                  : "Average Peak Force"}
                         </div>
                         <div className="text-xl font-bold">
                           {calculateAverage(currentTest.rightMeasurements)}
@@ -2548,11 +2616,10 @@ export default function TestData() {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab as any)}
-                    className={`px-4 py-2 rounded-t text-sm font-medium ${
-                      activeTab === tab
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                    }`}
+                    className={`px-4 py-2 rounded-t text-sm font-medium ${activeTab === tab
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                      }`}
                   >
                     {tab === "jobRequirements"
                       ? "Job Requirements"
@@ -2828,24 +2895,24 @@ export default function TestData() {
                               <SelectContent>
                                 {currentTest.valueToBeTestedUnit ===
                                   "Weight" && (
-                                  <>
-                                    <SelectItem value="lbs">lbs</SelectItem>
-                                    <SelectItem value="kg">kg</SelectItem>
-                                    <SelectItem value="oz">oz</SelectItem>
-                                    <SelectItem value="g">g</SelectItem>
-                                  </>
-                                )}
+                                    <>
+                                      <SelectItem value="lbs">lbs</SelectItem>
+                                      <SelectItem value="kg">kg</SelectItem>
+                                      <SelectItem value="oz">oz</SelectItem>
+                                      <SelectItem value="g">g</SelectItem>
+                                    </>
+                                  )}
                                 {currentTest.valueToBeTestedUnit ===
                                   "Distance" && (
-                                  <>
-                                    <SelectItem value="ft">ft</SelectItem>
-                                    <SelectItem value="m">m</SelectItem>
-                                    <SelectItem value="cm">cm</SelectItem>
-                                    <SelectItem value="in">in</SelectItem>
-                                    <SelectItem value="km">km</SelectItem>
-                                    <SelectItem value="mi">mi</SelectItem>
-                                  </>
-                                )}
+                                    <>
+                                      <SelectItem value="ft">ft</SelectItem>
+                                      <SelectItem value="m">m</SelectItem>
+                                      <SelectItem value="cm">cm</SelectItem>
+                                      <SelectItem value="in">in</SelectItem>
+                                      <SelectItem value="km">km</SelectItem>
+                                      <SelectItem value="mi">mi</SelectItem>
+                                    </>
+                                  )}
                                 {currentTest.valueToBeTestedUnit === "Time" && (
                                   <>
                                     <SelectItem value="sec">sec</SelectItem>
@@ -2856,38 +2923,38 @@ export default function TestData() {
                                 )}
                                 {currentTest.valueToBeTestedUnit ===
                                   "Force" && (
-                                  <>
-                                    <SelectItem value="lbs">lbs</SelectItem>
-                                    <SelectItem value="kg">kg</SelectItem>
-                                    <SelectItem value="N">N</SelectItem>
-                                    <SelectItem value="kN">kN</SelectItem>
-                                  </>
-                                )}
+                                    <>
+                                      <SelectItem value="lbs">lbs</SelectItem>
+                                      <SelectItem value="kg">kg</SelectItem>
+                                      <SelectItem value="N">N</SelectItem>
+                                      <SelectItem value="kN">kN</SelectItem>
+                                    </>
+                                  )}
                                 {currentTest.valueToBeTestedUnit ===
                                   "Angle" && (
-                                  <>
-                                    <SelectItem value="°">°</SelectItem>
-                                    <SelectItem value="rad">rad</SelectItem>
-                                  </>
-                                )}
+                                    <>
+                                      <SelectItem value="°">°</SelectItem>
+                                      <SelectItem value="rad">rad</SelectItem>
+                                    </>
+                                  )}
                                 {currentTest.valueToBeTestedUnit ===
                                   "Speed" && (
-                                  <>
-                                    <SelectItem value="mph">mph</SelectItem>
-                                    <SelectItem value="km/h">km/h</SelectItem>
-                                    <SelectItem value="m/s">m/s</SelectItem>
-                                    <SelectItem value="ft/s">ft/s</SelectItem>
-                                  </>
-                                )}
+                                    <>
+                                      <SelectItem value="mph">mph</SelectItem>
+                                      <SelectItem value="km/h">km/h</SelectItem>
+                                      <SelectItem value="m/s">m/s</SelectItem>
+                                      <SelectItem value="ft/s">ft/s</SelectItem>
+                                    </>
+                                  )}
                                 {currentTest.valueToBeTestedUnit ===
                                   "Frequency" && (
-                                  <>
-                                    <SelectItem value="Hz">Hz</SelectItem>
-                                    <SelectItem value="rpm">rpm</SelectItem>
-                                    <SelectItem value="bpm">bpm</SelectItem>
-                                    <SelectItem value="/min">/min</SelectItem>
-                                  </>
-                                )}
+                                    <>
+                                      <SelectItem value="Hz">Hz</SelectItem>
+                                      <SelectItem value="rpm">rpm</SelectItem>
+                                      <SelectItem value="bpm">bpm</SelectItem>
+                                      <SelectItem value="/min">/min</SelectItem>
+                                    </>
+                                  )}
                               </SelectContent>
                             </Select>
                           )}
@@ -2978,7 +3045,7 @@ export default function TestData() {
               <div className="flex items-center">
                 <Save className="mr-2 h-5 w-5" />
                 {testDataState.currentTestIndex ===
-                testDataState.tests.length - 1
+                  testDataState.tests.length - 1
                   ? "Save & Finish"
                   : "Save & Continue"}
               </div>
