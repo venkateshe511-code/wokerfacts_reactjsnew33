@@ -41,7 +41,7 @@ export const MTM_IS_TABLES: Record<string, ISLookupTable> = {
   "climb-ladder-4": { 7: 199, 10: 139, 12: 114, 15: 91, 20: 69 },
   "climb-ladder-8": { 10: 137, 12: 113, 15: 90, 17: 80, 20: 69 },
   // Push / pull cart for 40/60/100 lbs share the same mapping in the provided table
-  "push-pull-cart": { 2: 128, 3: 84, 5: 50, 6: 40 },
+  "push-pull-cart": { 1: 222, 2: 128, 3: 84, 5: 50, 6: 40, 7: 35.5, 8: 29.6, 9: 27.2, 10: 24.2, 11: 22.3, 12: 19.8, 13: 18.5, 14: 17.5, 15: 16.1, 16: 15.1, 17: 14.2, 18: 13.5, 19: 12.9, 20: 12.2, 21: 11.6, 30: 8.1, 40: 6.1 },
 };
 
 function interpolatePercent(actualTime: number, table: ISLookupTable): number {
