@@ -961,7 +961,7 @@ export default function FlexibleOccupationalTest({
                           Trial:
                         </th>
                         <th className="border border-black px-3 py-2 text-center font-bold">
-                          Side:
+                          {testType === "push-pull-cart" ? "Action:" : "Side:"}
                         </th>
                         <th className="border border-black px-3 py-2 text-center font-bold">
                           Weight/Plane:
@@ -1001,7 +1001,9 @@ export default function FlexibleOccupationalTest({
                               {trialNumber}
                             </td>
                             <td className="border border-black px-3 py-2 text-center">
-                              {trial?.side || ""}
+                              {testType === "push-pull-cart"
+                                ? trial?.action || ""
+                                : trial?.side || ""}
                             </td>
                             <td className="border border-black px-3 py-2 text-center">
                               {(() => {
