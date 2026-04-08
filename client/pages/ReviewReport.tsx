@@ -7006,7 +7006,7 @@ export default function ReviewReport() {
                                             Trial:
                                           </th>
                                           <th className="border border-gray-400 border-r-gray-400 p-2">
-                                            Side:
+                                            {testType === "push-pull-cart" ? "Action:" : "Side:"}
                                           </th>
                                           <th className="border border-gray-400 border-r-gray-400 p-2">
                                             Weight/Plane:
@@ -7047,7 +7047,9 @@ export default function ReviewReport() {
                                                     trialIndex + 1}
                                                 </td>
                                                 <td className="border border-gray-400 p-2 text-center">
-                                                  {trial.side || "Both"}
+                                                  {testType === "push-pull-cart"
+                                                    ? trial.action || ""
+                                                    : trial.side || "Both"}
                                                 </td>
                                                 <td className="border border-gray-400 p-2 text-center">
                                                   {formatParam(trial.weight) ||

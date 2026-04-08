@@ -2275,7 +2275,7 @@ async function addCardioDocxContent(children, test) {
   }
 }
 
-function buildMTMTestBlockTable(testName, testData, trials = []) {
+function buildMTMTestBlockTable(testName, testData, trials = [], testType = "") {
   // Colors/styling similar to screenshot
   const PANEL_HEADER_FILL = "FFFF99"; // pale yellow
   const GRID_HEADER_FILL = "F3F4F6"; // light gray
@@ -2320,7 +2320,7 @@ function buildMTMTestBlockTable(testName, testData, trials = []) {
   // Grid header
   const headers = [
     "Trial",
-    "Side",
+    testType === "push-pull-cart" ? "Action" : "Side",
     "Weight/Plane",
     "Distance/Posture",
     "Reps",
@@ -2372,7 +2372,7 @@ function buildMTMTestBlockTable(testName, testData, trials = []) {
 
     const cells = [
       trial.trial || i + 1,
-      trial.side || "Both",
+      testType === "push-pull-cart" ? trial.action || "" : trial.side || "Both",
       trial.weight?.value ?? trial.plane ?? "",
       trial.distance?.value ?? trial.position ?? "",
       Number.isFinite(reps) ? reps : "",
@@ -3010,7 +3010,7 @@ async function generateMTMContentDocx(mtmData, mainTestData) {
     });
 
     // Add test table
-    rightCol.push(buildMTMTestBlockTable(testName, testData, trials));
+    rightCol.push(buildMTMTestBlockTable(testName, testData, trials, testType));
 
     // Heart Rate
     const { preHR, postHR } = extractHeartRateForMTM(
